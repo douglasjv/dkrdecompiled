@@ -18,10 +18,11 @@
 - First route: run the selector and start with its `recommended_next`.
 - Current repository baseline from README: `us.v77` reports 97.30% decompiled,
   with 7 `GLOBAL_ASM`, 4 `NON_MATCHING`, and 3 `NON_EQUIVALENT` functions.
-- Current selector surface after parking `func_8008FF1C`: 6 active guarded
-  candidates, 1 parked candidate. Recommended next packet is
-  `func_80017A18` in `src/objects.c`.
-- The baserom should live in `baseroms/` and remain untracked.
+- Current selector surface after parking `func_8008FF1C` and
+  `func_80017A18`: 5 active guarded candidates, 2 parked candidates.
+  Recommended next packet is `init_particle_buffers` in `src/particles.c`.
+- The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
+  `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
   `gmake -j4` selects Homebrew `mips-linux-gnu-ld` and fails linking
   `build/src/objects.c.o` with an invalid `.strtab` offset.
@@ -40,6 +41,11 @@
   promotion currently fails on a `v1` vs `t2` selected-track halfword
   load/branch after `level_name`, while broader local-order/branch probes
   cascade register allocation. Do not retry those same probes as the next
+  packet.
+- `func_80017A18` is parked in `research/tasks/PARKED.md`: existing C compiles
+  when promoted, but diff evidence points at frame size, saved-register
+  allocation, and float-temp lifetime mismatches. Do not retry the recorded
+  dead-local, edge-plane-inline, or `register var_s6` probes as the next
   packet.
 
 ## Ask The User Only If
