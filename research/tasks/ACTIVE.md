@@ -96,6 +96,11 @@
   compiled but left the focused score unchanged at `CURRENT (870)`; inlining
   the object position loads in the dot product worsened the score to
   `CURRENT (1356)` and changed earlier `splinePos` float-register allocation.
+  Inlining only `obj->trans.x_position` while keeping `z_position` in the
+  existing `distance` temporary worsened the score to `CURRENT (1826)` and
+  disturbed earlier `splinePos`/double-temp allocation. Routing the checkpoint
+  dot product through the existing `pad3` local before negating into `pad2`
+  compiled but left the focused score unchanged at `CURRENT (870)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
