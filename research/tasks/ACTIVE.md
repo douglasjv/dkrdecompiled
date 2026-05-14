@@ -97,6 +97,11 @@
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
+  Rejected probes: replacing the repeated `(xSin * 1280.0f)` terms in the first
+  four x/z position assignments with `scaledXSin` widened the frame to `0x168`
+  and worsened the focused score to `CURRENT (12121)`; reordering the index
+  5-8 x/z position stores to match the apparent target store sequence worsened
+  the focused score to `CURRENT (2551)` and shifted later scheduling.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.

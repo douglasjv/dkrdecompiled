@@ -1,17 +1,17 @@
 # Session Handoff
 
-- Generated at: 2026-05-14 23:05:39Z
+- Generated at: 2026-05-14 23:11:28Z
 - Branch: `master`
-- HEAD: `0e53336c`
-- Completed task: `DKR-MATCH-FUNC-80059208-FINAL-OFFSET-PROBES`
-- Summary: No new source match landed. This pass rejected two additional ordinary-C `func_80059208` final-offset expression probes while keeping the function active.
+- HEAD: `aabd2f26`
+- Completed task: `DKR-MATCH-TRACKBG-RENDER-FLASHY-POSITION-PROBES`
+- Summary: No new source match landed. This pass rejected two ordinary-C `trackbg_render_flashy` position-array probes while keeping the function active.
 
 ## Validation
 
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` probes compile
-- `./diff.sh -o func_80059208 -s --compress-matching 3 --no-pager` -> baseline and positive-`pad2` expression both score `CURRENT (870)`; inline object-load expression worsens to `CURRENT (1356)`, nonmatching
+- `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `trackbg_render_flashy` C compiles
+- `./diff.sh trackbg_render_flashy -s --compress-matching 3 --no-pager` -> baseline linked promoted C scores `CURRENT (1808)`; replacing repeated `(xSin * 1280.0f)` with `scaledXSin` worsens to `CURRENT (12121)`; reordering index 5-8 x/z stores worsens to `CURRENT (2551)`, all nonmatching
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> `Verify: OK`
 
 ## Blockers Or Unknowns
@@ -21,7 +21,7 @@
 - Rejected `func_80049794` probes: `register f32 var_f20`, moving `var_f20` declaration, explicit `f64 var_f20_d`, inline clamp casts, `/ 2.0` and `/ 4.0` multiply rewrites, splitting the initial `sqrtf` result into a named local, `register f32 var_f14`, moving `var_f14` into the early local group, `register f32 segmentZVelocity`, direct assignment of the misc-asset interpolation into `var_f14`, delaying the `segmentZVelocity` copy until `handle_racer_top_speed`, `register` hints on `spEC`/`spD8`/`spD4`/`spD0`, naming `gRacerWaveCount - 1` in `var_v1` before the wave scan, and explicitly materializing the early zero through `var_f14` before the grounded wheel reset. The wave-scan probe matched the intended `v1/a0` idea locally but worsened the focused score to `CURRENT (5445)` by increasing register pressure and spilling/reshaping `spA2`; the early-zero `var_f14` probe compiled but left the score unchanged at `CURRENT (2550)` and did not move the `$f14/$f16` split. Do not repeat those exact source shapes.
 - The `FAKEMATCH` no-op around `gCurrentCarSteerVel` can improve the focused score from `2550` to `2490`, but it is still nonmatching and should not be accepted as progress without an exact-match path.
 - `func_80059208` is close and should stay active. Existing C promotes to `CURRENT (870)`; target keeps the negated `pad2` temporary and adds it to `pad`, while current folds the expression into a subtract. Rejected probes: `pad`/`pad2` reorder, `pad += pad2`, `register f32 pad2`, signed-zero negation, removing `UNUSED`, two-step negation, operand-order swaps, inline `pad2`, split final assignment, delayed `z_position` load, `register f32 pad`, empty `if (1) {}` barrier near `pad2`, transient `distance` holder, `register f32 distance`, `pad - (-pad2)`, target-dataflow order that computes the checkpoint dot product first, object dot product second, then negates the checkpoint term, positive `pad2` with `diffX = -((pad - pad2) / divisor)`, and inlining object position loads in the dot product. Positive `pad2` left the score unchanged at `CURRENT (870)`; inline object loads worsened to `CURRENT (1356)` and changed earlier `splinePos` float-register allocation.
-- `trackbg_render_flashy` promotes but is broader (`CURRENT (1808)`) and starts drifting in position-array setup.
+- `trackbg_render_flashy` promotes but is broader (`CURRENT (1808)`) and starts drifting in position-array setup. Rejected probes: replacing repeated first-four `(xSin * 1280.0f)` terms with `scaledXSin` widened the frame to `0x168` and worsened to `CURRENT (12121)`; reordering the index 5-8 x/z position stores to match the apparent target store sequence worsened to `CURRENT (2551)`.
 - `func_8002B0F4` promotes but is broader (`CURRENT (2780)`) and starts drifting around `gCurrentLevelModel` hoisting/caching before the grid loops.
 
 ## Ask The User Only If
