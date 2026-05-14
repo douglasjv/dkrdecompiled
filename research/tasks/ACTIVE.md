@@ -74,7 +74,11 @@
   reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
   signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
   `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
-  splitting the final `diffX` assignment into a temporary.
+  splitting the final `diffX` assignment into a temporary. Additional rejected
+  probes: delaying the `obj->trans.z_position` load until after `pad2`,
+  `register f32 pad`, an empty `if (1) {}` barrier near `pad2`, transiently
+  storing the negated dot product through `distance`, `register f32 distance`,
+  and rewriting the final expression as `pad - (-pad2)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
