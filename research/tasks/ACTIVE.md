@@ -63,9 +63,12 @@
   `register f32 var_f14`, moving `var_f14` into the early local group,
   `register f32 segmentZVelocity`, direct assignment of the misc-asset
   interpolation into `var_f14`, delaying the `segmentZVelocity` copy until
-  `handle_racer_top_speed`, and `register` hints on `spEC`/`spD8`/`spD4`/`spD0`.
-  Keep the function active; do not park it just because these allocation probes
-  missed.
+  `handle_racer_top_speed`, `register` hints on `spEC`/`spD8`/`spD4`/`spD0`,
+  and naming `gRacerWaveCount - 1` in `var_v1` before the wave scan. The
+  wave-scan probe matched the intended `v1/a0` idea locally but worsened the
+  focused score to `CURRENT (5445)` by increasing register pressure and
+  spilling/reshaping `spA2`. Keep the function active; do not park it just
+  because these allocation probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
