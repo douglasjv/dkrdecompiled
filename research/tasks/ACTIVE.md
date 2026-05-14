@@ -89,8 +89,11 @@
   once into `var_f14` and deriving `var_f0` from `var_f14` also compiled but
   worsened the focused score to `CURRENT (3095)`. Making the nearby velocity
   clamp constants explicitly single-precision (`4.0f`/`3.0f`) also compiled but
-  worsened the focused score to `CURRENT (3045)`. Keep the function active; do
-  not park it just because these allocation/scheduling probes missed.
+  worsened the focused score to `CURRENT (3045)`. Making the buoyancy gravity
+  expression constants explicitly single-precision
+  (`var_f20 = -1.0f - (var_f2 / 10.0f)`) compiled but left the focused score
+  unchanged at `CURRENT (2550)`. Keep the function active; do not park it just
+  because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
@@ -117,7 +120,12 @@
   existing `distance` temporary worsened the score to `CURRENT (1826)` and
   disturbed earlier `splinePos`/double-temp allocation. Routing the checkpoint
   dot product through the existing `pad3` local before negating into `pad2`
-  compiled but left the focused score unchanged at `CURRENT (870)`.
+  compiled but left the focused score unchanged at `CURRENT (870)`. Reusing
+  the now-dead `diffY` local for the checkpoint dot product before the lateral
+  correction worsened the focused score to `CURRENT (1465)`. Rewriting the
+  equivalent final expression as positive `pad2` with
+  `diffX = (pad2 - pad) / divisor` worsened the focused score to
+  `CURRENT (1200)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
