@@ -92,8 +92,12 @@
   worsened the focused score to `CURRENT (3045)`. Making the buoyancy gravity
   expression constants explicitly single-precision
   (`var_f20 = -1.0f - (var_f2 / 10.0f)`) compiled but left the focused score
-  unchanged at `CURRENT (2550)`. Keep the function active; do not park it just
-  because these allocation/scheduling probes missed.
+  unchanged at `CURRENT (2550)`. Starting the `var_f20` lifetime at the first
+  grounded-wheel zeroing (`var_f20 = 0.0f; racer->unk84 = var_f20;
+  racer->unk88 = var_f20;`) also compiled but left the focused score unchanged
+  at `CURRENT (2550)` and still did not introduce the target `$f20/$f21`
+  prologue saves. Keep the function active; do not park it just because these
+  allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
