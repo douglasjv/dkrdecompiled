@@ -89,7 +89,11 @@
   then negates the checkpoint term before adding. That target-dataflow order
   compiled but worsened the focused score to `CURRENT (1684)` by moving the
   `diffZ = -diffY` store/load shape earlier and cascading float-register
-  allocation through the final vertical offset block.
+  allocation through the final vertical offset block. Additional rejected
+  probes: using a positive `pad2` plus `diffX = -((pad - pad2) / divisor)`
+  compiled but left the focused score unchanged at `CURRENT (870)`; inlining
+  the object position loads in the dot product worsened the score to
+  `CURRENT (1356)` and changed earlier `splinePos` float-register allocation.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
