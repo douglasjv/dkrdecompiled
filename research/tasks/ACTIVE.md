@@ -18,9 +18,9 @@
 - First route: run the selector and start with its `recommended_next`.
 - Current repository baseline from README: `us.v77` reports 97.30% decompiled,
   with 7 `GLOBAL_ASM`, 4 `NON_MATCHING`, and 3 `NON_EQUIVALENT` functions.
-- Current selector surface after parking `func_8008FF1C` and
-  `func_80017A18`: 5 active guarded candidates, 2 parked candidates.
-  Recommended next packet is `init_particle_buffers` in `src/particles.c`.
+- Current selector surface after parking `func_8008FF1C`, `func_80017A18`, and
+  `init_particle_buffers`: 4 active guarded candidates, 3 parked candidates.
+  Recommended next packet is `func_80049794` in `src/racer.c`.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -47,6 +47,11 @@
   allocation, and float-temp lifetime mismatches. Do not retry the recorded
   dead-local, edge-plane-inline, or `register var_s6` probes as the next
   packet.
+- `init_particle_buffers` is parked in `research/tasks/PARKED.md`: existing C
+  compiles when promoted, but diff evidence points at saved-register allocation
+  for the particle counts and allocator colour tag. Do not retry the recorded
+  `register` parameter, local count alias, or pointer-to-global probes as the
+  next packet.
 
 ## Ask The User Only If
 

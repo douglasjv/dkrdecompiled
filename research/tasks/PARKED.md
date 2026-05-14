@@ -26,3 +26,15 @@ when recommending the next packet.
   worsens scheduling/register allocation to score `8600`. `register s32
   var_s6` did not move the bitmask into `s6`. Revisit with a narrow float-temp
   lifetime and saved-register allocation hypothesis, not these same probes.
+
+- `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
+  candidate compiles in matching mode when promoted, but focused object diff
+  remains a saved-register allocation mismatch. Baseline promotion produced
+  score `1816` with target frame `0x68`; target keeps counts in
+  `s1/s3/s7/s4/s8` and the allocator colour tag in `s2`, while current keeps
+  them in `s3/s1/s7/s2/s4` and uses `s0` for the tag. Probes tried:
+  `register` on the five count parameters (no object change), explicit local
+  aliases for the five counts (worsened to frame `0x78`, score `3620`), and a
+  local pointer-to-`gParticleTriangleBuffer` write (no useful allocation
+  change, score `1824`). Revisit with a narrower saved-register/lifetime
+  strategy, not these same probes.
