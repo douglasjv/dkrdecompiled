@@ -75,8 +75,11 @@
   but left the focused score unchanged at `CURRENT (2550)`. Combining
   `register f32 var_f20` with `register f32 var_f14` also compiled but left the
   focused score unchanged at `CURRENT (2550)` and did not force the target
-  `$f20/$f21` save pair. Keep the function active; do not park it just because
-  these allocation/scheduling probes missed.
+  `$f20/$f21` save pair. Routing the early grounded-wheel zero through the
+  existing `spCC` float local before assigning `racer->unk84`/`unk88` also
+  compiled but left the focused score unchanged at `CURRENT (2550)` and did not
+  move the early `$f14` versus `$f16` zero split. Keep the function active; do
+  not park it just because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
