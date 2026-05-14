@@ -66,6 +66,21 @@
   `handle_racer_top_speed`, and `register` hints on `spEC`/`spD8`/`spD4`/`spD0`.
   Keep the function active; do not park it just because these allocation probes
   missed.
+- `func_80059208` is active, not parked. Promoting the existing C compiles and
+  focused object diff scores `CURRENT (870)`. The remaining drift is localized
+  near the final lateral/vertical offset math: target preserves the negated
+  `pad2 = -((tempZ * diffZ) + (diffX * tempX))` temporary and adds it to `pad`,
+  while current folds the equivalent math into a subtract. Rejected probes:
+  reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
+  signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
+  `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
+  splitting the final `diffX` assignment into a temporary.
+- `trackbg_render_flashy` is active, not parked. Promoting the existing C
+  compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
+  the position-array setup, so it is less localized than `func_80059208`.
+- `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
+  linked focused diff scores `CURRENT (2780)` with broad drift starting around
+  `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
 
 ## Ask The User Only If
 
