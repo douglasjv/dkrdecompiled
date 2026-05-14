@@ -87,7 +87,9 @@
   spell the target-looking `current * (1.0 - frac) + next * frac` shape compiled
   but worsened the focused score to `CURRENT (2585)`. Loading `racer->velocity`
   once into `var_f14` and deriving `var_f0` from `var_f14` also compiled but
-  worsened the focused score to `CURRENT (3095)`. Keep the function active; do
+  worsened the focused score to `CURRENT (3095)`. Making the nearby velocity
+  clamp constants explicitly single-precision (`4.0f`/`3.0f`) also compiled but
+  worsened the focused score to `CURRENT (3045)`. Keep the function active; do
   not park it just because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
