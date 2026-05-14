@@ -78,8 +78,13 @@
   `$f20/$f21` save pair. Routing the early grounded-wheel zero through the
   existing `spCC` float local before assigning `racer->unk84`/`unk88` also
   compiled but left the focused score unchanged at `CURRENT (2550)` and did not
-  move the early `$f14` versus `$f16` zero split. Keep the function active; do
-  not park it just because these allocation/scheduling probes missed.
+  move the early `$f14` versus `$f16` zero split. Splitting the first `sqrtf`
+  assignment into `var_f20 = sqrtf(...); var_f20 -= 2.0;` also compiled but left
+  the focused score unchanged at `CURRENT (2550)`. Reusing
+  `racerMiscAssetIdx` for the fractional `var_f14` calculation
+  (`var_f0 = var_f14 - racerMiscAssetIdx`) likewise compiled but left the score
+  unchanged at `CURRENT (2550)`. Keep the function active; do not park it just
+  because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
