@@ -6,6 +6,8 @@
   keeps the matching ROM byte-identical.
 - Loop: `research/tasks/GOAL_LOOP.md`.
 - Selector: `python3 tools/query_goal_state.py next --compact --refresh`.
+- Parked packets: `research/tasks/PARKED.md`; the selector skips parked
+  function names.
 - Default work: bounded `matching_impl` packets against one `GLOBAL_ASM`,
   `NON_MATCHING`, or `NON_EQUIVALENT` target.
 - Default validation: `gmake -j4 CROSS=tools/binutils/mips64-elf-` in matching
@@ -16,6 +18,9 @@
 - First route: run the selector and start with its `recommended_next`.
 - Current repository baseline from README: `us.v77` reports 97.30% decompiled,
   with 7 `GLOBAL_ASM`, 4 `NON_MATCHING`, and 3 `NON_EQUIVALENT` functions.
+- Current selector surface after parking `func_8008FF1C`: 6 active guarded
+  candidates, 1 parked candidate. Recommended next packet is
+  `func_80017A18` in `src/objects.c`.
 - The baserom should live in `baseroms/` and remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
   `gmake -j4` selects Homebrew `mips-linux-gnu-ld` and fails linking
@@ -31,6 +36,11 @@
   return shape, and local variable lifetime before broad rewrites.
 - If a source probe does not improve the focused diff, record the source-shape
   family in the handoff instead of retrying it blindly.
+- `func_8008FF1C` is parked in `research/tasks/PARKED.md`: matching-mode
+  promotion currently fails on a `v1` vs `t2` selected-track halfword
+  load/branch after `level_name`, while broader local-order/branch probes
+  cascade register allocation. Do not retry those same probes as the next
+  packet.
 
 ## Ask The User Only If
 

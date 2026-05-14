@@ -10,8 +10,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOTS = [ROOT / "src", ROOT / "libultra" / "src"]
+PARKED_PATH = ROOT / "research" / "tasks" / "PARKED.md"
 PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
+PARKED_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 
 
 def rel(path: Path) -> str:
@@ -20,6 +22,20 @@ def rel(path: Path) -> str:
 
 def function_from_asm(asm_path: str) -> str:
     return Path(asm_path).stem
+
+
+def parked_functions() -> set[str]:
+    if not PARKED_PATH.exists():
+        return set()
+    parked: set[str] = set()
+    for line in PARKED_PATH.read_text(errors="replace").splitlines():
+        stripped = line.strip()
+        if not stripped.startswith("-"):
+            continue
+        match = PARKED_FUNC_RE.search(stripped)
+        if match:
+            parked.add(match.group(1))
+    return parked
 
 
 def scan_sources() -> list[dict[str, object]]:
@@ -62,7 +78,9 @@ def scan_sources() -> list[dict[str, object]]:
 
 
 def build_state() -> dict[str, object]:
-    candidates = scan_sources()
+    all_candidates = scan_sources()
+    parked = parked_functions()
+    candidates = [item for item in all_candidates if item["function"] not in parked]
     baseroms = sorted(path.name for path in (ROOT / "baseroms").glob("*.z64"))
     maps = sorted(path.name for path in (ROOT / "build").glob("*.map")) if (ROOT / "build").exists() else []
     recommended = candidates[0] if candidates else None
@@ -72,10 +90,12 @@ def build_state() -> dict[str, object]:
         "build_maps": maps,
         "counts": {
             "candidates": len(candidates),
+            "parked": len(all_candidates) - len(candidates),
             "source_global_asm": sum(1 for item in candidates if item["kind"] == "GLOBAL_ASM"),
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
         },
         "recommended_next": recommended,
+        "parked_functions": sorted(parked),
         "candidates": candidates[:25],
     }
 
@@ -89,7 +109,8 @@ def print_compact(state: dict[str, object]) -> None:
         "counts: "
         f"candidates={counts['candidates']} "
         f"global_asm={counts['source_global_asm']} "
-        f"guarded={counts['non_matching_or_equivalent']}"
+        f"guarded={counts['non_matching_or_equivalent']} "
+        f"parked={counts['parked']}"
     )
     recommended = state["recommended_next"]
     if not recommended:
@@ -122,4 +143,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
