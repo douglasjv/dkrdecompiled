@@ -129,7 +129,11 @@
   correction worsened the focused score to `CURRENT (1465)`. Rewriting the
   equivalent final expression as positive `pad2` with
   `diffX = (pad2 - pad) / divisor` worsened the focused score to
-  `CURRENT (1200)`.
+  `CURRENT (1200)`. Routing the axis-rotation swap through the existing `pad3`
+  local (`pad3 = diffX; diffX = diffZ; diffZ = -pad3`) worsened the focused
+  score to `CURRENT (1698)`. Computing the negated rotated axis first
+  (`diffY = -diffX; diffX = diffZ; diffZ = diffY`) worsened the focused score
+  to `CURRENT (1090)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
