@@ -59,8 +59,13 @@
   plane physics function. Tested probes that did not solve it: `register f32
   var_f20`, moving `var_f20` declaration, explicit `f64 var_f20_d`, inline
   casts around the clamp expression, replacing `/ 2.0` and `/ 4.0` with
-  multiply forms, and splitting the initial `sqrtf` result into a new named
-  local.
+  multiply forms, splitting the initial `sqrtf` result into a new named local,
+  `register f32 var_f14`, moving `var_f14` into the early local group,
+  `register f32 segmentZVelocity`, direct assignment of the misc-asset
+  interpolation into `var_f14`, delaying the `segmentZVelocity` copy until
+  `handle_racer_top_speed`, and `register` hints on `spEC`/`spD8`/`spD4`/`spD0`.
+  Keep the function active; do not park it just because these allocation probes
+  missed.
 
 ## Ask The User Only If
 
