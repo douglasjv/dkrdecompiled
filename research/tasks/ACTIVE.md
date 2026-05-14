@@ -83,8 +83,12 @@
   the focused score unchanged at `CURRENT (2550)`. Reusing
   `racerMiscAssetIdx` for the fractional `var_f14` calculation
   (`var_f0 = var_f14 - racerMiscAssetIdx`) likewise compiled but left the score
-  unchanged at `CURRENT (2550)`. Keep the function active; do not park it just
-  because these allocation/scheduling probes missed.
+  unchanged at `CURRENT (2550)`. Reordering the misc-asset interpolation to
+  spell the target-looking `current * (1.0 - frac) + next * frac` shape compiled
+  but worsened the focused score to `CURRENT (2585)`. Loading `racer->velocity`
+  once into `var_f14` and deriving `var_f0` from `var_f14` also compiled but
+  worsened the focused score to `CURRENT (3095)`. Keep the function active; do
+  not park it just because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
