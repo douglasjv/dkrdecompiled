@@ -6,8 +6,9 @@
   keeps the matching ROM byte-identical.
 - Loop: `research/tasks/GOAL_LOOP.md`.
 - Selector: `python3 tools/query_goal_state.py next --compact --refresh`.
-- Parked packets: `research/tasks/PARKED.md`; the selector skips parked
-  function names.
+- Exhausted probe notes: `research/tasks/PARKED.md`; these notes prevent
+  blind retries and are skipped by default, but they are not permanent removal
+  from the project.
 - Default work: bounded `matching_impl` packets against one `GLOBAL_ASM`,
   `NON_MATCHING`, or `NON_EQUIVALENT` target.
 - Default validation: `gmake -j4 CROSS=tools/binutils/mips64-elf-` in matching
@@ -18,9 +19,9 @@
 - First route: run the selector and start with its `recommended_next`.
 - Current repository baseline from README: `us.v77` reports 97.30% decompiled,
   with 7 `GLOBAL_ASM`, 4 `NON_MATCHING`, and 3 `NON_EQUIVALENT` functions.
-- Current selector surface after parking `func_8008FF1C`, `func_80017A18`, and
-  `init_particle_buffers`: 4 active guarded candidates, 3 parked candidates.
-  Recommended next packet is `func_80049794` in `src/racer.c`.
+- Current selector surface: 4 default-routable candidates and 3 functions with
+  exhausted probe notes. Recommended next packet is `func_80049794` in
+  `src/racer.c`.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -37,21 +38,29 @@
   return shape, and local variable lifetime before broad rewrites.
 - If a source probe does not improve the focused diff, record the source-shape
   family in the handoff instead of retrying it blindly.
-- `func_8008FF1C` is parked in `research/tasks/PARKED.md`: matching-mode
+- `func_8008FF1C` has exhausted probe notes in `research/tasks/PARKED.md`:
+  matching-mode
   promotion currently fails on a `v1` vs `t2` selected-track halfword
   load/branch after `level_name`, while broader local-order/branch probes
   cascade register allocation. Do not retry those same probes as the next
   packet.
-- `func_80017A18` is parked in `research/tasks/PARKED.md`: existing C compiles
-  when promoted, but diff evidence points at frame size, saved-register
-  allocation, and float-temp lifetime mismatches. Do not retry the recorded
-  dead-local, edge-plane-inline, or `register var_s6` probes as the next
-  packet.
-- `init_particle_buffers` is parked in `research/tasks/PARKED.md`: existing C
-  compiles when promoted, but diff evidence points at saved-register allocation
-  for the particle counts and allocator colour tag. Do not retry the recorded
-  `register` parameter, local count alias, or pointer-to-global probes as the
+- `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
+  existing C compiles when promoted, but diff evidence points at frame size,
+  saved-register allocation, and float-temp lifetime mismatches. Do not retry
+  the recorded dead-local, edge-plane-inline, or `register var_s6` probes as the
   next packet.
+- `init_particle_buffers` has exhausted probe notes in
+  `research/tasks/PARKED.md`: existing C compiles when promoted, but diff
+  evidence points at saved-register allocation for the particle counts and
+  allocator colour tag. Do not retry the recorded `register` parameter, local
+  count alias, or pointer-to-global probes as the next packet.
+- `func_80049794` is active, not parked. Current focused evidence points at
+  target `$f20/$f21` saves and broad `$f20` float-temp allocation across the
+  plane physics function. Tested probes that did not solve it: `register f32
+  var_f20`, moving `var_f20` declaration, explicit `f64 var_f20_d`, inline
+  casts around the clamp expression, replacing `/ 2.0` and `/ 4.0` with
+  multiply forms, and splitting the initial `sqrtf` result into a new named
+  local.
 
 ## Ask The User Only If
 

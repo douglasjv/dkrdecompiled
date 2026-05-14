@@ -1,10 +1,11 @@
-# Parked Matching Packets
+# Exhausted Probe Notes
 
-Use this file for bounded source-level packets that were investigated but not
-safe to retry blindly. `tools/query_goal_state.py` skips listed function names
-when recommending the next packet.
+Use this file for bounded source-level packets that were investigated but are
+not safe to retry blindly. These notes are default-skipped by
+`tools/query_goal_state.py` for routing momentum; pass `--include-exhausted`
+when intentionally returning to them.
 
-## Parked
+## Recorded Notes
 
 - `func_8008FF1C` (`src/menu.c`, `NON_MATCHING`): existing C candidate is very
   close in matching mode, but promotion fails final ROM verify. Focused

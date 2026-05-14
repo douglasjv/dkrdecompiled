@@ -7,8 +7,8 @@ Splat/IDO/asm-differ build gates.
 ## Objective
 
 Keep landing source-level C for original Diddy Kong Racing functions while the
-matching ROM remains byte-identical. A parked or exhausted packet is evidence
-about that packet only; it is not evidence that the project is out of work.
+matching ROM remains byte-identical. Exhausted probe evidence is evidence about
+that packet only; it is not evidence that the project is out of work.
 
 ## Startup Order
 
@@ -33,6 +33,9 @@ about that packet only; it is not evidence that the project is out of work.
   before opening another source-shape family.
 - Record rejected source shapes, current best diff, and next probe in
   `SESSION_HANDOFF.md`.
+- Do not add close functions to the exhausted-note skip list just because a
+  probe family failed. Keep them active unless there is a concrete setup, asset,
+  or behavior blocker.
 
 ## Validation
 
@@ -63,7 +66,7 @@ prefix built by `tools/get-binutils.sh`.
 Default packet reasoning is medium. Escalate the next continuation only when
 the handoff records an exact-match ambiguity, the focused diff evidence path,
 the best source-shape metric, and a narrow question. Return to medium after the
-question lands, parks, or narrows.
+question lands or narrows.
 
 ## Stop Conditions
 

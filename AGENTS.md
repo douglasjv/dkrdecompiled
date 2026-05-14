@@ -21,6 +21,9 @@ source-level C that keeps the matching ROM byte-identical.
 - Prefer one bounded function or one very small source family per packet.
 - Use the repo's existing style, naming, include layout, and `GLOBAL_ASM` /
   `NON_MATCHING` conventions.
+- Do not park close functions just because a probe family failed. Record the
+  rejected source shape and next hypothesis, then keep the function routable
+  unless there is a concrete setup, asset, or behavior blocker.
 - Keep original ROM assets ignored. Do not commit files from `baseroms/`,
   `assets/`, `asm/`, `build/`, or generated linker/map outputs.
 - On macOS use `gmake` for build targets.
@@ -42,8 +45,9 @@ blocker is recorded precisely in `SESSION_HANDOFF.md`.
 
 ## Closeout
 
-When a packet lands, parks, or changes routing/tooling, update
-`research/tasks/ACTIVE.md` and `SESSION_HANDOFF.md`. Prefer:
+When a packet lands, records exhausted probe evidence, or changes
+routing/tooling, update `research/tasks/ACTIVE.md` and `SESSION_HANDOFF.md`.
+Prefer:
 
 ```sh
 python3 tools/session_closeout.py --task <task-id> --summary "<short result>" \
