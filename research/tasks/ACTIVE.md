@@ -141,7 +141,11 @@
   four x/z position assignments with `scaledXSin` widened the frame to `0x168`
   and worsened the focused score to `CURRENT (12121)`; reordering the index
   5-8 x/z position stores to match the apparent target store sequence worsened
-  the focused score to `CURRENT (2551)` and shifted later scheduling.
+  the focused score to `CURRENT (2551)` and shifted later scheduling. Flipping
+  only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
+  linked focused score unchanged at `CURRENT (1808)`. Replacing only
+  `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
+  focused score to `CURRENT (12021)` and changed the frame to `0x150`.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
