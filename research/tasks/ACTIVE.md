@@ -64,11 +64,14 @@
   `register f32 segmentZVelocity`, direct assignment of the misc-asset
   interpolation into `var_f14`, delaying the `segmentZVelocity` copy until
   `handle_racer_top_speed`, `register` hints on `spEC`/`spD8`/`spD4`/`spD0`,
-  and naming `gRacerWaveCount - 1` in `var_v1` before the wave scan. The
-  wave-scan probe matched the intended `v1/a0` idea locally but worsened the
-  focused score to `CURRENT (5445)` by increasing register pressure and
-  spilling/reshaping `spA2`. Keep the function active; do not park it just
-  because these allocation probes missed.
+  naming `gRacerWaveCount - 1` in `var_v1` before the wave scan, and
+  explicitly materializing the early zero through `var_f14` before the grounded
+  wheel reset. The wave-scan probe matched the intended `v1/a0` idea locally
+  but worsened the focused score to `CURRENT (5445)` by increasing register
+  pressure and spilling/reshaping `spA2`. The early-zero `var_f14` probe
+  compiled but left the focused score unchanged at `CURRENT (2550)` and did not
+  move the `$f14/$f16` allocation split. Keep the function active; do not park
+  it just because these allocation probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
