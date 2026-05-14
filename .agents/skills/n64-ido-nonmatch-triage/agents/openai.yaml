@@ -1,0 +1,5 @@
+interface:
+  display_name: "N64 IDO Nonmatch Triage"
+  short_description: "Diagnose one compiling N64 nonmatch from focused diff"
+  default_prompt: "Use $n64-ido-nonmatch-triage to classify one asm-differ mismatch and propose the smallest source-level probes."
+

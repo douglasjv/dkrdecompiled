@@ -1,0 +1,5 @@
+interface:
+  display_name: "N64 IDO Matching Packet"
+  short_description: "Land one bounded N64 C function with ROM verification"
+  default_prompt: "Use $n64-ido-matching-packet to select one DKR target, write source-level C, diagnose with asm-differ, and accept only after the matching ROM verifies."
+

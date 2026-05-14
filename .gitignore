@@ -60,6 +60,8 @@ __pycache__/
 *__pycache__/
 expected/
 .*/
+!.agents/
+!.agents/**
 ver/*.ld
 *.map
 */*.map
