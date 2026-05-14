@@ -81,7 +81,12 @@
   probes: delaying the `obj->trans.z_position` load until after `pad2`,
   `register f32 pad`, an empty `if (1) {}` barrier near `pad2`, transiently
   storing the negated dot product through `distance`, `register f32 distance`,
-  and rewriting the final expression as `pad - (-pad2)`.
+  rewriting the final expression as `pad - (-pad2)`, and a target-dataflow
+  order that computes the checkpoint dot product, then the object dot product,
+  then negates the checkpoint term before adding. That target-dataflow order
+  compiled but worsened the focused score to `CURRENT (1684)` by moving the
+  `diffZ = -diffY` store/load shape earlier and cascading float-register
+  allocation through the final vertical offset block.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
