@@ -199,9 +199,12 @@
   (`pad3 = objDot; diffX = -((pad3 + pad2) / divisor)`) compiled but left the
   focused object score unchanged at `CURRENT (870)`. Routing the final
   `pad + pad2` sum through `pad3` also compiled but left the focused score
-  unchanged at `CURRENT (870)`. Making `pad2` volatile compiled but worsened
-  the focused score to `CURRENT (955)` by forcing stack traffic and shifting
-  final-block scheduling. Rewriting the final lateral correction as a
+  unchanged at `CURRENT (870)`. Computing the final sum as
+  `pad = pad2 + objectDot; diffX = -(pad / divisor)` after materializing the
+  negated `pad2` also compiled but left the focused object score unchanged at
+  `CURRENT (870)`. Making `pad2` volatile compiled but worsened the focused
+  score to `CURRENT (955)` by forcing stack traffic and shifting final-block
+  scheduling. Rewriting the final lateral correction as a
   relative-position dot product (`splinePos = obj->trans.x_position - tempX;
   distance = obj->trans.z_position - tempZ; pad = (splinePos * diffX) + (diffZ
   * distance); diffX = -(pad / divisor)`) compiled but worsened the focused
