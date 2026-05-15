@@ -194,7 +194,11 @@
   `handle_racer_top_speed`, boost override, throttle, and brake uses compiled
   but worsened the focused object score from `CURRENT (2550)` to
   `CURRENT (2800)`; it moved the key speed/gravity float family from `$f14` to
-  `$f16` but still did not introduce target `$f20/$f21` prologue saves. A
+  `$f16` but still did not introduce target `$f20/$f21` prologue saves.
+  Changing the long-lived misc-speed/top-speed carrier `var_f14` itself from
+  `f32` to `f64` compiled but widened the frame to `0x100`, worsened the
+  focused object score from `CURRENT (2550)` to `CURRENT (10933)`, and still
+  did not introduce target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
