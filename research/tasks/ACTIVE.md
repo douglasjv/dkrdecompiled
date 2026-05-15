@@ -140,7 +140,9 @@
   block compiled but worsened the focused score to `CURRENT (1336)` by shifting
   stack slots by 8 bytes. Accumulating into `pad2`
   (`pad2 += pad; diffX = -(pad2 / divisor)`) compiled but left the focused
-  score unchanged at `CURRENT (870)`.
+  score unchanged at `CURRENT (870)`. Reusing the now-dead `scale` local for
+  the final `5.0f` lateral clamp (`scale = 5.0f; if (diffX > scale) ...`) also
+  compiled but worsened the focused object score to `CURRENT (1015)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
