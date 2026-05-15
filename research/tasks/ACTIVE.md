@@ -194,7 +194,11 @@
   relative-position dot product (`splinePos = obj->trans.x_position - tempX;
   distance = obj->trans.z_position - tempZ; pad = (splinePos * diffX) + (diffZ
   * distance); diffX = -(pad / divisor)`) compiled but worsened the focused
-  object score to `CURRENT (1897)`.
+  object score to `CURRENT (1897)`. Folding a positive checkpoint dot through
+  `pad2` (`pad2 = checkpointDot; pad = objectDot - pad2; diffX = -(pad /
+  divisor)`) compiled but left the focused score unchanged at `CURRENT (870)`.
+  Computing `pad = objectDot; pad -= checkpointDot; diffX = -(pad / divisor)`
+  also compiled but left the focused score unchanged at `CURRENT (870)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
