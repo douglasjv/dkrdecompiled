@@ -136,7 +136,11 @@
   local (`pad3 = diffX; diffX = diffZ; diffZ = -pad3`) worsened the focused
   score to `CURRENT (1698)`. Computing the negated rotated axis first
   (`diffY = -diffX; diffX = diffZ; diffZ = diffY`) worsened the focused score
-  to `CURRENT (1090)`.
+  to `CURRENT (1090)`. Moving `pad`/`pad2` into a nested final lateral-offset
+  block compiled but worsened the focused score to `CURRENT (1336)` by shifting
+  stack slots by 8 bytes. Accumulating into `pad2`
+  (`pad2 += pad; diffX = -(pad2 / divisor)`) compiled but left the focused
+  score unchanged at `CURRENT (870)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
