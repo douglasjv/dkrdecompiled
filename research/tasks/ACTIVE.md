@@ -132,7 +132,10 @@
   early gravity value into a dedicated `f32 gravity` local from the initial
   speed magnitude through the `obj->y_velocity -= gravity` store compiled but
   widened the frame to `0x100` and worsened the focused object score to
-  `CURRENT (2959)`. A baseline check of `func_80059208` was still
+  `CURRENT (2959)`. Staging `racerTrickType = racer->trickType` before the
+  course-height expression and using that local in the range test compiled but
+  left the focused object score unchanged at `CURRENT (2550)` and still did not
+  introduce target `$f20/$f21` saves. A baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
@@ -199,6 +202,9 @@
   divisor)`) compiled but left the focused score unchanged at `CURRENT (870)`.
   Computing `pad = objectDot; pad -= checkpointDot; diffX = -(pad / divisor)`
   also compiled but left the focused score unchanged at `CURRENT (870)`.
+  Staging axis negation as `diffY = diffX; diffX = diffZ; diffY = -diffY;
+  diffZ = diffY` compiled but worsened the focused object score to
+  `CURRENT (974)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
