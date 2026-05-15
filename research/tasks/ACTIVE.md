@@ -234,8 +234,15 @@
   `CURRENT (6347)` and introduced broader prologue/global-offset drift; swapping
   the setup order to compute `currentBoundingBox` before `currentSegment`
   worsened the linked score to `CURRENT (3885)` while still leaving the unwanted
-  `gCurrentLevelModel` hoist. Keep this function active, but do not repeat those
-  source shapes.
+  `gCurrentLevelModel` hoist; assigning `XInInt`/`ZInInt` before
+  `get_inside_segment_count_xz` and passing those locals left the linked score
+  unchanged at `CURRENT (2780)`; loading a local `LevelModel *levelModel`
+  through a volatile pointer cast at the segment and texture access sites also
+  left the linked score unchanged at `CURRENT (2780)`. A compressed focused
+  diff printed stale `CURRENT (0)` before relink during the 2026-05-15 packet;
+  rely on a relinked focused diff and the full `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` gate before accepting this function. Keep
+  this function active, but do not repeat those source shapes.
 
 ## Ask The User Only If
 

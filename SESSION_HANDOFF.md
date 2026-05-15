@@ -1,16 +1,27 @@
 # Session Handoff
 
-- Generated at: 2026-05-15T01:28:51Z
+- Generated at: 2026-05-15T01:39:26Z
 - Branch: `master`
-- HEAD: `8135f15c`
-- Completed task: `DKR-MATCH-SCHEDULING-PROBES`
-- Summary: No new source match landed. This pass rejected one ordinary-C
-  `func_80059208` axis-negation staging probe and one ordinary-C
-  `func_80049794` trick-type staging probe while keeping both functions active.
+- HEAD: `607e4f06`
+- Completed task: `DKR-MATCH-FUNC-8002B0F4-PROBES`
+- Summary: No new source match landed. This pass rejected two ordinary-C
+  `func_8002B0F4` source-shape probes while keeping the function active. The
+  guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/check_active_surface.py` -> active surface ok
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_8002B0F4` C candidate compiles
+- `./diff.sh func_8002B0F4 -s --compress-matching 3 --no-pager` immediately after object rebuild printed a misleading stale `CURRENT (0)`; do not accept this function from object-only/stale focused output
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` with promoted baseline `func_8002B0F4` -> verify failed as expected for the real nonmatching source, CRC calculated `0x7856718A/0x66208CAA`
+- `./diff.sh func_8002B0F4 -s --no-pager` after relink -> promoted baseline remains linked `CURRENT (2780)` with first drift at `gCurrentLevelModel` hoisting before the outer segment loop
+- `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_8002B0F4` C candidate compiles with `XInInt`/`ZInInt` assigned before `get_inside_segment_count_xz` and used for the call
+- `./diff.sh func_8002B0F4 -s --compress-matching 3 --no-pager` -> explicit pre-call integer locals leave the linked score unchanged at `CURRENT (2780)`, nonmatching
+- `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_8002B0F4` C candidate compiles with a local `LevelModel *levelModel` loaded through a volatile pointer cast at the segment and texture access sites
+- `./diff.sh func_8002B0F4 -s --compress-matching 3 --no-pager` -> volatile local level-model reloads leave the linked score unchanged at `CURRENT (2780)`, nonmatching
+- `python3 tools/check_active_surface.py` after restoring guarded matching source -> active surface ok
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with `diffY = diffX; diffX = diffZ; diffY = -diffY; diffZ = diffY`
 - `./diff.sh -o func_80059208 -s --compress-matching 3 --no-pager` -> staged axis negation worsens the focused object score to `CURRENT (974)`, nonmatching
@@ -110,7 +121,7 @@
 - The `FAKEMATCH` no-op around `gCurrentCarSteerVel` can improve the focused score from `2550` to `2490`, but it is still nonmatching and should not be accepted as progress without an exact-match path.
 - `func_80059208` is close and should stay active. Existing C promotes to `CURRENT (870)`; target keeps the negated `pad2` temporary and adds it to `pad`, while current folds the expression into a subtract. Rejected probes: `pad`/`pad2` reorder, `pad += pad2`, `register f32 pad2`, signed-zero negation, removing `UNUSED`, two-step negation, operand-order swaps, inline `pad2`, split final assignment, delayed `z_position` load, `register f32 pad`, empty `if (1) {}` barrier near `pad2`, transient `distance` holder, `register f32 distance`, `pad - (-pad2)`, target-dataflow order that computes the checkpoint dot product first, object dot product second, then negates the checkpoint term, positive `pad2` with `diffX = -((pad - pad2) / divisor)`, inlining object position loads in the dot product, inlining only `obj->trans.x_position` while retaining the `distance` z temporary, inlining only `obj->trans.z_position` while retaining the `splinePos` x temporary, routing the checkpoint dot through `pad3` before negating into `pad2`, routing the final object dot through `pad3`, routing the final `pad + pad2` sum through `pad3`, making `pad2` volatile, reusing the dead `diffY` local for the checkpoint dot, positive `pad2` with `diffX = (pad2 - pad) / divisor`, routing the axis-rotation swap through `pad3`, computing the negated rotated axis first through `diffY`, moving `pad`/`pad2` into a nested final lateral-offset block, accumulating the final sum into `pad2`, reusing the now-dead `scale` local for the final `5.0f` lateral clamp, replacing the final manual `diffX`/`diffY` clamps with `CLAMP`, rewriting the final lateral correction as a relative-position dot product (`splinePos = obj->trans.x_position - tempX; distance = obj->trans.z_position - tempZ; pad = (splinePos * diffX) + (diffZ * distance); diffX = -(pad / divisor)`), folding a positive checkpoint dot through `pad2` with `pad = objectDot - pad2; diffX = -(pad / divisor)`, subtracting the positive checkpoint dot directly from `pad` before division, and staging the axis negation as `diffY = diffX; diffX = diffZ; diffY = -diffY; diffZ = diffY`. Positive `pad2`, checkpoint-dot `pad3`, object-dot `pad3`, final-sum `pad3`, positive-checkpoint-dot `pad` folding, and direct `pad -= checkpointDot` folding left the score unchanged at `CURRENT (870)`; volatile `pad2` worsened to `CURRENT (955)` with extra stack traffic and shifted final-block scheduling; inline object loads worsened to `CURRENT (1356)`, inline-X-only worsened to `CURRENT (1826)`, inline-Z-only worsened to `CURRENT (1684)`, checkpoint-dot `diffY` reuse worsened to `CURRENT (1465)`, positive `pad2` with direct `(pad2 - pad)` worsened to `CURRENT (1200)`, axis-swap `pad3` worsened to `CURRENT (1698)`, negated-axis-first `diffY` worsened to `CURRENT (1090)`, staged axis negation worsened to `CURRENT (974)`, nested `pad`/`pad2` worsened to `CURRENT (1336)`, `pad2 += pad; diffX = -(pad2 / divisor)` left the score unchanged at `CURRENT (870)`, the `scale = 5.0f` clamp probe worsened to `CURRENT (1015)`, the final `CLAMP` macro probe left the score unchanged at `CURRENT (870)`, and the relative-position dot-product rewrite worsened to `CURRENT (1897)`.
 - `trackbg_render_flashy` promotes but is broader (`CURRENT (1808)`) and starts drifting in position-array setup. Rejected probes: replacing repeated first-four `(xSin * 1280.0f)` terms with `scaledXSin` widened the frame to `0x168` and worsened to `CURRENT (12121)`; reordering the index 5-8 x/z position stores to match the apparent target store sequence worsened to `CURRENT (2551)`; flipping only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` left the score unchanged at `CURRENT (1808)`; replacing only `xPositions[2]` with `scaledXCos + scaledXSin` worsened to `CURRENT (12021)` and frame `0x150`; changing the outer-ring `2.0f * scaledXCos/scaledXSin` terms to additive doubles left the uncompressed linked score unchanged at `CURRENT (1808)` and failed promoted full verify with CRC `0x93D338FF/0x03D9C8FE`; adding a named `negScaledXCos` temporary also left the uncompressed linked score unchanged at `CURRENT (1808)`. Do not trust compressed-only `trackbg_render_flashy` output; use uncompressed linked diff and full verify.
-- `func_8002B0F4` promotes but is broader (`CURRENT (2780)`) and starts drifting around `gCurrentLevelModel` hoisting/caching before the grid loops. Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the segment/bounding-box pointer setup worsened to `CURRENT (6347)` and introduced broader prologue/global-offset drift; swapping the setup order to compute `currentBoundingBox` before `currentSegment` worsened to `CURRENT (3885)` while still leaving the unwanted `gCurrentLevelModel` hoist. Keep active; do not repeat those source shapes.
+- `func_8002B0F4` promotes but is broader (`CURRENT (2780)`) and starts drifting around `gCurrentLevelModel` hoisting/caching before the grid loops. Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the segment/bounding-box pointer setup worsened to `CURRENT (6347)` and introduced broader prologue/global-offset drift; swapping the setup order to compute `currentBoundingBox` before `currentSegment` worsened to `CURRENT (3885)` while still leaving the unwanted `gCurrentLevelModel` hoist; moving `XInInt`/`ZInInt` assignment before `get_inside_segment_count_xz` and passing those locals left the linked score unchanged at `CURRENT (2780)`; loading a local `LevelModel *levelModel` through a volatile pointer cast at segment and texture access sites also left the linked score unchanged at `CURRENT (2780)`. A compressed focused diff printed stale `CURRENT (0)` before relink during this pass; confirm with a relinked focused diff and the full ROM gate before accepting this function. Keep active; do not repeat those source shapes.
 
 ## Ask The User Only If
 
@@ -126,6 +137,7 @@
 - Reasoning tier: `medium`
 - Do not repeat this session's `func_80059208` staged axis-negation probe; it worsened the focused score to `CURRENT (974)`.
 - Do not repeat this session's `func_80049794` staged `racerTrickType` local probe; it left the focused score unchanged at `CURRENT (2550)`.
+- Do not repeat this session's `func_8002B0F4` pre-call `XInInt`/`ZInInt` or volatile local `LevelModel *levelModel` reload probes; both left the linked score unchanged at `CURRENT (2780)`.
 - Do not repeat the prior `func_80059208` positive-checkpoint-dot fold variants; both left the focused score unchanged at `CURRENT (870)`.
 - Do not repeat the prior `func_80059208` relative-position lateral dot-product rewrite; it worsened the focused score to `CURRENT (1897)`.
 - Do not repeat the prior dedicated early `func_80049794` `f32 gravity` lifetime split; it widened the frame to `0x100` and worsened the focused score to `CURRENT (2959)`.
