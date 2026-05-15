@@ -272,8 +272,12 @@
   `pad = splinePos * diffX`, then computing `pad2`, then loading
   `distance = obj->trans.z_position` and accumulating `pad += diffZ * distance`
   compiled but produced no object change from the promoted baseline and left
-  the focused score unchanged at `CURRENT (870)`. Keep this function active;
-  do not park it just because these final-offset probes missed.
+  the focused score unchanged at `CURRENT (870)`. Routing only the final
+  vertical numerator through `pad3`
+  (`pad3 = obj->trans.y_position - tempY; diffY = pad3 / divisor`) compiled but
+  worsened the focused object score from `CURRENT (870)` to `CURRENT (1680)` by
+  shifting final clamp scheduling/register allocation. Keep this function
+  active; do not park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
