@@ -235,7 +235,14 @@
   left the uncompressed linked diff at `CURRENT (1808)` and a promoted full
   build failed verify with CRC `0x93D338FF/0x03D9C8FE`. Adding a named
   `negScaledXCos` temporary for the first/outer position expressions also
-  compiled but left the uncompressed linked diff at `CURRENT (1808)`. A
+  compiled but left the uncompressed linked diff at `CURRENT (1808)`. Swapping
+  the `scaledXSin`/`scaledXCos` declaration order produced no object change,
+  and `register f32 scaledXSin` / `register f32 scaledXCos` hints also produced
+  no object change. Rewriting only `zPositions[3]` as
+  `scaledXCos + (xSin * 1280.0f)` compiled but inserted an extra
+  `swc1 $f0, 0x110(sp)`, shifted later scheduling/global offsets, worsened the
+  linked score to `CURRENT (5579)`, and failed promoted full verify with CRC
+  `0xF82B92BE/0x5DCC04AE`. A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
   full verify gate before accepting anything.
