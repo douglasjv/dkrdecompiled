@@ -171,7 +171,11 @@
   focused object score to `CURRENT (1684)` by reshaping the final offset block.
   Routing only the final object dot product through the unused `pad3` local
   (`pad3 = objDot; diffX = -((pad3 + pad2) / divisor)`) compiled but left the
-  focused object score unchanged at `CURRENT (870)`.
+  focused object score unchanged at `CURRENT (870)`. Routing the final
+  `pad + pad2` sum through `pad3` also compiled but left the focused score
+  unchanged at `CURRENT (870)`. Making `pad2` volatile compiled but worsened
+  the focused score to `CURRENT (955)` by forcing stack traffic and shifting
+  final-block scheduling.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
