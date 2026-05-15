@@ -114,6 +114,12 @@
   the top-speed multiply into two assignments (`var_f14 *=
   handle_racer_top_speed(...); var_f14 *= 1.8;`) compiled but widened the
   frame to `0x100` and worsened the focused object score to `CURRENT (5977)`.
+  Initializing `var_f20` at declaration (`f32 var_f20 = 0.0f`) compiled but
+  left the focused object score unchanged at `CURRENT (2550)` and still did not
+  introduce the target `$f20/$f21` prologue saves. A baseline check of
+  `func_80059208` was still `CURRENT (870)`, with the same final-offset
+  expression/load-order drift; do not repeat its recorded rejected final-block
+  source shapes as a fallback.
   Keep the function active; do not park it just because these
   allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
