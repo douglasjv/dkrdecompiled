@@ -283,7 +283,12 @@
   `distance` local as the axis-swap temporary
   (`distance = diffX; diffX = diffZ; diffZ = -distance`) compiled but worsened
   the focused object score from `CURRENT (870)` to `CURRENT (1548)` by shifting
-  final-offset register allocation and clamp scheduling. Keep this function
+  final-offset register allocation and clamp scheduling. Reusing the now-dead
+  `tempY` local for the final vertical numerator
+  (`tempY = obj->trans.y_position - tempY; diffY = tempY / divisor`) compiled
+  but worsened the focused object score from `CURRENT (870)` to
+  `CURRENT (1650)` by shifting final vertical clamp scheduling/register
+  allocation. Keep this function
   active; do not park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
