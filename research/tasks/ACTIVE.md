@@ -140,7 +140,14 @@
   focused object score to `CURRENT (3045)` and still did not introduce target
   `$f20/$f21` saves. Rewriting the first speed-derived `var_f20` zero clamp as
   `0.0f` comparisons/assignments compiled but worsened the focused object score
-  to `CURRENT (3355)` and still did not introduce target `$f20/$f21` saves. A
+  to `CURRENT (3355)` and still did not introduce target `$f20/$f21` saves.
+  Extending the `var_f14` velocity lifetime before the first `sqrtf` block
+  compiled but worsened the relinked focused score to `CURRENT (5000)` by
+  moving the absolute-velocity path into `$f16` and still did not introduce
+  target `$f20/$f21` saves. Staging the inverse-gravity fraction through the
+  existing `var_f2` (`var_f2 = var_f20 / 4.0; var_f20 = 1.0 - var_f2`) compiled
+  but worsened the relinked focused score to `CURRENT (3850)` and still did not
+  introduce target `$f20/$f21` saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
