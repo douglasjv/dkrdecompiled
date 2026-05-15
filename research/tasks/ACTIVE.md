@@ -153,6 +153,9 @@
   Inlining only `obj->trans.z_position` into the final object dot product while
   keeping `splinePos = obj->trans.x_position` local compiled but worsened the
   focused object score to `CURRENT (1684)` by reshaping the final offset block.
+  Routing only the final object dot product through the unused `pad3` local
+  (`pad3 = objDot; diffX = -((pad3 + pad2) / divisor)`) compiled but left the
+  focused object score unchanged at `CURRENT (870)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
