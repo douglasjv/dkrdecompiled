@@ -147,6 +147,12 @@
   target `$f20/$f21` saves. Staging the inverse-gravity fraction through the
   existing `var_f2` (`var_f2 = var_f20 / 4.0; var_f20 = 1.0 - var_f2`) compiled
   but worsened the relinked focused score to `CURRENT (3850)` and still did not
+  introduce target `$f20/$f21` saves. Casting the misc-asset index assignment
+  explicitly (`racerMiscAssetIdx = (s32) var_f14`) compiled but left the focused
+  object score unchanged at `CURRENT (2550)` and still did not introduce target
+  `$f20/$f21` saves. Reordering the default constant setup to assign `spD0`
+  before `spD4` (`spD0 = 0.02; spD4 = 0.01; spD8 = 0.004`) compiled but left
+  the focused object score unchanged at `CURRENT (2550)` and still did not
   introduce target `$f20/$f21` saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
