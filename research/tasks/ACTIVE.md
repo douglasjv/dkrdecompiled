@@ -198,7 +198,12 @@
   Changing the long-lived misc-speed/top-speed carrier `var_f14` itself from
   `f32` to `f64` compiled but widened the frame to `0x100`, worsened the
   focused object score from `CURRENT (2550)` to `CURRENT (10933)`, and still
-  did not introduce target `$f20/$f21` prologue saves. A
+  did not introduce target `$f20/$f21` prologue saves. Rewriting the
+  grounded-wheel zeroing as a chained assignment
+  (`racer->unk88 = (racer->unk84 = 0.0f)`) compiled but produced no object
+  change from the promoted baseline and left the focused object score unchanged
+  at `CURRENT (2550)`, with the early zero still allocated as `$f16` instead of
+  target `$f14`. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
