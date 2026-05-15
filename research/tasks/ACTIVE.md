@@ -203,7 +203,11 @@
   (`racer->unk88 = (racer->unk84 = 0.0f)`) compiled but produced no object
   change from the promoted baseline and left the focused object score unchanged
   at `CURRENT (2550)`, with the early zero still allocated as `$f16` instead of
-  target `$f14`. A
+  target `$f14`. Replacing the `gCurrentCarSteerVel = 0` store with an
+  initialized no-op comparison (`gCurrentCarSteerVel = (updateRateF > 0.0f) *
+  0`) compiled and improved the focused object score to `CURRENT (2490)`, same
+  as the older `FAKEMATCH` no-op family, but remained nonmatching and still did
+  not introduce target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
