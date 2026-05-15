@@ -317,8 +317,13 @@
   final offset register family. Reusing the now-dead `splinePos` local as the
   axis-swap temporary (`splinePos = diffX; diffX = diffZ; diffZ = -splinePos`)
   also compiled but worsened the focused object score from `CURRENT (870)` to
-  `CURRENT (1698)`, matching the bad `pad3`/`scale` axis-swap family. Keep this
-  function active; do not park it just because these final-offset probes missed.
+  `CURRENT (1698)`, matching the bad `pad3`/`scale` axis-swap family. Moving
+  the final lateral-correction negation into the numerator (`diffX = (-(pad +
+  pad2)) / divisor`) compiled but worsened the focused object score from
+  `CURRENT (870)` to `CURRENT (1600)` by delaying the negation until after the
+  folded object-dot subtraction and perturbing the final vertical temp register
+  family. Keep this function active; do not park it just because these
+  final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
