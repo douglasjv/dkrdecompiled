@@ -104,8 +104,12 @@
   (`var_f2 = sqrtf(...) - 2.0; var_f20 = var_f2;` and using `var_f2` for the
   boss adjustment) compiled but left the focused object score unchanged at
   `CURRENT (2550)` and still did not introduce the target `$f20/$f21` prologue
-  saves. Keep the function active; do not park it just because these
-  allocation/scheduling probes missed.
+  saves. Making the shared `var_f2` temp a `register f32` also compiled but
+  left the focused object score unchanged at `CURRENT (2550)`. Splitting the
+  buoyancy expression so `var_f20 = -1.0f` materializes before the
+  `gCurrentStickY = -60` store matched that local target direction but worsened
+  the focused object score to `CURRENT (2590)`. Keep the function active; do
+  not park it just because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
