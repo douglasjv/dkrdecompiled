@@ -167,7 +167,11 @@
   separate `f64 speedMagnitude` local before assigning `var_f20 =
   speedMagnitude - 2.0` compiled but widened the frame to `0x108`, worsened
   the focused object score from `CURRENT (2550)` to `CURRENT (3163)`, and still
-  did not introduce the target `$f20/$f21` prologue saves. Rewriting the boss
+  did not introduce the target `$f20/$f21` prologue saves. Repeating that
+  staging as `register f64 speedMagnitude` compiled but widened the frame to
+  `0x100`, worsened the focused object score from `CURRENT (2550)` to
+  `CURRENT (3007)`, and still did not introduce the target `$f20/$f21`
+  prologue saves. Rewriting the boss
   adjustment from `var_f20 = ((var_f20 - 2.0) / 2.0)` to
   `var_f20 = (var_f20 * 0.5) - 1.0` compiled but worsened the focused object
   score from `CURRENT (2550)` to `CURRENT (3520)` and still did not introduce
