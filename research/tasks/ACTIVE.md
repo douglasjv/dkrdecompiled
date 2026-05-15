@@ -108,8 +108,14 @@
   left the focused object score unchanged at `CURRENT (2550)`. Splitting the
   buoyancy expression so `var_f20 = -1.0f` materializes before the
   `gCurrentStickY = -60` store matched that local target direction but worsened
-  the focused object score to `CURRENT (2590)`. Keep the function active; do
-  not park it just because these allocation/scheduling probes missed.
+  the focused object score to `CURRENT (2590)`. Removing the empty
+  `if ((!racerSteerAngle)) {}` lifetime hint in the wave drift branch compiled
+  but left the focused object score unchanged at `CURRENT (2550)`. Splitting
+  the top-speed multiply into two assignments (`var_f14 *=
+  handle_racer_top_speed(...); var_f14 *= 1.8;`) compiled but widened the
+  frame to `0x100` and worsened the focused object score to `CURRENT (5977)`.
+  Keep the function active; do not park it just because these
+  allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
