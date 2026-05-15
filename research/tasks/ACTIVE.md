@@ -202,7 +202,9 @@
   unchanged at `CURRENT (870)`. Computing the final sum as
   `pad = pad2 + objectDot; diffX = -(pad / divisor)` after materializing the
   negated `pad2` also compiled but left the focused object score unchanged at
-  `CURRENT (870)`. Making `pad2` volatile compiled but worsened the focused
+  `CURRENT (870)`. Routing the final `5.0f` lateral clamp limit through the
+  unused `pad3` local compiled but worsened the focused object score to
+  `CURRENT (1015)`. Making `pad2` volatile compiled but worsened the focused
   score to `CURRENT (955)` by forcing stack traffic and shifting final-block
   scheduling. Rewriting the final lateral correction as a
   relative-position dot product (`splinePos = obj->trans.x_position - tempX;
