@@ -96,8 +96,11 @@
   grounded-wheel zeroing (`var_f20 = 0.0f; racer->unk84 = var_f20;
   racer->unk88 = var_f20;`) also compiled but left the focused score unchanged
   at `CURRENT (2550)` and still did not introduce the target `$f20/$f21`
-  prologue saves. Keep the function active; do not park it just because these
-  allocation/scheduling probes missed.
+  prologue saves. Combining `register f32 var_f20` with
+  `register f32 racerVelocity` compiled but left the linked focused score
+  unchanged at `CURRENT (2760)` in the current checkout and still did not
+  introduce the target `$f20/$f21` prologue saves. Keep the function active; do
+  not park it just because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
