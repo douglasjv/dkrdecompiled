@@ -157,7 +157,10 @@
   `register f32 gravity` local from the first speed magnitude through the
   `obj->y_velocity -= gravity` store compiled but widened the frame to `0x100`,
   worsened the focused object score to `CURRENT (2959)`, and still did not
-  introduce target `$f20/$f21` saves. A
+  introduce target `$f20/$f21` saves. Making the shared `var_f20` local
+  volatile compiled but worsened the focused object score to `CURRENT (6441)`
+  by forcing broad stack traffic and still did not introduce target
+  `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
