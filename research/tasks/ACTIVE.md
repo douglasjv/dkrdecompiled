@@ -156,6 +156,13 @@
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
+  Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the
+  segment/bounding-box pointer setup worsened the linked score to
+  `CURRENT (6347)` and introduced broader prologue/global-offset drift; swapping
+  the setup order to compute `currentBoundingBox` before `currentSegment`
+  worsened the linked score to `CURRENT (3885)` while still leaving the unwanted
+  `gCurrentLevelModel` hoist. Keep this function active, but do not repeat those
+  source shapes.
 
 ## Ask The User Only If
 
