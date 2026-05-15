@@ -234,7 +234,10 @@
   also compiled but left the focused score unchanged at `CURRENT (870)`.
   Staging axis negation as `diffY = diffX; diffX = diffZ; diffY = -diffY;
   diffZ = diffY` compiled but worsened the focused object score to
-  `CURRENT (974)`.
+  `CURRENT (974)`. Adding `register` lifetime hints to the final-block
+  `tempX`/`tempZ` locals compiled but produced no object change from the
+  baseline promoted candidate and left the focused object score unchanged at
+  `CURRENT (870)`.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
