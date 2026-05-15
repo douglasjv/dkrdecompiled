@@ -189,7 +189,12 @@
   target `$f20/$f21` prologue saves. Initializing `var_f14` at declaration
   (`f32 var_f14 = 0.0f`) compiled but left the focused object score unchanged at
   `CURRENT (2550)`, kept the early zero in `$f16`, and still did not introduce
-  target `$f20/$f21` prologue saves. A
+  target `$f20/$f21` prologue saves. Carrying the interpolated misc-asset speed
+  factor through the existing `segmentZVelocity` local into
+  `handle_racer_top_speed`, boost override, throttle, and brake uses compiled
+  but worsened the focused object score from `CURRENT (2550)` to
+  `CURRENT (2800)`; it moved the key speed/gravity float family from `$f14` to
+  `$f16` but still did not introduce target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
