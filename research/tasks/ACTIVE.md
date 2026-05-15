@@ -135,11 +135,16 @@
   `CURRENT (2959)`. Staging `racerTrickType = racer->trickType` before the
   course-height expression and using that local in the range test compiled but
   left the focused object score unchanged at `CURRENT (2550)` and still did not
-  introduce target `$f20/$f21` saves. A baseline check of `func_80059208` was still
-  `CURRENT (870)`, with the same final-offset expression/load-order drift; do
-  not repeat its recorded rejected final-block source shapes as a fallback.
-  Keep the function active; do not park it just because these
-  allocation/scheduling probes missed.
+  introduce target `$f20/$f21` saves. Adding an empty `if (var_f20) {}`
+  immediately after `apply_vehicle_rotation_offset` compiled but worsened the
+  focused object score to `CURRENT (3045)` and still did not introduce target
+  `$f20/$f21` saves. A linked compressed focused diff printed stale
+  `CURRENT (0)` after object-only rebuild during the 2026-05-15 packet; do not
+  accept this function without relink/full gate evidence. A baseline check of
+  `func_80059208` was still `CURRENT (870)`, with the same final-offset
+  expression/load-order drift; do not repeat its recorded rejected final-block
+  source shapes as a fallback. Keep the function active; do not park it just
+  because these allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
