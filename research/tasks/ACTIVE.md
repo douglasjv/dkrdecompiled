@@ -128,8 +128,11 @@
   `var_f2 = gCurrentCourseHeight - 50.0; var_f2 -= obj->trans.y_position;`
   compiled but worsened the focused object score to `CURRENT (3530)`. Rewriting
   the inverse-gravity expression as `var_f20 = (4.0 - var_f20) / 4.0` compiled
-  but worsened the focused object score to `CURRENT (4250)`. A baseline check
-  of `func_80059208` was still
+  but worsened the focused object score to `CURRENT (4250)`. Splitting the
+  early gravity value into a dedicated `f32 gravity` local from the initial
+  speed magnitude through the `obj->y_velocity -= gravity` store compiled but
+  widened the frame to `0x100` and worsened the focused object score to
+  `CURRENT (2959)`. A baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
