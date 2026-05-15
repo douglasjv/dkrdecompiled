@@ -163,7 +163,11 @@
   `$f20/$f21` prologue saves. Changing the shared `var_f20` local itself to
   `f64` compiled but widened the frame to `0x108`, worsened the focused object
   score to `CURRENT (10417)`, and still did not introduce the target
-  `$f20/$f21` prologue saves. A
+  `$f20/$f21` prologue saves. Splitting the first speed magnitude through a
+  separate `f64 speedMagnitude` local before assigning `var_f20 =
+  speedMagnitude - 2.0` compiled but widened the frame to `0x108`, worsened
+  the focused object score from `CURRENT (2550)` to `CURRENT (3163)`, and still
+  did not introduce the target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still

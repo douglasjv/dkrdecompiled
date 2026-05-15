@@ -1,19 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-15T03:00:52Z
+- Generated at: 2026-05-15T03:04:45Z
 - Branch: `master`
-- HEAD before closeout commit: `89610b45`
-- Completed task: `DKR-MATCH-FUNC-80059208-PARTIAL-DOT-PROBE`
-- Summary: No new source match landed. This pass kept close alternate
-  `func_80059208` active and rejected a partial-object-dot final-block probe;
-  it compiled but produced no object change from the promoted baseline and left
-  the focused object score unchanged at `CURRENT (870)`. The guarded matching
-  source was restored and the full ROM gate remains clean.
+- HEAD before closeout commit: `472c35e3`
+- Completed task: `DKR-MATCH-FUNC-80049794-SPEED-MAGNITUDE-DOUBLE-PROBE`
+- Summary: No new source match landed. This pass stayed on selector-recommended
+  `func_80049794` and rejected a separate `f64 speedMagnitude` local for the
+  first speed-derived `var_f20` assignment; it widened the frame to `0x108`,
+  worsened the focused object score to `CURRENT (3163)`, and still did not
+  introduce the target `$f20/$f21` prologue saves. The guarded matching source
+  was restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles in the current checkout
+- `./diff.sh -o func_80049794 -s --compress-matching 3 --no-pager` -> promoted baseline remains `CURRENT (2550)` with missing target `$f20/$f21` saves and broad `$f14`/`$f20` allocation drift
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with a separate `f64 speedMagnitude` local before `var_f20 = speedMagnitude - 2.0`
+- `./diff.sh -o func_80049794 -s --compress-matching 3 --no-pager` -> `f64 speedMagnitude` widens the frame to `0x108`, worsens the focused object score to `CURRENT (3163)`, and still does not introduce target `$f20/$f21` prologue saves, nonmatching
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` baseline C candidate compiles
 - `./diff.sh -o func_80059208 -s --compress-matching 3 --no-pager` -> baseline promoted `func_80059208` remains `CURRENT (870)`
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with `pad = splinePos * diffX; pad2 = -checkpointDot; distance = obj->trans.z_position; pad += diffZ * distance`
@@ -195,6 +201,7 @@
 - Additional `func_80049794` register-gravity rejected probe: splitting the early gravity path into a `register f32 gravity` local from the first speed magnitude through `obj->y_velocity -= gravity` compiled but widened the frame to `0x100`, worsened the focused object score to `CURRENT (2959)`, and still did not introduce target `$f20/$f21` saves. Do not repeat this source shape.
 - Additional `func_80049794` volatile-lifetime rejected probe: making the shared `var_f20` local volatile compiled but worsened the focused object score to `CURRENT (6441)` through broad stack traffic and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` direct-double rejected probe: changing the shared `var_f20` local itself to `f64` compiled but widened the frame to `0x108`, worsened the focused object score to `CURRENT (10417)`, and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
+- Additional `func_80049794` speed-magnitude double-local rejected probe: splitting the first speed magnitude through a separate `f64 speedMagnitude` local before assigning `var_f20 = speedMagnitude - 2.0` compiled but widened the frame to `0x108`, worsened the focused object score to `CURRENT (3163)`, and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - The `FAKEMATCH` no-op around `gCurrentCarSteerVel` can improve the focused score from `2550` to `2490`, but it is still nonmatching and should not be accepted as progress without an exact-match path.
 - `func_80059208` is close and should stay active. Existing C promotes to `CURRENT (870)`; target keeps the negated `pad2` temporary and adds it to `pad`, while current folds the expression into a subtract. Rejected probes: `pad`/`pad2` reorder, `pad += pad2`, `register f32 pad2`, signed-zero negation, removing `UNUSED`, two-step negation, operand-order swaps, inline `pad2`, split final assignment, delayed `z_position` load, `register f32 pad`, empty `if (1) {}` barrier near `pad2`, transient `distance` holder, `register f32 distance`, `pad - (-pad2)`, target-dataflow order that computes the checkpoint dot product first, object dot product second, then negates the checkpoint term, positive `pad2` with `diffX = -((pad - pad2) / divisor)`, inlining object position loads in the dot product, inlining only `obj->trans.x_position` while retaining the `distance` z temporary, inlining only `obj->trans.z_position` while retaining the `splinePos` x temporary, routing the checkpoint dot through `pad3` before negating into `pad2`, routing the final object dot through `pad3`, routing the final `pad + pad2` sum through `pad3`, making `pad2` volatile, reusing the dead `diffY` local for the checkpoint dot, positive `pad2` with `diffX = (pad2 - pad) / divisor`, routing the axis-rotation swap through `pad3`, computing the negated rotated axis first through `diffY`, moving `pad`/`pad2` into a nested final lateral-offset block, accumulating the final sum into `pad2`, reusing the now-dead `scale` local for the final `5.0f` lateral clamp, routing the final `5.0f` lateral clamp through `pad3`, replacing the final manual `diffX`/`diffY` clamps with `CLAMP`, rewriting the final lateral correction as a relative-position dot product (`splinePos = obj->trans.x_position - tempX; distance = obj->trans.z_position - tempZ; pad = (splinePos * diffX) + (diffZ * distance); diffX = -(pad / divisor)`), folding a positive checkpoint dot through `pad2` with `pad = objectDot - pad2; diffX = -(pad / divisor)`, subtracting the positive checkpoint dot directly from `pad` before division, staging the axis negation as `diffY = diffX; diffX = diffZ; diffY = -diffY; diffZ = diffY`, and computing `pad = pad2 + objectDot; diffX = -(pad / divisor)` after the negated `pad2`. Positive `pad2`, checkpoint-dot `pad3`, object-dot `pad3`, final-sum `pad3`, positive-checkpoint-dot `pad` folding, direct `pad -= checkpointDot` folding, and `pad2 + objectDot` final-sum folding left the score unchanged at `CURRENT (870)`; volatile `pad2` worsened to `CURRENT (955)` with extra stack traffic and shifted final-block scheduling; inline object loads worsened to `CURRENT (1356)`, inline-X-only worsened to `CURRENT (1826)`, inline-Z-only worsened to `CURRENT (1684)`, checkpoint-dot `diffY` reuse worsened to `CURRENT (1465)`, positive `pad2` with direct `(pad2 - pad)` worsened to `CURRENT (1200)`, axis-swap `pad3` worsened to `CURRENT (1698)`, negated-axis-first `diffY` worsened to `CURRENT (1090)`, staged axis negation worsened to `CURRENT (974)`, nested `pad`/`pad2` worsened to `CURRENT (1336)`, `pad2 += pad; diffX = -(pad2 / divisor)` left the score unchanged at `CURRENT (870)`, the `scale = 5.0f` and `pad3 = 5.0f` clamp-local probes both worsened to `CURRENT (1015)`, the final `CLAMP` macro probe left the score unchanged at `CURRENT (870)`, and the relative-position dot-product rewrite worsened to `CURRENT (1897)`.
 - Additional `func_80059208` lifetime-hint rejected probe: adding `register` to `tempX` and `tempZ` compiled but produced no object change from the promoted baseline and left the focused object score unchanged at `CURRENT (870)`. Do not repeat this source shape.
@@ -215,6 +222,7 @@
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
+- Do not repeat this session's `func_80049794` separate `f64 speedMagnitude` probe before `var_f20 = speedMagnitude - 2.0`; it widened the frame to `0x108`, worsened the focused object score to `CURRENT (3163)`, and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80059208` partial-object-dot split (`pad = splinePos * diffX; pad2 = -checkpointDot; distance = obj->trans.z_position; pad += diffZ * distance`); it produced no object change and left the focused object score unchanged at `CURRENT (870)`.
 - Do not repeat this session's `func_80059208` staged axis-negation probe; it worsened the focused score to `CURRENT (974)`.
 - Do not repeat this session's `func_80049794` staged `racerTrickType` local probe; it left the focused score unchanged at `CURRENT (2550)`.
