@@ -182,7 +182,11 @@
   not introduce target `$f20/$f21` prologue saves. Rewriting the
   inverse-gravity expression as `var_f20 = 1.0 - (var_f20 * 0.25)` compiled but
   left the focused object score unchanged at `CURRENT (2550)` and still did not
-  introduce target `$f20/$f21` prologue saves. A
+  introduce target `$f20/$f21` prologue saves. Introducing a dedicated early
+  `f32 zero` local for the grounded-wheel zeroing and early `racerVelocity`
+  clamp compiled but widened the frame to `0x100`, worsened the focused object
+  score from `CURRENT (2550)` to `CURRENT (3035)`, and still did not introduce
+  target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
