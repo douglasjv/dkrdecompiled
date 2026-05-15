@@ -122,7 +122,12 @@
   perturbing the early wave block float-register family. Changing `sp60` from
   the existing `f32 sp60[4]` to `MtxF sp60` compiled with pointer-type warnings
   but widened the frame to `0x128` and worsened the focused object score to
-  `CURRENT (4567)`. A baseline check of `func_80059208` was still
+  `CURRENT (4567)`. Moving `spA3 = FALSE` after the inverse-gravity assignment
+  and before the course-height subtraction compiled but worsened the focused
+  object score to `CURRENT (2790)`. Splitting the course-height expression into
+  `var_f2 = gCurrentCourseHeight - 50.0; var_f2 -= obj->trans.y_position;`
+  compiled but worsened the focused object score to `CURRENT (3530)`. A
+  baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
