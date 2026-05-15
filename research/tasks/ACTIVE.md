@@ -309,8 +309,11 @@
   allocation. Reusing the now-dead `scale` local as the axis-swap temporary
   (`scale = diffX; diffX = diffZ; diffZ = -scale`) compiled but worsened the
   focused object score from `CURRENT (870)` to `CURRENT (1698)` by reshaping the
-  final offset register family. Keep this function active; do not park it just
-  because these final-offset probes missed.
+  final offset register family. Reusing the now-dead `splinePos` local as the
+  axis-swap temporary (`splinePos = diffX; diffX = diffZ; diffZ = -splinePos`)
+  also compiled but worsened the focused object score from `CURRENT (870)` to
+  `CURRENT (1698)`, matching the bad `pad3`/`scale` axis-swap family. Keep this
+  function active; do not park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
