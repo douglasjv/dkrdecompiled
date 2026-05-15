@@ -155,6 +155,15 @@
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
   focused score to `CURRENT (12021)` and changed the frame to `0x150`.
+  Replacing the outer-ring `2.0f * scaledXCos/scaledXSin` terms with additive
+  doubles (`scaledXCos + scaledXCos`, `scaledXSin + scaledXSin`) compiled but
+  left the uncompressed linked diff at `CURRENT (1808)` and a promoted full
+  build failed verify with CRC `0x93D338FF/0x03D9C8FE`. Adding a named
+  `negScaledXCos` temporary for the first/outer position expressions also
+  compiled but left the uncompressed linked diff at `CURRENT (1808)`. A
+  compressed `-s --compress-matching` focused diff can misleadingly print
+  `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
+  full verify gate before accepting anything.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
