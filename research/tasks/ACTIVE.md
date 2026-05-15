@@ -153,6 +153,10 @@
   `$f20/$f21` saves. Reordering the default constant setup to assign `spD0`
   before `spD4` (`spD0 = 0.02; spD4 = 0.01; spD8 = 0.004`) compiled but left
   the focused object score unchanged at `CURRENT (2550)` and still did not
+  introduce target `$f20/$f21` saves. Splitting the early gravity path into a
+  `register f32 gravity` local from the first speed magnitude through the
+  `obj->y_velocity -= gravity` store compiled but widened the frame to `0x100`,
+  worsened the focused object score to `CURRENT (2959)`, and still did not
   introduce target `$f20/$f21` saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
