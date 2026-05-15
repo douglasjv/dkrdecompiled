@@ -99,8 +99,13 @@
   prologue saves. Combining `register f32 var_f20` with
   `register f32 racerVelocity` compiled but left the linked focused score
   unchanged at `CURRENT (2760)` in the current checkout and still did not
-  introduce the target `$f20/$f21` prologue saves. Keep the function active; do
-  not park it just because these allocation/scheduling probes missed.
+  introduce the target `$f20/$f21` prologue saves. Splitting the first speed
+  magnitude into the existing `var_f2` temp
+  (`var_f2 = sqrtf(...) - 2.0; var_f20 = var_f2;` and using `var_f2` for the
+  boss adjustment) compiled but left the focused object score unchanged at
+  `CURRENT (2550)` and still did not introduce the target `$f20/$f21` prologue
+  saves. Keep the function active; do not park it just because these
+  allocation/scheduling probes missed.
 - `func_80059208` is active, not parked. Promoting the existing C compiles and
   focused object diff scores `CURRENT (870)`. The remaining drift is localized
   near the final lateral/vertical offset math: target preserves the negated
