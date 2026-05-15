@@ -203,7 +203,12 @@
   (`racer->unk88 = (racer->unk84 = 0.0f)`) compiled but produced no object
   change from the promoted baseline and left the focused object score unchanged
   at `CURRENT (2550)`, with the early zero still allocated as `$f16` instead of
-  target `$f14`. Replacing the `gCurrentCarSteerVel = 0` store with an
+  target `$f14`. Routing the same grounded-wheel zeroing through the existing
+  `var_f0` local (`var_f0 = 0.0f; racer->unk84 = var_f0; racer->unk88 =
+  var_f0`) also compiled but produced no object change from the promoted
+  baseline and left the focused object score unchanged at `CURRENT (2550)`,
+  with early zero still allocated as `$f16` instead of target `$f14`. Replacing
+  the `gCurrentCarSteerVel = 0` store with an
   initialized no-op comparison (`gCurrentCarSteerVel = (updateRateF > 0.0f) *
   0`) compiled and improved the focused object score to `CURRENT (2490)`, same
   as the older `FAKEMATCH` no-op family, but remained nonmatching and still did
