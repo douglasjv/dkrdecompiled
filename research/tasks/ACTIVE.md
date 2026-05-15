@@ -245,7 +245,12 @@
   baseline promoted candidate and left the focused object score unchanged at
   `CURRENT (870)`. Making only `pad` volatile in the promoted function compiled
   but worsened the focused object score to `CURRENT (1695)` by forcing extra
-  final-block stack traffic.
+  final-block stack traffic. Splitting the final object dot into a partial
+  `pad = splinePos * diffX`, then computing `pad2`, then loading
+  `distance = obj->trans.z_position` and accumulating `pad += diffZ * distance`
+  compiled but produced no object change from the promoted baseline and left
+  the focused score unchanged at `CURRENT (870)`. Keep this function active;
+  do not park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
