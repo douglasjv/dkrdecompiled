@@ -171,7 +171,11 @@
   adjustment from `var_f20 = ((var_f20 - 2.0) / 2.0)` to
   `var_f20 = (var_f20 * 0.5) - 1.0` compiled but worsened the focused object
   score from `CURRENT (2550)` to `CURRENT (3520)` and still did not introduce
-  target `$f20/$f21` prologue saves. A
+  target `$f20/$f21` prologue saves. Rewriting the first speed-derived upper
+  clamp as explicit single-precision
+  (`if (var_f20 > 4.0f) { var_f20 = 4.0f; }`) compiled but worsened the
+  focused object score from `CURRENT (2550)` to `CURRENT (4975)` and still did
+  not introduce target `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
