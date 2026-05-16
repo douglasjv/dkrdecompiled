@@ -1,20 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T23:49:43Z
+- Generated at: 2026-05-16T23:53:11Z
 - Branch: `master`
-- HEAD before closeout commit: `478deca4`
-- Completed task: `DKR-MATCH-FUNC-80049794-SPLIT-X-FIRST-SUM-PROBE`
+- HEAD before closeout commit: `cb2371ce`
+- Completed task: `DKR-MATCH-FUNC-80049794-SPLIT-X-Y-Z-SUM-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested an x-first split spelling of the first
-  speed-magnitude sum on the current save-family branch:
-  `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`. It compiled and improved
-  the focused score from `CURRENT (3560)` to `CURRENT (3550)` while preserving
-  the `0xf8` frame / `$f20` save-family shape, but it remains nonmatching with
-  the wave-register and later float-register drift. The guarded matching source
-  was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested the sibling x/y/z split spelling of the
+  first speed-magnitude sum on the current save-family branch:
+  `var_f20 = x*x; var_f20 += y*y; var_f20 += z*z`. It compiled but regressed
+  the focused score to `CURRENT (3560)`, worse than the prior x/z/y split at
+  `CURRENT (3550)`. The guarded matching source was restored and the full ROM
+  gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the steer-vel no-op store, and the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += y*y; var_f20 += z*z`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> x/y/z split accumulation regresses the save-family focused score to `CURRENT (3560)`, worse than the prior x/z/y split at `CURRENT (3550)`; do not continue from x/y/z unless new target scheduling evidence demands it
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the steer-vel no-op store, and the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`
