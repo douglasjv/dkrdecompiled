@@ -247,7 +247,11 @@
   widened the frame back to `0x100` and regressed to `CURRENT (4049)` in both
   cases. Do not repeat these simple trailing-pad toggles; if continuing this
   family, inspect the remaining local-slot/scheduling drift from the
-  both-trailing-pads-removed candidate instead. A
+  both-trailing-pads-removed candidate instead. Removing both leading pads and
+  both trailing pads together with the same pre-`sqrtf` accumulation retained
+  `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT
+  (3737)`, worse than the both-trailing-pads-only variant. Do not repeat the
+  combined leading/trailing pad removal shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
