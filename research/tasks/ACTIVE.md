@@ -255,7 +255,12 @@
   assignment in place (`var_f20 /= 4.0; var_f20 = 1.0 - var_f20`) compiled but
   worsened the focused score from baseline `CURRENT (2550)` to `CURRENT
   (3435)` and still did not introduce the target `$f20/$f21` prologue saves.
-  Do not repeat this in-place inverse-gravity spelling. A
+  Do not repeat this in-place inverse-gravity spelling. Regrouping the nearby
+  course-height expression as `var_f2 = gCurrentCourseHeight -
+  obj->trans.y_position; var_f2 -= 50.0` compiled but worsened the focused
+  score from baseline `CURRENT (2550)` to `CURRENT (3755)` and still did not
+  introduce target `$f20/$f21` saves. Do not repeat this course-height grouping
+  shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
