@@ -1,21 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T03:10:36Z
+- Generated at: 2026-05-16T18:27:27Z
 - Branch: `master`
-- HEAD before closeout commit: `10e4df43`
-- Completed task: `DKR-MATCH-FUNC-80049794-LOCAL-BRANCH-CARRIER-PROBE`
+- HEAD before closeout commit: `03a36cc6`
+- Completed task: `DKR-MATCH-FUNC-80049794-STAGED-BRANCH-CONSTANT-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested small unrepeated source spellings around
-  two concrete local drifts. Routing the buoyancy `-1.0` carrier through
-  `var_f0` compiled but left the promoted focused score unchanged at
-  `CURRENT (2550)`. Commuting the nearby player-index condition and then
-  spelling it as an explicit inverted empty branch also compiled but left the
-  focused score unchanged at `CURRENT (2550)` and did not swap the
-  target/current branch operands. The guarded matching source was restored and
-  the full ROM gate remains clean.
+  `func_80049794` active and tested one unrepeated player-index branch spelling.
+  Staging `PLAYER_COMPUTER` through the existing `var_v1` local compiled but
+  left the promoted focused score unchanged at `CURRENT (2550)`, did not swap
+  the target/current branch operands, and did not move the `$f14/$f20`
+  allocation. The guarded matching source was restored and the full ROM gate
+  remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with `PLAYER_COMPUTER` staged through `var_v1`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> staged branch constant variant (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) && (gCurrentPlayerIndex != var_v1))`) leaves the focused score unchanged at `CURRENT (2550)`, does not swap target/current branch operands, and still lacks target `$f20/$f21` saves / early `$f14`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
@@ -431,6 +435,7 @@
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed y-first pre-`sqrtf` accumulation probe (`var_f20 = y*y; var_f20 += x*x + z*z`); it worsened the focused score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity load/register order.
 - Do not repeat this session's `func_80049794` buoyancy `var_f0` carrier probe (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`); it left the promoted focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` simple player-index condition branch-shape probes (`PLAYER_COMPUTER == var_v0` or `if (PLAYER_COMPUTER != var_v0) {} else if (...)`); both left the focused score unchanged at `CURRENT (2550)` and did not swap the target/current branch operands.
+- Do not repeat this session's `func_80049794` staged branch-constant probe (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) && (gCurrentPlayerIndex != var_v1))`); it left the focused score unchanged at `CURRENT (2550)`, did not swap branch operands, and did not move the `$f14/$f20` allocation.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.

@@ -270,7 +270,13 @@
   branch (`if (PLAYER_COMPUTER != var_v0) {} else if (...)`) also compiled but
   left the focused score unchanged at `CURRENT (2550)` and did not swap the
   target/current `bne v1,v0` versus `bne v0,v1` branch operands. Do not repeat
-  these simple local source spellings.
+  these simple local source spellings. Staging `PLAYER_COMPUTER` through the
+  existing `var_v1` local
+  (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) &&
+  (gCurrentPlayerIndex != var_v1))`) also compiled but left the focused score
+  unchanged at `CURRENT (2550)`, did not swap the target/current branch
+  operands, and did not move the `$f14/$f20` allocation. Do not repeat that
+  staged-constant branch spelling either.
   Removing both leading pads and
   both trailing pads together with the same pre-`sqrtf` accumulation retained
   `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT
