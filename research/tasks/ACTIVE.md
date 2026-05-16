@@ -212,7 +212,15 @@
   initialized no-op comparison (`gCurrentCarSteerVel = (updateRateF > 0.0f) *
   0`) compiled and improved the focused object score to `CURRENT (2490)`, same
   as the older `FAKEMATCH` no-op family, but remained nonmatching and still did
-  not introduce target `$f20/$f21` prologue saves. A
+  not introduce target `$f20/$f21` prologue saves. Splitting the first
+  horizontal/vertical speed magnitude into pre-`sqrtf` accumulation in
+  `var_f20` (`var_f20 = x*x + z*z; var_f20 += y*y; var_f20 = sqrtf(var_f20) -
+  2.0`) did introduce the target `$f20/$f21` prologue saves but widened the
+  frame to `0x100` and worsened the focused score to `CURRENT (4049)`.
+  Removing the two leading unused `pad5`/`pad7` locals with that same
+  pre-`sqrtf` accumulation restored the target `0xf8` frame and kept
+  `$f20/$f21` saves, but still worsened the focused score to `CURRENT (3932)`
+  by shifting local stack slots and later scheduling. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
