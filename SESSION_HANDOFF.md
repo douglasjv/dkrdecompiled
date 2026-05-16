@@ -1,18 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T23:55:48Z
+- Generated at: 2026-05-16T23:57:59Z
 - Branch: `master`
-- HEAD before closeout commit: `9218a5e0`
-- Completed task: `DKR-MATCH-FUNC-80049794-POST-ZAP-ZERO-BEST-BRANCH-PROBE`
+- HEAD before closeout commit: `6b25f78f`
+- Completed task: `DKR-MATCH-FUNC-80049794-UPDATE-RATE-STEER-NOOP-BRANCH-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested a post-zap `var_f14 = 0.0f` carrier on the
-  current best save-family branch: both trailing pads removed, steer-vel
-  no-op, and x/z/y first speed-magnitude split. It compiled but produced no
-  object improvement, staying `CURRENT (3550)`. The guarded matching source was
-  restored and the full ROM gate remains clean.
+  `func_80049794` active and tested the initialized steer no-op
+  `gCurrentCarSteerVel = (updateRateF > 0.0f) * 0` on the current best
+  save-family branch: both trailing pads removed and x/z/y first
+  speed-magnitude split. It compiled but produced no object improvement,
+  staying `CURRENT (3550)`. The guarded matching source was restored and the
+  full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`, and the steer no-op changed to `gCurrentCarSteerVel = (updateRateF > 0.0f) * 0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> initialized `updateRateF` steer no-op produces no object improvement from the x/z/y best branch and stays `CURRENT (3550)`, still nonmatching with the wave-register and later float-register drift
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the steer-vel no-op store, the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`, and `var_f14 = 0.0f` immediately after the zap sound call

@@ -355,7 +355,11 @@
   post-zap `var_f14 = 0.0f` carrier immediately after the zap sound call on
   the x/z/y best branch compiled but produced no object change and stayed
   `CURRENT (3550)`, so do not repeat that early `$f14` zero hint on this
-  branch. A
+  branch. Replacing the best branch's `var_f0` steer no-op with the initialized
+  `updateRateF` spelling
+  (`gCurrentCarSteerVel = (updateRateF > 0.0f) * 0`) also compiled but
+  produced no object improvement and stayed `CURRENT (3550)`, so do not repeat
+  that no-op source spelling on this branch. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
