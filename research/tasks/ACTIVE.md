@@ -235,7 +235,16 @@
   zero stores as double literals (`racer->unk84 = 0.0; racer->unk88 = 0.0`)
   changed the early zero allocation shape but cascaded register drift, worsened
   the focused score to `CURRENT (4685)`, and still did not introduce target
-  `$f20/$f21` prologue saves. A
+  `$f20/$f21` prologue saves. Removing both trailing unused pads
+  (`pad3`/`pad4`) with the same pre-`sqrtf` `var_f20` accumulation kept the
+  target `0xf8` frame and target `$f20/$f21` prologue saves, improving on the
+  leading-pad removal variant to `CURRENT (3620)`, but still left broad
+  zero/wave/scheduling drift and did not match. Retaining exactly one trailing
+  pad (`pad4` only or `pad3` only) with that same pre-`sqrtf` accumulation
+  widened the frame back to `0x100` and regressed to `CURRENT (4049)` in both
+  cases. Do not repeat these simple trailing-pad toggles; if continuing this
+  family, inspect the remaining local-slot/scheduling drift from the
+  both-trailing-pads-removed candidate instead. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
