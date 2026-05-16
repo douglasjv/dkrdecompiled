@@ -333,7 +333,11 @@
   partial-sum carrier produced the same result: `CURRENT (3451)`, frame shrunk
   to `0xf0`, and target `$f20/$f21` saves dropped. Do not treat either
   existing-float scratch/no-op side branch as the preferred continuation of the
-  save-family path. A
+  save-family path. Adding an empty `if (var_f14) {}` immediately after
+  `apply_vehicle_rotation_offset` on the best save-family branch compiled but
+  regressed from `CURRENT (3560)` to `CURRENT (3980)` and did not create the
+  target call-adjacent `$f14` save/reload shape. Do not repeat this post-apply
+  `var_f14` lifetime no-op. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still

@@ -1,21 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:52:10Z
+- Generated at: 2026-05-16T18:56:01Z
 - Branch: `master`
-- HEAD before closeout commit: `8ccedd60`
-- Completed task: `DKR-MATCH-FUNC-80049794-SPD8-STEERVEL-NOOP-PROBE`
+- HEAD before closeout commit: `5d19d67b`
+- Completed task: `DKR-MATCH-FUNC-80049794-POST-APPLY-VARF14-NOOP-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested the steer-vel no-op store combined with an
-  existing-`spD8` pre-`sqrtf` partial-sum carrier. It compiled and produced the
-  same shape as the prior `spCC` sibling: numeric focused score `CURRENT
-  (3451)`, but only by shrinking the frame to `0xf0` and dropping target
-  `$f20/$f21` saves. That makes the existing-float scratch branch a
-  nonmatching side branch rather than a better continuation of the save-family
-  path. The guarded matching source was restored and the full ROM gate remains
-  clean.
+  `func_80049794` active and tested whether an empty post-call `if (var_f14)
+  {}` lifetime hint could force the target `$f14` save/reload across
+  `apply_vehicle_rotation_offset` while preserving the best save-family shape.
+  It compiled, but regressed the focused score from the save-family `CURRENT
+  (3560)` to `CURRENT (3980)` and still missed the target call-adjacent
+  `$f14` spill shape. The guarded matching source was restored and the full ROM
+  gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, the steer-vel no-op store, and an empty `if (var_f14) {}` immediately after `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> post-apply `var_f14` lifetime no-op regresses the save-family focused score from `CURRENT (3560)` to `CURRENT (3980)` and does not create the target `$f14` save/reload shape
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the `gCurrentCarSteerVel = (var_f0 > 0.0f) * 0` no-op store, and pre-`sqrtf` accumulation routed through `spD8`
