@@ -341,7 +341,13 @@
   `apply_vehicle_rotation_offset` argument through `pad2 = 0` on the same
   branch compiled but produced no object change from the save-family candidate,
   staying `CURRENT (3560)` with the same target/current call-adjacent `sw zero`
-  versus `$f14` save mismatch. Do not repeat this argument-staging spelling. A
+  versus `$f14` save mismatch. Do not repeat this argument-staging spelling.
+  Splitting that same first speed-magnitude sum as x-first accumulation
+  (`var_f20 = x*x; var_f20 += z*z; var_f20 += y*y; var_f20 = sqrtf(var_f20) -
+  2.0`) compiled and improved the best save-family focused score from
+  `CURRENT (3560)` to `CURRENT (3550)` while preserving the target `0xf8`
+  frame family; if continuing this branch, inspect from this x-first split
+  candidate rather than the weaker two-step x/z sum spelling. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still

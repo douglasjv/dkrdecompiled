@@ -1,20 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:58:19Z
+- Generated at: 2026-05-16T23:49:43Z
 - Branch: `master`
-- HEAD before closeout commit: `b02222e1`
-- Completed task: `DKR-MATCH-FUNC-80049794-APPLY-ARG5-PAD2-PROBE`
+- HEAD before closeout commit: `478deca4`
+- Completed task: `DKR-MATCH-FUNC-80049794-SPLIT-X-FIRST-SUM-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested whether staging the fifth
-  `apply_vehicle_rotation_offset` argument through the existing `pad2` local
-  (`pad2 = 0; ... pad2`) would move the target `sw zero,0x10(sp)` before the
-  call and free the delay slot for the `$f14` save. It compiled but produced no
-  object change from the save-family candidate, staying `CURRENT (3560)` with
-  the same call-adjacent mismatch. The guarded matching source was restored and
-  the full ROM gate remains clean.
+  `func_80049794` active and tested an x-first split spelling of the first
+  speed-magnitude sum on the current save-family branch:
+  `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`. It compiled and improved
+  the focused score from `CURRENT (3560)` to `CURRENT (3550)` while preserving
+  the `0xf8` frame / `$f20` save-family shape, but it remains nonmatching with
+  the wave-register and later float-register drift. The guarded matching source
+  was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the steer-vel no-op store, and the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> x-first split accumulation improves the save-family focused score from `CURRENT (3560)` to `CURRENT (3550)` while keeping the `0xf8` frame path, but remains nonmatching
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, the steer-vel no-op store, and the fifth `apply_vehicle_rotation_offset` argument staged through `pad2 = 0`
