@@ -351,7 +351,11 @@
   x/y/z split spelling
   (`var_f20 = x*x; var_f20 += y*y; var_f20 += z*z; var_f20 = sqrtf(var_f20) -
   2.0`) compiled but regressed back to `CURRENT (3560)`, so do not continue
-  from x/y/z unless new target scheduling evidence demands it. A
+  from x/y/z unless new target scheduling evidence demands it. Adding a
+  post-zap `var_f14 = 0.0f` carrier immediately after the zap sound call on
+  the x/z/y best branch compiled but produced no object change and stayed
+  `CURRENT (3550)`, so do not repeat that early `$f14` zero hint on this
+  branch. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
