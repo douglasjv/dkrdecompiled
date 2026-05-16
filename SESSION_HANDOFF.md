@@ -1,21 +1,27 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T02:48:49Z
+- Generated at: 2026-05-16T02:52:51Z
 - Branch: `master`
-- HEAD before closeout commit: `a4feb7fe`
-- Completed task: `DKR-MATCH-FUNC-80059208-CHECKPOINT-DOT-ACCUM-PROBE`
-- Summary: No new source match landed. This pass kept the close
-  `func_80059208` active as a bounded alternate and rejected the final
-  checkpoint-dot accumulation shape. Splitting the checkpoint dot into
-  `pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2` before the
-  object dot compiled but left the focused score unchanged at `CURRENT (870)`
-  with the same final object-load/arithmetic drift. The guarded matching source
-  was restored and the full ROM gate remains clean.
+- HEAD before closeout commit: `b0c0e780`
+- Completed task: `DKR-MATCH-FUNC-80049794-INPLACE-INVERSE-GRAVITY-PROBE`
+- Summary: No new source match landed. This pass kept selector-recommended
+  `func_80049794` active and rejected the in-place inverse-gravity spelling.
+  Splitting `var_f20 = 1.0 - (var_f20 / 4.0)` into `var_f20 /= 4.0; var_f20 =
+  1.0 - var_f20` compiled but worsened the focused score from baseline
+  `CURRENT (2550)` to `CURRENT (3435)` and still did not introduce target
+  `$f20/$f21` prologue saves. The guarded matching source was restored and the
+  full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> promoted baseline remains `CURRENT (2550)` with missing target `$f20/$f21` saves and early zero in `$f16` instead of target `$f14`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with in-place inverse-gravity spelling
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f20 /= 4.0; var_f20 = 1.0 - var_f20` worsens the focused score to `CURRENT (3435)`, nonmatching, and still does not introduce target `$f20/$f21` prologue saves
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` baseline C candidate compiles
 - `./diff.sh -o func_80059208 -s --compress-matching 3 --no-pager` -> baseline promoted `func_80059208` remains `CURRENT (870)` in the final lateral/vertical offset block
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with the checkpoint dot accumulated through `pad2` before the object dot
@@ -348,6 +354,7 @@
 - Additional `func_80049794` boss-adjustment algebra rejected probe: rewriting `var_f20 = ((var_f20 - 2.0) / 2.0)` as `var_f20 = (var_f20 * 0.5) - 1.0` compiled but worsened the focused object score to `CURRENT (3520)` and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` upper-clamp literal rejected probe: rewriting the first speed-derived upper clamp as explicit single-precision (`if (var_f20 > 4.0f) { var_f20 = 4.0f; }`) compiled but worsened the focused object score to `CURRENT (4975)` and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` inverse-gravity multiplication rejected probe: rewriting `var_f20 = 1.0 - (var_f20 / 4.0)` as `var_f20 = 1.0 - (var_f20 * 0.25)` compiled but left the focused object score unchanged at `CURRENT (2550)` and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
+- Additional `func_80049794` in-place inverse-gravity rejected probe: rewriting `var_f20 = 1.0 - (var_f20 / 4.0)` as `var_f20 /= 4.0; var_f20 = 1.0 - var_f20` compiled but worsened the focused object score to `CURRENT (3435)` and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` early-zero local rejected probe: introducing a dedicated `f32 zero` local for the grounded-wheel zeroing and early `racerVelocity` clamp compiled but widened the frame to `0x100`, worsened the focused object score to `CURRENT (3035)`, and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` `var_f14` declaration-initializer rejected probe: initializing `var_f14` at declaration (`f32 var_f14 = 0.0f`) compiled but left the focused object score unchanged at `CURRENT (2550)`, kept the early zero in `$f16`, and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` segmentZVelocity carry-through rejected probe: carrying the interpolated misc-asset speed factor through `segmentZVelocity` into the later `handle_racer_top_speed`, boost override, throttle, and brake uses compiled but worsened the focused object score to `CURRENT (2800)`; it moved the key speed/gravity float family from `$f14` to `$f16` and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
@@ -395,6 +402,7 @@
 - Do not repeat this session's `func_80049794` boss-adjustment algebra rewrite (`var_f20 = (var_f20 * 0.5) - 1.0`); it worsened the focused object score to `CURRENT (3520)` and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` separate `f64 speedMagnitude` probe before `var_f20 = speedMagnitude - 2.0`; it widened the frame to `0x108`, worsened the focused object score to `CURRENT (3163)`, and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` inverse-gravity `0.25` multiplication probe (`var_f20 = 1.0 - (var_f20 * 0.25)`); it left the focused object score unchanged at `CURRENT (2550)` and still did not add target `$f20/$f21` saves.
+- Do not repeat this session's `func_80049794` in-place inverse-gravity probe (`var_f20 /= 4.0; var_f20 = 1.0 - var_f20`); it worsened the focused object score to `CURRENT (3435)` and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` dedicated early `f32 zero` local probe for grounded-wheel zeroing and early `racerVelocity` clamp; it widened the frame to `0x100`, worsened the focused object score to `CURRENT (3035)`, and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` `var_f14` declaration-initializer probe (`f32 var_f14 = 0.0f`); it left the focused object score unchanged at `CURRENT (2550)`, kept early zero in `$f16`, and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` `segmentZVelocity` carry-through probe for the misc-asset speed factor; it worsened the focused object score to `CURRENT (2800)`, moved the key speed/gravity float family from `$f14` to `$f16`, and still did not add target `$f20/$f21` saves.
