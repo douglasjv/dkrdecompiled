@@ -313,7 +313,11 @@
   sound block compiled but produced the same focused score as baseline,
   `CURRENT (2550)`, kept the early zero in `$f16`, and still did not introduce
   target `$f20/$f21` saves. Do not repeat this post-zap early-zero lifetime
-  hint. A
+  hint. Combining that post-zap `var_f14 = 0.0f` hint with the
+  both-trailing-pads-removed pre-`sqrtf` `var_f20` accumulation compiled, kept
+  the target `0xf8` frame and `$f20/$f21` saves, but left the focused score
+  unchanged at `CURRENT (3620)` and still allocated the early zero in `$f16`.
+  Do not repeat this combined post-zap-zero / trailing-pad-removal shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
