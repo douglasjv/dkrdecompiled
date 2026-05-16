@@ -235,7 +235,10 @@
   zero stores as double literals (`racer->unk84 = 0.0; racer->unk88 = 0.0`)
   changed the early zero allocation shape but cascaded register drift, worsened
   the focused score to `CURRENT (4685)`, and still did not introduce target
-  `$f20/$f21` prologue saves. Removing both trailing unused pads
+  `$f20/$f21` prologue saves. Spelling those stores as integer zero literals
+  (`racer->unk84 = 0; racer->unk88 = 0`) produced the same bad focused score
+  `CURRENT (4685)` and split the two stores across `$f4`/`$f6`, so do not
+  retry that literal spelling either. Removing both trailing unused pads
   (`pad3`/`pad4`) with the same pre-`sqrtf` `var_f20` accumulation kept the
   target `0xf8` frame and target `$f20/$f21` prologue saves, improving on the
   leading-pad removal variant to `CURRENT (3620)`, but still left broad
