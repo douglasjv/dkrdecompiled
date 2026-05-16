@@ -220,7 +220,12 @@
   Removing the two leading unused `pad5`/`pad7` locals with that same
   pre-`sqrtf` accumulation restored the target `0xf8` frame and kept
   `$f20/$f21` saves, but still worsened the focused score to `CURRENT (3932)`
-  by shifting local stack slots and later scheduling. A
+  by shifting local stack slots and later scheduling. Routing the same
+  pre-`sqrtf` speed-magnitude sum through the existing `spEC` local instead of
+  `var_f20` (`spEC = x*x + z*z; spEC += y*y; var_f20 = sqrtf(spEC) - 2.0`)
+  widened the local scheduling around the first `sqrtf`, worsened the focused
+  score to `CURRENT (3300)`, and still did not introduce target `$f20/$f21`
+  prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
