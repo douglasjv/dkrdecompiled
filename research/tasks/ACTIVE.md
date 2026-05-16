@@ -263,7 +263,10 @@
   Keeping the both-trailing-pads-removed pre-`sqrtf` accumulation but routing
   the post-`sqrtf` result through the existing `var_f2` local
   (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`) compiled and left the
-  focused score unchanged at `CURRENT (3620)`. Reordering only that
+  focused score unchanged at `CURRENT (3620)`. Separating the `sqrtf` result
+  from the subtraction through `var_f2`
+  (`var_f2 = sqrtf(var_f20); var_f20 = var_f2 - 2.0`) also compiled and left
+  the focused score unchanged at `CURRENT (3620)`. Reordering only that
   pre-`sqrtf` accumulation to start with the y component
   (`var_f20 = y*y; var_f20 += x*x + z*z`) compiled but worsened the focused
   score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity

@@ -1,18 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:32:03Z
+- Generated at: 2026-05-16T18:34:41Z
 - Branch: `master`
-- HEAD before closeout commit: `ffa7c5ae`
-- Completed task: `DKR-MATCH-FUNC-80049794-WAVE-FLAG-SCHEDULING-PROBE`
+- HEAD before closeout commit: `67504c91`
+- Completed task: `DKR-MATCH-FUNC-80049794-SPLIT-SQRT-RESULT-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested one unrepeated wave-flag scheduling shape.
-  Moving `spA2 = FALSE` inside the wave gate with an explicit non-wave `else`
-  compiled but worsened the focused score to `CURRENT (7820)` by forcing
-  stack-byte traffic for the drift flag and cascading broad register allocation.
-  The guarded matching source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested one unrepeated split-`sqrtf` result shape
+  in the known `$f20`-save family. Removing both trailing pad locals, using
+  pre-`sqrtf` `var_f20` accumulation, then spelling
+  `var_f2 = sqrtf(var_f20); var_f20 = var_f2 - 2.0` compiled, kept the target
+  `0xf8` frame and `$f20/$f21` saves, but left the focused score unchanged at
+  `CURRENT (3620)`. The guarded matching source was restored and the full ROM
+  gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and the `sqrtf` result separated through `var_f2`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> split-`sqrtf` result variant (`var_f2 = sqrtf(var_f20); var_f20 = var_f2 - 2.0`) keeps target `0xf8` frame and `$f20/$f21` saves but stays `CURRENT (3620)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with `spA2 = FALSE` moved inside the wave gate and an explicit non-wave `else`
@@ -446,6 +454,7 @@
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed partial-sum scratch variants (`spCC = x*x + z*z; var_f20 = spCC + y*y` or the same through `spD8`); they kept target `0xf8`/`$f20/$f21` and nudged the focused score to `CURRENT (3615)`, but remained nonmatching with the same early zero, wave-register, and later scheduling drift.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed pre-`sqrtf` accumulation plus early-zero `var_f14` carrier (`var_f14 = 0.0f; racer->unk84 = var_f14; racer->unk88 = var_f14`); it kept target `0xf8`/`$f20/$f21` but stayed `CURRENT (3620)` and still allocated early zero in `$f16`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed post-`sqrtf` `var_f2` dataflow probe (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`); it left the focused score unchanged at `CURRENT (3620)`.
+- Do not repeat this session's `func_80049794` both-trailing-pads-removed split-`sqrtf` result probe (`var_f2 = sqrtf(var_f20); var_f20 = var_f2 - 2.0`); it kept target `0xf8`/`$f20/$f21` but stayed `CURRENT (3620)`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed y-first pre-`sqrtf` accumulation probe (`var_f20 = y*y; var_f20 += x*x + z*z`); it worsened the focused score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity load/register order.
 - Do not repeat this session's `func_80049794` buoyancy `var_f0` carrier probe (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`); it left the promoted focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` simple player-index condition branch-shape probes (`PLAYER_COMPUTER == var_v0` or `if (PLAYER_COMPUTER != var_v0) {} else if (...)`); both left the focused score unchanged at `CURRENT (2550)` and did not swap the target/current branch operands.
