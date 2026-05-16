@@ -322,7 +322,11 @@
   pad2)) / divisor`) compiled but worsened the focused object score from
   `CURRENT (870)` to `CURRENT (1600)` by delaying the negation until after the
   folded object-dot subtraction and perturbing the final vertical temp register
-  family. Keep this function active; do not park it just because these
+  family. Splitting the final vertical numerator through `diffY`
+  (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`) compiled
+  but worsened the focused object score from `CURRENT (870)` to focused score
+  `CURRENT (1242)` by extending the final vertical clamp/register drift. Keep
+  this function active; do not park it just because these
   final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
