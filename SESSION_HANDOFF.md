@@ -1,24 +1,23 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T02:55:37Z
+- Generated at: 2026-05-16T02:59:05Z
 - Branch: `master`
-- HEAD before closeout commit: `2c66668a`
-- Completed task: `DKR-MATCH-FUNC-80049794-COURSE-HEIGHT-GROUPING-PROBE`
+- HEAD before closeout commit: `e6696206`
+- Completed task: `DKR-MATCH-FUNC-80049794-MISC-INVERSE-FRACTION-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and rejected the alternate course-height grouping
-  near the first gravity section. Rewriting `(gCurrentCourseHeight - 50.0) -
-  obj->trans.y_position` as `gCurrentCourseHeight - obj->trans.y_position;
-  var_f2 -= 50.0` compiled but worsened the focused score from baseline
-  `CURRENT (2550)` to `CURRENT (3755)` and still did not introduce target
-  `$f20/$f21` prologue saves. The guarded matching source was restored and the
-  full ROM gate remains clean.
+  `func_80049794` active and rejected a misc-asset interpolation
+  inverse-fraction staging shape. Staging `1.0 - var_f0` through the existing
+  `var_f2` local before the interpolation compiled but worsened the focused
+  score from baseline `CURRENT (2550)` to `CURRENT (3983)` and still did not
+  introduce target `$f20/$f21` prologue saves. The guarded matching source was
+  restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with alternate course-height grouping
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f2 = gCurrentCourseHeight - obj->trans.y_position; var_f2 -= 50.0` worsens the focused score to `CURRENT (3755)`, nonmatching, and still does not introduce target `$f20/$f21` prologue saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with misc inverse-fraction staging through `var_f2`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f2 = 1.0 - var_f0` before the misc-asset interpolation worsens the focused score to `CURRENT (3983)`, nonmatching, and still does not introduce target `$f20/$f21` prologue saves
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles

@@ -260,7 +260,12 @@
   obj->trans.y_position; var_f2 -= 50.0` compiled but worsened the focused
   score from baseline `CURRENT (2550)` to `CURRENT (3755)` and still did not
   introduce target `$f20/$f21` saves. Do not repeat this course-height grouping
-  shape. A
+  shape. Staging the misc-asset interpolation inverse fraction through the
+  existing `var_f2` local
+  (`var_f2 = 1.0 - var_f0; ... gCurrentRacerMiscAssetPtr[racerMiscAssetIdx] *
+  var_f2`) compiled but worsened the focused score from baseline
+  `CURRENT (2550)` to `CURRENT (3983)` and still did not introduce target
+  `$f20/$f21` saves. Do not repeat this misc inverse-fraction staging shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
