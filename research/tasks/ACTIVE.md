@@ -262,6 +262,15 @@
   (`var_f20 = y*y; var_f20 += x*x + z*z`) compiled but worsened the focused
   score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity
   load/register order. Do not repeat these two dataflow/operand-order variants.
+  A later narrow buoyancy carrier spelling
+  (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`) compiled but left
+  the focused score unchanged at `CURRENT (2550)` and did not move the
+  `$f14/$f20` allocation. Commuting the nearby player-index condition
+  (`PLAYER_COMPUTER == var_v0`) and spelling it as an explicit inverted empty
+  branch (`if (PLAYER_COMPUTER != var_v0) {} else if (...)`) also compiled but
+  left the focused score unchanged at `CURRENT (2550)` and did not swap the
+  target/current `bne v1,v0` versus `bne v0,v1` branch operands. Do not repeat
+  these simple local source spellings.
   Removing both leading pads and
   both trailing pads together with the same pre-`sqrtf` accumulation retained
   `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT

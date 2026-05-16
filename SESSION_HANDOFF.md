@@ -1,26 +1,29 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T03:06:38Z
+- Generated at: 2026-05-16T03:10:36Z
 - Branch: `master`
-- HEAD before closeout commit: `1ba4b197`
-- Completed task: `DKR-MATCH-FUNC-80049794-PRESQRT-DATAFLOW-PROBE`
+- HEAD before closeout commit: `10e4df43`
+- Completed task: `DKR-MATCH-FUNC-80049794-LOCAL-BRANCH-CARRIER-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested two unrepeated follow-ups inside the best
-  both-trailing-pads-removed pre-`sqrtf` diagnostic family. Routing the
-  post-`sqrtf` result through `var_f2` left the score unchanged at
-  `CURRENT (3620)`. Reordering the pre-`sqrtf` accumulation to start with the
-  y component worsened the focused score to `CURRENT (3640)` and disturbed
-  the first speed-magnitude velocity load/register order. The guarded matching
-  source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested small unrepeated source spellings around
+  two concrete local drifts. Routing the buoyancy `-1.0` carrier through
+  `var_f0` compiled but left the promoted focused score unchanged at
+  `CURRENT (2550)`. Commuting the nearby player-index condition and then
+  spelling it as an explicit inverted empty branch also compiled but left the
+  focused score unchanged at `CURRENT (2550)` and did not swap the
+  target/current branch operands. The guarded matching source was restored and
+  the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and post-`sqrtf` result routed through `var_f2`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> post-`sqrtf` `var_f2` dataflow leaves the diagnostic score unchanged at `CURRENT (3620)`, nonmatching
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed and y-first pre-`sqrtf` accumulation
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> y-first operand-order variant worsens the focused score to `CURRENT (3640)` and disturbs first speed-magnitude velocity load/register order
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> promoted baseline remains `CURRENT (2550)` with missing target `$f20/$f21` saves and early zero in `$f16` instead of target `$f14`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with buoyancy `-1.0f` carrier routed through `var_f0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)` leaves the focused score unchanged at `CURRENT (2550)`, nonmatching
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with player-index condition commuted and then with explicit inverted empty-branch spelling
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> both simple player-index branch source spellings leave the focused score unchanged at `CURRENT (2550)` and do not swap target/current branch operands
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
@@ -426,6 +429,8 @@
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed partial-sum scratch variants (`spCC = x*x + z*z; var_f20 = spCC + y*y` or the same through `spD8`); they kept target `0xf8`/`$f20/$f21` and nudged the focused score to `CURRENT (3615)`, but remained nonmatching with the same early zero, wave-register, and later scheduling drift.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed post-`sqrtf` `var_f2` dataflow probe (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`); it left the focused score unchanged at `CURRENT (3620)`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed y-first pre-`sqrtf` accumulation probe (`var_f20 = y*y; var_f20 += x*x + z*z`); it worsened the focused score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity load/register order.
+- Do not repeat this session's `func_80049794` buoyancy `var_f0` carrier probe (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`); it left the promoted focused score unchanged at `CURRENT (2550)`.
+- Do not repeat this session's `func_80049794` simple player-index condition branch-shape probes (`PLAYER_COMPUTER == var_v0` or `if (PLAYER_COMPUTER != var_v0) {} else if (...)`); both left the focused score unchanged at `CURRENT (2550)` and did not swap the target/current branch operands.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.
