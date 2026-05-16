@@ -247,7 +247,14 @@
   widened the frame back to `0x100` and regressed to `CURRENT (4049)` in both
   cases. Do not repeat these simple trailing-pad toggles; if continuing this
   family, inspect the remaining local-slot/scheduling drift from the
-  both-trailing-pads-removed candidate instead. Removing both leading pads and
+  both-trailing-pads-removed candidate instead. Staging that same
+  both-trailing-pads-removed pre-`sqrtf` x/z partial sum through an existing
+  float local (`spCC` or `spD8`) kept the target `0xf8` frame and
+  `$f20/$f21` saves and nudged the score from `CURRENT (3620)` to
+  `CURRENT (3615)`, but still left the early `$f14/$f16`, wave-register, and
+  later scheduling drift. Do not repeat simple existing-float scratch aliases
+  for this partial sum unless there is a new reason from target scheduling.
+  Removing both leading pads and
   both trailing pads together with the same pre-`sqrtf` accumulation retained
   `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT
   (3737)`, worse than the both-trailing-pads-only variant. Do not repeat the
