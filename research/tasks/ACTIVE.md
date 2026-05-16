@@ -225,7 +225,11 @@
   `var_f20` (`spEC = x*x + z*z; spEC += y*y; var_f20 = sqrtf(spEC) - 2.0`)
   widened the local scheduling around the first `sqrtf`, worsened the focused
   score to `CURRENT (3300)`, and still did not introduce target `$f20/$f21`
-  prologue saves. A
+  prologue saves. Removing only one leading unused pad at a time (`pad5` only
+  or `pad7` only retained) with the same pre-`sqrtf` `var_f20` accumulation
+  still introduced target `$f20/$f21` saves, but kept the frame widened to
+  `0x100` and worsened the focused score to `CURRENT (4125)` for both
+  variants. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
