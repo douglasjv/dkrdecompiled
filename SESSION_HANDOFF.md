@@ -1,18 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:38:57Z
+- Generated at: 2026-05-16T18:41:43Z
 - Branch: `master`
-- HEAD before closeout commit: `9af02f16`
-- Completed task: `DKR-MATCH-FUNC-80059208-SCALE-SUM-PROBE`
-- Summary: No new source match landed. This pass intentionally used the
-  documented close alternate `func_80059208` without parking selector-recommended
-  `func_80049794`. Routing the final `pad + pad2` lateral-correction sum through
-  the now-dead `scale` local compiled, but left the focused score unchanged at
-  `CURRENT (870)` with the same final arithmetic/register-family drift. The
-  guarded matching source was restored and the full ROM gate remains clean.
+- HEAD before closeout commit: `e4f41fbb`
+- Completed task: `DKR-MATCH-FUNC-80049794-POST-ZAP-F14-ZERO-PROBE`
+- Summary: No new source match landed. This pass kept selector-recommended
+  `func_80049794` active and tested an unrepeated source-lifetime hint for the
+  target's early `$f14` zero family. Adding an otherwise-dead `var_f14 = 0.0f`
+  immediately after the zap/spinout sound block compiled, but left the focused
+  score unchanged at `CURRENT (2550)`, kept the early zero in `$f16`, and still
+  did not introduce target `$f20/$f21` saves. The guarded matching source was
+  restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with an otherwise-dead `var_f14 = 0.0f` immediately after the zap/spinout sound block
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> post-zap `var_f14` zero hint leaves the focused score unchanged at `CURRENT (2550)`, keeps early zero in `$f16`, and still lacks target `$f20/$f21` saves
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with the final `pad + pad2` sum routed through the now-dead `scale` local
