@@ -1,20 +1,24 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:29:48Z
+- Generated at: 2026-05-16T18:32:03Z
 - Branch: `master`
-- HEAD before closeout commit: `71d881d6`
-- Completed task: `DKR-MATCH-FUNC-80049794-PRESQRT-EARLY-ZERO-CARRIER-PROBE`
+- HEAD before closeout commit: `ffa7c5ae`
+- Completed task: `DKR-MATCH-FUNC-80049794-WAVE-FLAG-SCHEDULING-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested one unrepeated combination in the known
-  `$f20`-save family. Removing both trailing pad locals, using pre-`sqrtf`
-  `var_f20` accumulation, and routing the early grounded-wheel zero through
-  `var_f14` compiled, kept the target `0xf8` frame and `$f20/$f21` saves, but
-  left the focused score unchanged at `CURRENT (3620)` and still allocated the
-  early zero in `$f16` instead of target `$f14`. The guarded matching source
-  was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested one unrepeated wave-flag scheduling shape.
+  Moving `spA2 = FALSE` inside the wave gate with an explicit non-wave `else`
+  compiled but worsened the focused score to `CURRENT (7820)` by forcing
+  stack-byte traffic for the drift flag and cascading broad register allocation.
+  The guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with `spA2 = FALSE` moved inside the wave gate and an explicit non-wave `else`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> wave-flag scheduling variant worsens to `CURRENT (7820)`, adds stack-byte traffic for `spA2`, and cascades register allocation
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles in the current checkout
@@ -446,6 +450,7 @@
 - Do not repeat this session's `func_80049794` buoyancy `var_f0` carrier probe (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`); it left the promoted focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` simple player-index condition branch-shape probes (`PLAYER_COMPUTER == var_v0` or `if (PLAYER_COMPUTER != var_v0) {} else if (...)`); both left the focused score unchanged at `CURRENT (2550)` and did not swap the target/current branch operands.
 - Do not repeat this session's `func_80049794` staged branch-constant probe (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) && (gCurrentPlayerIndex != var_v1))`); it left the focused score unchanged at `CURRENT (2550)`, did not swap branch operands, and did not move the `$f14/$f20` allocation.
+- Do not repeat this session's `func_80049794` wave-flag scheduling probe (`spA2 = FALSE` inside the wave gate plus explicit non-wave `else`); it worsened to `CURRENT (7820)` by adding stack-byte traffic for `spA2` and broad register churn.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.

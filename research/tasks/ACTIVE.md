@@ -283,6 +283,10 @@
   unchanged at `CURRENT (2550)`, did not swap the target/current branch
   operands, and did not move the `$f14/$f20` allocation. Do not repeat that
   staged-constant branch spelling either.
+  Moving `spA2 = FALSE` inside the wave gate with an explicit non-wave `else`
+  compiled but worsened the focused score to `CURRENT (7820)` by forcing
+  stack-byte traffic for the drift flag and cascading broad integer/float
+  register allocation. Do not repeat this wave-flag scheduling shape.
   Removing both leading pads and
   both trailing pads together with the same pre-`sqrtf` accumulation retained
   `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT
