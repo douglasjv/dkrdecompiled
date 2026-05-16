@@ -1,19 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:43:57Z
+- Generated at: 2026-05-16T18:46:21Z
 - Branch: `master`
-- HEAD before closeout commit: `28f3f204`
-- Completed task: `DKR-MATCH-FUNC-80049794-POST-ZAP-F14-ZERO-WITH-F20-SAVES-PROBE`
+- HEAD before closeout commit: `99ed594a`
+- Completed task: `DKR-MATCH-FUNC-80049794-F20-SAVES-STEERVEL-NOOP-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested a combined source shape in the known
-  `$f20/$f21` save family: both trailing pads removed, pre-`sqrtf` `var_f20`
-  accumulation, plus the post-zap `var_f14 = 0.0f` hint. It compiled and kept
-  the target `0xf8` frame and `$f20/$f21` saves, but left the focused score
-  unchanged at `CURRENT (3620)` and still allocated the early zero in `$f16`.
-  The guarded matching source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested the known `$f20/$f21` save-family shape
+  with the `gCurrentCarSteerVel = (var_f0 > 0.0f) * 0` no-op store. It compiled,
+  kept the target `0xf8` frame and `$f20/$f21` saves, and improved the focused
+  score from `CURRENT (3620)` to `CURRENT (3560)`, but remained nonmatching
+  with the same wave-register mismatch family and later scheduling drift. The
+  guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and the `gCurrentCarSteerVel = (var_f0 > 0.0f) * 0` no-op store shape
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> combined save-family / steer-vel no-op variant keeps target `0xf8` frame and `$f20/$f21` saves and improves focused score to `CURRENT (3560)`, still nonmatching
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and an otherwise-dead `var_f14 = 0.0f` after the zap/spinout sound block

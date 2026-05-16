@@ -317,7 +317,14 @@
   both-trailing-pads-removed pre-`sqrtf` `var_f20` accumulation compiled, kept
   the target `0xf8` frame and `$f20/$f21` saves, but left the focused score
   unchanged at `CURRENT (3620)` and still allocated the early zero in `$f16`.
-  Do not repeat this combined post-zap-zero / trailing-pad-removal shape. A
+  Do not repeat this combined post-zap-zero / trailing-pad-removal shape.
+  Combining the both-trailing-pads-removed pre-`sqrtf` `var_f20` accumulation
+  with the existing `gCurrentCarSteerVel = (var_f0 > 0.0f) * 0` no-op store
+  compiled, kept the target `0xf8` frame and `$f20/$f21` saves, and improved
+  the focused score from `CURRENT (3620)` to `CURRENT (3560)`, but remained
+  nonmatching with the same wave-register mismatch family and later scheduling
+  drift. If continuing this family, inspect this improved variant rather than
+  the weaker plain trailing-pad-removal shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
