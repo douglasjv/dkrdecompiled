@@ -1,31 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T03:02:23Z
+- Generated at: 2026-05-16T03:06:38Z
 - Branch: `master`
-- HEAD before closeout commit: `d57d8f47`
-- Completed task: `DKR-MATCH-FUNC-80049794-PRESQRT-PARTIAL-SCRATCH-PROBE`
+- HEAD before closeout commit: `1ba4b197`
+- Completed task: `DKR-MATCH-FUNC-80049794-PRESQRT-DATAFLOW-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested a narrower follow-up inside the best
-  pre-`sqrtf` diagnostic family. The existing both-trailing-pads-removed
-  pre-`sqrtf` accumulation still produced target frame size and `$f20/$f21`
-  saves at `CURRENT (3620)`. Staging only the x/z partial sum through an
-  existing float local (`spCC` or `spD8`) improved that diagnostic shape
-  slightly to `CURRENT (3615)`, but it remained nonmatching with the early
-  `$f14/$f16`, wave-register, and later scheduling drift still present. The
-  guarded matching source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested two unrepeated follow-ups inside the best
+  both-trailing-pads-removed pre-`sqrtf` diagnostic family. Routing the
+  post-`sqrtf` result through `var_f2` left the score unchanged at
+  `CURRENT (3620)`. Reordering the pre-`sqrtf` accumulation to start with the
+  y component worsened the focused score to `CURRENT (3640)` and disturbed
+  the first speed-magnitude velocity load/register order. The guarded matching
+  source was restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> promoted baseline remains `CURRENT (2550)` with missing target `$f20/$f21` saves and early zero in `$f16` instead of target `$f14`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed and pre-`sqrtf` `var_f20` accumulation
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> diagnostic base keeps target `0xf8` frame and `$f20/$f21` saves but remains nonmatching at `CURRENT (3620)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with that diagnostic base plus x/z partial sum staged through `spCC`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `spCC = x*x + z*z; var_f20 = spCC + y*y` improves the diagnostic shape slightly to `CURRENT (3615)` but remains nonmatching
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with the x/z partial sum staged through `spD8`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `spD8 = x*x + z*z; var_f20 = spD8 + y*y` also scores `CURRENT (3615)`, nonmatching
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and post-`sqrtf` result routed through `var_f2`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> post-`sqrtf` `var_f2` dataflow leaves the diagnostic score unchanged at `CURRENT (3620)`, nonmatching
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed and y-first pre-`sqrtf` accumulation
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> y-first operand-order variant worsens the focused score to `CURRENT (3640)` and disturbs first speed-magnitude velocity load/register order
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles
@@ -429,6 +424,8 @@
 - Do not repeat this session's `func_80049794` one-pad pre-`sqrtf` `var_f20` accumulation variants; retaining only `pad5` or only `pad7` still widened the frame to `0x100` and worsened to `CURRENT (4125)` despite adding `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` trailing-pad pre-`sqrtf` `var_f20` accumulation variants; removing both trailing pads kept target `0xf8`/`$f20/$f21` but remained nonmatching at `CURRENT (3620)`, and either one-pad trailing variant widened the frame to `0x100` and regressed to `CURRENT (4049)`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed partial-sum scratch variants (`spCC = x*x + z*z; var_f20 = spCC + y*y` or the same through `spD8`); they kept target `0xf8`/`$f20/$f21` and nudged the focused score to `CURRENT (3615)`, but remained nonmatching with the same early zero, wave-register, and later scheduling drift.
+- Do not repeat this session's `func_80049794` both-trailing-pads-removed post-`sqrtf` `var_f2` dataflow probe (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`); it left the focused score unchanged at `CURRENT (3620)`.
+- Do not repeat this session's `func_80049794` both-trailing-pads-removed y-first pre-`sqrtf` accumulation probe (`var_f20 = y*y; var_f20 += x*x + z*z`); it worsened the focused score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity load/register order.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.

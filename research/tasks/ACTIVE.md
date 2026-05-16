@@ -254,6 +254,14 @@
   `CURRENT (3615)`, but still left the early `$f14/$f16`, wave-register, and
   later scheduling drift. Do not repeat simple existing-float scratch aliases
   for this partial sum unless there is a new reason from target scheduling.
+  Keeping the both-trailing-pads-removed pre-`sqrtf` accumulation but routing
+  the post-`sqrtf` result through the existing `var_f2` local
+  (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`) compiled and left the
+  focused score unchanged at `CURRENT (3620)`. Reordering only that
+  pre-`sqrtf` accumulation to start with the y component
+  (`var_f20 = y*y; var_f20 += x*x + z*z`) compiled but worsened the focused
+  score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity
+  load/register order. Do not repeat these two dataflow/operand-order variants.
   Removing both leading pads and
   both trailing pads together with the same pre-`sqrtf` accumulation retained
   `$f20/$f21` saves but shrank the frame to `0xf0` and scored `CURRENT
