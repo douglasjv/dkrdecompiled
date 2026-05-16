@@ -425,8 +425,12 @@
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and
-  the same final object-load/arithmetic drift as baseline. Keep this function
-  active; do not park it just because these final-offset probes missed.
+  the same final object-load/arithmetic drift as baseline. Routing the final
+  `pad + pad2` sum through the now-dead `scale` local
+  (`scale = pad + pad2; diffX = -(scale / divisor)`) also compiled but left the
+  focused score unchanged at `CURRENT (870)`, with the same final
+  arithmetic/register-family drift. Keep this function active; do not park it
+  just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
   the position-array setup, so it is less localized than `func_80059208`.
