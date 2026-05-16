@@ -337,7 +337,11 @@
   `apply_vehicle_rotation_offset` on the best save-family branch compiled but
   regressed from `CURRENT (3560)` to `CURRENT (3980)` and did not create the
   target call-adjacent `$f14` save/reload shape. Do not repeat this post-apply
-  `var_f14` lifetime no-op. A
+  `var_f14` lifetime no-op. Staging the fifth
+  `apply_vehicle_rotation_offset` argument through `pad2 = 0` on the same
+  branch compiled but produced no object change from the save-family candidate,
+  staying `CURRENT (3560)` with the same target/current call-adjacent `sw zero`
+  versus `$f14` save mismatch. Do not repeat this argument-staging spelling. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still

@@ -1,20 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:56:01Z
+- Generated at: 2026-05-16T18:58:19Z
 - Branch: `master`
-- HEAD before closeout commit: `5d19d67b`
-- Completed task: `DKR-MATCH-FUNC-80049794-POST-APPLY-VARF14-NOOP-PROBE`
+- HEAD before closeout commit: `b02222e1`
+- Completed task: `DKR-MATCH-FUNC-80049794-APPLY-ARG5-PAD2-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested whether an empty post-call `if (var_f14)
-  {}` lifetime hint could force the target `$f14` save/reload across
-  `apply_vehicle_rotation_offset` while preserving the best save-family shape.
-  It compiled, but regressed the focused score from the save-family `CURRENT
-  (3560)` to `CURRENT (3980)` and still missed the target call-adjacent
-  `$f14` spill shape. The guarded matching source was restored and the full ROM
-  gate remains clean.
+  `func_80049794` active and tested whether staging the fifth
+  `apply_vehicle_rotation_offset` argument through the existing `pad2` local
+  (`pad2 = 0; ... pad2`) would move the target `sw zero,0x10(sp)` before the
+  call and free the delay slot for the `$f14` save. It compiled but produced no
+  object change from the save-family candidate, staying `CURRENT (3560)` with
+  the same call-adjacent mismatch. The guarded matching source was restored and
+  the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, the steer-vel no-op store, and the fifth `apply_vehicle_rotation_offset` argument staged through `pad2 = 0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> staged `pad2` fifth-argument source shape produces no object change from the save-family candidate and stays `CURRENT (3560)`, still with the target/current `sw zero` versus `$f14` save delay-slot mismatch
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, the steer-vel no-op store, and an empty `if (var_f14) {}` immediately after `apply_vehicle_rotation_offset`
