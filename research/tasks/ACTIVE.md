@@ -324,7 +324,11 @@
   the focused score from `CURRENT (3620)` to `CURRENT (3560)`, but remained
   nonmatching with the same wave-register mismatch family and later scheduling
   drift. If continuing this family, inspect this improved variant rather than
-  the weaker plain trailing-pad-removal shape. A
+  the weaker plain trailing-pad-removal shape. Combining that same steer-vel
+  no-op store with an existing-`spCC` pre-`sqrtf` partial-sum carrier lowered
+  the numeric focused score to `CURRENT (3451)`, but did so by shrinking the
+  frame to `0xf0` and dropping target `$f20/$f21` saves, so do not treat it as
+  the preferred continuation of the save-family path. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
