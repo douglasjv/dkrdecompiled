@@ -1,19 +1,28 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T18:27:27Z
+- Generated at: 2026-05-16T18:29:48Z
 - Branch: `master`
-- HEAD before closeout commit: `03a36cc6`
-- Completed task: `DKR-MATCH-FUNC-80049794-STAGED-BRANCH-CONSTANT-PROBE`
+- HEAD before closeout commit: `71d881d6`
+- Completed task: `DKR-MATCH-FUNC-80049794-PRESQRT-EARLY-ZERO-CARRIER-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested one unrepeated player-index branch spelling.
-  Staging `PLAYER_COMPUTER` through the existing `var_v1` local compiled but
-  left the promoted focused score unchanged at `CURRENT (2550)`, did not swap
-  the target/current branch operands, and did not move the `$f14/$f20`
-  allocation. The guarded matching source was restored and the full ROM gate
-  remains clean.
+  `func_80049794` active and tested one unrepeated combination in the known
+  `$f20`-save family. Removing both trailing pad locals, using pre-`sqrtf`
+  `var_f20` accumulation, and routing the early grounded-wheel zero through
+  `var_f14` compiled, kept the target `0xf8` frame and `$f20/$f21` saves, but
+  left the focused score unchanged at `CURRENT (3620)` and still allocated the
+  early zero in `$f16` instead of target `$f14`. The guarded matching source
+  was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` baseline C candidate compiles in the current checkout
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> promoted baseline remains `CURRENT (2550)` with missing target `$f20/$f21` saves and early zero in `$f16` instead of target `$f14`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, pre-`sqrtf` `var_f20` accumulation, and early grounded-wheel zero routed through `var_f14`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> combined pre-`sqrtf` / early-zero carrier variant keeps target `0xf8` frame and `$f20/$f21` saves but stays `CURRENT (3620)` and still keeps early zero in `$f16`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with `PLAYER_COMPUTER` staged through `var_v1`
@@ -431,6 +440,7 @@
 - Do not repeat this session's `func_80049794` one-pad pre-`sqrtf` `var_f20` accumulation variants; retaining only `pad5` or only `pad7` still widened the frame to `0x100` and worsened to `CURRENT (4125)` despite adding `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` trailing-pad pre-`sqrtf` `var_f20` accumulation variants; removing both trailing pads kept target `0xf8`/`$f20/$f21` but remained nonmatching at `CURRENT (3620)`, and either one-pad trailing variant widened the frame to `0x100` and regressed to `CURRENT (4049)`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed partial-sum scratch variants (`spCC = x*x + z*z; var_f20 = spCC + y*y` or the same through `spD8`); they kept target `0xf8`/`$f20/$f21` and nudged the focused score to `CURRENT (3615)`, but remained nonmatching with the same early zero, wave-register, and later scheduling drift.
+- Do not repeat this session's `func_80049794` both-trailing-pads-removed pre-`sqrtf` accumulation plus early-zero `var_f14` carrier (`var_f14 = 0.0f; racer->unk84 = var_f14; racer->unk88 = var_f14`); it kept target `0xf8`/`$f20/$f21` but stayed `CURRENT (3620)` and still allocated early zero in `$f16`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed post-`sqrtf` `var_f2` dataflow probe (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`); it left the focused score unchanged at `CURRENT (3620)`.
 - Do not repeat this session's `func_80049794` both-trailing-pads-removed y-first pre-`sqrtf` accumulation probe (`var_f20 = y*y; var_f20 += x*x + z*z`); it worsened the focused score to `CURRENT (3640)` and disturbed the first speed-magnitude velocity load/register order.
 - Do not repeat this session's `func_80049794` buoyancy `var_f0` carrier probe (`var_f0 = -1.0f; ... var_f20 = var_f0 - (var_f2 / 10)`); it left the promoted focused score unchanged at `CURRENT (2550)`.

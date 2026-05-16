@@ -254,6 +254,12 @@
   `CURRENT (3615)`, but still left the early `$f14/$f16`, wave-register, and
   later scheduling drift. Do not repeat simple existing-float scratch aliases
   for this partial sum unless there is a new reason from target scheduling.
+  Combining the both-trailing-pads-removed pre-`sqrtf` accumulation with an
+  explicit early-zero carrier through `var_f14`
+  (`var_f14 = 0.0f; racer->unk84 = var_f14; racer->unk88 = var_f14`) compiled,
+  kept the target `0xf8` frame and `$f20/$f21` saves, but left the focused
+  score unchanged at `CURRENT (3620)` and still allocated the early zero in
+  `$f16` instead of target `$f14`. Do not repeat that combined source shape.
   Keeping the both-trailing-pads-removed pre-`sqrtf` accumulation but routing
   the post-`sqrtf` result through the existing `var_f2` local
   (`var_f2 = sqrtf(var_f20) - 2.0; var_f20 = var_f2`) compiled and left the
