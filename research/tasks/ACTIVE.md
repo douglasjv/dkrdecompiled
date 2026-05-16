@@ -229,7 +229,13 @@
   or `pad7` only retained) with the same pre-`sqrtf` `var_f20` accumulation
   still introduced target `$f20/$f21` saves, but kept the frame widened to
   `0x100` and worsened the focused score to `CURRENT (4125)` for both
-  variants. A
+  variants. Combining the two leading unused pads into `UNUSED s32 pad[2]`
+  compiled but produced no object change from the promoted baseline and left
+  the focused score unchanged at `CURRENT (2550)`. Rewriting the grounded-wheel
+  zero stores as double literals (`racer->unk84 = 0.0; racer->unk88 = 0.0`)
+  changed the early zero allocation shape but cascaded register drift, worsened
+  the focused score to `CURRENT (4685)`, and still did not introduce target
+  `$f20/$f21` prologue saves. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
