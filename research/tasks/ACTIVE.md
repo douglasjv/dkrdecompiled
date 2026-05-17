@@ -474,9 +474,12 @@
   preserve spelling. Reusing existing `spD0` for the same preserve also widened
   the frame to `0x100`, worsened to `CURRENT (4343)`, and spilled `$f4` at
   `0xd8(sp)` instead of target `$f14` at `0xdc(sp)`; do not repeat this `spD0`
-  preserve spelling. If continuing this preserve-across-call branch, start from
-  the `spCC` result and solve the stack-slot/register drift without adding a
-  new local or disturbing the wave block. Moving the existing
+  preserve spelling. Reusing existing `spD8` for the same preserve widened the
+  frame to `0x100`, worsened to `CURRENT (7052)`, spilled at `0xe0(sp)`, and
+  caused broad downstream scheduling churn; do not repeat this `spD8` preserve
+  spelling. If continuing this preserve-across-call branch, start from the
+  `spCC` result and solve the stack-slot/register drift without adding a new
+  local or disturbing the wave block. Moving the existing
   `spCC` declaration after `spE0` targeted the desired stack slot: it kept the
   `0xf8` frame and made the call delay-slot spill use `0xdc(sp)`, but regressed
   to `CURRENT (3666)` because the spill used `$f4` and the target-like `$f14`
