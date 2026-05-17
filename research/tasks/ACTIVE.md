@@ -470,7 +470,16 @@
   worsened the focused score to `CURRENT (935)`, failed full verify with
   calculated CRCs `0x553930E7/0x227AD4A3`, still used `v1` for the
   selected-track branch, and broadened downstream register drift; do not retry
-  that carrier.
+  that carrier. A 2026-05-17 direct table-branch spelling moved the selected
+  track load/branch into the target `t2` register family, but missed because
+  the hub-name store hoisted before the `lh`: full verify failed with
+  calculated CRCs `0x53D440E3/0x6E70641F` and focused diff widened to
+  `CURRENT (125)`. Duplicating the hub-name store inside both branch arms also
+  missed with calculated CRCs `0xAED257D4/0xAE31DFED` and focused
+  `CURRENT (500)`, adding a `move v1,v0` / duplicate-store family. If
+  intentionally revisiting this no-park function, use a new source shape that
+  preserves the direct-table `t2` load and restores the target delay-slot
+  `sw v0, 0(s0)`.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry

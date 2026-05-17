@@ -29,8 +29,18 @@ when intentionally returning to them.
   unsequenced-assignment warning but worsened the focused score to
   `CURRENT (935)`, failed full verify with calculated CRCs
   `0x553930E7/0x227AD4A3`, still used `v1` for the selected-track branch, and
-  broadened downstream register drift. Revisit with a different
-  allocator/lifetime hypothesis, not these same probes.
+  broadened downstream register drift. A 2026-05-17 direct table-branch
+  spelling (`if (gTrackSelectIDs[trackY][trackX] != -1)`) moved the selected
+  track load/branch into the target `t2` register family, but hoisted
+  `cur->hubName = levelName` before the `lh` instead of scheduling it in the
+  branch delay slot: full verify failed with calculated CRCs
+  `0x53D440E3/0x6E70641F` and focused diff worsened to `CURRENT (125)`.
+  Duplicating the common hub-name store inside both branch arms also missed:
+  full verify failed with calculated CRCs `0xAED257D4/0xAE31DFED`, focused diff
+  widened to `CURRENT (500)`, and extra `move v1,v0` / duplicate store drift
+  appeared. Revisit with a source shape that keeps the direct-table `t2` load
+  while preserving the target delay-slot `sw v0, 0(s0)`, not these same direct
+  branch/common-store probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
