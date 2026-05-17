@@ -1131,7 +1131,13 @@
   `pad + pad2` sum through the now-dead `scale` local
   (`scale = pad + pad2; diffX = -(scale / divisor)`) also compiled but left the
   focused score unchanged at `CURRENT (870)`, with the same final
-  arithmetic/register-family drift. Directly commuting the final expression to
+  arithmetic/register-family drift. Routing only the negated checkpoint-dot
+  carrier through the now-dead `scale` local (`pad = checkpointDot; scale =
+  -pad; pad = objectDot; diffX = -((pad + scale) / divisor)`) also compiled
+  but produced no relinked object movement: focused score stayed
+  `CURRENT (870)` and full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`; source was restored and final full verify passed.
+  Directly commuting the final expression to
   `diffX = -((pad2 + pad) / divisor)` also produced no relinked movement:
   focused score stayed `CURRENT (870)` and full verify failed with calculated
   CRCs `0x53D141DF/0xB9D4B481`. Do not repeat this direct `pad2 + pad`
