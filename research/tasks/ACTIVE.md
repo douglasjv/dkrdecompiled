@@ -51,8 +51,12 @@
   local (`var_f2 = 0.0f; racer->unk84 = var_f2; racer->unk88 = var_f2`)
   likewise compiled but stayed at `CURRENT (759)` under `--max-size 520`,
   failed full verify with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and still
-  allocated the early zero in `$f16` instead of target `$f14`. Keep
-  `func_80049794` active rather than parked.
+  allocated the early zero in `$f16` instead of target `$f14`. A dedicated
+  early-zero carrier family also missed: plain `f32 zero` and `register f32
+  zero` variants widened the frame to `0x100`, kept the early zero in `$f16`,
+  failed full verify with calculated CRCs `0x5FDDDEDF/0x01A99146`, and still
+  did not introduce target `$f20/$f21` prologue saves. Keep `func_80049794`
+  active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -184,11 +188,16 @@
   zero through the existing `var_f2` local also produced no useful movement:
   it stayed at `--max-size 520` `CURRENT (759)`, failed full verify with
   calculated CRCs `0x5FDDE03F/0xEF7A0514`, and kept the early zero in `$f16`;
-  do not repeat this simple `var_f2` early-zero carrier. Combining `register
-  f32 var_f20` with `register f32 segmentZVelocity` compiled but produced no
-  object change from the promoted baseline, stayed focused
-  `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
-  saves. Splitting the first speed-magnitude operands into dedicated
+  do not repeat this simple `var_f2` early-zero carrier. A dedicated early-zero
+  carrier family also missed in the current checkout: plain `f32 zero` and
+  `register f32 zero` locals used for the grounded-wheel stores and
+  `racerVelocity` clamp widened the frame to `0x100`, failed full verify with
+  calculated CRCs `0x5FDDDEDF/0x01A99146`, and still kept the early zero in
+  `$f16` instead of target `$f14`; do not repeat this zero-carrier family.
+  Combining `register f32 var_f20` with `register f32 segmentZVelocity`
+  compiled but produced no object change from the promoted baseline, stayed
+  focused `CURRENT (2550)`, and still did not introduce the target `$f20/$f21`
+  prologue saves. Splitting the first speed-magnitude operands into dedicated
   `xVelocity`/`zVelocity`/`yVelocity` locals before `sqrtf` compiled but widened
   the frame to `0x108`, worsened the focused object score to `CURRENT (3163)`,
   and still did not introduce the target `$f20/$f21` prologue saves. Splitting
