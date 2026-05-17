@@ -649,7 +649,16 @@
   `a0`/`v1` swap. Do not repeat this exact chained-zero save-family shape or
   the comparison-only wave operand spelling; keep the function active and
   continue by solving the wave register/order or first-speed arithmetic drift
-  without losing the frame/save family. A
+  without losing the frame/save family. Two first-speed carrier variants on
+  that same branch both regressed by losing the target frame/save family: using
+  existing `var_f6` for the pre-`sqrtf` sum failed full verify with calculated
+  CRCs `0x6035EC5F/0x4C26F14E` and relinked focused `CURRENT (2326)`, while
+  keeping only the x/z sum in `var_f20` and adding the y component in the
+  `sqrtf` argument failed with calculated CRCs `0x5F84A15F/0x79820DF5` and
+  relinked focused `CURRENT (2311)`. Both shrank the frame to `0xf0` and
+  dropped `$f20/$f21` saves, so do not repeat existing-temp or call-argument
+  y-component first-speed carriers unless new evidence shows how to retain the
+  save family. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
