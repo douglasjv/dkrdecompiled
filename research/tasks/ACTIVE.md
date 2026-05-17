@@ -1459,8 +1459,13 @@
   focused score to `CURRENT (3325)`, introduced the unwanted early
   `gCurrentLevelModel` spill family before the segment loop, and failed full
   verify with calculated CRCs `0x7856718A/0xC40F5151`; source was restored and
-  final full verify passed. Keep this function active, but do not repeat those
-  source shapes or either standalone Z-loop unroll.
+  final full verify passed. Hoisting the bubble-sort bound into the existing
+  `i` local (`i = yOutCount - 1; for (var_v0 = 0; var_v0 < i; var_v0++)`)
+  compiled but missed: relinked focused score `CURRENT (3175)`, failed full
+  verify with calculated CRCs `0xAC7CA404/0x71455330`, and still carried the
+  unwanted global-model hoist/tail drift. Source was restored and final full
+  verify passed. Keep this function active, but do not repeat those source
+  shapes, either standalone Z-loop unroll, or this sort-limit-hoist spelling.
 
 ## Ask The User Only If
 
