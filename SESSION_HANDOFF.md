@@ -1,28 +1,34 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:29:49Z
+- Generated at: 2026-05-17T00:34:27Z
 - Branch: `master`
-- HEAD before closeout commit: `f00dd7c4`
-- Completed task: `DKR-MATCH-FUNC-80049794-Z-FIRST-AND-VAR-F6-ACCUMULATOR-PROBES`
+- HEAD before closeout commit: `468c1c0d`
+- Completed task: `DKR-MATCH-FUNC-80049794-APPLY-PRESERVE-SCRATCH-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested two first-speed accumulator branches. A
-  z-first pre-`sqrtf` save-family shape kept the target `0xf8` frame and
-  `$f20/$f21` saves but regressed to `CURRENT (3560)`, worse than the current
-  x/z/y save-family best at `CURRENT (3550)`. Routing the first speed-magnitude
-  sum through existing `var_f6` improved the numeric focused score to
-  `CURRENT (3441)`, but shrank the frame to `0xf0` and dropped target
-  `$f20/$f21` saves, matching the side-branch behavior of caller-saved
-  accumulators. The guarded matching source was restored and the full ROM gate
-  remains clean.
+  `func_80049794` active and tested a narrow preserve-across-call family around
+  `apply_vehicle_rotation_offset`, where target saves/reloads `$f14` at
+  `0xdc(sp)`. Adding a new `spDC` local produced the intended kind of explicit
+  preserve but widened the frame to `0x100` and worsened to `CURRENT (3883)`.
+  Reusing existing `spCC` for the same preserve kept the target `0xf8` frame
+  and improved the x/z/y save-family score to `CURRENT (3526)`, but the spill
+  landed at `0xcc(sp)` instead of target `0xdc(sp)`. Existing `spEC` preserved
+  through `0xec(sp)` and regressed to `CURRENT (3733)`, while reusing
+  `racerVelocity` disturbed the early wave float family and worsened to
+  `CURRENT (4114)`. The guarded matching source was restored and the full ROM
+  gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with save-family setup but z-first pre-`sqrtf` accumulation (`z*z; x*x; y*y`)
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> z-first pre-`sqrtf` accumulation keeps `0xf8` and `$f20/$f21` saves but regresses to `CURRENT (3560)`, worse than x/z/y best `CURRENT (3550)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, steer no-op, and first speed-magnitude accumulation routed through existing `var_f6`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f6` accumulator improves numeric score to `CURRENT (3441)` but shrinks the frame to `0xf0` and drops target `$f20/$f21` saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family `func_80049794` candidate compiles with a new `spDC` local preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> new `spDC` preserve widens frame to `0x100` and worsens to `CURRENT (3883)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with existing `spCC` preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> existing `spCC` preserve keeps `0xf8` and improves to `CURRENT (3526)`, with spill/reload at `0xcc(sp)` instead of target `0xdc(sp)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with existing `spEC` preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> existing `spEC` preserve keeps `0xf8` but spills at `0xec(sp)` and regresses to `CURRENT (3733)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with `racerVelocity` preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> `racerVelocity` preserve keeps `0xf8` but worsens to `CURRENT (4114)` by perturbing the early wave float register family
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
@@ -563,6 +569,19 @@
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
+- Do not repeat this session's `func_80049794` new `spDC` preserve across
+  `apply_vehicle_rotation_offset`; it widened the frame to `0x100` and
+  worsened to `CURRENT (3883)`.
+- Do not repeat this session's `func_80049794` existing `spEC` preserve across
+  `apply_vehicle_rotation_offset`; it kept `0xf8` but spilled at `0xec(sp)` and
+  regressed to `CURRENT (3733)`.
+- Do not repeat this session's `func_80049794` `racerVelocity` preserve across
+  `apply_vehicle_rotation_offset`; it kept `0xf8` but worsened to
+  `CURRENT (4114)` by perturbing early wave float allocation.
+- The existing `spCC` preserve across `apply_vehicle_rotation_offset` is the
+  useful continuation of this family: it kept `0xf8` and improved to
+  `CURRENT (3526)`, but still spilled at `0xcc(sp)` instead of target
+  `0xdc(sp)`.
 - Do not repeat this session's `func_80049794` z-first pre-`sqrtf` accumulation
   (`var_f20 = z*z; var_f20 += x*x; var_f20 += y*y`); it kept `0xf8` and
   `$f20/$f21` saves but regressed to `CURRENT (3560)`, worse than the x/z/y

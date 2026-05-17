@@ -391,7 +391,18 @@
   with trailing pads removed, but shrank the frame to `0xf0` and dropped target
   `$f20/$f21` saves, matching the side-branch pattern of caller-saved
   accumulators; do not repeat simple `var_f6` accumulator staging without new
-  save-pressure evidence. Staging the z/y velocity
+  save-pressure evidence. Preserving the long-lived `var_f14` across
+  `apply_vehicle_rotation_offset` on the x/z/y save-family branch is useful
+  evidence for the target call-adjacent `$f14` save/reload. A new `spDC` local
+  widened the frame to `0x100` and worsened to `CURRENT (3883)`, so do not add
+  that new stack slot. Reusing existing `spCC` for the preserve kept the target
+  `0xf8` frame and improved the focused score to `CURRENT (3526)`, but spilled
+  at `0xcc(sp)` instead of target `0xdc(sp)`. Reusing existing `spEC` kept
+  `0xf8` but spilled at `0xec(sp)` and regressed to `CURRENT (3733)`. Reusing
+  `racerVelocity` kept `0xf8` but worsened to `CURRENT (4114)` by perturbing
+  the early wave float register family. If continuing this preserve-across-call
+  branch, start from the `spCC` result and solve the stack-slot/register drift
+  without adding a new local or disturbing the wave block. Staging the z/y velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
