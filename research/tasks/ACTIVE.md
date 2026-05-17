@@ -536,9 +536,18 @@
   `0x553930E7/0x227AD4A3`, focused diff was `CURRENT (935)`, and the
   selected-track load/branch still used `v1` instead of target `t2` while
   preserving the `sw v0,0(s0)` delay slot. Source restored and final verify
-  passed; do not repeat this no-temp cleanup shape. If intentionally revisiting
-  this no-park function, use a new source shape that preserves the direct-table
-  `t2` load and restores the target delay-slot `sw v0, 0(s0)`.
+  passed; do not repeat this no-temp cleanup shape. A later 2026-05-17
+  comma-store dependency probe (`cur->hubName = (selectedTrack = ..., levelName)`)
+  compiled but was a no-op from the baseline: full verify failed with
+  calculated CRCs `0x55C240E7/0x18E4F9B4`, focused diff stayed
+  `CURRENT (10)`, and the selected-track load/branch still used `v1` instead
+  of target `t2`. A `register s16 selectedTrack` probe collapsed into the
+  known bad `s16 selectedTrack` family: full verify failed with calculated
+  CRCs `0x5B5E4609/0x72935A6E`, focused diff widened to `CURRENT (1340)`,
+  added sign-extension/register churn, and still used `v1`; source restored
+  and final verify passed. If intentionally revisiting this no-park function,
+  use a new source shape that preserves the direct-table `t2` load and restores
+  the target delay-slot `sw v0, 0(s0)`.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry

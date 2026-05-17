@@ -47,7 +47,17 @@ when intentionally returning to them.
   `CURRENT (58)`, stack slots shifted, and the branch still used `v1`. Revisit
   with a source shape that keeps the direct-table `t2` load while preserving
   the target delay-slot `sw v0, 0(s0)`, not these same direct branch,
-  common-store, compare-carrier, or declaration-order probes.
+  common-store, compare-carrier, or declaration-order probes. A 2026-05-17
+  comma-store dependency probe
+  (`cur->hubName = (selectedTrack = ..., levelName)`) compiled but was a
+  no-op from the baseline: full verify failed with calculated CRCs
+  `0x55C240E7/0x18E4F9B4`, focused diff stayed `CURRENT (10)`, and the
+  selected-track load/branch still used `v1` instead of target `t2`. A
+  `register s16 selectedTrack` probe collapsed into the known bad
+  `s16 selectedTrack` family: full verify failed with calculated CRCs
+  `0x5B5E4609/0x72935A6E`, focused diff widened to `CURRENT (1340)`, added
+  sign-extension/register churn, and still used `v1`; source was restored and
+  final full verify passed.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
