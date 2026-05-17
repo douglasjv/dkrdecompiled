@@ -683,7 +683,11 @@
   (`distance = obj->trans.y_position - tempY; diffY = distance / divisor`)
   also compiled but worsened the focused object score to `CURRENT (1680)` by
   inserting extra final-vertical stack traffic and leaving the lateral drift
-  unchanged.
+  unchanged. Reusing the now-dead `pad2` local for that final vertical
+  numerator (`pad2 = obj->trans.y_position - tempY; diffY = pad2 / divisor`)
+  also compiled but worsened the relinked focused score to `CURRENT (1680)` and
+  shifted the epilogue labels by adding final-clamp stack traffic; do not
+  repeat this final-vertical carrier either.
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and
