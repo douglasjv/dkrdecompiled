@@ -268,7 +268,13 @@
   window from `CURRENT (664)` to `CURRENT (519)`, but it inserted an unwanted
   `swc1 $f14,0xec(sp)` before the stores and still failed full verify with
   calculated CRCs `0x191B2144/0x410B379B`; do not repeat this simple `spEC`
-  early-zero carrier. Replacing
+  early-zero carrier. Routing the same grounded-wheel zeroing through
+  `segmentZVelocity` (`segmentZVelocity = 0.0f; racer->unk84 =
+  segmentZVelocity; racer->unk88 = segmentZVelocity`) compiled but produced no
+  relinked object change from the promoted baseline, staying `CURRENT (2760)`
+  and `--max-size 340` `CURRENT (664)` with the same calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; do not repeat this segmentZVelocity early-zero
+  carrier. Replacing
   the `gCurrentCarSteerVel = 0` store with an
   initialized no-op comparison (`gCurrentCarSteerVel = (updateRateF > 0.0f) *
   0`) compiled and improved the focused object score to `CURRENT (2490)`, same
