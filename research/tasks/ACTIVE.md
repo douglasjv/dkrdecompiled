@@ -51,7 +51,10 @@
   compiled but produced no object change and also stayed `CURRENT (870)`. A
   later final object-dot product carrier through the existing `distance` local
   (`distance *= diffZ; pad = (splinePos * diffX) + distance`) worsened the
-  relinked focused score to `CURRENT (2043)`.
+  relinked focused score to `CURRENT (2043)`. The sibling term-negation spelling
+  (`pad2 = (tempZ * -diffZ) - (diffX * tempX)`) worsened the relinked focused
+  score from `CURRENT (870)` to `CURRENT (1165)` and failed full verify with
+  calculated CRCs `0x53AB58B5/0xBC82B0CE`.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -735,7 +738,13 @@
   dot product term-by-term (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`)
   compiled but worsened to `CURRENT (1192)`: it introduced explicit early
   negation, but cascaded final-block register drift and still missed the target
-  lateral arithmetic. Computing the negated checkpoint dot first, then loading
+  lateral arithmetic. Spelling the same negated checkpoint dot as
+  `pad2 = (tempZ * -diffZ) - (diffX * tempX)` compiled but worsened the
+  relinked focused score from `CURRENT (870)` to `CURRENT (1165)` and failed
+  full verify with calculated CRCs `0x53AB58B5/0xBC82B0CE`; it shifted the final
+  block/epilogue labels while still missing the target object-dot plus
+  negated-checkpoint-dot schedule, so do not repeat this sibling term-negation
+  spelling. Computing the negated checkpoint dot first, then loading
   both object-position locals before building `pad` compiled but left the
   focused score unchanged at `CURRENT (870)` with the same final
   object-load/arithmetic drift as the promoted baseline. Routing the final
