@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 16:37:12Z
+- Generated at: 2026-05-17 16:40:41Z
 - Branch: `master`
-- HEAD: `8ba94d96`
-- Completed task: `func_80049794`
-- Summary: Tested a close save-family continuation for func_80049794: x/z/y pre-sqrt accumulation, steer-vel no-op, chained grounded-wheel zero, removed trailing pad3/pad4, plus a new while/break wave scan using var_v1 as the saved bound and var_a0 as the loop index. It compiled and kept the target 0xf8 frame plus $f20/$f21 saves, but missed badly: relinked focused score worsened to CURRENT (11495), full verify failed with calculated CRCs 0xE586A191/0x17A5E745, and the wave block shifted into a broad a3/v1/a0 register family with downstream scheduling churn. Source restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `04053cd3`
+- Completed task: `func_80059208`
+- Summary: Tested reusing the now-dead diffY local as the final object x-position carrier before it is reassigned for the vertical correction in func_80059208. It compiled but missed: relinked focused score worsened to CURRENT (2611), full verify failed with calculated CRCs 0x1AA9FDC4/0x11BA4E46, and the diff disturbed earlier splinePos/stack-slot allocation before broadening final-block register drift. Source restored; final full verify passed. Keep func_80059208 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 1200 -U 4 => CURRENT (11495); failed full verify CRCs 0xE586A191/0x17A5E745
+- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 5 => CURRENT (2611); failed full verify CRCs 0x1AA9FDC4/0x11BA4E46
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded func_80049794 close-branch while/break wave-scan spelling plus prior chained-zero/wave-bound/save-family probes, func_8002B0F4 pad/early-conversion/loop probes, func_80059208 final-offset variants, and trackbg_render_flashy position/UV order-carrier probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded func_80059208 final object-x diffY carrier plus prior func_80059208 final-offset variants, func_80049794 chained-zero/wave-bound/save-family probes, func_8002B0F4 pad/early-conversion/loop probes, and trackbg_render_flashy position/UV order-carrier probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

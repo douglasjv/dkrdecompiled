@@ -1337,7 +1337,15 @@
   relinked focused score worsened to `CURRENT (1300)`, full verify failed with
   calculated CRCs `0xC7D996EA/0xC6D1DFDE`, and the final block/epilogue shifted
   instead of matching the target object-dot plus negated-checkpoint schedule.
-  Do not repeat this positive numerator carrier.
+  Do not repeat this positive numerator carrier. Reusing the now-dead `diffY`
+  local as the final object x-position carrier before it is reassigned for the
+  vertical correction (`diffY = obj->trans.x_position; pad = (diffY * diffX) +
+  (diffZ * distance)`) also missed: relinked focused score worsened to
+  `CURRENT (2611)`, full verify failed with calculated CRCs
+  `0x1AA9FDC4/0x11BA4E46`, and the diff disturbed earlier
+  `splinePos`/stack-slot allocation before broadening final-block register
+  drift. Source was restored and final full verify passed. Do not repeat this
+  final object-x `diffY` carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
