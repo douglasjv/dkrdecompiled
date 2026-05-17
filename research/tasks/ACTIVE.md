@@ -1599,9 +1599,16 @@
   `CURRENT (2900)`, full verify failed with calculated CRCs
   `0x7884718A/0x8596E436`, and the diff showed an early `gCurrentLevelModel`
   spill at `0x60(sp)` plus broader register churn through the grid and tail
-  loops. Do not repeat this Z-grid barrier-removal spelling. Keep this function
-  active, but do not repeat those source shapes, either standalone Z-loop
-  unroll, or this sort-limit-hoist spelling.
+  loops. Do not repeat this Z-grid barrier-removal spelling. Rewriting the
+  bottom `gTrackWaves` population loop from the existing backslash-preserved
+  `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
+  relinked focused score worsened to `CURRENT (3080)`, full verify failed with
+  calculated CRCs `0x7856718A/0x4AA98304`, and the diff shifted the bottom
+  pointer-population/unrolled-copy schedule while preserving the same early
+  `gCurrentLevelModel` spill family. Do not repeat this bottom population-loop
+  `while` spelling. Keep this function active, but do not repeat those source
+  shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, or
+  this bottom population-loop `while` spelling.
 
 ## Ask The User Only If
 
