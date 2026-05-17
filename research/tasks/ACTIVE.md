@@ -100,7 +100,13 @@
   scan) kept the target `0xf8` frame and `$f20/$f21` saves but regressed the
   relinked focused score to `CURRENT (7555)`, introduced broad wave-block
   float/register churn, and failed full verify with calculated CRCs
-  `0x2B7A77D5/0x5B507890`. Keep `func_80049794` active rather than parked.
+  `0x2B7A77D5/0x5B507890`. A later explicit decrementing
+  `WaterProperties **wavePtr` walk on top of the close chained-zero/x/z/y/
+  steer-noop branch failed worse: it widened the frame to `0x100`, regressed
+  the relinked focused score to `CURRENT (7232)`, failed full verify with
+  calculated CRCs `0xC51623A2/0xD2F96DC4`, and used `v0/a1/v1` for the scan
+  instead of the target `v1/a0/v0` family. Keep `func_80049794` active rather
+  than parked, but do not repeat this explicit `wavePtr` pointer-walk shape.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -856,7 +862,14 @@
   to `CURRENT (7555)`, failed full verify with calculated CRCs
   `0x2B7A77D5/0x5B507890`, and shifted the wave block into a worse
   `a0/v1/f12/f14` register family with extra stack traffic. Do not repeat this
-  explicit `var_f0` wave-threshold carrier. A
+  explicit `var_f0` wave-threshold carrier. A 2026-05-17 explicit decrementing
+  `WaterProperties **wavePtr` spelling on top of the close chained-zero/x/z/y/
+  steer-noop branch also missed badly: it widened the frame from target `0xf8`
+  to `0x100`, regressed the relinked focused score to `CURRENT (7232)`, failed
+  full verify with calculated CRCs `0xC51623A2/0xD2F96DC4`, and shifted the scan
+  into a `v0/a1/v1` family rather than solving the target `v1/a0/v0` order.
+  Source was restored and final full verify passed. Do not repeat this explicit
+  `wavePtr` pointer-walk shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
