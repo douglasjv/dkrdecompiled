@@ -1139,7 +1139,13 @@
   numerator (`pad2 = obj->trans.y_position - tempY; diffY = pad2 / divisor`)
   also compiled but worsened the relinked focused score to `CURRENT (1680)` and
   shifted the epilogue labels by adding final-clamp stack traffic; do not
-  repeat this final-vertical carrier either. Reordering the final lateral-axis
+  repeat this final-vertical carrier either. Rewriting the final lateral
+  correction as a reciprocal multiply (`diffX = -((pad + pad2) * (1.0f /
+  divisor))`) compiled but worsened the relinked focused score to
+  `CURRENT (1420)`, failed full verify with calculated CRCs
+  `0x4BBAD57F/0xE56B870D`, and shifted the final vertical block after adding a
+  reciprocal division/multiply sequence; do not repeat this final reciprocal
+  spelling. Reordering the final lateral-axis
   swap to stage old `diffZ` through `diffY`
   (`diffY = diffZ; diffZ = -diffX; diffX = diffY`) compiled but worsened the
   relinked focused score from the promoted baseline `CURRENT (870)` to
