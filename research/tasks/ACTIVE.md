@@ -363,7 +363,13 @@
   promoting the current C also missed: frame shrank from target `0x128` to
   `0x120`, relinked focused score `CURRENT (2928)`, failed full verify with
   calculated CRCs `0x78566FC2/0xC14E0CEA`, and preserved the unwanted early
-  `gCurrentLevelModel` spill family. A later statement-order variant moved the existing
+  `gCurrentLevelModel` spill family. A later first-dead-`pad` removal while
+  promoting the current C also missed: full verify failed with calculated CRCs
+  `0x7856713A/0x0D9BD727`, the relinked focused score worsened to
+  `CURRENT (2886)`, `spB0` shifted from target `0xb0(sp)` to `0xb4(sp)`,
+  `sp108` shifted to `0x10c(sp)`, and the unwanted early
+  `gCurrentLevelModel` spill stayed at `0x64(sp)`. Source was restored and
+  final full verify passed. A later statement-order variant moved the existing
   `XInInt = xIn` / `ZInInt = zIn` conversions immediately after
   `D_8011D308 = 0`, then stored `*arg3 = NULL`, passed the integer locals into
   `get_inside_segment_count_xz`, and removed the per-segment reassignments; it
@@ -382,7 +388,7 @@
   shape, the direct-cast `get_inside_segment_count_xz` call shape, this
   `D_8011D308`-first conversion/order variant, this segment-index `i` carrier,
   the scalar plane-carrier replacement, the unused-wave2 removal, or the
-  declaration-only `pad2` removal.
+  declaration-only `pad2` removal or first-dead-`pad` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1770,8 +1776,14 @@
   the frame to `0x120`, worsened the relinked focused score to
   `CURRENT (2928)`, failed full verify with calculated CRCs
   `0x78566FC2/0xC14E0CEA`, and still carried the early `gCurrentLevelModel`
-  spill family. Do not repeat this declaration-only `pad2` removal or the
-  combined `pad2`/`pad3` removal. Replacing
+  spill family. Removing the first dead `pad` local while promoting the current
+  C also missed: full verify failed with calculated CRCs
+  `0x7856713A/0x0D9BD727`, the relinked focused score worsened to
+  `CURRENT (2886)`, `spB0` shifted from target `0xb0(sp)` to `0xb4(sp)`,
+  `sp108` shifted to `0x10c(sp)`, and the unwanted early
+  `gCurrentLevelModel` spill stayed at `0x64(sp)`. Source was restored and
+  final full verify passed. Do not repeat this declaration-only `pad2` removal,
+  first-dead-`pad` removal, or the combined `pad2`/`pad3` removal. Replacing
   the dead `pad3` slot with a local `TextureInfo *textures` at the batch
   texture-surface read improved over the promoted baseline but regressed versus
   plain `pad3` removal: relinked focused score `CURRENT (2425)`, failed full
