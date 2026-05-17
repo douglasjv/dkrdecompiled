@@ -261,10 +261,18 @@
   current C also missed: relinked focused `CURRENT (2878)`, failed full verify
   with calculated CRCs `0x78567132/0xCBE53596`, shifted `spB0` from target
   `0xb0(sp)` to `0xb4(sp)`, and preserved the early `gCurrentLevelModel` spill
-  at `0x64(sp)`. Keep active; do not repeat the simple moved `pad3` variant,
-  the pointer-increment population spelling, either early-conversion call
-  shape, the scalar plane-carrier replacement, the unused-wave2 removal, or the
-  declaration-only `pad2` removal.
+  at `0x64(sp)`. A later statement-order variant moved the existing
+  `XInInt = xIn` / `ZInInt = zIn` conversions immediately after
+  `D_8011D308 = 0`, then stored `*arg3 = NULL`, passed the integer locals into
+  `get_inside_segment_count_xz`, and removed the per-segment reassignments; it
+  recreated the same early-conversion call-shape miss with relinked focused
+  `CURRENT (2860)`, failed full verify with calculated CRCs
+  `0x7856718A/0x66208CAA`, and still inserted the unwanted pre-loop
+  `gCurrentLevelModel` spill to `0x60(sp)`. Keep active; do not repeat the
+  simple moved `pad3` variant, the pointer-increment population spelling,
+  either early-conversion call shape, this `D_8011D308`-first conversion/order
+  variant, the scalar plane-carrier replacement, the unused-wave2 removal, or
+  the declaration-only `pad2` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
