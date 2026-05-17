@@ -188,7 +188,15 @@
   from promoted-baseline `CURRENT (2430)` to `CURRENT (4460)`, and the wave
   block shifted into broader integer-register churn rather than target
   `v1/a0/v0`. Source was restored and final full verify passed; do not repeat
-  this current-baseline existing-`var_t9` wave-bound carrier.
+  this current-baseline existing-`var_t9` wave-bound carrier. A 2026-05-17
+  save-family in-place inverse-gravity split (`var_f20 /= 4.0; var_f20 = 1.0
+  - var_f20`) on top of the close chained-zero/x/z/y/steer-noop branch kept
+  the target `0xf8` frame and `$f20/$f21` saves, but regressed: full verify
+  failed with calculated CRCs `0x772B05DA/0x0C3D3274`, relinked focused diff
+  reported `CURRENT (4075)`, call-adjacent `$f14` save/reload and sound
+  scheduling were disturbed, and the wave `a0`/`v1` drift remained. Source was
+  restored and final full verify passed; do not repeat this save-family
+  in-place inverse-gravity split.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
@@ -1184,7 +1192,17 @@
   calculated CRCs `0x2364AB01/0x1E30A2A8`, and shifted the wave block into a
   broader `t0/v0/t2` register family instead of target `v1/a0/v0`. Source was
   restored and final full verify passed. Do not repeat this close-branch
-  existing-`var_t0` wave-bound carrier. A
+  existing-`var_t0` wave-bound carrier. A 2026-05-17 save-family in-place
+  inverse-gravity split on top of the close chained-zero/x/z/y/steer-noop
+  branch (`var_f20 /= 4.0; var_f20 = 1.0 - var_f20`) kept the target `0xf8`
+  frame and `$f20/$f21` prologue saves, but worsened the relinked focused
+  score to `CURRENT (4075)` and failed full verify with calculated CRCs
+  `0x772B05DA/0x0C3D3274`. The diff showed the call-adjacent `$f14`
+  save/reload around `apply_vehicle_rotation_offset` and later sound
+  scheduling were disturbed, while the wave scan still had the current
+  `a0`/`v1` register order opposite the target. Source was restored and final
+  full verify passed. Do not repeat this save-family in-place inverse-gravity
+  split. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
