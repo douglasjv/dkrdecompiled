@@ -1105,7 +1105,15 @@
   relinked focused score to `CURRENT (3000)`, reversed the early `unk84`/`unk88`
   zero-store order, still used `$f16` for zero, and still lacked target
   `$f20/$f21` prologue saves. Source was restored and final full verify passed;
-  do not repeat this reversed chained-zero current-baseline probe. A baseline
+  do not repeat this reversed chained-zero current-baseline probe. A later
+  promotion-only acceptance check after `d988f300` reconfirmed the stale
+  object-only diff trap: object-only focused diff printed `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the
+  relinked focused diff returned to `CURRENT (2430)` with the same missing
+  `$f20/$f21` saves, shifted saved-register slots, early `$f16` zero, and
+  wave `a0`/`v1` swap. Source was restored and final full verify passed; do
+  not accept or retry promotion-only `func_80049794` from object-only
+  `CURRENT (0)` evidence. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
