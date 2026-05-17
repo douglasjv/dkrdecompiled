@@ -29,7 +29,10 @@
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
   the first speed-magnitude block compiled but worsened the focused score to
   `CURRENT (2760)` and still did not introduce the target `$f20/$f21` prologue
-  saves.
+  saves. Staging the inverse-gravity divide through the existing `var_f0`
+  (`var_f0 = var_f20 / 4.0; var_f20 = 1.0 - var_f0`) compiled but worsened the
+  focused score to `CURRENT (3445)` and still did not introduce the target
+  `$f20/$f21` prologue saves. Keep `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -334,7 +337,12 @@
   assignment in place (`var_f20 /= 4.0; var_f20 = 1.0 - var_f20`) compiled but
   worsened the focused score from baseline `CURRENT (2550)` to `CURRENT
   (3435)` and still did not introduce the target `$f20/$f21` prologue saves.
-  Do not repeat this in-place inverse-gravity spelling. Regrouping the nearby
+  Do not repeat this in-place inverse-gravity spelling. Staging the same
+  inverse-gravity divide through the existing `var_f0` local
+  (`var_f0 = var_f20 / 4.0; var_f20 = 1.0 - var_f0`) compiled but worsened the
+  focused score to `CURRENT (3445)` and still did not introduce the target
+  `$f20/$f21` prologue saves. Do not repeat this `var_f0` staging spelling.
+  Regrouping the nearby
   course-height expression as `var_f2 = gCurrentCourseHeight -
   obj->trans.y_position; var_f2 -= 50.0` compiled but worsened the focused
   score from baseline `CURRENT (2550)` to `CURRENT (3755)` and still did not
