@@ -1,26 +1,29 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T18:11:56Z
+- Generated at: 2026-05-17T18:16:58Z
 - Branch: `master`
-- HEAD: `2e8bc3a2`
-- Completed task: `func_80049794`
-- Summary: Followed the selector to `func_80049794`. Fresh promotion of the
-  current C failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`; focused diff
-  showed the known prologue miss with no target `$f20/$f21` saves, shifted
-  saved-register slots, and early grounded-wheel zero in `$f16` instead of
-  target `$f14`. Reconfirmed the already-recorded early-`var_f20` zero carrier
-  (`var_f20 = 0.0f; racer->unk84 = var_f20; racer->unk88 = var_f20`): it
-  failed with the same CRCs, stayed in the relinked focused compressed
-  `CURRENT (2430)` family, and did not move the prologue or zero-register
-  allocation. Source was restored and final full verify passed. Keep
-  `func_80049794` active; do not repeat this early-`var_f20` zero carrier.
+- HEAD: `b40def38`
+- Completed task: `func_8008FF1C`
+- Summary: Intentionally revisited default-skipped no-park near-match
+  `func_8008FF1C`. Baseline promotion still failed with calculated CRCs
+  `0x55C240E7/0x18E4F9B4`; focused diff stayed `CURRENT (10)` with only the
+  selected-track `lh`/branch using `v1` instead of target `t2`, while the
+  `cur->hubName = levelName` store remained in the target branch delay slot.
+  A compare-carrier spelling (`temp = -1; if (selectedTrack != temp)`) was a
+  no-op and kept the same CRCs/focused score/register miss. Moving the
+  `selectedTrack` declaration after `temp` was worse: calculated CRCs
+  `0x55C24297/0x59444A08`, focused `CURRENT (58)`, shifted stack slots, and
+  still used `v1`. Source was restored and final full verify passed. Keep the
+  function revisitable, but do not retry these two shapes.
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with baseline `func_80049794` promotion, calculated CRCs `0x5FDDE03F/0xEF7A0514`
-- `./diff.sh func_80049794 --format plain --no-pager --max-size 1400 -U 90` after baseline relink => `CURRENT (3315)`
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with early-`var_f20` zero carrier, calculated CRCs `0x5FDDE03F/0xEF7A0514`
-- `./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80` after early-`var_f20` zero-carrier relink => `CURRENT (2430)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with baseline `func_8008FF1C` promotion, calculated CRCs `0x55C240E7/0x18E4F9B4`
+- `./diff.sh func_8008FF1C --format plain --no-pager --max-size 400 -U 30` after baseline relink => `CURRENT (10)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with compare-carrier probe, calculated CRCs `0x55C240E7/0x18E4F9B4`
+- `./diff.sh func_8008FF1C --format plain --no-pager --max-size 400 -U 30` after compare-carrier relink => `CURRENT (10)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with selectedTrack declaration-order probe, calculated CRCs `0x55C24297/0x59444A08`
+- `./diff.sh func_8008FF1C --format plain --no-pager --max-size 500 -U 35` after declaration-order relink => `CURRENT (58)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` => `Verify: OK` after restore
 
 ## Blockers Or Unknowns
@@ -35,7 +38,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless intentionally choosing an active no-park near-match. For func_80049794, avoid the newly reconfirmed early-var_f20 zero carrier plus current-baseline existing-var_t9 wave-bound carrier, close-branch existing-var_t0 wave-bound carrier, promotion-only object CURRENT (0), current-baseline wave-threshold-local/chained-zero/wave-bound, close save-family wave-bound, wavePtr, do-loop, while-break, threshold, preserve, first-speed, zero-carrier, and no-op families recorded in ACTIVE.md. Keep func_80049794 active, not parked.`
+- Task: `Continue selector func_80049794 unless intentionally choosing an active no-park near-match. For func_8008FF1C, avoid the newly recorded compare-carrier and selectedTrack declaration-order probes plus prior direct table-branch, duplicated hub-name store, s32 temp carrier, s16/register selectedTrack, and temp/register probes; the useful boundary remains target t2 load plus delay-slot sw v0,0(s0). For func_80049794, avoid recorded probe families in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

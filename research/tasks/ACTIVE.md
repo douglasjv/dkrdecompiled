@@ -490,10 +490,17 @@
   calculated CRCs `0x53D440E3/0x6E70641F` and focused diff widened to
   `CURRENT (125)`. Duplicating the hub-name store inside both branch arms also
   missed with calculated CRCs `0xAED257D4/0xAE31DFED` and focused
-  `CURRENT (500)`, adding a `move v1,v0` / duplicate-store family. If
-  intentionally revisiting this no-park function, use a new source shape that
-  preserves the direct-table `t2` load and restores the target delay-slot
-  `sw v0, 0(s0)`.
+  `CURRENT (500)`, adding a `move v1,v0` / duplicate-store family. A later
+  compare-carrier spelling (`temp = -1; if (selectedTrack != temp)`) produced
+  no object movement from the baseline: full verify failed with calculated
+  CRCs `0x55C240E7/0x18E4F9B4`, focused diff stayed `CURRENT (10)`, and the
+  selected-track branch still used `v1`. Moving the `selectedTrack`
+  declaration after `temp` widened the focused diff to `CURRENT (58)`, failed
+  full verify with calculated CRCs `0x55C24297/0x59444A08`, shifted stack
+  slots, and still used `v1`; do not retry these compare-carrier or
+  declaration-order probes. If intentionally revisiting this no-park function,
+  use a new source shape that preserves the direct-table `t2` load and restores
+  the target delay-slot `sw v0, 0(s0)`.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry

@@ -38,9 +38,16 @@ when intentionally returning to them.
   Duplicating the common hub-name store inside both branch arms also missed:
   full verify failed with calculated CRCs `0xAED257D4/0xAE31DFED`, focused diff
   widened to `CURRENT (500)`, and extra `move v1,v0` / duplicate store drift
-  appeared. Revisit with a source shape that keeps the direct-table `t2` load
-  while preserving the target delay-slot `sw v0, 0(s0)`, not these same direct
-  branch/common-store probes.
+  appeared. A later compare-carrier spelling (`temp = -1; if (selectedTrack !=
+  temp)`) was a no-op: full verify failed with the baseline calculated CRCs
+  `0x55C240E7/0x18E4F9B4`, focused diff stayed `CURRENT (10)`, and the
+  selected-track load/branch still used `v1` instead of target `t2`. Moving
+  the `selectedTrack` declaration after `temp` was worse: full verify failed
+  with calculated CRCs `0x55C24297/0x59444A08`, focused diff widened to
+  `CURRENT (58)`, stack slots shifted, and the branch still used `v1`. Revisit
+  with a source shape that keeps the direct-table `t2` load while preserving
+  the target delay-slot `sw v0, 0(s0)`, not these same direct branch,
+  common-store, compare-carrier, or declaration-order probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
