@@ -197,7 +197,12 @@
   (`diffZ = 0.0f - diffY`) compiled but regressed the relinked focused score to
   `CURRENT (1626)` and failed full verify with calculated CRCs
   `0x53B93C23/0x99E6EAF5`; source was restored and final full verify passed.
-  Keep active, but do not repeat this axis-negation spelling.
+  Commuting only the final object-dot x product from `splinePos * diffX` to
+  `diffX * splinePos` compiled but regressed the relinked focused score from
+  baseline `CURRENT (870)` to `CURRENT (875)` and failed full verify with
+  calculated CRCs `0x53D0C1DF/0xC593C532`; source was restored and final full
+  verify passed. Keep active, but do not repeat this axis-negation spelling or
+  final object-dot x-multiply commute.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -1144,8 +1149,13 @@
   promoted baseline shape: full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
   the same final object-load/arithmetic drift remained. Do not repeat this
-  split-object-dot-after-checkpoint spelling. Splitting the negated checkpoint
-  dot into `pad2 = -(tempZ * diffZ); pad2 -= diffX * tempX` compiled but
+  split-object-dot-after-checkpoint spelling. Commuting only the x-position
+  multiply in the final object dot (`pad = (diffX * splinePos) + (diffZ *
+  distance)`) compiled but regressed from baseline to relinked focused
+  `CURRENT (875)` and failed full verify with calculated CRCs
+  `0x53D0C1DF/0xC593C532`; do not repeat this x-multiply commute. Splitting
+  the negated checkpoint dot into `pad2 = -(tempZ * diffZ); pad2 -= diffX *
+  tempX` compiled but
   worsened the relinked focused score to `CURRENT (1405)`, failed full verify
   with calculated CRCs `0x53C0A2B5/0x47AA3C12`, and broadened final-block
   register/label drift instead of matching the target checkpoint-dot schedule;
