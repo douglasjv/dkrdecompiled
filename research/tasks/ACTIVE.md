@@ -375,7 +375,12 @@
   retained-pad `var_f2` component-staging branch compiled but produced the same
   focused score, `CURRENT (3250)`: the target `0xf8` frame and `$f14`
   call-adjacent shape stayed, but the target `$f20/$f21` prologue saves were
-  still absent, so do not repeat this register hint on that branch. A
+  still absent, so do not repeat this register hint on that branch. Removing
+  the two leading unused pads (`pad5`/`pad7`) while retaining trailing
+  `pad3`/`pad4` on that same `var_f2` component-staging branch compiled but
+  shrank the frame to `0xf0`, worsened the focused score to `CURRENT (3367)`,
+  and still did not introduce the target `$f20/$f21` saves, so do not continue
+  from this leading-pad removal shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
