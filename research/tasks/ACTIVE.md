@@ -166,7 +166,11 @@
   `CURRENT (1300)` and failed full verify with calculated CRCs
   `0xC7D996EA/0xC6D1DFDE`; source was restored and final full verify passed.
   Do not repeat this temp-mutating checkpoint-dot carrier or positive
-  numerator carrier.
+  numerator carrier. An explicit-zero axis-negation spelling
+  (`diffZ = 0.0f - diffY`) compiled but regressed the relinked focused score to
+  `CURRENT (1626)` and failed full verify with calculated CRCs
+  `0x53B93C23/0x99E6EAF5`; source was restored and final full verify passed.
+  Keep active, but do not repeat this axis-negation spelling.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;

@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:20:41Z
+- Generated at: 2026-05-17 14:25:20Z
 - Branch: `master`
-- HEAD: `b915d413`
-- Completed task: `trackbg_render_flashy`
-- Summary: Tested a narrow doubled-cosine carrier in trackbg_render_flashy: promoted source, assigned `pad_sp108 = scaledXCos + scaledXCos`, and used that existing local for the outer-ring `zPositions[5-8]` doubled-cosine terms. It compiled but produced no focused improvement from the promoted baseline: relinked focused diff stayed CURRENT (1808), and full verify failed with calculated CRCs 0x93D338FF/0x03D9C8FE, matching the broader additive-double family. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
+- HEAD: `485bf05f`
+- Completed task: `func_80059208`
+- Summary: Tested a narrow final-axis spelling in func_80059208: promoted source and changed the perpendicular-vector negation from `diffZ = -diffY` to `diffZ = 0.0f - diffY`. It compiled but regressed the relinked focused score to CURRENT (1626), and full verify failed with calculated CRCs 0x53B93C23/0x99E6EAF5. Source guard/body restored; final full verify passed. Keep func_80059208 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 => relinked focused CURRENT (1808); failed full verify CRCs 0x93D338FF/0x03D9C8FE
+- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 760 => relinked focused CURRENT (1626); failed full verify CRCs 0x53B93C23/0x99E6EAF5
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy pad_sp108 double-cosine carrier.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 explicit-zero axis-negation spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
