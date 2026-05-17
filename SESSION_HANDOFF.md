@@ -1,20 +1,36 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:04:10Z
+- Generated at: 2026-05-17T01:09:52Z
 - Branch: `master`
-- HEAD before closeout commit: `326aca62`
-- Completed task: `DKR-MATCH-FUNC-80049794-SAVE-FAMILY-CONSTANT-ORDER-PROBES`
-- Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested default handling-constant setup order on
-  the x/z/y save-family branch. Reordering the setup to assign `spD0` before
-  `spD4`, and the sibling spelling that assigns `spD8` first, both compiled
-  but produced no object improvement from the known save-family result:
-  `CURRENT (3550)`. The guarded matching source was restored and the full ROM
-  gate remains clean. Keep `func_80049794` active; do not park it solely
-  because this allocation/scheduling family missed.
+- HEAD before closeout commit: `c46d356e`
+- Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
+- Summary: No new source match landed. This pass honored the no-parking
+  preference by keeping `func_80049794` active and routable, then tested one
+  distinct branch operand-order spelling there before taking a bounded look at
+  the localized active `func_80059208` final-offset block. The
+  `func_80049794` player-index branch spelling compiled but produced no object
+  change from the promoted baseline (`CURRENT (2550)`). The `func_80059208`
+  checkpoint-dot-before-object-dot spelling also stayed `CURRENT (870)`, while
+  the direct `pad2 + object-dot` fold regressed to `CURRENT (1445)` and the
+  empty `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`. Guarded
+  matching source was restored and the full ROM gate remains clean. Keep both
+  functions active; do not park either solely because these source shapes
+  missed.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with commuted `PLAYER_COMPUTER == var_v0` branch spelling
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> branch operand spelling produces no object change from promoted baseline and stays `CURRENT (2550)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with checkpoint dot separated before the object dot
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> separated checkpoint-dot spelling stays `CURRENT (870)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with direct `pad2 + object-dot` fold
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> direct fold regresses to `CURRENT (1445)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with empty `if (pad2) {}` lifetime hint
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> lifetime hint regresses to `CURRENT (2645)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, and `spD0 = 0.02; spD4 = 0.01; spD8 = 0.004`

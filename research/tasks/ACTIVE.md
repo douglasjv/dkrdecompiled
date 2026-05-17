@@ -22,6 +22,15 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest no-park routing note: `func_80049794` remains active and should not be
+  parked solely because the current source-shape families are saturated. The
+  2026-05-17 branch operand-order spelling
+  (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
+  promoted baseline and stayed `CURRENT (2550)`.
+- `func_80059208` is also active, not parked. The 2026-05-17 final-offset
+  probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
+  direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
+  `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
