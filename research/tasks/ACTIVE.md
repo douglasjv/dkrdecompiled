@@ -112,7 +112,14 @@
   relinked focused diff reported `CURRENT (3260)` under `--max-size 900`, and
   the wave scan still used current `a0`/`v1` opposite the target order. Keep
   `func_80049794` active rather than parked, but do not repeat this explicit
-  `wavePtr` pointer-walk or first-compare `do`-loop wave-scan spelling.
+  `wavePtr` pointer-walk or first-compare `do`-loop wave-scan spelling. A
+  promotion-only 2026-05-17 acceptance probe showed why the full gate is
+  mandatory: an object-only focused diff printed stale `CURRENT (0)`, but
+  promoting the existing C failed full verify with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; after relink, the focused diff reported
+  `CURRENT (2990)` with the same missing target `$f20/$f21` prologue saves,
+  shifted saved-register stack slots, early `$f16` zero, and wave `a0`/`v1`
+  drift. Do not accept `func_80049794` from object-only `CURRENT (0)` evidence.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -925,9 +932,11 @@
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
-  failed and the relinked focused diff returned to `CURRENT (2760)`; do not
-  accept this function without relink/full gate evidence. A baseline check of
-  `func_80059208` was still
+  failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused
+  diff reported `CURRENT (2990)` with the same missing target `$f20/$f21`
+  prologue saves, shifted saved-register stack slots, early `$f16` zero, and
+  wave `a0`/`v1` drift; do not accept this function without relink/full gate
+  evidence. A baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these

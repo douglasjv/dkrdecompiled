@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:45:38Z
+- Generated at: 2026-05-17 14:49:11Z
 - Branch: `master`
-- HEAD: `35797fee`
-- Completed task: `func_80059208`
-- Summary: Tested a narrow sibling final-update add-order probe in func_80059208: promoted source and rewrote `racer->unk1BC += (s32) diffY` as `racer->unk1BC = (s32) diffY + racer->unk1BC`. It compiled but worsened the relinked focused score to CURRENT (900) and full verify failed with calculated CRCs 0x53CD41DF/0x291D30F4. Source restored; final full verify passed. Keep func_80059208 active rather than parked.
+- HEAD: `b80ffc24`
+- Completed task: `func_80049794`
+- Summary: Tested promotion-only acceptance for func_80049794 after a stale focused object-only diff reported CURRENT (0). Full matching verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and the relinked focused diff reported CURRENT (2990), with the same missing target `$f20/$f21` prologue saves, shifted saved-register stack slots, early `$f16` zero, and wave a0/v1 drift. Source guard restored; final full verify passed. Keep func_80049794 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 900 => relinked focused CURRENT (900); failed full verify CRCs 0x53CD41DF/0x291D30F4
+- Failed probe evidence: promoting func_80049794 with only `#ifdef NON_EQUIVALENT` -> `#if 1` failed full verify with calculated CRCs 0x5FDDE03F/0xEF7A0514; ./diff.sh func_80049794 --format plain --no-pager --max-size 1200 after relink => CURRENT (2990)
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 final unk1BA/unk1BC add-order probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and do not trust func_80049794 object-only CURRENT (0) without relink/full verify.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
