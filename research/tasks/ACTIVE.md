@@ -803,7 +803,14 @@
   failed full-verify CRCs `0x2E4A9A41/0xD04D4E64` and relinked focused
   `CURRENT (6100)`, with the same widened wave integer-register churn and
   later scheduling drift. Treat this split-`var_v1` form as the same bad
-  wave-bound family, not a new continuation point. A
+  wave-bound family, not a new continuation point. A follow-up existing-`var_v0`
+  wave-count carrier on the same close save-family branch (`var_v0 =
+  gRacerWaveCount`; loop from `var_v0 - 1`; compare against `var_v0 - 1`)
+  also missed: it kept the target `0xf8` frame and `$f20/$f21` saves, but
+  regressed the relinked focused score to `CURRENT (4557)`, failed full verify
+  with calculated CRCs `0xA637D7C4/0x633471A3`, and widened wave-register churn
+  by introducing `a0/a1/v0/v1` drift through the scan. Do not repeat this
+  `var_v0` wave-count carrier spelling on the close save-family branch. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate

@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:26:17Z
+- Generated at: 2026-05-17 13:30:04Z
 - Branch: `master`
-- HEAD: `a378d098`
-- Completed task: `trackbg_render_flashy`
-- Summary: Tested an outer-ring assignment-order probe on promoted trackbg_render_flashy, moving `xPositions[5]`, `zPositions[6]`, and `zPositions[7]` earlier to mimic the target store order. It compiled but worsened focused diff to CURRENT (2786), failed full verify with calculated CRCs 0xDC7DB491/0xB2CAADCB, and increased early float-register drift. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
+- HEAD: `49a59f2a`
+- Completed task: `func_80049794`
+- Summary: Tested an existing-`var_v0` wave-count carrier on the close func_80049794 save-family branch: promoted source, removed trailing `pad3`/`pad4`, used chained grounded-wheel zero, kept the x/z/y pre-`sqrtf` accumulation plus steer-vel no-op, then loaded `gRacerWaveCount` into `var_v0` for the loop bound and comparison. It compiled, kept the target `0xf8` frame and `$f20/$f21` saves, but regressed relinked focused diff to CURRENT (4557), failed full verify with calculated CRCs 0xA637D7C4/0x633471A3, and widened wave-register churn. Source guard/body restored; final full verify passed. Keep func_80049794 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: `./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 720` => relinked focused CURRENT (2786)
+- Failed probe evidence: `./diff.sh func_80049794 --format plain --no-pager --max-size 760` => relinked focused CURRENT (4557)
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy outer-ring assignment-order probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 existing-var_v0 wave-count carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
