@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 17:16:50Z
+- Generated at: 2026-05-17 17:19:46Z
 - Branch: `master`
-- HEAD: `a6551cba`
-- Completed task: `func_80059208`
-- Summary: Tested a final object-dot x-product carrier in `func_80059208` by routing `splinePos * diffX` through the now-dead `scale` local before adding `diffZ * distance`. It compiled but missed, worsening the relinked focused score from the promoted baseline `CURRENT (870)` to `CURRENT (940)` and reversing the desired final object x/z load order. Source restored; final full verify passed. Keep `func_80059208` active, but do not retry this final object-dot `scale` carrier.
+- HEAD: `e72451eb`
+- Completed task: `func_8002B0F4`
+- Summary: Tested an equivalent outer segment-loop spelling in `func_8002B0F4`, changing `for (var_fp = 0; var_fp < sp108; var_fp++)` to `var_fp = 0; while (var_fp < sp108) { ...; var_fp++; }`. It compiled but produced no object movement from the promoted baseline: the focused score stayed `CURRENT (2860)` and the early `gCurrentLevelModel` spill remained. Source restored; final full verify passed. Keep `func_8002B0F4` active, but do not retry this outer-loop `while` spelling.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: `./diff.sh func_80059208 --format plain --no-pager --max-size 1200 -U 20` => `CURRENT (940)`, failed full verify CRCs `0x53A518DF/0x0DEFF06A`
+- Failed probe evidence: `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 1200 -U 18` => `CURRENT (2860)`, failed full verify CRCs `0x7856718A/0x66208CAA`
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; avoid the newly recorded func_80059208 final object-dot scale carrier plus prior split-final-vertical, negative-object/positive-checkpoint numerator, and final-offset variants, the trackbg_render_flashy all-first-ring scaledXSin rewrite plus prior position/UV order-carrier probes, the func_8008FF1C s16/register selectedTrack/temp probes, func_80049794 current-baseline wave-threshold-local/chained-zero/wave-bound/save-family probes, and func_8002B0F4 pad/early-conversion/loop probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; avoid the newly recorded func_8002B0F4 outer segment-loop while spelling plus prior pad/early-conversion/loop probes, the func_80059208 final object-dot scale carrier plus prior split-final-vertical, negative-object/positive-checkpoint numerator, and final-offset variants, the trackbg_render_flashy all-first-ring scaledXSin rewrite plus prior position/UV order-carrier probes, the func_8008FF1C s16/register selectedTrack/temp probes, and func_80049794 current-baseline wave-threshold-local/chained-zero/wave-bound/save-family probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

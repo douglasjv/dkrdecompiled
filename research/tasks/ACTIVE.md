@@ -1711,9 +1711,18 @@
   calculated CRCs `0x7856718A/0x4AA98304`, and the diff shifted the bottom
   pointer-population/unrolled-copy schedule while preserving the same early
   `gCurrentLevelModel` spill family. Do not repeat this bottom population-loop
-  `while` spelling. Keep this function active, but do not repeat those source
-  shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, or
-  this bottom population-loop `while` spelling.
+  `while` spelling. Rewriting only the outer segment loop from
+  `for (var_fp = 0; var_fp < sp108; var_fp++)` to an equivalent
+  `var_fp = 0; while (var_fp < sp108) { ...; var_fp++; }` compiled but
+  produced no relinked object movement from the promoted baseline: focused
+  score stayed `CURRENT (2860)`, full verify failed with the same calculated
+  CRCs `0x7856718A/0x66208CAA`, and the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` remained. Source was restored and
+  final full verify passed. Do not repeat this outer segment-loop `while`
+  spelling. Keep this function active, but do not repeat those source shapes,
+  either standalone Z-loop unroll, this sort-limit-hoist spelling, this bottom
+  population-loop `while` spelling, or this outer segment-loop `while`
+  spelling.
 
 ## Ask The User Only If
 
