@@ -177,7 +177,12 @@
   `CURRENT (1300)` and failed full verify with calculated CRCs
   `0xC7D996EA/0xC6D1DFDE`; source was restored and final full verify passed.
   Do not repeat this temp-mutating checkpoint-dot carrier or positive
-  numerator carrier. An explicit-zero axis-negation spelling
+  numerator carrier. Rewriting the final lateral offset update as
+  `racer->unk1BA = (s32) diffX + racer->unk1BA` compiled but worsened the
+  relinked focused score to `CURRENT (900)` and failed full verify with
+  calculated CRCs `0x53CD41DF/0x4CAF790B`; source was restored and final full
+  verify passed. Do not repeat this final `unk1BA` add-order spelling. An
+  explicit-zero axis-negation spelling
   (`diffZ = 0.0f - diffY`) compiled but regressed the relinked focused score to
   `CURRENT (1626)` and failed full verify with calculated CRCs
   `0x53B93C23/0x99E6EAF5`; source was restored and final full verify passed.
@@ -1069,7 +1074,12 @@
   through the now-dead `diffX` before the `unk1BC` cast/add
   (`diffX = diffY; racer->unk1BC += (s32) diffX`) compiled but worsened to
   `CURRENT (1030)` by inserting an extra `swc1` before the final conversion
-  while leaving the lateral drift unchanged. Spelling the negated checkpoint
+  while leaving the lateral drift unchanged. Rewriting the final lateral
+  update as `racer->unk1BA = (s32) diffX + racer->unk1BA` compiled but
+  worsened the relinked focused score to `CURRENT (900)`, failed full verify
+  with calculated CRCs `0x53CD41DF/0x4CAF790B`, and shifted the final update
+  schedule rather than matching the target tail; do not repeat this add-order
+  spelling. Spelling the negated checkpoint
   dot product term-by-term (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`)
   compiled but worsened to `CURRENT (1192)`: it introduced explicit early
   negation, but cascaded final-block register drift and still missed the target
