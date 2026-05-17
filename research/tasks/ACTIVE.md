@@ -35,7 +35,10 @@
   (`diffX = diffY; racer->unk1BC += (s32) diffX`) worsened to `CURRENT (1030)`
   by adding a final-block stack store before the conversion. A term-negated
   checkpoint-dot probe (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`) worsened
-  to `CURRENT (1192)` with broader final-block register drift.
+  to `CURRENT (1192)` with broader final-block register drift. Computing the
+  negated checkpoint dot before loading both final object-position locals
+  compiled but left the focused score unchanged at `CURRENT (870)`, with the
+  same final object-load/arithmetic drift.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -645,8 +648,11 @@
   dot product term-by-term (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`)
   compiled but worsened to `CURRENT (1192)`: it introduced explicit early
   negation, but cascaded final-block register drift and still missed the target
-  lateral arithmetic. Keep this function active; do not park it just because
-  these final-offset probes missed.
+  lateral arithmetic. Computing the negated checkpoint dot first, then loading
+  both object-position locals before building `pad` compiled but left the
+  focused score unchanged at `CURRENT (870)` with the same final
+  object-load/arithmetic drift as the promoted baseline. Keep this function
+  active; do not park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1753)` in the current
   checkout and starts early in the position-array setup, so it is less localized

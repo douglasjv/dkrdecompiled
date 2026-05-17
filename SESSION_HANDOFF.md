@@ -1,27 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:52:47Z
+- Generated at: 2026-05-17T01:58:07Z
 - Branch: `master`
-- HEAD before closeout commit: `1ee4e02f`
+- HEAD before closeout commit: `4a112bf1`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
   preference by keeping the active candidates routable, then tested a bounded
-  `func_80059208` final-vertical numerator carrier probe. Promoting the current
-  C candidate still scores `CURRENT (870)`. Reusing the now-dead `pad` local
-  for `pad = obj->trans.y_position - tempY; diffY = pad / divisor` compiled but
-  worsened to `CURRENT (1680)`, shifting the final vertical clamp/register
-  family similarly to the rejected `pad3` carrier. Guarded matching source was
-  restored and the full ROM gate is clean. Keep `func_80059208` active; do not
-  park it solely because this final-vertical carrier missed.
+  `func_80059208` final object-local ordering probe. Promoting the current C
+  candidate still scores `CURRENT (870)`. Computing the negated checkpoint dot
+  first, then loading both final object-position locals before building `pad`,
+  compiled but left the focused score unchanged at `CURRENT (870)` with the
+  same final object-load/arithmetic drift. Guarded matching source was restored
+  and the full ROM gate is clean. Keep `func_80059208` active; do not park it
+  solely because this final-offset ordering probe missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C baseline compiles
-- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> promoted baseline remains `CURRENT (870)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> final-vertical `pad` carrier probe compiles with `pad = obj->trans.y_position - tempY; diffY = pad / divisor`
-- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> final-vertical `pad` carrier worsens to `CURRENT (1680)` by shifting the final vertical clamp/register family
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with `pad2 = -checkpointDot` computed before the final object-position locals are loaded
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> object-local delayed-after-`pad2` probe leaves the focused score unchanged at `CURRENT (870)`, with the same final object-load/arithmetic drift
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
@@ -615,6 +613,7 @@
 - Additional `func_80059208` numerator-negation rejected probe: moving the final lateral-correction negation into the numerator (`diffX = (-(pad + pad2)) / divisor`) compiled but worsened the focused object score from baseline `CURRENT (870)` to `CURRENT (1600)` by delaying the negation until after the folded object-dot subtraction and perturbing the final vertical temp register family. Do not repeat this source shape.
 - Additional `func_80059208` final vertical diffY rejected probe: splitting the final vertical numerator through `diffY` (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`) compiled but worsened the focused object score from baseline `CURRENT (870)` to `CURRENT (1242)` by extending the final vertical clamp/register drift. Do not repeat this source shape.
 - Additional `func_80059208` checkpoint-dot accumulation rejected probe: splitting the checkpoint dot into `pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2` before the object dot compiled but left the focused object score unchanged at `CURRENT (870)` with the same final object-load/arithmetic drift. Do not repeat this source shape.
+- Additional `func_80059208` object-local ordering rejected probe: computing the negated checkpoint dot first, then loading both final object-position locals before building `pad`, compiled but left the focused score unchanged at `CURRENT (870)` with the same final object-load/arithmetic drift. Do not repeat this source shape.
 - `trackbg_render_flashy` promotes but is broader (`CURRENT (1753)` in the current checkout) and starts drifting in position-array setup. Rejected probes: replacing repeated first-four `(xSin * 1280.0f)` terms with `scaledXSin` widened the frame to `0x168` and worsened to `CURRENT (12121)`; reordering the index 5-8 x/z position stores to match the apparent target store sequence worsened to `CURRENT (2551)`; flipping only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` left the score unchanged at `CURRENT (1808)`; replacing only `xPositions[2]` with `scaledXCos + scaledXSin` worsened to `CURRENT (12021)` and frame `0x150`; changing the outer-ring `2.0f * scaledXCos/scaledXSin` terms to additive doubles left the uncompressed linked score unchanged at `CURRENT (1808)` and failed promoted full verify with CRC `0x93D338FF/0x03D9C8FE`; adding a named `negScaledXCos` temporary also left the uncompressed linked score unchanged at `CURRENT (1808)`; swapping `scaledXSin`/`scaledXCos` declaration order and adding `register` hints to either local produced no object change; rewriting only `zPositions[3]` as `scaledXCos + (xSin * 1280.0f)` worsened to linked `CURRENT (5579)` by inserting `swc1 $f0, 0x110(sp)` and shifting later scheduling/global offsets, with promoted full verify CRC `0xF82B92BE/0x5DCC04AE`; moving only `xPositions[5] = -scaledXCos - (2.0f * scaledXSin)` before `zPositions[5]` worsened the uncompressed linked diff to `CURRENT (2408)`; adding `register f32 negScaledXCos` and using it for the first/outer negative cosine expressions worsened the uncompressed linked diff to `CURRENT (2769)` and changed the promoted full-verify CRC to `0xDC79FC91/0xA51F89F4`; reordering the first four position stores to group equivalent target temps printed a misleading object-only `CURRENT (0)`, then failed promoted full verify with CRC `0x8E7F39EA/0xD7399E4A` and worsened the relinked uncompressed diff to `CURRENT (4390)` with a `0x150` frame. Do not trust compressed-only or object-only `trackbg_render_flashy` output; use uncompressed linked diff and full verify.
 - `func_8002B0F4` promotes but is broader (`CURRENT (2780)`) and starts drifting around `gCurrentLevelModel` hoisting/caching before the grid loops. Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the segment/bounding-box pointer setup worsened to `CURRENT (6347)` and introduced broader prologue/global-offset drift; swapping the setup order to compute `currentBoundingBox` before `currentSegment` worsened to `CURRENT (3885)` while still leaving the unwanted `gCurrentLevelModel` hoist; moving `XInInt`/`ZInInt` assignment before `get_inside_segment_count_xz` and passing those locals left the linked score unchanged at `CURRENT (2780)`; loading a local `LevelModel *levelModel` through a volatile pointer cast at segment and texture access sites also left the linked score unchanged at `CURRENT (2780)`. A compressed focused diff printed stale `CURRENT (0)` before relink during this pass; confirm with a relinked focused diff and the full ROM gate before accepting this function. Keep active; do not repeat those source shapes.
 
@@ -719,6 +718,7 @@
 - Do not repeat this session's `func_80059208` checkpoint-dot accumulation probe (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`); it left the focused object score unchanged at `CURRENT (870)`.
 - Do not repeat this session's `func_80059208` final vertical `diffX` cast-carrier probe (`diffX = diffY; racer->unk1BC += (s32) diffX`); it worsened the focused score to `CURRENT (1030)` by adding a new final-block stack store.
 - Do not repeat this session's `func_80059208` term-negated checkpoint-dot probe (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`); it worsened the focused score to `CURRENT (1192)` with broader final-block register drift.
+- Do not repeat this session's `func_80059208` object-local delayed-after-`pad2` ordering probe; it left the focused score unchanged at `CURRENT (870)` with the same final object-load/arithmetic drift.
 - Do not repeat this session's `func_8002B0F4` pre-call `XInInt`/`ZInInt` or volatile local `LevelModel *levelModel` reload probes; both left the linked score unchanged at `CURRENT (2780)`.
 - Do not repeat this session's `func_8002B0F4` explicit `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling; it triggered stale object-only `CURRENT (0)` before relink, failed full verify, and worsened the relinked focused score to `CURRENT (4623)`.
 - Do not repeat this session's `trackbg_render_flashy` `scaledXSin`/`scaledXCos` declaration-order or `register` local hints; they produced no object change.
