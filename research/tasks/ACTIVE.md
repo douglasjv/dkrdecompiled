@@ -158,7 +158,13 @@
   calculated CRCs `0x77882035/0x6FF367A8`, and the scan shifted into a broader
   integer-register family instead of matching the target `v1/a0/v0` order. Do
   not repeat this current-baseline predecrement wave-scan loop.
-- `func_80059208` is also active, not parked. The 2026-05-17 final-offset
+- `func_80059208` is also active, not parked. A 2026-05-17 `register f32
+  divisor` allocation hint compiled but produced no relinked object movement:
+  full verify failed with the same calculated CRC family
+  `0x53D141DF/0xB9D4B481`, focused diff stayed `CURRENT (870)`, and the final
+  lateral tail still used the baseline object-dot/checkpoint-dot register
+  schedule. Source was restored and final full verify passed; do not repeat
+  this divisor register hint. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
   `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`. A later final
@@ -1359,7 +1365,12 @@
   `0x1AA9FDC4/0x11BA4E46`, and the diff disturbed earlier
   `splinePos`/stack-slot allocation before broadening final-block register
   drift. Source was restored and final full verify passed. Do not repeat this
-  final object-x `diffY` carrier.
+  final object-x `diffY` carrier. A `register f32 divisor` allocation hint
+  also produced no movement from the promoted baseline: full verify failed with
+  calculated CRCs `0x53D141DF/0xB9D4B481`, the relinked focused diff stayed
+  `CURRENT (870)`, and the same final object-dot plus negated-checkpoint-dot
+  arithmetic/register drift remained. Source was restored and final full
+  verify passed; do not repeat this divisor register hint.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

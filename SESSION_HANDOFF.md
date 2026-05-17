@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 16:46:37Z
+- Generated at: 2026-05-17 16:49:49Z
 - Branch: `master`
-- HEAD: `ed3cb9a5`
-- Completed task: `func_80049794`
-- Summary: Tested a current-baseline reversed chained-zero spelling for the grounded-wheel reset (`racer->unk84 = (racer->unk88 = 0.0f)`). It compiled, but missed: full verify failed with calculated CRCs 0x5FDDE03F/0x127A8488, focused diff worsened to CURRENT (3000), and the early zero stores reversed while still using $f16 and still lacking target $f20/$f21 prologue saves. Source restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `6fe601e5`
+- Completed task: `func_80059208`
+- Summary: Tested a narrow `register f32 divisor` allocation hint in func_80059208. It compiled, but produced no object movement from the promoted baseline: full verify failed with calculated CRCs 0x53D141DF/0xB9D4B481 and focused diff stayed CURRENT (870) with the same final object-dot/checkpoint-dot register drift. Source restored; final full verify passed. Keep func_80059208 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 1200 -U 6 => CURRENT (3000); failed full verify CRCs 0x5FDDE03F/0x127A8488
+- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 6 => CURRENT (870); failed full verify CRCs 0x53D141DF/0xB9D4B481
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded func_80049794 reversed chained-zero current-baseline probe plus prior func_80049794 chained-zero/wave-bound/save-family probes, trackbg_render_flashy position/UV order-carrier probes, func_80059208 final-offset variants, and func_8002B0F4 pad/early-conversion/loop probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded func_80059208 divisor register hint plus prior func_80059208 final-offset variants, func_80049794 chained-zero/wave-bound/save-family probes, trackbg_render_flashy position/UV order-carrier probes, and func_8002B0F4 pad/early-conversion/loop probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
