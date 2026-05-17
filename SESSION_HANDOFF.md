@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:18:42Z
+- Generated at: 2026-05-17 13:20:59Z
 - Branch: `master`
-- HEAD: `01ceda9a`
-- Completed task: `func_8002B0F4`
-- Summary: Tested a scalar plane-carrier variant on promoted func_8002B0F4 with the dead pad3 removed (`planeX`/`planeY`/`planeZ`/`planeW` replacing `Vec4f tempVec4f`). It compiled but regressed the relinked focused score to CURRENT (2868), failed full verify with calculated CRCs 0x785671AA/0x0D6F6A4A, and still showed the unwanted pre-loop gCurrentLevelModel spill to 0x64(sp). Source guard/body restored; final full verify passed. Keep func_8002B0F4 active rather than parked.
+- HEAD: `3dcb8cb4`
+- Completed task: `func_80049794`
+- Summary: Tested a `register f32 racerBrake` declaration hint on promoted func_80049794. It compiled but stayed in the same failed CRC family as the promoted baseline (0x5FDDE03F/0xEF7A0514), with focused diff CURRENT (859) under `--max-size 620`, still missing target `$f20/$f21` prologue saves and still using early `$f16` zero allocation instead of target `$f14`. Source guard/body restored; final full verify passed. Keep func_80049794 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900` => relinked focused CURRENT (2868)
+- Failed probe evidence: `./diff.sh func_80049794 --format plain --no-pager --max-size 620` => relinked focused CURRENT (859)
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4 or func_80059208; keep close functions active and avoid the recorded func_8002B0F4 scalar plane-carrier probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4 or func_80059208; keep close functions active and avoid the recorded func_80049794 racerBrake register hint.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -91,7 +91,11 @@
   zero allocation in `$f16` instead of target `$f14`. Adding `register` to
   `racerThrottle` compiled but produced no object movement: same uncompressed
   `CURRENT (1926)`, same CRC family, and still no target `$f20/$f21` saves.
-  Keep `func_80049794` active rather than parked.
+  Adding `register` to `racerBrake` also compiled but did not change the
+  failed CRC family (`0x5FDDE03F/0xEF7A0514`) and stayed in the same compressed
+  focused family (`CURRENT (859)` under `--max-size 620`), with the same
+  missing `$f20/$f21` prologue saves and early `$f16` zero allocation. Keep
+  `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
