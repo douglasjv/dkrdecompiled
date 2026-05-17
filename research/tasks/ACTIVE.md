@@ -797,7 +797,12 @@
   reloads at the initial `currentSegment` and `currentBoundingBox` setup sites
   compiled, but worsened the relinked focused score from `CURRENT (2780)` to
   `CURRENT (4395)` and shifted the same global-offset/tail-label drift family;
-  do not repeat that direct volatile global-pointer read spelling. A compressed focused
+  do not repeat that direct volatile global-pointer read spelling. Introducing
+  a direct `LevelModel *levelModel` local in the outer segment loop and using it
+  for the initial segment/bounding-box setup plus texture lookup compiled, but
+  widened the frame to `0x130` and worsened the relinked focused score from
+  `CURRENT (2780)` to `CURRENT (2900)` (`--max-size 260`: `CURRENT (1435)` to
+  `CURRENT (1470)`); do not repeat this direct local model-cache spelling. A compressed focused
   diff printed stale `CURRENT (0)` before relink during both the 2026-05-15
   packet and the 2026-05-17 unrolled-copy probe; rely on a relinked focused
   diff and the full `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before
