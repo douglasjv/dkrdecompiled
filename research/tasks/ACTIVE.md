@@ -47,7 +47,12 @@
   PLAYER_COMPUTER) ... }`) compiled but produced the same promoted-baseline
   CRC family `0x5FDDE03F/0xEF7A0514`, stayed `CURRENT (759)` under
   `--max-size 520`, and still lacked the target `$f20/$f21` prologue saves.
-  Keep `func_80049794` active rather than parked.
+  Routing the initial grounded-wheel zero stores through the existing `var_f2`
+  local (`var_f2 = 0.0f; racer->unk84 = var_f2; racer->unk88 = var_f2`)
+  likewise compiled but stayed at `CURRENT (759)` under `--max-size 520`,
+  failed full verify with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and still
+  allocated the early zero in `$f16` instead of target `$f14`. Keep
+  `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -170,9 +175,13 @@
   spelling also missed: it stayed at promoted-baseline `--max-size 520`
   `CURRENT (759)`, failed full verify with calculated CRCs
   `0x5FDDE03F/0xEF7A0514`, and did not introduce target `$f20/$f21` saves; do
-  not repeat this nested branch spelling. Combining `register f32 var_f20` with
-  `register f32 segmentZVelocity` compiled but produced no object change from
-  the promoted baseline, stayed focused
+  not repeat this nested branch spelling. Routing the initial grounded-wheel
+  zero through the existing `var_f2` local also produced no useful movement:
+  it stayed at `--max-size 520` `CURRENT (759)`, failed full verify with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, and kept the early zero in `$f16`;
+  do not repeat this simple `var_f2` early-zero carrier. Combining `register
+  f32 var_f20` with `register f32 segmentZVelocity` compiled but produced no
+  object change from the promoted baseline, stayed focused
   `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
   saves. Splitting the first speed-magnitude operands into dedicated
   `xVelocity`/`zVelocity`/`yVelocity` locals before `sqrtf` compiled but widened
