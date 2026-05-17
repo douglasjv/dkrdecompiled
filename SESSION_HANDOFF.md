@@ -1,20 +1,31 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:19:22Z
+- Generated at: 2026-05-17T00:25:16Z
 - Branch: `master`
-- HEAD before closeout commit: `573e96da`
-- Completed task: `DKR-MATCH-FUNC-80049794-Z-ONLY-VAR-F2-STAGING-PROBE`
+- HEAD before closeout commit: `b8c50419`
+- Completed task: `DKR-MATCH-FUNC-80049794-VAR-F14-ACCUMULATOR-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested another partial component-staging shape
-  from the save-family branch: direct x/y accumulation with only the z velocity
-  loaded through `var_f2` before the first `sqrtf`. It compiled and kept the
-  target `0xf8` frame plus `$f20/$f21` saves, but regressed to `CURRENT
-  (3560)` and did not create the target-like `$f14` call-adjacent save/reload
-  shape. The guarded matching source was restored and the full ROM gate remains
-  clean.
+  `func_80049794` active and tested a caller-saved pre-`sqrtf` accumulator
+  shape: the first speed-magnitude sum was routed through existing `var_f14`
+  instead of `var_f20`. With both trailing pads removed it improved the numeric
+  focused score to `CURRENT (3441)`, but shrank the frame to `0xf0` and lost
+  the target `$f20/$f21` saves. Restoring trailing `pad3`/`pad4` improved the
+  focused score to `CURRENT (2940)` and restored the target `0xf8` frame, but
+  still dropped `$f20/$f21` and carried the gravity value in `$f14`. Adding
+  `register f32 var_f20` to the retained-pad variant produced no object change.
+  The guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, steer no-op, and first speed-magnitude accumulation routed through `var_f14`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f14` accumulator with trailing pads removed improves to `CURRENT (3441)` but shrinks the frame to `0xf0` and drops target `$f20/$f21` saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with trailing `pad3`/`pad4` retained, steer no-op, and first speed-magnitude accumulation routed through `var_f14`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> retained-pad `var_f14` accumulator improves to `CURRENT (2940)` and restores the target `0xf8` frame, but still drops target `$f20/$f21` saves and carries gravity in `$f14`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same retained-pad `var_f14` accumulator with `register f32 var_f20` compiles and produces no object change from `CURRENT (2940)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, steer no-op, direct x/y accumulation, and only the z component staged through `var_f2`

@@ -369,7 +369,18 @@
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f20 += y*y`) kept the target
   `0xf8` frame and `$f20/$f21` saves, but regressed to `CURRENT (3560)` and did
   not create the target-like `$f14` call-adjacent save/reload shape; do not
-  repeat this z-only `var_f2` staging shape. Staging the z/y velocity
+  repeat this z-only `var_f2` staging shape. Routing the first speed-magnitude
+  accumulation through existing `var_f14` instead of `var_f20`
+  (`var_f14 = x*x; var_f14 += z*z; var_f14 += y*y; var_f20 = sqrtf(var_f14) -
+  2.0`) improved the numeric focused score to `CURRENT (3441)` with trailing
+  pads removed, but shrank the frame to `0xf0` and dropped target
+  `$f20/$f21` saves. Retaining trailing `pad3`/`pad4` with that same `var_f14`
+  accumulator improved to `CURRENT (2940)` and restored the target `0xf8`
+  frame, but still dropped `$f20/$f21` and carried gravity in `$f14`; adding
+  `register f32 var_f20` to that retained-pad variant produced no object
+  change. Do not repeat these `var_f14` first-speed accumulator shapes unless
+  there is new evidence for recovering `$f20/$f21` without losing the `0xf8`
+  frame. Staging the z/y velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
