@@ -145,7 +145,12 @@
   to `CURRENT (4920)`, failed full verify with calculated CRCs
   `0x5790053C/0x1C8C0179`, introduced `spA2` stack-byte traffic, and widened
   wave-scan register churn. Do not repeat this current-baseline split
-  wave-bound spelling.
+  wave-bound spelling. A current-baseline predecrement loop spelling
+  (`for (var_a0 = gRacerWaveCount; --var_a0 >= 0 && ...;)`) also missed:
+  relinked focused score worsened to `CURRENT (3680)`, full verify failed with
+  calculated CRCs `0x77882035/0x6FF367A8`, and the scan shifted into a broader
+  integer-register family instead of matching the target `v1/a0/v0` order. Do
+  not repeat this current-baseline predecrement wave-scan loop.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
