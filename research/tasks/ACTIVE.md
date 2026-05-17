@@ -332,8 +332,9 @@
   single-site scaled-sine, first-ring existing-`var_f16` carrier,
   first-ring `pad_sp108`/unused-`pad_sp100` carrier, outer-ring
   assignment-order, single-site `zPositions[6]`/`xPositions[6]` reorder,
-  first-ring store-order grouping, single-site `zPositions[5]`
-  subtract-chain, or `pad_sp108` x1/z2/double-cosine carrier shapes.
+  exact outer-ring `x5/z5/z6/x6` store-order, first-ring store-order grouping,
+  single-site `zPositions[5]` subtract-chain, or `pad_sp108`
+  x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1306,7 +1307,14 @@
   before `xPositions[6]` compiled but worsened the relinked focused score to
   `CURRENT (3860)`, failed full verify with calculated CRCs
   `0x93D338FF/0xB8A243D7`, and shifted the early position-array schedule; do
-  not repeat this single-site z6/x6 reorder. Flipping
+  not repeat this single-site z6/x6 reorder. A later exact outer-ring
+  `xPositions[5]`, `zPositions[5]`, `zPositions[6]`, `xPositions[6]`
+  store-order spelling compiled but also missed: relinked focused score
+  `CURRENT (3043)`, failed full verify with calculated CRCs
+  `0xDC7DFA91/0xC168DB3D`, and shifted the early position-array
+  float-register schedule instead of matching the target; source was restored
+  and final full verify passed. Do not repeat this exact outer-ring
+  x5/z5/z6/x6 store-order spelling. Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
