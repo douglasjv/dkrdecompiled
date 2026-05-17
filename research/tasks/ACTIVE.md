@@ -636,7 +636,20 @@
   two zero stores and still failed full verify with calculated CRCs
   `0x32EE7D5A/0x1DE43B81`; do not repeat this combined `spEC` early-zero spill
   shape unless a new source change removes the spill while preserving the save
-  family. A
+  family. Combining the x/z/y save-family plus steer-noop branch with chained
+  early grounded-wheel zero (`racer->unk88 = (racer->unk84 = 0.0f)`) and
+  removed trailing `pad3`/`pad4` kept the target `0xf8` frame and `$f20/$f21`
+  saves, removed the previous `spEC` zero-spill, and improved the relinked
+  compressed `--max-size 620` score to `CURRENT (620)`, but full verify still
+  failed with calculated CRCs `0xB8DD79CD/0xE47454ED`. Remaining focused drift
+  was the wave-scan `a0`/`v1` register/order swap plus first-speed arithmetic
+  register-family drift. Reversing only the wave count comparison spelling to
+  `(gRacerWaveCount - 1) == var_a0` was a no-op: full verify produced the same
+  CRCs and the relinked focused diff stayed `CURRENT (620)` with the same
+  `a0`/`v1` swap. Do not repeat this exact chained-zero save-family shape or
+  the comparison-only wave operand spelling; keep the function active and
+  continue by solving the wave register/order or first-speed arithmetic drift
+  without losing the frame/save family. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
