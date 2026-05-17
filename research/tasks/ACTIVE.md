@@ -143,7 +143,13 @@
   produced no movement from the promoted baseline: relinked focused diff stayed
   `CURRENT (870)` and full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`; source was restored and final full verify passed.
-  Do not repeat this positive-`pad2` subtract spelling.
+  Do not repeat this positive-`pad2` subtract spelling. A later final
+  `tempZ`/`tempX` mutating checkpoint-dot carrier
+  (`tempZ *= diffZ; tempX *= diffX; pad2 = -(tempZ + tempX)`) compiled but
+  broadened register allocation from the early spline block, worsened the
+  relinked focused score to `CURRENT (2173)`, and failed full verify with
+  calculated CRCs `0x5CBA1A12/0x20830C42`; source was restored and final full
+  verify passed. Do not repeat this temp-mutating checkpoint-dot carrier.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -1046,7 +1052,14 @@
   from the promoted baseline: full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
   the same final object-load/arithmetic drift remained. Do not repeat this
-  object-local-before-`pad2` ordering.
+  object-local-before-`pad2` ordering. Mutating the now-dead `tempZ` and
+  `tempX` locals before forming the checkpoint-dot carrier
+  (`tempZ *= diffZ; tempX *= diffX; pad2 = -(tempZ + tempX)`) also missed:
+  full verify failed with calculated CRCs `0x5CBA1A12/0x20830C42`, the
+  relinked focused score worsened to `CURRENT (2173)`, and the diff showed
+  broad float-register churn from the earlier spline setup through the final
+  lateral/vertical clamp block instead of preserving the baseline tail. Do not
+  repeat this temp-mutating checkpoint-dot carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
