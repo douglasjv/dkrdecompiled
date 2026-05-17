@@ -359,7 +359,13 @@
   `updateRateF` spelling
   (`gCurrentCarSteerVel = (updateRateF > 0.0f) * 0`) also compiled but
   produced no object improvement and stayed `CURRENT (3550)`, so do not repeat
-  that no-op source spelling on this branch. A
+  that no-op source spelling on this branch. Staging the z/y velocity component
+  loads through the existing `var_f2` local before the first `sqrtf`
+  (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
+  created the target-like call-adjacent `$f14` save/reload shape, but it
+  regressed to `CURRENT (3751)` by shrinking the frame to `0xf0` and dropping
+  the target `$f20/$f21` prologue saves; this is useful evidence for the call
+  schedule, but not the preferred save-family continuation by itself. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still

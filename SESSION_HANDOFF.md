@@ -1,19 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-16T23:57:59Z
+- Generated at: 2026-05-17T00:00:43Z
 - Branch: `master`
-- HEAD before closeout commit: `6b25f78f`
-- Completed task: `DKR-MATCH-FUNC-80049794-UPDATE-RATE-STEER-NOOP-BRANCH-PROBE`
+- HEAD before closeout commit: `d72fe3fd`
+- Completed task: `DKR-MATCH-FUNC-80049794-VAR-F2-COMPONENT-STAGING-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested the initialized steer no-op
-  `gCurrentCarSteerVel = (updateRateF > 0.0f) * 0` on the current best
-  save-family branch: both trailing pads removed and x/z/y first
-  speed-magnitude split. It compiled but produced no object improvement,
-  staying `CURRENT (3550)`. The guarded matching source was restored and the
-  full ROM gate remains clean.
+  `func_80049794` active and tested staging the z/y velocity components through
+  the existing `var_f2` local on the current best save-family branch: both
+  trailing pads removed, steer no-op, and x/z/y first speed-magnitude split.
+  It compiled and produced the target-like call-adjacent `$f14` save/reload
+  shape, but regressed to `CURRENT (3751)` by shrinking the frame to `0xf0`
+  and dropping the target `$f20/$f21` prologue saves. The guarded matching
+  source was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the steer no-op, and z/y velocity components staged through `var_f2` before the first `sqrtf`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> `var_f2` component staging creates the target-like call-adjacent `$f14` save/reload shape but regresses to `CURRENT (3751)`, shrinking the frame to `0xf0` and dropping target `$f20/$f21` saves
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, the first speed-magnitude sum split as `var_f20 = x*x; var_f20 += z*z; var_f20 += y*y`, and the steer no-op changed to `gCurrentCarSteerVel = (updateRateF > 0.0f) * 0`
