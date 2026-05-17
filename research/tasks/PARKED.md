@@ -14,8 +14,12 @@ when intentionally returning to them.
   of target `t2`; the render-loop end symbol difference is address-equivalent
   (`gPlayerSelectVehicle` vs `gTrackSelectRenderDetails+0x90`). Probes tried:
   branch on `temp`, reorder `selectedTrack`, and assign through `temp`; each
-  either kept the `v1` load or cascaded register allocation. Revisit with a
-  narrower allocator/lifetime hypothesis, not the same probes.
+  either kept the `v1` load or cascaded register allocation. A later
+  declaration-only `register s16 temp` probe also missed: full verify failed
+  with calculated CRCs `0x55C240E7/0x18E4F9B4`, focused diff stayed
+  `CURRENT (10)`, and the selected-track load/branch still used `v1` instead
+  of target `t2`. Revisit with a different allocator/lifetime hypothesis, not
+  these same probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
