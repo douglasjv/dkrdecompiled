@@ -32,7 +32,11 @@
   regressed the relinked full focused score to `CURRENT (6100)`, widened the
   wave integer-register churn, and failed full verify with calculated CRCs
   `0x2E4A9A41/0xD04D4E64`; source was restored and final full verify passed.
-  Do not repeat this comma-assignment wave-bound spelling on the save-family
+  A split-assignment spelling of the same wave-bound idea
+  (`var_v1 = gRacerWaveCount - 1; for (var_a0 = var_v1; ...); if (var_a0 ==
+  var_v1)`) on the same save-family branch compiled to the same bad CRC family
+  and relinked `CURRENT (6100)`, so treat it as equivalent to the comma
+  assignment and do not repeat either wave-bound spelling on the save-family
   branch. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
@@ -715,7 +719,13 @@
   `CURRENT (6100)` and failed full verify with calculated CRCs
   `0x2E4A9A41/0xD04D4E64`; it widened wave-block integer-register churn and
   disturbed later scheduling, so do not repeat this comma-assignment
-  wave-bound source shape. A
+  wave-bound source shape. Splitting the same wave-bound spelling into two
+  assignments (`var_v1 = gRacerWaveCount - 1; for (var_a0 = var_v1; ...); if
+  (var_a0 == var_v1)`) on the same close save-family branch produced the same
+  failed full-verify CRCs `0x2E4A9A41/0xD04D4E64` and relinked focused
+  `CURRENT (6100)`, with the same widened wave integer-register churn and
+  later scheduling drift. Treat this split-`var_v1` form as the same bad
+  wave-bound family, not a new continuation point. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
