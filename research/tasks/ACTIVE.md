@@ -681,6 +681,11 @@
   object-load/arithmetic drift as the promoted baseline. Adding `register` to
   the `splinePos` local also compiled but produced no object change from the
   promoted baseline and left the focused score unchanged at `CURRENT (870)`.
+  Reusing the now-dead `splinePos` local as the negated checkpoint-dot carrier
+  (`pad = checkpointDot; splinePos = -pad; pad2 = objectDot; diffX = -((pad2 +
+  splinePos) / divisor)`) compiled but worsened the focused object score to
+  `CURRENT (1356)` by perturbing earlier `splinePos`/double-temp allocation and
+  expanding final-block register drift.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
