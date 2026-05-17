@@ -18,8 +18,14 @@ when intentionally returning to them.
   declaration-only `register s16 temp` probe also missed: full verify failed
   with calculated CRCs `0x55C240E7/0x18E4F9B4`, focused diff stayed
   `CURRENT (10)`, and the selected-track load/branch still used `v1` instead
-  of target `t2`. Revisit with a different allocator/lifetime hypothesis, not
-  these same probes.
+  of target `t2`. Later `selectedTrack` allocator probes also missed:
+  changing `selectedTrack` to `s16` widened the focused diff to `CURRENT
+  (1355)`, failed full verify with calculated CRCs
+  `0x5B5E4609/0x72935A6E`, and introduced extra sign-extension/register churn;
+  `register s32 selectedTrack` produced no object movement from the close
+  baseline, stayed `CURRENT (10)`, and failed full verify with calculated CRCs
+  `0x55C240E7/0x18E4F9B4`. Revisit with a different allocator/lifetime
+  hypothesis, not these same probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused

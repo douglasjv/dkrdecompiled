@@ -397,8 +397,11 @@
   cascade register allocation. A 2026-05-17 default-skipped revisit with
   `register s16 temp` also missed: full verify failed with calculated CRCs
   `0x55C240E7/0x18E4F9B4`, focused diff stayed `CURRENT (10)`, and the
-  selected-track load/branch still used `v1`. Do not retry those same probes
-  as the next packet.
+  selected-track load/branch still used `v1`. Later `selectedTrack` allocation
+  probes also missed: `s16 selectedTrack` worsened to `CURRENT (1355)` with
+  calculated CRCs `0x5B5E4609/0x72935A6E`, while `register s32 selectedTrack`
+  stayed `CURRENT (10)` with calculated CRCs `0x55C240E7/0x18E4F9B4`. Do not
+  retry those same probes as the next packet.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry
