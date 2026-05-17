@@ -1958,10 +1958,20 @@
   `gCurrentLevelModel` spill at `0x60(sp)` remained, and the segment-index
   register family drifted from target/baseline `t1` toward `a3`/`t1`. Source
   was restored and final full verify passed. Do not repeat this segment-index
-  `i` carrier. Keep this function active, but do not repeat those source
+  `i` carrier. A 2026-05-17 segment-index carrier through the existing `temp`
+  local (`temp = spB0[var_fp]; currentSegment =
+  &gCurrentLevelModel->segments[temp]; currentBoundingBox =
+  &gCurrentLevelModel->segmentsBoundingBoxes[temp]`) also missed: full verify
+  failed with calculated CRCs `0x7DF5F18A/0xA4BAA9BB`, relinked focused score
+  worsened to `CURRENT (3280)`, and the unwanted early `gCurrentLevelModel`
+  spill at `0x60(sp)` remained while the grid-loop register family shifted
+  toward `a0`/`a1`/`a2`/`a3`. Source was restored and final full verify passed.
+  Do not repeat this segment-index `temp` carrier. Keep this function active,
+  but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
   bottom population-loop `while` spelling, this outer segment-loop `while`
-  spelling, or this segment-index `i` carrier.
+  spelling, this segment-index `i` carrier, or this segment-index `temp`
+  carrier.
 
 ## Ask The User Only If
 
