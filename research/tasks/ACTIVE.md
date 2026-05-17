@@ -38,8 +38,11 @@
   `register f32 racerVelocity` allocation hint compiled but produced no
   relinked compressed focused change from the promoted baseline
   (`CURRENT (759)` under `--max-size 520`) and failed full verify with the same
-  calculated CRCs `0x5FDDE03F/0xEF7A0514`. Keep `func_80049794` active rather
-  than parked.
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`. Reusing the existing `var_f0` local
+  for the wave-block speed carrier instead of the named `racerVelocity` local
+  compiled but worsened the relinked focused score to `CURRENT (3364)` and
+  failed full verify with calculated CRCs `0xF40AF157/0xCBAF4125`. Keep
+  `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -152,9 +155,14 @@
   no relinked compressed focused change (`CURRENT (759)` under
   `--max-size 520`), failed full verify with the same calculated CRCs
   `0x5FDDE03F/0xEF7A0514`, and still lacked the target `$f20/$f21` prologue
-  saves; do not repeat this standalone `racerVelocity` register hint. Combining
-  `register f32 var_f20` with `register f32 segmentZVelocity` compiled but
-  produced no object change from the promoted baseline, stayed focused
+  saves; do not repeat this standalone `racerVelocity` register hint. Reusing
+  the existing `var_f0` local for the wave-block speed carrier instead of the
+  named `racerVelocity` local worsened the relinked focused score to
+  `CURRENT (3364)`, kept the target `$f20/$f21` prologue saves absent, and
+  failed full verify with calculated CRCs `0xF40AF157/0xCBAF4125`; do not
+  repeat this simple wave-speed `var_f0` carrier. Combining `register f32
+  var_f20` with `register f32 segmentZVelocity` compiled but produced no object
+  change from the promoted baseline, stayed focused
   `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
   saves. Splitting the first speed-magnitude operands into dedicated
   `xVelocity`/`zVelocity`/`yVelocity` locals before `sqrtf` compiled but widened
