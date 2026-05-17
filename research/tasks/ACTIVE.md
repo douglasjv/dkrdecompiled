@@ -380,7 +380,11 @@
   `pad3`/`pad4` on that same `var_f2` component-staging branch compiled but
   shrank the frame to `0xf0`, worsened the focused score to `CURRENT (3367)`,
   and still did not introduce the target `$f20/$f21` saves, so do not continue
-  from this leading-pad removal shape. A
+  from this leading-pad removal shape. Removing only `pad5` while retaining
+  `pad7` and trailing `pad3`/`pad4` kept the target `0xf8` frame but worsened
+  the focused score to `CURRENT (3514)`, shifted several local stack slots, and
+  still did not introduce target `$f20/$f21` saves; do not repeat this
+  single-pad removal shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
