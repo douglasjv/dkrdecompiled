@@ -409,7 +409,11 @@
   regressed to `CURRENT (3696)` and still spilled `$f4` instead of the target
   `$f14`. Do not repeat simple buoyancy `-1.0f` carrier spellings or
   moved-`spCC` combinations on this branch unless new evidence ties them to a
-  separate scheduling fix.
+  separate scheduling fix. Reordering the default handling constants on the
+  same x/z/y save-family branch also produced no object improvement: assigning
+  `spD0` before `spD4` stayed `CURRENT (3550)`, and assigning `spD8` before
+  `spD0`/`spD4` also stayed `CURRENT (3550)`. Do not repeat simple
+  save-family handling-constant order swaps.
   Preserving the long-lived `var_f14` across
   `apply_vehicle_rotation_offset` on the x/z/y save-family branch is useful
   evidence for the target call-adjacent `$f14` save/reload. A new `spDC` local

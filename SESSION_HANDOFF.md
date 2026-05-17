@@ -1,25 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:00:33Z
+- Generated at: 2026-05-17T01:04:10Z
 - Branch: `master`
-- HEAD before closeout commit: `c5dddb7c`
-- Completed task: `DKR-MATCH-FUNC-80049794-MOVED-SPCC-BUOYANCY-PROBE`
+- HEAD before closeout commit: `326aca62`
+- Completed task: `DKR-MATCH-FUNC-80049794-SAVE-FAMILY-CONSTANT-ORDER-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested the improved buoyancy `var_f20 = -1.0f`
-  carrier with the moved-`spCC` preserve slot on the x/z/y save-family branch.
-  The variant compiled, kept the `0xf8` frame, and used the desired `0xdc(sp)`
-  spill slot, but regressed to `CURRENT (3696)` and still spilled `$f4`
-  instead of recovering the target call-adjacent `$f14` save/reload. The
-  guarded matching source was restored and the full ROM gate remains clean.
-  Keep `func_80049794` active; do not park it solely because this
-  allocation/scheduling family missed.
+  `func_80049794` active and tested default handling-constant setup order on
+  the x/z/y save-family branch. Reordering the setup to assign `spD0` before
+  `spD4`, and the sibling spelling that assigns `spD8` first, both compiled
+  but produced no object improvement from the known save-family result:
+  `CURRENT (3550)`. The guarded matching source was restored and the full ROM
+  gate remains clean. Keep `func_80049794` active; do not park it solely
+  because this allocation/scheduling family missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, moved `spCC` declaration after `spE0`, `spCC = var_f14` / `var_f14 = spCC` around `apply_vehicle_rotation_offset`, and `var_f20 = -1.0f` before the buoyancy `gCurrentStickY = -60` store
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved-`spCC` plus buoyancy carrier regresses to `CURRENT (3696)`, uses `0xdc(sp)` but still spills `$f4` instead of target `$f14`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, and `spD0 = 0.02; spD4 = 0.01; spD8 = 0.004`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> save-family `spD0`-first constant setup produces no object improvement and stays `CURRENT (3550)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same save-family branch compiles with `spD8 = 0.004; spD0 = 0.02; spD4 = 0.01`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> save-family `spD8`-first constant setup also produces no object improvement and stays `CURRENT (3550)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
