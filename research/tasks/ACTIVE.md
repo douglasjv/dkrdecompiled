@@ -102,6 +102,11 @@
   obj->trans.z_position; pad2 = -(...); pad = ...`) also produced no object
   movement from the promoted baseline, stayed `CURRENT (870)`, and failed full
   verify in the same CRC family `0x53D141DF/0xB9D4B481`; source was restored.
+  Splitting the negated checkpoint dot into `pad2 = -(tempZ * diffZ); pad2 -=
+  diffX * tempX` compiled but worsened the relinked focused score to
+  `CURRENT (1405)` and failed full verify with calculated CRCs
+  `0x53C0A2B5/0x47AA3C12`; keep active, but do not repeat this split-negated
+  checkpoint-dot spelling.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -931,7 +936,12 @@
   promoted baseline shape: full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
   the same final object-load/arithmetic drift remained. Do not repeat this
-  split-object-dot-after-checkpoint spelling. Delaying the `diffZ = -diffY`
+  split-object-dot-after-checkpoint spelling. Splitting the negated checkpoint
+  dot into `pad2 = -(tempZ * diffZ); pad2 -= diffX * tempX` compiled but
+  worsened the relinked focused score to `CURRENT (1405)`, failed full verify
+  with calculated CRCs `0x53C0A2B5/0x47AA3C12`, and broadened final-block
+  register/label drift instead of matching the target checkpoint-dot schedule;
+  do not repeat this split-negated spelling. Delaying the `diffZ = -diffY`
   axis assignment until after a positive checkpoint-dot expression
   (`pad2 = (tempZ * -diffY) + (diffX * tempX); diffZ = -diffY; ... diffX =
   -((pad - pad2) / divisor)`) compiled but worsened the relinked focused score

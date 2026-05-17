@@ -1,14 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:32:07Z
+- Generated at: 2026-05-17T12:35:08Z
 - Branch: `master`
-- HEAD: `ab8f2626`
-- Completed task: `DKR-MATCH-FUNC-8002B0F4-PAD3-POINTER-COPY-PROBE`
+- HEAD: `76d429e9`
+- Completed task: `DKR-MATCH-FUNC-80059208-SPLIT-NEGATED-CHECKPOINT-DOT-PROBE`
 - Summary: No new source match landed. Intentionally chose active alternate
-  func_8002B0F4, used the known better `pad3`-removed branch, then tested a
-  pointer-increment `gTrackWaves` population loop. The pointer-copy spelling
-  worsened the relinked focused diff and shifted early register scheduling, so
-  source was restored and func_8002B0F4 remains active rather than parked.
+  func_80059208, then tested a split negated checkpoint-dot spelling
+  (`pad2 = -(tempZ * diffZ); pad2 -= diffX * tempX`) while preserving the
+  surrounding final object-dot source shape. The spelling worsened the relinked
+  focused diff and broadened final-block register/label drift, so source was
+  restored and func_80059208 remains active rather than parked.
 
 ## Validation
 
@@ -16,9 +17,9 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- func_8002B0F4 pad3-removed pointer-copy probe: full verify failed with
-  calculated CRCs `0x47E07C97/0x7D45A79C`; relinked `./diff.sh func_8002B0F4
-  --format plain --no-pager --max-size 900` -> `CURRENT (6366)`.
+- func_80059208 split-negated-checkpoint-dot probe: full verify failed with
+  calculated CRCs `0x53C0A2B5/0x47AA3C12`; relinked `./diff.sh func_80059208
+  --format plain --no-pager --max-size 760` -> `CURRENT (1405)`.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -41,8 +42,9 @@
   racerThrottle/racerVelocity/var_f20/var_f14/segmentZVelocity/spEC/spD8/
   spD4/spD0 and the recorded early-zero/wave-speed/wave-count/top-speed/
   buoyancy/source-shape probes. For func_80059208, avoid the
-  object-local-before-pad2 no-op and recorded final-offset source-shape
-  families. For trackbg_render_flashy, avoid the single-site
+  object-local-before-pad2 no-op, split-negated checkpoint-dot spelling, and
+  recorded final-offset source-shape families. For trackbg_render_flashy, avoid
+  the single-site
   `zPositions[0] = -scaledXCos + scaledXSin` scaled-sine spelling plus the
   recorded first-ring/outer-ring position-array source-shape families. For
   func_8002B0F4, avoid the `pad3`-removed pointer-increment `gTrackWaves`
