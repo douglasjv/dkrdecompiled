@@ -1405,7 +1405,14 @@
   calculated CRCs `0x53D141DF/0xB9D4B481`, the relinked focused diff stayed
   `CURRENT (870)`, and the same final object-dot plus negated-checkpoint-dot
   arithmetic/register drift remained. Source was restored and final full
-  verify passed; do not repeat this divisor register hint.
+  verify passed; do not repeat this divisor register hint. Routing only the
+  final object-dot x product through the now-dead `scale` local
+  (`scale = splinePos * diffX; pad = scale + (diffZ * distance)`) compiled but
+  worsened the relinked focused score to `CURRENT (940)`, failed full verify
+  with calculated CRCs `0x53A518DF/0x0DEFF06A`, loaded object z before x in
+  the final dot product, and broadened the final vertical FPR drift. Source
+  was restored and final full verify passed; do not repeat this final
+  object-dot `scale` carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
