@@ -671,7 +671,12 @@
   Adding `register f32 negScaledXCos` and using it for the first/outer negative
   cosine expressions compiled but worsened the uncompressed linked diff to
   `CURRENT (2769)` and changed the promoted full-verify CRC to
-  `0xDC79FC91/0xA51F89F4`. A
+  `0xDC79FC91/0xA51F89F4`. A first-four position-store order probe that grouped
+  equivalent target temps compiled and initially printed a misleading
+  object-only `CURRENT (0)`, but the promoted full build failed verify with CRC
+  `0x8E7F39EA/0xD7399E4A` and the relinked uncompressed focused diff worsened
+  to `CURRENT (4390)` with a smaller `0x150` frame and shifted early
+  position-array stack slots. A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
   full verify gate before accepting anything.
