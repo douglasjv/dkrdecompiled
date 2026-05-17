@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:38:16Z
+- Generated at: 2026-05-17 14:41:23Z
 - Branch: `master`
-- HEAD: `ae1c6265`
-- Completed task: `func_80059208`
-- Summary: Tested a narrow final-expression order probe in func_80059208: promoted source and changed the lateral correction from `pad + pad2` to `pad2 + pad`. It compiled but produced no relinked object movement from the promoted baseline: focused CURRENT (870), same final object-load/arithmetic drift, and full verify failed with calculated CRCs 0x53D141DF/0xB9D4B481. Source restored; final full verify passed. Keep func_80059208 active rather than parked.
+- HEAD: `7954b9b2`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a narrow outer-ring assignment-order probe in trackbg_render_flashy: promoted source and moved only `zPositions[6]` before `xPositions[6]`. It compiled but worsened the relinked focused score to CURRENT (3860), shifted the early position-array schedule, and full verify failed with calculated CRCs 0x93D338FF/0xB8A243D7. Source restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 900 => relinked focused CURRENT (870); failed full verify CRCs 0x53D141DF/0xB9D4B481
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 => relinked focused CURRENT (3860); failed full verify CRCs 0x93D338FF/0xB8A243D7
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 direct pad2-plus-pad expression probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy single-site z6/x6 reorder.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

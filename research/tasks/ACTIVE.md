@@ -241,7 +241,11 @@
   `xPositions[6]`, and `zPositions[7]` before `xPositions[7]` to mimic the
   target store order; it compiled but worsened the relinked focused score to
   `CURRENT (2786)` and failed full verify with calculated CRCs
-  `0xDC7DB491/0xB2CAADCB`. A later paired first-ring
+  `0xDC7DB491/0xB2CAADCB`. A narrower single-site outer-ring reorder that only
+  moved `zPositions[6]` before `xPositions[6]` also missed: relinked focused
+  score worsened to `CURRENT (3860)` and full verify failed with calculated
+  CRCs `0x93D338FF/0xB8A243D7`; source was restored and final full verify
+  passed. A later paired first-ring
   `scaledXCos - (xSin * 1280.0f)` carrier through the existing `pad_sp108`
   local for `xPositions[1]` and `zPositions[2]` compiled but collapsed into
   the same bad frame-shrink family: frame `0x150`, focused score
@@ -257,8 +261,9 @@
   focused `CURRENT (13471)`, and full-verify CRCs
   `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
   single-site scaled-sine, first-ring existing-`var_f16` carrier,
-  first-ring `pad_sp108` carrier, outer-ring assignment-order, or
-  `pad_sp108` x1/z2/double-cosine carrier shapes.
+  first-ring `pad_sp108` carrier, outer-ring assignment-order, single-site
+  `zPositions[6]`/`xPositions[6]` reorder, or `pad_sp108`
+  x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1162,7 +1167,12 @@
   four x/z position assignments with `scaledXSin` widened the frame to `0x168`
   and worsened the focused score to `CURRENT (12121)`; reordering the index
   5-8 x/z position stores to match the apparent target store sequence worsened
-  the focused score to `CURRENT (2551)` and shifted later scheduling. Flipping
+  the focused score to `CURRENT (2551)` and shifted later scheduling. A
+  narrower single-site outer-ring reorder that moved only `zPositions[6]`
+  before `xPositions[6]` compiled but worsened the relinked focused score to
+  `CURRENT (3860)`, failed full verify with calculated CRCs
+  `0x93D338FF/0xB8A243D7`, and shifted the early position-array schedule; do
+  not repeat this single-site z6/x6 reorder. Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
