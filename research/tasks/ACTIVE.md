@@ -23,7 +23,14 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest no-park routing note: `func_80049794` remains active and should not be
-  parked solely because the current source-shape families are saturated. The
+  parked solely because the current source-shape families are saturated. A
+  2026-05-17 current-baseline reversed chained-zero probe
+  (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
+  failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
+  diff worsened to `CURRENT (3000)`, and it reversed the two early zero stores
+  while still using `$f16` and still lacking target `$f20/$f21` prologue saves.
+  Source was restored and final full verify passed; do not repeat this
+  reversed chained-zero current-baseline spelling. The
   2026-05-17 save-family wave-bound probe recreated the close x/z/y
   pre-`sqrtf` branch with chained grounded-wheel zero, removed trailing
   `pad3`/`pad4`, and steer-vel no-op, then spelled the wave loop bound as
@@ -1046,7 +1053,14 @@
   `CURRENT (2430)`, still lacked target `$f20/$f21` prologue saves, and still
   used `$f16` for the early zero instead of target `$f14`; source was restored
   and final full verify passed. Do not repeat this standalone chained-zero
-  current-baseline probe. A baseline check of `func_80059208` was still
+  current-baseline probe. A 2026-05-17 current-baseline reversed chained-zero
+  spelling (`racer->unk84 = (racer->unk88 = 0.0f)`) also missed: it failed
+  full verify with calculated CRCs `0x5FDDE03F/0x127A8488`, worsened the
+  relinked focused score to `CURRENT (3000)`, reversed the early `unk84`/`unk88`
+  zero-store order, still used `$f16` for zero, and still lacked target
+  `$f20/$f21` prologue saves. Source was restored and final full verify passed;
+  do not repeat this reversed chained-zero current-baseline probe. A baseline
+  check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
