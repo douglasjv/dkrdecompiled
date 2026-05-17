@@ -30,7 +30,10 @@
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
-  `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`.
+  `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`. A later final
+  vertical `diffX` cast-carrier probe
+  (`diffX = diffY; racer->unk1BC += (s32) diffX`) worsened to `CURRENT (1030)`
+  by adding a final-block stack store before the conversion.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -625,8 +628,12 @@
   `pad + pad2` sum through the now-dead `scale` local
   (`scale = pad + pad2; diffX = -(scale / divisor)`) also compiled but left the
   focused score unchanged at `CURRENT (870)`, with the same final
-  arithmetic/register-family drift. Keep this function active; do not park it
-  just because these final-offset probes missed.
+  arithmetic/register-family drift. Routing the final clamped vertical value
+  through the now-dead `diffX` before the `unk1BC` cast/add
+  (`diffX = diffY; racer->unk1BC += (s32) diffX`) compiled but worsened to
+  `CURRENT (1030)` by inserting an extra `swc1` before the final conversion
+  while leaving the lateral drift unchanged. Keep this function active; do not
+  park it just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
   compiles, but linked focused diff scores `CURRENT (1753)` in the current
   checkout and starts early in the position-array setup, so it is less localized
