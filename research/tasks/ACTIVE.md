@@ -94,7 +94,14 @@
   relinked focused score `CURRENT (2430)`, same failed full-verify CRCs
   `0x5FDDE03F/0xEF7A0514`, still missing target `$f20/$f21` prologue saves,
   and still allocating the early zero in `$f16` instead of `$f14`. Do not
-  repeat this standalone current-baseline chained-zero probe. Promoting the
+  repeat this standalone current-baseline chained-zero probe. A pre-spinout
+  zero-timing probe that inserted `var_f14 = 0.0f` after the grounded-wheel
+  `unk84`/`unk88` zero stores and before the `unk1FE`/spinout check also
+  missed in the same family: focused score stayed `CURRENT (2430)`, full verify
+  failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, the target `$f20/$f21`
+  prologue saves were still absent, and the early zero still allocated in
+  `$f16` rather than target `$f14`. Do not repeat this pre-spinout
+  `var_f14 = 0.0f` timing probe. Promoting the
   existing C in the current checkout and
   relinking shows the uncompressed focused baseline at `CURRENT (1926)` with
   the known calculated CRCs
