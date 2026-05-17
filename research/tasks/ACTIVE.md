@@ -946,6 +946,14 @@
   `CURRENT (2142)` with the same `a0`/`v1` wave-register mismatch family. Do
   not repeat this exact chained-zero save-family shape, the comparison-only
   wave operand spelling, or the explicit/commuted wave-threshold spellings.
+  Combining that close chained-zero x/z/y save-family branch with an
+  existing-`spCC` preserve across `apply_vehicle_rotation_offset`
+  (`spCC = var_f14; ...; var_f14 = spCC`) also missed badly: it kept the
+  target `0xf8` frame but regressed the relinked focused score to
+  `CURRENT (5976)`, failed full verify with calculated CRCs
+  `0xF40EFA01/0x5672460E`, and inserted broad `$f14` save/reload traffic
+  through the spinout and voice/sound scheduling path. Do not repeat this
+  close-branch `spCC` preserve combination.
   Rewriting the wave scan as a bound-local copy while-loop
   (`var_a0 = gRacerWaveCount - 1; var_v1 = var_a0; while (...) { var_a0--; };
   if (var_a0 == var_v1)`) also missed: full verify failed with calculated CRCs
