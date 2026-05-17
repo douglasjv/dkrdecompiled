@@ -1163,7 +1163,14 @@
   same calculated CRCs as plain `pad3` removal, `0x785671AA/0x0D6F6A4A`; the
   relinked focused score regressed to `CURRENT (2868)` and still showed the
   early `gCurrentLevelModel` spill family, so do not repeat this combined
-  pad3-removal plus early-conversion call shape. A compressed focused diff printed stale
+  pad3-removal plus early-conversion call shape. A later variant kept the
+  original `get_inside_segment_count_xz(xIn, zIn, spB0)` call shape, removed
+  `pad3`, and moved only `XInInt = xIn; ZInInt = zIn;` out of the per-segment
+  loop to just after `yOutCount = 0`; it compiled but failed full verify with
+  the same calculated CRCs `0x785671AA/0x0D6F6A4A`, regressed the relinked
+  focused score to `CURRENT (2853)`, and preserved the unwanted early
+  `gCurrentLevelModel` spill at `0x64(sp)`. Do not repeat this pad3-removal
+  plus post-call coordinate-hoist shape. A compressed focused diff printed stale
   `CURRENT (0)` before relink during both the 2026-05-15 packet and the
   2026-05-17 unrolled-copy probe; rely on a relinked focused diff and the full
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before accepting this

@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:30:04Z
+- Generated at: 2026-05-17 13:33:07Z
 - Branch: `master`
-- HEAD: `49a59f2a`
-- Completed task: `func_80049794`
-- Summary: Tested an existing-`var_v0` wave-count carrier on the close func_80049794 save-family branch: promoted source, removed trailing `pad3`/`pad4`, used chained grounded-wheel zero, kept the x/z/y pre-`sqrtf` accumulation plus steer-vel no-op, then loaded `gRacerWaveCount` into `var_v0` for the loop bound and comparison. It compiled, kept the target `0xf8` frame and `$f20/$f21` saves, but regressed relinked focused diff to CURRENT (4557), failed full verify with calculated CRCs 0xA637D7C4/0x633471A3, and widened wave-register churn. Source guard/body restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `c39e7a52`
+- Completed task: `func_8002B0F4`
+- Summary: Tested a pad3-removal plus post-call coordinate-hoist probe in func_8002B0F4: promoted source, removed dead `pad3`, kept the original `get_inside_segment_count_xz(xIn, zIn, spB0)` call shape, and moved `XInInt = xIn; ZInInt = zIn;` out of the per-segment loop to just after `yOutCount = 0`. It compiled but failed full verify with calculated CRCs 0x785671AA/0x0D6F6A4A, regressed relinked focused diff to CURRENT (2853), and preserved the unwanted early `gCurrentLevelModel` spill at `0x64(sp)`. Source guard/body restored; final full verify passed. Keep func_8002B0F4 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: `./diff.sh func_80049794 --format plain --no-pager --max-size 760` => relinked focused CURRENT (4557)
+- Failed probe evidence: `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 520` => relinked focused CURRENT (2853)
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 existing-var_v0 wave-count carrier.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_8002B0F4 pad3-removal plus post-call coordinate-hoist probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
