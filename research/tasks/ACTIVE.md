@@ -148,7 +148,12 @@
   compiled but produced no object change and also stayed `CURRENT (870)`. A
   later final object-dot product carrier through the existing `distance` local
   (`distance *= diffZ; pad = (splinePos * diffX) + distance`) worsened the
-  relinked focused score to `CURRENT (2043)`. The sibling term-negation spelling
+  relinked focused score to `CURRENT (2043)`. A final object-pointer lifetime
+  probe (`Object *obj2; obj2 = obj; splinePos = obj2->trans.x_position;
+  distance = obj2->trans.z_position`) worsened the relinked focused score from
+  baseline `CURRENT (870)` to `CURRENT (878)` and failed full verify with
+  calculated CRCs `0x53D141D7/0xAA087F2A`, leaving the same final
+  arithmetic/register drift. The sibling term-negation spelling
   (`pad2 = (tempZ * -diffZ) - (diffX * tempX)`) worsened the relinked focused
   score from `CURRENT (870)` to `CURRENT (1165)` and failed full verify with
   calculated CRCs `0x53AB58B5/0xBC82B0CE`. Loading the final object x/z
@@ -1146,7 +1151,13 @@
   spline/local stack slots down by 4 bytes. Replacing the dead `pad3` local
   with that `ObjectTransform *trans` restored the stack-slot layout and
   compiled back to baseline `CURRENT (870)`, but produced no focused
-  improvement and left the same final arithmetic/register drift. Adding
+  improvement and left the same final arithmetic/register drift. A narrower
+  final-only `Object *obj2` lifetime probe (`obj2 = obj` immediately before
+  loading final x/z positions, then using `obj2->trans`) also missed: relinked
+  focused score worsened from `CURRENT (870)` to `CURRENT (878)`, full verify
+  failed with calculated CRCs `0x53D141D7/0xAA087F2A`, and the same object-dot
+  plus negated-checkpoint-dot arithmetic drift remained. Do not repeat this
+  final object-pointer lifetime probe. Adding
   `register` to
   the `splinePos` local also compiled but produced no object change from the
   promoted baseline and left the focused score unchanged at `CURRENT (870)`.

@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 15:03:37Z
+- Generated at: 2026-05-17 15:07:45Z
 - Branch: `master`
-- HEAD: `c32747cb`
-- Completed task: `func_80049794`
-- Summary: Tested an early-zero carrier in `func_80049794`: promoted source, initialized existing `var_f14 = 0.0f`, and used it for the initial grounded-wheel `unk84`/`unk88` zero stores. It compiled but produced no object movement from promoted baseline: focused score stayed `CURRENT (2430)`, full verify failed with the same calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the early zero still allocated in `$f16` instead of target `$f14`. Source restored; final full verify passed. Keep `func_80049794` active rather than parked.
+- HEAD: `e55c3f15`
+- Completed task: `func_80059208`
+- Summary: Tested a final object-pointer lifetime probe in `func_80059208`: promoted source, introduced `Object *obj2`, assigned `obj2 = obj` immediately before the final object x/z position loads, and used `obj2->trans` for the final object dot. It compiled but worsened the focused score from `CURRENT (870)` to `CURRENT (878)`, failed full verify with calculated CRCs `0x53D141D7/0xAA087F2A`, and left the same final arithmetic drift around the object dot plus negated checkpoint dot. Source restored; final full verify passed. Keep `func_80059208` active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 900 after relink => CURRENT (2430), no object movement from promoted baseline; failed full verify CRCs 0x5FDDE03F/0xEF7A0514
+- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 1000 after relink => CURRENT (878), baseline CURRENT (870); failed full verify CRCs 0x53D141D7/0xAA087F2A
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 var_f14 early-zero carrier.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 final Object *obj2 lifetime probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
