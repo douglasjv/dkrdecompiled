@@ -186,10 +186,15 @@
   `Vec4f tempVec4f`) also compiled but regressed from the better plain
   pad3-removal score to relinked focused `CURRENT (2868)`, failed full verify
   with calculated CRCs `0x785671AA/0x0D6F6A4A`, and still showed the unwanted
-  pre-loop `gCurrentLevelModel` spill to `0x64(sp)`. Keep active; do not
-  repeat the simple moved `pad3` variant, the pointer-increment population
-  spelling, this combined pad3-removal plus early-conversion call shape, or
-  the scalar plane-carrier replacement.
+  pre-loop `gCurrentLevelModel` spill to `0x64(sp)`. Keeping `pad3` intact but
+  moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
+  passing those integer locals matched the target prologue conversion/call
+  shape, but still inserted the unwanted pre-loop `gCurrentLevelModel` spill,
+  regressed the relinked focused score to `CURRENT (2860)`, and failed full
+  verify with calculated CRCs `0x7856718A/0x66208CAA`; source was restored and
+  final full verify passed. Keep active; do not repeat the simple moved `pad3`
+  variant, the pointer-increment population spelling, either early-conversion
+  call shape, or the scalar plane-carrier replacement.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1194,10 +1199,13 @@
   the setup order to compute `currentBoundingBox` before `currentSegment`
   worsened the linked score to `CURRENT (3885)` while still leaving the unwanted
   `gCurrentLevelModel` hoist; assigning `XInInt`/`ZInInt` before
-  `get_inside_segment_count_xz` and passing those locals left the linked score
-  unchanged at `CURRENT (2780)`; loading a local `LevelModel *levelModel`
-  through a volatile pointer cast at the segment and texture access sites also
-  left the linked score unchanged at `CURRENT (2780)`. Explicitly rewriting the
+  `get_inside_segment_count_xz` and passing those locals kept the target
+  prologue conversion/call shape but inserted an early `gCurrentLevelModel`
+  spill, regressed the relinked focused score to `CURRENT (2860)`, and failed
+  full verify with calculated CRCs `0x7856718A/0x66208CAA`; loading a local
+  `LevelModel *levelModel` through a volatile pointer cast at the segment and
+  texture access sites also left the linked score unchanged at `CURRENT (2780)`.
+  Explicitly rewriting the
   `gTrackWaves` pointer population as a remainder loop followed by
   unrolled-by-four stores compiled but worsened the relinked score to
   `CURRENT (4623)` and shifted the same `gCurrentLevelModel`/global-offset
