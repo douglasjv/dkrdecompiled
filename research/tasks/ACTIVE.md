@@ -112,8 +112,11 @@
   `register f32 var_f20` with `register f32 segmentZVelocity` compiled but
   produced no object change from the promoted baseline, stayed focused
   `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
-  saves. Splitting the first speed
-  magnitude into the existing `var_f2` temp
+  saves. Splitting the first speed-magnitude operands into dedicated
+  `xVelocity`/`zVelocity`/`yVelocity` locals before `sqrtf` compiled but widened
+  the frame to `0x108`, worsened the focused object score to `CURRENT (3163)`,
+  and still did not introduce the target `$f20/$f21` prologue saves. Splitting
+  the first speed magnitude into the existing `var_f2` temp
   (`var_f2 = sqrtf(...) - 2.0; var_f20 = var_f2;` and using `var_f2` for the
   boss adjustment) compiled but left the focused object score unchanged at
   `CURRENT (2550)` and still did not introduce the target `$f20/$f21` prologue
