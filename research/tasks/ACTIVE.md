@@ -55,8 +55,15 @@
   early-zero carrier family also missed: plain `f32 zero` and `register f32
   zero` variants widened the frame to `0x100`, kept the early zero in `$f16`,
   failed full verify with calculated CRCs `0x5FDDDEDF/0x01A99146`, and still
-  did not introduce target `$f20/$f21` prologue saves. Keep `func_80049794`
-  active rather than parked.
+  did not introduce target `$f20/$f21` prologue saves. Promoting the existing C
+  in the current checkout and relinking shows the uncompressed focused baseline
+  at `CURRENT (1926)` with the known calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; the first visible drift remains the missing
+  `$f20/$f21` prologue saves, shifted saved `$ra/$s1/$s0` stack slots, and early
+  zero allocation in `$f16` instead of target `$f14`. Adding `register` to
+  `racerThrottle` compiled but produced no object movement: same uncompressed
+  `CURRENT (1926)`, same CRC family, and still no target `$f20/$f21` saves.
+  Keep `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -202,6 +209,12 @@
   `racerVelocity` clamp widened the frame to `0x100`, failed full verify with
   calculated CRCs `0x5FDDDEDF/0x01A99146`, and still kept the early zero in
   `$f16` instead of target `$f14`; do not repeat this zero-carrier family.
+  Adding `register` to `racerThrottle` compiled but produced no object movement
+  from the current promoted baseline: uncompressed focused diff stayed
+  `CURRENT (1926)`, full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the missing `$f20/$f21` prologue saves plus
+  early `$f16` zero allocation remained unchanged; do not repeat this standalone
+  `racerThrottle` register hint.
   Combining `register f32 var_f20` with `register f32 segmentZVelocity`
   compiled but produced no object change from the promoted baseline, stayed
   focused `CURRENT (2550)`, and still did not introduce the target `$f20/$f21`

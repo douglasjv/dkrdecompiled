@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 12:05:13Z
+- Generated at: 2026-05-17 12:10:40Z
 - Branch: `master`
-- HEAD: `f1925d83`
-- Completed task: `DKR-MATCH-TRACKBG-RENDER-FLASHY-FIRST-RING-NOOP-PROBES`
-- Summary: No new source match landed. Used active alternate `trackbg_render_flashy` and tested three narrow first-ring/allocation probes against the promoted C: spelling only `xPositions[2]` as `(xCos * 1280.0f) + scaledXSin`, moving only `xPositions[3]` before `xPositions[2]`, and adding `register` to the existing `var_f16` local. All compiled but produced no object movement from the promoted baseline, so guarded source was restored. `trackbg_render_flashy` remains active rather than parked.
+- HEAD: `a70c8ce9`
+- Completed task: `DKR-MATCH-FUNC-80049794-RACERTHROTTLE-REGISTER-PROBE`
+- Summary: No new source match landed. Promoted selector-recommended `func_80049794` and tested a standalone `register f32 racerThrottle` lifetime/allocation hint. It compiled but produced no object movement from the promoted baseline and still did not introduce the target `$f20/$f21` prologue saves, so guarded source was restored. `func_80049794` remains active rather than parked.
 
 ## Validation
 
-- python3 tools/query_goal_state.py next --compact --refresh -> func_80049794; intentionally selected active alternate `trackbg_render_flashy`; python3 tools/check_active_surface.py -> active surface ok; promoted focused `./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 520` stayed `CURRENT (1808)` for each no-op probe, with the first visible drift still at the early position-array `$f16/$f18` split and `0x30(sp)` reload/add scheduling; source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> `Verify: OK`
+- python3 tools/query_goal_state.py next --compact --refresh -> func_80049794; python3 tools/check_active_surface.py -> active surface ok; promoted baseline after relink failed full verify with calculated CRCs `0x5FDDE03F/0xEF7A0514`; uncompressed `./diff.sh func_80049794 --format plain --no-pager --max-size 760` -> `CURRENT (1926)` with first visible drift at missing `$f20/$f21` prologue saves, shifted saved `$ra/$s1/$s0` stack slots, and early zero allocation in `$f16` instead of target `$f14`; standalone `register f32 racerThrottle` probe stayed `CURRENT (1926)` and same CRC family; source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> `Verify: OK`
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector-recommended func_80049794 unless a closer active alternate is intentionally chosen. Keep close candidates active rather than parked. If trackbg_render_flashy is used as a close alternate, avoid the first-ring xPositions[2] xCos-multiply spelling, minimal xPositions[3]/xPositions[2] reorder, register var_f16 hint, and previously recorded scaledXSin/outer-ring/negScaledXCos/store-order probes. If func_80059208 is used as a close alternate, avoid the delayed-diffZ positive-checkpoint-dot spelling from this packet plus the previously recorded final-offset carrier, term-negation, axis-swap, object-dot, clamp, and final-vertical source-shape misses. If func_8002B0F4 is used as a close alternate, use the pad3-removal evidence only for a new hoist/lifetime idea and do not repeat the recorded pad3 move/cache/volatile/copy-loop/setup-order shapes.`
+- Task: `Continue selector-recommended func_80049794 unless a closer active alternate is intentionally chosen. Keep close candidates active rather than parked. For func_80049794, avoid standalone register hints for racerThrottle, racerVelocity, var_f20, var_f14, segmentZVelocity, spEC/spD8/spD4/spD0, and the recorded early-zero/wave-speed/wave-count/top-speed/buoyancy/source-shape probes. If trackbg_render_flashy is used as a close alternate, avoid the first-ring xPositions[2] xCos-multiply spelling, minimal xPositions[3]/xPositions[2] reorder, register var_f16 hint, and previously recorded scaledXSin/outer-ring/negScaledXCos/store-order probes. If func_80059208 is used as a close alternate, avoid the delayed-diffZ positive-checkpoint-dot spelling from this packet plus the previously recorded final-offset carrier, term-negation, axis-swap, object-dot, clamp, and final-vertical source-shape misses.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
