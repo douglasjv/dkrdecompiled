@@ -284,9 +284,10 @@
   `0x7856718A/0x66208CAA`, and still inserted the unwanted pre-loop
   `gCurrentLevelModel` spill to `0x60(sp)`. Keep active; do not repeat the
   simple moved `pad3` variant, the pointer-increment population spelling,
-  either early-conversion call shape, this `D_8011D308`-first conversion/order
-  variant, the scalar plane-carrier replacement, the unused-wave2 removal, or
-  the declaration-only `pad2` removal.
+  either early-conversion call shape, the direct-cast
+  `get_inside_segment_count_xz` call shape, this `D_8011D308`-first
+  conversion/order variant, the scalar plane-carrier replacement, the
+  unused-wave2 removal, or the declaration-only `pad2` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1447,7 +1448,13 @@
   `get_inside_segment_count_xz` and passing those locals kept the target
   prologue conversion/call shape but inserted an early `gCurrentLevelModel`
   spill, regressed the relinked focused score to `CURRENT (2860)`, and failed
-  full verify with calculated CRCs `0x7856718A/0x66208CAA`; loading a local
+  full verify with calculated CRCs `0x7856718A/0x66208CAA`. A smaller
+  direct-cast call-shape probe (`get_inside_segment_count_xz((s32) xIn,
+  (s32) zIn, spB0)`) without hoisting `XInInt`/`ZInInt` locals recreated the
+  same miss: relinked focused score `CURRENT (2860)`, full verify CRCs
+  `0x7856718A/0x66208CAA`, and the same unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`. Do not repeat this direct-cast
+  call-shape spelling. Loading a local
   `LevelModel *levelModel` through a volatile pointer cast at the segment and
   texture access sites also left the linked score unchanged at `CURRENT (2780)`.
   Explicitly rewriting the
