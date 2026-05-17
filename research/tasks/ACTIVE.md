@@ -365,7 +365,13 @@
   created the target-like call-adjacent `$f14` save/reload shape, but it
   regressed to `CURRENT (3751)` by shrinking the frame to `0xf0` and dropping
   the target `$f20/$f21` prologue saves; this is useful evidence for the call
-  schedule, but not the preferred save-family continuation by itself. A
+  schedule, but not the preferred save-family continuation by itself. Retaining
+  the trailing `pad3`/`pad4` locals with that same `var_f2` z/y component
+  staging kept the target `0xf8` frame and improved the focused score to
+  `CURRENT (3250)`, but still dropped the target `$f20/$f21` prologue saves and
+  shifted the broad gravity carrier into `$f14`; if continuing this branch,
+  inspect how to regain `$f20/$f21` save pressure without losing the
+  call-adjacent `$f14` save/reload shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
