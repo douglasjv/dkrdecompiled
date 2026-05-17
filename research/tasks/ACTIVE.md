@@ -207,8 +207,12 @@
   divisor`) compiled but worsened the relinked focused score to
   `CURRENT (1300)` and failed full verify with calculated CRCs
   `0xC7D996EA/0xC6D1DFDE`; source was restored and final full verify passed.
-  Do not repeat this temp-mutating checkpoint-dot carrier or positive
-  numerator carrier. Rewriting the final lateral offset update as
+  A `pad2`-carrier variant of the same positive numerator
+  (`pad2 = checkpointDot; pad = objectDot; pad2 -= pad; diffX = pad2 /
+  divisor`) reproduced the same miss: relinked focused score `CURRENT (1300)`
+  and failed full-verify CRCs `0xC7D996EA/0xC6D1DFDE`. Do not repeat this
+  temp-mutating checkpoint-dot carrier or either positive numerator carrier.
+  Rewriting the final lateral offset update as
   `racer->unk1BA = (s32) diffX + racer->unk1BA` compiled but worsened the
   relinked focused score to `CURRENT (900)` and failed full verify with
   calculated CRCs `0x53CD41DF/0x4CAF790B`; source was restored and final full
@@ -1227,7 +1231,13 @@
   divisor)`) also compiled but produced no object change from promoted baseline,
   left the relinked focused score at `CURRENT (870)`, and failed full verify in
   the same CRC family `0x53D141DF/0xB9D4B481`; do not repeat this positive
-  `splinePos` carrier shape. Computing the negated checkpoint dot before the
+  `splinePos` carrier shape. A positive checkpoint-minus-object numerator that
+  kept the checkpoint dot in `pad2` (`pad2 = checkpointDot; pad = objectDot;
+  pad2 -= pad; diffX = pad2 / divisor`) compiled but matched the existing
+  positive-numerator failure family: relinked focused score `CURRENT (1300)`
+  and full-verify CRCs `0xC7D996EA/0xC6D1DFDE`; source was restored and final
+  full verify passed. Do not repeat this `pad2` positive-numerator variant
+  either. Computing the negated checkpoint dot before the
   object-position locals, then splitting the final object dot into
   `pad = splinePos * diffX; pad += diffZ * distance`, also compiled to the
   promoted baseline shape: full verify failed with calculated CRCs
