@@ -380,7 +380,18 @@
   `register f32 var_f20` to that retained-pad variant produced no object
   change. Do not repeat these `var_f14` first-speed accumulator shapes unless
   there is new evidence for recovering `$f20/$f21` without losing the `0xf8`
-  frame. Staging the z/y velocity
+  frame. Reordering the save-family first-speed pre-`sqrtf` accumulation to
+  z-first (`var_f20 = z*z; var_f20 += x*x; var_f20 += y*y`) kept the target
+  `0xf8` frame and `$f20/$f21` saves, but regressed to `CURRENT (3560)`, worse
+  than the x/z/y save-family best at `CURRENT (3550)`; do not repeat z-first
+  pre-`sqrtf` accumulation unless new scheduling evidence specifically points
+  there. Routing the first speed-magnitude accumulation through existing
+  `var_f6` (`var_f6 = x*x; var_f6 += z*z; var_f6 += y*y; var_f20 =
+  sqrtf(var_f6) - 2.0`) improved the numeric focused score to `CURRENT (3441)`
+  with trailing pads removed, but shrank the frame to `0xf0` and dropped target
+  `$f20/$f21` saves, matching the side-branch pattern of caller-saved
+  accumulators; do not repeat simple `var_f6` accumulator staging without new
+  save-pressure evidence. Staging the z/y velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
