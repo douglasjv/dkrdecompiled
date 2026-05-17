@@ -239,10 +239,15 @@
   (`pad_sp108 = scaledXCos + scaledXCos`, then using it for `zPositions[5-8]`)
   compiled but produced no focused improvement from the promoted baseline:
   relinked focused diff stayed `CURRENT (1808)` and full verify failed with
-  the same additive-double CRC family `0x93D338FF/0x03D9C8FE`. Keep active and
-  avoid repeating those no-op, single-site scaled-sine, first-ring
-  existing-`var_f16` carrier, outer-ring assignment-order, or `pad_sp108`
-  x1/z2/double-cosine carrier shapes.
+  the same additive-double CRC family `0x93D338FF/0x03D9C8FE`. A paired
+  first-ring `pad_sp108` carrier for the duplicated `-scaledXCos +
+  scaledXSin` value (`zPositions[0] = pad_sp108; xPositions[3] = pad_sp108`)
+  also collapsed into the bad frame-shrink family: frame `0x150`, relinked
+  focused `CURRENT (13471)`, and full-verify CRCs
+  `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
+  single-site scaled-sine, first-ring existing-`var_f16` carrier,
+  first-ring `pad_sp108` carrier, outer-ring assignment-order, or
+  `pad_sp108` x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
