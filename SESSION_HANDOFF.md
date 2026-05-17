@@ -1,20 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:03:10Z
+- Generated at: 2026-05-17T00:06:35Z
 - Branch: `master`
-- HEAD before closeout commit: `752ad71e`
-- Completed task: `DKR-MATCH-FUNC-80049794-VAR-F2-STAGING-TRAILING-PADS-PROBE`
+- HEAD before closeout commit: `6c5b93ef`
+- Completed task: `DKR-MATCH-FUNC-80049794-REGISTER-F20-VAR-F2-STAGING-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested the `var_f2` z/y component staging again
-  while retaining the trailing `pad3`/`pad4` locals. It compiled, kept the
-  target `0xf8` frame, improved the focused score to `CURRENT (3250)`, and
-  preserved the target-like call-adjacent `$f14` save/reload shape. It remains
-  nonmatching because the target `$f20/$f21` prologue saves are still absent
-  and the gravity carrier shifts into `$f14`. The guarded matching source was
-  restored and the full ROM gate remains clean.
+  `func_80049794` active and tested whether `register f32 var_f20` could regain
+  target `$f20/$f21` save pressure on the retained-pad `var_f2` z/y component
+  staging branch. It compiled and preserved the target `0xf8` frame plus the
+  useful call-adjacent `$f14` save/reload shape, but stayed `CURRENT (3250)`.
+  It remains nonmatching because target `$f20/$f21` prologue saves are still
+  absent. The guarded matching source was restored and the full ROM gate
+  remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with trailing `pad3`/`pad4` retained, `register f32 var_f20`, steer no-op, and z/y velocity components staged through `var_f2` before the first `sqrtf`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> register hint produces the same retained-pad component-staging score, `CURRENT (3250)`: target `0xf8` frame and `$f14` call-adjacent shape stay, but target `$f20/$f21` saves are still absent
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with trailing `pad3`/`pad4` retained, steer no-op, and z/y velocity components staged through `var_f2` before the first `sqrtf`
