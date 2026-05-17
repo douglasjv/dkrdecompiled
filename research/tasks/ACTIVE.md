@@ -31,6 +31,11 @@
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
   `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`.
+- `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
+  `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
+  but only produced the known stale object-only `CURRENT (0)` before relink;
+  after relink it worsened to `CURRENT (4623)` and failed full verify before
+  the source guard was restored.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -669,11 +674,16 @@
   `get_inside_segment_count_xz` and passing those locals left the linked score
   unchanged at `CURRENT (2780)`; loading a local `LevelModel *levelModel`
   through a volatile pointer cast at the segment and texture access sites also
-  left the linked score unchanged at `CURRENT (2780)`. A compressed focused
-  diff printed stale `CURRENT (0)` before relink during the 2026-05-15 packet;
-  rely on a relinked focused diff and the full `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` gate before accepting this function. Keep
-  this function active, but do not repeat those source shapes.
+  left the linked score unchanged at `CURRENT (2780)`. Explicitly rewriting the
+  `gTrackWaves` pointer population as a remainder loop followed by
+  unrolled-by-four stores compiled but worsened the relinked score to
+  `CURRENT (4623)` and shifted the same `gCurrentLevelModel`/global-offset
+  schedule family; do not repeat that copy-loop spelling. A compressed focused
+  diff printed stale `CURRENT (0)` before relink during both the 2026-05-15
+  packet and the 2026-05-17 unrolled-copy probe; rely on a relinked focused
+  diff and the full `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before
+  accepting this function. Keep this function active, but do not repeat those
+  source shapes.
 
 ## Ask The User Only If
 

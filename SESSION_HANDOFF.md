@@ -1,24 +1,30 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:09:52Z
+- Generated at: 2026-05-17T01:28:08Z
 - Branch: `master`
-- HEAD before closeout commit: `c46d356e`
+- HEAD before closeout commit: `722738d3`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
-  preference by keeping `func_80049794` active and routable, then tested one
-  distinct branch operand-order spelling there before taking a bounded look at
-  the localized active `func_80059208` final-offset block. The
-  `func_80049794` player-index branch spelling compiled but produced no object
-  change from the promoted baseline (`CURRENT (2550)`). The `func_80059208`
-  checkpoint-dot-before-object-dot spelling also stayed `CURRENT (870)`, while
-  the direct `pad2 + object-dot` fold regressed to `CURRENT (1445)` and the
-  empty `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`. Guarded
-  matching source was restored and the full ROM gate remains clean. Keep both
-  functions active; do not park either solely because these source shapes
-  missed.
+  preference by keeping the active candidates routable, then tested a bounded
+  `func_8002B0F4` source-shape probe around the `gTrackWaves` pointer
+  population block. The explicit remainder plus unrolled-by-four copy spelling
+  compiled and initially triggered the known stale focused-diff `CURRENT (0)`
+  trap, but the full relink failed verification and the relinked focused diff
+  worsened to `CURRENT (4623)` versus the promoted baseline `CURRENT (2780)`.
+  Guarded matching source was restored and the full ROM gate is clean. Keep
+  `func_8002B0F4` active; do not park it solely because this local copy-loop
+  spelling missed.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_8002B0F4` C candidate compiles with an explicit `gTrackWaves` remainder loop followed by unrolled-by-four pointer stores
+- `./diff.sh func_8002B0F4 -s --compress-matching 3 --no-pager` immediately after object rebuild -> printed stale `CURRENT (0)`; not accepted
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` with the promoted unrolled-copy probe -> verify failed, CRC calculated `0x2858C783/0x6D4DAB17`
+- `./diff.sh func_8002B0F4 -s --compress-matching 3 --no-pager` after relink -> unrolled-copy probe worsens to `CURRENT (4623)` with shifted `gCurrentLevelModel`/global-offset scheduling
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with commuted `PLAYER_COMPUTER == var_v0` branch spelling
@@ -675,6 +681,7 @@
 - Do not repeat this session's `func_80059208` final vertical numerator split through `diffY` (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`); it worsened the focused object score to `CURRENT (1242)`.
 - Do not repeat this session's `func_80059208` checkpoint-dot accumulation probe (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`); it left the focused object score unchanged at `CURRENT (870)`.
 - Do not repeat this session's `func_8002B0F4` pre-call `XInInt`/`ZInInt` or volatile local `LevelModel *levelModel` reload probes; both left the linked score unchanged at `CURRENT (2780)`.
+- Do not repeat this session's `func_8002B0F4` explicit `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling; it triggered stale object-only `CURRENT (0)` before relink, failed full verify, and worsened the relinked focused score to `CURRENT (4623)`.
 - Do not repeat this session's `trackbg_render_flashy` `scaledXSin`/`scaledXCos` declaration-order or `register` local hints; they produced no object change.
 - Do not repeat this session's `trackbg_render_flashy` `zPositions[3] = scaledXCos + (xSin * 1280.0f)` probe; it worsened to linked `CURRENT (5579)` by adding an extra `swc1 $f0, 0x110(sp)` spill and shifting later scheduling/global offsets.
 - Do not repeat this session's `trackbg_render_flashy` one-store `xPositions[5]` before `zPositions[5]` order probe; it worsened the uncompressed linked diff to `CURRENT (2408)`.
