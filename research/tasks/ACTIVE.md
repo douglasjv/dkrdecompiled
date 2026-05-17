@@ -121,8 +121,12 @@
   all compiled but produced no object movement from the promoted baseline:
   uncompressed focused diff stayed `CURRENT (1808)`, still starting at the
   early position-array `$f16/$f18` split and `0x30(sp)` reload/add scheduling.
-  Source was restored and full matching verify passed. Keep active and avoid
-  repeating those no-op shapes.
+  A later single-site spelling of `zPositions[0]` as `-scaledXCos +
+  scaledXSin` compiled but shrank the frame to `0x150`, worsened the relinked
+  focused score to `CURRENT (13376)`, and failed full verify with calculated
+  CRCs `0x218F9FFA/0x18F4A6D6`. Source was restored and full matching verify
+  passed. Keep active and avoid repeating those no-op or single-site
+  scaled-sine shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -981,7 +985,12 @@
   `-scaledXCos + scaledXSin` compiled, but the promoted full build failed
   verify and the relinked focused diff worsened to `CURRENT (9344)` /
   `CURRENT (12161)`, reshuffling the first-four position stores and shrinking
-  the frame to `0x150`; do not repeat this single-site scaled-sine rewrite. A
+  the frame to `0x150`; do not repeat this single-site scaled-sine rewrite.
+  Replacing only `zPositions[0]` with `-scaledXCos + scaledXSin` also compiled
+  into the bad single-site scaled-sine family: the frame shrank to `0x150`,
+  relinked focused diff worsened to `CURRENT (13376)`, and full verify failed
+  with calculated CRCs `0x218F9FFA/0x18F4A6D6`; do not repeat this z0 spelling.
+  A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
   full verify gate before accepting anything. Later no-object-movement probes:

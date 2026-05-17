@@ -1,16 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:26:28Z
+- Generated at: 2026-05-17T12:29:23Z
 - Branch: `master`
-- HEAD: `650186e7`
-- Completed task: `DKR-MATCH-FUNC-80049794-SPLIT-VAR-V1-WAVE-BOUND-PROBE`
-- Summary: No new source match landed. Followed the selector to func_80049794,
-  promoted the existing C, then tested the close save-family branch with
-  chained grounded-wheel zero, removed trailing pads, x/z/y pre-sqrtf
-  accumulation, steer-vel no-op, and a split `var_v1 = gRacerWaveCount - 1`
-  wave-bound spelling. The split spelling compiled to the same bad family as
-  the prior comma-assignment wave-bound probe, so source was restored and
-  func_80049794 remains active rather than parked.
+- HEAD: `06d139c0`
+- Completed task: `DKR-MATCH-TRACKBG-RENDER-FLASHY-Z0-SCALEDXSIN-PROBE`
+- Summary: No new source match landed. After the func_80049794 closeout commit,
+  intentionally chose the active alternate trackbg_render_flashy and tested a
+  single-site first-ring spelling: `zPositions[0] = -scaledXCos + scaledXSin`.
+  The probe fell into the bad scaled-sine family, shrinking the frame to
+  `0x150` and sharply worsening the focused diff, so source was restored and
+  trackbg_render_flashy remains active rather than parked.
 
 ## Validation
 
@@ -18,12 +17,14 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- func_80049794 promoted baseline: full verify failed with calculated CRCs
-  `0x5FDDE03F/0xEF7A0514`; relinked `./diff.sh func_80049794 --format plain
-  --no-pager --max-size 900` -> `CURRENT (2430)`.
-- Split-`var_v1` wave-bound save-family probe: full verify failed with
-  calculated CRCs `0x2E4A9A41/0xD04D4E64`; relinked focused diff was
-  `CURRENT (6100)`, matching the prior bad comma-assignment wave-bound family.
+- Follow-up selector/check: `python3 tools/query_goal_state.py next --compact
+  --refresh` -> recommended `func_80049794`; `python3
+  tools/check_active_surface.py` -> active surface ok; active alternate
+  `trackbg_render_flashy` chosen intentionally.
+- trackbg_render_flashy z0 scaledXSin probe: full verify failed with
+  calculated CRCs `0x218F9FFA/0x18F4A6D6`; relinked `./diff.sh
+  trackbg_render_flashy --format plain --no-pager --max-size 760` ->
+  `CURRENT (13376)`.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -47,7 +48,9 @@
   spD4/spD0 and the recorded early-zero/wave-speed/wave-count/top-speed/
   buoyancy/source-shape probes. For func_80059208, avoid the
   object-local-before-pad2 no-op and recorded final-offset source-shape
-  families.`
+  families. For trackbg_render_flashy, avoid the single-site
+  `zPositions[0] = -scaledXCos + scaledXSin` scaled-sine spelling plus the
+  recorded first-ring/outer-ring position-array source-shape families.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
