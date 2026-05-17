@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:33:07Z
+- Generated at: 2026-05-17 13:35:39Z
 - Branch: `master`
-- HEAD: `c39e7a52`
-- Completed task: `func_8002B0F4`
-- Summary: Tested a pad3-removal plus post-call coordinate-hoist probe in func_8002B0F4: promoted source, removed dead `pad3`, kept the original `get_inside_segment_count_xz(xIn, zIn, spB0)` call shape, and moved `XInInt = xIn; ZInInt = zIn;` out of the per-segment loop to just after `yOutCount = 0`. It compiled but failed full verify with calculated CRCs 0x785671AA/0x0D6F6A4A, regressed relinked focused diff to CURRENT (2853), and preserved the unwanted early `gCurrentLevelModel` spill at `0x64(sp)`. Source guard/body restored; final full verify passed. Keep func_8002B0F4 active rather than parked.
+- HEAD: `4074f1fd`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a first-ring positive-sum carrier in trackbg_render_flashy: promoted source and routed only the duplicated `scaledXCos + scaledXSin` value through existing `pad_sp108` for `xPositions[2]` and `zPositions[3]`. It compiled but collapsed into the bad frame-shrink family: frame `0x150`, relinked focused diff CURRENT (13456), and full verify failed with calculated CRCs 0x218EDFFA/0xDD1EF586. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 520` => relinked focused CURRENT (2853)
+- Failed probe evidence: `./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 720` => relinked focused CURRENT (13456)
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_8002B0F4 pad3-removal plus post-call coordinate-hoist probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy existing-pad_sp108 positive-sum carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

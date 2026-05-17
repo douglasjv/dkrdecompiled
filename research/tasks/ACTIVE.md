@@ -1107,7 +1107,12 @@
   relinked focused score to `CURRENT (4506)`, shifted the early position-array
   schedule, and failed full verify with calculated CRCs
   `0xDC65D929/0xA0527CE0`; do not repeat this existing-`var_f16`
-  double-sine carrier.
+  double-sine carrier. Routing only the duplicated first-ring positive
+  `scaledXCos + scaledXSin` value through existing `pad_sp108` for
+  `xPositions[2]` and `zPositions[3]` also collapsed into the bad frame-shrink
+  family: frame `0x150`, relinked focused score `CURRENT (13456)`, and full
+  verify failed with calculated CRCs `0x218EDFFA/0xDD1EF586`. Do not repeat
+  this first-ring existing-`pad_sp108` positive-sum carrier.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
