@@ -1196,7 +1196,12 @@
   `CURRENT (0)` before relink during both the 2026-05-15 packet and the
   2026-05-17 unrolled-copy probe; rely on a relinked focused diff and the full
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before accepting this
-  function. Keep this function active, but do not repeat those source shapes.
+  function. Unrolling only the Z grid mask loop into eight explicit checks
+  compiled, but badly regressed the relinked focused score to `CURRENT (26603)`,
+  swapped the x/z integer register family early in the function, and failed
+  full verify with calculated CRCs `0xABA59E51/0x244BAFAC`; source was restored
+  and final full verify passed. Keep this function active, but do not repeat
+  those source shapes or this standalone Z-loop unroll.
 
 ## Ask The User Only If
 
