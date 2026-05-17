@@ -1,15 +1,16 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:52:38Z
+- Generated at: 2026-05-17T12:55:32Z
 - Branch: `master`
-- HEAD: `6587fba5`
-- Completed task: `DKR-MATCH-FUNC-80049794-WAVE-THRESHOLD-PROBE`
+- HEAD: `af760faa`
+- Completed task: `DKR-MATCH-FUNC-80049794-WAVE-BOUND-COPY-PROBE`
 - Summary: No new source match landed. Followed the selector-recommended
-  func_80049794 route and tested a narrow `5.0f` wave-height threshold spelling
-  on the close save-family branch with removed trailing pads, x/z/y pre-`sqrtf`
-  accumulation, steer-vel no-op, and chained grounded-wheel zero. The threshold
-  spelling produced no object movement from that known close branch, so source
-  was restored and func_80049794 remains active rather than parked.
+  func_80049794 route and tested a bound-local copy while-loop wave-scan
+  spelling on the close save-family branch with removed trailing pads, x/z/y
+  pre-`sqrtf` accumulation, steer-vel no-op, and chained grounded-wheel zero.
+  The spelling kept the frame/save family but widened wave-block register
+  churn and introduced extra `spA2` stack-byte traffic, so source was restored
+  and func_80049794 remains active rather than parked.
 
 ## Validation
 
@@ -17,11 +18,11 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- func_80049794 close save-family `5.0f` wave-threshold probe: full verify
-  failed with calculated CRCs `0xB8DD79CD/0xE47454ED`; relinked `./diff.sh
-  func_80049794 --format plain --no-pager --max-size 760` -> `CURRENT
-  (2132)`, with the same wave `a0`/`v1` register/order swap as the known close
-  chained-zero branch.
+- func_80049794 close save-family bound-local copy while-loop probe: full
+  verify failed with calculated CRCs `0x527F28C9/0xA7E04D93`; relinked
+  `./diff.sh func_80049794 --format plain --no-pager --max-size 760` ->
+  `CURRENT (4252)`, with extra `spA2` stack-byte traffic and broader wave-block
+  register churn.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -41,10 +42,11 @@
   alternate is intentionally chosen. Keep close candidates active rather than
   parked. For func_80049794, avoid both comma-assignment and split-assignment
   save-family wave-bound probes, the close-branch `5.0f` wave-threshold
-  spelling, plus standalone register hints for racerThrottle/racerVelocity/
-  var_f20/var_f14/segmentZVelocity/spEC/spD8/spD4/spD0 and the recorded
-  early-zero/wave-speed/wave-count/top-speed/buoyancy/source-shape probes. For
-  func_80059208, avoid the
+  spelling, the bound-local copy while-loop wave-scan spelling, plus
+  standalone register hints for racerThrottle/racerVelocity/var_f20/var_f14/
+  segmentZVelocity/spEC/spD8/spD4/spD0 and the recorded early-zero/wave-speed/
+  wave-count/top-speed/buoyancy/source-shape probes. For func_80059208, avoid
+  the
   object-local-before-pad2 no-op, both split-negated checkpoint-dot orders, and
   recorded final-offset source-shape families. For trackbg_render_flashy, avoid
   the existing-`var_f16` double-sine carrier, the single-site

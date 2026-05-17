@@ -40,7 +40,14 @@
   branch. Making only the wave-height threshold explicit `5.0f` on the close
   save-family branch was a no-op, producing the same failed CRCs
   `0xB8DD79CD/0xE47454ED` and preserving the wave `a0`/`v1` swap; do not
-  repeat that threshold spelling. The
+  repeat that threshold spelling. A later bound-local copy spelling on the same
+  close save-family branch (`var_a0 = gRacerWaveCount - 1; var_v1 = var_a0;
+  while (...) { var_a0--; } if (var_a0 == var_v1)`) also missed: it kept the
+  target frame/save family but widened the relinked focused score to
+  `CURRENT (4252)`, failed full verify with calculated CRCs
+  `0x527F28C9/0xA7E04D93`, and introduced extra `spA2` stack-byte traffic plus
+  broader wave-block register churn. Do not repeat this local-copy while-loop
+  wave-bound spelling. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
@@ -733,9 +740,15 @@
   (2132)` under the uncompressed `--max-size 760` window with the same
   `a0`/`v1` wave swap. Do not repeat this exact chained-zero save-family
   shape, the comparison-only wave operand spelling, or the wave-threshold
-  `5.0f` spelling; keep the function active and continue by solving the wave
-  register/order or first-speed arithmetic drift without losing the frame/save
-  family. Two first-speed carrier variants on
+  `5.0f` spelling. Rewriting the wave scan as a bound-local copy while-loop
+  (`var_a0 = gRacerWaveCount - 1; var_v1 = var_a0; while (...) { var_a0--; };
+  if (var_a0 == var_v1)`) also missed: full verify failed with calculated CRCs
+  `0x527F28C9/0xA7E04D93`, the relinked focused score widened to `CURRENT
+  (4252)`, and the diff showed extra `spA2` stack-byte traffic plus broader
+  wave-block register churn rather than the target `a0`/`v1` allocation. Do
+  not repeat this local-copy while-loop wave-bound spelling; keep the function
+  active and continue by solving the wave register/order or first-speed
+  arithmetic drift without losing the frame/save family. Two first-speed carrier variants on
   that same branch both regressed by losing the target frame/save family: using
   existing `var_f6` for the pre-`sqrtf` sum failed full verify with calculated
   CRCs `0x6035EC5F/0x4C26F14E` and relinked focused `CURRENT (2326)`, while
