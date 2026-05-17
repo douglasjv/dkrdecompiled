@@ -94,8 +94,13 @@
   Adding `register` to `racerBrake` also compiled but did not change the
   failed CRC family (`0x5FDDE03F/0xEF7A0514`) and stayed in the same compressed
   focused family (`CURRENT (859)` under `--max-size 620`), with the same
-  missing `$f20/$f21` prologue saves and early `$f16` zero allocation. Keep
-  `func_80049794` active rather than parked.
+  missing `$f20/$f21` prologue saves and early `$f16` zero allocation. A later
+  save-family wave-threshold local probe on the close chained-zero/x/z/y/
+  steer-noop branch (`var_f0 = obj->trans.y_position + 5.0f` before the wave
+  scan) kept the target `0xf8` frame and `$f20/$f21` saves but regressed the
+  relinked focused score to `CURRENT (7555)`, introduced broad wave-block
+  float/register churn, and failed full verify with calculated CRCs
+  `0x2B7A77D5/0x5B507890`. Keep `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -832,7 +837,15 @@
   regressed the relinked focused score to `CURRENT (4557)`, failed full verify
   with calculated CRCs `0xA637D7C4/0x633471A3`, and widened wave-register churn
   by introducing `a0/a1/v0/v1` drift through the scan. Do not repeat this
-  `var_v0` wave-count carrier spelling on the close save-family branch. A
+  `var_v0` wave-count carrier spelling on the close save-family branch.
+  Carrying the wave-height threshold through existing `var_f0` on the same
+  close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
+  scan compares wave height against `var_f0`) also missed: it kept the target
+  `0xf8` frame and `$f20/$f21` saves, but regressed the relinked focused score
+  to `CURRENT (7555)`, failed full verify with calculated CRCs
+  `0x2B7A77D5/0x5B507890`, and shifted the wave block into a worse
+  `a0/v1/f12/f14` register family with extra stack traffic. Do not repeat this
+  explicit `var_f0` wave-threshold carrier. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
