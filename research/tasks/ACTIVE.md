@@ -626,6 +626,10 @@
   (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`) compiled
   but worsened the focused object score from `CURRENT (870)` to focused score
   `CURRENT (1242)` by extending the final vertical clamp/register drift.
+  Reusing the now-dead `pad` local for the same final vertical numerator
+  (`pad = obj->trans.y_position - tempY; diffY = pad / divisor`) compiled but
+  worsened the focused object score to `CURRENT (1680)`, matching the bad
+  final-vertical carrier direction rather than improving the lateral miss.
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and

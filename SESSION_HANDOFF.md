@@ -1,21 +1,29 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:48:06Z
+- Generated at: 2026-05-17T01:52:47Z
 - Branch: `master`
-- HEAD before closeout commit: `7ed32880`
+- HEAD before closeout commit: `1ee4e02f`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
   preference by keeping the active candidates routable, then tested a bounded
-  `func_80049794` wave-count carrier probe. Promoting the current C candidate
-  still scores `CURRENT (2550)`. Naming `gRacerWaveCount` itself in `var_v1`
-  and deriving `var_a0 = var_v1 - 1` compiled but worsened to `CURRENT (5540)`,
-  creating broad integer-register churn through the wave scan and later
-  scheduling. Guarded matching source was restored and the full ROM gate is
-  clean. Keep `func_80049794` active; do not park it solely because this
-  wave-count spelling missed.
+  `func_80059208` final-vertical numerator carrier probe. Promoting the current
+  C candidate still scores `CURRENT (870)`. Reusing the now-dead `pad` local
+  for `pad = obj->trans.y_position - tempY; diffY = pad / divisor` compiled but
+  worsened to `CURRENT (1680)`, shifting the final vertical clamp/register
+  family similarly to the rejected `pad3` carrier. Guarded matching source was
+  restored and the full ROM gate is clean. Keep `func_80059208` active; do not
+  park it solely because this final-vertical carrier missed.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C baseline compiles
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> promoted baseline remains `CURRENT (870)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> final-vertical `pad` carrier probe compiles with `pad = obj->trans.y_position - tempY; diffY = pad / divisor`
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> final-vertical `pad` carrier worsens to `CURRENT (1680)` by shifting the final vertical clamp/register family
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C baseline compiles
@@ -701,6 +709,7 @@
 - Do not repeat this session's `func_80059208` final-sum `pad = pad2 + objectDot; diffX = -(pad / divisor)` probe; it left the focused object score unchanged at `CURRENT (870)`.
 - Do not repeat this session's `func_80059208` final `pad3 = 5.0f` clamp-local probe; it worsened the focused object score to `CURRENT (1015)`.
 - Do not repeat this session's `func_80059208` final vertical numerator `pad3` probe (`pad3 = obj->trans.y_position - tempY; diffY = pad3 / divisor`); it worsened the focused object score to `CURRENT (1680)`.
+- Do not repeat this session's `func_80059208` final vertical numerator `pad` probe (`pad = obj->trans.y_position - tempY; diffY = pad / divisor`); it also worsened the focused object score to `CURRENT (1680)`.
 - Do not repeat this session's `func_80059208` `distance` axis-swap temporary probe; it worsened the focused object score to `CURRENT (1548)`.
 - Do not repeat this session's `func_80059208` final vertical numerator `tempY` probe (`tempY = obj->trans.y_position - tempY; diffY = tempY / divisor`); it worsened the focused object score to `CURRENT (1650)`.
 - Do not repeat this session's `func_80059208` `scale` axis-swap temporary probe (`scale = diffX; diffX = diffZ; diffZ = -scale`); it worsened the focused object score to `CURRENT (1698)`.
