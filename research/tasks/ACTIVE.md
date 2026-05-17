@@ -204,7 +204,15 @@
   diff reported `CURRENT (3260)`, the wave `a0`/`v1` drift remained, and the
   target `$f14` reload after `apply_vehicle_rotation_offset` was still absent.
   Source was restored and final full verify passed; do not repeat this
-  save-family double-multiply inverse spelling.
+  save-family double-multiply inverse spelling. A 2026-05-17 close
+  save-family existing-`var_t9` wave-bound carrier (`var_t9 =
+  gRacerWaveCount - 1; for (var_a0 = var_t9; ...); if (var_a0 == var_t9)`)
+  kept the target `0xf8` frame and `$f20/$f21` saves, but regressed the
+  relinked focused score to `CURRENT (5430)` and failed full verify with
+  calculated CRCs `0xEA44B192/0x165715AD`. It broadened the wave block into
+  `v1/v0/t*` register churn rather than target `v1/a0/v0`. Source was
+  restored and final full verify passed; do not repeat this close-branch
+  existing-`var_t9` wave-bound carrier.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
@@ -1218,7 +1226,15 @@
   remained, and the target call-adjacent `$f14` reload after
   `apply_vehicle_rotation_offset` was still missing. Source was restored and
   final full verify passed. Do not repeat this save-family double-multiply
-  inverse spelling. A
+  inverse spelling. A 2026-05-17 close save-family existing-`var_t9`
+  wave-bound carrier (`var_t9 = gRacerWaveCount - 1; for (var_a0 = var_t9;
+  ...); if (var_a0 == var_t9)`) kept the target `0xf8` frame and `$f20/$f21`
+  prologue saves, but worsened the relinked focused score to `CURRENT (5430)`
+  and failed full verify with calculated CRCs `0xEA44B192/0x165715AD`. The
+  wave block shifted into broader `v1/v0/t*` register churn rather than target
+  `v1/a0/v0`, with downstream scheduling drift. Source was restored and final
+  full verify passed. Do not repeat this close-branch existing-`var_t9`
+  wave-bound carrier. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
