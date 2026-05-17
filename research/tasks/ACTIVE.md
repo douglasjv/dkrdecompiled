@@ -870,7 +870,14 @@
   promoted baseline shape: full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
   the same final object-load/arithmetic drift remained. Do not repeat this
-  split-object-dot-after-checkpoint spelling.
+  split-object-dot-after-checkpoint spelling. Delaying the `diffZ = -diffY`
+  axis assignment until after a positive checkpoint-dot expression
+  (`pad2 = (tempZ * -diffY) + (diffX * tempX); diffZ = -diffY; ... diffX =
+  -((pad - pad2) / divisor)`) compiled but worsened the relinked focused score
+  to `CURRENT (2365)`, failed full verify with calculated CRCs
+  `0x538F82DF/0x50E88FA7`, and perturbed earlier float-register allocation
+  around the `0x59fbc` region before still missing the final arithmetic
+  schedule; do not repeat this delayed-`diffZ` positive-checkpoint-dot spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
