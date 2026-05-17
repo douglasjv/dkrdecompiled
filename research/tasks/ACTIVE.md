@@ -196,7 +196,15 @@
   reported `CURRENT (4075)`, call-adjacent `$f14` save/reload and sound
   scheduling were disturbed, and the wave `a0`/`v1` drift remained. Source was
   restored and final full verify passed; do not repeat this save-family
-  in-place inverse-gravity split.
+  in-place inverse-gravity split. A 2026-05-17 save-family double-multiply
+  inverse spelling (`var_f20 = 1.0 - (var_f20 * 0.25)`) on the same close
+  chained-zero/x/z/y/steer-noop branch kept the target `0xf8` frame and
+  `$f20/$f21` saves, but stayed in the known close-branch CRC family: full
+  verify failed with calculated CRCs `0xB8DD79CD/0xE47454ED`, relinked focused
+  diff reported `CURRENT (3260)`, the wave `a0`/`v1` drift remained, and the
+  target `$f14` reload after `apply_vehicle_rotation_offset` was still absent.
+  Source was restored and final full verify passed; do not repeat this
+  save-family double-multiply inverse spelling.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
@@ -1202,7 +1210,15 @@
   scheduling were disturbed, while the wave scan still had the current
   `a0`/`v1` register order opposite the target. Source was restored and final
   full verify passed. Do not repeat this save-family in-place inverse-gravity
-  split. A
+  split. A 2026-05-17 save-family double-multiply inverse spelling on that
+  same close branch (`var_f20 = 1.0 - (var_f20 * 0.25)`) kept the target `0xf8`
+  frame and `$f20/$f21` prologue saves, but produced the same close-branch
+  failed full-verify CRCs `0xB8DD79CD/0xE47454ED` and relinked focused
+  `CURRENT (3260)` under `--max-size 900`. The wave `a0`/`v1` register drift
+  remained, and the target call-adjacent `$f14` reload after
+  `apply_vehicle_rotation_offset` was still missing. Source was restored and
+  final full verify passed. Do not repeat this save-family double-multiply
+  inverse spelling. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
