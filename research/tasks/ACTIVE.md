@@ -561,10 +561,20 @@
   var_f20 = var_f2 * var_f2; ...`) compiled, kept the target `0xf8` frame, but
   regressed the relinked focused score to `CURRENT (4665)` with broad early
   wave and later scheduling drift; do not repeat this x-only `var_f2` carrier
-  shape. A
+  shape. A 2026-05-17 x/z/y pre-`sqrtf` save-family variant that removed
+  trailing `pad3`/`pad4` and split the post-`sqrtf` subtraction as
+  `var_f20 = sqrtf(var_f20); var_f20 -= 2.0` compiled and kept the target
+  `0xf8` frame plus `$f20/$f21` prologue saves in the early diff, but worsened
+  the relinked focused score to `CURRENT (4425)` (`--max-size 260`:
+  `CURRENT (195)`) and failed full verify with calculated CRCs
+  `0xB8B259CD/0xD730D2DE`; do not repeat this mutating post-`sqrtf`
+  subtraction split. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
-  rebuild during the 2026-05-15 packet; do not accept this function without
-  relink/full gate evidence. A baseline check of `func_80059208` was still
+  rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
+  the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
+  failed and the relinked focused diff returned to `CURRENT (2760)`; do not
+  accept this function without relink/full gate evidence. A baseline check of
+  `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
