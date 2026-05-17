@@ -1,27 +1,24 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T18:31:01Z
+- Generated at: 2026-05-17T18:35:36Z
 - Branch: `master`
-- HEAD: `2bd03a96`
-- Completed task: `func_80049794`
-- Summary: Continued selector `func_80049794`. Recreated the close save-family
-  branch with chained grounded-wheel zero, x/z/y pre-`sqrtf` accumulation,
-  removed trailing `pad3`/`pad4`, and steer-vel no-op, then tested a
-  predecrement wave-loop spelling
-  (`for (var_a0 = gRacerWaveCount; --var_a0 >= 0 && ...;)`). It missed: full
-  verify failed with calculated CRCs `0xCE58DA51/0x62A7B089`, relinked focused
-  diff reported `CURRENT (4660)`, and the wave scan shifted into an
-  `a0/v0/v1` register/order family with extra post-loop compare math rather
-  than target `v1/a0/v0`. Source was restored and final full verify passed.
-  Keep `func_80049794` active, and do not repeat this close-branch
-  predecrement wave-loop spelling.
+- HEAD: `5c168c7d`
+- Completed task: `func_8008FF1C`
+- Summary: Intentionally chose the active no-park near-match `func_8008FF1C`
+  from the include-exhausted selector. Removed the `s16 temp` carrier and
+  unsequenced temp assignment while promoting the function. It missed: full
+  verify failed with calculated CRCs `0x553930E7/0x227AD4A3`, focused diff
+  reported `CURRENT (935)`, and the selected-track load/branch still used `v1`
+  instead of target `t2`; the delay-slot `sw v0,0(s0)` remained in place.
+  Source was restored and final full verify passed. Keep active functions in
+  the no-park lane, and do not repeat this no-temp cleanup shape.
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with close save-family
-  predecrement wave-loop spelling, calculated CRCs `0xCE58DA51/0x62A7B089`
-- `./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80` =>
-  `CURRENT (4660)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with no-temp
+  selectedTrack-only probe, calculated CRCs `0x553930E7/0x227AD4A3`
+- `./diff.sh func_8008FF1C --format plain --no-pager --max-size 500 -U 40` =>
+  `CURRENT (935)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` => `Verify: OK` after restore
 
 ## Blockers Or Unknowns
@@ -37,7 +34,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless intentionally choosing active no-park near-match. For func_80049794, avoid newly recorded close save-family predecrement wave-loop spelling plus previously recorded close save-family existing-var_t9 wave-bound carrier, save-family double-multiply inverse spelling, save-family in-place inverse-gravity split, current-baseline existing-var_t9 wave-bound carrier, close-branch existing-var_t0 wave-bound carrier, promotion-only object CURRENT (0), current-baseline wave-threshold-local/chained-zero/wave-bound, close save-family wave-bound, wavePtr, do-loop, while-break, threshold, preserve, first-speed, zero-carrier, and no-op families recorded in ACTIVE.md. Keep func_80049794 active, not parked.`
+- Task: `Continue selector func_80049794 unless intentionally choosing active no-park near-match. For func_8008FF1C, avoid newly recorded no-temp selectedTrack-only cleanup plus previously recorded compare-carrier, selectedTrack declaration-order, direct table-branch, duplicated hub-name store, s32 temp carrier, s16/register selectedTrack, and temp/register probes; the useful boundary remains target t2 load plus delay-slot sw v0,0(s0). For func_80049794, avoid recorded probe families in ACTIVE.md. Keep active functions not parked.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

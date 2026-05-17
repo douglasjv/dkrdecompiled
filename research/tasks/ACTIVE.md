@@ -529,9 +529,16 @@
   declaration after `temp` widened the focused diff to `CURRENT (58)`, failed
   full verify with calculated CRCs `0x55C24297/0x59444A08`, shifted stack
   slots, and still used `v1`; do not retry these compare-carrier or
-  declaration-order probes. If intentionally revisiting this no-park function,
-  use a new source shape that preserves the direct-table `t2` load and restores
-  the target delay-slot `sw v0, 0(s0)`.
+  declaration-order probes. A 2026-05-17 no-temp selectedTrack-only probe
+  removed the `s16 temp` carrier and unsequenced temp assignment while
+  promoting the function. It matched the known plain-temp bad family rather
+  than improving the target register: full verify failed with calculated CRCs
+  `0x553930E7/0x227AD4A3`, focused diff was `CURRENT (935)`, and the
+  selected-track load/branch still used `v1` instead of target `t2` while
+  preserving the `sw v0,0(s0)` delay slot. Source restored and final verify
+  passed; do not repeat this no-temp cleanup shape. If intentionally revisiting
+  this no-park function, use a new source shape that preserves the direct-table
+  `t2` load and restores the target delay-slot `sw v0, 0(s0)`.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry
