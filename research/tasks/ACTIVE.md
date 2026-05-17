@@ -493,7 +493,13 @@
   regressed to `CURRENT (3696)` and still spilled `$f4` instead of the target
   `$f14`. Do not repeat simple buoyancy `-1.0f` carrier spellings or
   moved-`spCC` combinations on this branch unless new evidence ties them to a
-  separate scheduling fix. Reordering the default handling constants on the
+  separate scheduling fix. Combining the x/z/y save-family plus steer-noop plus
+  `var_f20 = -1.0f` buoyancy carrier with a direct `racer->playerIndex ==
+  PLAYER_COMPUTER` condition compiled and kept the early target frame/save
+  family (`--max-size 520`: `CURRENT (270)`), but worsened the full focused
+  score to `CURRENT (5155)` and failed full verify with calculated CRCs
+  `0xCB45C241/0x9A5E2B4C`; do not repeat this direct-player-index combination
+  on the save-family branch. Reordering the default handling constants on the
   same x/z/y save-family branch also produced no object improvement: assigning
   `spD0` before `spD4` stayed `CURRENT (3550)`, and assigning `spD8` before
   `spD0`/`spD4` also stayed `CURRENT (3550)`. Do not repeat simple
