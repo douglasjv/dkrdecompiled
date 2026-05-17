@@ -378,9 +378,14 @@
   accumulator improved to `CURRENT (2940)` and restored the target `0xf8`
   frame, but still dropped `$f20/$f21` and carried gravity in `$f14`; adding
   `register f32 var_f20` to that retained-pad variant produced no object
-  change. Do not repeat these `var_f14` first-speed accumulator shapes unless
-  there is new evidence for recovering `$f20/$f21` without losing the `0xf8`
-  frame. Reordering the save-family first-speed pre-`sqrtf` accumulation to
+  change. Adding an existing-`spCC` preserve of the post-clamp gravity carrier
+  across `apply_vehicle_rotation_offset` on this retained-pad `var_f14`
+  accumulator branch regressed to `CURRENT (3216)` and still did not recover
+  target `$f20/$f21`; moving existing `spCC` after `spE0` shifted the
+  call-adjacent spill/reload to `0xdc(sp)` but regressed further to
+  `CURRENT (3236)`. Do not repeat these `var_f14` first-speed accumulator or
+  `spCC` preserve shapes unless new evidence for recovering `$f20/$f21`
+  appears. Reordering the save-family first-speed pre-`sqrtf` accumulation to
   z-first (`var_f20 = z*z; var_f20 += x*x; var_f20 += y*y`) kept the target
   `0xf8` frame and `$f20/$f21` saves, but regressed to `CURRENT (3560)`, worse
   than the x/z/y save-family best at `CURRENT (3550)`; do not repeat z-first

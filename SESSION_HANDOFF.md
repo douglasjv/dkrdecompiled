@@ -1,28 +1,28 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:46:03Z
+- Generated at: 2026-05-17T00:49:03Z
 - Branch: `master`
-- HEAD before closeout commit: `884be166`
-- Completed task: `DKR-MATCH-FUNC-80049794-RETAINED-PAD-SPCC-PRESERVE-PROBES`
+- HEAD before closeout commit: `6ee26e4c`
+- Completed task: `DKR-MATCH-FUNC-80049794-VARF14-ACCUM-SPCC-PRESERVE-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
   `func_80049794` active and tested two source-level `spCC` preserve variants
-  on the retained-pad `var_f2` z/y component-staging branch. Preserving the
+  on the retained-pad `var_f14` first-speed accumulator branch. Preserving the
   post-clamp gravity carrier through existing `spCC` across
-  `apply_vehicle_rotation_offset` improved that retained-pad branch from
-  `CURRENT (3250)` to `CURRENT (3526)`, but still dropped target `$f20/$f21`
-  prologue saves and spilled through `0xcc(sp)`. Moving existing `spCC` up
-  after `spE0` targeted the call-adjacent slot and spilled through `0xdc(sp)`,
-  but regressed to `CURRENT (3546)` and still lacked the target save family.
-  The guarded matching source was restored and the full ROM gate remains clean.
+  `apply_vehicle_rotation_offset` compiled but regressed the retained-pad
+  `var_f14` accumulator branch from `CURRENT (2940)` to `CURRENT (3216)`,
+  still without target `$f20/$f21` prologue saves. Moving existing `spCC` after
+  `spE0` shifted the call-adjacent spill/reload to `0xdc(sp)`, but regressed
+  further to `CURRENT (3236)` and still lacked the target save family. The
+  guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted retained-pad `var_f2` z/y component-staging candidate compiles with `spCC = var_f20` before `apply_vehicle_rotation_offset` and `var_f20 = spCC` after it
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> retained-pad `spCC` preserve scores `CURRENT (3526)`, keeps `0xf8`, but spills/reloads at `0xcc(sp)` and still lacks target `$f20/$f21` prologue saves
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same retained-pad preserve branch compiles with existing `spCC` declaration moved after `spE0`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved `spCC` shifts the call-adjacent spill/reload to `0xdc(sp)` but regresses to `CURRENT (3546)` and still lacks target `$f20/$f21` saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted retained-pad `var_f14` first-speed accumulator candidate compiles with `spCC = var_f20` before `apply_vehicle_rotation_offset` and `var_f20 = spCC` after it
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> retained-pad `var_f14` accumulator plus `spCC` preserve regresses to `CURRENT (3216)` and still lacks target `$f20/$f21` prologue saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same retained-pad `var_f14` accumulator preserve branch compiles with existing `spCC` declaration moved after `spE0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved `spCC` shifts the call-adjacent spill/reload to `0xdc(sp)` but regresses further to `CURRENT (3236)` and still lacks target `$f20/$f21` saves
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
