@@ -1506,7 +1506,15 @@
   also compiled into the bad frame-shrink family: frame `0x150`, relinked
   focused score `CURRENT (13706)`, and full verify failed with calculated CRCs
   `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
-  Do not repeat this unused-`pad_sp100` x0/z1 carrier.
+  Do not repeat this unused-`pad_sp100` x0/z1 carrier. Moving only
+  `zPositions[1] = -scaledXCos - (xSin * 1280.0f)` immediately after
+  `xPositions[0]` to pair the duplicated first-ring negative sum also missed:
+  the frame stayed `0x158`, but relinked focused score worsened to
+  `CURRENT (2938)`, full verify failed with calculated CRCs
+  `0x93D342FF/0x71E01805`, and the diff shifted the early position-array
+  float-register/store schedule instead of matching the target. Source was
+  restored and final full verify passed. Do not repeat this single-pair
+  x0/z1 store-order probe.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
