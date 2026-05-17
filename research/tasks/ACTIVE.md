@@ -163,7 +163,17 @@
   widened the relinked focused score to `CURRENT (5590)`, failed full verify
   with calculated CRCs `0x5F811F98/0x9CE14139`, and still lacked the target
   `$f20`/`$f21` prologue saves plus early `$f14` zero. Do not repeat this
-  current-baseline threshold-local spelling.
+  current-baseline threshold-local spelling. A close save-family continuation
+  with x/z/y pre-`sqrtf` accumulation, chained grounded-wheel zero, steer-vel
+  no-op, and removed trailing `pad3`/`pad4` tested an existing-`var_t0`
+  wave-bound carrier (`var_t0 = gRacerWaveCount - 1; for (var_a0 = var_t0;
+  ...); if (var_a0 == var_t0)`). It kept the target `0xf8` frame and
+  `$f20/$f21` prologue saves, but worsened the relinked focused score to
+  `CURRENT (5115)`, failed full verify with calculated CRCs
+  `0x2364AB01/0x1E30A2A8`, and shifted the wave block into a broader
+  `t0/v0/t2` register family rather than target `v1/a0/v0`. Source was
+  restored and final full verify passed; do not repeat this close-branch
+  existing-`var_t0` wave-bound carrier.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
@@ -1092,7 +1102,15 @@
   calculated CRCs `0xE586A191/0x17A5E745`, and the wave block shifted into a
   broad `a3/v1/a0` register family with downstream scheduling churn. Source
   was restored and final full verify passed. Do not repeat this close-branch
-  `while`/break wave-scan spelling. A
+  `while`/break wave-scan spelling. A close save-family continuation using an
+  existing-`var_t0` wave-bound carrier (`var_t0 = gRacerWaveCount - 1; for
+  (var_a0 = var_t0; ...); if (var_a0 == var_t0)`) also missed: it kept the
+  target `0xf8` frame and `$f20/$f21` prologue saves, but worsened the
+  relinked focused score to `CURRENT (5115)`, failed full verify with
+  calculated CRCs `0x2364AB01/0x1E30A2A8`, and shifted the wave block into a
+  broader `t0/v0/t2` register family instead of target `v1/a0/v0`. Source was
+  restored and final full verify passed. Do not repeat this close-branch
+  existing-`var_t0` wave-bound carrier. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
