@@ -1,22 +1,28 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:33:51Z
+- Generated at: 2026-05-17T01:37:02Z
 - Branch: `master`
-- HEAD before closeout commit: `776b913b`
+- HEAD before closeout commit: `f4f2f655`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
   preference by keeping the active candidates routable, then tested a bounded
-  `func_80059208` final vertical-cast carrier probe. Reusing the now-dead
-  `diffX` after the vertical clamp (`diffX = diffY; racer->unk1BC += (s32)
-  diffX`) compiled but worsened the focused score from baseline `CURRENT
-  (870)` to `CURRENT (1030)`, adding an extra `swc1` before the final cast and
-  leaving the main final lateral object-dot/checkpoint-dot drift unchanged.
+  `func_80059208` final checkpoint-dot negation probe. Spelling the negated
+  checkpoint term as `pad2 = ((-tempZ) * diffZ) - (diffX * tempX)` compiled
+  but worsened the focused score from baseline `CURRENT (870)` to `CURRENT
+  (1192)`: it introduced explicit early negation, but cascaded final-block
+  register drift and still missed the target lateral arithmetic.
   Guarded matching source was restored and the full ROM gate is clean. Keep
-  `func_80059208` active; do not park it solely because this final-cast carrier
+  `func_80059208` active; do not park it solely because this negated-term
   spelling missed.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with the checkpoint dot negated term-by-term as `pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`
+- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> term-negated checkpoint-dot probe worsens from `CURRENT (870)` to `CURRENT (1192)`, creating explicit early negation but cascading final-block register drift
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with the final vertical clamped value routed through now-dead `diffX` before the `unk1BC` cast/add
@@ -687,6 +693,7 @@
 - Do not repeat this session's `func_80059208` final vertical numerator split through `diffY` (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`); it worsened the focused object score to `CURRENT (1242)`.
 - Do not repeat this session's `func_80059208` checkpoint-dot accumulation probe (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`); it left the focused object score unchanged at `CURRENT (870)`.
 - Do not repeat this session's `func_80059208` final vertical `diffX` cast-carrier probe (`diffX = diffY; racer->unk1BC += (s32) diffX`); it worsened the focused score to `CURRENT (1030)` by adding a new final-block stack store.
+- Do not repeat this session's `func_80059208` term-negated checkpoint-dot probe (`pad2 = ((-tempZ) * diffZ) - (diffX * tempX)`); it worsened the focused score to `CURRENT (1192)` with broader final-block register drift.
 - Do not repeat this session's `func_8002B0F4` pre-call `XInInt`/`ZInInt` or volatile local `LevelModel *levelModel` reload probes; both left the linked score unchanged at `CURRENT (2780)`.
 - Do not repeat this session's `func_8002B0F4` explicit `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling; it triggered stale object-only `CURRENT (0)` before relink, failed full verify, and worsened the relinked focused score to `CURRENT (4623)`.
 - Do not repeat this session's `trackbg_render_flashy` `scaledXSin`/`scaledXCos` declaration-order or `register` local hints; they produced no object change.
