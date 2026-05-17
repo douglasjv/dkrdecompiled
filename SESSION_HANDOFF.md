@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 12:59:41Z
+- Generated at: 2026-05-17 13:04:42Z
 - Branch: `master`
-- HEAD: `dbb865f5`
-- Completed task: `trackbg_render_flashy`
-- Summary: Tested existing var_f16 carrier for the duplicated -scaledXCos - xSin*1280 first-ring value; full verify missed with CRCs 0x218F9FFA/0x18F4A6D6 and focused diff worsened to CURRENT (13376) with a 0x150 frame, matching the rejected single-site scaled-sine family. Source restored and final full verify passed.
+- HEAD: `fa46031b`
+- Completed task: `func_80049794`
+- Summary: Tested the close save-family branch with chained grounded-wheel zero, removed trailing pads, x/z/y pre-sqrt accumulation, steer-vel no-op, and a new commuted wave-height threshold spelling (5 + obj->trans.y_position). It kept the target 0xf8 frame and f20/f21 saves but missed: full verify CRCs 0xB8CD59CD/0xDE963C8F and relinked focused diff CURRENT (2142), same a0/v1 wave-register mismatch family and slightly worse than the prior explicit-5.0f threshold. Source restored and final full verify passed.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate trackbg_render_flashy; keep close functions active and avoid the recorded var_f16 first-ring carrier / single-site scaled-sine family.`
+- Task: `Continue selector func_80049794 unless choosing active alternate; keep close functions active and avoid the recorded commuted wave-height threshold on the save-family branch.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

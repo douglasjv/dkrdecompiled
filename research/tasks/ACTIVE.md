@@ -40,7 +40,11 @@
   branch. Making only the wave-height threshold explicit `5.0f` on the close
   save-family branch was a no-op, producing the same failed CRCs
   `0xB8DD79CD/0xE47454ED` and preserving the wave `a0`/`v1` swap; do not
-  repeat that threshold spelling. A later bound-local copy spelling on the same
+  repeat that threshold spelling. Commuting the threshold to
+  `5 + obj->trans.y_position` on the same branch also missed with calculated
+  CRCs `0xB8CD59CD/0xDE963C8F` and relinked focused `CURRENT (2142)`, keeping
+  the same `a0`/`v1` wave-register mismatch; do not repeat that commuted
+  threshold spelling either. A later bound-local copy spelling on the same
   close save-family branch (`var_a0 = gRacerWaveCount - 1; var_v1 = var_a0;
   while (...) { var_a0--; } if (var_a0 == var_v1)`) also missed: it kept the
   target frame/save family but widened the relinked focused score to
@@ -742,9 +746,14 @@
   no object movement: full verify failed with the same calculated CRCs
   `0xB8DD79CD/0xE47454ED`, and the relinked focused diff reported `CURRENT
   (2132)` under the uncompressed `--max-size 760` window with the same
-  `a0`/`v1` wave swap. Do not repeat this exact chained-zero save-family
-  shape, the comparison-only wave operand spelling, or the wave-threshold
-  `5.0f` spelling. Rewriting the wave scan as a bound-local copy while-loop
+  `a0`/`v1` wave swap. Commuting that threshold to
+  `5 + obj->trans.y_position` on the same branch also missed: it kept the
+  target `0xf8` frame and `$f20/$f21` saves, failed full verify with calculated
+  CRCs `0xB8CD59CD/0xDE963C8F`, and relinked focused diff reported
+  `CURRENT (2142)` with the same `a0`/`v1` wave-register mismatch family. Do
+  not repeat this exact chained-zero save-family shape, the comparison-only
+  wave operand spelling, or the explicit/commuted wave-threshold spellings.
+  Rewriting the wave scan as a bound-local copy while-loop
   (`var_a0 = gRacerWaveCount - 1; var_v1 = var_a0; while (...) { var_a0--; };
   if (var_a0 == var_v1)`) also missed: full verify failed with calculated CRCs
   `0x527F28C9/0xA7E04D93`, the relinked focused score widened to `CURRENT
