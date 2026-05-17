@@ -1,27 +1,26 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T18:08:34Z
+- Generated at: 2026-05-17T18:11:56Z
 - Branch: `master`
-- HEAD: `827ade96`
-- Completed task: `func_8002B0F4`
-- Summary: Selected active alternate `func_8002B0F4` instead of the broad
-  default selector `func_80049794`. Fresh promotion of the current C failed
-  with calculated CRCs `0x7856718A/0x66208CAA`; the relinked focused diff was
-  `CURRENT (2860)` and the first useful drift was an unwanted early
-  `gCurrentLevelModel` stack spill before the segment loop. Removing the first
-  dead `pad` local missed worse: full verify failed with calculated CRCs
-  `0x7856713A/0x0D9BD727`, focused diff widened to `CURRENT (2886)`, `spB0`
-  shifted from target `0xb0(sp)` to `0xb4(sp)`, `sp108` shifted to
-  `0x10c(sp)`, and the same `gCurrentLevelModel` spill stayed at `0x64(sp)`.
-  Source was restored and final full verify passed. Keep `func_8002B0F4`
-  active; do not repeat the first-dead-`pad` removal.
+- HEAD: `2e8bc3a2`
+- Completed task: `func_80049794`
+- Summary: Followed the selector to `func_80049794`. Fresh promotion of the
+  current C failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`; focused diff
+  showed the known prologue miss with no target `$f20/$f21` saves, shifted
+  saved-register slots, and early grounded-wheel zero in `$f16` instead of
+  target `$f14`. Reconfirmed the already-recorded early-`var_f20` zero carrier
+  (`var_f20 = 0.0f; racer->unk84 = var_f20; racer->unk88 = var_f20`): it
+  failed with the same CRCs, stayed in the relinked focused compressed
+  `CURRENT (2430)` family, and did not move the prologue or zero-register
+  allocation. Source was restored and final full verify passed. Keep
+  `func_80049794` active; do not repeat this early-`var_f20` zero carrier.
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with baseline `func_8002B0F4` promotion, calculated CRCs `0x7856718A/0x66208CAA`
-- `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 1200 -U 80` after baseline relink => `CURRENT (2860)`
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with first-dead-`pad` removal, calculated CRCs `0x7856713A/0x0D9BD727`
-- `./diff.sh func_8002B0F4 --format plain --no-pager --max-size 1200 -U 70` after first-dead-`pad` removal relink => `CURRENT (2886)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with baseline `func_80049794` promotion, calculated CRCs `0x5FDDE03F/0xEF7A0514`
+- `./diff.sh func_80049794 --format plain --no-pager --max-size 1400 -U 90` after baseline relink => `CURRENT (3315)`
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with early-`var_f20` zero carrier, calculated CRCs `0x5FDDE03F/0xEF7A0514`
+- `./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80` after early-`var_f20` zero-carrier relink => `CURRENT (2430)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` => `Verify: OK` after restore
 
 ## Blockers Or Unknowns
@@ -36,7 +35,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless intentionally choosing an active no-park near-match. For func_8002B0F4, avoid the newly recorded first-dead-pad removal plus prior X/Z register hints, pad3 removal, pad2 removal, pad2+pad3 removal, wave2 removal, texture-pointer replacement, pointer-copy population, early-conversion/direct-cast call shapes, D_8011D308-first order variant, segment-index i carrier, Z-loop unrolls, bubble-sort bound carrier, Z-grid barrier removal, bottom while loop, outer while loop, and other probe families recorded in ACTIVE.md. Keep func_8002B0F4 active, not parked.`
+- Task: `Continue selector func_80049794 unless intentionally choosing an active no-park near-match. For func_80049794, avoid the newly reconfirmed early-var_f20 zero carrier plus current-baseline existing-var_t9 wave-bound carrier, close-branch existing-var_t0 wave-bound carrier, promotion-only object CURRENT (0), current-baseline wave-threshold-local/chained-zero/wave-bound, close save-family wave-bound, wavePtr, do-loop, while-break, threshold, preserve, first-speed, zero-carrier, and no-op families recorded in ACTIVE.md. Keep func_80049794 active, not parked.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

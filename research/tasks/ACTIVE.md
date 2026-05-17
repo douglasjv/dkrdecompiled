@@ -146,6 +146,14 @@
   `CURRENT (2990)` with the same missing target `$f20/$f21` prologue saves,
   shifted saved-register stack slots, early `$f16` zero, and wave `a0`/`v1`
   drift. Do not accept `func_80049794` from object-only `CURRENT (0)` evidence.
+  A 2026-05-17 current-checkout reconfirmation of the already-recorded
+  early-`var_f20` zero carrier (`var_f20 = 0.0f; racer->unk84 = var_f20;
+  racer->unk88 = var_f20`) produced no useful movement: full verify failed
+  with calculated CRCs `0x5FDDE03F/0xEF7A0514`, the relinked focused diff
+  stayed in the same compressed `CURRENT (2430)` family, the target
+  `$f20/$f21` prologue saves were still absent, and the early zero still used
+  `$f16` instead of target `$f14`. Source was restored and final full verify
+  passed; do not repeat this early-`var_f20` zero-carrier spelling.
   Splitting the wave bound on the current baseline
   (`var_v1 = gRacerWaveCount - 1; for (var_a0 = var_v1; ...); if (var_a0 ==
   var_v1)`) worsened the focused score from promoted-baseline `CURRENT (2430)`
@@ -541,7 +549,12 @@
   grounded-wheel zeroing (`var_f20 = 0.0f; racer->unk84 = var_f20;
   racer->unk88 = var_f20;`) also compiled but left the focused score unchanged
   at `CURRENT (2550)` and still did not introduce the target `$f20/$f21`
-  prologue saves. Combining `register f32 var_f20` with
+  prologue saves. A 2026-05-17 current-checkout reconfirmation of the same
+  early-`var_f20` zero carrier failed full verify with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, stayed in the relinked focused compressed
+  `CURRENT (2430)` family, and still used `$f16` for the early zero instead of
+  target `$f14`; source was restored and final full verify passed. Combining
+  `register f32 var_f20` with
   `register f32 racerVelocity` compiled but left the linked focused score
   unchanged at `CURRENT (2760)` in the current checkout and still did not
   introduce the target `$f20/$f21` prologue saves. Testing
