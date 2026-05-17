@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 15:40:10Z
+- Generated at: 2026-05-17 15:43:05Z
 - Branch: `master`
-- HEAD: `49941e64`
-- Completed task: `trackbg_render_flashy`
-- Summary: Tested an unused-`pad_sp100` first-ring carrier in `trackbg_render_flashy` for the duplicated `-scaledXCos - (xSin * 1280.0f)` value (`xPositions[0]` and `zPositions[1]`). It compiled but collapsed into the same bad frame-shrink family: focused score `CURRENT (13706)`, frame `0x150`, and failed full verify with calculated CRCs `0x218F9FFA/0x18F4A6D6`. Source restored; final full verify passed. Keep `trackbg_render_flashy` active rather than parked.
+- HEAD: `b51688a3`
+- Completed task: `func_80049794`
+- Summary: Tested a current-baseline chained grounded-wheel zero spelling in `func_80049794` (`racer->unk88 = (racer->unk84 = 0.0f)`) while promoting the C. It compiled but produced no useful movement: relinked focused score `CURRENT (2430)`, same failed full-verify CRC family `0x5FDDE03F/0xEF7A0514`, still missing the target `$f20/$f21` prologue saves and still allocating the early zero in `$f16` instead of `$f14`. Source restored; final full verify passed. Keep `func_80049794` active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 1200 -U 4 after relink => CURRENT (13706); failed full verify CRCs 0x218F9FFA/0x18F4A6D6
+- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 4 after relink => CURRENT (2430); failed full verify CRCs 0x5FDDE03F/0xEF7A0514
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy unused-pad_sp100 x0/z1 carrier and func_80049794 combined spEC early-zero / x-z-y save-family probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded current-baseline func_80049794 chained-zero probe plus prior func_80049794 save-family and trackbg_render_flashy pad-spill probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

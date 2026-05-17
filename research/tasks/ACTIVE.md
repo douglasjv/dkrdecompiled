@@ -89,7 +89,13 @@
   focused score stayed `CURRENT (2430)`, full verify failed with the same
   calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the early zero still allocated
   in `$f16` instead of target `$f14`. Do not repeat this existing-`var_f14`
-  early-zero carrier. Promoting the existing C in the current checkout and
+  early-zero carrier. A later current-baseline chained zero spelling
+  (`racer->unk88 = (racer->unk84 = 0.0f)`) also produced no useful movement:
+  relinked focused score `CURRENT (2430)`, same failed full-verify CRCs
+  `0x5FDDE03F/0xEF7A0514`, still missing target `$f20/$f21` prologue saves,
+  and still allocating the early zero in `$f16` instead of `$f14`. Do not
+  repeat this standalone current-baseline chained-zero probe. Promoting the
+  existing C in the current checkout and
   relinking shows the uncompressed focused baseline at `CURRENT (1926)` with
   the known calculated CRCs
   `0x5FDDE03F/0xEF7A0514`; the first visible drift remains the missing
@@ -994,7 +1000,13 @@
   diff reported `CURRENT (2990)` with the same missing target `$f20/$f21`
   prologue saves, shifted saved-register stack slots, early `$f16` zero, and
   wave `a0`/`v1` drift; do not accept this function without relink/full gate
-  evidence. A baseline check of `func_80059208` was still
+  evidence. A later current-baseline chained grounded-wheel zero spelling
+  (`racer->unk88 = (racer->unk84 = 0.0f)`) compiled but stayed in the same
+  failed CRC family `0x5FDDE03F/0xEF7A0514`, relinked focused score
+  `CURRENT (2430)`, still lacked target `$f20/$f21` prologue saves, and still
+  used `$f16` for the early zero instead of target `$f14`; source was restored
+  and final full verify passed. Do not repeat this standalone chained-zero
+  current-baseline probe. A baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
