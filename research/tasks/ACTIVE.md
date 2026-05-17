@@ -1219,8 +1219,14 @@
   compiled, but badly regressed the relinked focused score to `CURRENT (26603)`,
   swapped the x/z integer register family early in the function, and failed
   full verify with calculated CRCs `0xABA59E51/0x244BAFAC`; source was restored
-  and final full verify passed. Keep this function active, but do not repeat
-  those source shapes or this standalone Z-loop unroll.
+  and final full verify passed. A narrower two-iteration/four-check Z-loop
+  shape (`for (i = 0; i < 8; i += 4)` with four explicit checks per body)
+  compiled and preserved the target prologue, but still regressed the relinked
+  focused score to `CURRENT (3325)`, introduced the unwanted early
+  `gCurrentLevelModel` spill family before the segment loop, and failed full
+  verify with calculated CRCs `0x7856718A/0xC40F5151`; source was restored and
+  final full verify passed. Keep this function active, but do not repeat those
+  source shapes or either standalone Z-loop unroll.
 
 ## Ask The User Only If
 
