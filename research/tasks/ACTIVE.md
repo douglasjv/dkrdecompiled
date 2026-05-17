@@ -79,7 +79,12 @@
   the source guard was restored. A later early `XInInt`/`ZInInt` conversion
   probe, keeping the original `xIn`/`zIn` call arguments to
   `get_inside_segment_count_xz`, compiled but left the relinked focused score
-  unchanged at `CURRENT (2780)`.
+  unchanged at `CURRENT (2780)`. A later pad-stack-slot probe found that
+  removing the dead `pad3` local improved the relinked focused score to
+  `CURRENT (1998)`, but still hoisted `gCurrentLevelModel` to `0x64(sp)`;
+  moving `pad3` after `tempVec4f` returned to the promoted-baseline CRC family
+  and did not solve the hoist. Keep active; do not repeat the simple moved
+  `pad3` variant.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -932,12 +937,18 @@
   for the initial segment/bounding-box setup plus texture lookup compiled, but
   widened the frame to `0x130` and worsened the relinked focused score from
   `CURRENT (2780)` to `CURRENT (2900)` (`--max-size 260`: `CURRENT (1435)` to
-  `CURRENT (1470)`); do not repeat this direct local model-cache spelling. A compressed focused
-  diff printed stale `CURRENT (0)` before relink during both the 2026-05-15
-  packet and the 2026-05-17 unrolled-copy probe; rely on a relinked focused
-  diff and the full `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before
-  accepting this function. Keep this function active, but do not repeat those
-  source shapes.
+  `CURRENT (1470)`); do not repeat this direct local model-cache spelling.
+  Removing the dead `pad3` local before `Vec4f tempVec4f` kept the target
+  `0x128` frame and improved the relinked focused score to `CURRENT (1998)`,
+  but still hoisted `gCurrentLevelModel`, spilling it at `0x64(sp)`, and failed
+  full verify with calculated CRCs `0x785671AA/0x0D6F6A4A`. Moving `pad3` after
+  `tempVec4f` fell back to the promoted-baseline CRC family
+  `0x7856718A/0x66208CAA` and did not improve; do not repeat that simple
+  moved-`pad3` stack-slot variant. A compressed focused diff printed stale
+  `CURRENT (0)` before relink during both the 2026-05-15 packet and the
+  2026-05-17 unrolled-copy probe; rely on a relinked focused diff and the full
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before accepting this
+  function. Keep this function active, but do not repeat those source shapes.
 
 ## Ask The User Only If
 
