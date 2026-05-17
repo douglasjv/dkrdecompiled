@@ -1,15 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:29:23Z
+- Generated at: 2026-05-17T12:32:07Z
 - Branch: `master`
-- HEAD: `06d139c0`
-- Completed task: `DKR-MATCH-TRACKBG-RENDER-FLASHY-Z0-SCALEDXSIN-PROBE`
-- Summary: No new source match landed. After the func_80049794 closeout commit,
-  intentionally chose the active alternate trackbg_render_flashy and tested a
-  single-site first-ring spelling: `zPositions[0] = -scaledXCos + scaledXSin`.
-  The probe fell into the bad scaled-sine family, shrinking the frame to
-  `0x150` and sharply worsening the focused diff, so source was restored and
-  trackbg_render_flashy remains active rather than parked.
+- HEAD: `ab8f2626`
+- Completed task: `DKR-MATCH-FUNC-8002B0F4-PAD3-POINTER-COPY-PROBE`
+- Summary: No new source match landed. Intentionally chose active alternate
+  func_8002B0F4, used the known better `pad3`-removed branch, then tested a
+  pointer-increment `gTrackWaves` population loop. The pointer-copy spelling
+  worsened the relinked focused diff and shifted early register scheduling, so
+  source was restored and func_8002B0F4 remains active rather than parked.
 
 ## Validation
 
@@ -17,14 +16,9 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- Follow-up selector/check: `python3 tools/query_goal_state.py next --compact
-  --refresh` -> recommended `func_80049794`; `python3
-  tools/check_active_surface.py` -> active surface ok; active alternate
-  `trackbg_render_flashy` chosen intentionally.
-- trackbg_render_flashy z0 scaledXSin probe: full verify failed with
-  calculated CRCs `0x218F9FFA/0x18F4A6D6`; relinked `./diff.sh
-  trackbg_render_flashy --format plain --no-pager --max-size 760` ->
-  `CURRENT (13376)`.
+- func_8002B0F4 pad3-removed pointer-copy probe: full verify failed with
+  calculated CRCs `0x47E07C97/0x7D45A79C`; relinked `./diff.sh func_8002B0F4
+  --format plain --no-pager --max-size 900` -> `CURRENT (6366)`.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -50,7 +44,10 @@
   object-local-before-pad2 no-op and recorded final-offset source-shape
   families. For trackbg_render_flashy, avoid the single-site
   `zPositions[0] = -scaledXCos + scaledXSin` scaled-sine spelling plus the
-  recorded first-ring/outer-ring position-array source-shape families.`
+  recorded first-ring/outer-ring position-array source-shape families. For
+  func_8002B0F4, avoid the `pad3`-removed pointer-increment `gTrackWaves`
+  population loop plus the recorded gCurrentLevelModel/cache/copy-loop/pad
+  source-shape families.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

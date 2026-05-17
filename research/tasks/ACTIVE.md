@@ -113,8 +113,12 @@
   removing the dead `pad3` local improved the relinked focused score to
   `CURRENT (1998)`, but still hoisted `gCurrentLevelModel` to `0x64(sp)`;
   moving `pad3` after `tempVec4f` returned to the promoted-baseline CRC family
-  and did not solve the hoist. Keep active; do not repeat the simple moved
-  `pad3` variant.
+  and did not solve the hoist. Combining the `pad3`-removed branch with a
+  pointer-increment `gTrackWaves` population loop (`for (..., wave =
+  D_8011D128; ...; wave++)`) compiled but worsened the relinked focused score
+  to `CURRENT (6366)` and failed full verify with calculated CRCs
+  `0x47E07C97/0x7D45A79C`. Keep active; do not repeat the simple moved `pad3`
+  variant or the pointer-increment population spelling.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1036,7 +1040,13 @@
   full verify with calculated CRCs `0x785671AA/0x0D6F6A4A`. Moving `pad3` after
   `tempVec4f` fell back to the promoted-baseline CRC family
   `0x7856718A/0x66208CAA` and did not improve; do not repeat that simple
-  moved-`pad3` stack-slot variant. A compressed focused diff printed stale
+  moved-`pad3` stack-slot variant. Combining the `pad3`-removed branch with a
+  pointer-increment `gTrackWaves` population loop (`for (var_v0 = 0, wave =
+  D_8011D128; var_v0 < yOutCount; var_v0++, wave++)`) compiled but worsened
+  the relinked focused score to `CURRENT (6366)`, shifted saved-register and
+  loop scheduling from the top of the function, and failed full verify with
+  calculated CRCs `0x47E07C97/0x7D45A79C`; do not repeat this pointer-copy
+  spelling. A compressed focused diff printed stale
   `CURRENT (0)` before relink during both the 2026-05-15 packet and the
   2026-05-17 unrolled-copy probe; rely on a relinked focused diff and the full
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before accepting this
