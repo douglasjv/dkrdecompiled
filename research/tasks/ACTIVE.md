@@ -271,7 +271,11 @@
   current C also missed: relinked focused `CURRENT (2878)`, failed full verify
   with calculated CRCs `0x78567132/0xCBE53596`, shifted `spB0` from target
   `0xb0(sp)` to `0xb4(sp)`, and preserved the early `gCurrentLevelModel` spill
-  at `0x64(sp)`. A later statement-order variant moved the existing
+  at `0x64(sp)`. Removing both unused `pad2` and dead `pad3` together while
+  promoting the current C also missed: frame shrank from target `0x128` to
+  `0x120`, relinked focused score `CURRENT (2928)`, failed full verify with
+  calculated CRCs `0x78566FC2/0xC14E0CEA`, and preserved the unwanted early
+  `gCurrentLevelModel` spill family. A later statement-order variant moved the existing
   `XInInt = xIn` / `ZInInt = zIn` conversions immediately after
   `D_8011D308 = 0`, then stored `*arg3 = NULL`, passed the integer locals into
   `get_inside_segment_count_xz`, and removed the per-segment reassignments; it
@@ -1465,7 +1469,12 @@
   C also missed: relinked focused score `CURRENT (2878)`, failed full verify
   with calculated CRCs `0x78567132/0xCBE53596`, shifted `spB0` from target
   `0xb0(sp)` to `0xb4(sp)`, and preserved the early `gCurrentLevelModel` spill
-  at `0x64(sp)`. Do not repeat this declaration-only `pad2` removal. Replacing
+  at `0x64(sp)`. Removing both unused `pad2` and dead `pad3` together shrank
+  the frame to `0x120`, worsened the relinked focused score to
+  `CURRENT (2928)`, failed full verify with calculated CRCs
+  `0x78566FC2/0xC14E0CEA`, and still carried the early `gCurrentLevelModel`
+  spill family. Do not repeat this declaration-only `pad2` removal or the
+  combined `pad2`/`pad3` removal. Replacing
   the dead `pad3` slot with a local `TextureInfo *textures` at the batch
   texture-surface read improved over the promoted baseline but regressed versus
   plain `pad3` removal: relinked focused score `CURRENT (2425)`, failed full
