@@ -176,8 +176,14 @@
   `-scaledXCos - (xSin * 1280.0f)` value (`xPositions[0] = var_f16`;
   `zPositions[1] = var_f16`) collapsed into the same bad family: frame `0x150`,
   focused score `CURRENT (13376)`, and full-verify CRCs
-  `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
-  single-site scaled-sine, or first-ring existing-`var_f16` carrier shapes.
+  `0x218F9FFA/0x18F4A6D6`. A later outer-ring assignment-order probe moved
+  `xPositions[5]` before `zPositions[5]`, `zPositions[6]` before
+  `xPositions[6]`, and `zPositions[7]` before `xPositions[7]` to mimic the
+  target store order; it compiled but worsened the relinked focused score to
+  `CURRENT (2786)` and failed full verify with calculated CRCs
+  `0xDC7DB491/0xB2CAADCB`. Keep active and avoid repeating those no-op,
+  single-site scaled-sine, first-ring existing-`var_f16` carrier, or outer-ring
+  assignment-order shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
