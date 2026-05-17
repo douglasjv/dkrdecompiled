@@ -705,7 +705,16 @@
   2.0`) compiled and improved the best save-family focused score from
   `CURRENT (3560)` to `CURRENT (3550)` while preserving the target `0xf8`
   frame family; if continuing this branch, inspect from this x-first split
-  candidate rather than the weaker two-step x/z sum spelling. The sibling
+  candidate rather than the weaker two-step x/z sum spelling. Combining that
+  x/z/y save-family branch with the `spEC` early-zero carrier
+  (`spEC = 0.0f; racer->unk84 = spEC; racer->unk88 = spEC`) improved the
+  focused score further to `CURRENT (3415)`, preserved the target `0xf8` frame
+  and `$f20/$f21` saves, but still failed full verify with calculated CRCs
+  `0x32EE7D5A/0x1DE43B81`; it retained the unwanted `swc1 $f14,0xec(sp)`
+  before the stores plus the wave-register drift. Source was restored and
+  final full verify passed. Do not repeat this exact combined `spEC`
+  early-zero / x/z/y save-family probe; if continuing this family, inspect how
+  to keep the `$f14` zero without the `spEC` stack spill. The sibling
   x/y/z split spelling
   (`var_f20 = x*x; var_f20 += y*y; var_f20 += z*z; var_f20 = sqrtf(var_f20) -
   2.0`) compiled but regressed back to `CURRENT (3560)`, so do not continue
