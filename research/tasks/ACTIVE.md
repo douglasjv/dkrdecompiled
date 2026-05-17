@@ -198,9 +198,14 @@
   `xPositions[6]`, and `zPositions[7]` before `xPositions[7]` to mimic the
   target store order; it compiled but worsened the relinked focused score to
   `CURRENT (2786)` and failed full verify with calculated CRCs
-  `0xDC7DB491/0xB2CAADCB`. Keep active and avoid repeating those no-op,
-  single-site scaled-sine, first-ring existing-`var_f16` carrier, or outer-ring
-  assignment-order shapes.
+  `0xDC7DB491/0xB2CAADCB`. A later paired first-ring
+  `scaledXCos - (xSin * 1280.0f)` carrier through the existing `pad_sp108`
+  local for `xPositions[1]` and `zPositions[2]` compiled but collapsed into
+  the same bad frame-shrink family: frame `0x150`, focused score
+  `CURRENT (13376)`, and full-verify CRCs `0x218F9FFA/0x18F4A6D6`.
+  Keep active and avoid repeating those no-op, single-site scaled-sine,
+  first-ring existing-`var_f16` carrier, outer-ring assignment-order, or
+  `pad_sp108` x1/z2 carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1149,6 +1154,12 @@
   `CURRENT (13376)`, and full verify failed with calculated CRCs
   `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
   Do not repeat this `pad_sp108` z0/x3 carrier either.
+  Routing the paired `scaledXCos - (xSin * 1280.0f)` value through existing
+  `pad_sp108` for `xPositions[1]` and `zPositions[2]` likewise compiled but
+  collapsed into the same bad first-ring frame-shrink family: frame `0x150`,
+  relinked focused score `CURRENT (13376)`, and full verify failed with
+  calculated CRCs `0x218F9FFA/0x18F4A6D6`; source was restored and final full
+  verify passed. Do not repeat this `pad_sp108` x1/z2 carrier.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.

@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:59:10Z
+- Generated at: 2026-05-17 14:02:57Z
 - Branch: `master`
-- HEAD: `23dd7f0d`
-- Completed task: `func_8002B0F4`
-- Summary: Tested a narrower standalone Z grid mask loop unroll in func_8002B0F4: promoted source and rewrote the Z-axis mask loop as a two-iteration `i += 4` loop with four explicit checks per body. It compiled and preserved the target prologue, but regressed the relinked focused diff to CURRENT (3325), introduced the unwanted early gCurrentLevelModel spill family before the segment loop, and full verify failed with calculated CRCs 0x7856718A/0xC40F5151. Source guard/body restored; final full verify passed. Keep func_8002B0F4 active rather than parked.
+- HEAD: `f2ad7566`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a paired first-ring carrier in trackbg_render_flashy: promoted source and routed `scaledXCos - (xSin * 1280.0f)` through existing `pad_sp108` for `xPositions[1]` and `zPositions[2]`. It compiled, but collapsed into the same bad first-ring frame-shrink family: frame 0x150, relinked focused diff CURRENT (13376), and full verify failed with calculated CRCs 0x218F9FFA/0x18F4A6D6. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 760 => relinked focused CURRENT (3325)
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 760 => relinked focused CURRENT (13376); failed full verify CRCs 0x218F9FFA/0x18F4A6D6
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_8002B0F4 two-iteration Z-loop unroll.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy pad_sp108 x1/z2 carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
