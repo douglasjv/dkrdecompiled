@@ -306,7 +306,8 @@
   single-site scaled-sine, first-ring existing-`var_f16` carrier,
   first-ring `pad_sp108` carrier, outer-ring assignment-order, single-site
   `zPositions[6]`/`xPositions[6]` reorder, first-ring store-order grouping,
-  or `pad_sp108` x1/z2/double-cosine carrier shapes.
+  single-site `zPositions[5]` subtract-chain, or `pad_sp108`
+  x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1260,7 +1261,13 @@
   baseline: relinked focused diff stayed `CURRENT (1808)` and full verify
   failed with the same calculated CRCs `0x93D338FF/0x03D9C8FE`; source was
   restored and final full verify passed. Treat this as the same additive-double
-  family and do not repeat it. Adding a named
+  family and do not repeat it. Rewriting only `zPositions[5]` as a
+  left-associative subtract chain (`scaledXSin - scaledXCos - scaledXCos`)
+  also missed badly: relinked focused score worsened from `CURRENT (1808)` to
+  `CURRENT (4558)`, full verify failed with calculated CRCs
+  `0xD68DF16F/0x5A429915`, and the outer-ring position store schedule shifted
+  much earlier. Do not repeat this single-site z5 subtract-chain spelling.
+  Adding a named
   `negScaledXCos` temporary for the first/outer position expressions also
   compiled but left the uncompressed linked diff at `CURRENT (1808)`. Swapping
   the `scaledXSin`/`scaledXCos` declaration order produced no object change,

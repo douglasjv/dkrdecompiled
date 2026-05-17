@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 15:07:45Z
+- Generated at: 2026-05-17 15:11:01Z
 - Branch: `master`
-- HEAD: `e55c3f15`
-- Completed task: `func_80059208`
-- Summary: Tested a final object-pointer lifetime probe in `func_80059208`: promoted source, introduced `Object *obj2`, assigned `obj2 = obj` immediately before the final object x/z position loads, and used `obj2->trans` for the final object dot. It compiled but worsened the focused score from `CURRENT (870)` to `CURRENT (878)`, failed full verify with calculated CRCs `0x53D141D7/0xAA087F2A`, and left the same final arithmetic drift around the object dot plus negated checkpoint dot. Source restored; final full verify passed. Keep `func_80059208` active rather than parked.
+- HEAD: `4a426fdb`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a single-site outer-ring subtract-chain probe in `trackbg_render_flashy`: promoted source and rewrote only `zPositions[5]` from `scaledXSin - (2.0f * scaledXCos)` to `scaledXSin - scaledXCos - scaledXCos`. It compiled but worsened the focused score from baseline `CURRENT (1808)` to `CURRENT (4558)`, failed full verify with calculated CRCs `0xD68DF16F/0x5A429915`, and shifted the outer-ring position store schedule much earlier. Source restored; final full verify passed. Keep `trackbg_render_flashy` active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 1000 after relink => CURRENT (878), baseline CURRENT (870); failed full verify CRCs 0x53D141D7/0xAA087F2A
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 1200 after relink => CURRENT (4558), baseline CURRENT (1808); failed full verify CRCs 0xD68DF16F/0x5A429915
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 final Object *obj2 lifetime probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy zPositions[5] subtract-chain probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
