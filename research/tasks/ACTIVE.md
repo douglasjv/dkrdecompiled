@@ -50,7 +50,10 @@
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
   after relink it worsened to `CURRENT (4623)` and failed full verify before
-  the source guard was restored.
+  the source guard was restored. A later early `XInInt`/`ZInInt` conversion
+  probe, keeping the original `xIn`/`zIn` call arguments to
+  `get_inside_segment_count_xz`, compiled but left the relinked focused score
+  unchanged at `CURRENT (2780)`.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -762,7 +765,11 @@
   `gTrackWaves` pointer population as a remainder loop followed by
   unrolled-by-four stores compiled but worsened the relinked score to
   `CURRENT (4623)` and shifted the same `gCurrentLevelModel`/global-offset
-  schedule family; do not repeat that copy-loop spelling. A compressed focused
+  schedule family; do not repeat that copy-loop spelling. Moving only the
+  `XInInt = xIn` / `ZInInt = zIn` conversions immediately after `*arg3 =
+  NULL` while still passing original `xIn`/`zIn` to
+  `get_inside_segment_count_xz` compiled, but the relinked focused score stayed
+  unchanged at `CURRENT (2780)`. A compressed focused
   diff printed stale `CURRENT (0)` before relink during both the 2026-05-15
   packet and the 2026-05-17 unrolled-copy probe; rely on a relinked focused
   diff and the full `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before
