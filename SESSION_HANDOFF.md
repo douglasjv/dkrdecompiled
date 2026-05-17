@@ -1,19 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:14:05Z
+- Generated at: 2026-05-17T00:16:55Z
 - Branch: `master`
-- HEAD before closeout commit: `48c2722b`
-- Completed task: `DKR-MATCH-FUNC-80049794-SINGLE-PAD7-VAR-F2-STAGING-PROBE`
+- HEAD before closeout commit: `7aac209a`
+- Completed task: `DKR-MATCH-FUNC-80049794-Y-ONLY-VAR-F2-STAGING-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested the sibling single-leading-pad shape:
-  removing only `pad7` while retaining `pad5` and trailing `pad3`/`pad4` on the
-  `var_f2` z/y component staging branch. It compiled and kept the target
-  `0xf8` frame, but matched the `pad5`-only removal miss at `CURRENT (3514)`,
-  shifted local stack slots, and still lacked target `$f20/$f21` saves. The
-  guarded matching source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested a partial component-staging shape from the
+  save-family branch: direct x/z accumulation with only the y velocity loaded
+  through `var_f2` before the first `sqrtf`. It compiled and kept the target
+  `0xf8` frame plus `$f20/$f21` saves, but worsened the focused score to
+  `CURRENT (3765)` and disrupted the later `sound_play_spatial` scheduling.
+  The guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with both trailing pads removed, steer no-op, x/z direct accumulation, and only the y component staged through `var_f2`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --no-pager` -> y-only `var_f2` staging keeps `0xf8` and `$f20/$f21` saves but worsens to `CURRENT (3765)` and disrupts later `sound_play_spatial` scheduling
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C candidate compiles with only leading `pad7` removed, `pad5` and trailing `pad3`/`pad4` retained, steer no-op, and z/y velocity components staged through `var_f2` before the first `sqrtf`
