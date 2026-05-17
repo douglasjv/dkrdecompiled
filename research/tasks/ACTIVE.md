@@ -627,7 +627,16 @@
   the relinked focused score to `CURRENT (4425)` (`--max-size 260`:
   `CURRENT (195)`) and failed full verify with calculated CRCs
   `0xB8B259CD/0xD730D2DE`; do not repeat this mutating post-`sqrtf`
-  subtraction split. A
+  subtraction split. Combining the x/z/y save-family plus steer-noop branch
+  with an early grounded-wheel zero carrier through existing `spEC`
+  (`spEC = 0.0f; racer->unk84 = spEC; racer->unk88 = spEC`) compiled, kept the
+  target `0xf8` frame and `$f20/$f21` saves, and improved the relinked
+  compressed `--max-size 620` score from promoted baseline `CURRENT (859)` to
+  `CURRENT (820)`, but it inserted an unwanted `swc1 $f14,0xec(sp)` before the
+  two zero stores and still failed full verify with calculated CRCs
+  `0x32EE7D5A/0x1DE43B81`; do not repeat this combined `spEC` early-zero spill
+  shape unless a new source change removes the spill while preserving the save
+  family. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
