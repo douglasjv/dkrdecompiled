@@ -688,7 +688,11 @@
   lateral arithmetic. Computing the negated checkpoint dot first, then loading
   both object-position locals before building `pad` compiled but left the
   focused score unchanged at `CURRENT (870)` with the same final
-  object-load/arithmetic drift as the promoted baseline. Adding `register` to
+  object-load/arithmetic drift as the promoted baseline. Routing the final
+  object-position loads through a named `ObjectTransform *trans = &obj->trans`
+  local compiled and produced the target-like `lw v0, 0xc0(sp)` timing in the
+  tail, but worsened the focused score to `CURRENT (1096)` by shifting the
+  spline/local stack slots down by 4 bytes. Adding `register` to
   the `splinePos` local also compiled but produced no object change from the
   promoted baseline and left the focused score unchanged at `CURRENT (870)`.
   Reusing the now-dead `splinePos` local as the negated checkpoint-dot carrier
