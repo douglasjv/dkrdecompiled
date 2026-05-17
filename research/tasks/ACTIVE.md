@@ -154,8 +154,12 @@
   scaledXSin` compiled but shrank the frame to `0x150`, worsened the relinked
   focused score to `CURRENT (13376)`, and failed full verify with calculated
   CRCs `0x218F9FFA/0x18F4A6D6`. Source was restored and full matching verify
-  passed. Keep active and avoid repeating those no-op or single-site
-  scaled-sine shapes.
+  passed. A follow-up existing-`var_f16` first-ring carrier for the duplicated
+  `-scaledXCos - (xSin * 1280.0f)` value (`xPositions[0] = var_f16`;
+  `zPositions[1] = var_f16`) collapsed into the same bad family: frame `0x150`,
+  focused score `CURRENT (13376)`, and full-verify CRCs
+  `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
+  single-site scaled-sine, or first-ring existing-`var_f16` carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1041,6 +1045,13 @@
   into the bad single-site scaled-sine family: the frame shrank to `0x150`,
   relinked focused diff worsened to `CURRENT (13376)`, and full verify failed
   with calculated CRCs `0x218F9FFA/0x18F4A6D6`; do not repeat this z0 spelling.
+  Routing the duplicated first-ring `-scaledXCos - (xSin * 1280.0f)` value
+  through the existing `var_f16` local for `xPositions[0]` and `zPositions[1]`
+  also compiled into the same bad family: frame `0x150`, relinked focused diff
+  `CURRENT (13376)`, and full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; source was restored and the final full verify
+  passed, so keep the function active but do not repeat this first-ring
+  existing-`var_f16` carrier.
   A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
