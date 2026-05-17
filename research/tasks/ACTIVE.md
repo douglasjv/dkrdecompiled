@@ -1157,7 +1157,12 @@
   `CURRENT (1420)`, failed full verify with calculated CRCs
   `0x4BBAD57F/0xE56B870D`, and shifted the final vertical block after adding a
   reciprocal division/multiply sequence; do not repeat this final reciprocal
-  spelling. Reordering the final lateral-axis
+  spelling. Spelling the same final lateral correction with a negative divisor
+  (`diffX = (pad + pad2) / -divisor`) also missed: relinked focused score
+  worsened to `CURRENT (1295)`, full verify failed with calculated CRCs
+  `0x53B0B9DF/0x4E71FC94`, and the target post-division negation shifted into
+  a divisor-negation family with broader final vertical register drift. Do not
+  repeat this negative-divisor spelling. Reordering the final lateral-axis
   swap to stage old `diffZ` through `diffY`
   (`diffY = diffZ; diffZ = -diffX; diffX = diffY`) compiled but worsened the
   relinked focused score from the promoted baseline `CURRENT (870)` to
