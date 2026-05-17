@@ -761,7 +761,11 @@
   object-only `CURRENT (0)`, but the promoted full build failed verify with CRC
   `0x8E7F39EA/0xD7399E4A` and the relinked uncompressed focused diff worsened
   to `CURRENT (4390)` with a smaller `0x150` frame and shifted early
-  position-array stack slots. A
+  position-array stack slots. Replacing only `xPositions[3]` with
+  `-scaledXCos + scaledXSin` compiled, but the promoted full build failed
+  verify and the relinked focused diff worsened to `CURRENT (9344)` /
+  `CURRENT (12161)`, reshuffling the first-four position stores and shrinking
+  the frame to `0x150`; do not repeat this single-site scaled-sine rewrite. A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
   full verify gate before accepting anything.
