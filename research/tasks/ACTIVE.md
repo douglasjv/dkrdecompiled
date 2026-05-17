@@ -417,7 +417,12 @@
   probes also missed: `s16 selectedTrack` worsened to `CURRENT (1355)` with
   calculated CRCs `0x5B5E4609/0x72935A6E`, while `register s32 selectedTrack`
   stayed `CURRENT (10)` with calculated CRCs `0x55C240E7/0x18E4F9B4`. Do not
-  retry those same probes as the next packet.
+  retry those same probes as the next packet. A later plain `s32 temp`
+  selected-track carrier removed the unsequenced-assignment warning but
+  worsened the focused score to `CURRENT (935)`, failed full verify with
+  calculated CRCs `0x553930E7/0x227AD4A3`, still used `v1` for the
+  selected-track branch, and broadened downstream register drift; do not retry
+  that carrier.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry

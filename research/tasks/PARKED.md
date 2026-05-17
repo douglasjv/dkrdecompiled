@@ -24,8 +24,13 @@ when intentionally returning to them.
   `0x5B5E4609/0x72935A6E`, and introduced extra sign-extension/register churn;
   `register s32 selectedTrack` produced no object movement from the close
   baseline, stayed `CURRENT (10)`, and failed full verify with calculated CRCs
-  `0x55C240E7/0x18E4F9B4`. Revisit with a different allocator/lifetime
-  hypothesis, not these same probes.
+  `0x55C240E7/0x18E4F9B4`. A later plain `s32 temp` selected-track carrier
+  (`temp = gTrackSelectIDs[trackY][trackX]; selectedTrack = temp`) removed the
+  unsequenced-assignment warning but worsened the focused score to
+  `CURRENT (935)`, failed full verify with calculated CRCs
+  `0x553930E7/0x227AD4A3`, still used `v1` for the selected-track branch, and
+  broadened downstream register drift. Revisit with a different
+  allocator/lifetime hypothesis, not these same probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
