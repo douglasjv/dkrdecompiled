@@ -283,8 +283,8 @@
   `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
   single-site scaled-sine, first-ring existing-`var_f16` carrier,
   first-ring `pad_sp108` carrier, outer-ring assignment-order, single-site
-  `zPositions[6]`/`xPositions[6]` reorder, or `pad_sp108`
-  x1/z2/double-cosine carrier shapes.
+  `zPositions[6]`/`xPositions[6]` reorder, first-ring store-order grouping,
+  or `pad_sp108` x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1297,7 +1297,14 @@
   collapsed into the same bad first-ring frame-shrink family: frame `0x150`,
   relinked focused score `CURRENT (13376)`, and full verify failed with
   calculated CRCs `0x218F9FFA/0x18F4A6D6`; source was restored and final full
-  verify passed. Do not repeat this `pad_sp108` x1/z2 carrier.
+  verify passed. Do not repeat this `pad_sp108` x1/z2 carrier. Reordering the
+  first four position assignments to pair target-equivalent values
+  (`xPositions[0]` with `zPositions[1]`, `zPositions[0]` with `xPositions[1]`,
+  `xPositions[2]` with `zPositions[3]`, and `zPositions[2]` with
+  `xPositions[3]`) compiled but regressed the relinked focused score to
+  `CURRENT (4034)`, failed full verify with calculated CRCs
+  `0x93E03BFF/0x3B5D2DFE`, and shifted the early position-array float-register
+  family. Do not repeat this first-ring store-order grouping.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
