@@ -329,12 +329,19 @@
   recreated the same early-conversion call-shape miss with relinked focused
   `CURRENT (2860)`, failed full verify with calculated CRCs
   `0x7856718A/0x66208CAA`, and still inserted the unwanted pre-loop
-  `gCurrentLevelModel` spill to `0x60(sp)`. Keep active; do not repeat the
-  simple moved `pad3` variant, the pointer-increment population spelling,
-  either early-conversion call shape, the direct-cast
-  `get_inside_segment_count_xz` call shape, this `D_8011D308`-first
-  conversion/order variant, the scalar plane-carrier replacement, the
-  unused-wave2 removal, or the declaration-only `pad2` removal.
+  `gCurrentLevelModel` spill to `0x60(sp)`. A later segment-index carrier
+  through the existing `i` local (`i = spB0[var_fp]`, then indexing both
+  segment arrays with `i`) also missed: relinked focused score worsened to
+  `CURRENT (2925)`, full verify failed with calculated CRCs
+  `0x78BF118A/0x21FC9F7D`, the early `gCurrentLevelModel` spill at `0x60(sp)`
+  remained, and the segment-index register family drifted from the
+  target/baseline `t1` toward `a3`/`t1`. Source was restored and final full
+  verify passed. Keep active; do not repeat the simple moved `pad3` variant,
+  the pointer-increment population spelling, either early-conversion call
+  shape, the direct-cast `get_inside_segment_count_xz` call shape, this
+  `D_8011D308`-first conversion/order variant, this segment-index `i` carrier,
+  the scalar plane-carrier replacement, the unused-wave2 removal, or the
+  declaration-only `pad2` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1739,10 +1746,18 @@
   CRCs `0x7856718A/0x66208CAA`, and the unwanted early
   `gCurrentLevelModel` spill at `0x60(sp)` remained. Source was restored and
   final full verify passed. Do not repeat this outer segment-loop `while`
-  spelling. Keep this function active, but do not repeat those source shapes,
-  either standalone Z-loop unroll, this sort-limit-hoist spelling, this bottom
-  population-loop `while` spelling, or this outer segment-loop `while`
-  spelling.
+  spelling. A later segment-index carrier through the existing `i` local
+  (`i = spB0[var_fp]; currentSegment = &gCurrentLevelModel->segments[i];
+  currentBoundingBox = &gCurrentLevelModel->segmentsBoundingBoxes[i]`) also
+  missed: relinked focused score worsened to `CURRENT (2925)`, full verify
+  failed with calculated CRCs `0x78BF118A/0x21FC9F7D`, the early
+  `gCurrentLevelModel` spill at `0x60(sp)` remained, and the segment-index
+  register family drifted from target/baseline `t1` toward `a3`/`t1`. Source
+  was restored and final full verify passed. Do not repeat this segment-index
+  `i` carrier. Keep this function active, but do not repeat those source
+  shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
+  bottom population-loop `while` spelling, this outer segment-loop `while`
+  spelling, or this segment-index `i` carrier.
 
 ## Ask The User Only If
 
