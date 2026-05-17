@@ -126,8 +126,14 @@
   pointer-increment `gTrackWaves` population loop (`for (..., wave =
   D_8011D128; ...; wave++)`) compiled but worsened the relinked focused score
   to `CURRENT (6366)` and failed full verify with calculated CRCs
-  `0x47E07C97/0x7D45A79C`. Keep active; do not repeat the simple moved `pad3`
-  variant or the pointer-increment population spelling.
+  `0x47E07C97/0x7D45A79C`. Combining the better plain `pad3`-removed stack
+  layout with early `XInInt`/`ZInInt` conversions before
+  `get_inside_segment_count_xz` and passing those integer locals compiled but
+  regressed the relinked focused score to `CURRENT (2868)` and failed full
+  verify with the same calculated CRCs as plain `pad3` removal,
+  `0x785671AA/0x0D6F6A4A`. Keep active; do not repeat the simple moved `pad3`
+  variant, the pointer-increment population spelling, or this combined
+  pad3-removal plus early-conversion call shape.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1078,7 +1084,13 @@
   the relinked focused score to `CURRENT (6366)`, shifted saved-register and
   loop scheduling from the top of the function, and failed full verify with
   calculated CRCs `0x47E07C97/0x7D45A79C`; do not repeat this pointer-copy
-  spelling. A compressed focused diff printed stale
+  spelling. Combining the better plain `pad3`-removed stack layout with early
+  `XInInt`/`ZInInt` conversion before `get_inside_segment_count_xz` and passing
+  those integer locals into the call compiled but failed full verify with the
+  same calculated CRCs as plain `pad3` removal, `0x785671AA/0x0D6F6A4A`; the
+  relinked focused score regressed to `CURRENT (2868)` and still showed the
+  early `gCurrentLevelModel` spill family, so do not repeat this combined
+  pad3-removal plus early-conversion call shape. A compressed focused diff printed stale
   `CURRENT (0)` before relink during both the 2026-05-15 packet and the
   2026-05-17 unrolled-copy probe; rely on a relinked focused diff and the full
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before accepting this
