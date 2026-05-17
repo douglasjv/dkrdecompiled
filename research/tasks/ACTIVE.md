@@ -154,7 +154,13 @@
   broadened register allocation from the early spline block, worsened the
   relinked focused score to `CURRENT (2173)`, and failed full verify with
   calculated CRCs `0x5CBA1A12/0x20830C42`; source was restored and final full
-  verify passed. Do not repeat this temp-mutating checkpoint-dot carrier.
+  verify passed. A later positive checkpoint-minus-object numerator carrier
+  (`pad = checkpointDot; pad2 = objectDot; pad -= pad2; diffX = pad /
+  divisor`) compiled but worsened the relinked focused score to
+  `CURRENT (1300)` and failed full verify with calculated CRCs
+  `0xC7D996EA/0xC6D1DFDE`; source was restored and final full verify passed.
+  Do not repeat this temp-mutating checkpoint-dot carrier or positive
+  numerator carrier.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -1077,7 +1083,13 @@
   relinked focused score worsened to `CURRENT (2173)`, and the diff showed
   broad float-register churn from the earlier spline setup through the final
   lateral/vertical clamp block instead of preserving the baseline tail. Do not
-  repeat this temp-mutating checkpoint-dot carrier.
+  repeat this temp-mutating checkpoint-dot carrier. Computing the positive
+  checkpoint dot into `pad`, the object dot into `pad2`, then reusing `pad` as
+  `checkpointDot - objectDot` before `diffX = pad / divisor` also missed:
+  relinked focused score worsened to `CURRENT (1300)`, full verify failed with
+  calculated CRCs `0xC7D996EA/0xC6D1DFDE`, and the final block/epilogue shifted
+  instead of matching the target object-dot plus negated-checkpoint schedule.
+  Do not repeat this positive numerator carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

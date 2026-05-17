@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:06:51Z
+- Generated at: 2026-05-17 14:10:25Z
 - Branch: `master`
-- HEAD: `3b2c64a8`
-- Completed task: `func_80049794`
-- Summary: Tested a save-family wave-threshold carrier in func_80049794: promoted source on the close chained-zero/x/z/y/steer-noop branch and carried `obj->trans.y_position + 5.0f` through existing `var_f0` before the wave scan. It kept the target 0xf8 frame and $f20/$f21 saves, but regressed the relinked focused diff to CURRENT (7555), shifted the wave block into worse a0/v1/f12/f14 register churn with extra stack traffic, and full verify failed with calculated CRCs 0x2B7A77D5/0x5B507890. Source guard/body restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `c79e6ff5`
+- Completed task: `func_80059208`
+- Summary: Tested a final-offset positive numerator carrier in func_80059208: promoted source and computed the positive checkpoint dot into `pad`, object dot into `pad2`, then reused `pad` as `checkpointDot - objectDot` before `diffX = pad / divisor`. It compiled, but regressed the relinked focused diff from the promoted baseline to CURRENT (1300), shifted the final block/epilogue instead of matching the target object-dot plus negated-checkpoint schedule, and full verify failed with calculated CRCs 0xC7D996EA/0xC6D1DFDE. Source guard/body restored; final full verify passed. Keep func_80059208 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 900 => relinked focused CURRENT (7555); failed full verify CRCs 0x2B7A77D5/0x5B507890
+- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 760 => relinked focused CURRENT (1300); failed full verify CRCs 0xC7D996EA/0xC6D1DFDE
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 var_f0 wave-threshold carrier.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 positive numerator carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
