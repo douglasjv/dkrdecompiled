@@ -26,7 +26,10 @@
   parked solely because the current source-shape families are saturated. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
-  promoted baseline and stayed `CURRENT (2550)`.
+  promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
+  the first speed-magnitude block compiled but worsened the focused score to
+  `CURRENT (2760)` and still did not introduce the target `$f20/$f21` prologue
+  saves.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -477,7 +480,12 @@
   improvement, staying `CURRENT (3550)`, and using `segmentZVelocity` directly
   in the later `handle_racer_top_speed` multiply also stayed `CURRENT (3550)`.
   Do not repeat simple `segmentZVelocity` top-speed carrier spellings on this
-  branch unless new target scheduling evidence points there. Staging the z/y
+  branch unless new target scheduling evidence points there. Moving the
+  `spA3 = FALSE` initialization before the first speed-magnitude block compiled
+  but worsened the promoted baseline from `CURRENT (2550)` to `CURRENT (2760)`;
+  it inserted an early stack-byte store before the `sqrtf` family and still
+  did not create the target `$f20/$f21` prologue saves. Do not repeat this
+  early-`spA3` scheduling shape. Staging the z/y
   velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and

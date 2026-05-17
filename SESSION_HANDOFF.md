@@ -1,25 +1,27 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:58:07Z
+- Generated at: 2026-05-17T02:01:49Z
 - Branch: `master`
-- HEAD before closeout commit: `4a112bf1`
+- HEAD before closeout commit: `d2cb9378`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
   preference by keeping the active candidates routable, then tested a bounded
-  `func_80059208` final object-local ordering probe. Promoting the current C
-  candidate still scores `CURRENT (870)`. Computing the negated checkpoint dot
-  first, then loading both final object-position locals before building `pad`,
-  compiled but left the focused score unchanged at `CURRENT (870)` with the
-  same final object-load/arithmetic drift. Guarded matching source was restored
-  and the full ROM gate is clean. Keep `func_80059208` active; do not park it
-  solely because this final-offset ordering probe missed.
+  `func_80049794` `spA3` scheduling probe. Promoting the current C candidate
+  still scores `CURRENT (2550)`. Moving `spA3 = FALSE` before the first
+  speed-magnitude block compiled but worsened the focused score to
+  `CURRENT (2760)`, inserting an early stack-byte store and still failing to
+  introduce the target `$f20/$f21` prologue saves. Guarded matching source was
+  restored and the full ROM gate is clean. Keep `func_80049794` active; do not
+  park it solely because this allocation/scheduling probe missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80059208` C candidate compiles with `pad2 = -checkpointDot` computed before the final object-position locals are loaded
-- `./diff.sh -o func_80059208 -s --compress-matching 4 --format plain --no-pager` -> object-local delayed-after-`pad2` probe leaves the focused score unchanged at `CURRENT (870)`, with the same final object-load/arithmetic drift
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C baseline compiles
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> promoted baseline remains `CURRENT (2550)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> early-`spA3` scheduling probe compiles with `spA3 = FALSE` before the first speed-magnitude block
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> early-`spA3` scheduling worsens to `CURRENT (2760)` and still lacks target `$f20/$f21` prologue saves
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
@@ -567,6 +569,7 @@
 - Rejected `func_80049794` probes: `register f32 var_f20`, moving `var_f20` declaration, explicit `f64 var_f20_d`, inline clamp casts, `/ 2.0` and `/ 4.0` multiply rewrites, splitting the initial `sqrtf` result into a named local, two-step first `sqrtf` subtraction, post-`sqrtf` `var_f2` dataflow (`var_f2 = sqrtf(...) - 2.0; var_f20 = var_f2;`), `register f32 var_f2`, removing the empty `if ((!racerSteerAngle)) {}` lifetime hint, splitting the top-speed multiply into two assignments, `register f32 var_f14`, moving `var_f14` into the early local group, `register f32 segmentZVelocity`, direct assignment of the misc-asset interpolation into `var_f14`, delaying the `segmentZVelocity` copy until `handle_racer_top_speed`, reusing `racerMiscAssetIdx` for the `var_f14` fractional calculation, reordering the misc-asset interpolation to current-then-next expression order, deriving `var_f0` from the already loaded `var_f14` velocity, explicit `4.0f`/`3.0f` velocity clamp constants, explicit `-1.0f`/`10.0f` buoyancy constants, splitting buoyancy so `var_f20 = -1.0f` materializes before `gCurrentStickY = -60`, starting `var_f20` lifetime at the first grounded-wheel zeroing, `register` hints on `spEC`/`spD8`/`spD4`/`spD0`, naming `gRacerWaveCount - 1` in `var_v1` before the wave scan, explicitly materializing the early zero through `var_f14` before the grounded wheel reset, moving `spA3 = FALSE` after the inverse-gravity calculation, combining `register f32 var_f20` with `register f32 var_f14`, combining `register f32 var_f20` with `register f32 racerVelocity`, combining `register f32 var_f20` with `register f32 segmentZVelocity`, and routing the early grounded-wheel zero through `spCC`. The wave-scan probe matched the intended `v1/a0` idea locally but worsened the focused score to `CURRENT (5445)` by increasing register pressure and spilling/reshaping `spA2`; the early-zero `var_f14`, `spA3` scheduling, combined register, `spCC` zero, two-step first `sqrtf` subtraction, post-`sqrtf` `var_f2` dataflow, `register f32 var_f2`, empty-`racerSteerAngle` hint removal, `racerMiscAssetIdx` fractional-reuse, explicit buoyancy-constant, and early-`var_f20` lifetime probes compiled but left the score unchanged at `CURRENT (2550)` and did not move the `$f14/$f16` / `$f20` allocation split. The interpolation-order probe worsened to `CURRENT (2585)`, the single-load velocity probe worsened to `CURRENT (3095)`, the explicit float clamp constants worsened to `CURRENT (3045)`, the split buoyancy materialization probe worsened to `CURRENT (2590)`, and the split top-speed multiply probe widened the frame to `0x100` and worsened to `CURRENT (5977)`. The `register f32 var_f20` plus `register f32 racerVelocity` combination compiled but left the current linked score unchanged at `CURRENT (2760)`, and the `register f32 var_f20` plus `register f32 segmentZVelocity` combination produced no object change at `CURRENT (2550)`; neither added target `$f20/$f21` saves. Do not repeat those exact source shapes.
 - Additional `func_80049794` rejected probes from recent sessions: initializing `var_f20` at declaration (`f32 var_f20 = 0.0f`) compiled but left the focused object score unchanged at `CURRENT (2550)` and still did not add the target `$f20/$f21` saves; reusing `var_f20` for the early wave velocity magnitude instead of the separate `racerVelocity` local worsened to `CURRENT (2704)`; changing `sp60` from `f32 sp60[4]` to `MtxF sp60` widened the frame to `0x128`, emitted pointer-type warnings, and worsened to `CURRENT (4567)`. Do not repeat those source shapes.
 - Additional `func_80049794` course-height/`spA3` rejected probes: moving `spA3 = FALSE` after the inverse-gravity assignment and before the course-height subtraction worsened the focused object score to `CURRENT (2790)` in this checkout; splitting the course-height expression into `var_f2 = gCurrentCourseHeight - 50.0; var_f2 -= obj->trans.y_position;` worsened the focused object score to `CURRENT (3530)`. Do not repeat those source shapes.
+- Additional `func_80049794` early-`spA3` scheduling rejected probe: moving `spA3 = FALSE` before the first speed-magnitude block compiled but worsened the promoted baseline from `CURRENT (2550)` to `CURRENT (2760)`, inserted an early stack-byte store before the `sqrtf` family, and still did not introduce target `$f20/$f21` prologue saves. Do not repeat this source shape.
 - Additional `func_80049794` inverse-gravity rejected probe: rewriting `var_f20 = 1.0 - (var_f20 / 4.0)` as `var_f20 = (4.0 - var_f20) / 4.0` compiled but worsened the focused object score to `CURRENT (4250)`. Do not repeat this source shape.
 - Additional `func_80049794` lifetime rejected probe: splitting the early gravity value into a dedicated `f32 gravity` local from the initial speed magnitude through the `obj->y_velocity -= gravity` store compiled but widened the frame to `0x100` and worsened the focused object score to `CURRENT (2959)`. Do not repeat this source shape.
 - Additional `func_80049794` trick-type scheduling rejected probe: staging `racerTrickType = racer->trickType` before the course-height expression and using that local in the `trickType` range test compiled but left the focused object score unchanged at `CURRENT (2550)` and still did not introduce target `$f20/$f21` saves. Do not repeat this source shape.
@@ -685,6 +688,7 @@
 - Do not repeat this session's `func_80049794` staged branch-constant probe (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) && (gCurrentPlayerIndex != var_v1))`); it left the focused score unchanged at `CURRENT (2550)`, did not swap branch operands, and did not move the `$f14/$f20` allocation.
 - Do not repeat this session's `func_80049794` wave-flag scheduling probe (`spA2 = FALSE` inside the wave gate plus explicit non-wave `else`); it worsened to `CURRENT (7820)` by adding stack-byte traffic for `spA2` and broad register churn.
 - Do not repeat this session's `func_80049794` wave-count carrier probe (`var_v1 = gRacerWaveCount; var_a0 = var_v1 - 1`); it worsened the focused score to `CURRENT (5540)` through broad wave-scan integer-register churn and later scheduling drift.
+- Do not repeat this session's `func_80049794` early-`spA3` scheduling probe (`spA3 = FALSE` before the first speed-magnitude block); it worsened the focused score to `CURRENT (2760)` and still did not add target `$f20/$f21` saves.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.
