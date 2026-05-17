@@ -48,7 +48,10 @@
   negated checkpoint dot before loading both final object-position locals
   compiled but left the focused score unchanged at `CURRENT (870)`, with the
   same final object-load/arithmetic drift. Adding `register` to `splinePos`
-  compiled but produced no object change and also stayed `CURRENT (870)`.
+  compiled but produced no object change and also stayed `CURRENT (870)`. A
+  later final object-dot product carrier through the existing `distance` local
+  (`distance *= diffZ; pad = (splinePos * diffX) + distance`) worsened the
+  relinked focused score to `CURRENT (2043)`.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -714,7 +717,12 @@
   (`pad = checkpointDot; splinePos = -pad; pad2 = objectDot; diffX = -((pad2 +
   splinePos) / divisor)`) compiled but worsened the focused object score to
   `CURRENT (1356)` by perturbing earlier `splinePos`/double-temp allocation and
-  expanding final-block register drift.
+  expanding final-block register drift. Routing the final object-dot `diffZ *
+  distance` product through the existing `distance` local (`distance *= diffZ;
+  pad = (splinePos * diffX) + distance`) compiled but worsened the relinked
+  focused score to `CURRENT (2043)` by pulling the object pointer load and
+  z-position load too early and broadening final-block register drift; do not
+  repeat this distance-product carrier shape.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
