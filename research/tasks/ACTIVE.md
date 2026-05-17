@@ -1104,7 +1104,14 @@
   numerator (`pad2 = obj->trans.y_position - tempY; diffY = pad2 / divisor`)
   also compiled but worsened the relinked focused score to `CURRENT (1680)` and
   shifted the epilogue labels by adding final-clamp stack traffic; do not
-  repeat this final-vertical carrier either.
+  repeat this final-vertical carrier either. Reordering the final lateral-axis
+  swap to stage old `diffZ` through `diffY`
+  (`diffY = diffZ; diffZ = -diffX; diffX = diffY`) compiled but worsened the
+  relinked focused score from the promoted baseline `CURRENT (870)` to
+  `CURRENT (1209)` and failed full verify with calculated CRCs
+  `0x53B935EF/0x19303D77`; it shifted the final-block register family rather
+  than matching the target tail. Do not repeat this old-`diffZ` axis-swap
+  staging shape.
   Reusing the final-block `pad` local as the axis-swap temporary
   (`pad = diffX; diffX = diffZ; diffZ = -pad`) compiled and produced a
   deceptively low compressed score (`--max-size 260`: `CURRENT (20)`), but
