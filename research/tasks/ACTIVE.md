@@ -1199,7 +1199,13 @@
   `diffX = -((pad2 + pad) / divisor)` also produced no relinked movement:
   focused score stayed `CURRENT (870)` and full verify failed with calculated
   CRCs `0x53D141DF/0xB9D4B481`. Do not repeat this direct `pad2 + pad`
-  expression-order spelling. Routing the final clamped vertical value
+  expression-order spelling. Swapping the final temp roles so the negated
+  checkpoint dot lives in `pad`, the object dot lives in `pad2`, and the final
+  expression is `diffX = -((pad2 + pad) / divisor)` also compiled but produced
+  no relinked object movement: focused score stayed `CURRENT (870)` and full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`; source was
+  restored and final full verify passed. Do not repeat this `pad`/`pad2`
+  role-swap spelling. Routing the final clamped vertical value
   through the now-dead `diffX` before the `unk1BC` cast/add
   (`diffX = diffY; racer->unk1BC += (s32) diffX`) compiled but worsened to
   `CURRENT (1030)` by inserting an extra `swc1` before the final conversion
