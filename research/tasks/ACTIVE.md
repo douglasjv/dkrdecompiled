@@ -239,10 +239,14 @@
   shape, but still inserted the unwanted pre-loop `gCurrentLevelModel` spill,
   regressed the relinked focused score to `CURRENT (2860)`, and failed full
   verify with calculated CRCs `0x7856718A/0x66208CAA`; source was restored and
-  final full verify passed. Keep active; do not repeat the simple moved `pad3`
-  variant, the pointer-increment population spelling, either early-conversion
-  call shape, the scalar plane-carrier replacement, or the unused-wave2
-  removal.
+  final full verify passed. Removing only unused `pad2` while promoting the
+  current C also missed: relinked focused `CURRENT (2878)`, failed full verify
+  with calculated CRCs `0x78567132/0xCBE53596`, shifted `spB0` from target
+  `0xb0(sp)` to `0xb4(sp)`, and preserved the early `gCurrentLevelModel` spill
+  at `0x64(sp)`. Keep active; do not repeat the simple moved `pad3` variant,
+  the pointer-increment population spelling, either early-conversion call
+  shape, the scalar plane-carrier replacement, the unused-wave2 removal, or the
+  declaration-only `pad2` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1349,10 +1353,15 @@
   CRC family: relinked focused score `CURRENT (2868)`, failed full verify with
   calculated CRCs `0x785671AA/0x0D6F6A4A`, and still inserted the early
   `gCurrentLevelModel` spill. Do not repeat this declaration-only
-  unused-wave2 removal. Replacing the dead `pad3` slot with a local
-  `TextureInfo *textures` at the batch texture-surface read improved over the
-  promoted baseline but regressed versus plain `pad3` removal: relinked focused
-  score `CURRENT (2425)`, failed full verify with calculated CRCs
+  unused-wave2 removal. Removing only unused `pad2` while promoting the current
+  C also missed: relinked focused score `CURRENT (2878)`, failed full verify
+  with calculated CRCs `0x78567132/0xCBE53596`, shifted `spB0` from target
+  `0xb0(sp)` to `0xb4(sp)`, and preserved the early `gCurrentLevelModel` spill
+  at `0x64(sp)`. Do not repeat this declaration-only `pad2` removal. Replacing
+  the dead `pad3` slot with a local `TextureInfo *textures` at the batch
+  texture-surface read improved over the promoted baseline but regressed versus
+  plain `pad3` removal: relinked focused score `CURRENT (2425)`, failed full
+  verify with calculated CRCs
   `0x780AE18A/0xED80C398`, and still inserted an early `gCurrentLevelModel`
   spill before the outer segment loop. Do not repeat this texture-pointer
   replacement shape; if continuing this function, prefer the simpler
