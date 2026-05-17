@@ -850,7 +850,13 @@
   divisor)`) also compiled but produced no object change from promoted baseline,
   left the relinked focused score at `CURRENT (870)`, and failed full verify in
   the same CRC family `0x53D141DF/0xB9D4B481`; do not repeat this positive
-  `splinePos` carrier shape.
+  `splinePos` carrier shape. Computing the negated checkpoint dot before the
+  object-position locals, then splitting the final object dot into
+  `pad = splinePos * diffX; pad += diffZ * distance`, also compiled to the
+  promoted baseline shape: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
+  the same final object-load/arithmetic drift remained. Do not repeat this
+  split-object-dot-after-checkpoint spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
