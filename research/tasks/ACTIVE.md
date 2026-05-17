@@ -145,9 +145,15 @@
   `get_inside_segment_count_xz` and passing those integer locals compiled but
   regressed the relinked focused score to `CURRENT (2868)` and failed full
   verify with the same calculated CRCs as plain `pad3` removal,
-  `0x785671AA/0x0D6F6A4A`. Keep active; do not repeat the simple moved `pad3`
-  variant, the pointer-increment population spelling, or this combined
-  pad3-removal plus early-conversion call shape.
+  `0x785671AA/0x0D6F6A4A`. A scalar plane-carrier variant on the
+  pad3-removed promoted branch (`planeX`/`planeY`/`planeZ`/`planeW` replacing
+  `Vec4f tempVec4f`) also compiled but regressed from the better plain
+  pad3-removal score to relinked focused `CURRENT (2868)`, failed full verify
+  with calculated CRCs `0x785671AA/0x0D6F6A4A`, and still showed the unwanted
+  pre-loop `gCurrentLevelModel` spill to `0x64(sp)`. Keep active; do not
+  repeat the simple moved `pad3` variant, the pointer-increment population
+  spelling, this combined pad3-removal plus early-conversion call shape, or
+  the scalar plane-carrier replacement.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
