@@ -698,6 +698,14 @@
   also compiled but worsened the relinked focused score to `CURRENT (1680)` and
   shifted the epilogue labels by adding final-clamp stack traffic; do not
   repeat this final-vertical carrier either.
+  Reusing the final-block `pad` local as the axis-swap temporary
+  (`pad = diffX; diffX = diffZ; diffZ = -pad`) compiled and produced a
+  deceptively low compressed score (`--max-size 260`: `CURRENT (20)`), but
+  relinked full focused score worsened to `CURRENT (1698)` and full verify
+  failed with calculated CRCs `0x0A689858/0x4CFBB1F6` because the final
+  block/epilogue shifted. Reusing `pad2` as that axis-swap temporary produced
+  the same relinked score and CRC family; do not repeat either `pad`/`pad2`
+  axis-swap carrier.
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and
