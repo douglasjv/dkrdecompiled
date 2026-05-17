@@ -34,8 +34,12 @@
   focused score to `CURRENT (3445)` and still did not introduce the target
   `$f20/$f21` prologue saves. A later x-component `var_f2` carrier on the
   x/z/y save-family plus steer-noop/buoyancy-carrier branch compiled but
-  regressed the relinked focused score to `CURRENT (4665)`. Keep
-  `func_80049794` active rather than parked.
+  regressed the relinked focused score to `CURRENT (4665)`. A standalone
+  `register f32 racerVelocity` allocation hint compiled but produced no
+  relinked compressed focused change from the promoted baseline
+  (`CURRENT (759)` under `--max-size 520`) and failed full verify with the same
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`. Keep `func_80049794` active rather
+  than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -143,7 +147,12 @@
   prologue saves. Combining `register f32 var_f20` with
   `register f32 racerVelocity` compiled but left the linked focused score
   unchanged at `CURRENT (2760)` in the current checkout and still did not
-  introduce the target `$f20/$f21` prologue saves. Combining
+  introduce the target `$f20/$f21` prologue saves. Testing
+  `register f32 racerVelocity` by itself on the promoted baseline also produced
+  no relinked compressed focused change (`CURRENT (759)` under
+  `--max-size 520`), failed full verify with the same calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and still lacked the target `$f20/$f21` prologue
+  saves; do not repeat this standalone `racerVelocity` register hint. Combining
   `register f32 var_f20` with `register f32 segmentZVelocity` compiled but
   produced no object change from the promoted baseline, stayed focused
   `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
