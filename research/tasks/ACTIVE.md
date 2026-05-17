@@ -430,7 +430,16 @@
   `CURRENT (3250)`, but still dropped the target `$f20/$f21` prologue saves and
   shifted the broad gravity carrier into `$f14`; if continuing this branch,
   inspect how to regain `$f20/$f21` save pressure without losing the
-  call-adjacent `$f14` save/reload shape. Adding `register f32 var_f20` to that
+  call-adjacent `$f14` save/reload shape. Preserving that retained-pad branch's
+  post-clamp gravity carrier through existing `spCC` across
+  `apply_vehicle_rotation_offset` compiled and scored `CURRENT (3526)`, but it
+  still dropped target `$f20/$f21` prologue saves and spilled/reloaded at
+  `0xcc(sp)`. Moving existing `spCC` after `spE0` on the same retained-pad
+  preserve branch shifted the call-adjacent spill/reload to `0xdc(sp)`, but
+  regressed to `CURRENT (3546)` and still lacked target `$f20/$f21` saves. Do
+  not repeat these retained-pad `spCC` preserve/slot variants unless new
+  evidence shows how to recover the save family. Adding `register f32 var_f20`
+  to that
   retained-pad `var_f2` component-staging branch compiled but produced the same
   focused score, `CURRENT (3250)`: the target `0xf8` frame and `$f14`
   call-adjacent shape stayed, but the target `$f20/$f21` prologue saves were

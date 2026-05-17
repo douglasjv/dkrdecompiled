@@ -1,28 +1,28 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:42:41Z
+- Generated at: 2026-05-17T00:46:03Z
 - Branch: `master`
-- HEAD before closeout commit: `0fdcfe19`
-- Completed task: `DKR-MATCH-FUNC-80049794-SEGMENT-CARRIER-PROBES`
+- HEAD before closeout commit: `884be166`
+- Completed task: `DKR-MATCH-FUNC-80049794-RETAINED-PAD-SPCC-PRESERVE-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested two source-level
-  `segmentZVelocity` carrier spellings on the best x/z/y save-family branch.
-  Reassigning `var_f14 = segmentZVelocity` immediately after
-  `apply_vehicle_rotation_offset` compiled but produced no focused improvement,
-  staying `CURRENT (3550)` with the same missing target-like `$f14`
-  call-adjacent reload. Using `segmentZVelocity` directly in the later
-  `handle_racer_top_speed` multiply also compiled to the same focused score,
-  `CURRENT (3550)`. The guarded matching source was restored and the full ROM
-  gate remains clean.
+  `func_80049794` active and tested two source-level `spCC` preserve variants
+  on the retained-pad `var_f2` z/y component-staging branch. Preserving the
+  post-clamp gravity carrier through existing `spCC` across
+  `apply_vehicle_rotation_offset` improved that retained-pad branch from
+  `CURRENT (3250)` to `CURRENT (3526)`, but still dropped target `$f20/$f21`
+  prologue saves and spilled through `0xcc(sp)`. Moving existing `spCC` up
+  after `spE0` targeted the call-adjacent slot and spilled through `0xdc(sp)`,
+  but regressed to `CURRENT (3546)` and still lacked the target save family.
+  The guarded matching source was restored and the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with `var_f14 = segmentZVelocity` immediately after `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> post-apply `segmentZVelocity` restore produces no focused improvement and stays `CURRENT (3550)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with the top-speed multiply using `segmentZVelocity` directly
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> direct top-speed `segmentZVelocity` carrier also stays `CURRENT (3550)` with the same missing target-like `$f14` call-adjacent reload
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted retained-pad `var_f2` z/y component-staging candidate compiles with `spCC = var_f20` before `apply_vehicle_rotation_offset` and `var_f20 = spCC` after it
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> retained-pad `spCC` preserve scores `CURRENT (3526)`, keeps `0xf8`, but spills/reloads at `0xcc(sp)` and still lacks target `$f20/$f21` prologue saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same retained-pad preserve branch compiles with existing `spCC` declaration moved after `spE0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved `spCC` shifts the call-adjacent spill/reload to `0xdc(sp)` but regresses to `CURRENT (3546)` and still lacks target `$f20/$f21` saves
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
