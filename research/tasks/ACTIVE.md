@@ -1368,7 +1368,12 @@
   also did not move the function: focused diff stayed `CURRENT (1808)`, full
   verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the visible
   drift remained in the earlier position-array schedule. Do not repeat this
-  `vCoords[7]` additive-double UV spelling.
+  `vCoords[7]` additive-double UV spelling. Rewriting only `uCoords[8]` from
+  `((2.0f * xCos) - pos.z)` to `((xCos + xCos) - pos.z)` likewise compiled
+  but did not move the function: focused diff stayed `CURRENT (1808)`, full
+  verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the visible
+  drift remained in the earlier position-array schedule. Do not repeat this
+  `uCoords[8]` additive-double UV spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only

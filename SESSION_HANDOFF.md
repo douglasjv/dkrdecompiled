@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 16:25:44Z
+- Generated at: 2026-05-17 16:28:31Z
 - Branch: `master`
-- HEAD: `b2a2824b`
-- Completed task: `func_80049794`
-- Summary: Tested combining the close chained-zero x/z/y save-family branch with an existing-spCC preserve across apply_vehicle_rotation_offset (`spCC = var_f14; ...; var_f14 = spCC`). It compiled but missed badly: relinked focused score regressed to CURRENT (5976), full verify failed with calculated CRCs 0xF40EFA01/0x5672460E, and the diff showed broad f14 save/reload traffic through spinout and voice/sound scheduling. Source restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `e3650b74`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a narrow UV-tail additive-double spelling while promoting trackbg_render_flashy: `uCoords[8] = (s16) ((xCos + xCos) - pos.z) + var_v0`. It compiled but missed: relinked focused score stayed CURRENT (1808), full verify failed with calculated CRCs 0x93D338FF/0x03D9C8FE, and the visible drift remained in the earlier position-array schedule. Source restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 1200 -U 4 => CURRENT (5976); failed full verify CRCs 0xF40EFA01/0x5672460E
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 4 => CURRENT (1808); failed full verify CRCs 0x93D338FF/0x03D9C8FE
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded func_80049794 close-branch spCC preserve combination plus prior func_80049794 chained-zero/wave-bound/save-family probes, func_80059208 final-offset variants, trackbg_render_flashy position/UV order-carrier probes, and func_8002B0F4 pad/early-conversion/loop probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the newly recorded trackbg_render_flashy uCoords[8] additive-double UV spelling plus prior trackbg_render_flashy position/UV order-carrier probes, func_80049794 chained-zero/wave-bound/save-family probes, func_80059208 final-offset variants, and func_8002B0F4 pad/early-conversion/loop probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
