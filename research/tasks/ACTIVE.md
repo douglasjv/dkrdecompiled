@@ -256,7 +256,14 @@
   calculated CRCs `0x53D0C1DF/0xC593C532`; source was restored and final full
   verify passed. Keep active, but do not repeat this axis-negation spelling or
   final object-dot x-multiply commute.
-- `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
+- `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
+  `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
+  relinked focused diff worsened to `CURRENT (2860)`, and the diff introduced
+  the known early `gCurrentLevelModel` spill at `0x60(sp)` plus broad
+  integer-register rotation through the grid loops. Source was restored and
+  final full verify passed; do not repeat this X/Z integer register-hint
+  spelling. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
   after relink it worsened to `CURRENT (4623)` and failed full verify before
@@ -1540,7 +1547,13 @@
   float-register/store schedule instead of matching the target. Source was
   restored and final full verify passed. Do not repeat this single-pair
   x0/z1 store-order probe.
-- `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
+- `func_8002B0F4` is active, not parked. A declaration-only `register s32
+  XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
+  relinked focused score worsened to `CURRENT (2860)`, full verify failed with
+  calculated CRCs `0x7856718A/0x66208CAA`, and the same unwanted
+  `gCurrentLevelModel` spill appeared at `0x60(sp)`. Source was restored and
+  final full verify passed; do not repeat this X/Z integer register-hint
+  probe. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
   Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the
