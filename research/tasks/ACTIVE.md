@@ -1142,7 +1142,13 @@
   single-site scaled-sine family: frame `0x150`, relinked focused score
   `CURRENT (13596)`, and full verify failed with calculated CRCs
   `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
-  Do not repeat this paired first-ring scaled-sine rewrite.
+  Do not repeat this paired first-ring scaled-sine rewrite. Routing that same
+  paired `-scaledXCos + (xSin * 1280.0f)` value through the existing
+  `pad_sp108` local for `zPositions[0]` and `xPositions[3]` also collapsed
+  into the same bad first-ring family: frame `0x150`, relinked focused score
+  `CURRENT (13376)`, and full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
+  Do not repeat this `pad_sp108` z0/x3 carrier either.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
