@@ -1022,7 +1022,17 @@
   `CURRENT (3260)` under `--max-size 900`, and the wave scan still showed the
   current `a0`/`v1` register order opposite the target. Source was restored and
   final full verify passed. Do not repeat this explicit first-compare
-  `do`-loop wave-scan spelling. A
+  `do`-loop wave-scan spelling. A close save-family continuation that kept the
+  x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained grounded-wheel zero,
+  and removed trailing `pad3`/`pad4`, but rewrote the wave scan as
+  `var_v1 = gRacerWaveCount - 1; var_a0 = var_v1; while (var_a0 >= 0) { if
+  (waveHeight >= obj->trans.y_position + 5) break; var_a0--; }`, also missed
+  badly: it kept the target `0xf8` frame and `$f20/$f21` saves, but relinked
+  focused score worsened to `CURRENT (11495)`, full verify failed with
+  calculated CRCs `0xE586A191/0x17A5E745`, and the wave block shifted into a
+  broad `a3/v1/a0` register family with downstream scheduling churn. Source
+  was restored and final full verify passed. Do not repeat this close-branch
+  `while`/break wave-scan spelling. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
