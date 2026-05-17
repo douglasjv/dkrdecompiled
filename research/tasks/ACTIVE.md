@@ -32,7 +32,10 @@
   saves. Staging the inverse-gravity divide through the existing `var_f0`
   (`var_f0 = var_f20 / 4.0; var_f20 = 1.0 - var_f0`) compiled but worsened the
   focused score to `CURRENT (3445)` and still did not introduce the target
-  `$f20/$f21` prologue saves. Keep `func_80049794` active rather than parked.
+  `$f20/$f21` prologue saves. A later x-component `var_f2` carrier on the
+  x/z/y save-family plus steer-noop/buoyancy-carrier branch compiled but
+  regressed the relinked focused score to `CURRENT (4665)`. Keep
+  `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -550,7 +553,12 @@
   retaining `pad5` and trailing `pad3`/`pad4` produced the same focused score,
   `CURRENT (3514)`, with the same target `0xf8` frame, stack-slot shift, and
   missing target `$f20/$f21` saves; do not repeat these single-leading-pad
-  removal shapes. A
+  removal shapes. Staging only the x component through `var_f2` on the
+  x/z/y save-family plus steer-noop/buoyancy-carrier branch (`var_f2 = x;
+  var_f20 = var_f2 * var_f2; ...`) compiled, kept the target `0xf8` frame, but
+  regressed the relinked focused score to `CURRENT (4665)` with broad early
+  wave and later scheduling drift; do not repeat this x-only `var_f2` carrier
+  shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet; do not accept this function without
   relink/full gate evidence. A baseline check of `func_80059208` was still
