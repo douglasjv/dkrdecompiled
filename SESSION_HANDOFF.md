@@ -1,28 +1,28 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:49:03Z
+- Generated at: 2026-05-17T00:52:53Z
 - Branch: `master`
-- HEAD before closeout commit: `6ee26e4c`
-- Completed task: `DKR-MATCH-FUNC-80049794-VARF14-ACCUM-SPCC-PRESERVE-PROBES`
+- HEAD before closeout commit: `a0d1398a`
+- Completed task: `DKR-MATCH-FUNC-80049794-REGISTER-VARF14-SPCC-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested two source-level `spCC` preserve variants
-  on the retained-pad `var_f14` first-speed accumulator branch. Preserving the
-  post-clamp gravity carrier through existing `spCC` across
-  `apply_vehicle_rotation_offset` compiled but regressed the retained-pad
-  `var_f14` accumulator branch from `CURRENT (2940)` to `CURRENT (3216)`,
-  still without target `$f20/$f21` prologue saves. Moving existing `spCC` after
-  `spE0` shifted the call-adjacent spill/reload to `0xdc(sp)`, but regressed
-  further to `CURRENT (3236)` and still lacked the target save family. The
-  guarded matching source was restored and the full ROM gate remains clean.
+  `func_80049794` active and tested `register f32 var_f14` on the x/z/y
+  save-family `spCC` preserve branch. The original `spCC` declaration stayed
+  at `CURRENT (3526)`, producing no improvement over the existing preserve
+  evidence and still missing the target call-adjacent `$f14` reload. Moving
+  existing `spCC` after `spE0` again shifted the spill slot to `0xdc(sp)`, but
+  stayed at the known worse `CURRENT (3666)` family and still spilled the
+  wrong source FPR. The guarded matching source was restored and the full ROM
+  gate remains clean. Keep `func_80049794` active; do not park it solely
+  because this allocation hint missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted retained-pad `var_f14` first-speed accumulator candidate compiles with `spCC = var_f20` before `apply_vehicle_rotation_offset` and `var_f20 = spCC` after it
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> retained-pad `var_f14` accumulator plus `spCC` preserve regresses to `CURRENT (3216)` and still lacks target `$f20/$f21` prologue saves
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same retained-pad `var_f14` accumulator preserve branch compiles with existing `spCC` declaration moved after `spE0`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved `spCC` shifts the call-adjacent spill/reload to `0xdc(sp)` but regresses further to `CURRENT (3236)` and still lacks target `$f20/$f21` saves
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with `register f32 var_f14`, original `spCC` declaration, and `spCC = var_f14` / `var_f14 = spCC` around `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> original-`spCC` register-`var_f14` preserve branch stays `CURRENT (3526)`, with no improvement over the existing `spCC` preserve miss
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same register-`var_f14` preserve branch compiles with existing `spCC` declaration moved after `spE0`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved-`spCC` register-`var_f14` branch stays `CURRENT (3666)`, shifts the spill to `0xdc(sp)`, and still spills the wrong source FPR instead of recovering the target `$f14` reload
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped

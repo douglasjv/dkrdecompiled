@@ -415,7 +415,12 @@
   traffic but shrank the frame to `0xf0`, dropped target `$f20/$f21` saves, and
   worsened to `CURRENT (4284)`. Do not repeat moved or volatile `spCC`
   declaration variants unless new evidence shows how to keep `$f20/$f21` and
-  target `$f14` allocation together. A narrow `segmentZVelocity` carrier
+  target `$f14` allocation together. Adding `register f32 var_f14` to this
+  x/z/y save-family `spCC` preserve branch produced no improvement: original
+  `spCC` stayed `CURRENT (3526)`, moved `spCC` stayed `CURRENT (3666)`, and
+  the moved slot still spilled the wrong source FPR at `0xdc(sp)` instead of
+  creating the target-like `$f14` reload. Do not repeat register-`var_f14` /
+  `spCC` preserve combinations. A narrow `segmentZVelocity` carrier
   spelling on the x/z/y save-family branch also missed: assigning
   `var_f14 = segmentZVelocity` immediately after
   `apply_vehicle_rotation_offset` compiled but produced no focused
