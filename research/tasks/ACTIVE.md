@@ -467,9 +467,13 @@
   at `0xcc(sp)` instead of target `0xdc(sp)`. Reusing existing `spEC` kept
   `0xf8` but spilled at `0xec(sp)` and regressed to `CURRENT (3733)`. Reusing
   `racerVelocity` kept `0xf8` but worsened to `CURRENT (4114)` by perturbing
-  the early wave float register family. If continuing this preserve-across-call
-  branch, start from the `spCC` result and solve the stack-slot/register drift
-  without adding a new local or disturbing the wave block. Moving the existing
+  the early wave float register family. Reusing existing `spD4` for the
+  preserve on the promoted x/z/y pre-`sqrtf` branch widened the frame to
+  `0x100`, worsened the focused score to `CURRENT (4335)`, and spilled `$f4`
+  at `0xdc(sp)` instead of the target `$f14`; do not repeat this `spD4`
+  preserve spelling. If continuing this preserve-across-call branch, start from
+  the `spCC` result and solve the stack-slot/register drift without adding a
+  new local or disturbing the wave block. Moving the existing
   `spCC` declaration after `spE0` targeted the desired stack slot: it kept the
   `0xf8` frame and made the call delay-slot spill use `0xdc(sp)`, but regressed
   to `CURRENT (3666)` because the spill used `$f4` and the target-like `$f14`
