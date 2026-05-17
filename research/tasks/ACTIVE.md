@@ -37,7 +37,10 @@
   var_v1)`) on the same save-family branch compiled to the same bad CRC family
   and relinked `CURRENT (6100)`, so treat it as equivalent to the comma
   assignment and do not repeat either wave-bound spelling on the save-family
-  branch. The
+  branch. Making only the wave-height threshold explicit `5.0f` on the close
+  save-family branch was a no-op, producing the same failed CRCs
+  `0xB8DD79CD/0xE47454ED` and preserving the wave `a0`/`v1` swap; do not
+  repeat that threshold spelling. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
@@ -723,10 +726,16 @@
   register-family drift. Reversing only the wave count comparison spelling to
   `(gRacerWaveCount - 1) == var_a0` was a no-op: full verify produced the same
   CRCs and the relinked focused diff stayed `CURRENT (620)` with the same
-  `a0`/`v1` swap. Do not repeat this exact chained-zero save-family shape or
-  the comparison-only wave operand spelling; keep the function active and
-  continue by solving the wave register/order or first-speed arithmetic drift
-  without losing the frame/save family. Two first-speed carrier variants on
+  `a0`/`v1` swap. Making only the wave-height threshold explicit single
+  precision (`obj->trans.y_position + 5.0f`) on the same branch also produced
+  no object movement: full verify failed with the same calculated CRCs
+  `0xB8DD79CD/0xE47454ED`, and the relinked focused diff reported `CURRENT
+  (2132)` under the uncompressed `--max-size 760` window with the same
+  `a0`/`v1` wave swap. Do not repeat this exact chained-zero save-family
+  shape, the comparison-only wave operand spelling, or the wave-threshold
+  `5.0f` spelling; keep the function active and continue by solving the wave
+  register/order or first-speed arithmetic drift without losing the frame/save
+  family. Two first-speed carrier variants on
   that same branch both regressed by losing the target frame/save family: using
   existing `var_f6` for the pre-`sqrtf` sum failed full verify with calculated
   CRCs `0x6035EC5F/0x4C26F14E` and relinked focused `CURRENT (2326)`, while
