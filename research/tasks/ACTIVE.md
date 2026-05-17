@@ -471,6 +471,9 @@
   preserve on the promoted x/z/y pre-`sqrtf` branch widened the frame to
   `0x100`, worsened the focused score to `CURRENT (4335)`, and spilled `$f4`
   at `0xdc(sp)` instead of the target `$f14`; do not repeat this `spD4`
+  preserve spelling. Reusing existing `spD0` for the same preserve also widened
+  the frame to `0x100`, worsened to `CURRENT (4343)`, and spilled `$f4` at
+  `0xd8(sp)` instead of target `$f14` at `0xdc(sp)`; do not repeat this `spD0`
   preserve spelling. If continuing this preserve-across-call branch, start from
   the `spCC` result and solve the stack-slot/register drift without adding a
   new local or disturbing the wave block. Moving the existing
