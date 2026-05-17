@@ -382,7 +382,14 @@
   assignment-order, single-site `zPositions[6]`/`xPositions[6]` reorder,
   exact outer-ring `x5/z5/z6/x6` store-order, `scaledXCos`-first assignment
   order, first-ring store-order grouping, single-site `zPositions[5]`
-  subtract-chain, or `pad_sp108` x1/z2/double-cosine carrier shapes.
+  subtract-chain, or `pad_sp108` x1/z2/double-cosine carrier shapes. A later
+  all-first-ring `scaledXSin` spelling replaced every remaining first-ring
+  `(xSin * 1280.0f)` term in `xPositions[0..3]` and `zPositions[0..2]` with
+  the existing `scaledXSin` carrier; it compiled but widened the frame to
+  `0x168`, worsened the relinked focused score to `CURRENT (13466)`, and
+  failed full verify with calculated CRCs `0x8310DF9D/0x3EA48C03`. Source was
+  restored and final full verify passed. Do not repeat this all-first-ring
+  `scaledXSin` rewrite.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1567,7 +1574,13 @@
   `0x93D342FF/0x71E01805`, and the diff shifted the early position-array
   float-register/store schedule instead of matching the target. Source was
   restored and final full verify passed. Do not repeat this single-pair
-  x0/z1 store-order probe.
+  x0/z1 store-order probe. Replacing every remaining first-ring
+  `(xSin * 1280.0f)` term in `xPositions[0..3]` and `zPositions[0..2]` with
+  the existing `scaledXSin` carrier also missed: it widened the frame to
+  `0x168`, relinked focused score worsened to `CURRENT (13466)`, and full
+  verify failed with calculated CRCs `0x8310DF9D/0x3EA48C03`. Source was
+  restored and final full verify passed. Do not repeat this all-first-ring
+  `scaledXSin` rewrite.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
