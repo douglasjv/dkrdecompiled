@@ -364,7 +364,12 @@
   (`var_f20 += z*z; var_f2 = y; var_f20 += var_f2 * var_f2`) kept the target
   `0xf8` frame and `$f20/$f21` saves, but worsened the focused score to
   `CURRENT (3765)` and disrupted the later `sound_play_spatial` scheduling; do
-  not repeat this y-only `var_f2` staging shape. Staging the z/y velocity
+  not repeat this y-only `var_f2` staging shape. Staging only the z component
+  through `var_f2` on that same save-family setup
+  (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f20 += y*y`) kept the target
+  `0xf8` frame and `$f20/$f21` saves, but regressed to `CURRENT (3560)` and did
+  not create the target-like `$f14` call-adjacent save/reload shape; do not
+  repeat this z-only `var_f2` staging shape. Staging the z/y velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
