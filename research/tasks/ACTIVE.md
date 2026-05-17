@@ -225,9 +225,14 @@
   local for `xPositions[1]` and `zPositions[2]` compiled but collapsed into
   the same bad frame-shrink family: frame `0x150`, focused score
   `CURRENT (13376)`, and full-verify CRCs `0x218F9FFA/0x18F4A6D6`.
-  Keep active and avoid repeating those no-op, single-site scaled-sine,
-  first-ring existing-`var_f16` carrier, outer-ring assignment-order, or
-  `pad_sp108` x1/z2 carrier shapes.
+  Routing only the doubled outer-ring cosine term through existing `pad_sp108`
+  (`pad_sp108 = scaledXCos + scaledXCos`, then using it for `zPositions[5-8]`)
+  compiled but produced no focused improvement from the promoted baseline:
+  relinked focused diff stayed `CURRENT (1808)` and full verify failed with
+  the same additive-double CRC family `0x93D338FF/0x03D9C8FE`. Keep active and
+  avoid repeating those no-op, single-site scaled-sine, first-ring
+  existing-`var_f16` carrier, outer-ring assignment-order, or `pad_sp108`
+  x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1128,7 +1133,14 @@
   Replacing the outer-ring `2.0f * scaledXCos/scaledXSin` terms with additive
   doubles (`scaledXCos + scaledXCos`, `scaledXSin + scaledXSin`) compiled but
   left the uncompressed linked diff at `CURRENT (1808)` and a promoted full
-  build failed verify with CRC `0x93D338FF/0x03D9C8FE`. Adding a named
+  build failed verify with CRC `0x93D338FF/0x03D9C8FE`. Routing only the
+  doubled cosine term through existing `pad_sp108`
+  (`pad_sp108 = scaledXCos + scaledXCos`, then using it for the outer
+  `zPositions[5-8]`) also produced no focused movement from the promoted
+  baseline: relinked focused diff stayed `CURRENT (1808)` and full verify
+  failed with the same calculated CRCs `0x93D338FF/0x03D9C8FE`; source was
+  restored and final full verify passed. Treat this as the same additive-double
+  family and do not repeat it. Adding a named
   `negScaledXCos` temporary for the first/outer position expressions also
   compiled but left the uncompressed linked diff at `CURRENT (1808)`. Swapping
   the `scaledXSin`/`scaledXCos` declaration order produced no object change,

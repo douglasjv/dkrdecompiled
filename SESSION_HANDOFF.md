@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:17:34Z
+- Generated at: 2026-05-17 14:20:41Z
 - Branch: `master`
-- HEAD: `e7383d45`
-- Completed task: `func_80049794`
-- Summary: Tested an explicit decrementing `WaterProperties **wavePtr` wave-scan spelling on the close save-family branch in func_80049794: promoted source, used chained grounded-wheel zero, removed trailing `pad3`/`pad4`, kept the x/z/y pre-`sqrtf` accumulation and steer-vel no-op, then walked a pointer while decrementing `var_a0`. It widened the frame to 0x100, regressed the relinked focused diff to CURRENT (7232), shifted the scan into `v0/a1/v1` instead of target `v1/a0/v0`, and full verify failed with calculated CRCs 0xC51623A2/0xD2F96DC4. Source guard/body restored; final full verify passed. Keep func_80049794 active rather than parked.
+- HEAD: `b915d413`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a narrow doubled-cosine carrier in trackbg_render_flashy: promoted source, assigned `pad_sp108 = scaledXCos + scaledXCos`, and used that existing local for the outer-ring `zPositions[5-8]` doubled-cosine terms. It compiled but produced no focused improvement from the promoted baseline: relinked focused diff stayed CURRENT (1808), and full verify failed with calculated CRCs 0x93D338FF/0x03D9C8FE, matching the broader additive-double family. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 900 => relinked focused CURRENT (7232); failed full verify CRCs 0xC51623A2/0xD2F96DC4
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 => relinked focused CURRENT (1808); failed full verify CRCs 0x93D338FF/0x03D9C8FE
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 explicit wavePtr pointer-walk shape.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy pad_sp108 double-cosine carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
