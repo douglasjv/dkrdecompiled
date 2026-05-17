@@ -260,8 +260,17 @@
   `diffX * splinePos` compiled but regressed the relinked focused score from
   baseline `CURRENT (870)` to `CURRENT (875)` and failed full verify with
   calculated CRCs `0x53D0C1DF/0xC593C532`; source was restored and final full
-  verify passed. Keep active, but do not repeat this axis-negation spelling or
-  final object-dot x-multiply commute.
+  verify passed. A later split final vertical carrier
+  (`diffY = obj->trans.y_position; diffY -= tempY; diffY /= divisor`) compiled
+  but widened the relinked focused score to `CURRENT (1922)` and failed full
+  verify with calculated CRCs `0xDACE25C4/0x70185CA9`. A negative object-dot
+  plus positive checkpoint-dot numerator spelling
+  (`pad = -objectDot; pad2 = checkpointDot; diffX = (pad2 + pad) / divisor`)
+  reproduced the bad positive-numerator family: relinked focused score
+  `CURRENT (1300)` and failed full-verify CRCs
+  `0xC7D996EA/0xC6D1DFDE`. Keep active, but do not repeat this
+  axis-negation spelling, final object-dot x-multiply commute, split final
+  vertical carrier, or negative-object/positive-checkpoint numerator spelling.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
