@@ -132,7 +132,12 @@
   `pad`/`pad2` locals while promoting the current C compiled but produced no
   focused movement from the baseline (`CURRENT (870)` under `--max-size 620`)
   and failed full verify with calculated CRCs `0x53D141DF/0xB9D4B481`; do not
-  repeat this declaration-only cleanup.
+  repeat this declaration-only cleanup. Removing only the dead `pad3` local
+  while promoting the current C compiled but shrank the frame from target
+  `0xc0` to `0xb8`, worsened the relinked focused score to `CURRENT (1218)`,
+  and failed full verify with calculated CRCs `0x53D13F77/0x21BEEE76`; source
+  was restored and final full verify passed. Keep active, but do not repeat
+  this declaration-only stack-shape probe.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
