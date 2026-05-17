@@ -281,6 +281,16 @@
   `0xC7D996EA/0xC6D1DFDE`. Keep active, but do not repeat this
   axis-negation spelling, final object-dot x-multiply commute, split final
   vertical carrier, or negative-object/positive-checkpoint numerator spelling.
+  A later `register f32 diffZ` allocation hint inside `func_80059208` is
+  invalid because `diffZ` is passed by address to
+  `cubic_spline_interpolation`; the compile failed with
+  `address of register variable requested`. A `register f32 scale` allocation
+  hint compiled but produced no movement from the promoted baseline: full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked focused
+  score stayed `CURRENT (870)`, and the same final object-dot plus
+  negated-checkpoint-dot load/register drift remained. Source was restored and
+  final full verify passed. Keep active, but do not repeat either of these
+  register-hint probes.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
@@ -1457,7 +1467,15 @@
   with calculated CRCs `0x53A518DF/0x0DEFF06A`, loaded object z before x in
   the final dot product, and broadened the final vertical FPR drift. Source
   was restored and final full verify passed; do not repeat this final
-  object-dot `scale` carrier.
+  object-dot `scale` carrier. Adding `register` to the
+  final-block `diffZ` local is invalid because `diffZ` is passed by address to
+  `cubic_spline_interpolation`; the compile failed with
+  `address of register variable requested`. A narrower `register f32 scale`
+  allocation hint compiled but produced no relinked object movement: full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, the focused score
+  stayed `CURRENT (870)`, and the same final object-dot plus
+  negated-checkpoint-dot load/register drift remained. Source was restored and
+  final full verify passed; do not repeat either register-hint probe.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
