@@ -793,7 +793,11 @@
   `XInInt = xIn` / `ZInInt = zIn` conversions immediately after `*arg3 =
   NULL` while still passing original `xIn`/`zIn` to
   `get_inside_segment_count_xz` compiled, but the relinked focused score stayed
-  unchanged at `CURRENT (2780)`. A compressed focused
+  unchanged at `CURRENT (2780)`. Forcing direct volatile `gCurrentLevelModel`
+  reloads at the initial `currentSegment` and `currentBoundingBox` setup sites
+  compiled, but worsened the relinked focused score from `CURRENT (2780)` to
+  `CURRENT (4395)` and shifted the same global-offset/tail-label drift family;
+  do not repeat that direct volatile global-pointer read spelling. A compressed focused
   diff printed stale `CURRENT (0)` before relink during both the 2026-05-15
   packet and the 2026-05-17 unrolled-copy probe; rely on a relinked focused
   diff and the full `gmake -j4 CROSS=tools/binutils/mips64-elf-` gate before
