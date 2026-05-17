@@ -160,7 +160,12 @@
   produced no movement from the promoted baseline: relinked focused diff stayed
   `CURRENT (870)` and full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`; source was restored and final full verify passed.
-  Do not repeat this positive-`pad2` subtract spelling. A later final
+  Do not repeat this positive-`pad2` subtract spelling. Directly commuting the
+  final negated sum to `diffX = -((pad2 + pad) / divisor)` also compiled but
+  produced no object movement from the promoted baseline: relinked focused
+  diff stayed `CURRENT (870)` and full verify failed with the same calculated
+  CRCs `0x53D141DF/0xB9D4B481`; source was restored and final full verify
+  passed. Do not repeat this direct `pad2 + pad` spelling. A later final
   `tempZ`/`tempX` mutating checkpoint-dot carrier
   (`tempZ *= diffZ; tempX *= diffX; pad2 = -(tempZ + tempX)`) compiled but
   broadened register allocation from the early spline block, worsened the
@@ -1051,7 +1056,11 @@
   `pad + pad2` sum through the now-dead `scale` local
   (`scale = pad + pad2; diffX = -(scale / divisor)`) also compiled but left the
   focused score unchanged at `CURRENT (870)`, with the same final
-  arithmetic/register-family drift. Routing the final clamped vertical value
+  arithmetic/register-family drift. Directly commuting the final expression to
+  `diffX = -((pad2 + pad) / divisor)` also produced no relinked movement:
+  focused score stayed `CURRENT (870)` and full verify failed with calculated
+  CRCs `0x53D141DF/0xB9D4B481`. Do not repeat this direct `pad2 + pad`
+  expression-order spelling. Routing the final clamped vertical value
   through the now-dead `diffX` before the `unk1BC` cast/add
   (`diffX = diffY; racer->unk1BC += (s32) diffX`) compiled but worsened to
   `CURRENT (1030)` by inserting an extra `swc1` before the final conversion
