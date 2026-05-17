@@ -137,7 +137,13 @@
   `0xc0` to `0xb8`, worsened the relinked focused score to `CURRENT (1218)`,
   and failed full verify with calculated CRCs `0x53D13F77/0x21BEEE76`; source
   was restored and final full verify passed. Keep active, but do not repeat
-  this declaration-only stack-shape probe.
+  this declaration-only stack-shape probe. Recasting `pad2` as a positive
+  checkpoint-dot carrier and subtracting it in the final numerator
+  (`pad2 = checkpointDot; diffX = -((pad - pad2) / divisor)`) compiled but
+  produced no movement from the promoted baseline: relinked focused diff stayed
+  `CURRENT (870)` and full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`; source was restored and final full verify passed.
+  Do not repeat this positive-`pad2` subtract spelling.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
