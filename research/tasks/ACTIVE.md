@@ -89,6 +89,14 @@
   moving `pad3` after `tempVec4f` returned to the promoted-baseline CRC family
   and did not solve the hoist. Keep active; do not repeat the simple moved
   `pad3` variant.
+- `trackbg_render_flashy` is also active, not parked. The 2026-05-17
+  first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
+  `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
+  all compiled but produced no object movement from the promoted baseline:
+  uncompressed focused diff stayed `CURRENT (1808)`, still starting at the
+  early position-array `$f16/$f18` split and `0x30(sp)` reload/add scheduling.
+  Source was restored and full matching verify passed. Keep active and avoid
+  repeating those no-op shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -881,9 +889,11 @@
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
-  compiles, but linked focused diff scores `CURRENT (1753)` in the current
-  checkout and starts early in the position-array setup, so it is less localized
-  than `func_80059208`.
+  compiles, but the uncompressed linked focused diff currently scores
+  `CURRENT (1808)` and starts early in the position-array setup: the target
+  keeps the negative scaled cosine in `$f18`, loads `0x30(sp)` before computing
+  `scaledXCos + scaledXSin`, and then diverges through the outer-ring
+  position-array schedule.
   Rejected probes: replacing the repeated `(xSin * 1280.0f)` terms in the first
   four x/z position assignments with `scaledXSin` widened the frame to `0x168`
   and worsened the focused score to `CURRENT (12121)`; reordering the index
@@ -923,7 +933,13 @@
   the frame to `0x150`; do not repeat this single-site scaled-sine rewrite. A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
-  full verify gate before accepting anything.
+  full verify gate before accepting anything. Later no-object-movement probes:
+  spelling only `xPositions[2]` as `(xCos * 1280.0f) + scaledXSin`, moving only
+  `xPositions[3]` before `xPositions[2]`, and adding `register` to the existing
+  `var_f16` local all compiled but left the uncompressed focused diff unchanged
+  at `CURRENT (1808)`; do not repeat those simple first-ring spelling/allocation
+  hints. After restoring the guard, `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  returned `Verify: OK`.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
