@@ -1,34 +1,29 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:34:27Z
+- Generated at: 2026-05-17T00:38:16Z
 - Branch: `master`
-- HEAD before closeout commit: `468c1c0d`
-- Completed task: `DKR-MATCH-FUNC-80049794-APPLY-PRESERVE-SCRATCH-PROBES`
+- HEAD before closeout commit: `957687c9`
+- Completed task: `DKR-MATCH-FUNC-80049794-SPCC-SLOT-TARGETING-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested a narrow preserve-across-call family around
-  `apply_vehicle_rotation_offset`, where target saves/reloads `$f14` at
-  `0xdc(sp)`. Adding a new `spDC` local produced the intended kind of explicit
-  preserve but widened the frame to `0x100` and worsened to `CURRENT (3883)`.
-  Reusing existing `spCC` for the same preserve kept the target `0xf8` frame
-  and improved the x/z/y save-family score to `CURRENT (3526)`, but the spill
-  landed at `0xcc(sp)` instead of target `0xdc(sp)`. Existing `spEC` preserved
-  through `0xec(sp)` and regressed to `CURRENT (3733)`, while reusing
-  `racerVelocity` disturbed the early wave float family and worsened to
-  `CURRENT (4114)`. The guarded matching source was restored and the full ROM
-  gate remains clean.
+  `func_80049794` active and tested two source-level slot-targeting variants
+  for the useful `spCC` preserve-across-`apply_vehicle_rotation_offset` branch.
+  Moving existing `spCC` into the target `0xdc(sp)` declaration position kept
+  the target `0xf8` frame and did make the call delay-slot spill use `0xdc(sp)`,
+  but it regressed to `CURRENT (3666)` because the spilled value came from
+  `$f4` and the target-like `$f14` reload was still missing. Making that moved
+  `spCC` volatile forced reload traffic but collapsed the save-family path:
+  frame shrank to `0xf0`, target `$f20/$f21` saves disappeared, and the score
+  worsened to `CURRENT (4284)`. The guarded matching source was restored and
+  the full ROM gate remains clean.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family `func_80049794` candidate compiles with a new `spDC` local preserving `var_f14` across `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> new `spDC` preserve widens frame to `0x100` and worsens to `CURRENT (3883)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with existing `spCC` preserving `var_f14` across `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> existing `spCC` preserve keeps `0xf8` and improves to `CURRENT (3526)`, with spill/reload at `0xcc(sp)` instead of target `0xdc(sp)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with existing `spEC` preserving `var_f14` across `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> existing `spEC` preserve keeps `0xf8` but spills at `0xec(sp)` and regresses to `CURRENT (3733)`
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with `racerVelocity` preserving `var_f14` across `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> `racerVelocity` preserve keeps `0xf8` but worsens to `CURRENT (4114)` by perturbing the early wave float register family
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with existing `spCC` declaration moved after `spE0`, preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved `spCC` preserve keeps `0xf8` and spills at target `0xdc(sp)`, but regresses to `CURRENT (3666)` and still lacks the target-like `$f14` reload
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with moved `volatile f32 spCC` preserving `var_f14` across `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved volatile `spCC` forces reload traffic but shrinks frame to `0xf0`, drops target `$f20/$f21` saves, and worsens to `CURRENT (4284)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
@@ -569,6 +564,13 @@
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
+- Do not repeat this session's moved `spCC` declaration preserve across
+  `apply_vehicle_rotation_offset`; it kept `0xf8` and spilled at `0xdc(sp)`,
+  but regressed to `CURRENT (3666)` and still missed the target-like `$f14`
+  reload.
+- Do not repeat this session's moved `volatile f32 spCC` preserve; it forced
+  reload traffic but shrank the frame to `0xf0`, dropped target `$f20/$f21`
+  saves, and worsened to `CURRENT (4284)`.
 - Do not repeat this session's `func_80049794` new `spDC` preserve across
   `apply_vehicle_rotation_offset`; it widened the frame to `0x100` and
   worsened to `CURRENT (3883)`.

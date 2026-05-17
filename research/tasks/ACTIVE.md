@@ -402,7 +402,15 @@
   `racerVelocity` kept `0xf8` but worsened to `CURRENT (4114)` by perturbing
   the early wave float register family. If continuing this preserve-across-call
   branch, start from the `spCC` result and solve the stack-slot/register drift
-  without adding a new local or disturbing the wave block. Staging the z/y velocity
+  without adding a new local or disturbing the wave block. Moving the existing
+  `spCC` declaration after `spE0` targeted the desired stack slot: it kept the
+  `0xf8` frame and made the call delay-slot spill use `0xdc(sp)`, but regressed
+  to `CURRENT (3666)` because the spill used `$f4` and the target-like `$f14`
+  reload was still missing. Making that moved `spCC` volatile forced reload
+  traffic but shrank the frame to `0xf0`, dropped target `$f20/$f21` saves, and
+  worsened to `CURRENT (4284)`. Do not repeat moved or volatile `spCC`
+  declaration variants unless new evidence shows how to keep `$f20/$f21` and
+  target `$f14` allocation together. Staging the z/y velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
