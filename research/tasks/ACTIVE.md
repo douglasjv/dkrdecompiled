@@ -83,9 +83,15 @@
   early-zero carrier family also missed: plain `f32 zero` and `register f32
   zero` variants widened the frame to `0x100`, kept the early zero in `$f16`,
   failed full verify with calculated CRCs `0x5FDDDEDF/0x01A99146`, and still
-  did not introduce target `$f20/$f21` prologue saves. Promoting the existing C
-  in the current checkout and relinking shows the uncompressed focused baseline
-  at `CURRENT (1926)` with the known calculated CRCs
+  did not introduce target `$f20/$f21` prologue saves. Routing the early zero
+  stores through existing `var_f14` (`var_f14 = 0.0f; racer->unk84 = var_f14;
+  racer->unk88 = var_f14`) while promoting the current C was also a no-op:
+  focused score stayed `CURRENT (2430)`, full verify failed with the same
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the early zero still allocated
+  in `$f16` instead of target `$f14`. Do not repeat this existing-`var_f14`
+  early-zero carrier. Promoting the existing C in the current checkout and
+  relinking shows the uncompressed focused baseline at `CURRENT (1926)` with
+  the known calculated CRCs
   `0x5FDDE03F/0xEF7A0514`; the first visible drift remains the missing
   `$f20/$f21` prologue saves, shifted saved `$ra/$s1/$s0` stack slots, and early
   zero allocation in `$f16` instead of target `$f14`. Adding `register` to
