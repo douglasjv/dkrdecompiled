@@ -304,7 +304,14 @@
   `CURRENT (870)` to `CURRENT (2016)`, and the final tail shifted earlier into
   a broader object-dot/checkpoint-dot register family. Source was restored and
   final full verify passed. Keep active, but do not repeat this old-`diffZ`
-  through-`pad` axis-swap carrier.
+  through-`pad` axis-swap carrier. A later final-sum carrier through the
+  now-dead `diffX` local (`diffX = pad; diffX += pad2; diffX = -(diffX /
+  divisor)`) also missed: full verify failed with calculated CRCs
+  `0x63E46DB5/0x591D1D44`, the relinked focused score worsened to
+  `CURRENT (1165)`, and the final tail added stack traffic/register drift
+  instead of matching the target `pad + pad2` schedule. Source was restored
+  and final full verify passed. Keep active, but do not repeat this
+  `diffX` final-sum carrier.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
@@ -1506,6 +1513,15 @@
   stayed `CURRENT (870)`, and the same final object-dot plus
   negated-checkpoint-dot load/register drift remained. Source was restored and
   final full verify passed; do not repeat either register-hint probe.
+  Routing the final `pad + pad2` sum through the now-dead `diffX` local
+  (`diffX = pad; diffX += pad2; diffX = -(diffX / divisor)`) compiled but
+  missed: full verify failed with calculated CRCs
+  `0x63E46DB5/0x591D1D44`, the relinked focused score worsened from the
+  promoted baseline `CURRENT (870)` to `CURRENT (1165)`, and the final tail
+  introduced extra `swc1` stack traffic/register drift around the lateral
+  clamp instead of matching the target object-dot plus negated-checkpoint-dot
+  schedule. Source was restored and final full verify passed; do not repeat
+  this `diffX` final-sum carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
