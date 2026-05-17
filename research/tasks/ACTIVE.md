@@ -41,8 +41,13 @@
   calculated CRCs `0x5FDDE03F/0xEF7A0514`. Reusing the existing `var_f0` local
   for the wave-block speed carrier instead of the named `racerVelocity` local
   compiled but worsened the relinked focused score to `CURRENT (3364)` and
-  failed full verify with calculated CRCs `0xF40AF157/0xCBAF4125`. Keep
-  `func_80049794` active rather than parked.
+  failed full verify with calculated CRCs `0xF40AF157/0xCBAF4125`. A nested
+  spelling of the computer-player handling branch
+  (`if (var_v0 == PLAYER_COMPUTER) { if (gCurrentPlayerIndex !=
+  PLAYER_COMPUTER) ... }`) compiled but produced the same promoted-baseline
+  CRC family `0x5FDDE03F/0xEF7A0514`, stayed `CURRENT (759)` under
+  `--max-size 520`, and still lacked the target `$f20/$f21` prologue saves.
+  Keep `func_80049794` active rather than parked.
 - `func_80059208` is also active, not parked. The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -160,9 +165,14 @@
   named `racerVelocity` local worsened the relinked focused score to
   `CURRENT (3364)`, kept the target `$f20/$f21` prologue saves absent, and
   failed full verify with calculated CRCs `0xF40AF157/0xCBAF4125`; do not
-  repeat this simple wave-speed `var_f0` carrier. Combining `register f32
-  var_f20` with `register f32 segmentZVelocity` compiled but produced no object
-  change from the promoted baseline, stayed focused
+  repeat this simple wave-speed `var_f0` carrier. Nesting the
+  computer-player handling branch instead of using the short-circuit `&&`
+  spelling also missed: it stayed at promoted-baseline `--max-size 520`
+  `CURRENT (759)`, failed full verify with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and did not introduce target `$f20/$f21` saves; do
+  not repeat this nested branch spelling. Combining `register f32 var_f20` with
+  `register f32 segmentZVelocity` compiled but produced no object change from
+  the promoted baseline, stayed focused
   `CURRENT (2550)`, and still did not introduce the target `$f20/$f21` prologue
   saves. Splitting the first speed-magnitude operands into dedicated
   `xVelocity`/`zVelocity`/`yVelocity` locals before `sqrtf` compiled but widened

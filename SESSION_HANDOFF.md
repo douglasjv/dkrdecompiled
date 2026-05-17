@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T03:39:08Z
+- Generated at: 2026-05-17T03:41:49Z
 - Branch: `master`
-- HEAD: `d297c3e5`
-- Completed task: `DKR-MATCH-FUNC-80049794-WAVE-VARF0-CARRIER-PROBE`
-- Summary: No new source match landed. Selector still recommends `func_80049794`. This packet tested reusing the existing `var_f0` local for the early wave-block speed carrier instead of the named `racerVelocity` local. The branch compiled, but the relinked focused diff worsened to `CURRENT (3364)`, still lacked the target `$f20/$f21` prologue saves, and full verify failed with calculated CRCs `0xF40AF157/0xCBAF4125`. Guarded source was restored and the function remains active rather than parked.
+- HEAD: `11d79eb3`
+- Completed task: `DKR-MATCH-FUNC-80049794-NESTED-COMPUTER-BRANCH-PROBE`
+- Summary: No new source match landed. Selector still recommends `func_80049794`. This packet tested the computer-player handling condition as nested `if` statements instead of the existing short-circuit `&&` expression. The branch compiled but stayed in the promoted-baseline miss family: focused `--max-size 520` diff was `CURRENT (759)`, full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and target `$f20/$f21` prologue saves were still absent. Guarded source was restored and the function remains active rather than parked.
 
 ## Validation
 
-- `python3 tools/query_goal_state.py next --compact --refresh` -> `func_80049794`; `python3 tools/check_active_surface.py` -> active surface ok; wave-block speed carrier through existing `var_f0` compiled; full verify failed with calculated CRCs `0xF40AF157/0xCBAF4125`; relinked focused diff -> `CURRENT (3364)`; source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> `Verify: OK`
+- `python3 tools/query_goal_state.py next --compact --refresh` -> `func_80049794`; `python3 tools/check_active_surface.py` -> active surface ok; nested computer-player handling branch compiled; full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`; focused diff with `--max-size 520` -> `CURRENT (759)`; source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> `Verify: OK`
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector-recommended func_80049794. Treat object-only CURRENT (0) as stale unless relink/full verify agrees. Do not repeat the x/z/y pre-sqrt save-family mutating post-sqrt subtraction split, direct-player-index save-family combination, split boss-adjustment spelling, spD8/spD0/spD4 preserve-across-apply on the x/z/y pre-sqrt branch, inverse-gravity var_f0 staging, x-only/y-only/z-only/z-y var_f2 first-speed component carrier shapes, the standalone racerVelocity register hint, the simple wave-speed var_f0 carrier, the simple spEC or segmentZVelocity early-zero carriers, or the other recorded allocation/wave/early-zero/source-shape misses. Keep close candidates active rather than parked; if func_80059208 is used as a close alternate, do not repeat the recorded final-block pad/pad2/pad3/distance/tempY/diffY/splinePos carrier families, the pad/pad2 axis-swap temporary probes, or the `tempZ * -diffZ` sibling term-negation spelling. If func_8002B0F4 is used as a close alternate, do not repeat the direct levelModel loop-local cache spelling, volatile gCurrentLevelModel reload spelling, gTrackWaves remainder/unrolled-copy spelling, early XInInt/ZInInt conversion spelling, local volatile levelModel spelling, setup-order swap, or empty gCurrentLevelModel guard. If trackbg_render_flashy is used as a close alternate, avoid the recorded first-four position temp/store-order and scaled-sine/source-shape misses.`
+- Task: `Continue selector-recommended func_80049794. Treat object-only CURRENT (0) as stale unless relink/full verify agrees. Do not repeat the x/z/y pre-sqrt save-family mutating post-sqrt subtraction split, direct-player-index save-family combination, nested computer-player branch spelling, split boss-adjustment spelling, spD8/spD0/spD4 preserve-across-apply on the x/z/y pre-sqrt branch, inverse-gravity var_f0 staging, x-only/y-only/z-only/z-y var_f2 first-speed component carrier shapes, the standalone racerVelocity register hint, the simple wave-speed var_f0 carrier, the simple spEC or segmentZVelocity early-zero carriers, or the other recorded allocation/wave/early-zero/source-shape misses. Keep close candidates active rather than parked; if func_80059208 is used as a close alternate, do not repeat the recorded final-block pad/pad2/pad3/distance/tempY/diffY/splinePos carrier families, the pad/pad2 axis-swap temporary probes, or the `tempZ * -diffZ` sibling term-negation spelling. If func_8002B0F4 is used as a close alternate, do not repeat the direct levelModel loop-local cache spelling, volatile gCurrentLevelModel reload spelling, gTrackWaves remainder/unrolled-copy spelling, early XInInt/ZInInt conversion spelling, local volatile levelModel spelling, setup-order swap, or empty gCurrentLevelModel guard. If trackbg_render_flashy is used as a close alternate, avoid the recorded first-four position temp/store-order and scaled-sine/source-shape misses.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
