@@ -106,7 +106,11 @@
   diffX * tempX` compiled but worsened the relinked focused score to
   `CURRENT (1405)` and failed full verify with calculated CRCs
   `0x53C0A2B5/0x47AA3C12`; keep active, but do not repeat this split-negated
-  checkpoint-dot spelling.
+  checkpoint-dot spelling. Reversing the split-negated term order
+  (`pad2 = -(diffX * tempX); pad2 -= tempZ * diffZ`) worsened further to
+  `CURRENT (1736)` and failed full verify with calculated CRCs
+  `0x53B3FDB5/0x46D415EE`; do not repeat either split-negated
+  checkpoint-dot order.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -941,7 +945,12 @@
   worsened the relinked focused score to `CURRENT (1405)`, failed full verify
   with calculated CRCs `0x53C0A2B5/0x47AA3C12`, and broadened final-block
   register/label drift instead of matching the target checkpoint-dot schedule;
-  do not repeat this split-negated spelling. Delaying the `diffZ = -diffY`
+  do not repeat this split-negated spelling. Reversing the split order
+  (`pad2 = -(diffX * tempX); pad2 -= tempZ * diffZ`) compiled but worsened the
+  relinked focused score to `CURRENT (1736)`, failed full verify with
+  calculated CRCs `0x53B3FDB5/0x46D415EE`, and expanded the same final-block
+  register/label drift; do not repeat the reverse split-negated spelling
+  either. Delaying the `diffZ = -diffY`
   axis assignment until after a positive checkpoint-dot expression
   (`pad2 = (tempZ * -diffY) + (diffX * tempX); diffZ = -diffY; ... diffX =
   -((pad - pad2) / divisor)`) compiled but worsened the relinked focused score

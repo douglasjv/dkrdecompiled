@@ -1,15 +1,16 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:35:08Z
+- Generated at: 2026-05-17T12:39:33Z
 - Branch: `master`
-- HEAD: `76d429e9`
-- Completed task: `DKR-MATCH-FUNC-80059208-SPLIT-NEGATED-CHECKPOINT-DOT-PROBE`
+- HEAD: `b8b3060c`
+- Completed task: `DKR-MATCH-FUNC-80059208-REVERSE-SPLIT-NEGATED-DOT-PROBE`
 - Summary: No new source match landed. Intentionally chose active alternate
-  func_80059208, then tested a split negated checkpoint-dot spelling
-  (`pad2 = -(tempZ * diffZ); pad2 -= diffX * tempX`) while preserving the
-  surrounding final object-dot source shape. The spelling worsened the relinked
-  focused diff and broadened final-block register/label drift, so source was
-  restored and func_80059208 remains active rather than parked.
+  func_80059208 after refreshing the selector-recommended func_80049794 route,
+  then tested the reverse split negated checkpoint-dot spelling (`pad2 =
+  -(diffX * tempX); pad2 -= tempZ * diffZ`) while preserving the surrounding
+  final object-dot source shape. The spelling worsened the relinked focused
+  diff more than the forward split, so source was restored and func_80059208
+  remains active rather than parked.
 
 ## Validation
 
@@ -17,9 +18,9 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- func_80059208 split-negated-checkpoint-dot probe: full verify failed with
-  calculated CRCs `0x53C0A2B5/0x47AA3C12`; relinked `./diff.sh func_80059208
-  --format plain --no-pager --max-size 760` -> `CURRENT (1405)`.
+- func_80059208 reverse split-negated-checkpoint-dot probe: full verify failed
+  with calculated CRCs `0x53B3FDB5/0x46D415EE`; relinked `./diff.sh
+  func_80059208 --format plain --no-pager --max-size 760` -> `CURRENT (1736)`.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -42,7 +43,7 @@
   racerThrottle/racerVelocity/var_f20/var_f14/segmentZVelocity/spEC/spD8/
   spD4/spD0 and the recorded early-zero/wave-speed/wave-count/top-speed/
   buoyancy/source-shape probes. For func_80059208, avoid the
-  object-local-before-pad2 no-op, split-negated checkpoint-dot spelling, and
+  object-local-before-pad2 no-op, both split-negated checkpoint-dot orders, and
   recorded final-offset source-shape families. For trackbg_render_flashy, avoid
   the single-site
   `zPositions[0] = -scaledXCos + scaledXSin` scaled-sine spelling plus the
