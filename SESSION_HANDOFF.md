@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 16:56:56Z
+- Generated at: 2026-05-17 17:00:31Z
 - Branch: `master`
-- HEAD: `38b7328c`
-- Completed task: `func_8008FF1C`
-- Summary: Revisited default-skipped func_8008FF1C with a narrow `register s16 temp` lifetime hint for the selected-track halfword carrier. It compiled, but missed: full verify failed with calculated CRCs 0x55C240E7/0x18E4F9B4, focused diff stayed CURRENT (10), and the selected-track load/branch still used v1 instead of target t2. Source restored; final full verify passed. Keep func_8008FF1C parked-by-default but available for a different allocator/lifetime hypothesis.
+- HEAD: `91c923f9`
+- Completed task: `func_80049794`
+- Summary: Tested a current-baseline wave-height threshold local in func_80049794 by naming `obj->trans.y_position + 5.0f` in `var_f0` before the wave scan. It compiled, but missed: full verify failed with calculated CRCs 0x5F811F98/0x9CE14139, focused diff worsened to CURRENT (5590), and the target prologue `$f20`/`$f21` saves plus early `$f14` zero were still absent. Source restored; final full verify passed. Keep func_80049794 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_8008FF1C --format plain --no-pager --max-size 900 -U 6 => CURRENT (10); failed full verify CRCs 0x55C240E7/0x18E4F9B4
+- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 1200 -U 8 => CURRENT (5590); failed full verify CRCs 0x5F811F98/0x9CE14139
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; only revisit default-skipped func_8008FF1C with a new allocator/lifetime idea, and avoid the newly recorded func_8008FF1C register-temp probe plus prior func_8008FF1C temp/selectedTrack probes, func_8002B0F4 pad/early-conversion/loop probes, func_80059208 final-offset variants, func_80049794 chained-zero/wave-bound/save-family probes, and trackbg_render_flashy position/UV order-carrier probes.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions routable and avoid the newly recorded func_80049794 current-baseline wave-threshold-local probe plus prior func_80049794 chained-zero/wave-bound/save-family probes, func_8008FF1C temp/selectedTrack probes, func_8002B0F4 pad/early-conversion/loop probes, func_80059208 final-offset variants, and trackbg_render_flashy position/UV order-carrier probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

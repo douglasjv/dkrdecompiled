@@ -157,7 +157,13 @@
   relinked focused score worsened to `CURRENT (3680)`, full verify failed with
   calculated CRCs `0x77882035/0x6FF367A8`, and the scan shifted into a broader
   integer-register family instead of matching the target `v1/a0/v0` order. Do
-  not repeat this current-baseline predecrement wave-scan loop.
+  not repeat this current-baseline predecrement wave-scan loop. A later
+  current-baseline wave-height threshold-local probe
+  (`var_f0 = obj->trans.y_position + 5.0f` before the wave scan) compiled but
+  widened the relinked focused score to `CURRENT (5590)`, failed full verify
+  with calculated CRCs `0x5F811F98/0x9CE14139`, and still lacked the target
+  `$f20`/`$f21` prologue saves plus early `$f14` zero. Do not repeat this
+  current-baseline threshold-local spelling.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
