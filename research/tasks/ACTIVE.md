@@ -87,7 +87,10 @@
   explicitly materializing the early zero through `var_f14` before the grounded
   wheel reset. The wave-scan probe matched the intended `v1/a0` idea locally
   but worsened the focused score to `CURRENT (5445)` by increasing register
-  pressure and spilling/reshaping `spA2`. The early-zero `var_f14` probe
+  pressure and spilling/reshaping `spA2`. A related wave-count carrier probe
+  (`var_v1 = gRacerWaveCount; var_a0 = var_v1 - 1`) compiled but worsened to
+  `CURRENT (5540)`, causing broad integer-register churn through the wave scan
+  and later scheduling. The early-zero `var_f14` probe
   compiled but left the focused score unchanged at `CURRENT (2550)` and did not
   move the `$f14/$f16` allocation split. Moving `spA3 = FALSE` after the
   `var_f20 = 1.0 - (var_f20 / 4.0)` inverse-gravity calculation also compiled

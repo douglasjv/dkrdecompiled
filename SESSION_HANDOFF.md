@@ -1,21 +1,29 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T01:41:19Z
+- Generated at: 2026-05-17T01:48:06Z
 - Branch: `master`
-- HEAD before closeout commit: `22679ebe`
+- HEAD before closeout commit: `7ed32880`
 - Completed task: `DKR-MATCH-ACTIVE-NO-PARK-PROBES`
 - Summary: No new source match landed. This pass honored the no-parking
   preference by keeping the active candidates routable, then tested a bounded
-  `trackbg_render_flashy` first-four position-store order probe. The promoted
-  C candidate compiled, and the first object-only focused diff misleadingly
-  printed `CURRENT (0)`, but a full relink failed verify and the relinked
-  focused diff worsened to `CURRENT (4390)` with a smaller `0x150` frame.
-  Guarded matching source was restored and the full ROM gate is clean. Keep
-  `trackbg_render_flashy` active; do not park it solely because this store
-  ordering missed.
+  `func_80049794` wave-count carrier probe. Promoting the current C candidate
+  still scores `CURRENT (2550)`. Naming `gRacerWaveCount` itself in `var_v1`
+  and deriving `var_a0 = var_v1 - 1` compiled but worsened to `CURRENT (5540)`,
+  creating broad integer-register churn through the wave scan and later
+  scheduling. Guarded matching source was restored and the full ROM gate is
+  clean. Keep `func_80049794` active; do not park it solely because this
+  wave-count spelling missed.
 
 ## Validation
 
+- `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
+- `python3 tools/check_active_surface.py` -> active surface ok
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `func_80049794` C baseline compiles
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> promoted baseline remains `CURRENT (2550)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> wave-count carrier probe compiles with `var_v1 = gRacerWaveCount; var_a0 = var_v1 - 1`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> wave-count carrier probe worsens to `CURRENT (5540)`, causing broad integer-register churn through the wave scan and later scheduling
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
+- Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
 - `gmake build/src/tracks.c.o CROSS=tools/binutils/mips64-elf-` -> promoted `trackbg_render_flashy` C candidate compiles with the first four x/z position stores reordered to group equivalent target temps
@@ -669,6 +677,7 @@
 - Do not repeat this session's `func_80049794` simple player-index condition branch-shape probes (`PLAYER_COMPUTER == var_v0` or `if (PLAYER_COMPUTER != var_v0) {} else if (...)`); both left the focused score unchanged at `CURRENT (2550)` and did not swap the target/current branch operands.
 - Do not repeat this session's `func_80049794` staged branch-constant probe (`var_v1 = PLAYER_COMPUTER; if ((var_v0 == var_v1) && (gCurrentPlayerIndex != var_v1))`); it left the focused score unchanged at `CURRENT (2550)`, did not swap branch operands, and did not move the `$f14/$f20` allocation.
 - Do not repeat this session's `func_80049794` wave-flag scheduling probe (`spA2 = FALSE` inside the wave gate plus explicit non-wave `else`); it worsened to `CURRENT (7820)` by adding stack-byte traffic for `spA2` and broad register churn.
+- Do not repeat this session's `func_80049794` wave-count carrier probe (`var_v1 = gRacerWaveCount; var_a0 = var_v1 - 1`); it worsened the focused score to `CURRENT (5540)` through broad wave-scan integer-register churn and later scheduling drift.
 - Do not repeat this session's `func_80049794` combined leading/trailing pad pre-`sqrtf` accumulation variant; removing `pad5`/`pad7` plus `pad3`/`pad4` shrank the frame to `0xf0` and scored `CURRENT (3737)`.
 - Do not repeat this session's `func_80049794` combined leading-pad declaration (`UNUSED s32 pad[2]`); it produced no object change and left the focused score unchanged at `CURRENT (2550)`.
 - Do not repeat this session's `func_80049794` double-literal grounded-wheel zero stores (`racer->unk84 = 0.0; racer->unk88 = 0.0`); it worsened the focused score to `CURRENT (4685)` and still did not add target `$f20/$f21` saves.
