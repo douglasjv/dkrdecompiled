@@ -1,16 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T12:39:33Z
+- Generated at: 2026-05-17T12:42:32Z
 - Branch: `master`
-- HEAD: `b8b3060c`
-- Completed task: `DKR-MATCH-FUNC-80059208-REVERSE-SPLIT-NEGATED-DOT-PROBE`
+- HEAD: `8f277306`
+- Completed task: `DKR-MATCH-TRACKBG-FLASHY-VAR-F16-DOUBLE-SINE-PROBE`
 - Summary: No new source match landed. Intentionally chose active alternate
-  func_80059208 after refreshing the selector-recommended func_80049794 route,
-  then tested the reverse split negated checkpoint-dot spelling (`pad2 =
-  -(diffX * tempX); pad2 -= tempZ * diffZ`) while preserving the surrounding
-  final object-dot source shape. The spelling worsened the relinked focused
-  diff more than the forward split, so source was restored and func_80059208
-  remains active rather than parked.
+  trackbg_render_flashy after refreshing the selector-recommended func_80049794
+  route, then tested routing only the doubled outer-ring sine term through the
+  existing `var_f16` local. The spelling worsened the relinked focused diff and
+  shifted the early position-array schedule, so source was restored and
+  trackbg_render_flashy remains active rather than parked.
 
 ## Validation
 
@@ -18,9 +17,10 @@
   tools/query_goal_state.py next --compact --refresh` -> recommended
   `func_80049794`; `python3 tools/check_active_surface.py` -> active surface
   ok.
-- func_80059208 reverse split-negated-checkpoint-dot probe: full verify failed
-  with calculated CRCs `0x53B3FDB5/0x46D415EE`; relinked `./diff.sh
-  func_80059208 --format plain --no-pager --max-size 760` -> `CURRENT (1736)`.
+- trackbg_render_flashy existing-`var_f16` double-sine carrier probe: full
+  verify failed with calculated CRCs `0xDC65D929/0xA0527CE0`; relinked
+  `./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 760`
+  -> `CURRENT (4506)`.
 - Source restored; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` ->
   `Verify: OK`.
 
@@ -45,7 +45,7 @@
   buoyancy/source-shape probes. For func_80059208, avoid the
   object-local-before-pad2 no-op, both split-negated checkpoint-dot orders, and
   recorded final-offset source-shape families. For trackbg_render_flashy, avoid
-  the single-site
+  the existing-`var_f16` double-sine carrier, the single-site
   `zPositions[0] = -scaledXCos + scaledXSin` scaled-sine spelling plus the
   recorded first-ring/outer-ring position-array source-shape families. For
   func_8002B0F4, avoid the `pad3`-removed pointer-increment `gTrackWaves`

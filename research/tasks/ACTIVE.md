@@ -1022,7 +1022,13 @@
   `var_f16` local all compiled but left the uncompressed focused diff unchanged
   at `CURRENT (1808)`; do not repeat those simple first-ring spelling/allocation
   hints. After restoring the guard, `gmake -j4 CROSS=tools/binutils/mips64-elf-`
-  returned `Verify: OK`.
+  returned `Verify: OK`. Routing only the doubled outer-ring sine term through
+  the existing `var_f16` local (`var_f16 = scaledXSin + scaledXSin`, then using
+  `var_f16` for the `xPositions[5-8]` sine offsets) compiled but worsened the
+  relinked focused score to `CURRENT (4506)`, shifted the early position-array
+  schedule, and failed full verify with calculated CRCs
+  `0xDC65D929/0xA0527CE0`; do not repeat this existing-`var_f16`
+  double-sine carrier.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
