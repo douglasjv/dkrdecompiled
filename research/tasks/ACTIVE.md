@@ -24,6 +24,16 @@
   `src/racer.c`.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. The
+  2026-05-17 save-family wave-bound probe recreated the close x/z/y
+  pre-`sqrtf` branch with chained grounded-wheel zero, removed trailing
+  `pad3`/`pad4`, and steer-vel no-op, then spelled the wave loop bound as
+  `var_a0 = (var_v1 = gRacerWaveCount - 1)` plus `if (var_a0 == var_v1)`.
+  It compiled and kept the target `0xf8` frame and `$f20/$f21` saves, but
+  regressed the relinked full focused score to `CURRENT (6100)`, widened the
+  wave integer-register churn, and failed full verify with calculated CRCs
+  `0x2E4A9A41/0xD04D4E64`; source was restored and final full verify passed.
+  Do not repeat this comma-assignment wave-bound spelling on the save-family
+  branch. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
@@ -693,7 +703,14 @@
   relinked focused `CURRENT (2311)`. Both shrank the frame to `0xf0` and
   dropped `$f20/$f21` saves, so do not repeat existing-temp or call-argument
   y-component first-speed carriers unless new evidence shows how to retain the
-  save family. A
+  save family. A 2026-05-17 save-family wave-bound comma-assignment probe
+  (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
+  top of the close chained-zero/x/z/y/steer-noop branch kept the target `0xf8`
+  frame and `$f20/$f21` saves, but regressed the relinked focused score to
+  `CURRENT (6100)` and failed full verify with calculated CRCs
+  `0x2E4A9A41/0xD04D4E64`; it widened wave-block integer-register churn and
+  disturbed later scheduling, so do not repeat this comma-assignment
+  wave-bound source shape. A
   linked compressed focused diff printed stale `CURRENT (0)` after object-only
   rebuild during the 2026-05-15 packet, and the 2026-05-17 promotion repeated
   the trap: object-only diff printed `CURRENT (0)`, but relink/full gate
