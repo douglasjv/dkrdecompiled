@@ -1,31 +1,25 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:57:23Z
+- Generated at: 2026-05-17T01:00:33Z
 - Branch: `master`
-- HEAD before closeout commit: `ef7800fd`
-- Completed task: `DKR-MATCH-FUNC-80049794-BUOYANCY-CARRIER-PROBES`
+- HEAD before closeout commit: `c5dddb7c`
+- Completed task: `DKR-MATCH-FUNC-80049794-MOVED-SPCC-BUOYANCY-PROBE`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested buoyancy `-1.0f` carrier spellings on the
-  x/z/y save-family branch. Materializing `var_f20 = -1.0f` before
-  `gCurrentStickY = -60` compiled and improved the known save-family score
-  from `CURRENT (3550)` to `CURRENT (3520)`, but remained nonmatching.
-  Combining that carrier with the existing `spCC` preserve regressed to
-  `CURRENT (3556)` and still missed the target call-adjacent `$f14` reload.
-  Using `var_f0` as the `-1.0f` carrier produced no object improvement,
-  staying `CURRENT (3550)`. The guarded matching source was restored and the
-  full ROM gate remains clean. Keep `func_80049794` active; do not park it
-  solely because this allocation/scheduling family missed.
+  `func_80049794` active and tested the improved buoyancy `var_f20 = -1.0f`
+  carrier with the moved-`spCC` preserve slot on the x/z/y save-family branch.
+  The variant compiled, kept the `0xf8` frame, and used the desired `0xdc(sp)`
+  spill slot, but regressed to `CURRENT (3696)` and still spilled `$f4`
+  instead of recovering the target call-adjacent `$f14` save/reload. The
+  guarded matching source was restored and the full ROM gate remains clean.
+  Keep `func_80049794` active; do not park it solely because this
+  allocation/scheduling family missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, and `var_f20 = -1.0f` before the buoyancy `gCurrentStickY = -60` store
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy `var_f20` carrier improves the save-family branch to `CURRENT (3520)` but remains nonmatching
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same buoyancy `var_f20` carrier compiles with existing `spCC` preserve around `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy carrier plus `spCC` preserve regresses to `CURRENT (3556)` and still misses the target call-adjacent `$f14` reload
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same save-family branch compiles with `var_f0 = -1.0f` as the buoyancy carrier
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy `var_f0` carrier produces no object improvement and stays `CURRENT (3550)`
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, moved `spCC` declaration after `spE0`, `spCC = var_f14` / `var_f14 = spCC` around `apply_vehicle_rotation_offset`, and `var_f20 = -1.0f` before the buoyancy `gCurrentStickY = -60` store
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved-`spCC` plus buoyancy carrier regresses to `CURRENT (3696)`, uses `0xdc(sp)` but still spills `$f4` instead of target `$f14`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped

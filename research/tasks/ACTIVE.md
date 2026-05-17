@@ -404,8 +404,12 @@
   carrier with the existing `spCC` preserve regressed to `CURRENT (3556)` and
   still did not recover the target `$f14` reload. Using `var_f0` as the
   `-1.0f` carrier instead produced no object improvement and stayed
-  `CURRENT (3550)`. Do not repeat simple buoyancy `-1.0f` carrier spellings on
-  this branch unless new evidence ties them to a separate scheduling fix.
+  `CURRENT (3550)`. Combining the same buoyancy `var_f20 = -1.0f` carrier
+  with the moved-`spCC` preserve slot also missed: it used `0xdc(sp)` but
+  regressed to `CURRENT (3696)` and still spilled `$f4` instead of the target
+  `$f14`. Do not repeat simple buoyancy `-1.0f` carrier spellings or
+  moved-`spCC` combinations on this branch unless new evidence ties them to a
+  separate scheduling fix.
   Preserving the long-lived `var_f14` across
   `apply_vehicle_rotation_offset` on the x/z/y save-family branch is useful
   evidence for the target call-adjacent `$f14` save/reload. A new `spDC` local
