@@ -920,7 +920,11 @@
   failed with calculated CRCs `0x0A689858/0x4CFBB1F6` because the final
   block/epilogue shifted. Reusing `pad2` as that axis-swap temporary produced
   the same relinked score and CRC family; do not repeat either `pad`/`pad2`
-  axis-swap carrier.
+  axis-swap carrier. Using `pad` as a post-swap final-axis carrier
+  (`diffY = diffX; diffX = diffZ; pad = diffY; diffZ = -pad`) compiled but
+  produced no relinked focused movement from the promoted baseline: compressed
+  tail stayed `CURRENT (845)` and full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`; do not repeat this post-swap `pad` carrier either.
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and
