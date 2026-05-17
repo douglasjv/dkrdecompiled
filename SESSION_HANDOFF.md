@@ -1,28 +1,31 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T00:52:53Z
+- Generated at: 2026-05-17T00:57:23Z
 - Branch: `master`
-- HEAD before closeout commit: `a0d1398a`
-- Completed task: `DKR-MATCH-FUNC-80049794-REGISTER-VARF14-SPCC-PROBES`
+- HEAD before closeout commit: `ef7800fd`
+- Completed task: `DKR-MATCH-FUNC-80049794-BUOYANCY-CARRIER-PROBES`
 - Summary: No new source match landed. This pass kept selector-recommended
-  `func_80049794` active and tested `register f32 var_f14` on the x/z/y
-  save-family `spCC` preserve branch. The original `spCC` declaration stayed
-  at `CURRENT (3526)`, producing no improvement over the existing preserve
-  evidence and still missing the target call-adjacent `$f14` reload. Moving
-  existing `spCC` after `spE0` again shifted the spill slot to `0xdc(sp)`, but
-  stayed at the known worse `CURRENT (3666)` family and still spilled the
-  wrong source FPR. The guarded matching source was restored and the full ROM
-  gate remains clean. Keep `func_80049794` active; do not park it solely
-  because this allocation hint missed.
+  `func_80049794` active and tested buoyancy `-1.0f` carrier spellings on the
+  x/z/y save-family branch. Materializing `var_f20 = -1.0f` before
+  `gCurrentStickY = -60` compiled and improved the known save-family score
+  from `CURRENT (3550)` to `CURRENT (3520)`, but remained nonmatching.
+  Combining that carrier with the existing `spCC` preserve regressed to
+  `CURRENT (3556)` and still missed the target call-adjacent `$f14` reload.
+  Using `var_f0` as the `-1.0f` carrier produced no object improvement,
+  staying `CURRENT (3550)`. The guarded matching source was restored and the
+  full ROM gate remains clean. Keep `func_80049794` active; do not park it
+  solely because this allocation/scheduling family missed.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped
 - `python3 tools/check_active_surface.py` -> active surface ok
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with `register f32 var_f14`, original `spCC` declaration, and `spCC = var_f14` / `var_f14 = spCC` around `apply_vehicle_rotation_offset`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> original-`spCC` register-`var_f14` preserve branch stays `CURRENT (3526)`, with no improvement over the existing `spCC` preserve miss
-- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same register-`var_f14` preserve branch compiles with existing `spCC` declaration moved after `spE0`
-- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> moved-`spCC` register-`var_f14` branch stays `CURRENT (3666)`, shifts the spill to `0xdc(sp)`, and still spills the wrong source FPR instead of recovering the target `$f14` reload
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> promoted x/z/y save-family candidate compiles with both trailing pads removed, steer no-op, x/z/y pre-`sqrtf` accumulation, and `var_f20 = -1.0f` before the buoyancy `gCurrentStickY = -60` store
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy `var_f20` carrier improves the save-family branch to `CURRENT (3520)` but remains nonmatching
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same buoyancy `var_f20` carrier compiles with existing `spCC` preserve around `apply_vehicle_rotation_offset`
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy carrier plus `spCC` preserve regresses to `CURRENT (3556)` and still misses the target call-adjacent `$f14` reload
+- `gmake build/src/racer.c.o CROSS=tools/binutils/mips64-elf-` -> same save-family branch compiles with `var_f0 = -1.0f` as the buoyancy carrier
+- `./diff.sh -o func_80049794 -s --compress-matching 4 --format plain --no-pager` -> buoyancy `var_f0` carrier produces no object improvement and stays `CURRENT (3550)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` after restoring guarded matching source -> `Verify: OK`
 - Prior closeout validation retained below for continuity; current source was restored to guarded matching mode before the final `Verify: OK`.
 - `python3 tools/query_goal_state.py next --compact --refresh` -> recommends `func_80049794`; 4 default candidates, 3 exhausted notes skipped

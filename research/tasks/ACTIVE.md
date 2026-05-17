@@ -396,7 +396,17 @@
   with trailing pads removed, but shrank the frame to `0xf0` and dropped target
   `$f20/$f21` saves, matching the side-branch pattern of caller-saved
   accumulators; do not repeat simple `var_f6` accumulator staging without new
-  save-pressure evidence. Preserving the long-lived `var_f14` across
+  save-pressure evidence. On the x/z/y save-family plus steer no-op branch,
+  materializing the buoyancy `-1.0f` carrier through `var_f20` before
+  `gCurrentStickY = -60` compiled and improved the focused score from
+  `CURRENT (3550)` to `CURRENT (3520)`, but remained nonmatching with the
+  broader call-adjacent and later scheduling drift. Combining that buoyancy
+  carrier with the existing `spCC` preserve regressed to `CURRENT (3556)` and
+  still did not recover the target `$f14` reload. Using `var_f0` as the
+  `-1.0f` carrier instead produced no object improvement and stayed
+  `CURRENT (3550)`. Do not repeat simple buoyancy `-1.0f` carrier spellings on
+  this branch unless new evidence ties them to a separate scheduling fix.
+  Preserving the long-lived `var_f14` across
   `apply_vehicle_rotation_offset` on the x/z/y save-family branch is useful
   evidence for the target call-adjacent `$f14` save/reload. A new `spDC` local
   widened the frame to `0x100` and worsened to `CURRENT (3883)`, so do not add
