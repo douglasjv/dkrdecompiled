@@ -1065,7 +1065,14 @@
   full verify with calculated CRCs `0x785671AA/0x0D6F6A4A`. Moving `pad3` after
   `tempVec4f` fell back to the promoted-baseline CRC family
   `0x7856718A/0x66208CAA` and did not improve; do not repeat that simple
-  moved-`pad3` stack-slot variant. Combining the `pad3`-removed branch with a
+  moved-`pad3` stack-slot variant. Replacing the dead `pad3` slot with a local
+  `TextureInfo *textures` at the batch texture-surface read improved over the
+  promoted baseline but regressed versus plain `pad3` removal: relinked focused
+  score `CURRENT (2425)`, failed full verify with calculated CRCs
+  `0x780AE18A/0xED80C398`, and still inserted an early `gCurrentLevelModel`
+  spill before the outer segment loop. Do not repeat this texture-pointer
+  replacement shape; if continuing this function, prefer the simpler
+  `pad3`-removed evidence path. Combining the `pad3`-removed branch with a
   pointer-increment `gTrackWaves` population loop (`for (var_v0 = 0, wave =
   D_8011D128; var_v0 < yOutCount; var_v0++, wave++)`) compiled but worsened
   the relinked focused score to `CURRENT (6366)`, shifted saved-register and
