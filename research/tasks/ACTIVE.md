@@ -1570,8 +1570,14 @@
   compiled but missed: relinked focused score `CURRENT (3175)`, failed full
   verify with calculated CRCs `0xAC7CA404/0x71455330`, and still carried the
   unwanted global-model hoist/tail drift. Source was restored and final full
-  verify passed. Keep this function active, but do not repeat those source
-  shapes, either standalone Z-loop unroll, or this sort-limit-hoist spelling.
+  verify passed. Removing only the Z-grid `if (1) {}` barrier marked as
+  `@fake for s3 vs s2` also missed: relinked focused score worsened to
+  `CURRENT (2900)`, full verify failed with calculated CRCs
+  `0x7884718A/0x8596E436`, and the diff showed an early `gCurrentLevelModel`
+  spill at `0x60(sp)` plus broader register churn through the grid and tail
+  loops. Do not repeat this Z-grid barrier-removal spelling. Keep this function
+  active, but do not repeat those source shapes, either standalone Z-loop
+  unroll, or this sort-limit-hoist spelling.
 
 ## Ask The User Only If
 
