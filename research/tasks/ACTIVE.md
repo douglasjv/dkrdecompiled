@@ -128,7 +128,11 @@
   (`pad2 = -(diffX * tempX); pad2 -= tempZ * diffZ`) worsened further to
   `CURRENT (1736)` and failed full verify with calculated CRCs
   `0x53B3FDB5/0x46D415EE`; do not repeat either split-negated
-  checkpoint-dot order.
+  checkpoint-dot order. Removing the misleading `UNUSED` marker from the used
+  `pad`/`pad2` locals while promoting the current C compiled but produced no
+  focused movement from the baseline (`CURRENT (870)` under `--max-size 620`)
+  and failed full verify with calculated CRCs `0x53D141DF/0xB9D4B481`; do not
+  repeat this declaration-only cleanup.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
