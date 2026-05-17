@@ -260,7 +260,15 @@
   `var_f0` local (`var_f0 = 0.0f; racer->unk84 = var_f0; racer->unk88 =
   var_f0`) also compiled but produced no object change from the promoted
   baseline and left the focused object score unchanged at `CURRENT (2550)`,
-  with early zero still allocated as `$f16` instead of target `$f14`. Replacing
+  with early zero still allocated as `$f16` instead of target `$f14`. Routing
+  the same grounded-wheel zeroing through the existing `spEC` local
+  (`spEC = 0.0f; racer->unk84 = spEC; racer->unk88 = spEC`) compiled and moved
+  the early zero into target-like `$f14`, improving the relinked focused score
+  from `CURRENT (2760)` to `CURRENT (2635)` and the compressed `--max-size 340`
+  window from `CURRENT (664)` to `CURRENT (519)`, but it inserted an unwanted
+  `swc1 $f14,0xec(sp)` before the stores and still failed full verify with
+  calculated CRCs `0x191B2144/0x410B379B`; do not repeat this simple `spEC`
+  early-zero carrier. Replacing
   the `gCurrentCarSteerVel = 0` store with an
   initialized no-op comparison (`gCurrentCarSteerVel = (updateRateF > 0.0f) *
   0`) compiled and improved the focused object score to `CURRENT (2490)`, same
