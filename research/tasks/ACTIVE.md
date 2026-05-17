@@ -809,7 +809,17 @@
   pad = (splinePos * diffX) + distance`) compiled but worsened the relinked
   focused score to `CURRENT (2043)` by pulling the object pointer load and
   z-position load too early and broadening final-block register drift; do not
-  repeat this distance-product carrier shape.
+  repeat this distance-product carrier shape. Promoting the existing C can
+  appear as focused `CURRENT (0)` before relink, but full verify fails with
+  calculated CRCs `0x53D141DF/0xB9D4B481`; after relink the focused score is
+  again `CURRENT (870)`, so treat any zero object-only result here as stale
+  unless full `gmake` verifies. Reusing the now-dead `splinePos` local as a
+  positive checkpoint-dot carrier
+  (`splinePos = checkpointDot; pad = objectDot; diffX = -((pad - splinePos) /
+  divisor)`) also compiled but produced no object change from promoted baseline,
+  left the relinked focused score at `CURRENT (870)`, and failed full verify in
+  the same CRC family `0x53D141DF/0xB9D4B481`; do not repeat this positive
+  `splinePos` carrier shape.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
