@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:31:00Z
+- Generated at: 2026-05-17 14:34:44Z
 - Branch: `master`
-- HEAD: `8f3752c4`
-- Completed task: `trackbg_render_flashy`
-- Summary: Tested a narrow paired first-ring carrier in trackbg_render_flashy: promoted source, assigned `pad_sp108 = -scaledXCos + scaledXSin`, and used that existing local for both `zPositions[0]` and `xPositions[3]`. It compiled but collapsed into the known bad frame-shrink family: frame 0x150, relinked focused CURRENT (13471), and full verify failed with calculated CRCs 0x218F9FFA/0x18F4A6D6. Source restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
+- HEAD: `40bd7739`
+- Completed task: `func_8002B0F4`
+- Summary: Tested a narrow declaration-only probe in func_8002B0F4: promoted source and removed the unused `WaterProperties *wave2` local. It compiled but collapsed into the same failed family as plain pad3 removal: relinked focused CURRENT (2868), early `gCurrentLevelModel` spill still present, and full verify failed with calculated CRCs 0x785671AA/0x0D6F6A4A. Source restored; final full verify passed. Keep func_8002B0F4 active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 => relinked focused CURRENT (13471); failed full verify CRCs 0x218F9FFA/0x18F4A6D6
+- Failed probe evidence: ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 => relinked focused CURRENT (2868); failed full verify CRCs 0x785671AA/0x0D6F6A4A
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy first-ring pad_sp108 carrier.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_8002B0F4 unused-wave2 declaration probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

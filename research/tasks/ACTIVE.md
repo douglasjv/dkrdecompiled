@@ -202,7 +202,12 @@
   `Vec4f tempVec4f`) also compiled but regressed from the better plain
   pad3-removal score to relinked focused `CURRENT (2868)`, failed full verify
   with calculated CRCs `0x785671AA/0x0D6F6A4A`, and still showed the unwanted
-  pre-loop `gCurrentLevelModel` spill to `0x64(sp)`. Keeping `pad3` intact but
+  pre-loop `gCurrentLevelModel` spill to `0x64(sp)`. A later declaration-only
+  probe removed the unused `WaterProperties *wave2` while promoting the current
+  C; it compiled but collapsed into the same failed CRC family as plain
+  `pad3` removal (`0x785671AA/0x0D6F6A4A`), regressed the relinked focused
+  score to `CURRENT (2868)`, and still showed the early `gCurrentLevelModel`
+  spill. Keeping `pad3` intact but
   moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
   passing those integer locals matched the target prologue conversion/call
   shape, but still inserted the unwanted pre-loop `gCurrentLevelModel` spill,
@@ -210,7 +215,8 @@
   verify with calculated CRCs `0x7856718A/0x66208CAA`; source was restored and
   final full verify passed. Keep active; do not repeat the simple moved `pad3`
   variant, the pointer-increment population spelling, either early-conversion
-  call shape, or the scalar plane-carrier replacement.
+  call shape, the scalar plane-carrier replacement, or the unused-wave2
+  removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -1276,7 +1282,12 @@
   full verify with calculated CRCs `0x785671AA/0x0D6F6A4A`. Moving `pad3` after
   `tempVec4f` fell back to the promoted-baseline CRC family
   `0x7856718A/0x66208CAA` and did not improve; do not repeat that simple
-  moved-`pad3` stack-slot variant. Replacing the dead `pad3` slot with a local
+  moved-`pad3` stack-slot variant. Removing the unused `WaterProperties *wave2`
+  while promoting the current C also collapsed into the plain `pad3`-removal
+  CRC family: relinked focused score `CURRENT (2868)`, failed full verify with
+  calculated CRCs `0x785671AA/0x0D6F6A4A`, and still inserted the early
+  `gCurrentLevelModel` spill. Do not repeat this declaration-only
+  unused-wave2 removal. Replacing the dead `pad3` slot with a local
   `TextureInfo *textures` at the batch texture-surface read improved over the
   promoted baseline but regressed versus plain `pad3` removal: relinked focused
   score `CURRENT (2425)`, failed full verify with calculated CRCs
