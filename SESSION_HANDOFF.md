@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 13:42:58Z
+- Generated at: 2026-05-17 13:45:57Z
 - Branch: `master`
-- HEAD: `fd2ad95f`
-- Completed task: `func_80059208`
-- Summary: Tested a positive-pad2 final-offset spelling in func_80059208: promoted source, made pad2 hold the positive checkpoint dot, and subtracted it in diffX = -((pad - pad2) / divisor). It compiled but produced no movement from the promoted baseline: relinked focused diff stayed CURRENT (870), and full verify failed with calculated CRCs 0x53D141DF/0xB9D4B481. Source guard/body restored; final full verify passed. Keep func_80059208 active rather than parked.
+- HEAD: `0e643bd2`
+- Completed task: `trackbg_render_flashy`
+- Summary: Tested a paired first-ring scaled-sine rewrite in trackbg_render_flashy: promoted source and rewrote both zPositions[0] and xPositions[3] to use -scaledXCos + scaledXSin. It compiled but collapsed into the known bad scaled-sine frame-shrink family: frame 0x150, relinked focused diff CURRENT (13596), and full verify failed with calculated CRCs 0x218F9FFA/0x18F4A6D6. Source guard/body restored; final full verify passed. Keep trackbg_render_flashy active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_80059208 --format plain --no-pager --max-size 620 => relinked focused CURRENT (870)
+- Failed probe evidence: ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 720 => relinked focused CURRENT (13596), frame 0x150
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80059208 positive-pad2 subtract spelling.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded trackbg_render_flashy paired first-ring scaled-sine rewrite.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

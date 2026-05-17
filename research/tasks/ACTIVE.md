@@ -1123,7 +1123,13 @@
   `xPositions[2]` and `zPositions[3]` also collapsed into the bad frame-shrink
   family: frame `0x150`, relinked focused score `CURRENT (13456)`, and full
   verify failed with calculated CRCs `0x218EDFFA/0xDD1EF586`. Do not repeat
-  this first-ring existing-`pad_sp108` positive-sum carrier.
+  this first-ring existing-`pad_sp108` positive-sum carrier. Rewriting the
+  paired first-ring `-scaledXCos + scaledXSin` sites together
+  (`zPositions[0]` and `xPositions[3]`) also fell into the same bad
+  single-site scaled-sine family: frame `0x150`, relinked focused score
+  `CURRENT (13596)`, and full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
+  Do not repeat this paired first-ring scaled-sine rewrite.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
