@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-17 14:58:03Z
+- Generated at: 2026-05-17 15:01:41Z
 - Branch: `master`
-- HEAD: `3294463f`
-- Completed task: `func_8002B0F4`
-- Summary: Tested a declaration-only stack-shape probe in `func_8002B0F4`: promoted source and removed unused `pad2`. It compiled but worsened the relinked focused score to `CURRENT (2878)`, shifted the `spB0`/inside-segment output from target `0xb0(sp)` to `0xb4(sp)`, preserved the early `gCurrentLevelModel` spill at `0x64(sp)`, and full verify failed with calculated CRCs `0x78567132/0xCBE53596`. Source restored; final full verify passed. Keep `func_8002B0F4` active rather than parked.
+- HEAD: `7e02b131`
+- Completed task: `func_80049794`
+- Summary: Tested a current-baseline wave-bound split in `func_80049794`: promoted source, introduced `var_v1 = gRacerWaveCount - 1`, looped `for (var_a0 = var_v1; ...)`, and compared `if (var_a0 == var_v1)`. It compiled but worsened the focused score from promoted baseline `CURRENT (2430)` to `CURRENT (4920)`, failed full verify with calculated CRCs `0x5790053C/0x1C8C0179`, introduced `spA2` stack-byte traffic, and widened wave-scan register churn rather than matching the target `v1` bound and `a0` loop-index family. Source restored; final full verify passed. Keep `func_80049794` active rather than parked.
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
-- Failed probe evidence: ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 after relink => CURRENT (2878); failed full verify CRCs 0x78567132/0xCBE53596
+- Failed probe evidence: ./diff.sh func_80049794 --format plain --no-pager --max-size 900 after relink => baseline CURRENT (2430), split wave-bound probe CURRENT (4920); failed full verify CRCs 0x5790053C/0x1C8C0179
 
 ## Blockers Or Unknowns
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_8002B0F4 pad2-removal stack-shape probe.`
+- Task: `Continue selector func_80049794 unless choosing active alternate func_8002B0F4, func_80059208, or trackbg_render_flashy; keep close functions active and avoid the recorded func_80049794 current-baseline split wave-bound probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
