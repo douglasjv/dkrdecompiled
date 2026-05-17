@@ -297,7 +297,14 @@
   score stayed `CURRENT (870)`, and the same final object-dot plus
   negated-checkpoint-dot load/register drift remained. Source was restored and
   final full verify passed. Keep active, but do not repeat either of these
-  register-hint probes.
+  register-hint probes. A later axis-swap lifetime probe staged old `diffZ`
+  through existing `pad` (`diffY = diffX; pad = diffZ; diffZ = -diffY; diffX
+  = pad`) but missed badly: full verify failed with calculated CRCs
+  `0x53ACBBF7/0x0E5DD078`, relinked focused score worsened from baseline
+  `CURRENT (870)` to `CURRENT (2016)`, and the final tail shifted earlier into
+  a broader object-dot/checkpoint-dot register family. Source was restored and
+  final full verify passed. Keep active, but do not repeat this old-`diffZ`
+  through-`pad` axis-swap carrier.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
@@ -1318,6 +1325,14 @@
   produced no relinked focused movement from the promoted baseline: compressed
   tail stayed `CURRENT (845)` and full verify failed with calculated CRCs
   `0x53D141DF/0xB9D4B481`; do not repeat this post-swap `pad` carrier either.
+  Staging old `diffZ` through the existing `pad` local
+  (`diffY = diffX; pad = diffZ; diffZ = -diffY; diffX = pad`) also missed:
+  full verify failed with calculated CRCs `0x53ACBBF7/0x0E5DD078`, relinked
+  focused score worsened to `CURRENT (2016)`, and the final tail shifted
+  earlier into a broader object-dot/checkpoint-dot register family instead of
+  matching the target delayed old-`diffZ` assignment. Source was restored and
+  final full verify passed; do not repeat this old-`diffZ` through-`pad`
+  axis-swap carrier.
   Splitting the checkpoint dot product into accumulating `pad2` statements
   (`pad2 = tempZ * diffZ; pad2 += diffX * tempX; pad2 = -pad2`) before the
   object dot compiled but produced the same focused score, `CURRENT (870)`, and
