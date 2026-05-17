@@ -92,7 +92,12 @@
   relinked focused score to `CURRENT (2043)`. The sibling term-negation spelling
   (`pad2 = (tempZ * -diffZ) - (diffX * tempX)`) worsened the relinked focused
   score from `CURRENT (870)` to `CURRENT (1165)` and failed full verify with
-  calculated CRCs `0x53AB58B5/0xBC82B0CE`.
+  calculated CRCs `0x53AB58B5/0xBC82B0CE`. Loading the final object x/z
+  locals first, then computing the negated checkpoint dot before the final
+  object dot (`splinePos = obj->trans.x_position; distance =
+  obj->trans.z_position; pad2 = -(...); pad = ...`) also produced no object
+  movement from the promoted baseline, stayed `CURRENT (870)`, and failed full
+  verify in the same CRC family `0x53D141DF/0xB9D4B481`; source was restored.
 - `func_8002B0F4` is also active, not parked. The 2026-05-17 explicit
   `gTrackWaves` remainder plus unrolled-by-four pointer-copy spelling compiled
   but only produced the known stale object-only `CURRENT (0)` before relink;
@@ -916,6 +921,12 @@
   `0x538F82DF/0x50E88FA7`, and perturbed earlier float-register allocation
   around the `0x59fbc` region before still missing the final arithmetic
   schedule; do not repeat this delayed-`diffZ` positive-checkpoint-dot spelling.
+  Loading both final object-position locals before the negated checkpoint dot,
+  then computing `pad2` before `pad`, compiled but produced no object movement
+  from the promoted baseline: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, relinked focused diff stayed `CURRENT (870)`, and
+  the same final object-load/arithmetic drift remained. Do not repeat this
+  object-local-before-`pad2` ordering.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
