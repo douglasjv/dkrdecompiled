@@ -1,28 +1,27 @@
 # Session Handoff
 
-- Generated at: 2026-05-17T18:28:09Z
+- Generated at: 2026-05-17T18:31:01Z
 - Branch: `master`
-- HEAD: `6ed6695c`
+- HEAD: `2bd03a96`
 - Completed task: `func_80049794`
 - Summary: Continued selector `func_80049794`. Recreated the close save-family
   branch with chained grounded-wheel zero, x/z/y pre-`sqrtf` accumulation,
-  removed trailing `pad3`/`pad4`, and steer-vel no-op, then tested an
-  existing-`var_t9` wave-bound carrier
-  (`var_t9 = gRacerWaveCount - 1; for (var_a0 = var_t9; ...); if (var_a0 ==
-  var_t9)`). It missed: full verify failed with calculated CRCs
-  `0xEA44B192/0x165715AD`, relinked focused diff reported `CURRENT (5430)`,
-  and the wave block shifted into broader `v1/v0/t*` register churn rather
+  removed trailing `pad3`/`pad4`, and steer-vel no-op, then tested a
+  predecrement wave-loop spelling
+  (`for (var_a0 = gRacerWaveCount; --var_a0 >= 0 && ...;)`). It missed: full
+  verify failed with calculated CRCs `0xCE58DA51/0x62A7B089`, relinked focused
+  diff reported `CURRENT (4660)`, and the wave scan shifted into an
+  `a0/v0/v1` register/order family with extra post-loop compare math rather
   than target `v1/a0/v0`. Source was restored and final full verify passed.
   Keep `func_80049794` active, and do not repeat this close-branch
-  existing-`var_t9` wave-bound carrier.
+  predecrement wave-loop spelling.
 
 ## Validation
 
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` => failed with close save-family
-  existing-`var_t9` wave-bound carrier, calculated CRCs
-  `0xEA44B192/0x165715AD`
+  predecrement wave-loop spelling, calculated CRCs `0xCE58DA51/0x62A7B089`
 - `./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80` =>
-  `CURRENT (5430)`
+  `CURRENT (4660)`
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` => `Verify: OK` after restore
 
 ## Blockers Or Unknowns
@@ -38,7 +37,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 unless intentionally choosing active no-park near-match. For func_80049794, avoid newly recorded close save-family existing-var_t9 wave-bound carrier plus previously recorded save-family double-multiply inverse spelling, save-family in-place inverse-gravity split, current-baseline existing-var_t9 wave-bound carrier, close-branch existing-var_t0 wave-bound carrier, promotion-only object CURRENT (0), current-baseline wave-threshold-local/chained-zero/wave-bound, close save-family wave-bound, wavePtr, do-loop, while-break, threshold, preserve, first-speed, zero-carrier, and no-op families recorded in ACTIVE.md. Keep func_80049794 active, not parked.`
+- Task: `Continue selector func_80049794 unless intentionally choosing active no-park near-match. For func_80049794, avoid newly recorded close save-family predecrement wave-loop spelling plus previously recorded close save-family existing-var_t9 wave-bound carrier, save-family double-multiply inverse spelling, save-family in-place inverse-gravity split, current-baseline existing-var_t9 wave-bound carrier, close-branch existing-var_t0 wave-bound carrier, promotion-only object CURRENT (0), current-baseline wave-threshold-local/chained-zero/wave-bound, close save-family wave-bound, wavePtr, do-loop, while-break, threshold, preserve, first-speed, zero-carrier, and no-op families recorded in ACTIVE.md. Keep func_80049794 active, not parked.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
