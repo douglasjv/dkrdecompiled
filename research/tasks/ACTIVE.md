@@ -310,12 +310,16 @@
   scaledXSin` value (`zPositions[0] = pad_sp108; xPositions[3] = pad_sp108`)
   also collapsed into the bad frame-shrink family: frame `0x150`, relinked
   focused `CURRENT (13471)`, and full-verify CRCs
+  `0x218F9FFA/0x18F4A6D6`. A later unused-`pad_sp100` carrier for the
+  duplicated `-scaledXCos - (xSin * 1280.0f)` value (`xPositions[0]` and
+  `zPositions[1]`) also collapsed into that bad family: frame `0x150`,
+  relinked focused `CURRENT (13706)`, and full-verify CRCs
   `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
   single-site scaled-sine, first-ring existing-`var_f16` carrier,
-  first-ring `pad_sp108` carrier, outer-ring assignment-order, single-site
-  `zPositions[6]`/`xPositions[6]` reorder, first-ring store-order grouping,
-  single-site `zPositions[5]` subtract-chain, or `pad_sp108`
-  x1/z2/double-cosine carrier shapes.
+  first-ring `pad_sp108`/unused-`pad_sp100` carrier, outer-ring
+  assignment-order, single-site `zPositions[6]`/`xPositions[6]` reorder,
+  first-ring store-order grouping, single-site `zPositions[5]`
+  subtract-chain, or `pad_sp108` x1/z2/double-cosine carrier shapes.
 - The baserom lives at `baseroms/baserom.us.v77.z64`, has SHA1
   `0cb115d8716dbbc2922fda38e533b9fe63bb9670`, and should remain untracked.
 - This checkout needs repo-local binutils for the matching gate. Plain
@@ -1384,7 +1388,13 @@
   `xPositions[3]`) compiled but regressed the relinked focused score to
   `CURRENT (4034)`, failed full verify with calculated CRCs
   `0x93E03BFF/0x3B5D2DFE`, and shifted the early position-array float-register
-  family. Do not repeat this first-ring store-order grouping.
+  family. Do not repeat this first-ring store-order grouping. Routing the
+  duplicated first-ring `-scaledXCos - (xSin * 1280.0f)` value through the
+  unused existing `pad_sp100` local for `xPositions[0]` and `zPositions[1]`
+  also compiled into the bad frame-shrink family: frame `0x150`, relinked
+  focused score `CURRENT (13706)`, and full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
+  Do not repeat this unused-`pad_sp100` x0/z1 carrier.
 - `func_8002B0F4` is active, not parked. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
