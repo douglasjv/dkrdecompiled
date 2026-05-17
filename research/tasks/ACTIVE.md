@@ -616,8 +616,9 @@
   arithmetic/register-family drift. Keep this function active; do not park it
   just because these final-offset probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
-  compiles, but linked focused diff scores `CURRENT (1808)` and starts early in
-  the position-array setup, so it is less localized than `func_80059208`.
+  compiles, but linked focused diff scores `CURRENT (1753)` in the current
+  checkout and starts early in the position-array setup, so it is less localized
+  than `func_80059208`.
   Rejected probes: replacing the repeated `(xSin * 1280.0f)` terms in the first
   four x/z position assignments with `scaledXSin` widened the frame to `0x168`
   and worsened the focused score to `CURRENT (12121)`; reordering the index
@@ -639,7 +640,13 @@
   `scaledXCos + (xSin * 1280.0f)` compiled but inserted an extra
   `swc1 $f0, 0x110(sp)`, shifted later scheduling/global offsets, worsened the
   linked score to `CURRENT (5579)`, and failed promoted full verify with CRC
-  `0xF82B92BE/0x5DCC04AE`. A
+  `0xF82B92BE/0x5DCC04AE`. Moving only
+  `xPositions[5] = -scaledXCos - (2.0f * scaledXSin)` before `zPositions[5]`
+  compiled but worsened the uncompressed linked diff to `CURRENT (2408)`.
+  Adding `register f32 negScaledXCos` and using it for the first/outer negative
+  cosine expressions compiled but worsened the uncompressed linked diff to
+  `CURRENT (2769)` and changed the promoted full-verify CRC to
+  `0xDC79FC91/0xA51F89F4`. A
   compressed `-s --compress-matching` focused diff can misleadingly print
   `CURRENT (0)` for this function; rely on the uncompressed linked diff and the
   full verify gate before accepting anything.
