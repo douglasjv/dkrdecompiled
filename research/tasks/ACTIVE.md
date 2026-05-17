@@ -410,7 +410,15 @@
   traffic but shrank the frame to `0xf0`, dropped target `$f20/$f21` saves, and
   worsened to `CURRENT (4284)`. Do not repeat moved or volatile `spCC`
   declaration variants unless new evidence shows how to keep `$f20/$f21` and
-  target `$f14` allocation together. Staging the z/y velocity
+  target `$f14` allocation together. A narrow `segmentZVelocity` carrier
+  spelling on the x/z/y save-family branch also missed: assigning
+  `var_f14 = segmentZVelocity` immediately after
+  `apply_vehicle_rotation_offset` compiled but produced no focused
+  improvement, staying `CURRENT (3550)`, and using `segmentZVelocity` directly
+  in the later `handle_racer_top_speed` multiply also stayed `CURRENT (3550)`.
+  Do not repeat simple `segmentZVelocity` top-speed carrier spellings on this
+  branch unless new target scheduling evidence points there. Staging the z/y
+  velocity
   component loads through the existing `var_f2` local before the first `sqrtf`
   (`var_f2 = z; var_f20 += var_f2 * var_f2; var_f2 = y; ...`) compiled and
   created the target-like call-adjacent `$f14` save/reload shape, but it
