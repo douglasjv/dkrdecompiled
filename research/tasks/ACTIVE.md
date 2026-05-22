@@ -1915,6 +1915,13 @@
   score stayed `CURRENT (1808)`, and the diff remained in the same early
   position-array register/order family. Source was restored and final full
   verify passed. Do not repeat this `vCoords[8]` additive-double UV spelling.
+  Commuting only `vCoords[8]` from `((2.0f * pos.x) + var_f16)` to
+  `(var_f16 + (2.0f * pos.x))` likewise produced no useful movement: full
+  verify failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the
+  relinked focused score stayed `CURRENT (1808)`, and the diff remained in
+  the same early position-array register/order family. Source was restored
+  and final full verify passed. Do not repeat this `vCoords[8]` operand-order
+  UV spelling.
   Rewriting only `vCoords[0]` from `(var_f16 - var_f14)` to
   `(-var_f14 + var_f16)` missed badly: full verify failed with calculated CRCs
   `0x511B5709/0x02A6A46F`, the relinked focused score widened to
