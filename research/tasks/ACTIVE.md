@@ -1926,6 +1926,13 @@
   register/order family with broader UV/register drift. Source was restored
   and final full verify passed. Do not repeat this `vCoords[5]` operand-order
   UV spelling.
+  Rewriting only `vCoords[5]` from `(var_f16 - (2.0f * var_f14))` to
+  `(var_f16 - (var_f14 + var_f14))` also produced no relinked focused
+  movement: full verify failed with the known calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, focused score stayed `CURRENT (1808)`, and the diff
+  stayed in the same early position-array register/order family. Source was
+  restored and final full verify passed. Do not repeat this `vCoords[5]`
+  additive-double UV spelling.
   Rewriting only `uCoords[6]` from `(var_f14 - (2.0f * xCos))` to
   `(-(2.0f * xCos) + var_f14)` also produced no useful movement: full verify
   failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the relinked
