@@ -1240,6 +1240,15 @@
   with calculated CRCs `0xA637D7C4/0x633471A3`, and widened wave-register churn
   by introducing `a0/a1/v0/v1` drift through the scan. Do not repeat this
   `var_v0` wave-count carrier spelling on the close save-family branch.
+  A close save-family continuation that carried the wave-height threshold
+  through existing `var_f6` (`var_f6 = obj->trans.y_position + 5.0f`, then the
+  scan compares wave height against `var_f6`) also missed: it kept the target
+  `0xf8` frame and `$f20/$f21` saves, but regressed the relinked focused score
+  to `CURRENT (6580)`, failed full verify with calculated CRCs
+  `0xB523523E/0x7EEBEC55`, and shifted the wave scan into a worse register
+  schedule with the `a0`/`v1` allocation still wrong. Source was restored and
+  final full verify passed; do not repeat this existing-`var_f6`
+  wave-threshold carrier.
   A 2026-05-17 current-baseline split wave-bound probe also missed:
   promoting the current C and spelling `var_v1 = gRacerWaveCount - 1; for
   (var_a0 = var_v1; ...); if (var_a0 == var_v1)` worsened the relinked focused
