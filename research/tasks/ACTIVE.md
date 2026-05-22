@@ -2323,7 +2323,16 @@
   worsened to `CURRENT (3280)`, and the unwanted early `gCurrentLevelModel`
   spill at `0x60(sp)` remained while the grid-loop register family shifted
   toward `a0`/`a1`/`a2`/`a3`. Source was restored and final full verify passed.
-  Do not repeat this segment-index `temp` carrier. Splitting the early
+  Do not repeat this segment-index `temp` carrier. A later segment-index carrier
+  through the existing `var_v0` local (`var_v0 = spB0[var_fp]; currentSegment =
+  &gCurrentLevelModel->segments[var_v0]; currentBoundingBox =
+  &gCurrentLevelModel->segmentsBoundingBoxes[var_v0]`) also missed: full verify
+  failed with calculated CRCs `0x7719218A/0xB69630D8`, relinked focused score
+  worsened to `CURRENT (2975)`, and the same unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` remained while segment setup shifted
+  to a different integer-register family. Source was restored and final full
+  verify passed. Do not repeat this segment-index `var_v0` carrier. Splitting
+  the early
   `sp108 == 0 || sp108 >= 8` return into two separate `if` statements also
   missed: full verify failed with calculated CRCs `0x701EEB7B/0xA3DBFC65`,
   the relinked focused diff worsened to `CURRENT (3535)`, and the early return

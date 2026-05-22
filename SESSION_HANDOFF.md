@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:28:15Z
+- Generated at: 2026-05-22 17:31:22Z
 - Branch: `master`
-- HEAD: `9c157132`
-- Completed task: `func_80059208`
-- Summary: Rejected final lateral counter cast carrier; source restored after evidence capture.
+- HEAD: `44a5ff22`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected segment-index var_v0 carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; counter cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; var_v0 segment-index carrier failed with CRCs 0x7719218A/0xB69630D8 and ./diff.sh func_8002B0F4 => relinked CURRENT (2975).
 
 ## Blockers Or Unknowns
 
