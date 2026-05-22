@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:45:15Z
+- Generated at: 2026-05-22 20:48:34Z
 - Branch: `master`
-- HEAD: `b3e53ab4`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded live-var_a1 Z-grid barrier miss; source restored.
+- HEAD: `9f1dd5e8`
+- Completed task: `func_80059208`
+- Summary: Recorded split old-diffX checkpoint-dot miss; source restored.
 
 ## Validation
 
-- Promoted func_8002B0F4 with live-var_a1 Z-grid barrier failed full verify with CRCs 0x7856718A/0x66208CAA and relinked focused CURRENT (2860); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_80059208 with split old-diffX checkpoint-dot schedule failed full verify with CRCs 0x543A5FDF/0x5F70BBBB and relinked focused CURRENT (2165); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

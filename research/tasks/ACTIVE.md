@@ -1890,6 +1890,14 @@
   bytes instead of matching the target object-dot plus negated-checkpoint-dot
   schedule. Source was restored and final full verify passed; do not repeat
   this pre-axis-swap checkpoint-dot spelling.
+  Splitting the final checkpoint-dot calculation so the first term used old
+  `diffX` after assigning `diffX = diffZ` (`pad2 = tempZ * -diffY; diffZ =
+  -diffY; pad2 += diffX * tempX; pad2 = -pad2`) also missed: full verify
+  failed with calculated CRCs `0x543A5FDF/0x5F70BBBB`, the relinked focused
+  score regressed to `CURRENT (2165)`, and the diff showed broad early FPR
+  allocation drift before returning to the same final object-dot/clamp
+  mismatch family. Source was restored and final full verify passed; do not
+  repeat this split old-`diffX` checkpoint-dot schedule.
   Routing the final lateral cast through the existing dead `angle` local
   (`angle = (s32) diffX; racer->unk1BA += angle`) compiled but produced no
   relinked focused movement: full verify failed with calculated CRCs
