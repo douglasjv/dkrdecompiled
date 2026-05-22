@@ -120,7 +120,13 @@
   Adding `register` to `racerBrake` also compiled but did not change the
   failed CRC family (`0x5FDDE03F/0xEF7A0514`) and stayed in the same compressed
   focused family (`CURRENT (859)` under `--max-size 620`), with the same
-  missing `$f20/$f21` prologue saves and early `$f16` zero allocation. A later
+  missing `$f20/$f21` prologue saves and early `$f16` zero allocation. Adding
+  `register` to the long-lived `updateRateF` parameter likewise missed in the
+  same family: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, focused diff stayed `CURRENT (859)` under
+  `--max-size 620`, and the target `$f20/$f21` prologue saves plus early
+  `$f14` zero allocation were still absent. Do not repeat this
+  parameter-register hint. A later
   save-family wave-threshold local probe on the close chained-zero/x/z/y/
   steer-noop branch (`var_f0 = obj->trans.y_position + 5.0f` before the wave
   scan) kept the target `0xf8` frame and `$f20/$f21` saves but regressed the
@@ -641,7 +647,13 @@
   `CURRENT (1926)`, full verify failed with calculated CRCs
   `0x5FDDE03F/0xEF7A0514`, and the missing `$f20/$f21` prologue saves plus
   early `$f16` zero allocation remained unchanged; do not repeat this standalone
-  `racerThrottle` register hint.
+  `racerThrottle` register hint. Adding `register` to the `updateRateF`
+  parameter was also a no-op against the promoted baseline: full verify failed
+  with calculated CRCs `0x5FDDE03F/0xEF7A0514`, focused diff stayed
+  `CURRENT (859)` under `--max-size 620`, and the target `$f20/$f21` prologue
+  saves plus early `$f14` zero allocation remained absent. Source was restored
+  and final full verify passed; do not repeat this `updateRateF` parameter
+  register hint.
   Combining `register f32 var_f20` with `register f32 segmentZVelocity`
   compiled but produced no object change from the promoted baseline, stayed
   focused `CURRENT (2550)`, and still did not introduce the target `$f20/$f21`

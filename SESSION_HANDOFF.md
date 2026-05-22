@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:29:28Z
+- Generated at: 2026-05-22 15:31:52Z
 - Branch: `master`
-- HEAD: `b2f68874`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected early sp108 return-split spelling; source restored
+- HEAD: `1b77c48b`
+- Completed task: `func_80049794`
+- Summary: Rejected updateRateF parameter register hint; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 early sp108 return-split spelling with calculated CRCs 0x701EEB7B/0xA3DBFC65; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (3535) with bnez/inserted-return branch drift; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80049794 updateRateF parameter register hint with calculated CRCs 0x5FDDE03F/0xEF7A0514; ./diff.sh func_80049794 --format plain --no-pager --max-size 620 -U 80 => relinked CURRENT (859), still missing target f20/f21 prologue saves and early f14 zero allocation; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the early sp108 return-split spelling; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, do not repeat the updateRateF parameter register hint; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
