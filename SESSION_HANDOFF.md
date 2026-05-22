@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:51:54Z
+- Generated at: 2026-05-22 16:55:09Z
 - Branch: `master`
-- HEAD: `2efbef0f`
+- HEAD: `6b8106f8`
 - Completed task: `func_80059208`
-- Summary: Rejected final lateral clamp strictness probes; source restored after evidence capture.
+- Summary: Rejected final vertical clamp strictness probes; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; upper clamp >= probe failed with CRCs 0x53D141DF/0x46AE3428 and ./diff.sh func_80059208 => relinked CURRENT (1065); lower clamp <= probe failed with CRCs 0x53D141DF/0x19D259D9 and relinked CURRENT (1070).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; upper vertical clamp >= probe failed with CRCs 0x53D141DF/0x8F101C3E and ./diff.sh func_80059208 => relinked CURRENT (1070); lower vertical clamp <= probe failed with CRCs 0x53D141DF/0x5B9D4EFD and relinked CURRENT (1070).
 
 ## Blockers Or Unknowns
 
