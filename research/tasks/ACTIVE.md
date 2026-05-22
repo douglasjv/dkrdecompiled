@@ -1044,8 +1044,18 @@
   x/z/y save-family `spCC` preserve branch produced no improvement: original
   `spCC` stayed `CURRENT (3526)`, moved `spCC` stayed `CURRENT (3666)`, and
   the moved slot still spilled the wrong source FPR at `0xdc(sp)` instead of
-  creating the target-like `$f14` reload. Do not repeat register-`var_f14` /
-  `spCC` preserve combinations. A narrow `segmentZVelocity` carrier
+  creating the target-like `$f14` reload. Reusing the existing otherwise-dead
+  `segmentXVelocity` local as the preserve carrier on the x/z/y save-family
+  plus chained-zero/steer-noop branch (`segmentXVelocity = var_f14` before
+  `apply_vehicle_rotation_offset`; `var_f14 = segmentXVelocity` after) lowered
+  the relinked focused score to `CURRENT (3318)`, but still failed full verify
+  with calculated CRCs `0xF40EF8B9/0x958BDCC8`. The diff loaded from
+  `0x9c(sp)` and spilled/reloaded through `0x70(sp)` rather than creating the
+  target `$f14` save/reload at `0xdc(sp)`, while the wave `a0`/`v1` drift
+  remained. Do not repeat this exact `segmentXVelocity` preserve spelling;
+  if continuing this preserve family, solve the stack-slot/register placement
+  rather than adding another preserve carrier. Do not repeat register-`var_f14`
+  / `spCC` preserve combinations. A narrow `segmentZVelocity` carrier
   spelling on the x/z/y save-family branch also missed: assigning
   `var_f14 = segmentZVelocity` immediately after
   `apply_vehicle_rotation_offset` compiled but produced no focused

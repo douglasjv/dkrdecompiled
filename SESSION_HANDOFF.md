@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 14:53:34Z
+- Generated at: 2026-05-22 14:56:23Z
 - Branch: `master`
-- HEAD: `b40159b6`
+- HEAD: `c8e164f8`
 - Completed task: `func_80049794`
-- Summary: Tested a save-family sibling combining both-trailing-pads-removed pre-sqrtf accumulation, steer-vel no-op, and an spEC early-zero carrier. It compiled but missed: full verify failed with calculated CRCs 0x3256B05A/0x4244923C, relinked focused diff was CURRENT (3480), and source was restored.
+- Summary: Tested a fresh x/z/y save-family preserve probe using existing segmentXVelocity across apply_vehicle_rotation_offset. It compiled and lowered the relinked focused diff to CURRENT (3318), but full verify failed with calculated CRCs 0xF40EF8B9/0x958BDCC8; source was restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => failed for promoted func_80049794 spEC/save-family sibling, calculated CRCs 0x3256B05A/0x4244923C
-- ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (3480)
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => failed for promoted func_80049794 segmentXVelocity preserve probe, calculated CRCs 0xF40EF8B9/0x958BDCC8
+- ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (3318)
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
 
 ## Blockers Or Unknowns
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, avoid the newly recorded weaker combined spEC early-zero plus save-family sibling; the stronger recorded x/z/y spEC branch reached CURRENT (3415) but still needs a way to keep the f14 zero without the spEC stack spill. For func_80059208, func_8002B0F4, and trackbg_render_flashy, use ACTIVE.md before choosing a probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, avoid the newly recorded segmentXVelocity preserve spelling; it improved to CURRENT (3318) but used the wrong stack slot/register path instead of the target f14 save/reload at 0xdc(sp), and wave a0/v1 drift remains. For func_80059208, func_8002B0F4, and trackbg_render_flashy, use ACTIVE.md before choosing a probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
