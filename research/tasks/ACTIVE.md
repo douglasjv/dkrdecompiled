@@ -1738,6 +1738,15 @@
   shifted the checkpoint-dot multiply order while broadening the object-dot and
   final vertical FPR drift. Source was restored and final full verify passed;
   do not repeat this direct checkpoint-dot sum-order spelling.
+  Keeping the current axis-swap order but spelling the negated checkpoint dot
+  through the still-live old-`diffX` carrier
+  (`pad2 = -((tempZ * -diffY) + (diffX * tempX))`) also missed: full verify
+  failed with calculated CRCs `0x53D161DF/0x6008CEF3`, the relinked focused
+  score worsened from the promoted baseline `CURRENT (870)` to `CURRENT (880)`,
+  and the tail only swapped the first checkpoint-dot multiply operand order
+  while leaving the object-dot plus final vertical FPR drift. Source was
+  restored and final full verify passed; do not repeat this post-swap
+  old-`diffX` checkpoint-dot carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

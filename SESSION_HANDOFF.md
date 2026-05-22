@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:02:41Z
+- Generated at: 2026-05-22 16:06:15Z
 - Branch: `master`
-- HEAD: `ffaf64ef`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected levelSegmentIndex register-parameter hint; source restored
+- HEAD: `3718d60c`
+- Completed task: `func_80059208`
+- Summary: Rejected post-swap old-diffX checkpoint-dot carrier; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 with register s32 levelSegmentIndex, calculated CRCs 0x7856718A/0x66208CAA; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2860), target f20/f22 prologue remained but unwanted early gCurrentLevelModel spill appeared at 0x60(sp); restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x53D161DF/0x6008CEF3 and ./diff.sh func_80059208 => relinked CURRENT (880).
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the levelSegmentIndex register-parameter hint; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; for func_80059208 do not repeat the post-swap old-diffX checkpoint-dot carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
