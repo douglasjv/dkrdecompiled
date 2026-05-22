@@ -1900,6 +1900,14 @@
   earlier x-product commute while broadening the final vertical FPR drift.
   Source was restored and final full verify passed; do not repeat this
   final object-dot z-multiply commute.
+  Rewriting the final vertical numerator as a negated reversed subtraction
+  (`diffY = -((tempY - obj->trans.y_position) / divisor)`) also missed:
+  full verify failed with calculated CRCs `0x53C55FB5/0x7A9D66B3`, relinked
+  focused score worsened from promoted baseline `CURRENT (870)` to
+  `CURRENT (1110)`, inserted an extra final-block `neg.s`, and shifted tail
+  labels/final vertical FPR scheduling. Source was restored and final full
+  verify passed; do not repeat this final-vertical reversed-subtraction
+  spelling.
   A mid-axis-swap negated checkpoint-dot spelling
   (`diffY = diffX; diffX = diffZ; pad2 = -((tempZ * -diffY) + (diffX *
   tempX)); diffZ = -diffY`) also missed: full verify failed with calculated

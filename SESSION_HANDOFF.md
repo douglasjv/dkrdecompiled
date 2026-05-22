@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:30:22Z
+- Generated at: 2026-05-22 19:32:28Z
 - Branch: `master`
-- HEAD: `8313da09`
+- HEAD: `71c411fc`
 - Completed task: `func_80059208`
-- Summary: Recorded final object-dot z-multiply commute miss; source restored after relinked focused CURRENT (875).
+- Summary: Recorded final vertical reversed-subtraction miss; source restored after relinked focused CURRENT (1110).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted z-product commute): CURRENT (875), failed full verify CRCs 0x53F241DF/0xFF09E640
+- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted reversed vertical numerator): CURRENT (1110), failed full verify CRCs 0x53C55FB5/0x7A9D66B3
 
 ## Blockers Or Unknowns
 
