@@ -1808,6 +1808,13 @@
   `0x54(sp)` store later while broadening object-dot and final vertical
   float-register drift. Source was restored and final full verify passed; do
   not repeat this direct second checkpoint-dot multiply-order spelling.
+  Commuting both checkpoint-dot multiplies together
+  (`pad2 = -((diffZ * tempZ) + (tempX * diffX))`) also missed: full verify
+  failed with calculated CRCs `0x53D15EDF/0xD6D4ED5A`, the relinked focused
+  score worsened to `CURRENT (990)`, and the final tail shifted the same
+  checkpoint-dot multiply-order family while broadening object-dot and final
+  vertical FPR drift. Source was restored and final full verify passed; do not
+  repeat this combined checkpoint-dot multiply-order spelling.
   Computing the negated
   checkpoint dot before completing the axis swap (`diffY = diffX; pad2 = -((tempZ * -diffY)
   + (diffZ * tempX)); diffX = diffZ; diffZ = -diffY`) also missed: full verify

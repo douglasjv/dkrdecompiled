@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:11:56Z
+- Generated at: 2026-05-22 19:14:26Z
 - Branch: `master`
-- HEAD: `450464eb`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected zPositions[5] grouped negated-difference spelling; source restored after evidence capture.
+- HEAD: `49e3b1a6`
+- Completed task: `func_80059208`
+- Summary: Rejected combined checkpoint-dot multiply-order spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; zPositions[5] grouped negated-difference failed with CRCs 0x9C75F625/0x32EDAC40 and ./diff.sh trackbg_render_flashy => relinked CURRENT (5055).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; combined checkpoint-dot multiply-order failed with CRCs 0x53D15EDF/0xD6D4ED5A and ./diff.sh func_80059208 => relinked CURRENT (990).
 
 ## Blockers Or Unknowns
 
