@@ -2203,7 +2203,14 @@
   calculated CRCs `0x7856718A/0x4AA98304`, and the diff shifted the bottom
   pointer-population/unrolled-copy schedule while preserving the same early
   `gCurrentLevelModel` spill family. Do not repeat this bottom population-loop
-  `while` spelling. Rewriting only the outer segment loop from
+  `while` spelling. Reusing the existing `wave2` local as the preloaded
+  `gTrackWaves[var_v0 + 1]` pointer in the bottom bubble sort also missed:
+  full verify failed with calculated CRCs `0x7D23AFD2/0x75CB7537`, the
+  relinked focused score worsened to `CURRENT (5200)`, and the same unwanted
+  early `gCurrentLevelModel` spill/register-family drift moved through the
+  grid and bottom sort schedule. Source was restored and final full verify
+  passed. Do not repeat this bottom sort `wave2` next-pointer carrier.
+  Rewriting only the outer segment loop from
   `for (var_fp = 0; var_fp < sp108; var_fp++)` to an equivalent
   `var_fp = 0; while (var_fp < sp108) { ...; var_fp++; }` compiled but
   produced no relinked object movement from the promoted baseline: focused

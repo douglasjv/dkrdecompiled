@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:45:24Z
+- Generated at: 2026-05-22 16:47:52Z
 - Branch: `master`
-- HEAD: `d3daa3cc`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site z7 operand-order spelling for trackbg_render_flashy; source restored after evidence capture.
+- HEAD: `5525014f`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected bottom bubble-sort wave2 next-pointer carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x7D23AFD2/0x75CB7537 and ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (5200).
 
 ## Blockers Or Unknowns
 
