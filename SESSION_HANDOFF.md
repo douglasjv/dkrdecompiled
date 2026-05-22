@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:19:27Z
+- Generated at: 2026-05-22 23:22:33Z
 - Branch: `master`
-- HEAD: `f5ef2390`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected flag-first batch skip condition spelling; promoted full build missed and relinked focused diff worsened to CURRENT (3825), then source was restored.
+- HEAD: `7dea78cb`
+- Completed task: `func_80049794`
+- Summary: Rejected close save-family fresh-var_t1 wave-bound carrier; promoted full build missed, widened the frame to 0x100, and relinked focused diff regressed to CURRENT (7242), then source was restored.
 
 ## Validation
 

@@ -1372,6 +1372,14 @@
   with calculated CRCs `0xA637D7C4/0x633471A3`, and widened wave-register churn
   by introducing `a0/a1/v0/v1` drift through the scan. Do not repeat this
   `var_v0` wave-count carrier spelling on the close save-family branch.
+  A fresh-local `var_t1` wave-bound carrier on the same close save-family
+  branch (`var_t1 = gRacerWaveCount - 1; for (var_a0 = var_t1; ...);
+  if (var_a0 == var_t1)`) also missed: full verify failed with calculated CRCs
+  `0xEA44ADF2/0x9E975CE5`, the relinked focused diff regressed to
+  `CURRENT (7242)`, and the function frame widened from target `0xf8` to
+  `0x100` while the wave scan shifted into broader `a0/v0/v1` churn. Source
+  was restored and final full verify passed; do not repeat this close-branch
+  fresh-`var_t1` wave-bound carrier.
   A close save-family continuation that carried the wave-height threshold
   through existing `var_f6` (`var_f6 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f6`) also missed: it kept the target
