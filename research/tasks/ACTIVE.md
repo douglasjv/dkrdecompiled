@@ -2209,7 +2209,13 @@
   relinked focused score worsened to `CURRENT (5200)`, and the same unwanted
   early `gCurrentLevelModel` spill/register-family drift moved through the
   grid and bottom sort schedule. Source was restored and final full verify
-  passed. Do not repeat this bottom sort `wave2` next-pointer carrier.
+  passed. Do not repeat this bottom sort `wave2` next-pointer carrier. Removing
+  only the dead-looking `wave = gTrackWaves[var_v0 + 1]` pre-load before the
+  bottom bubble-sort compare also missed: full verify failed with calculated
+  CRCs `0x78D6A18A/0xC1B8EB90`, the relinked focused score worsened to
+  `CURRENT (3025)`, and the same global-model spill/register drift remained
+  while the bottom sort/tail labels shifted. Source was restored and final full
+  verify passed. Do not repeat this bottom sort pre-load removal.
   Rewriting only the outer segment loop from
   `for (var_fp = 0; var_fp < sp108; var_fp++)` to an equivalent
   `var_fp = 0; while (var_fp < sp108) { ...; var_fp++; }` compiled but
