@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:52:19Z
+- Generated at: 2026-05-22 19:56:58Z
 - Branch: `master`
-- HEAD: `eb80d1a1`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded vCoords[2] plus-negative UV miss; source restored after relinked focused CURRENT (1808).
+- HEAD: `c396c521`
+- Completed task: `func_80059208`
+- Summary: Recorded lateral lower-first clamp miss; source restored after relinked focused CURRENT (1030).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted v2 plus-negative UV): CURRENT (1808), failed full verify CRCs 0x93D338FF/0x03D9C8FE
+- ./diff.sh func_80059208 --format plain --no-pager -U 35 (promoted lateral lower-first clamp): CURRENT (1030), failed full verify CRCs 0x53D8C1DF/0xDBE11CED
 
 ## Blockers Or Unknowns
 

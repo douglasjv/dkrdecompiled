@@ -1483,7 +1483,14 @@
   `CURRENT (1065)`, while changing only the lower branch to
   `if (diffX <= -5.0f)` failed with CRCs `0x53D141DF/0x19D259D9` and worsened
   to `CURRENT (1070)`. Source was restored and final full verify passed; do
-  not repeat these lateral clamp strictness probes. Tightening the final
+  not repeat these lateral clamp strictness probes. Swapping only the lateral
+  clamp order to test the lower bound before the upper bound also missed: full
+  verify failed with calculated CRCs `0x53D8C1DF/0xDBE11CED`, the relinked
+  focused score worsened from promoted baseline `CURRENT (870)` to
+  `CURRENT (1030)`, and the tail stayed in the same object-dot plus
+  negated-checkpoint arithmetic/register drift family. Source was restored and
+  final full verify passed; do not repeat this lateral lower-first clamp order.
+  Tightening the final
   vertical clamp comparisons one side at a time also missed: changing the
   upper branch to `if (diffY >= 100.0f)` failed full verify with calculated
   CRCs `0x53D141DF/0x8F101C3E` and worsened the relinked focused score to
