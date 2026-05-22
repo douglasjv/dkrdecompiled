@@ -1970,7 +1970,14 @@
   `CURRENT (2901)`, and the diff shifted first-ring UV float-register
   allocation plus later vertex/triangle scheduling instead of improving the
   early position-array schedule. Source was restored and final full verify
-  passed. Do not repeat this `uCoords[0]` operand-order UV spelling.
+  passed. Do not repeat this `uCoords[0]` operand-order UV spelling. Rewriting
+  only `uCoords[0]` from `(-var_f14 - xCos)` to `-(var_f14 + xCos)` also
+  missed: full verify failed with calculated CRCs `0x1FD43A21/0x8649CFBF`,
+  the relinked focused score worsened to `CURRENT (3086)`, and the diff moved
+  the early negative-cosine carrier from target `$f18` to `$f16` while
+  broadening first-ring UV/position-array scheduling drift. Source was
+  restored and final full verify passed. Do not repeat this `uCoords[0]`
+  negated-sum UV spelling.
   Rewriting only `vCoords[1]` from `(-var_f14 - var_f16)` to
   `(-var_f16 - var_f14)` also missed: full verify failed with calculated CRCs
   `0x1FE45A27/0x91F59B93`, the relinked focused score worsened to

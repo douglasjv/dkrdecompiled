@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:56:14Z
+- Generated at: 2026-05-22 19:00:24Z
 - Branch: `master`
-- HEAD: `740cbf00`
-- Completed task: `func_80049794`
-- Summary: Rejected current-baseline early spA2 timing probe; source restored after evidence capture.
+- HEAD: `85444406`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected uCoords[0] negated-sum UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; early spA2 timing failed with CRCs 0xC22DF330/0xE8574E6D and ./diff.sh func_80049794 => relinked CURRENT (4660).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[0] negated-sum failed with CRCs 0x1FD43A21/0x8649CFBF and ./diff.sh trackbg_render_flashy => relinked CURRENT (3086).
 
 ## Blockers Or Unknowns
 
