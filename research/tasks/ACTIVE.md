@@ -2340,6 +2340,14 @@
   slightly to `CURRENT (1813)`, and the diff stayed in the same early
   position-array register/order family. Source was restored and final full
   verify passed. Do not repeat this single-site z6 operand-order spelling.
+  Rewriting only `zPositions[6]` from
+  `-(2.0f * scaledXCos) - scaledXSin` to
+  `-((2.0f * scaledXCos) + scaledXSin)` also missed: full verify failed with
+  calculated CRCs `0x53BD5BC9/0x0C6BD3FB`, the relinked focused score worsened
+  to `CURRENT (3887)`, and the diff kept the early negative-cosine register
+  mismatch while broadening first/outer position-array and UV scheduling.
+  Source was restored and final full verify passed. Do not repeat this
+  single-site z6 negated-sum spelling.
   Removing the fake duplicate
   `var_a2 = texHeader->height * 16 * gCurrentLevelHeader2->unkA1` assignment
   before the UV block compiled but badly widened the relinked focused score to

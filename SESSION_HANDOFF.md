@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:08:11Z
+- Generated at: 2026-05-22 19:10:08Z
 - Branch: `master`
-- HEAD: `3b25a900`
+- HEAD: `f13112c9`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[5] negated-sum UV spelling; source restored after evidence capture.
+- Summary: Rejected zPositions[6] negated-sum position spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[5] negated-sum failed with CRCs 0x1FD484FF/0x9EF16F5D and ./diff.sh trackbg_render_flashy => relinked CURRENT (4588).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; zPositions[6] negated-sum failed with CRCs 0x53BD5BC9/0x0C6BD3FB and ./diff.sh trackbg_render_flashy => relinked CURRENT (3887).
 
 ## Blockers Or Unknowns
 
