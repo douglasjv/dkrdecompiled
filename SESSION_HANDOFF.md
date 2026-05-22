@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:26:54Z
+- Generated at: 2026-05-22 21:30:13Z
 - Branch: `master`
-- HEAD: `1a8c4ec6`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removed three-level surface guard plus texture-index temp with batch-offset-before-surface-read order miss; relinked focused stayed CURRENT (1520), full verify failed with CRCs 0x7C4CE1AA/0x7C1438D3, then source restored.
+- HEAD: `2dc32ddf`
+- Completed task: `func_80049794`
+- Summary: Recorded current-baseline drift-flag boolean assignment miss; promoted C failed full verify with CRCs 0xAD0C80F7/0xC3551BE0 and relinked focused regressed to CURRENT (5226), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated model-spill fix that improves beyond the pad3-removed three-level guard plus texture-index temp carrier, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_80049794 only with a new non-repeated source shape that improves beyond the current-baseline drift-flag and recorded save-family/wave-scan misses, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

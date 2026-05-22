@@ -238,6 +238,13 @@
   `0xa2(sp)` byte store while the early zero still used `$f16` and the
   `$f20/$f21` prologue saves were still absent. Source was restored and final
   full verify passed; do not repeat this early `spA2` timing spelling.
+  Rewriting the current-baseline drift flag test from the guarded assignment to
+  direct boolean assignment (`spA2 = var_f2 < 35 && racerVelocity < 8.0`)
+  widened the frame to `0x100`, introduced stack-byte traffic for the drift
+  flag, failed full verify with calculated CRCs `0xAD0C80F7/0xC3551BE0`, and
+  regressed the relinked focused score to `CURRENT (5226)`. Source was
+  restored and final full verify passed; do not repeat this drift-flag boolean
+  assignment spelling.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family
@@ -1491,6 +1498,15 @@
   so it did not fix the target bound/index allocation. Source was restored and
   final full verify passed; do not repeat this close-branch compare-only
   wave-bound cache. A baseline
+  current-checkout drift-flag boolean assignment probe
+  (`spA2 = var_f2 < 35 && racerVelocity < 8.0`) also missed: object-only diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0xAD0C80F7/0xC3551BE0`, and the relinked focused score regressed to
+  `CURRENT (5226)`. The probe widened the frame to `0x100`, stored the
+  transient boolean through `0xaa(sp)`, still lacked target `$f20/$f21`
+  prologue saves, and kept the early zero in `$f16` instead of target `$f14`.
+  Source was restored and final full verify passed; do not repeat this
+  drift-flag boolean assignment spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
