@@ -2042,7 +2042,13 @@
   worsened to `CURRENT (3280)`, and the unwanted early `gCurrentLevelModel`
   spill at `0x60(sp)` remained while the grid-loop register family shifted
   toward `a0`/`a1`/`a2`/`a3`. Source was restored and final full verify passed.
-  Do not repeat this segment-index `temp` carrier. Keep this function active,
+  Do not repeat this segment-index `temp` carrier. Splitting the early
+  `sp108 == 0 || sp108 >= 8` return into two separate `if` statements also
+  missed: full verify failed with calculated CRCs `0x701EEB7B/0xA3DBFC65`,
+  the relinked focused diff worsened to `CURRENT (3535)`, and the early return
+  branch changed to a `bnez`/inserted return branch where target uses `beqz`
+  then `slti`. Source was restored and final full verify passed; do not repeat
+  this early `sp108` return-split spelling. Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
   bottom population-loop `while` spelling, this outer segment-loop `while`
