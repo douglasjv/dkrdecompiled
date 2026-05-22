@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:01:54Z
+- Generated at: 2026-05-22 22:06:12Z
 - Branch: `master`
-- HEAD: `355528c6`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded pad_sp108 negative-cosine carrier miss; promoted C failed full verify with CRCs 0xDC79F591/0x31DBA03C and relinked focused worsened to CURRENT (3108), then source restored.
+- HEAD: `bc47fe09`
+- Completed task: `func_80059208`
+- Summary: Recorded in-place pad object-dot miss; promoted C failed full verify with CRCs 0x539CDEEF/0x8B5DB390 and relinked focused worsened to CURRENT (1951), then source restored.
 
 ## Validation
 

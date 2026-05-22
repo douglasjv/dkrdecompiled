@@ -2138,6 +2138,15 @@
   changed the final conversion FPR family, and left the final
   object-dot/checkpoint-dot drift intact. Source was restored and final full
   verify passed; do not repeat this final vertical `diffZ` carrier.
+  Computing the negated checkpoint dot first, then building the final object
+  dot in-place through `pad` (`pad = obj->trans.x_position; pad *= diffX;
+  distance = obj->trans.z_position; pad += diffZ * distance`) also missed:
+  full verify failed with calculated CRCs `0x539CDEEF/0x8B5DB390`, and the
+  relinked focused score worsened from promoted-baseline `CURRENT (870)` to
+  `CURRENT (1951)`. The diff pulled the object pointer load earlier, broadened
+  final-tail FPR allocation, and shifted tail labels. Source was restored and
+  final full verify passed; do not repeat this in-place `pad` object-dot
+  spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
