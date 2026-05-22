@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:26:16Z
+- Generated at: 2026-05-22 20:29:40Z
 - Branch: `master`
-- HEAD: `6925c325`
-- Completed task: `func_80049794`
-- Summary: Recorded current-baseline existing-i wave-bound miss; source restored.
+- HEAD: `e8961876`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded vCoords[5] grouped-negated-difference UV miss; source restored.
 
 ## Validation
 
-- Promoted func_80049794 existing-i wave-bound carrier failed full verify with CRCs 0x1E560907/0x082E5A2F and relinked focused CURRENT (5110); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted trackbg_render_flashy vCoords[5] grouped negated-difference failed full verify with CRCs 0x1FCF7A27/0x04B06374 and relinked focused CURRENT (2478); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

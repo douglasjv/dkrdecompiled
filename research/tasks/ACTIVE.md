@@ -2193,6 +2193,13 @@
   restored and final full verify passed. Do not repeat this `vCoords[5]`
   plus-negative UV spelling.
   Rewriting only `vCoords[5]` from `(var_f16 - (2.0f * var_f14))` to
+  `-((2.0f * var_f14) - var_f16)` also missed: full verify failed with
+  calculated CRCs `0x1FCF7A27/0x04B06374`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (2478)`, and the diff shifted the
+  early position-array float-register/store schedule plus later UV/register
+  drift. Source was restored and final full verify passed. Do not repeat this
+  `vCoords[5]` grouped-negated-difference UV spelling.
+  Rewriting only `vCoords[5]` from `(var_f16 - (2.0f * var_f14))` to
   `(var_f16 - (var_f14 + var_f14))` also produced no relinked focused
   movement: full verify failed with the known calculated CRCs
   `0x93D338FF/0x03D9C8FE`, focused score stayed `CURRENT (1808)`, and the diff
