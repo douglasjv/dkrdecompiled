@@ -230,7 +230,14 @@
   the relinked focused score to `CURRENT (4660)`. It shifted the wave scan into
   an `a0/v0/v1` register/order family with extra post-loop compare math instead
   of target `v1/a0/v0`. Source was restored and final full verify passed; do
-  not repeat this close-branch predecrement wave-loop spelling.
+  not repeat this close-branch predecrement wave-loop spelling. A
+  current-baseline early `spA2 = FALSE` timing probe that moved the stack-byte
+  initialization before the grounded-wheel zeroing also missed: full verify
+  failed with calculated CRCs `0xC22DF330/0xE8574E6D`, the relinked focused
+  score worsened to `CURRENT (4660)`, and the diff inserted an extra early
+  `0xa2(sp)` byte store while the early zero still used `$f16` and the
+  `$f20/$f21` prologue saves were still absent. Source was restored and final
+  full verify passed; do not repeat this early `spA2` timing spelling.
 - `func_80059208` is also active, not parked. A 2026-05-17 `register f32
   divisor` allocation hint compiled but produced no relinked object movement:
   full verify failed with the same calculated CRC family

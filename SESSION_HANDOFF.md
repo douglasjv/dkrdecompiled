@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:53:51Z
+- Generated at: 2026-05-22 18:56:14Z
 - Branch: `master`
-- HEAD: `8c839e3f`
-- Completed task: `func_80059208`
-- Summary: Rejected second checkpoint-dot multiply-order spelling; source restored after evidence capture.
+- HEAD: `740cbf00`
+- Completed task: `func_80049794`
+- Summary: Rejected current-baseline early spA2 timing probe; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; second checkpoint-dot multiply-order failed with CRCs 0x53D13EDF/0x99CD5C6A and ./diff.sh func_80059208 => relinked CURRENT (980).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; early spA2 timing failed with CRCs 0xC22DF330/0xE8574E6D and ./diff.sh func_80049794 => relinked CURRENT (4660).
 
 ## Blockers Or Unknowns
 
