@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:11:07Z
+- Generated at: 2026-05-22 18:13:54Z
 - Branch: `master`
-- HEAD: `63e200f9`
+- HEAD: `421090e9`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected vCoords[6] additive-double UV spelling; source restored after evidence capture.
+- Summary: Rejected vCoords[0] operand-order UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[6] additive-double failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[0] operand-order failed with CRCs 0x511B5709/0x02A6A46F and ./diff.sh trackbg_render_flashy => relinked CURRENT (8605).
 
 ## Blockers Or Unknowns
 
