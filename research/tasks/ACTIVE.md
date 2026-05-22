@@ -446,6 +446,12 @@
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
   verify failed with calculated CRCs `0x7C4CE1AA/0x7C1438D3`, and the unwanted
   early `gCurrentLevelModel` spill still appeared at `0x64(sp)`.
+  Adding an existing-`faceNum` carrier for `currentBatch->flags` on top of
+  that same texture-index branch also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x7B7E11AA/0x52CD4FC5`, the relinked focused score regressed to
+  `CURRENT (1635)`, and the unwanted early `gCurrentLevelModel` spill still
+  appeared at `0x64(sp)`.
   Keeping `pad3` intact but
   moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
   passing those integer locals matched the target prologue conversion/call
@@ -2950,6 +2956,13 @@
   `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
   final full verify passed; do not repeat this texture-index `temp` carrier
   without a separate model-spill fix.
+  Adding an existing-`faceNum` carrier for `currentBatch->flags` to that
+  texture-index branch regressed versus the texture-index carrier alone:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x7B7E11AA/0x52CD4FC5`, relinked focused score
+  widened to `CURRENT (1635)`, and the unwanted early `gCurrentLevelModel`
+  spill remained at `0x64(sp)`. Source was restored and final full verify
+  passed; do not repeat this flags-through-`faceNum` carrier.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

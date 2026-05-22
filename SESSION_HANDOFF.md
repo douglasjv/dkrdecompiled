@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:21:30Z
+- Generated at: 2026-05-22 21:23:39Z
 - Branch: `master`
-- HEAD: `0c55df2b`
+- HEAD: `bb3e1542`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removed three-level surface guard plus texture-index temp carrier miss; relinked focused CURRENT (1520), full verify failed with CRCs 0x7C4CE1AA/0x7C1438D3, then source restored.
+- Summary: Recorded pad3-removed three-level surface guard plus texture-index temp and flags-through-faceNum carrier miss; relinked focused CURRENT (1635), full verify failed with CRCs 0x7B7E11AA/0x52CD4FC5, then source restored.
 
 ## Validation
 
