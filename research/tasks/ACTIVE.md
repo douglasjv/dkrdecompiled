@@ -2313,7 +2313,18 @@
   to `CURRENT (3275)`, the loop entry changed from target `blez` to `beqz`, and
   the known unwanted early `gCurrentLevelModel` spill appeared at `0x60(sp)`.
   Source was restored and final full verify passed. Do not repeat this
-  outer-loop `!= sp108` bound spelling. Keep this function active,
+  outer-loop `!= sp108` bound spelling.
+  A pad3-removal branch that reused the existing `batchNum` local as the
+  segment-index carrier (`batchNum = spB0[var_fp]; currentSegment =
+  &gCurrentLevelModel->segments[batchNum]; currentBoundingBox =
+  &gCurrentLevelModel->segmentsBoundingBoxes[batchNum]`) also missed after
+  actually promoting the source out of the `NON_EQUIVALENT` guard: full verify
+  failed with calculated CRCs `0x7B040FE0/0x432A7562`, relinked focused diff
+  reported `CURRENT (3399)`, and the unwanted early `gCurrentLevelModel` spill
+  plus saved-register drift remained. Source was restored and final full
+  verify passed; do not repeat this pad3-removal plus `batchNum`
+  segment-index carrier.
+  Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
   bottom population-loop `while` spelling, this outer segment-loop `while`

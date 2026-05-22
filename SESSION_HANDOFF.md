@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:14:03Z
+- Generated at: 2026-05-22 17:18:15Z
 - Branch: `master`
-- HEAD: `e2b684a9`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical angle cast carrier; source restored after evidence capture.
+- HEAD: `678cf8ac`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected pad3-removed batchNum segment-index carrier; source restored after promotion mismatch.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vertical angle cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; promoted pad3-removal batchNum carrier failed with CRCs 0x7B040FE0/0x432A7562 and ./diff.sh func_8002B0F4 => relinked CURRENT (3399).
 
 ## Blockers Or Unknowns
 
