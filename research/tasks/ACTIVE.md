@@ -538,6 +538,14 @@
   score stayed `CURRENT (2860)`, and the same early `gCurrentLevelModel` spill
   at `0x60(sp)` plus grid/tail register drift remained. Source was restored
   and final full verify passed; do not repeat this Z-grid shift spelling.
+  Rewriting only the X-grid loop condition from `i < 8` to `i != 8`
+  also missed in the same family as the Z-grid condition probe: full verify
+  failed with calculated CRCs `0x6818718A/0x890290E9`, the relinked focused
+  score worsened to `CURRENT (3320)`, and the diff changed the X-grid loop
+  exit to `li at,8`/`bne a3,at` while preserving the early
+  `gCurrentLevelModel` spill at `0x60(sp)` plus broad grid/tail drift. Source
+  was restored and final full verify passed; do not repeat this X-grid
+  loop-condition spelling.
   Rewriting only the Z-grid loop condition from `i < 8` to `i != 8`
   also missed: full verify failed with calculated CRCs
   `0x6818718A/0x890290E9`, the relinked focused score worsened to
@@ -549,8 +557,8 @@
   shape, the direct-cast `get_inside_segment_count_xz` call shape, this
   `D_8011D308`-first conversion/order variant, this segment-index `i` carrier,
   the grid bitmask `var_a1 += var_a1` spelling, the X-grid
-  `var_a1 <<= 1` spelling, the Z-grid `i != 8` loop-condition spelling, the
-  scalar plane-carrier replacement, the
+  `var_a1 <<= 1` spelling, either X-grid or Z-grid `i != 8` loop-condition
+  spelling, the scalar plane-carrier replacement, the
   unused-wave2 removal, or the declaration-only `pad2` removal or
   first-dead-`pad` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
