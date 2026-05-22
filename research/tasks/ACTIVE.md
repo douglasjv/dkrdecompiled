@@ -368,7 +368,13 @@
   `CURRENT (1165)`, and the final tail added stack traffic/register drift
   instead of matching the target `pad + pad2` schedule. Source was restored
   and final full verify passed. Keep active, but do not repeat this
-  `diffX` final-sum carrier.
+  `diffX` final-sum carrier. Adding `register` to the long-lived `tempZ`
+  spline result compiled but produced no object movement from the promoted
+  baseline: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, relinked focused score stayed `CURRENT (870)`,
+  and the same final object-dot plus negated-checkpoint-dot schedule drift
+  remained. Source was restored and final full verify passed. Do not repeat
+  this `tempZ` register-hint probe.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the

@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:32:43Z
+- Generated at: 2026-05-22 20:36:00Z
 - Branch: `master`
-- HEAD: `f2f4df32`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded uCoords[6] grouped-negated-difference UV miss; source restored.
+- HEAD: `fcce1d13`
+- Completed task: `func_80059208`
+- Summary: Recorded tempZ register-hint final-tail miss; source restored.
 
 ## Validation
 
-- Promoted trackbg_render_flashy uCoords[6] grouped negated-difference failed full verify with CRCs 0x1FC45A27/0x507B3763 and relinked focused CURRENT (2273); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_80059208 with register tempZ failed full verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused CURRENT (870); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 
