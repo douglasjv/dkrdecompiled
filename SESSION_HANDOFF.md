@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:07:31Z
+- Generated at: 2026-05-22 21:09:51Z
 - Branch: `master`
-- HEAD: `a6241921`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removal plus setup-order miss; source restored.
+- HEAD: `574fbce3`
+- Completed task: `func_80059208`
+- Summary: Recorded final vertical diffZ carrier miss; source restored.
 
 ## Validation
 
-- Promoted func_8002B0F4 with pad3 removed and currentBoundingBox setup before currentSegment failed full verify with CRCs 0x785671AA/0x48BD26A8 and relinked focused CURRENT (3973); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_80059208 with final vertical diffZ carrier failed full verify with CRCs 0x53D135E7/0x934392FC and relinked focused CURRENT (910); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

@@ -2005,6 +2005,15 @@
   stayed `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus
   vertical FPR drift remained. Source was restored and final full verify
   passed; do not repeat this final vertical `i` cast carrier.
+  Reusing the now-dead `diffZ` local as the final vertical correction carrier
+  (`diffZ = (obj->trans.y_position - tempY) / divisor`, clamp `diffZ`, then
+  `racer->unk1BC += (s32) diffZ`) also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x53D135E7/0x934392FC`, and the relinked focused score worsened to
+  `CURRENT (910)`. The tail moved the clamped vertical value to `0x4c(sp)`,
+  changed the final conversion FPR family, and left the final
+  object-dot/checkpoint-dot drift intact. Source was restored and final full
+  verify passed; do not repeat this final vertical `diffZ` carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
