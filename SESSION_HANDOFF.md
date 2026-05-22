@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:48:34Z
+- Generated at: 2026-05-22 20:51:07Z
 - Branch: `master`
-- HEAD: `9f1dd5e8`
-- Completed task: `func_80059208`
-- Summary: Recorded split old-diffX checkpoint-dot miss; source restored.
+- HEAD: `7cd2e364`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded z7 grouped-negated-difference outer-ring miss; source restored.
 
 ## Validation
 
-- Promoted func_80059208 with split old-diffX checkpoint-dot schedule failed full verify with CRCs 0x543A5FDF/0x5F70BBBB and relinked focused CURRENT (2165); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted trackbg_render_flashy with zPositions[7] grouped-negated-difference failed full verify with CRCs 0x9C72948D/0x12AA7789 and relinked focused CURRENT (4289); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 
