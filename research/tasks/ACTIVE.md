@@ -1793,6 +1793,14 @@
   `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and source
   was restored/final verify passed. Do not repeat this final lateral `angle`
   cast carrier.
+  Replacing the negated checkpoint-dot expression with a post-axis-swap
+  old-`diffX` positive carrier
+  (`pad2 = (tempZ * diffY) - (diffX * tempX)`) also missed: full verify failed
+  with calculated CRCs `0x53D0C1DF/0x02CA4607`, relinked focused score
+  worsened to `CURRENT (980)`, and the final tail shifted into another
+  object-dot/checkpoint-dot register family. Source was restored and final
+  full verify passed; do not repeat this old-`diffX` positive checkpoint-dot
+  spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

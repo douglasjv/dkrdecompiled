@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:04:40Z
+- Generated at: 2026-05-22 17:07:34Z
 - Branch: `master`
-- HEAD: `3695424c`
+- HEAD: `65619030`
 - Completed task: `func_80059208`
-- Summary: Rejected final lateral angle cast carrier; source restored after evidence capture.
+- Summary: Rejected old-diffX positive checkpoint-dot carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; angle cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; old-diffX positive checkpoint-dot carrier failed with CRCs 0x53D0C1DF/0x02CA4607 and ./diff.sh func_80059208 => relinked CURRENT (980).
 
 ## Blockers Or Unknowns
 
