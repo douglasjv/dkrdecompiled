@@ -1557,7 +1557,17 @@
   player branch became current `beq t3,t1` opposite target `beq t1,t3`, and
   the wave bound/index allocation still had `a0`/`v1` opposite the target.
   Source was restored and final full verify passed; do not repeat this
-  close-branch commuted wave-gate player-check spelling. A baseline
+  close-branch commuted wave-gate player-check spelling. A close save-family
+  continuation using the same x/z/y pre-`sqrtf` accumulation, steer-vel no-op,
+  chained grounded-wheel zero, and removed trailing `pad3`/`pad4`, but adding a
+  `register s32 var_a0` hint, also missed as a no-op against that close
+  branch: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0xB8DD79CD/0xE47454ED`, and the relinked
+  focused score stayed `CURRENT (3260)` under `--max-size 900`. The target
+  `0xf8` frame, `$f20/$f21` saves, and target `$f14` early zero remained, but
+  the wave bound/index allocation still had `a0`/`v1` opposite the target.
+  Source was restored and final full verify passed; do not repeat this
+  close-branch `register var_a0` hint. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.

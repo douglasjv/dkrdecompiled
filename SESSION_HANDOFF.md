@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:54:45Z
+- Generated at: 2026-05-22 21:57:19Z
 - Branch: `master`
-- HEAD: `7239d391`
+- HEAD: `75510a9b`
 - Completed task: `func_80049794`
-- Summary: Recorded close save-family commuted wave-gate player-check miss; promoted C failed full verify with CRCs 0xB95979CD/0xA04AD574 and relinked focused was CURRENT (3270), then source restored.
+- Summary: Recorded close save-family register var_a0 hint miss; promoted C failed full verify with CRCs 0xB8DD79CD/0xE47454ED and relinked focused stayed CURRENT (3260), then source restored.
 
 ## Validation
 
