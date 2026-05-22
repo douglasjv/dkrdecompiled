@@ -1271,7 +1271,14 @@
   `CURRENT (2430)`, and the target `$f20/$f21` saves, early `$f14` zero, and
   wave `v1` bound / `a0` loop-index order were still missing. Source was
   restored and final full verify passed; do not repeat this standalone
-  `var_v1` register hint.
+  `var_v1` register hint. A current-baseline pointer-parameter allocation hint
+  (`register Object *obj, register Object_Racer *racer`) also compiled but
+  produced no useful movement: full verify failed with the same promoted
+  baseline CRC family `0x5FDDE03F/0xEF7A0514`, the relinked focused diff
+  stayed `CURRENT (2430)`, and the target `$f20/$f21` prologue saves, early
+  `$f14` zero, and wave `v1`/`a0` allocation were still missing. Source was
+  restored and final full verify passed; do not repeat this pointer-parameter
+  register hint.
   Carrying the wave-height threshold through existing `var_f0` on the same
   close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f0`) also missed: it kept the target

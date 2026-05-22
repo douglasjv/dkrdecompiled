@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:44:06Z
+- Generated at: 2026-05-22 15:46:52Z
 - Branch: `master`
-- HEAD: `d19e9820`
-- Completed task: `func_80059208`
-- Summary: Rejected direct checkpoint-dot sum-order probe; source restored
+- HEAD: `3be60fb7`
+- Completed task: `func_80049794`
+- Summary: Rejected pointer-parameter register hint; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80059208 checkpoint-dot sum-order probe with calculated CRCs 0x53ABC0DF/0xA18C1BA8; ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (1450), checkpoint-dot multiply order shifted and object-dot/final vertical FPR drift broadened; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80049794 register Object/Object_Racer parameter probe with calculated CRCs 0x5FDDE03F/0xEF7A0514; ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2430), no useful movement from promoted baseline, still missing target f20/f21 saves, early f14 zero, and wave v1/a0 allocation; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80059208, do not repeat the direct checkpoint-dot sum-order probe; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, do not repeat pointer-parameter register hints; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
