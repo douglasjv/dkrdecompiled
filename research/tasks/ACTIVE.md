@@ -1859,6 +1859,12 @@
   verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the visible
   drift remained in the earlier position-array schedule. Do not repeat this
   `uCoords[8]` additive-double UV spelling.
+  Rewriting only `vCoords[8]` from `((2.0f * pos.x) + var_f16)` to
+  `((pos.x + pos.x) + var_f16)` also produced no relinked focused movement:
+  full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, focused
+  score stayed `CURRENT (1808)`, and the diff remained in the same early
+  position-array register/order family. Source was restored and final full
+  verify passed. Do not repeat this `vCoords[8]` additive-double UV spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
