@@ -2305,6 +2305,14 @@
   with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the early position-array
   float-register family stayed in the known baseline/additive-double miss
   shape. Do not repeat this `scaledXCos`-first assignment-order spelling.
+  Commuting both initial scaled-sine/cosine multiply assignments to literal
+  first (`scaledXSin = 1280.0f * xSin; scaledXCos = 1280.0f * xCos`) also
+  missed: full verify failed with calculated CRCs `0x93A783FF/0x60886348`,
+  and the relinked focused score worsened from baseline `CURRENT (1808)` to
+  `CURRENT (2138)`. The diff moved the first multiply/register family from
+  target `$f18` toward `$f16` and broadened early position-array scheduling.
+  Source was restored and final full verify passed; do not repeat this
+  initial scaled multiply operand-order spelling.
   Reordering only the `uCoords[7]` UV expression to put `pos.z` first
   (`uCoords[7] = (s16) (pos.z + (2.0f * xCos)) + var_v0`) compiled but did not
   move the function: focused diff stayed `CURRENT (1808)`, full verify failed
