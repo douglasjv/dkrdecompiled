@@ -1871,7 +1871,14 @@
   score stayed `CURRENT (1808)`, and the diff remained in the same early
   position-array register/order family. Source was restored and final full
   verify passed. Do not repeat this `vCoords[8]` additive-double UV spelling.
-  Flipping
+  Rewriting only `vCoords[6]` from
+  `((-(2.0f * var_f14)) - var_f16)` to
+  `(-var_f16 - (2.0f * var_f14))` missed: full verify failed with calculated
+  CRCs `0x93C818FF/0x5CB67605`, the relinked focused score worsened from
+  `CURRENT (1808)` to `CURRENT (1818)`, and the diff remained in the early
+  position-array register/order family with later UV/register drift. Source
+  was restored and final full verify passed. Do not repeat this `vCoords[6]`
+  operand-order UV spelling. Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
