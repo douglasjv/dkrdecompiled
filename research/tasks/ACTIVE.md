@@ -2148,7 +2148,14 @@
   `CURRENT (1808)` to `CURRENT (1818)`, and the diff remained in the early
   position-array/UV register-order family with later UV/register drift. Source
   was restored and final full verify passed. Do not repeat this `uCoords[2]`
-  sum-order UV spelling.
+  sum-order UV spelling. Rewriting only `uCoords[2]` as a subtract-negative
+  expression (`var_f14 - -var_f16`) also missed badly: object-only focused diff
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x58EB09ED/0x9176C3B4`, and the relinked focused score worsened to
+  `CURRENT (8613)`. The diff moved the early negative-cosine carrier from
+  target `$f18` to `$f16`, shifted first/outer position-array scheduling, and
+  moved global offsets/tail labels. Source was restored and final full verify
+  passed; do not repeat this `uCoords[2]` subtract-negative UV spelling.
   Rewriting only `vCoords[3]` from `(var_f14 + var_f16)` to
   `(var_f16 + var_f14)` also produced no useful movement: full verify failed
   with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the relinked
