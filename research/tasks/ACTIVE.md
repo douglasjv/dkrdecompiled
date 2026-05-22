@@ -2344,7 +2344,15 @@
   `0xC59A4971/0x72BB7708`, and the relinked focused score worsened to
   `CURRENT (7441)` with broad first/outer position-array stack-slot/register
   churn. Source was restored and final full verify passed. Do not repeat this
-  single-site x8 operand-order spelling. Commuting only `zPositions[8]` from
+  single-site x8 operand-order spelling. Rewriting only `xPositions[8]` from
+  `-scaledXCos + (2.0f * scaledXSin)` to
+  `-(scaledXCos - (2.0f * scaledXSin))` also missed: full verify failed with
+  calculated CRCs `0x9C5E326B/0x55A97A82`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (3074)`, and the grouped
+  negated-difference shape broadened first/outer position-array scheduling plus
+  global-offset drift while preserving the target-sized `0x158` frame. Source
+  was restored and final full verify passed. Do not repeat this single-site x8
+  grouped-negated-difference spelling. Commuting only `zPositions[8]` from
   `(2.0f * scaledXCos) + scaledXSin` to
   `scaledXSin + (2.0f * scaledXCos)` produced no useful movement: full verify
   failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, the

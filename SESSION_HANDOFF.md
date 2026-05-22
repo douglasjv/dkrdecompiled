@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:41:22Z
+- Generated at: 2026-05-22 19:45:02Z
 - Branch: `master`
-- HEAD: `f5944ef3`
+- HEAD: `8930d92a`
 - Completed task: `trackbg_render_flashy`
-- Summary: Recorded xPositions[6] plus-negative miss; source restored after relinked focused CURRENT (1808).
+- Summary: Recorded xPositions[8] grouped-negated-difference miss; source restored after relinked focused CURRENT (3074).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted x6 plus-negative): CURRENT (1808), failed full verify CRCs 0x93D338FF/0x03D9C8FE
+- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted x8 grouped negated difference): CURRENT (3074), failed full verify CRCs 0x9C5E326B/0x55A97A82
 
 ## Blockers Or Unknowns
 
