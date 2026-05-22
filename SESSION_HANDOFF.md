@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:46:44Z
+- Generated at: 2026-05-22 23:49:45Z
 - Branch: `master`
-- HEAD: `fcfb2e06`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected standalone texture-index temp carrier; promoted full build missed and relinked focused score improved to CURRENT (2435) but kept the early gCurrentLevelModel spill, then source was restored.
+- HEAD: `04b276fc`
+- Completed task: `func_80049794`
+- Summary: Rejected retained-pad var_f2 z/y component-staging plus inverse-multiply hybrid; full build missed, relinked focused score was CURRENT (3620), and the target f20/f21 save family remained absent.
 
 ## Validation
 

@@ -131,7 +131,14 @@
   failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, focused diff stayed
   `CURRENT (859)` under `--max-size 620`, and the target `$f20/$f21` prologue
   saves plus early `$f14` zero allocation were still absent. Do not repeat this
-  integer-parameter register hint. A later
+  integer-parameter register hint. A later retained-pad `var_f2` z/y
+  component-staging branch with the inverse-gravity expression changed to
+  multiply form (`var_f20 = 1.0 - (var_f20 * 0.25)`) also missed: full verify
+  failed with calculated CRCs `0x5FEF1D9D/0x4258C5C1`, relinked focused diff
+  reported `CURRENT (3620)`, and the function still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16`, and kept the wave `a0`/`v1` swap.
+  Source was restored and final full verify passed; do not repeat this
+  retained-pad `var_f2`/inverse-multiply hybrid. A later
   save-family wave-threshold local probe on the close chained-zero/x/z/y/
   steer-noop branch (`var_f0 = obj->trans.y_position + 5.0f` before the wave
   scan) kept the target `0xf8` frame and `$f20/$f21` saves but regressed the
@@ -1284,7 +1291,14 @@
   `0xdc(sp)`, but still dropped the target `$f20/$f21` prologue saves, shifted
   saved `ra`/`s1`/`s0` stack slots, kept early zero in `$f16`, and left the wave
   `a0`/`v1` drift. Do not repeat this `register var_f14` allocation hint on the
-  retained-pad `var_f2` branch. Removing
+  retained-pad `var_f2` branch. Changing the inverse-gravity expression to
+  multiply form (`var_f20 = 1.0 - (var_f20 * 0.25)`) on a promoted
+  retained-pad `var_f2` z/y component-staging branch also missed: full verify
+  failed with calculated CRCs `0x5FEF1D9D/0x4258C5C1`, the relinked focused
+  diff reported `CURRENT (3620)`, target `$f20/$f21` prologue saves remained
+  absent, early zero still allocated in `$f16`, and the wave scan still had
+  the `a0`/`v1` swap. Source was restored and final full verify passed; do not
+  repeat this retained-pad `var_f2`/inverse-multiply hybrid. Removing
   the two leading unused pads (`pad5`/`pad7`) while retaining trailing
   `pad3`/`pad4` on that same `var_f2` component-staging branch compiled but
   shrank the frame to `0xf0`, worsened the focused score to `CURRENT (3367)`,
