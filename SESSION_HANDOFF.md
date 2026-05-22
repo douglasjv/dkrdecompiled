@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:06:00Z
+- Generated at: 2026-05-22 15:08:42Z
 - Branch: `master`
-- HEAD: `5747052d`
+- HEAD: `2b009460`
 - Completed task: `func_80049794`
-- Summary: Tested current-baseline explicit var_t1 PLAYER_COMPUTER allocation reused for the early wave gate and trickType -1 check; it created the early li t1,-1 shape but widened the frame, missed with relinked CURRENT (2879), failed CRCs 0x5FDDDF87/0x4196D76A, source restored.
+- Summary: Tested current-baseline register s32 var_a0 allocation hint on the promoted wave-loop source; it produced the same promoted-baseline CRCs 0x5FDDE03F/0xEF7A0514 and relinked CURRENT (2430), source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => failed for promoted explicit var_t1 PLAYER_COMPUTER allocation probe, calculated CRCs 0x5FDDDF87/0x4196D76A
-- ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2879)
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => failed for promoted register s32 var_a0 probe, calculated CRCs 0x5FDDE03F/0xEF7A0514
+- ./diff.sh func_80049794 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2430)
 - gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
 
 ## Blockers Or Unknowns
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, avoid the newly recorded standalone var_t1 PLAYER_COMPUTER allocation probe; it created early li t1,-1 but widened the frame to 0x100, still lacked f20/f21 saves, kept early f16 zero, and left wave a0/v1 drift. For func_80059208, func_8002B0F4, and trackbg_render_flashy, use ACTIVE.md before choosing a probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80049794, avoid the newly recorded standalone register s32 var_a0 hint; it was a no-op against promoted baseline, still lacking f20/f21 saves, early f16 zero, and wave a0/v1 target order. For func_80059208, func_8002B0F4, and trackbg_render_flashy, use ACTIVE.md before choosing a probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

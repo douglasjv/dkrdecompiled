@@ -1235,7 +1235,13 @@
   saves were still absent, early zero still used `$f16`, and the wave loop
   still kept `a0`/`v1` opposite the target. Source was restored and final full
   verify passed; do not repeat this standalone `var_t1` `PLAYER_COMPUTER`
-  allocation probe.
+  allocation probe. A current-baseline `register s32 var_a0` allocation hint
+  also produced no useful movement: full verify failed with the promoted
+  baseline CRC family `0x5FDDE03F/0xEF7A0514`, the relinked focused diff
+  reported `CURRENT (2430)`, and the function still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16`, and kept the wave loop `a0`/`v1`
+  allocation opposite the target. Source was restored and final full verify
+  passed; do not repeat this standalone `var_a0` register hint.
   Carrying the wave-height threshold through existing `var_f0` on the same
   close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f0`) also missed: it kept the target
