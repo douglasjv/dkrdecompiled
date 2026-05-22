@@ -1248,7 +1248,14 @@
   `0xB523523E/0x7EEBEC55`, and shifted the wave scan into a worse register
   schedule with the `a0`/`v1` allocation still wrong. Source was restored and
   final full verify passed; do not repeat this existing-`var_f6`
-  wave-threshold carrier.
+  wave-threshold carrier. A sibling close save-family continuation carrying
+  the threshold through existing `spEC` (`spEC = obj->trans.y_position + 5.0f`)
+  was worse: full verify failed with calculated CRCs
+  `0xC65CFFD3/0xC660208A`, the relinked focused score regressed to
+  `CURRENT (8620)`, early zero allocation fell back to `$f16`, and the wave
+  path inserted a `0xec(sp)` spill while the bound/index registers remained
+  wrong. Source was restored and final full verify passed; do not repeat this
+  `spEC` wave-threshold carrier.
   A 2026-05-17 current-baseline split wave-bound probe also missed:
   promoting the current C and spelling `var_v1 = gRacerWaveCount - 1; for
   (var_a0 = var_v1; ...); if (var_a0 == var_v1)` worsened the relinked focused
