@@ -1906,7 +1906,14 @@
   `CURRENT (1808)` to `CURRENT (1818)`, and the diff remained in the early
   position-array register/order family with later UV/register drift. Source
   was restored and final full verify passed. Do not repeat this `vCoords[6]`
-  operand-order UV spelling. Rewriting only `uCoords[5]` from
+  operand-order UV spelling. Rewriting only `vCoords[6]` from
+  `((-(2.0f * var_f14)) - var_f16)` to
+  `((-(var_f14 + var_f14)) - var_f16)` also produced no useful movement: full
+  verify failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the
+  relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
+  same early position-array register/order family. Source was restored and
+  final full verify passed. Do not repeat this `vCoords[6]` additive-double UV
+  spelling. Rewriting only `uCoords[5]` from
   `(-var_f14 - (2.0f * xCos))` to `(-(2.0f * xCos) - var_f14)` also missed:
   full verify failed with calculated CRCs `0x1FD484FD/0x7F2AE5E8`, the
   relinked focused score worsened from `CURRENT (1808)` to `CURRENT (4488)`,
