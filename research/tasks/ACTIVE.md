@@ -2886,6 +2886,14 @@
   from target `s1` to `s2`, and moved tail/global labels by four bytes. Source
   was restored and final full verify passed; do not repeat this X-grid fake
   barrier spelling.
+  Combining the plain `pad3`-removed branch with the earlier standalone
+  setup-order idea (`currentBoundingBox` before `currentSegment`) also missed:
+  object-only focused diff printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x785671AA/0x48BD26A8`, and the relinked focused score
+  worsened to `CURRENT (3973)`. The diff still introduced the unwanted early
+  `gCurrentLevelModel` spill at `0x64(sp)` and broadened the outer
+  segment-loop register drift. Source was restored and final full verify
+  passed; do not repeat this pad3-removal plus setup-order swap.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
