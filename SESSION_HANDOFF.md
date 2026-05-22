@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:35:15Z
+- Generated at: 2026-05-22 16:38:00Z
 - Branch: `master`
-- HEAD: `0bbcf3b6`
-- Completed task: `func_80059208`
-- Summary: Rejected pre-axis-swap checkpoint-dot scheduling; source restored.
+- HEAD: `1e317277`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected single-site xPositions[5] operand-order rewrite; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0xDF8F8E89/0x317A96FF and ./diff.sh func_80059208 => relinked CURRENT (2614).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x499D7E20/0x23306384 and ./diff.sh trackbg_render_flashy => relinked CURRENT (8018).
 
 ## Blockers Or Unknowns
 
