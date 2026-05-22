@@ -1793,6 +1793,12 @@
   `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and source
   was restored/final verify passed. Do not repeat this final lateral `angle`
   cast carrier.
+  Routing the final lateral cast through the existing dead `counter` local
+  (`counter = (s32) diffX; racer->unk1BA += counter`) also compiled but
+  produced no relinked focused movement: full verify failed with calculated
+  CRCs `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and
+  source was restored/final verify passed. Do not repeat this final lateral
+  `counter` cast carrier.
   Routing the final vertical cast through the existing dead `angle` local
   (`angle = (s32) diffY; racer->unk1BC += angle`) compiled but also produced no
   relinked focused movement: full verify failed with calculated CRCs
