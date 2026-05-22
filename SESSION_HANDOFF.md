@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:17:47Z
+- Generated at: 2026-05-22 18:20:32Z
 - Branch: `master`
-- HEAD: `f1f4f9e8`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[0] operand-order UV spelling; source restored after evidence capture.
+- HEAD: `40cda5cb`
+- Completed task: `func_80059208`
+- Summary: Rejected final object x/z load hoist before the lateral-axis swap; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[0] operand-order failed with CRCs 0x1FE45A27/0x304C5843 and ./diff.sh trackbg_render_flashy => relinked CURRENT (2901).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; hoisted object-load probe failed with CRCs 0x53D141DF/0x612988AC and ./diff.sh func_80059208 => relinked CURRENT (1681).
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; func_80049794 remains selector-recommended but saturated, so inspect ACTIVE.md before choosing whether to continue it or a narrower active target.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; func_80049794 remains selector-recommended but saturated, while func_80059208 and trackbg_render_flashy remain active fallback packets with recorded no-repeat notes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

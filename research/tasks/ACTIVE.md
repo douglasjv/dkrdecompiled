@@ -1841,6 +1841,15 @@
   the final tail instead of matching the target delayed old-`diffZ` store.
   Source was restored and final full verify passed; do not repeat this
   mid-axis-swap negated checkpoint-dot spelling.
+  Hoisting only the final object x/z position loads before the lateral-axis
+  swap (`splinePos = obj->trans.x_position; distance =
+  obj->trans.z_position;` before `diffY = diffX; diffX = diffZ; diffZ =
+  -diffY`) also missed: full verify failed with calculated CRCs
+  `0x53D141DF/0x612988AC`, relinked focused score worsened from baseline
+  `CURRENT (870)` to `CURRENT (1681)`, and the diff pulled the object pointer
+  plus x/z loads too early while broadening the final object-dot/checkpoint-dot
+  register drift. Source was restored and final full verify passed; do not
+  repeat this final object-load hoist.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
