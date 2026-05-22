@@ -514,13 +514,20 @@
   `CURRENT (2925)`, full verify failed with calculated CRCs
   `0x78BF118A/0x21FC9F7D`, the early `gCurrentLevelModel` spill at `0x60(sp)`
   remained, and the segment-index register family drifted from the
-  target/baseline `t1` toward `a3`/`t1`. Source was restored and final full
-  verify passed. Keep active; do not repeat the simple moved `pad3` variant,
+  target/baseline `t1` toward `a3`/`t1`. Rewriting both grid bitmask doublings
+  from `var_a1 *= 2` to `var_a1 += var_a1` also missed: object-only focused
+  diff first printed stale `CURRENT (0)`, full verify failed with calculated
+  CRCs `0x79235F02/0xA15ADC5A`, and the relinked focused score worsened to
+  `CURRENT (3375)`. The diff inserted the known early `gCurrentLevelModel`
+  spill at `0x60(sp)` and shifted the X/Z grid bitmask register family from
+  target `a1` toward `v1`. Source was restored and final full verify passed.
+  Keep active; do not repeat the simple moved `pad3` variant,
   the pointer-increment population spelling, either early-conversion call
   shape, the direct-cast `get_inside_segment_count_xz` call shape, this
   `D_8011D308`-first conversion/order variant, this segment-index `i` carrier,
-  the scalar plane-carrier replacement, the unused-wave2 removal, or the
-  declaration-only `pad2` removal or first-dead-`pad` removal.
+  the grid bitmask `var_a1 += var_a1` spelling, the scalar plane-carrier
+  replacement, the unused-wave2 removal, or the declaration-only `pad2`
+  removal or first-dead-`pad` removal.
 - `trackbg_render_flashy` is also active, not parked. The 2026-05-17
   first-ring `xCos * 1280.0f + scaledXSin`, minimal `xPositions[3]` before
   `xPositions[2]` reorder, and `register f32 var_f16` allocation-hint probes
@@ -2877,7 +2884,16 @@
   relinked focused score was `CURRENT (2860)`, and the diff recreated the
   known early `gCurrentLevelModel` spill at `0x60(sp)` plus broad grid/tail
   register churn. Source was restored and final full verify passed. Do not
-  repeat this live-`var_a1` Z-grid barrier spelling. Rewriting the
+  repeat this live-`var_a1` Z-grid barrier spelling. Rewriting both grid
+  bitmask doublings from `var_a1 *= 2` to `var_a1 += var_a1` also missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x79235F02/0xA15ADC5A`, and the relinked focused
+  score worsened from promoted-baseline `CURRENT (2780)` to `CURRENT (3375)`.
+  The diff inserted the known early `gCurrentLevelModel` spill at `0x60(sp)`
+  and rotated the X/Z grid bitmask registers away from target `a1` toward
+  `v1`, with tail drift unchanged. Source was restored and final full verify
+  passed; do not repeat this grid bitmask `var_a1 += var_a1` spelling.
+  Rewriting the
   bottom `gTrackWaves` population loop from the existing backslash-preserved
   `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
   relinked focused score worsened to `CURRENT (3080)`, full verify failed with

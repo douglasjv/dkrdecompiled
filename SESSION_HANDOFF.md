@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:42:40Z
+- Generated at: 2026-05-22 21:47:03Z
 - Branch: `master`
-- HEAD: `2188fd38`
-- Completed task: `func_80059208`
-- Summary: Recorded final vertical pad3 clamp-limit miss; promoted C failed full verify with CRCs 0x4400230F/0x7B651F08 and relinked focused regressed to CURRENT (1995), then source restored.
+- HEAD: `dc32f6f4`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded grid bitmask var_a1 += var_a1 miss; promoted C failed full verify with CRCs 0x79235F02/0xA15ADC5A and relinked focused regressed to CURRENT (3375), then source restored.
 
 ## Validation
 
