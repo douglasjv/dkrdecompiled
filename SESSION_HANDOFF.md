@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:21:28Z
+- Generated at: 2026-05-22 17:24:00Z
 - Branch: `master`
-- HEAD: `ad8e0ff0`
+- HEAD: `4b64b025`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected pad_sp100 doubled-cosine carrier; source restored after evidence capture.
+- Summary: Rejected pad_sp100 negative-cosine carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; promoted pad_sp100 doubled-cosine carrier failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; promoted pad_sp100 negative-cosine carrier failed with CRCs 0xDC79F591/0x31DBA03C and ./diff.sh trackbg_render_flashy => relinked CURRENT (2893).
 
 ## Blockers Or Unknowns
 

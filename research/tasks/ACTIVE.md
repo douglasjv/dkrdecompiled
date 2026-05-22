@@ -2115,6 +2115,15 @@
   early negative-cosine/doubled-cosine register family. Source was restored
   and final full verify passed. Do not repeat this `pad_sp100` doubled-cosine
   carrier.
+  Routing the first/outer negative scaled-cosine terms through existing
+  `pad_sp100` as a negative-cosine carrier (`pad_sp100 = -scaledXCos`, then
+  using it for `xPositions[0]`, `zPositions[0]`, `zPositions[1]`,
+  `xPositions[3]`, `xPositions[5]`, and `xPositions[8]`) also missed:
+  promoted full verify failed with calculated CRCs `0xDC79F591/0x31DBA03C`,
+  relinked focused score worsened to `CURRENT (2893)`, and the diff shifted
+  global offsets and later scheduling while keeping the early negative-cosine
+  register mismatch. Source was restored and final full verify passed. Do not
+  repeat this existing-`pad_sp100` negative-cosine carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
