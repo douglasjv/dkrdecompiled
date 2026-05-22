@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:08:55Z
+- Generated at: 2026-05-22 23:11:24Z
 - Branch: `master`
-- HEAD: `301df4c2`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site zPositions[8] multiply-order spelling; source restored after no focused movement.
+- HEAD: `8b9778f1`
+- Completed task: `func_80059208`
+- Summary: Rejected final lateral post-division negation split; promoted full build missed and relinked focused diff worsened to CURRENT (925), then source was restored.
 
 ## Validation
 

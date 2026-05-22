@@ -2226,6 +2226,14 @@
   drift instead of matching the target single division plus post-division
   negation. Source was restored and final full verify passed; do not repeat
   this split-division final lateral spelling.
+  Splitting only the final post-division negation
+  (`diffX = (pad + pad2) / divisor; diffX = -diffX`) also missed: full verify
+  failed with calculated CRCs `0xDAD5418A/0x1CDDCDF7`, and the relinked
+  focused score worsened from promoted-baseline `CURRENT (870)` to
+  `CURRENT (925)`. The tail still missed the object-dot/checkpoint-dot
+  register schedule and broadened the final vertical FPR drift. Source was
+  restored and final full verify passed; do not repeat this post-division
+  negation split spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
