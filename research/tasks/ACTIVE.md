@@ -440,6 +440,12 @@
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
   `0x785671AA/0xB93C9C08`, the relinked focused score was `CURRENT (1920)`,
   and the unwanted early model-pointer spill still landed at `0x64(sp)`.
+  Routing only `currentBatch->textureIndex` through the existing `temp` local
+  before reading `surfaceType` on the same pad3-removed three-level guard
+  branch improved the relinked focused score to `CURRENT (1520)`, but still
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x7C4CE1AA/0x7C1438D3`, and the unwanted
+  early `gCurrentLevelModel` spill still appeared at `0x64(sp)`.
   Keeping `pad3` intact but
   moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
   passing those integer locals matched the target prologue conversion/call
@@ -2936,6 +2942,14 @@
   and the unwanted early `gCurrentLevelModel` spill still appeared at
   `0x64(sp)`. Source was restored and final full verify passed; do not repeat
   this volatile-reload combination as a model-spill fix.
+  Routing only `currentBatch->textureIndex` through the existing `temp` local
+  before the surface read on that same pad3-removed three-level guard branch
+  improved the relinked focused score to `CURRENT (1520)`, but still missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x7C4CE1AA/0x7C1438D3`, and the unwanted early
+  `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
+  final full verify passed; do not repeat this texture-index `temp` carrier
+  without a separate model-spill fix.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:18:59Z
+- Generated at: 2026-05-22 21:21:30Z
 - Branch: `master`
-- HEAD: `ef2d075b`
+- HEAD: `0c55df2b`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removed three-level surface guard plus volatile gCurrentLevelModel setup reload miss; relinked focused CURRENT (1920), full verify failed with CRCs 0x785671AA/0xB93C9C08, then source restored.
+- Summary: Recorded pad3-removed three-level surface guard plus texture-index temp carrier miss; relinked focused CURRENT (1520), full verify failed with CRCs 0x7C4CE1AA/0x7C1438D3, then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated model-spill fix that improves on the pad3-removed three-level guard branch, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated model-spill fix that improves beyond the pad3-removed three-level guard plus texture-index temp carrier, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
