@@ -2723,7 +2723,13 @@
   `CURRENT (2900)`, full verify failed with calculated CRCs
   `0x7884718A/0x8596E436`, and the diff showed an early `gCurrentLevelModel`
   spill at `0x60(sp)` plus broader register churn through the grid and tail
-  loops. Do not repeat this Z-grid barrier-removal spelling. Rewriting the
+  loops. Do not repeat this Z-grid barrier-removal spelling. Rewriting only
+  that Z-grid fake barrier from `if (1) {}` to `if (var_a1) {}` also missed:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
+  relinked focused score was `CURRENT (2860)`, and the diff recreated the
+  known early `gCurrentLevelModel` spill at `0x60(sp)` plus broad grid/tail
+  register churn. Source was restored and final full verify passed. Do not
+  repeat this live-`var_a1` Z-grid barrier spelling. Rewriting the
   bottom `gTrackWaves` population loop from the existing backslash-preserved
   `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
   relinked focused score worsened to `CURRENT (3080)`, full verify failed with

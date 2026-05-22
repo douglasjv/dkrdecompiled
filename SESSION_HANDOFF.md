@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:42:08Z
+- Generated at: 2026-05-22 20:45:15Z
 - Branch: `master`
-- HEAD: `02935e1c`
-- Completed task: `func_80059208`
-- Summary: Recorded pad2 negative-one multiply final-tail miss; source restored.
+- HEAD: `b3e53ab4`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded live-var_a1 Z-grid barrier miss; source restored.
 
 ## Validation
 
-- Promoted func_80059208 with pad2 negative-one multiply failed full verify with CRCs 0x8247080C/0xE00CF805 and relinked focused CURRENT (2085); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_8002B0F4 with live-var_a1 Z-grid barrier failed full verify with CRCs 0x7856718A/0x66208CAA and relinked focused CURRENT (2860); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 
