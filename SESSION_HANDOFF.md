@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:06:15Z
+- Generated at: 2026-05-22 16:09:53Z
 - Branch: `master`
-- HEAD: `3718d60c`
-- Completed task: `func_80059208`
-- Summary: Rejected post-swap old-diffX checkpoint-dot carrier; source restored.
+- HEAD: `59a0f134`
+- Completed task: `func_80049794`
+- Summary: Rejected close save-family explicit for/break wave-scan probe; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x53D161DF/0x6008CEF3 and ./diff.sh func_80059208 => relinked CURRENT (880).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0xC46E9FFB/0x5EC5EF90 and ./diff.sh func_80049794 => relinked CURRENT (8075).
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; for func_80059208 do not repeat the post-swap old-diffX checkpoint-dot carrier.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; for func_80049794 do not repeat the close save-family explicit for/break wave-scan spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

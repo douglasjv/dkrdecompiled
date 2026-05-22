@@ -1380,7 +1380,17 @@
   `$f20/$f21` saves, shifted saved-register slots, early `$f16` zero, and
   wave `a0`/`v1` swap. Source was restored and final full verify passed; do
   not accept or retry promotion-only `func_80049794` from object-only
-  `CURRENT (0)` evidence. A baseline
+  `CURRENT (0)` evidence. A close save-family continuation using x/z/y
+  pre-`sqrtf` accumulation, steer-vel no-op, chained grounded-wheel zero, and
+  removed trailing `pad3`/`pad4`, but rewriting the wave scan as an explicit
+  `for` loop with `if (waveHeight >= obj->trans.y_position + 5) break`, also
+  missed: it kept the target `0xf8` frame and `$f20/$f21` prologue saves, but
+  full verify failed with calculated CRCs `0xC46E9FFB/0x5EC5EF90` and the
+  relinked focused score worsened to `CURRENT (8075)`. The diff showed the
+  wave scan moving into a broader `v1/a0/v0` drift family instead of fixing
+  target `v1` bound plus `a0` loop-index allocation. Source was restored and
+  final full verify passed; do not repeat this close-branch explicit
+  `for`/`break` wave-scan spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
