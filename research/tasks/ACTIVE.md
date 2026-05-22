@@ -1885,7 +1885,14 @@
   `CURRENT (1808)` to `CURRENT (1818)`, and the diff remained in the early
   position-array register/order family with later UV/register drift. Source
   was restored and final full verify passed. Do not repeat this `vCoords[6]`
-  operand-order UV spelling. Flipping
+  operand-order UV spelling. Rewriting only `uCoords[5]` from
+  `(-var_f14 - (2.0f * xCos))` to `(-(2.0f * xCos) - var_f14)` also missed:
+  full verify failed with calculated CRCs `0x1FD484FD/0x7F2AE5E8`, the
+  relinked focused score worsened from `CURRENT (1808)` to `CURRENT (4488)`,
+  and the diff broadened the early position-array float-register/store
+  schedule plus later vertex/triangle tail. Source was restored and final full
+  verify passed. Do not repeat this `uCoords[5]` operand-order UV spelling.
+  Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
