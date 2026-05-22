@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:38:37Z
+- Generated at: 2026-05-22 21:42:40Z
 - Branch: `master`
-- HEAD: `a7f51089`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded single-site xPositions[7] minus-negative miss; promoted C failed full verify with CRCs 0x1FBBB527/0xBCB1313B and relinked focused regressed to CURRENT (2503), then source restored.
+- HEAD: `2188fd38`
+- Completed task: `func_80059208`
+- Summary: Recorded final vertical pad3 clamp-limit miss; promoted C failed full verify with CRCs 0x4400230F/0x7B651F08 and relinked focused regressed to CURRENT (1995), then source restored.
 
 ## Validation
 

@@ -257,7 +257,15 @@
   splinePos + distance`): full verify failed with the same calculated CRCs
   `0x53D141DF/0xB9D4B481`, relinked focused stayed `CURRENT (870)`, and the
   final object-dot/checkpoint-dot drift was unchanged. Do not repeat this
-  divisor-distance reuse spelling.
+  divisor-distance reuse spelling. A later final vertical clamp-limit carrier
+  through the existing dead `pad3` local (`pad3 = 100.0f; if (diffY > pad3)
+  ...; if (diffY < -pad3) ...`) also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x4400230F/0x7B651F08`, and the relinked focused score worsened to
+  `CURRENT (1995)` by inserting extra vertical-clamp float traffic and
+  broadening the final object-dot/checkpoint-dot plus epilogue drift. Source
+  was restored and final full verify passed; do not repeat this final vertical
+  `pad3` clamp-limit carrier.
   The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
@@ -1682,7 +1690,16 @@
   numerator (`pad2 = obj->trans.y_position - tempY; diffY = pad2 / divisor`)
   also compiled but worsened the relinked focused score to `CURRENT (1680)` and
   shifted the epilogue labels by adding final-clamp stack traffic; do not
-  repeat this final-vertical carrier either. Rewriting the final lateral
+  repeat this final-vertical carrier either. Routing only the final vertical
+  clamp limit through the existing dead `pad3` local (`pad3 = 100.0f; if
+  (diffY > pad3) ...; if (diffY < -pad3) ...`) also missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x4400230F/0x7B651F08`, and the relinked focused score
+  worsened from promoted-baseline `CURRENT (870)` to `CURRENT (1995)`. The
+  diff inserted extra vertical-clamp float traffic, shifted the final
+  object-dot/checkpoint-dot register family, and moved the epilogue labels.
+  Source was restored and final full verify passed; do not repeat this final
+  vertical `pad3` clamp-limit carrier. Rewriting the final lateral
   correction as a reciprocal multiply (`diffX = -((pad + pad2) * (1.0f /
   divisor))`) compiled but worsened the relinked focused score to
   `CURRENT (1420)`, failed full verify with calculated CRCs
