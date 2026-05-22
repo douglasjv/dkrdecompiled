@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:10:08Z
+- Generated at: 2026-05-22 19:11:56Z
 - Branch: `master`
-- HEAD: `f13112c9`
+- HEAD: `450464eb`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected zPositions[6] negated-sum position spelling; source restored after evidence capture.
+- Summary: Rejected zPositions[5] grouped negated-difference spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; zPositions[6] negated-sum failed with CRCs 0x53BD5BC9/0x0C6BD3FB and ./diff.sh trackbg_render_flashy => relinked CURRENT (3887).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; zPositions[5] grouped negated-difference failed with CRCs 0x9C75F625/0x32EDAC40 and ./diff.sh trackbg_render_flashy => relinked CURRENT (5055).
 
 ## Blockers Or Unknowns
 

@@ -2131,7 +2131,14 @@
   calculated CRCs `0x53DC5E0F/0x8B102C25`, the relinked focused score worsened
   to `CURRENT (2831)`, and the early position-array schedule shifted instead
   of matching target. Source was restored and final full verify passed. Do not
-  repeat this single-site z5 plus-negated-double spelling.
+  repeat this single-site z5 plus-negated-double spelling. Rewriting only
+  `zPositions[5]` as a grouped negated-difference expression
+  (`-((2.0f * scaledXCos) - scaledXSin)`) also missed: full verify failed with
+  calculated CRCs `0x9C75F625/0x32EDAC40`, the relinked focused score worsened
+  to `CURRENT (5055)`, and the diff shifted the early negative-cosine family
+  plus first/outer position-array scheduling into broader global-offset churn.
+  Source was restored and final full verify passed. Do not repeat this
+  single-site z5 grouped negated-difference spelling.
   Adding a named
   `negScaledXCos` temporary for the first/outer position expressions also
   compiled but left the uncompressed linked diff at `CURRENT (1808)`. Swapping
