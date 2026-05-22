@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:46:12Z
+- Generated at: 2026-05-22 22:48:56Z
 - Branch: `master`
-- HEAD: `0750a208`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected func_8002B0F4 X-grid loop-condition spelling; promoted full build missed in the same CRC family as the Z-grid condition probe and relinked focused diff worsened to CURRENT (3320), then source was restored.
+- HEAD: `927ba9e4`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected trackbg_render_flashy vCoords[8] grouped-negated-sum UV spelling; promoted full build missed and relinked focused diff worsened to CURRENT (3523), then source was restored.
 
 ## Validation
 

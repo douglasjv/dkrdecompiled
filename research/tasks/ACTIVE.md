@@ -2274,7 +2274,15 @@
   relinked focused score stayed `CURRENT (1808)`, and the diff remained in
   the same early position-array register/order family. Source was restored
   and final full verify passed. Do not repeat this `vCoords[8]` operand-order
-  UV spelling. Rewriting only `uCoords[5]` from
+  UV spelling. Rewriting only `vCoords[8]` from
+  `((2.0f * pos.x) + var_f16)` to `-((-2.0f * pos.x) - var_f16)` missed:
+  full verify failed with calculated CRCs `0x0E197333/0x8457D082`, the
+  relinked focused score worsened from baseline `CURRENT (1808)` to
+  `CURRENT (3523)`, and the diff shifted global offsets/tail labels while
+  leaving the early negative-cosine carrier drifted from target `$f18` to
+  current `$f16`. Source was restored and final full verify passed. Do not
+  repeat this `vCoords[8]` grouped-negated-sum UV spelling. Rewriting only
+  `uCoords[5]` from
   `(-var_f14 - (2.0f * xCos))` to `(-var_f14 - (xCos + xCos))` also produced
   no relinked focused movement: full verify failed with the known calculated
   CRCs `0x93D338FF/0x03D9C8FE`, focused score stayed `CURRENT (1808)`, and the
