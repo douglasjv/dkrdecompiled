@@ -434,7 +434,13 @@
   then flags) improved the relinked focused score to `CURRENT (1720)`, but it
   still failed full verify with the plain pad3-removal CRC family
   `0x785671AA/0x0D6F6A4A` and preserved the unwanted early
-  `gCurrentLevelModel` spill at `0x64(sp)`. Keeping `pad3` intact but
+  `gCurrentLevelModel` spill at `0x64(sp)`. Combining that pad3-removed
+  three-level guard branch with direct volatile `gCurrentLevelModel` reloads at
+  the initial segment/bounding-box setup also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x785671AA/0xB93C9C08`, the relinked focused score was `CURRENT (1920)`,
+  and the unwanted early model-pointer spill still landed at `0x64(sp)`.
+  Keeping `pad3` intact but
   moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
   passing those integer locals matched the target prologue conversion/call
   shape, but still inserted the unwanted pre-loop `gCurrentLevelModel` spill,
@@ -2922,6 +2928,14 @@
   `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
   final full verify passed; do not repeat this pad3-removal plus three-level
   surface-guard split without a separate fix for the model-spill family.
+  Adding direct volatile `gCurrentLevelModel` reloads at the initial
+  `currentSegment`/`currentBoundingBox` setup on top of that same
+  pad3-removed three-level guard branch also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x785671AA/0xB93C9C08`, the relinked focused score was `CURRENT (1920)`,
+  and the unwanted early `gCurrentLevelModel` spill still appeared at
+  `0x64(sp)`. Source was restored and final full verify passed; do not repeat
+  this volatile-reload combination as a model-spill fix.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

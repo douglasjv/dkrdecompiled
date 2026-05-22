@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:16:08Z
+- Generated at: 2026-05-22 21:18:59Z
 - Branch: `master`
-- HEAD: `9c34603c`
+- HEAD: `ef2d075b`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removed three-level water-surface guard split miss; relinked focused score improved to CURRENT (1720) but full verify failed with CRCs 0x785671AA/0x0D6F6A4A, then source restored.
+- Summary: Recorded pad3-removed three-level surface guard plus volatile gCurrentLevelModel setup reload miss; relinked focused CURRENT (1920), full verify failed with CRCs 0x785671AA/0xB93C9C08, then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated fix for the early gCurrentLevelModel spill around the pad3-removed surface-guard branch, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated model-spill fix that improves on the pad3-removed three-level guard branch, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
