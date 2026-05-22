@@ -1786,8 +1786,15 @@
   and the tail only swapped the first checkpoint-dot multiply operand order
   while leaving the object-dot plus final vertical FPR drift. Source was
   restored and final full verify passed; do not repeat this post-swap
-  old-`diffX` checkpoint-dot carrier. Computing the negated checkpoint dot
-  before completing the axis swap (`diffY = diffX; pad2 = -((tempZ * -diffY)
+  old-`diffX` checkpoint-dot carrier. Commuting only the first multiply inside
+  the existing checkpoint-dot expression
+  (`pad2 = -((diffZ * tempZ) + (diffX * tempX))`) reproduced that same miss
+  family: full verify failed with calculated CRCs `0x53D161DF/0x6008CEF3`,
+  relinked focused score worsened to `CURRENT (880)`, and the diff only
+  swapped the first checkpoint-dot multiply while broadening the final tail.
+  Source was restored and final full verify passed; do not repeat this direct
+  first checkpoint-dot multiply-order spelling. Computing the negated
+  checkpoint dot before completing the axis swap (`diffY = diffX; pad2 = -((tempZ * -diffY)
   + (diffZ * tempX)); diffX = diffZ; diffZ = -diffY`) also missed: full verify
   failed with calculated CRCs `0xDF8F8E89/0x317A96FF`, the relinked focused
   score worsened to `CURRENT (2614)`, and the function tail shifted by eight

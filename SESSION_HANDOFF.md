@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:47:58Z
+- Generated at: 2026-05-22 18:50:58Z
 - Branch: `master`
-- HEAD: `85248050`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[8] operand-order UV spelling; source restored after evidence capture.
+- HEAD: `d9fa7177`
+- Completed task: `func_80059208`
+- Summary: Rejected first checkpoint-dot multiply-order spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[8] operand-order failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; first checkpoint-dot multiply-order failed with CRCs 0x53D161DF/0x6008CEF3 and ./diff.sh func_80059208 => relinked CURRENT (880).
 
 ## Blockers Or Unknowns
 
