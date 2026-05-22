@@ -385,7 +385,13 @@
   `0x53D141DF/0xB9D4B481`, relinked focused score stayed `CURRENT (870)`,
   and the same final tail object-dot plus vertical FPR drift remained. Source
   was restored and final full verify passed. Do not repeat this `tempY`
-  register-hint probe.
+  register-hint probe. Rewriting the negated checkpoint dot as a multiply by
+  negative one (`pad2 = ((tempZ * diffZ) + (diffX * tempX)) * -1.0f`) missed:
+  full verify failed with calculated CRCs `0x8247080C/0xE00CF805`, the relinked
+  focused score worsened from baseline `CURRENT (870)` to `CURRENT (2085)`,
+  and the diff shifted late rodata/global offsets while broadening the final
+  tail. Source was restored and final full verify passed. Do not repeat this
+  `pad2` negative-one multiply spelling.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
