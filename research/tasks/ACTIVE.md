@@ -2395,6 +2395,13 @@
   the relinked focused score stayed `CURRENT (1808)`, and the diff remained in
   the same early position-array register/order family. Source was restored and
   final full verify passed. Do not repeat this single-site x6 operand-order
+  spelling. Rewriting only `xPositions[6]` from
+  `scaledXCos - (2.0f * scaledXSin)` to
+  `scaledXCos + -(2.0f * scaledXSin)` also produced no useful movement: full
+  verify failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`,
+  the relinked focused score stayed `CURRENT (1808)`, and the diff remained in
+  the same early position-array register/order family. Source was restored and
+  final full verify passed. Do not repeat this single-site x6 plus-negative
   spelling. Rewriting only `zPositions[6]` from
   `-(2.0f * scaledXCos) - scaledXSin` to
   `-scaledXSin - (2.0f * scaledXCos)` also missed: full verify failed with
