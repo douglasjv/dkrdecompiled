@@ -3249,6 +3249,15 @@
   and the known early `gCurrentLevelModel` spill remained at `0x64(sp)`.
   Source was restored and final full verify passed; do not repeat this
   batch-offset-local `s16` spelling.
+  A promoted pad3-removed pointer-arithmetic segment setup
+  (`currentSegment = gCurrentLevelModel->segments + spB0[var_fp]`;
+  `currentBoundingBox = gCurrentLevelModel->segmentsBoundingBoxes +
+  spB0[var_fp]`) also missed: full verify failed with the plain pad3-removal
+  CRC family `0x785671AA/0x0D6F6A4A`, and the relinked focused diff reported
+  `CURRENT (2868)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` load/spill at `0x64(sp)` and rotated the outer
+  segment/grid registers, so do not repeat this pad3-removal plus
+  pointer-arithmetic segment-setup spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
