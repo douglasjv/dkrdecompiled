@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:10:49Z
+- Generated at: 2026-05-22 22:13:14Z
 - Branch: `master`
-- HEAD: `8d363c39`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected batch-offset local s16 source shape; restored guarded source after relinked diff regressed to CURRENT (3103).
+- HEAD: `d68f9824`
+- Completed task: `func_80049794`
+- Summary: Rejected nested spinout-zap condition split; relinked diff stayed at CURRENT (2430) with promoted-baseline CRCs.
 
 ## Validation
 

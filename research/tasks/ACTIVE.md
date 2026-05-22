@@ -1567,7 +1567,15 @@
   `0xf8` frame, `$f20/$f21` saves, and target `$f14` early zero remained, but
   the wave bound/index allocation still had `a0`/`v1` opposite the target.
   Source was restored and final full verify passed; do not repeat this
-  close-branch `register var_a0` hint. A baseline
+  close-branch `register var_a0` hint. A baseline current-checkout spinout-zap
+  condition split (`if (racer->unk1FE == 4) { if (racer->spinout_timer == 0)
+  ... }`) matched the local target branch shape in the object-only focused
+  view, but did not move the relinked object: full verify failed with the
+  promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, the relinked focused score
+  stayed `CURRENT (2430)`, and the same missing `$f20/$f21` saves, shifted
+  saved-register slots, early `$f16` zero, and wave `a0`/`v1` drift remained.
+  Source was restored and final full verify passed; do not repeat this
+  baseline nested spinout-zap condition spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
