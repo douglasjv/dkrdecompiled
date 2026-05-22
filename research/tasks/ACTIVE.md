@@ -2226,6 +2226,13 @@
   early position-array register/order family. Source was restored and final
   full verify passed. Do not repeat this `uCoords[6]` plus-negative UV
   spelling.
+  Rewriting only `uCoords[6]` from `(var_f14 - (2.0f * xCos))` to
+  `-((2.0f * xCos) - var_f14)` also missed: full verify failed with
+  calculated CRCs `0x1FC45A27/0x507B3763`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (2273)`, and the diff shifted the
+  early position-array float-register/store schedule plus later UV/register
+  drift. Source was restored and final full verify passed. Do not repeat this
+  `uCoords[6]` grouped-negated-difference UV spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
