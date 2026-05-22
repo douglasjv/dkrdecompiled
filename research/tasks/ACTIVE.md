@@ -2666,6 +2666,13 @@
   schedule drifted further while the early `gCurrentLevelModel` spill family
   remained. Source was restored and final full verify passed. Do not repeat
   this bottom sort existing-`wave` next-pointer compare carrier.
+  Spelling only the bottom bubble-sort repeat condition as
+  `while (stopSorting == FALSE)` also missed: full verify failed with the known
+  promoted CRC family `0x7856718A/0x66208CAA`, relinked focused diff reported
+  `CURRENT (2860)`, and the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` plus broad segment-loop register drift remained. Source was
+  restored and final full verify passed; do not repeat this bottom sort
+  explicit-`FALSE` condition spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

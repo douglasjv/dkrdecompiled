@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:32:28Z
+- Generated at: 2026-05-22 19:35:19Z
 - Branch: `master`
-- HEAD: `71c411fc`
-- Completed task: `func_80059208`
-- Summary: Recorded final vertical reversed-subtraction miss; source restored after relinked focused CURRENT (1110).
+- HEAD: `a4100f92`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded bottom sort explicit-FALSE condition miss; source restored after relinked focused CURRENT (2860).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted reversed vertical numerator): CURRENT (1110), failed full verify CRCs 0x53C55FB5/0x7A9D66B3
+- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort explicit-FALSE condition): CURRENT (2860), failed full verify CRCs 0x7856718A/0x66208CAA
 
 ## Blockers Or Unknowns
 
