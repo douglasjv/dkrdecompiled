@@ -1446,7 +1446,14 @@
   (`pad2 += pad; diffX = -(pad2 / divisor)`) compiled but left the focused
   score unchanged at `CURRENT (870)`. Reusing the now-dead `scale` local for
   the final `5.0f` lateral clamp (`scale = 5.0f; if (diffX > scale) ...`) also
-  compiled but worsened the focused object score to `CURRENT (1015)`. Replacing
+  compiled but worsened the focused object score to `CURRENT (1015)`. Tightening
+  the final lateral clamp comparisons one side at a time also missed: changing
+  the upper branch to `if (diffX >= 5.0f)` failed full verify with calculated
+  CRCs `0x53D141DF/0x46AE3428` and worsened the relinked focused score to
+  `CURRENT (1065)`, while changing only the lower branch to
+  `if (diffX <= -5.0f)` failed with CRCs `0x53D141DF/0x19D259D9` and worsened
+  to `CURRENT (1070)`. Source was restored and final full verify passed; do
+  not repeat these lateral clamp strictness probes. Replacing
   the final manual `diffX`/`diffY` clamp pairs with the repo `CLAMP` macro
   compiled but left the focused object score unchanged at `CURRENT (870)`.
   Inlining only `obj->trans.z_position` into the final object dot product while

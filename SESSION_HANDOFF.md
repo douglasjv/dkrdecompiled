@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:49:05Z
+- Generated at: 2026-05-22 16:51:54Z
 - Branch: `master`
-- HEAD: `217f04b0`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected bottom bubble-sort pre-load removal; source restored after evidence capture.
+- HEAD: `2efbef0f`
+- Completed task: `func_80059208`
+- Summary: Rejected final lateral clamp strictness probes; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x78D6A18A/0xC1B8EB90 and ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (3025).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; upper clamp >= probe failed with CRCs 0x53D141DF/0x46AE3428 and ./diff.sh func_80059208 => relinked CURRENT (1065); lower clamp <= probe failed with CRCs 0x53D141DF/0x19D259D9 and relinked CURRENT (1070).
 
 ## Blockers Or Unknowns
 
