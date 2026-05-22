@@ -1958,7 +1958,14 @@
   `gCurrentLevelModel` spill appeared at `0x60(sp)` before the segment loop.
   Source was restored and final full verify passed; do not repeat this float
   parameter register-hint probe without a separate fix for the model-spill
-  family. Promoting the existing C compiles, but
+  family. Combining that float-parameter register hint with the better
+  plain `pad3`-removed stack layout also missed: the target `$f20`/`$f22`
+  prologue remained, but full verify failed with the plain `pad3`-removal CRC
+  family `0x785671AA/0x0D6F6A4A`, the relinked focused score was
+  `CURRENT (2868)`, and the unwanted early `gCurrentLevelModel` spill moved to
+  `0x64(sp)`. Source was restored and final full verify passed; do not repeat
+  this combined float-register plus `pad3`-removal shape. Promoting the
+  existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
   Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the

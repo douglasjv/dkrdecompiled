@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:52:12Z
+- Generated at: 2026-05-22 15:56:31Z
 - Branch: `master`
-- HEAD: `de7e6a5a`
+- HEAD: `ab01baab`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected xIn/zIn float register-parameter hint; source restored
+- Summary: Rejected combined xIn/zIn register-parameter plus pad3-removal probe; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 register f32 xIn/zIn parameter probe with calculated CRCs 0x7856718A/0x66208CAA; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2860), target f20/f22 prologue shape appeared but unwanted early gCurrentLevelModel spill at 0x60(sp) remained; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 with register f32 xIn/zIn and pad3 removed, calculated CRCs 0x785671AA/0x0D6F6A4A; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2868), target f20/f22 prologue remained but unwanted early gCurrentLevelModel spill moved to 0x64(sp); restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the xIn/zIn float register-parameter hint unless paired with a separate model-spill fix; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the combined xIn/zIn float register-parameter plus pad3-removal shape; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
