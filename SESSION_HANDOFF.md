@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:39:35Z
+- Generated at: 2026-05-22 17:42:55Z
 - Branch: `master`
-- HEAD: `bde55534`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected vCoords[6] operand-order UV spelling; source restored after evidence capture.
+- HEAD: `083c6325`
+- Completed task: `func_80059208`
+- Summary: Rejected final lateral splineIndex cast carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[6] operand-order failed with CRCs 0x93C818FF/0x5CB67605 and ./diff.sh trackbg_render_flashy => relinked CURRENT (1818).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; final lateral splineIndex cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
 
 ## Blockers Or Unknowns
 
