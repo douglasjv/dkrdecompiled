@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:52:26Z
+- Generated at: 2026-05-22 22:55:12Z
 - Branch: `master`
-- HEAD: `d54114c7`
+- HEAD: `356ca66d`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline func_80049794 explicit decrementing wavePtr scan; promoted full build missed, widened the frame to 0x100, and relinked focused diff worsened to CURRENT (5680), then source was restored.
+- Summary: Rejected current-baseline func_80049794 local WaterProperties wave element-carrier scan; promoted full build missed, widened the frame to 0x100, and relinked focused diff worsened to CURRENT (9650), then source was restored.
 
 ## Validation
 
