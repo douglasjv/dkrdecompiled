@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:44:14Z
+- Generated at: 2026-05-22 16:45:24Z
 - Branch: `master`
-- HEAD: `4b56d7ec`
+- HEAD: `d3daa3cc`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site z5 plus-negated-double spelling for trackbg_render_flashy; source restored after evidence capture.
+- Summary: Rejected single-site z7 operand-order spelling for trackbg_render_flashy; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x53DC5E0F/0x8B102C25 and ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (2831).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 
