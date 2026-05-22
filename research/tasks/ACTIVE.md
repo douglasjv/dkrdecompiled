@@ -1944,7 +1944,14 @@
   full verify failed with calculated CRCs `0xDC9ABB91/0xDA2977C2`, and the diff
   shifted the early first-ring/outer-ring float schedule. Source was restored
   and final full verify passed. Do not repeat this single-pair x2/z3
-  store-order probe.
+  store-order probe. An exact first-ring target-store-order probe
+  (`x0`, `z1`, `x1`, `z2`, `z0`, `x3`, `x2`, `z3`) without replacing the
+  repeated `(xSin * 1280.0f)` terms also missed: the frame shrank to `0x150`,
+  relinked focused score worsened to `CURRENT (4432)`, full verify failed with
+  calculated CRCs `0x8E7C21EA/0x33457650`, and the diff shifted the early
+  position-array schedule into a different `$f16`/`$f18` and stack-slot family.
+  Source was restored and final full verify passed. Do not repeat this exact
+  first-ring target-order probe.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
