@@ -1793,7 +1793,15 @@
   relinked focused score worsened to `CURRENT (880)`, and the diff only
   swapped the first checkpoint-dot multiply while broadening the final tail.
   Source was restored and final full verify passed; do not repeat this direct
-  first checkpoint-dot multiply-order spelling. Computing the negated
+  first checkpoint-dot multiply-order spelling. Commuting only the second
+  multiply inside the existing checkpoint-dot expression
+  (`pad2 = -((tempZ * diffZ) + (tempX * diffX))`) missed worse: full verify
+  failed with calculated CRCs `0x53D13EDF/0x99CD5C6A`, the relinked focused
+  score worsened to `CURRENT (980)`, and the diff moved the final-tail
+  `0x54(sp)` store later while broadening object-dot and final vertical
+  float-register drift. Source was restored and final full verify passed; do
+  not repeat this direct second checkpoint-dot multiply-order spelling.
+  Computing the negated
   checkpoint dot before completing the axis swap (`diffY = diffX; pad2 = -((tempZ * -diffY)
   + (diffZ * tempX)); diffX = diffZ; diffZ = -diffY`) also missed: full verify
   failed with calculated CRCs `0xDF8F8E89/0x317A96FF`, the relinked focused
