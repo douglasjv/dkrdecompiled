@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:41:02Z
+- Generated at: 2026-05-22 22:44:50Z
 - Branch: `master`
-- HEAD: `0cf20309`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected func_8002B0F4 Z-grid bitmask shift spelling; promoted full build missed and relinked focused diff stayed in the CURRENT (2860) baseline family, then source was restored.
+- HEAD: `03953c58`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected trackbg_render_flashy uCoords[8] grouped-negated-difference UV spelling; promoted full build missed and relinked focused diff worsened to CURRENT (2173), then source was restored.
 
 ## Validation
 
