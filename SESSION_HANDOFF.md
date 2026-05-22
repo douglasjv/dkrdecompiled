@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:24:36Z
+- Generated at: 2026-05-22 22:27:29Z
 - Branch: `master`
-- HEAD: `7f9030f9`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected unused pad_sp100 z0/x3 first-ring carrier; restored source after frame-shrink miss.
+- HEAD: `ada32ebb`
+- Completed task: `func_80059208`
+- Summary: Rejected old-diffZ axis-swap carrier through distance; promoted full build stayed in baseline CRC family and relinked diff stayed CURRENT (870), then source restored.
 
 ## Validation
 

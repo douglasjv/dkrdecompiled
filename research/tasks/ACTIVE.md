@@ -381,9 +381,14 @@
   = pad`) but missed badly: full verify failed with calculated CRCs
   `0x53ACBBF7/0x0E5DD078`, relinked focused score worsened from baseline
   `CURRENT (870)` to `CURRENT (2016)`, and the final tail shifted earlier into
-  a broader object-dot/checkpoint-dot register family. Source was restored and
-  final full verify passed. Keep active, but do not repeat this old-`diffZ`
-  through-`pad` axis-swap carrier. A later final-sum carrier through the
+  a broader object-dot/checkpoint-dot register family. Staging old `diffZ`
+  through the now-dead `distance` local instead (`distance = diffZ; diffY =
+  diffX; diffX = distance`) also missed with no focused movement: promoted full
+  verify failed in the baseline CRC family `0x53D141DF/0xB9D4B481`, relinked
+  focused diff stayed `CURRENT (870)`, and the final offset drift was
+  unchanged. Source was restored and final full verify passed. Keep active, but
+  do not repeat either old-`diffZ` axis-swap carrier. A later final-sum carrier
+  through the
   now-dead `diffX` local (`diffX = pad; diffX += pad2; diffX = -(diffX /
   divisor)`) also missed: full verify failed with calculated CRCs
   `0x63E46DB5/0x591D1D44`, the relinked focused score worsened to
