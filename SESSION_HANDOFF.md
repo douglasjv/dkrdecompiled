@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:49:37Z
+- Generated at: 2026-05-22 19:52:19Z
 - Branch: `master`
-- HEAD: `e4d1a51b`
+- HEAD: `eb80d1a1`
 - Completed task: `trackbg_render_flashy`
-- Summary: Recorded uCoords[1] plus-negative UV miss; source restored after relinked focused CURRENT (1808).
+- Summary: Recorded vCoords[2] plus-negative UV miss; source restored after relinked focused CURRENT (1808).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted u1 plus-negative UV): CURRENT (1808), failed full verify CRCs 0x93D338FF/0x03D9C8FE
+- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted v2 plus-negative UV): CURRENT (1808), failed full verify CRCs 0x93D338FF/0x03D9C8FE
 
 ## Blockers Or Unknowns
 
