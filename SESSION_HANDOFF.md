@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:48:56Z
+- Generated at: 2026-05-22 22:52:26Z
 - Branch: `master`
-- HEAD: `927ba9e4`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected trackbg_render_flashy vCoords[8] grouped-negated-sum UV spelling; promoted full build missed and relinked focused diff worsened to CURRENT (3523), then source was restored.
+- HEAD: `d54114c7`
+- Completed task: `func_80049794`
+- Summary: Rejected current-baseline func_80049794 explicit decrementing wavePtr scan; promoted full build missed, widened the frame to 0x100, and relinked focused diff worsened to CURRENT (5680), then source was restored.
 
 ## Validation
 

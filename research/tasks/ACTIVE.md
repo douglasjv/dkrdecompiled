@@ -1441,7 +1441,17 @@
   stayed `CURRENT (2430)`, and the target `$f20/$f21` prologue saves, early
   `$f14` zero, and wave `v1`/`a0` allocation were still missing. Source was
   restored and final full verify passed; do not repeat this pointer-parameter
-  register hint.
+  register hint. A current-baseline explicit decrementing
+  `WaterProperties **wavePtr` walk
+  (`for (var_a0 = gRacerWaveCount - 1, wavePtr =
+  &gRacerCurrentWave[var_a0]; ...; var_a0--, wavePtr--)`) also missed badly:
+  full verify failed with calculated CRCs `0x791E2110/0x2A523649`, the
+  relinked focused score worsened from current promoted baseline
+  `CURRENT (2760)` to `CURRENT (5680)`, widened the frame to `0x100`, kept the
+  early zero in `$f16`, and broadened the wave scan into `a*/v1` register
+  churn instead of solving target `v1/a0/v0` allocation. Source was restored
+  and final full verify passed; do not repeat this current-baseline
+  `wavePtr` pointer-walk spelling.
   Carrying the wave-height threshold through existing `var_f0` on the same
   close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f0`) also missed: it kept the target
