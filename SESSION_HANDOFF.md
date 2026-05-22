@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:47:14Z
+- Generated at: 2026-05-22 17:49:28Z
 - Branch: `master`
-- HEAD: `a39c5d6b`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical splineIndex cast carrier; source restored after evidence capture.
+- HEAD: `abf7fe04`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected uCoords[6] operand-order UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; final vertical splineIndex cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[6] operand-order failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 
