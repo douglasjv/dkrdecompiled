@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:16:55Z
+- Generated at: 2026-05-22 23:19:27Z
 - Branch: `master`
-- HEAD: `97319639`
-- Completed task: `func_80059208`
-- Summary: Rejected splineIndex literal boolean spelling; promoted full build missed and relinked focused diff stayed at CURRENT (870), then source was restored.
+- HEAD: `f5ef2390`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected flag-first batch skip condition spelling; promoted full build missed and relinked focused diff worsened to CURRENT (3825), then source was restored.
 
 ## Validation
 

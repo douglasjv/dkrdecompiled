@@ -3214,7 +3214,15 @@
   `CURRENT (5326)`, and the frame shrank from target `0x128` to `0x120` while
   preserving the unwanted early `gCurrentLevelModel` spill/register drift.
   Source was restored and final full verify passed; do not repeat this explicit
-  bottom-sort unroll spelling. Adding an X-grid fake lifetime barrier after the
+  bottom-sort unroll spelling.
+  Reordering only the baseline batch skip condition so the flags test comes
+  before the two surface checks also missed: full verify failed with calculated
+  CRCs `0x78567034/0xDF4C2B54`, relinked focused diff worsened from the
+  promoted baseline `CURRENT (2780)` to `CURRENT (3825)`, and the same early
+  `gCurrentLevelModel` spill at `0x60(sp)` plus broad segment-loop/tail label
+  drift remained. Source was restored and final full verify passed; do not
+  repeat this flag-first batch skip condition spelling.
+  Adding an X-grid fake lifetime barrier after the
   first mask loop (`if (var_a1) {}` before the Z-grid setup) also missed:
   object-only focused diff printed stale `CURRENT (0)`, full verify failed with
   calculated CRCs `0x77D9E18A/0xB9F696E2`, and the relinked focused score was
