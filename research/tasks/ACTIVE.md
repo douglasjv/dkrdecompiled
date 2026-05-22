@@ -2217,6 +2217,15 @@
   object-dot/checkpoint-dot plus vertical FPR drift. Source was restored and
   final full verify passed; do not repeat this negated-object numerator
   spelling.
+  Splitting the final lateral correction into two independent divisions
+  (`diffX = (-pad / divisor) - (pad2 / divisor)`) also missed: full verify
+  failed with calculated CRCs `0x0B291618/0x580678D9`, and the relinked focused
+  score worsened from promoted-baseline `CURRENT (870)` to `CURRENT (2415)`
+  under `--max-size 520`. The final-tail schedule grew by 12 bytes, shifted
+  later labels/global offsets, and broadened the final lateral/vertical FPR
+  drift instead of matching the target single division plus post-division
+  negation. Source was restored and final full verify passed; do not repeat
+  this split-division final lateral spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
