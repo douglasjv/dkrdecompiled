@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:57:19Z
+- Generated at: 2026-05-22 22:01:54Z
 - Branch: `master`
-- HEAD: `75510a9b`
-- Completed task: `func_80049794`
-- Summary: Recorded close save-family register var_a0 hint miss; promoted C failed full verify with CRCs 0xB8DD79CD/0xE47454ED and relinked focused stayed CURRENT (3260), then source restored.
+- HEAD: `355528c6`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded pad_sp108 negative-cosine carrier miss; promoted C failed full verify with CRCs 0xDC79F591/0x31DBA03C and relinked focused worsened to CURRENT (3108), then source restored.
 
 ## Validation
 

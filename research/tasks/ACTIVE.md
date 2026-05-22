@@ -2757,7 +2757,15 @@
   relinked focused score worsened to `CURRENT (2893)`, and the diff shifted
   global offsets and later scheduling while keeping the early negative-cosine
   register mismatch. Source was restored and final full verify passed. Do not
-  repeat this existing-`pad_sp100` negative-cosine carrier.
+  repeat this existing-`pad_sp100` negative-cosine carrier. Routing the same
+  first/outer negative scaled-cosine terms through existing `pad_sp108` as the
+  carrier also missed: object-only `./diff.sh trackbg_render_flashy` first
+  printed stale `CURRENT (0)`, but full verify failed with the same calculated
+  CRCs `0xDC79F591/0x31DBA03C`; the relinked focused score worsened to
+  `CURRENT (3108)`, moved the early negative-cosine carrier from target `$f18`
+  to `$f16`, and shifted outer position-array/global-offset scheduling. Source
+  was restored and final full verify passed. Do not repeat this existing
+  `pad_sp108` negative-cosine carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
