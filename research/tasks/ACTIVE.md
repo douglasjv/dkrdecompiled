@@ -2402,7 +2402,15 @@
   reported `CURRENT (3399)`, and the unwanted early `gCurrentLevelModel` spill
   plus saved-register drift remained. Source was restored and final full
   verify passed; do not repeat this pad3-removal plus `batchNum`
-  segment-index carrier.
+  segment-index carrier. Using the existing `wave` local as the preloaded
+  `gTrackWaves[var_v0 + 1]` pointer in the bottom bubble-sort comparison
+  (`wave = gTrackWaves[var_v0 + 1]`, then comparing
+  `gTrackWaves[var_v0]->waveHeight < wave->waveHeight`) also missed: full
+  verify failed with calculated CRCs `0x784DF080/0xEF59EED4`, the relinked
+  focused diff worsened to `CURRENT (4535)`, and the bottom sort compare/swap
+  schedule drifted further while the early `gCurrentLevelModel` spill family
+  remained. Source was restored and final full verify passed. Do not repeat
+  this bottom sort existing-`wave` next-pointer compare carrier.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

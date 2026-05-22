@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:49:28Z
+- Generated at: 2026-05-22 17:54:07Z
 - Branch: `master`
-- HEAD: `abf7fe04`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[6] operand-order UV spelling; source restored after evidence capture.
+- HEAD: `6dc1b6d2`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected bottom sort existing-wave next-pointer compare carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[6] operand-order failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; existing-wave compare carrier failed with CRCs 0x784DF080/0xEF59EED4 and ./diff.sh func_8002B0F4 => relinked CURRENT (4535).
 
 ## Blockers Or Unknowns
 
