@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:24:28Z
+- Generated at: 2026-05-22 18:27:38Z
 - Branch: `master`
-- HEAD: `c993c4a6`
-- Completed task: `func_80059208`
-- Summary: Rejected direct pad += pad2 final-sum spelling; source restored after evidence capture.
+- HEAD: `529772e9`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected vCoords[1] operand-order UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; direct pad += pad2 probe failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[1] operand-order failed with CRCs 0x1FE45A27/0x91F59B93 and ./diff.sh trackbg_render_flashy => relinked CURRENT (2378).
 
 ## Blockers Or Unknowns
 
