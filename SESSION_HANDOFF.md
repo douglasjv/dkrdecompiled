@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:02:32Z
+- Generated at: 2026-05-22 18:04:30Z
 - Branch: `master`
-- HEAD: `94d65407`
-- Completed task: `func_80059208`
-- Summary: Rejected mid-axis-swap negated checkpoint-dot spelling; source restored after evidence capture.
+- HEAD: `12ade37b`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected uCoords[5] additive-double UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; probe failed with CRCs 0x4FA14EA0/0x0254255C and ./diff.sh func_80059208 => relinked CURRENT (4296).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[5] additive-double failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 
