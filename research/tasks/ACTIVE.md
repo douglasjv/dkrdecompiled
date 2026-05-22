@@ -2452,6 +2452,14 @@
   early position-array float-register/store schedule plus later UV/register
   drift. Source was restored and final full verify passed. Do not repeat this
   `uCoords[6]` grouped-negated-difference UV spelling.
+  Rewriting the final triangle population loop as a two-triangle unroll
+  (`for (i = 0; i < 8; i += 2)` with six `D_800DC92C` index reads per
+  iteration) also missed: full verify failed with calculated CRCs
+  `0x938938FF/0x32389065`, the relinked focused score worsened from baseline
+  `CURRENT (1808)` to `CURRENT (1873)`, and the diff still began in the same
+  early position-array register/order family before reaching the tail-loop
+  scheduling. Source was restored and final full verify passed. Do not repeat
+  this final triangle two-at-a-time unroll spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only

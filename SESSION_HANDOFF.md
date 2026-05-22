@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:32:00Z
+- Generated at: 2026-05-22 22:34:53Z
 - Branch: `master`
-- HEAD: `7827ab23`
+- HEAD: `9b8601fc`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[5] additive-double UV spelling; promoted full build stayed in known CRC family and relinked diff stayed CURRENT (1808), then source restored.
+- Summary: Rejected final triangle two-at-a-time unroll; promoted full build failed and relinked diff worsened to CURRENT (1873), then source restored.
 
 ## Validation
 
