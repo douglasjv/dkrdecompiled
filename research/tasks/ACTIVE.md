@@ -1805,6 +1805,12 @@
   `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and source
   was restored/final verify passed. Do not repeat this final vertical `angle`
   cast carrier.
+  Routing the final vertical cast through the existing dead `counter` local
+  (`counter = (s32) diffY; racer->unk1BC += counter`) also produced no relinked
+  focused movement: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and source was
+  restored/final verify passed. Do not repeat this final vertical `counter`
+  cast carrier.
   Replacing the negated checkpoint-dot expression with a post-axis-swap
   old-`diffX` positive carrier
   (`pad2 = (tempZ * diffY) - (diffX * tempX)`) also missed: full verify failed
