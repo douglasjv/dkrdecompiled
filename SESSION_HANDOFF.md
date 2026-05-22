@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:18:15Z
+- Generated at: 2026-05-22 17:21:28Z
 - Branch: `master`
-- HEAD: `678cf8ac`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected pad3-removed batchNum segment-index carrier; source restored after promotion mismatch.
+- HEAD: `ad8e0ff0`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected pad_sp100 doubled-cosine carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; promoted pad3-removal batchNum carrier failed with CRCs 0x7B040FE0/0x432A7562 and ./diff.sh func_8002B0F4 => relinked CURRENT (3399).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; promoted pad_sp100 doubled-cosine carrier failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 

@@ -2107,6 +2107,14 @@
   from target `$f18` to `$f16`, and reshuffled the first/outer position-array
   stores. Source was restored and final full verify passed. Do not remove this
   fake `var_a2` assignment.
+  Routing the doubled outer-ring cosine term through the existing unused
+  `pad_sp100` local (`pad_sp100 = scaledXCos + scaledXCos`, then using it for
+  `zPositions[5..8]`) also produced no useful movement: promoted full verify
+  failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, relinked
+  focused score stayed `CURRENT (1808)`, and the diff stayed in the same
+  early negative-cosine/doubled-cosine register family. Source was restored
+  and final full verify passed. Do not repeat this `pad_sp100` doubled-cosine
+  carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
