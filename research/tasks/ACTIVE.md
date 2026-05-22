@@ -896,8 +896,17 @@
   compiled, kept the target `0xf8` frame and `$f20/$f21` saves, and improved
   the focused score from `CURRENT (3620)` to `CURRENT (3560)`, but remained
   nonmatching with the same wave-register mismatch family and later scheduling
-  drift. If continuing this family, inspect this improved variant rather than
-  the weaker plain trailing-pad-removal shape. Combining that same steer-vel
+  drift. Combining that same both-trailing-pads-removed pre-`sqrtf`
+  accumulation and steer-vel no-op with the early grounded-wheel zero routed
+  through `spEC` also missed: it kept the target `0xf8` frame and `$f20/$f21`
+  saves, but failed full verify with calculated CRCs
+  `0x3256B05A/0x4244923C` and lowered the relinked focused diff to
+  `CURRENT (3480)`, but inserted the known unwanted `swc1 $f14,0xec(sp)`
+  before the early zero stores and still kept wave-scan register/order drift.
+  Do not repeat this weaker sibling of the later x/z/y `spEC` save-family
+  probe. If continuing this family, inspect the x/z/y split or a way to keep
+  the `$f14` zero without the `spEC` stack spill rather than the weaker plain
+  trailing-pad-removal shape. Combining that same steer-vel
   no-op store with an existing-`spCC` pre-`sqrtf` partial-sum carrier lowered
   the numeric focused score to `CURRENT (3451)`, but did so by shrinking the
   frame to `0xf0` and dropping target `$f20/$f21` saves, so do not treat it as
