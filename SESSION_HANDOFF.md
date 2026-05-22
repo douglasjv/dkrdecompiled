@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:30:13Z
+- Generated at: 2026-05-22 21:33:50Z
 - Branch: `master`
-- HEAD: `2dc32ddf`
-- Completed task: `func_80049794`
-- Summary: Recorded current-baseline drift-flag boolean assignment miss; promoted C failed full verify with CRCs 0xAD0C80F7/0xC3551BE0 and relinked focused regressed to CURRENT (5226), then source restored.
+- HEAD: `b701eba0`
+- Completed task: `func_80059208`
+- Summary: Recorded divisor-distance reuse miss; promoted C failed full verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused stayed CURRENT (870), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a new non-repeated source shape that improves beyond the current-baseline drift-flag and recorded save-family/wave-scan misses, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_80049794 only with a new non-repeated source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -252,6 +252,13 @@
   lateral tail still used the baseline object-dot/checkpoint-dot register
   schedule. Source was restored and final full verify passed; do not repeat
   this divisor register hint. The 2026-05-17 final-offset
+  no-movement family also includes reusing the already-loaded `distance` local
+  in the early checkpoint-scale divisor expression (`(scale - distance) *
+  splinePos + distance`): full verify failed with the same calculated CRCs
+  `0x53D141DF/0xB9D4B481`, relinked focused stayed `CURRENT (870)`, and the
+  final object-dot/checkpoint-dot drift was unchanged. Do not repeat this
+  divisor-distance reuse spelling.
+  The 2026-05-17 final-offset
   probes compiled, but checkpoint-dot-before-object-dot stayed `CURRENT (870)`,
   direct `pad2 + object-dot` fold regressed to `CURRENT (1445)`, and empty
   `if (pad2) {}` lifetime hint regressed to `CURRENT (2645)`. A later final
@@ -1517,6 +1524,14 @@
   near the final lateral/vertical offset math: target preserves the negated
   `pad2 = -((tempZ * diffZ) + (diffX * tempX))` temporary and adds it to `pad`,
   while current folds the equivalent math into a subtract. Rejected probes:
+  reusing the already-loaded `distance` local in the early checkpoint-scale
+  divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
+  produced no relinked object movement: object-only focused diff first showed
+  stale prior output, full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, and the relinked focused score stayed
+  `CURRENT (870)` with the same final object-dot plus negated-checkpoint-dot
+  drift. Source was restored and final full verify passed; do not repeat this
+  divisor-distance reuse spelling. Other rejected probes:
   reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
   signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
   `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
