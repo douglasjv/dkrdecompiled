@@ -1724,6 +1724,13 @@
   clamp instead of matching the target object-dot plus negated-checkpoint-dot
   schedule. Source was restored and final full verify passed; do not repeat
   this `diffX` final-sum carrier.
+  Directly commuting the negated checkpoint-dot sum inside the existing
+  `pad2` expression (`pad2 = -((diffX * tempX) + (tempZ * diffZ))`) also
+  missed: full verify failed with calculated CRCs `0x53ABC0DF/0xA18C1BA8`,
+  the relinked focused score worsened to `CURRENT (1450)`, and the final tail
+  shifted the checkpoint-dot multiply order while broadening the object-dot and
+  final vertical FPR drift. Source was restored and final full verify passed;
+  do not repeat this direct checkpoint-dot sum-order spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

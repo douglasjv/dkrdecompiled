@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:40:40Z
+- Generated at: 2026-05-22 15:44:06Z
 - Branch: `master`
-- HEAD: `30738646`
+- HEAD: `d19e9820`
 - Completed task: `func_80059208`
-- Summary: Rejected final object-dot term-order probe; source restored
+- Summary: Rejected direct checkpoint-dot sum-order probe; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80059208 final object-dot term-order probe with calculated CRCs 0x53A518DF/0x0DEFF06A; ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (940), object z loaded before x and final vertical FPR drift broadened; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80059208 checkpoint-dot sum-order probe with calculated CRCs 0x53ABC0DF/0xA18C1BA8; ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (1450), checkpoint-dot multiply order shifted and object-dot/final vertical FPR drift broadened; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80059208, do not repeat the final object-dot term-order probe; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80059208, do not repeat the direct checkpoint-dot sum-order probe; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
