@@ -1906,6 +1906,13 @@
   allocation plus later global offsets instead of improving the early
   position-array schedule. Source was restored and final full verify passed.
   Do not repeat this `vCoords[0]` operand-order UV spelling.
+  Rewriting only `uCoords[0]` from `(-var_f14 - xCos)` to
+  `(-xCos - var_f14)` also missed: full verify failed with calculated CRCs
+  `0x1FE45A27/0x304C5843`, the relinked focused score worsened to
+  `CURRENT (2901)`, and the diff shifted first-ring UV float-register
+  allocation plus later vertex/triangle scheduling instead of improving the
+  early position-array schedule. Source was restored and final full verify
+  passed. Do not repeat this `uCoords[0]` operand-order UV spelling.
   Rewriting only `vCoords[6]` from
   `((-(2.0f * var_f14)) - var_f16)` to
   `(-var_f16 - (2.0f * var_f14))` missed: full verify failed with calculated
