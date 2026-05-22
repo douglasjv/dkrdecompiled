@@ -3283,6 +3283,15 @@
   `gCurrentLevelModel` load/spill at `0x64(sp)` and rotated the outer
   segment/grid registers, so do not repeat this pad3-removal plus
   pointer-arithmetic segment-setup spelling.
+  Commuting only the collision-plane index multiplies in the promoted current
+  source (`collisionPlanes[temp * 4 + n]` to `collisionPlanes[4 * temp + n]`)
+  also missed: full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, and the relinked focused score was
+  `CURRENT (2860)`. The diff stayed in the known target `$f20`/`$f22`
+  prologue plus unwanted early `gCurrentLevelModel` spill at `0x60(sp)` family
+  with broad grid/tail register drift. Source was restored and final full
+  verify passed; do not repeat this collision-plane index multiply-order
+  spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
