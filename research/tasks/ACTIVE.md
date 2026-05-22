@@ -2673,6 +2673,13 @@
   `0x60(sp)` plus broad segment-loop register drift remained. Source was
   restored and final full verify passed; do not repeat this bottom sort
   explicit-`FALSE` condition spelling.
+  Rewriting only the bottom bubble-sort loop bound from
+  `var_v0 < yOutCount - 1` to `var_v0 + 1 < yOutCount` missed badly: full
+  verify failed with calculated CRCs `0xC13F1C24/0xADE0DFB1`, relinked focused
+  diff worsened to `CURRENT (17634)`, the frame shrank from target `0x128` to
+  `0x120`, and global offsets/tail labels shifted broadly. Source was restored
+  and final full verify passed; do not repeat this bottom sort
+  `var_v0 + 1` bound spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

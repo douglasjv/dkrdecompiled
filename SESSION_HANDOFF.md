@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:35:19Z
+- Generated at: 2026-05-22 19:36:48Z
 - Branch: `master`
-- HEAD: `a4100f92`
+- HEAD: `40d83dfb`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded bottom sort explicit-FALSE condition miss; source restored after relinked focused CURRENT (2860).
+- Summary: Recorded bottom sort var_v0+1 bound miss; source restored after relinked focused CURRENT (17634).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort explicit-FALSE condition): CURRENT (2860), failed full verify CRCs 0x7856718A/0x66208CAA
+- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort var_v0+1 bound): CURRENT (17634), failed full verify CRCs 0xC13F1C24/0xADE0DFB1
 
 ## Blockers Or Unknowns
 
