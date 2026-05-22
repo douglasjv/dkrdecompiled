@@ -379,7 +379,13 @@
   verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked focused
   score stayed `CURRENT (870)`, and the same final tail object-dot plus
   negated-checkpoint schedule drift remained. Source was restored and final
-  full verify passed. Do not repeat this `tempX` register-hint probe.
+  full verify passed. Do not repeat this `tempX` register-hint probe. Adding
+  `register` to the final vertical `tempY` spline result likewise produced no
+  object movement: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, relinked focused score stayed `CURRENT (870)`,
+  and the same final tail object-dot plus vertical FPR drift remained. Source
+  was restored and final full verify passed. Do not repeat this `tempY`
+  register-hint probe.
 - `func_8002B0F4` is also active, not parked. A 2026-05-17 declaration-only
   `register s32 XInInt` / `register s32 ZInInt` hint compiled, but missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the
