@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:00:41Z
+- Generated at: 2026-05-22 21:04:26Z
 - Branch: `master`
-- HEAD: `14e46cec`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded uCoords[2] subtract-negative UV miss; source restored.
+- HEAD: `c76c74c2`
+- Completed task: `func_80059208`
+- Summary: Recorded final vertical i-cast carrier miss; source restored.
 
 ## Validation
 
-- Promoted trackbg_render_flashy with uCoords[2] subtract-negative UV spelling failed full verify with CRCs 0x58EB09ED/0x9176C3B4 and relinked focused CURRENT (8613); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_80059208 with final vertical i-cast carrier failed full verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused CURRENT (870); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

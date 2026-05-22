@@ -1998,6 +1998,13 @@
   final object-dot/checkpoint-dot plus vertical FPR drift remained. Source was
   restored and final full verify passed; do not repeat this final vertical
   `temp_v0` cast carrier.
+  Routing the final vertical cast through the existing loop local `i`
+  (`i = (s32) diffY; racer->unk1BC += i`) also produced no relinked focused
+  movement: object-only focused diff printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked focused score
+  stayed `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus
+  vertical FPR drift remained. Source was restored and final full verify
+  passed; do not repeat this final vertical `i` cast carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
