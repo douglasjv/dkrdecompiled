@@ -2595,7 +2595,13 @@
   the relinked focused diff worsened to `CURRENT (3535)`, and the early return
   branch changed to a `bnez`/inserted return branch where target uses `beqz`
   then `slti`. Source was restored and final full verify passed; do not repeat
-  this early `sp108` return-split spelling. Rewriting only the outer
+  this early `sp108` return-split spelling. Rewriting only the early guard from
+  `sp108 == 0` to `sp108 <= 0` also missed: full verify failed with calculated
+  CRCs `0xB856718A/0x8DC42D5F`, the relinked focused score worsened to
+  `CURRENT (3060)`, and the guard changed the target `beqz` into `blez` while
+  preserving the unwanted early `gCurrentLevelModel` spill family. Source was
+  restored and final full verify passed. Do not repeat this early
+  `sp108 <= 0` guard spelling. Rewriting only the outer
   segment-loop bound from
   `var_fp < sp108` to `var_fp != sp108` also missed: full verify failed with
   calculated CRCs `0x68167010/0x71B268DB`, the relinked focused score worsened

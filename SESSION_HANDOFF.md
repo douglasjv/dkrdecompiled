@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:14:26Z
+- Generated at: 2026-05-22 19:16:32Z
 - Branch: `master`
-- HEAD: `49e3b1a6`
-- Completed task: `func_80059208`
-- Summary: Rejected combined checkpoint-dot multiply-order spelling; source restored after evidence capture.
+- HEAD: `5dc6fb50`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected early sp108 <= 0 guard spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; combined checkpoint-dot multiply-order failed with CRCs 0x53D15EDF/0xD6D4ED5A and ./diff.sh func_80059208 => relinked CURRENT (990).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; sp108 <= 0 guard failed with CRCs 0xB856718A/0x8DC42D5F and ./diff.sh func_8002B0F4 => relinked CURRENT (3060).
 
 ## Blockers Or Unknowns
 
