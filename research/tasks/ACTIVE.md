@@ -2791,7 +2791,15 @@
   focused score worsened to `CURRENT (13821)`, the frame shrank to `0x150`,
   and the first/outer position-array stack schedule shifted broadly. Source
   was restored and final full verify passed. Do not repeat this unused
-  `pad_sp100` x1/z2 carrier.
+  `pad_sp100` x1/z2 carrier. Routing the paired first-ring
+  `-scaledXCos + (xSin * 1280.0f)` value through the unused existing
+  `pad_sp100` local for `zPositions[0]` and `xPositions[3]` missed in the
+  same frame-shrink family: object-only `./diff.sh trackbg_render_flashy`
+  initially printed stale `CURRENT (0)`, promoted full verify failed with
+  calculated CRCs `0x218F9FFA/0x18F4A6D6`, and relinked focused diff reported
+  `CURRENT (13821)` with the frame shrunk to `0x150`. Source was restored and
+  final full verify passed. Do not repeat this unused `pad_sp100` z0/x3
+  carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
