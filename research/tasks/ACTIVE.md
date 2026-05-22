@@ -1054,8 +1054,16 @@
   target `$f14` save/reload at `0xdc(sp)`, while the wave `a0`/`v1` drift
   remained. Do not repeat this exact `segmentXVelocity` preserve spelling;
   if continuing this preserve family, solve the stack-slot/register placement
-  rather than adding another preserve carrier. Do not repeat register-`var_f14`
-  / `spCC` preserve combinations. A narrow `segmentZVelocity` carrier
+  rather than adding another preserve carrier. Reusing existing `var_f6` as
+  the same preserve carrier on the x/z/y save-family plus chained-zero/
+  steer-noop branch (`var_f6 = var_f14` before
+  `apply_vehicle_rotation_offset`; `var_f14 = var_f6` after) was a near sibling
+  miss: full verify failed with calculated CRCs `0xF40EF8A9/0xF04AE6F7`,
+  relinked focused diff lowered to `CURRENT (3310)`, but it loaded from
+  `0x9c(sp)` and spilled through `0x78(sp)` instead of target `$f14` at
+  `0xdc(sp)`, with the wave `a0`/`v1` drift still present. Do not repeat this
+  exact `var_f6` preserve carrier. Do not repeat register-`var_f14` / `spCC`
+  preserve combinations. A narrow `segmentZVelocity` carrier
   spelling on the x/z/y save-family branch also missed: assigning
   `var_f14 = segmentZVelocity` immediately after
   `apply_vehicle_rotation_offset` compiled but produced no focused
