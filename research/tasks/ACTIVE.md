@@ -2207,6 +2207,13 @@
   `sltu at,v1,t8`/`bnez at`), while later tail labels shifted by four bytes.
   Source was restored and final full verify passed; do not repeat this loop
   condition cleanup.
+  Spelling only the cubic-spline boolean carrier literals as
+  `splineIndex = 0` and `splineIndex = 1` instead of `FALSE`/`TRUE` also
+  missed: full verify failed with the baseline calculated CRCs
+  `0x53D141DF/0xB9D4B481`, the relinked focused score stayed
+  `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus vertical
+  FPR drift remained. Source was restored and final full verify passed; do not
+  repeat this `splineIndex` literal boolean spelling.
   Spelling the final lateral numerator as negated object-dot minus the existing
   negated checkpoint dot (`diffX = ((-pad) - pad2) / divisor`) also missed:
   full verify failed with calculated CRCs `0x53A8D1B5/0x58F0CEC9`, and the
