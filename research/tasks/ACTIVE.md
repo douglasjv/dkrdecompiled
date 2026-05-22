@@ -2177,7 +2177,14 @@
   verify with calculated CRCs
   `0x780AE18A/0xED80C398`, and still inserted an early `gCurrentLevelModel`
   spill before the outer segment loop. Do not repeat this texture-pointer
-  replacement shape; if continuing this function, prefer the simpler
+  replacement shape; nesting the batch surface skip condition as
+  `if (surface != SURFACE_WATER_CALM) { if (surface != SURFACE_WATER_UNK_F &&
+  flags) ... }` also missed: full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, relinked focused score worsened to
+  `CURRENT (2860)`, and the same early `gCurrentLevelModel` spill/register
+  drift appeared before the segment loop. Source was restored and final full
+  verify passed; do not repeat this nested surface-condition spelling. If
+  continuing this function, prefer the simpler
   `pad3`-removed evidence path. Combining the `pad3`-removed branch with a
   pointer-increment `gTrackWaves` population loop (`for (var_v0 = 0, wave =
   D_8011D128; var_v0 < yOutCount; var_v0++, wave++)`) compiled but worsened

@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:58:40Z
+- Generated at: 2026-05-22 17:01:28Z
 - Branch: `master`
-- HEAD: `896802cf`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site x0 scaled-sine spelling; source restored after evidence capture.
+- HEAD: `c67768a5`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected nested batch surface-condition spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; xPositions[0] = -scaledXCos - scaledXSin probe failed with CRCs 0x218F9FFA/0x18F4A6D6 and ./diff.sh trackbg_render_flashy => relinked CURRENT (13471).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; nested surface condition probe failed with CRCs 0x7856718A/0x66208CAA and ./diff.sh func_8002B0F4 => relinked CURRENT (2860).
 
 ## Blockers Or Unknowns
 
