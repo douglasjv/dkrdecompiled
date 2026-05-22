@@ -2359,7 +2359,15 @@
   relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
   same early position-array register/order family. Source was restored and
   final full verify passed. Do not repeat this single-site z8 operand-order
-  spelling. Rewriting only `zPositions[7]` from
+  spelling. Rewriting only `zPositions[8]` from
+  `(2.0f * scaledXCos) + scaledXSin` to
+  `(2.0f * scaledXCos) - -scaledXSin` also missed: full verify failed with
+  calculated CRCs `0x1FCC9227/0x382130AA`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (2651)`, and the diff inserted a
+  negated-sine subtraction into the outer-ring schedule while preserving the
+  target-sized `0x158` frame. Source was restored and final full verify passed.
+  Do not repeat this single-site z8 minus-negative spelling. Rewriting only
+  `zPositions[7]` from
   `(2.0f * scaledXCos) - scaledXSin` to
   `(2.0f * scaledXCos) + -scaledXSin` also produced no movement: full verify
   failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, the
