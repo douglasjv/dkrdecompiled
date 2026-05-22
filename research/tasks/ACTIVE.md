@@ -2016,7 +2016,13 @@
   `CURRENT (8605)`, and the diff shifted first-ring UV float-register
   allocation plus later global offsets instead of improving the early
   position-array schedule. Source was restored and final full verify passed.
-  Do not repeat this `vCoords[0]` operand-order UV spelling.
+  Do not repeat this `vCoords[0]` operand-order UV spelling. Rewriting only
+  `vCoords[0]` from `(var_f16 - var_f14)` to `(var_f16 + -var_f14)` collapsed
+  into the same bad family: full verify failed with calculated CRCs
+  `0x511B5709/0x02A6A46F`, the relinked focused score worsened to
+  `CURRENT (8605)`, and the diff shifted first-ring UV float-register
+  allocation plus later global offsets. Source was restored and final full
+  verify passed. Do not repeat this `vCoords[0]` plus-negative UV spelling.
   Rewriting only `uCoords[0]` from `(-var_f14 - xCos)` to
   `(-xCos - var_f14)` also missed: full verify failed with calculated CRCs
   `0x1FE45A27/0x304C5843`, the relinked focused score worsened to

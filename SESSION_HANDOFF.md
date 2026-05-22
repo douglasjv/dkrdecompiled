@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:02:29Z
+- Generated at: 2026-05-22 20:04:34Z
 - Branch: `master`
-- HEAD: `1430970b`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded bottom sort unroll miss; source restored after relinked focused CURRENT (5326).
+- HEAD: `abad3af1`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded vCoords[0] plus-negative UV miss; source restored after relinked focused CURRENT (8605).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort unroll): CURRENT (5326), failed full verify CRCs 0xA6D17436/0x0A68B3A1
+- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted v0 plus-negative UV): CURRENT (8605), failed full verify CRCs 0x511B5709/0x02A6A46F
 
 ## Blockers Or Unknowns
 
