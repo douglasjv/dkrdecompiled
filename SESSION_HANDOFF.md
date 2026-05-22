@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:55:12Z
+- Generated at: 2026-05-22 22:59:55Z
 - Branch: `master`
-- HEAD: `356ca66d`
-- Completed task: `func_80049794`
-- Summary: Rejected current-baseline func_80049794 local WaterProperties wave element-carrier scan; promoted full build missed, widened the frame to 0x100, and relinked focused diff worsened to CURRENT (9650), then source was restored.
+- HEAD: `4e02afa2`
+- Completed task: `func_80059208`
+- Summary: Rejected func_80059208 final negated-object numerator spelling; promoted full build missed and relinked focused diff worsened to CURRENT (2035), then source was restored.
 
 ## Validation
 

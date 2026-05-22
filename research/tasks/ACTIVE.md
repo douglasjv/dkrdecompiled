@@ -2207,6 +2207,16 @@
   `sltu at,v1,t8`/`bnez at`), while later tail labels shifted by four bytes.
   Source was restored and final full verify passed; do not repeat this loop
   condition cleanup.
+  Spelling the final lateral numerator as negated object-dot minus the existing
+  negated checkpoint dot (`diffX = ((-pad) - pad2) / divisor`) also missed:
+  full verify failed with calculated CRCs `0x53A8D1B5/0x58F0CEC9`, and the
+  relinked focused score worsened from promoted-baseline `CURRENT (870)` to
+  `CURRENT (2035)`. The tail pulled both object-position loads before the
+  target `0x40a0` clamp constant, materialized a negative-object numerator
+  family, shifted later labels by four bytes, and kept the final
+  object-dot/checkpoint-dot plus vertical FPR drift. Source was restored and
+  final full verify passed; do not repeat this negated-object numerator
+  spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
