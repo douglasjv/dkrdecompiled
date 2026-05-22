@@ -1869,7 +1869,13 @@
   `0x168`, relinked focused score worsened to `CURRENT (13466)`, and full
   verify failed with calculated CRCs `0x8310DF9D/0x3EA48C03`. Source was
   restored and final full verify passed. Do not repeat this all-first-ring
-  `scaledXSin` rewrite.
+  `scaledXSin` rewrite. Routing the paired first-ring
+  `-scaledXCos + (xSin * 1280.0f)` value through the existing `var_f16` local
+  for `zPositions[0]` and `xPositions[3]` likewise missed: it shrank the frame
+  to `0x150`, relinked focused score worsened to `CURRENT (13471)`, and full
+  verify failed with calculated CRCs `0x218F9FFA/0x18F4A6D6`. Source was
+  restored and final full verify passed. Do not repeat this existing-`var_f16`
+  z0/x3 carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
