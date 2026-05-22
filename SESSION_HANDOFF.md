@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:54:07Z
+- Generated at: 2026-05-22 17:56:28Z
 - Branch: `master`
-- HEAD: `6dc1b6d2`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected bottom sort existing-wave next-pointer compare carrier; source restored after evidence capture.
+- HEAD: `4a646b5e`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected vCoords[5] operand-order UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; existing-wave compare carrier failed with CRCs 0x784DF080/0xEF59EED4 and ./diff.sh func_8002B0F4 => relinked CURRENT (4535).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[5] operand-order failed with CRCs 0x93BFBAFF/0xBB8CD176 and ./diff.sh trackbg_render_flashy => relinked CURRENT (2433).
 
 ## Blockers Or Unknowns
 

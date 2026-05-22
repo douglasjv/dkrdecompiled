@@ -1899,6 +1899,13 @@
   and the diff broadened the early position-array float-register/store
   schedule plus later vertex/triangle tail. Source was restored and final full
   verify passed. Do not repeat this `uCoords[5]` operand-order UV spelling.
+  Rewriting only `vCoords[5]` from `(var_f16 - (2.0f * var_f14))` to
+  `(-(2.0f * var_f14) + var_f16)` also missed: full verify failed with
+  calculated CRCs `0x93BFBAFF/0xBB8CD176`, the relinked focused score worsened
+  to `CURRENT (2433)`, and the diff stayed in the early position-array
+  register/order family with broader UV/register drift. Source was restored
+  and final full verify passed. Do not repeat this `vCoords[5]` operand-order
+  UV spelling.
   Rewriting only `uCoords[6]` from `(var_f14 - (2.0f * xCos))` to
   `(-(2.0f * xCos) + var_f14)` also produced no useful movement: full verify
   failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the relinked
