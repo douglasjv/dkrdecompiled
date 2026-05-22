@@ -1880,6 +1880,12 @@
   relinked focused score `CURRENT (13471)`, and full verify failed with
   calculated CRCs `0x218F9FFA/0x18F4A6D6`; source was restored and final full
   verify passed. Do not repeat this single-site x0 scaled-sine rewrite.
+  Rewriting only `xPositions[1]` from
+  `scaledXCos - (xSin * 1280.0f)` to `scaledXCos - scaledXSin` also collapsed
+  into the same bad first-ring scaled-sine family: frame `0x150`, relinked
+  focused score `CURRENT (13471)`, and full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; source was restored and final full verify passed.
+  Do not repeat this single-site x1 scaled-sine rewrite.
   Routing the paired `scaledXCos - (xSin * 1280.0f)` value through existing
   `pad_sp108` for `xPositions[1]` and `zPositions[2]` likewise compiled but
   collapsed into the same bad first-ring frame-shrink family: frame `0x150`,
