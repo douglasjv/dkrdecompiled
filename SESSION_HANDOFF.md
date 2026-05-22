@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:37:19Z
+- Generated at: 2026-05-22 23:43:09Z
 - Branch: `master`
-- HEAD: `654cac4a`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected initial scaled sine/cosine multiply operand-order commute; promoted full build missed and relinked focused diff worsened to CURRENT (2138), then source was restored.
+- HEAD: `3844a25d`
+- Completed task: `func_80059208`
+- Summary: Rejected current-order in-place pad object-dot spelling; promoted full build missed with the known CRC family and relinked focused score stayed CURRENT (870), then source was restored.
 
 ## Validation
 
