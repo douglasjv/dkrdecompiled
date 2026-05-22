@@ -3272,6 +3272,13 @@
   `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
   final full verify passed; do not repeat this texture-index `temp` carrier
   without a separate model-spill fix.
+  Routing the same `currentBatch->textureIndex` through the existing `i` local
+  on the pad3-removed three-level guard branch also missed: full verify failed
+  with calculated CRCs `0x75D0E1AA/0xB8D0E2B5`, relinked focused diff scored
+  `CURRENT (2393)`, and the unwanted early `gCurrentLevelModel` spill remained
+  at `0x64(sp)` with broader segment/grid scheduling drift. Source was
+  restored and final full verify passed; do not repeat this texture-index `i`
+  carrier.
   Moving the batch offset loads (`facesOffset`, `verticesOffset`, and next
   `facesOffset`) before the texture-index `temp` surface read on that same
   pad3-removed three-level guard branch produced no object movement from the

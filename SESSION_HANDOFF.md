@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:22:33Z
+- Generated at: 2026-05-22 23:25:25Z
 - Branch: `master`
-- HEAD: `7dea78cb`
-- Completed task: `func_80049794`
-- Summary: Rejected close save-family fresh-var_t1 wave-bound carrier; promoted full build missed, widened the frame to 0x100, and relinked focused diff regressed to CURRENT (7242), then source was restored.
+- HEAD: `86472d58`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected pad3-removed three-level guard texture-index i carrier; promoted full build missed and relinked focused diff scored CURRENT (2393), then source was restored.
 
 ## Validation
 
