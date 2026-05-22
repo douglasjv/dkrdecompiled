@@ -2019,7 +2019,13 @@
   `CURRENT (8410)`, and the diff shifted first-ring UV float-register
   allocation plus later global offsets instead of improving the early
   position-array schedule. Source was restored and final full verify passed.
-  Do not repeat this `uCoords[3]` operand-order UV spelling.
+  Do not repeat this `uCoords[3]` operand-order UV spelling. Making the center
+  UV assignments explicit casts (`uCoords[4] = (s16) var_v0; vCoords[4] =
+  (s16) var_v1`) produced no relinked movement: full verify failed with the
+  known calculated CRCs `0x93D338FF/0x03D9C8FE`, focused score stayed
+  `CURRENT (1808)`, and the diff remained in the same early negative-cosine
+  plus position-array register-order family. Source was restored and final
+  full verify passed. Do not repeat this center UV cast spelling.
   Rewriting only `vCoords[6]` from
   `((-(2.0f * var_f14)) - var_f16)` to
   `(-var_f16 - (2.0f * var_f14))` missed: full verify failed with calculated

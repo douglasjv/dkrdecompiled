@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:00:24Z
+- Generated at: 2026-05-22 19:02:50Z
 - Branch: `master`
-- HEAD: `85444406`
+- HEAD: `5fe7018c`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[0] negated-sum UV spelling; source restored after evidence capture.
+- Summary: Rejected center UV cast spelling; source restored after no-movement evidence.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[0] negated-sum failed with CRCs 0x1FD43A21/0x8649CFBF and ./diff.sh trackbg_render_flashy => relinked CURRENT (3086).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; center UV casts failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 
