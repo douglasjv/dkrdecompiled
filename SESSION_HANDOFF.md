@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:30:00Z
+- Generated at: 2026-05-22 22:32:00Z
 - Branch: `master`
-- HEAD: `c554bc91`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected Z-grid i != 8 loop-condition spelling; promoted full build failed and relinked diff worsened to CURRENT (3320), then source restored.
+- HEAD: `7827ab23`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected uCoords[5] additive-double UV spelling; promoted full build stayed in known CRC family and relinked diff stayed CURRENT (1808), then source restored.
 
 ## Validation
 
