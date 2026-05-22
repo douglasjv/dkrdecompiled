@@ -2152,6 +2152,12 @@
   position-array register/order family. Source was restored and final full
   verify passed. Do not repeat this `uCoords[5]` additive-double UV spelling.
   Rewriting only `uCoords[5]` from `(-var_f14 - (2.0f * xCos))` to
+  `(-var_f14 + -(2.0f * xCos))` also produced no relinked focused movement:
+  full verify failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`,
+  focused score stayed `CURRENT (1808)`, and the diff stayed in the same early
+  position-array register/order family. Source was restored and final full
+  verify passed. Do not repeat this `uCoords[5]` plus-negative UV spelling.
+  Rewriting only `uCoords[5]` from `(-var_f14 - (2.0f * xCos))` to
   `-(var_f14 + (2.0f * xCos))` also missed: full verify failed with
   calculated CRCs `0x1FD484FF/0x9EF16F5D`, the relinked focused score worsened
   to `CURRENT (4588)`, and the diff kept the early negative-cosine register
