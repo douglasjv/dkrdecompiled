@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:13:01Z
+- Generated at: 2026-05-22 16:15:44Z
 - Branch: `master`
-- HEAD: `8ae54f6c`
-- Completed task: `func_80049794`
-- Summary: Rejected close save-family compare-only wave-bound cache; source restored.
+- HEAD: `8b2546aa`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected single-site zPositions[2] scaledXSin rewrite; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x52412037/0x63D27627 and ./diff.sh func_80049794 => relinked CURRENT (5795).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x218F9FFA/0x18F4A6D6 and ./diff.sh trackbg_render_flashy => relinked CURRENT (13471).
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; for func_80049794 do not repeat the close save-family compare-only wave-bound cache.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate; func_80049794 remains selector-recommended but saturated, so inspect ACTIVE.md before choosing whether to continue it or a narrower active target.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
