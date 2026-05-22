@@ -1101,7 +1101,15 @@
   retained-pad `var_f2` component-staging branch compiled but produced the same
   focused score, `CURRENT (3250)`: the target `0xf8` frame and `$f14`
   call-adjacent shape stayed, but the target `$f20/$f21` prologue saves were
-  still absent, so do not repeat this register hint on that branch. Removing
+  still absent, so do not repeat this register hint on that branch. Adding
+  `register f32 var_f14` to the same retained-pad `var_f2` z/y
+  component-staging branch also missed: full verify failed with calculated CRCs
+  `0x5FEF1D9D/0x4258C5C1`, and the relinked focused diff reported
+  `CURRENT (3280)`. It preserved the target-like `$f14` save/reload at
+  `0xdc(sp)`, but still dropped the target `$f20/$f21` prologue saves, shifted
+  saved `ra`/`s1`/`s0` stack slots, kept early zero in `$f16`, and left the wave
+  `a0`/`v1` drift. Do not repeat this `register var_f14` allocation hint on the
+  retained-pad `var_f2` branch. Removing
   the two leading unused pads (`pad5`/`pad7`) while retaining trailing
   `pad3`/`pad4` on that same `var_f2` component-staging branch compiled but
   shrank the frame to `0xf0`, worsened the focused score to `CURRENT (3367)`,
