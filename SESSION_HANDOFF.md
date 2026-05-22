@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:12:13Z
+- Generated at: 2026-05-22 21:16:08Z
 - Branch: `master`
-- HEAD: `6b34db85`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded z5 plus-negative equivalence miss; source restored.
+- HEAD: `9c34603c`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded pad3-removed three-level water-surface guard split miss; relinked focused score improved to CURRENT (1720) but full verify failed with CRCs 0x785671AA/0x0D6F6A4A, then source restored.
 
 ## Validation
 
-- Promoted trackbg_render_flashy with zPositions[5] plus-negative spelling failed full verify with CRCs 0x53DC5E0F/0x8B102C25 and relinked focused CURRENT (2831), matching the recorded z5 plus-negated-double miss family; restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after source restore
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a new non-repeated close save-family or wave-register source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_8002B0F4 only with a new non-repeated fix for the early gCurrentLevelModel spill around the pad3-removed surface-guard branch, otherwise pivot among active func_80049794, func_80059208, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

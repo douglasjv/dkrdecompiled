@@ -429,7 +429,12 @@
   C; it compiled but collapsed into the same failed CRC family as plain
   `pad3` removal (`0x785671AA/0x0D6F6A4A`), regressed the relinked focused
   score to `CURRENT (2868)`, and still showed the early `gCurrentLevelModel`
-  spill. Keeping `pad3` intact but
+  spill. A later pad3-removed three-level water-surface guard split
+  (`surface != SURFACE_WATER_CALM`, then `surface != SURFACE_WATER_UNK_F`,
+  then flags) improved the relinked focused score to `CURRENT (1720)`, but it
+  still failed full verify with the plain pad3-removal CRC family
+  `0x785671AA/0x0D6F6A4A` and preserved the unwanted early
+  `gCurrentLevelModel` spill at `0x64(sp)`. Keeping `pad3` intact but
   moving `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz` and
   passing those integer locals matched the target prologue conversion/call
   shape, but still inserted the unwanted pre-loop `gCurrentLevelModel` spill,
@@ -2908,6 +2913,15 @@
   `gCurrentLevelModel` spill at `0x64(sp)` and broadened the outer
   segment-loop register drift. Source was restored and final full verify
   passed; do not repeat this pad3-removal plus setup-order swap.
+  Combining the plain `pad3`-removed branch with a three-level
+  water-surface skip guard (`surface != SURFACE_WATER_CALM`, then
+  `surface != SURFACE_WATER_UNK_F`, then flags) improved the relinked focused
+  score to `CURRENT (1720)`, but still missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with the plain pad3-removal
+  CRC family `0x785671AA/0x0D6F6A4A`, and the unwanted early
+  `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
+  final full verify passed; do not repeat this pad3-removal plus three-level
+  surface-guard split without a separate fix for the model-spill family.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
