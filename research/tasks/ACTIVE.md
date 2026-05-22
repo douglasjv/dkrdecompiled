@@ -1943,6 +1943,13 @@
   early position-array/UV register-order family. Source was restored and
   final full verify passed. Do not repeat this `uCoords[1]` operand-order UV
   spelling.
+  Rewriting only `vCoords[2]` from `(var_f14 - var_f16)` to
+  `(-var_f16 + var_f14)` also produced no useful movement: full verify failed
+  with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the relinked
+  focused score stayed `CURRENT (1808)`, and the diff remained in the same
+  early position-array/UV register-order family. Source was restored and
+  final full verify passed. Do not repeat this `vCoords[2]` operand-order UV
+  spelling.
   Rewriting only `vCoords[6]` from
   `((-(2.0f * var_f14)) - var_f16)` to
   `(-var_f16 - (2.0f * var_f14))` missed: full verify failed with calculated

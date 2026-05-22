@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 18:31:13Z
+- Generated at: 2026-05-22 18:34:36Z
 - Branch: `master`
-- HEAD: `de0ece41`
+- HEAD: `643cc0db`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected uCoords[1] operand-order UV spelling; source restored after evidence capture.
+- Summary: Rejected vCoords[2] operand-order UV spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; uCoords[1] operand-order failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; vCoords[2] operand-order failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
 
 ## Blockers Or Unknowns
 
