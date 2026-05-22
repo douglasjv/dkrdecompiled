@@ -1390,7 +1390,16 @@
   wave scan moving into a broader `v1/a0/v0` drift family instead of fixing
   target `v1` bound plus `a0` loop-index allocation. Source was restored and
   final full verify passed; do not repeat this close-branch explicit
-  `for`/`break` wave-scan spelling. A baseline
+  `for`/`break` wave-scan spelling. A close save-family compare-only
+  bound-cache variant (`var_v1 = gRacerWaveCount - 1; for (var_a0 =
+  gRacerWaveCount - 1; ...); if (var_a0 == var_v1)`) also missed: it kept the
+  target `0xf8` frame and `$f20/$f21` prologue saves, but full verify failed
+  with calculated CRCs `0x52412037/0x63D27627` and the relinked focused score
+  worsened to `CURRENT (5795)`. The diff moved the loop-index family from
+  target `a0` toward `v1/a3` and inserted stack-byte drift for the drift flag,
+  so it did not fix the target bound/index allocation. Source was restored and
+  final full verify passed; do not repeat this close-branch compare-only
+  wave-bound cache. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
