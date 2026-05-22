@@ -2165,7 +2165,16 @@
   `CURRENT (1951)`. The diff pulled the object pointer load earlier, broadened
   final-tail FPR allocation, and shifted tail labels. Source was restored and
   final full verify passed; do not repeat this in-place `pad` object-dot
-  spelling.
+  spelling. A node-sampling loop condition cleanup probe also missed:
+  promoting `func_80059208` and changing the five-node fill loop from
+  `(i < 5) ^ 0` to `i < 5` failed full verify with calculated CRCs
+  `0x53905373/0x65198BEE`; the relinked focused diff worsened from the
+  promoted baseline `CURRENT (870)` to `CURRENT (1515)`. The diff moved the
+  sampling-loop pointer increments/limit test away from the target
+  pointer-limit family (`a2`/`v1` updates and `bne v1,t8` vs target
+  `sltu at,v1,t8`/`bnez at`), while later tail labels shifted by four bytes.
+  Source was restored and final full verify passed; do not repeat this loop
+  condition cleanup.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
