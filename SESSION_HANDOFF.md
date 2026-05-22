@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:36:48Z
+- Generated at: 2026-05-22 19:39:55Z
 - Branch: `master`
-- HEAD: `40d83dfb`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded bottom sort var_v0+1 bound miss; source restored after relinked focused CURRENT (17634).
+- HEAD: `dc2e605b`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded xPositions[5] grouped-negated-sum miss; source restored after relinked focused CURRENT (3503).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort var_v0+1 bound): CURRENT (17634), failed full verify CRCs 0xC13F1C24/0xADE0DFB1
+- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted x5 grouped negated sum): CURRENT (3503), failed full verify CRCs 0x9C863875/0xD9AD96ED
 
 ## Blockers Or Unknowns
 

@@ -2379,7 +2379,16 @@
   `0x499D7E20/0x23306384`, and the relinked focused score worsened to
   `CURRENT (8018)` with broad first/outer position-array stack-slot/register
   churn. Source was restored and final full verify passed. Do not repeat this
-  single-site x5 operand-order spelling. Rewriting only `xPositions[6]` from
+  single-site x5 operand-order spelling.
+  Rewriting only `xPositions[5]` from
+  `-scaledXCos - (2.0f * scaledXSin)` to
+  `-(scaledXCos + (2.0f * scaledXSin))` also missed: full verify failed with
+  calculated CRCs `0x9C863875/0xD9AD96ED`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (3503)`, and the grouped negated
+  sum shifted the early first/outer position-array schedule while preserving
+  the target-sized `0x158` frame. Source was restored and final full verify
+  passed. Do not repeat this single-site x5 grouped-negated-sum spelling.
+  Rewriting only `xPositions[6]` from
   `scaledXCos - (2.0f * scaledXSin)` to
   `-(2.0f * scaledXSin) + scaledXCos` also produced no useful movement: full
   verify failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`,
