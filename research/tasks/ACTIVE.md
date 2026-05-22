@@ -1843,7 +1843,12 @@
   relinked focused score worsened to `CURRENT (13471)`, and the frame shrank
   to `0x150` with broad early position-array schedule drift. Source was
   restored and final full verify passed; do not repeat this single-site z0
-  scaled-sine spelling.
+  scaled-sine spelling. Replacing only `xPositions[0]` with
+  `-scaledXCos - scaledXSin` reproduced the same miss: full verify failed with
+  calculated CRCs `0x218F9FFA/0x18F4A6D6`, relinked focused score
+  `CURRENT (13471)`, and the same `0x150` frame plus early position-array
+  reshuffle. Source was restored and final full verify passed; do not repeat
+  this single-site x0 scaled-sine spelling.
   Replacing the outer-ring `2.0f * scaledXCos/scaledXSin` terms with additive
   doubles (`scaledXCos + scaledXCos`, `scaledXSin + scaledXSin`) compiled but
   left the uncompressed linked diff at `CURRENT (1808)` and a promoted full
