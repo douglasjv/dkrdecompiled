@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:26:33Z
+- Generated at: 2026-05-22 16:28:57Z
 - Branch: `master`
-- HEAD: `842852d3`
+- HEAD: `8c564892`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site zPositions[8] operand-order rewrite; source restored.
+- Summary: Rejected single-site zPositions[7] plus-negative rewrite; source restored.
 
 ## Validation
 

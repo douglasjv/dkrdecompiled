@@ -1999,6 +1999,13 @@
   relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
   same early position-array register/order family. Source was restored and
   final full verify passed. Do not repeat this single-site z8 operand-order
+  spelling. Rewriting only `zPositions[7]` from
+  `(2.0f * scaledXCos) - scaledXSin` to
+  `(2.0f * scaledXCos) + -scaledXSin` also produced no movement: full verify
+  failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, the
+  relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
+  same early position-array register/order family. Source was restored and
+  final full verify passed. Do not repeat this single-site z7 plus-negative
   spelling.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
