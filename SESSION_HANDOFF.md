@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:43:09Z
+- Generated at: 2026-05-22 23:46:44Z
 - Branch: `master`
-- HEAD: `3844a25d`
-- Completed task: `func_80059208`
-- Summary: Rejected current-order in-place pad object-dot spelling; promoted full build missed with the known CRC family and relinked focused score stayed CURRENT (870), then source was restored.
+- HEAD: `fcfb2e06`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected standalone texture-index temp carrier; promoted full build missed and relinked focused score improved to CURRENT (2435) but kept the early gCurrentLevelModel spill, then source was restored.
 
 ## Validation
 

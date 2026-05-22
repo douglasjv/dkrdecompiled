@@ -552,6 +552,15 @@
   `CURRENT (3320)`, and the diff inserted the known early
   `gCurrentLevelModel` spill at `0x60(sp)` while broadly rotating the grid
   register family. Source was restored and final full verify passed.
+  A standalone current-source texture-index carrier
+  (`temp = currentBatch->textureIndex; surface =
+  gCurrentLevelModel->textures[temp].surfaceType`) also missed: full verify
+  failed with calculated CRCs `0x7C4CE18A/0x3A298210`, and the relinked focused
+  score improved from promoted-baseline `CURRENT (2780)` to `CURRENT (2435)`
+  but still inserted the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` with broad segment/grid/tail register drift. Source was restored
+  and final full verify passed; do not repeat this standalone texture-index
+  `temp` carrier without a separate model-spill fix.
   Keep active; do not repeat the simple moved `pad3` variant,
   the pointer-increment population spelling, either early-conversion call
   shape, the direct-cast `get_inside_segment_count_xz` call shape, this
@@ -3313,6 +3322,15 @@
   `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
   final full verify passed; do not repeat this texture-index `temp` carrier
   without a separate model-spill fix.
+  A standalone current-source texture-index carrier
+  (`temp = currentBatch->textureIndex; surface =
+  gCurrentLevelModel->textures[temp].surfaceType`) also missed: full verify
+  failed with calculated CRCs `0x7C4CE18A/0x3A298210`, and the relinked focused
+  score improved from promoted-baseline `CURRENT (2780)` to `CURRENT (2435)`
+  but still inserted the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` with broad segment/grid/tail register drift. Source was restored
+  and final full verify passed; do not repeat this standalone texture-index
+  `temp` carrier without a separate model-spill fix.
   Routing the same `currentBatch->textureIndex` through the existing `i` local
   on the pad3-removed three-level guard branch also missed: full verify failed
   with calculated CRCs `0x75D0E1AA/0xB8D0E2B5`, relinked focused diff scored
