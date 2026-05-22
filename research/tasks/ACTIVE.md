@@ -1597,7 +1597,14 @@
   transient boolean through `0xaa(sp)`, still lacked target `$f20/$f21`
   prologue saves, and kept the early zero in `$f16` instead of target `$f14`.
   Source was restored and final full verify passed; do not repeat this
-  drift-flag boolean assignment spelling. A close save-family continuation
+  drift-flag boolean assignment spelling. A baseline current-checkout nested
+  wave drift-start branch (`if (racer->drift_direction == 0) { if (var_f2 <
+  38 && racerVelocity >= 8.0) ... }`) also missed: full verify failed with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused score was
+  `CURRENT (2760)`. It stayed in the missing `$f20/$f21` prologue-save,
+  early `$f16` zero, and wave `a0`/`v1` drift family. Source was restored and
+  final full verify passed; do not repeat this nested drift-start branch
+  spelling. A close save-family continuation
   using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
   grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the
   early wave-gate player check to `PLAYER_COMPUTER != gCurrentPlayerIndex`,
