@@ -1903,7 +1903,14 @@
   also did not move the function: focused diff stayed `CURRENT (1808)`, full
   verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the visible
   drift remained in the earlier position-array schedule. Do not repeat this
-  `vCoords[7]` additive-double UV spelling. Rewriting only `uCoords[8]` from
+  `vCoords[7]` additive-double UV spelling. Rewriting only `vCoords[7]` from
+  `((2.0f * pos.x) - var_f16)` to `(-var_f16 + (2.0f * pos.x))` also produced
+  no useful movement: full verify failed with the known calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, the relinked focused score stayed
+  `CURRENT (1808)`, and the diff remained in the same early position-array
+  register/order family. Source was restored and final full verify passed. Do
+  not repeat this `vCoords[7]` operand-order UV spelling. Rewriting only
+  `uCoords[8]` from
   `((2.0f * xCos) - pos.z)` to `((xCos + xCos) - pos.z)` likewise compiled
   but did not move the function: focused diff stayed `CURRENT (1808)`, full
   verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and the visible
