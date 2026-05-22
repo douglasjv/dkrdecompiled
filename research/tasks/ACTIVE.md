@@ -1992,7 +1992,14 @@
   `0xC59A4971/0x72BB7708`, and the relinked focused score worsened to
   `CURRENT (7441)` with broad first/outer position-array stack-slot/register
   churn. Source was restored and final full verify passed. Do not repeat this
-  single-site x8 operand-order spelling.
+  single-site x8 operand-order spelling. Commuting only `zPositions[8]` from
+  `(2.0f * scaledXCos) + scaledXSin` to
+  `scaledXSin + (2.0f * scaledXCos)` produced no useful movement: full verify
+  failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, the
+  relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
+  same early position-array register/order family. Source was restored and
+  final full verify passed. Do not repeat this single-site z8 operand-order
+  spelling.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
