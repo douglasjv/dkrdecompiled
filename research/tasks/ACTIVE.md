@@ -1219,7 +1219,14 @@
   relinked focused `CURRENT (2311)`. Both shrank the frame to `0xf0` and
   dropped `$f20/$f21` saves, so do not repeat existing-temp or call-argument
   y-component first-speed carriers unless new evidence shows how to retain the
-  save family. A 2026-05-17 save-family wave-bound comma-assignment probe
+  save family. A close save-family z-product carrier variant (`var_f2 =
+  obj->z_velocity * obj->z_velocity; var_f20 += var_f2`) also missed: full
+  verify failed with calculated CRCs `0xB8DECACD/0x023D0D27`, the relinked
+  focused diff worsened to `CURRENT (4640)`, and the early zero allocation
+  shifted away from the target `$f14` family while the wave `a0`/`v1` drift
+  remained. Source was restored and final full verify passed; do not repeat
+  this first-speed `var_f2` z-product carrier. A 2026-05-17 save-family
+  wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
   top of the close chained-zero/x/z/y/steer-noop branch kept the target `0xf8`
   frame and `$f20/$f21` saves, but regressed the relinked focused score to

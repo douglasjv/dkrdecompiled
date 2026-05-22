@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:22:41Z
+- Generated at: 2026-05-22 19:25:10Z
 - Branch: `master`
-- HEAD: `5821da51`
+- HEAD: `8e6c5bc7`
 - Completed task: `func_80049794`
-- Summary: Rejected close save-family spEC wave-threshold carrier; full verify failed with calculated CRCs 0xC65CFFD3/0xC660208A and relinked focused diff worsened to CURRENT (8620), so source was restored.
+- Summary: Rejected close save-family var_f2 z-product carrier; full verify failed with calculated CRCs 0xB8DECACD/0x023D0D27 and relinked focused diff worsened to CURRENT (4640), so source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 from the close x/z/y save-family evidence, but do not repeat existing-var_f6 or spEC wave-threshold carriers; solve wave register/order or first-speed arithmetic drift without losing the 0xf8 frame and f20/f21 saves.`
+- Task: `Continue func_80049794 from close x/z/y save-family evidence only if there is a new source shape that does not repeat recorded wave-bound, wave-threshold, early-zero, or first-speed carrier misses; otherwise pivot to another active candidate such as func_80059208 or trackbg_render_flashy after selector review.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
