@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:40:05Z
+- Generated at: 2026-05-22 16:43:06Z
 - Branch: `master`
-- HEAD: `e4188430`
+- HEAD: `89b08939`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site xPositions[6] operand-order rewrite; source restored.
+- Summary: Rejected single-site z6 operand-order spelling for trackbg_render_flashy; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x93D338FF/0x03D9C8FE and ./diff.sh trackbg_render_flashy => relinked CURRENT (1808).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected promoted probe failed with calculated CRCs 0x93D438FF/0x1A841372 and ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 100 => relinked CURRENT (1813).
 
 ## Blockers Or Unknowns
 
