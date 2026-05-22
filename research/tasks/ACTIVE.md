@@ -532,7 +532,13 @@
   `0x7856718A/0x66208CAA`, and the relinked focused score was `CURRENT (2860)`.
   The diff kept the known early `gCurrentLevelModel` spill at `0x60(sp)` plus
   broad grid/tail register drift. Source was restored and final full verify
-  passed. Rewriting only the Z-grid loop condition from `i < 8` to `i != 8`
+  passed. Rewriting only the Z-grid bitmask doubling from `var_a1 *= 2` to
+  `var_a1 <<= 1` produced no relinked movement from the promoted baseline:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the focused
+  score stayed `CURRENT (2860)`, and the same early `gCurrentLevelModel` spill
+  at `0x60(sp)` plus grid/tail register drift remained. Source was restored
+  and final full verify passed; do not repeat this Z-grid shift spelling.
+  Rewriting only the Z-grid loop condition from `i < 8` to `i != 8`
   also missed: full verify failed with calculated CRCs
   `0x6818718A/0x890290E9`, the relinked focused score worsened to
   `CURRENT (3320)`, and the diff inserted the known early
