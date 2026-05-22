@@ -1226,7 +1226,16 @@
   shifted into broad integer-register churn with `spA2` stack-byte traffic
   rather than target `v1/a0/v0`. Source was restored and final full verify
   passed; do not repeat this current-baseline existing-`var_t9` wave-bound
-  carrier.
+  carrier. A current-baseline explicit `var_t1 = PLAYER_COMPUTER` allocation
+  probe reused that local for the early `gCurrentPlayerIndex` wave gate and
+  `trickType == -1` check. It did create the target-like early `li t1,-1`
+  shape, but full verify failed with calculated CRCs
+  `0x5FDDDF87/0x4196D76A`, the relinked focused diff reported
+  `CURRENT (2879)`, the frame widened to `0x100`, target `$f20/$f21` prologue
+  saves were still absent, early zero still used `$f16`, and the wave loop
+  still kept `a0`/`v1` opposite the target. Source was restored and final full
+  verify passed; do not repeat this standalone `var_t1` `PLAYER_COMPUTER`
+  allocation probe.
   Carrying the wave-height threshold through existing `var_f0` on the same
   close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f0`) also missed: it kept the target
