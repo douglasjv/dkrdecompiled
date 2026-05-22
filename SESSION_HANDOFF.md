@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:09:34Z
+- Generated at: 2026-05-22 20:11:41Z
 - Branch: `master`
-- HEAD: `f0e680c2`
+- HEAD: `d369054b`
 - Completed task: `func_80059208`
-- Summary: Recorded final lateral temp_v0 cast-carrier miss; source restored after relinked focused CURRENT (870).
+- Summary: Recorded final vertical temp_v0 cast-carrier miss; source restored after relinked focused CURRENT (870).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted final lateral temp_v0 cast carrier): CURRENT (870), failed full verify CRCs 0x53D141DF/0xB9D4B481
+- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted final vertical temp_v0 cast carrier): CURRENT (870), failed full verify CRCs 0x53D141DF/0xB9D4B481
 
 ## Blockers Or Unknowns
 
