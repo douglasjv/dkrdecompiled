@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:49:45Z
+- Generated at: 2026-05-22 23:56:39Z
 - Branch: `master`
-- HEAD: `04b276fc`
-- Completed task: `func_80049794`
-- Summary: Rejected retained-pad var_f2 z/y component-staging plus inverse-multiply hybrid; full build missed, relinked focused score was CURRENT (3620), and the target f20/f21 save family remained absent.
+- HEAD: `22b4ac4b`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected combined first-ring and outer-ring target-store-order probe; full build missed and relinked focused score worsened to CURRENT (3810), shrinking the frame to 0x150 before source restore.
 
 ## Validation
 

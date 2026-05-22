@@ -609,7 +609,12 @@
   (`pad_sp108 = scaledXCos + scaledXCos`, then using it for `zPositions[5-8]`)
   compiled but produced no focused improvement from the promoted baseline:
   relinked focused diff stayed `CURRENT (1808)` and full verify failed with
-  the same additive-double CRC family `0x93D338FF/0x03D9C8FE`. A paired
+  the same additive-double CRC family `0x93D338FF/0x03D9C8FE`. A combined
+  first-ring plus outer-ring target-store-order probe also missed, failing
+  full verify with calculated CRCs `0x8EAD21EA/0x274096CC` and worsening the
+  relinked focused score to `CURRENT (3810)` while shrinking the frame from
+  target `0x158` to `0x150`. Source was restored and final full verify passed;
+  do not repeat this combined first/outer target-store-order probe. A paired
   first-ring `pad_sp108` carrier for the duplicated `-scaledXCos +
   scaledXSin` value (`zPositions[0] = pad_sp108; xPositions[3] = pad_sp108`)
   also collapsed into the bad frame-shrink family: frame `0x150`, relinked
@@ -2995,7 +3000,16 @@
   calculated CRCs `0x218F9FFA/0x18F4A6D6`, and relinked focused diff reported
   `CURRENT (13821)` with the frame shrunk to `0x150`. Source was restored and
   final full verify passed. Do not repeat this unused `pad_sp100` z0/x3
-  carrier.
+  carrier. A combined first-ring plus outer-ring target-store-order probe also
+  missed: promoting `trackbg_render_flashy`, ordering the first-ring stores as
+  `x0/z1/x1/z2/z0/x3/x2/z3`, and ordering the first outer-ring stores as
+  `x5/z5/z6/x6` failed full verify with calculated CRCs
+  `0x8EAD21EA/0x274096CC`. The relinked focused diff worsened to
+  `CURRENT (3810)`, shrank the frame from target `0x158` to `0x150`, moved the
+  early negative-cosine carrier from target `$f18` to `$f16`, and broadly
+  shifted first/outer position-array plus later UV/global scheduling. Source
+  was restored and final full verify passed; do not repeat this combined
+  first/outer target-store-order probe.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
