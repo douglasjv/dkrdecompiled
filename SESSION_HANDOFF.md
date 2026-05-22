@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:07:34Z
+- Generated at: 2026-05-22 17:10:33Z
 - Branch: `master`
-- HEAD: `65619030`
-- Completed task: `func_80059208`
-- Summary: Rejected old-diffX positive checkpoint-dot carrier; source restored after evidence capture.
+- HEAD: `18f0a277`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected fake var_a2 removal; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; old-diffX positive checkpoint-dot carrier failed with CRCs 0x53D0C1DF/0x02CA4607 and ./diff.sh func_80059208 => relinked CURRENT (980).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; fake var_a2 removal failed with CRCs 0xC5B710C5/0x71187E4F and ./diff.sh trackbg_render_flashy => relinked CURRENT (11477).
 
 ## Blockers Or Unknowns
 

@@ -2093,6 +2093,14 @@
   slightly to `CURRENT (1813)`, and the diff stayed in the same early
   position-array register/order family. Source was restored and final full
   verify passed. Do not repeat this single-site z6 operand-order spelling.
+  Removing the fake duplicate
+  `var_a2 = texHeader->height * 16 * gCurrentLevelHeader2->unkA1` assignment
+  before the UV block compiled but badly widened the relinked focused score to
+  `CURRENT (11477)`, failed full verify with calculated CRCs
+  `0xC5B710C5/0x71187E4F`, changed the early negative-cosine register family
+  from target `$f18` to `$f16`, and reshuffled the first/outer position-array
+  stores. Source was restored and final full verify passed. Do not remove this
+  fake `var_a2` assignment.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
