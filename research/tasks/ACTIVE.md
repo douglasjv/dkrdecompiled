@@ -1700,7 +1700,13 @@
   with calculated CRCs `0x53A518DF/0x0DEFF06A`, loaded object z before x in
   the final dot product, and broadened the final vertical FPR drift. Source
   was restored and final full verify passed; do not repeat this final
-  object-dot `scale` carrier. Adding `register` to the
+  object-dot `scale` carrier. Commuting the final object-dot terms directly
+  (`pad = (diffZ * distance) + (splinePos * diffX)`) reproduced that same bad
+  family: relinked focused score worsened to `CURRENT (940)`, full verify
+  failed with calculated CRCs `0x53A518DF/0x0DEFF06A`, object z loaded before x
+  in the final dot product, and the final vertical FPR drift broadened. Source
+  was restored and final full verify passed; do not repeat this final object
+  dot term-order spelling. Adding `register` to the
   final-block `diffZ` local is invalid because `diffZ` is passed by address to
   `cubic_spline_interpolation`; the compile failed with
   `address of register variable requested`. A narrower `register f32 scale`

@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:37:11Z
+- Generated at: 2026-05-22 15:40:40Z
 - Branch: `master`
-- HEAD: `8295bc93`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-pair x2/z3 first-ring store-order probe; source restored
+- HEAD: `30738646`
+- Completed task: `func_80059208`
+- Summary: Rejected final object-dot term-order probe; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted trackbg_render_flashy single-pair x2/z3 first-ring store-order probe with calculated CRCs 0xDC9ABB91/0xDA2977C2; ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (4433), shifted early first-ring/outer-ring float schedule; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_80059208 final object-dot term-order probe with calculated CRCs 0x53A518DF/0x0DEFF06A; ./diff.sh func_80059208 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (940), object z loaded before x and final vertical FPR drift broadened; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For trackbg_render_flashy, do not repeat the single-pair x2/z3 first-ring store-order probe; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_80059208, do not repeat the final object-dot term-order probe; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
