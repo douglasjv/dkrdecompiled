@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:15:44Z
+- Generated at: 2026-05-22 16:19:31Z
 - Branch: `master`
-- HEAD: `8b2546aa`
+- HEAD: `ea771eb0`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site zPositions[2] scaledXSin rewrite; source restored.
+- Summary: Rejected single-site xPositions[8] operand-order rewrite; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x218F9FFA/0x18F4A6D6 and ./diff.sh trackbg_render_flashy => relinked CURRENT (13471).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0xC59A4971/0x72BB7708 and ./diff.sh trackbg_render_flashy => relinked CURRENT (7441).
 
 ## Blockers Or Unknowns
 

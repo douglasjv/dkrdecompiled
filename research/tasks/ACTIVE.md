@@ -1985,7 +1985,14 @@
   calculated CRCs `0x8E7C21EA/0x33457650`, and the diff shifted the early
   position-array schedule into a different `$f16`/`$f18` and stack-slot family.
   Source was restored and final full verify passed. Do not repeat this exact
-  first-ring target-order probe.
+  first-ring target-order probe. Rewriting only `xPositions[8]` from
+  `-scaledXCos + (2.0f * scaledXSin)` to
+  `(2.0f * scaledXSin) - scaledXCos` also missed: it widened the frame from
+  target `0x158` to `0x160`, failed full verify with calculated CRCs
+  `0xC59A4971/0x72BB7708`, and the relinked focused score worsened to
+  `CURRENT (7441)` with broad first/outer position-array stack-slot/register
+  churn. Source was restored and final full verify passed. Do not repeat this
+  single-site x8 operand-order spelling.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
