@@ -1951,7 +1951,14 @@
   calculated CRCs `0x7856718A/0x66208CAA`, and the same unwanted
   `gCurrentLevelModel` spill appeared at `0x60(sp)`. Source was restored and
   final full verify passed; do not repeat this X/Z integer register-hint
-  probe. Promoting the existing C compiles, but
+  probe. Adding `register` to the `xIn`/`zIn` float parameters also missed:
+  it recreated the target `$f20`/`$f22` prologue save/use shape, but full
+  verify failed with calculated CRCs `0x7856718A/0x66208CAA`, the relinked
+  focused score worsened to `CURRENT (2860)`, and the same unwanted early
+  `gCurrentLevelModel` spill appeared at `0x60(sp)` before the segment loop.
+  Source was restored and final full verify passed; do not repeat this float
+  parameter register-hint probe without a separate fix for the model-spill
+  family. Promoting the existing C compiles, but
   linked focused diff scores `CURRENT (2780)` with broad drift starting around
   `gCurrentLevelModel` hoisting/caching and cascading through the grid loops.
   Rejected probes: inserting an empty `if (gCurrentLevelModel) {}` before the

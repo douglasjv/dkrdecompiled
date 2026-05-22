@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:49:34Z
+- Generated at: 2026-05-22 15:52:12Z
 - Branch: `master`
-- HEAD: `238eed61`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site x1 scaled-sine rewrite; source restored
+- HEAD: `de7e6a5a`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected xIn/zIn float register-parameter hint; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted trackbg_render_flashy xPositions[1] scaled-sine rewrite with calculated CRCs 0x218F9FFA/0x18F4A6D6; ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (13471), frame shrank to 0x150 and first-ring position-array schedule drifted broadly; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 register f32 xIn/zIn parameter probe with calculated CRCs 0x7856718A/0x66208CAA; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2860), target f20/f22 prologue shape appeared but unwanted early gCurrentLevelModel spill at 0x60(sp) remained; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For trackbg_render_flashy, do not repeat the single-site x1 scaled-sine rewrite; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the xIn/zIn float register-parameter hint unless paired with a separate model-spill fix; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
