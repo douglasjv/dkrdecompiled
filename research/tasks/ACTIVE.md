@@ -1892,6 +1892,14 @@
   object-dot/checkpoint-dot register family. Source was restored and final
   full verify passed; do not repeat this old-`diffX` positive checkpoint-dot
   spelling.
+  Commuting only the final object-dot z product from
+  `diffZ * distance` to `distance * diffZ` also missed: full verify failed
+  with calculated CRCs `0x53F241DF/0xFF09E640`, relinked focused score
+  worsened from the promoted baseline `CURRENT (870)` to `CURRENT (875)`, and
+  the tail shifted into the same small object-dot multiply-order family as the
+  earlier x-product commute while broadening the final vertical FPR drift.
+  Source was restored and final full verify passed; do not repeat this
+  final object-dot z-multiply commute.
   A mid-axis-swap negated checkpoint-dot spelling
   (`diffY = diffX; diffX = diffZ; pad2 = -((tempZ * -diffY) + (diffX *
   tempX)); diffZ = -diffY`) also missed: full verify failed with calculated

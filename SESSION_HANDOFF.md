@@ -1,14 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:25:10Z
+- Generated at: 2026-05-22 19:30:22Z
 - Branch: `master`
-- HEAD: `8e6c5bc7`
-- Completed task: `func_80049794`
-- Summary: Rejected close save-family var_f2 z-product carrier; full verify failed with calculated CRCs 0xB8DECACD/0x023D0D27 and relinked focused diff worsened to CURRENT (4640), so source was restored.
+- HEAD: `8313da09`
+- Completed task: `func_80059208`
+- Summary: Recorded final object-dot z-multiply commute miss; source restored after relinked focused CURRENT (875).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
+- ./diff.sh func_80059208 --format plain --no-pager -U 80 (promoted z-product commute): CURRENT (875), failed full verify CRCs 0x53F241DF/0xFF09E640
 
 ## Blockers Or Unknowns
 
@@ -22,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 from close x/z/y save-family evidence only if there is a new source shape that does not repeat recorded wave-bound, wave-threshold, early-zero, or first-speed carrier misses; otherwise pivot to another active candidate such as func_80059208 or trackbg_render_flashy after selector review.`
+- Task: `Run selector; continue func_80049794 only with a new non-repeated close save-family source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
