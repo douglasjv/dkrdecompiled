@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 15:59:16Z
+- Generated at: 2026-05-22 16:02:41Z
 - Branch: `master`
-- HEAD: `966311d3`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected exact first-ring target store-order probe; source restored
+- HEAD: `ffaf64ef`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected levelSegmentIndex register-parameter hint; source restored
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted trackbg_render_flashy exact first-ring target store-order probe with calculated CRCs 0x8E7C21EA/0x33457650; ./diff.sh trackbg_render_flashy --format plain --no-pager --max-size 900 -U 90 => relinked CURRENT (4432), frame shrank to 0x150 and early position-array schedule shifted into a different f16/f18 stack-slot family; restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
+- gmake -j4 CROSS=tools/binutils/mips64-elf- failed for promoted func_8002B0F4 with register s32 levelSegmentIndex, calculated CRCs 0x7856718A/0x66208CAA; ./diff.sh func_8002B0F4 --format plain --no-pager --max-size 900 -U 80 => relinked CURRENT (2860), target f20/f22 prologue remained but unwanted early gCurrentLevelModel spill appeared at 0x60(sp); restored source and reran gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For trackbg_render_flashy, do not repeat the exact first-ring target store-order probe; use ACTIVE.md before choosing another probe.`
+- Task: `Run python3 tools/query_goal_state.py next --compact --refresh and continue one active candidate. For func_8002B0F4, do not repeat the levelSegmentIndex register-parameter hint; use ACTIVE.md before choosing another probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -1965,7 +1965,13 @@
   `gCurrentLevelModel` spill appeared at `0x60(sp)` before the segment loop.
   Source was restored and final full verify passed; do not repeat this float
   parameter register-hint probe without a separate fix for the model-spill
-  family. Combining that float-parameter register hint with the better
+  family. Adding `register` only to the `levelSegmentIndex` parameter also
+  missed in the same family: full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, relinked focused score was `CURRENT (2860)`, and
+  the unwanted early `gCurrentLevelModel` spill appeared at `0x60(sp)` while
+  the target-like `$f20`/`$f22` prologue remained. Source was restored and
+  final full verify passed; do not repeat this segment-index register-parameter
+  hint. Combining that float-parameter register hint with the better
   plain `pad3`-removed stack layout also missed: the target `$f20`/`$f22`
   prologue remained, but full verify failed with the plain `pad3`-removal CRC
   family `0x785671AA/0x0D6F6A4A`, the relinked focused score was
