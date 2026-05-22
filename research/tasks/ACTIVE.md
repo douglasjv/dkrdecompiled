@@ -2249,6 +2249,14 @@
   register schedule and broadened the final vertical FPR drift. Source was
   restored and final full verify passed; do not repeat this post-division
   negation split spelling.
+  Splitting the final lateral correction into a pre-division numerator
+  assignment (`diffX = -(pad + pad2); diffX /= divisor`) also missed: full
+  verify failed with calculated CRCs `0xDAE4B7D2/0xC7074DD0`, and the relinked
+  focused score worsened from promoted-baseline `CURRENT (870)` to
+  `CURRENT (1610)`. The diff broadened the final-tail offset drift instead of
+  matching the target single-expression division/negation schedule. Source was
+  restored and final full verify passed; do not repeat this pre-division
+  numerator split spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
