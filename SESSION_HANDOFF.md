@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 17:01:28Z
+- Generated at: 2026-05-22 17:04:40Z
 - Branch: `master`
-- HEAD: `c67768a5`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected nested batch surface-condition spelling; source restored after evidence capture.
+- HEAD: `3695424c`
+- Completed task: `func_80059208`
+- Summary: Rejected final lateral angle cast carrier; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; nested surface condition probe failed with CRCs 0x7856718A/0x66208CAA and ./diff.sh func_8002B0F4 => relinked CURRENT (2860).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; angle cast carrier failed with CRCs 0x53D141DF/0xB9D4B481 and ./diff.sh func_80059208 => relinked CURRENT (870).
 
 ## Blockers Or Unknowns
 

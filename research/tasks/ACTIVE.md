@@ -1787,6 +1787,12 @@
   bytes instead of matching the target object-dot plus negated-checkpoint-dot
   schedule. Source was restored and final full verify passed; do not repeat
   this pre-axis-swap checkpoint-dot spelling.
+  Routing the final lateral cast through the existing dead `angle` local
+  (`angle = (s32) diffX; racer->unk1BA += angle`) compiled but produced no
+  relinked focused movement: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and source
+  was restored/final verify passed. Do not repeat this final lateral `angle`
+  cast carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
