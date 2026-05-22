@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:13:14Z
+- Generated at: 2026-05-22 22:17:35Z
 - Branch: `master`
-- HEAD: `d68f9824`
-- Completed task: `func_80049794`
-- Summary: Rejected nested spinout-zap condition split; relinked diff stayed at CURRENT (2430) with promoted-baseline CRCs.
+- HEAD: `ce21cae6`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected unused pad_sp100 carrier for paired first-ring scaledXCos - (xSin * 1280.0f) at xPositions[1]/zPositions[2]; promoted full build failed CRC 0x218F9FFA/0x18F4A6D6 and relinked diff worsened to CURRENT (13821) with 0x150 frame, then source restored.
 
 ## Validation
 

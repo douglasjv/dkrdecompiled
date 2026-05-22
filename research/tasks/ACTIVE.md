@@ -2782,7 +2782,16 @@
   `CURRENT (3108)`, moved the early negative-cosine carrier from target `$f18`
   to `$f16`, and shifted outer position-array/global-offset scheduling. Source
   was restored and final full verify passed. Do not repeat this existing
-  `pad_sp108` negative-cosine carrier.
+  `pad_sp108` negative-cosine carrier. Routing the paired first-ring
+  `scaledXCos - (xSin * 1280.0f)` value through the unused existing
+  `pad_sp100` local for `xPositions[1]` and `zPositions[2]` also collapsed
+  into the bad frame-shrink family: object-only `./diff.sh
+  trackbg_render_flashy` first printed stale `CURRENT (0)`, but promoted full
+  verify failed with calculated CRCs `0x218F9FFA/0x18F4A6D6`; the relinked
+  focused score worsened to `CURRENT (13821)`, the frame shrank to `0x150`,
+  and the first/outer position-array stack schedule shifted broadly. Source
+  was restored and final full verify passed. Do not repeat this unused
+  `pad_sp100` x1/z2 carrier.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
