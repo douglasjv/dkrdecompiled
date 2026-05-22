@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:51:07Z
+- Generated at: 2026-05-22 20:54:30Z
 - Branch: `master`
-- HEAD: `7cd2e364`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded z7 grouped-negated-difference outer-ring miss; source restored.
+- HEAD: `fadd07bf`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded X-grid fake barrier miss; source restored.
 
 ## Validation
 
-- Promoted trackbg_render_flashy with zPositions[7] grouped-negated-difference failed full verify with CRCs 0x9C72948D/0x12AA7789 and relinked focused CURRENT (4289); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_8002B0F4 with X-grid fake barrier failed full verify with CRCs 0x77D9E18A/0xB9F696E2 and relinked focused CURRENT (2995); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

@@ -2856,7 +2856,15 @@
   `CURRENT (5326)`, and the frame shrank from target `0x128` to `0x120` while
   preserving the unwanted early `gCurrentLevelModel` spill/register drift.
   Source was restored and final full verify passed; do not repeat this explicit
-  bottom-sort unroll spelling.
+  bottom-sort unroll spelling. Adding an X-grid fake lifetime barrier after the
+  first mask loop (`if (var_a1) {}` before the Z-grid setup) also missed:
+  object-only focused diff printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x77D9E18A/0xB9F696E2`, and the relinked focused score was
+  `CURRENT (2995)`. The diff still introduced the unwanted early
+  `gCurrentLevelModel` load/spill at `0x60(sp)`, shifted the mask accumulator
+  from target `s1` to `s2`, and moved tail/global labels by four bytes. Source
+  was restored and final full verify passed; do not repeat this X-grid fake
+  barrier spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
