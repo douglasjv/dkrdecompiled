@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:19:31Z
+- Generated at: 2026-05-22 16:24:12Z
 - Branch: `master`
-- HEAD: `ea771eb0`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site xPositions[8] operand-order rewrite; source restored.
+- HEAD: `f3993480`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected outer segment-loop != bound spelling; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0xC59A4971/0x72BB7708 and ./diff.sh trackbg_render_flashy => relinked CURRENT (7441).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; rejected probe failed with CRCs 0x68167010/0x71B268DB and ./diff.sh func_8002B0F4 => relinked CURRENT (3275).
 
 ## Blockers Or Unknowns
 

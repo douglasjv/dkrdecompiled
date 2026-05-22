@@ -2172,7 +2172,14 @@
   the relinked focused diff worsened to `CURRENT (3535)`, and the early return
   branch changed to a `bnez`/inserted return branch where target uses `beqz`
   then `slti`. Source was restored and final full verify passed; do not repeat
-  this early `sp108` return-split spelling. Keep this function active,
+  this early `sp108` return-split spelling. Rewriting only the outer
+  segment-loop bound from
+  `var_fp < sp108` to `var_fp != sp108` also missed: full verify failed with
+  calculated CRCs `0x68167010/0x71B268DB`, the relinked focused score worsened
+  to `CURRENT (3275)`, the loop entry changed from target `blez` to `beqz`, and
+  the known unwanted early `gCurrentLevelModel` spill appeared at `0x60(sp)`.
+  Source was restored and final full verify passed. Do not repeat this
+  outer-loop `!= sp108` bound spelling. Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
   bottom population-loop `while` spelling, this outer segment-loop `while`
