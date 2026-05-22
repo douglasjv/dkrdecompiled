@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:54:30Z
+- Generated at: 2026-05-22 20:57:43Z
 - Branch: `master`
-- HEAD: `fadd07bf`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded X-grid fake barrier miss; source restored.
+- HEAD: `4d306f9c`
+- Completed task: `func_80059208`
+- Summary: Recorded final lateral i-cast carrier miss; source restored.
 
 ## Validation
 
-- Promoted func_8002B0F4 with X-grid fake barrier failed full verify with CRCs 0x77D9E18A/0xB9F696E2 and relinked focused CURRENT (2995); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted func_80059208 with final lateral i-cast carrier failed full verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused CURRENT (870); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

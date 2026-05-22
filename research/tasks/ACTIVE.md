@@ -1984,6 +1984,13 @@
   final object-dot/checkpoint-dot plus vertical FPR drift remained. Source was
   restored and final full verify passed; do not repeat this final lateral
   `temp_v0` cast carrier.
+  Routing the final lateral cast through the existing loop local `i`
+  (`i = (s32) diffX; racer->unk1BA += i`) also produced no relinked focused
+  movement: an object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked focused
+  score stayed `CURRENT (870)`, and the same final object-dot/checkpoint-dot
+  plus vertical FPR drift remained. Source was restored and final full verify
+  passed; do not repeat this final lateral `i` cast carrier.
   Routing the final vertical cast through the existing dead `temp_v0` local
   (`temp_v0 = (s32) diffY; racer->unk1BC += temp_v0`) likewise produced no
   relinked focused movement: full verify failed with calculated CRCs
