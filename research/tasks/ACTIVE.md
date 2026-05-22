@@ -1833,6 +1833,14 @@
   object-dot/checkpoint-dot register family. Source was restored and final
   full verify passed; do not repeat this old-`diffX` positive checkpoint-dot
   spelling.
+  A mid-axis-swap negated checkpoint-dot spelling
+  (`diffY = diffX; diffX = diffZ; pad2 = -((tempZ * -diffY) + (diffX *
+  tempX)); diffZ = -diffY`) also missed: full verify failed with calculated
+  CRCs `0x4FA14EA0/0x0254255C`, relinked focused score worsened to
+  `CURRENT (4296)`, and the probe perturbed float-register allocation before
+  the final tail instead of matching the target delayed old-`diffZ` store.
+  Source was restored and final full verify passed; do not repeat this
+  mid-axis-swap negated checkpoint-dot spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
