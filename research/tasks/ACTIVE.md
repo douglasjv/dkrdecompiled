@@ -1984,7 +1984,13 @@
   `CURRENT (2378)`, and the diff broadened first-ring UV/position-array
   register drift plus later vertex/triangle scheduling. Source was restored
   and final full verify passed. Do not repeat this `vCoords[1]` operand-order
-  UV spelling.
+  UV spelling. Rewriting only `vCoords[1]` from `(-var_f14 - var_f16)` to
+  `-(var_f14 + var_f16)` also missed: full verify failed with calculated CRCs
+  `0x93C3400B/0x33BE38AF`, the relinked focused score worsened to
+  `CURRENT (2668)`, and the diff inserted an explicit add-then-negate in the
+  first-ring UV path while broadening first-ring UV/position-array and later
+  vertex scheduling drift. Source was restored and final full verify passed.
+  Do not repeat this `vCoords[1]` negated-sum UV spelling.
   Rewriting only `uCoords[1]` from `(var_f14 - xCos)` to
   `(-xCos + var_f14)` also produced no useful movement: full verify failed
   with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the relinked
