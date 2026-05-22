@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:47:03Z
+- Generated at: 2026-05-22 21:49:43Z
 - Branch: `master`
-- HEAD: `dc32f6f4`
+- HEAD: `cd40cf61`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded grid bitmask var_a1 += var_a1 miss; promoted C failed full verify with CRCs 0x79235F02/0xA15ADC5A and relinked focused regressed to CURRENT (3375), then source restored.
+- Summary: Recorded X-grid var_a1 <<= 1 miss; promoted C failed full verify with CRCs 0x7856718A/0x66208CAA and relinked focused stayed in CURRENT (2860) spill family, then source restored.
 
 ## Validation
 
