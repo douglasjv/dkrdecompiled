@@ -126,7 +126,12 @@
   `0x5FDDE03F/0xEF7A0514`, focused diff stayed `CURRENT (859)` under
   `--max-size 620`, and the target `$f20/$f21` prologue saves plus early
   `$f14` zero allocation were still absent. Do not repeat this
-  parameter-register hint. A later
+  parameter-register hint. Adding `register` to the integer `updateRate`
+  parameter was another no-op in the same promoted-baseline family: full verify
+  failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, focused diff stayed
+  `CURRENT (859)` under `--max-size 620`, and the target `$f20/$f21` prologue
+  saves plus early `$f14` zero allocation were still absent. Do not repeat this
+  integer-parameter register hint. A later
   save-family wave-threshold local probe on the close chained-zero/x/z/y/
   steer-noop branch (`var_f0 = obj->trans.y_position + 5.0f` before the wave
   scan) kept the target `0xf8` frame and `$f20/$f21` saves but regressed the
@@ -653,6 +658,12 @@
   `CURRENT (859)` under `--max-size 620`, and the target `$f20/$f21` prologue
   saves plus early `$f14` zero allocation remained absent. Source was restored
   and final full verify passed; do not repeat this `updateRateF` parameter
+  register hint. Adding `register` to the integer `updateRate` parameter was
+  also a no-op against the promoted baseline: full verify failed with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, focused diff stayed
+  `CURRENT (859)` under `--max-size 620`, and the target `$f20/$f21` prologue
+  saves plus early `$f14` zero allocation remained absent. Source was restored
+  and final full verify passed; do not repeat this `updateRate` parameter
   register hint.
   Combining `register f32 var_f20` with `register f32 segmentZVelocity`
   compiled but produced no object change from the promoted baseline, stayed
