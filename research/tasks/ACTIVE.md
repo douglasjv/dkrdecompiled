@@ -1818,6 +1818,13 @@
   final object-dot/checkpoint-dot plus vertical FPR drift remained. Source was
   restored and final full verify passed; do not repeat this final lateral
   `splineIndex` cast carrier.
+  Routing the final vertical cast through the existing dead `splineIndex` local
+  (`splineIndex = (s32) diffY; racer->unk1BC += splineIndex`) likewise
+  produced no relinked focused movement: full verify failed with calculated
+  CRCs `0x53D141DF/0xB9D4B481`, focused score stayed `CURRENT (870)`, and the
+  same final object-dot/checkpoint-dot plus vertical FPR drift remained. Source
+  was restored and final full verify passed; do not repeat this final vertical
+  `splineIndex` cast carrier.
   Replacing the negated checkpoint-dot expression with a post-axis-swap
   old-`diffX` positive carrier
   (`pad2 = (tempZ * diffY) - (diffX * tempX)`) also missed: full verify failed
