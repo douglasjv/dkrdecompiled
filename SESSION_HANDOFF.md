@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:33:50Z
+- Generated at: 2026-05-22 21:38:37Z
 - Branch: `master`
-- HEAD: `b701eba0`
-- Completed task: `func_80059208`
-- Summary: Recorded divisor-distance reuse miss; promoted C failed full verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused stayed CURRENT (870), then source restored.
+- HEAD: `a7f51089`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded single-site xPositions[7] minus-negative miss; promoted C failed full verify with CRCs 0x1FBBB527/0xBCB1313B and relinked focused regressed to CURRENT (2503), then source restored.
 
 ## Validation
 

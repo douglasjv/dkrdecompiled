@@ -554,13 +554,23 @@
   duplicated `-scaledXCos - (xSin * 1280.0f)` value (`xPositions[0]` and
   `zPositions[1]`) also collapsed into that bad family: frame `0x150`,
   relinked focused `CURRENT (13706)`, and full-verify CRCs
-  `0x218F9FFA/0x18F4A6D6`. Keep active and avoid repeating those no-op,
-  single-site scaled-sine, first-ring existing-`var_f16` carrier,
+  `0x218F9FFA/0x18F4A6D6`. Rewriting only `xPositions[7]` from
+  `scaledXCos + (2.0f * scaledXSin)` to
+  `scaledXCos - -(2.0f * scaledXSin)` also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x1FBBB527/0xBCB1313B`, and the relinked focused score worsened to
+  `CURRENT (2503)`. The diff kept the `0x158` frame but shifted the early
+  negative-cosine register family plus first/outer position-array and later
+  UV/vertex scheduling. Source was restored and final full verify passed; do
+  not repeat this single-site x7 minus-negative spelling. Keep active and
+  avoid repeating those no-op, single-site scaled-sine, first-ring
+  existing-`var_f16` carrier,
   first-ring `pad_sp108`/unused-`pad_sp100` carrier, outer-ring
   assignment-order, single-site `zPositions[6]`/`xPositions[6]` reorder,
   exact outer-ring `x5/z5/z6/x6` store-order, `scaledXCos`-first assignment
   order, first-ring store-order grouping, single-site `zPositions[5]`
-  subtract-chain, or `pad_sp108` x1/z2/double-cosine carrier shapes. A later
+  subtract-chain, single-site x7 minus-negative spelling, or `pad_sp108`
+  x1/z2/double-cosine carrier shapes. A later
   all-first-ring `scaledXSin` spelling replaced every remaining first-ring
   `(xSin * 1280.0f)` term in `xPositions[0..3]` and `zPositions[0..2]` with
   the existing `scaledXSin` carrier; it compiled but widened the frame to
@@ -2616,7 +2626,16 @@
   relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
   same early position-array register/order family. Source was restored and
   final full verify passed. Do not repeat this single-site x7 operand-order
-  spelling. Rewriting only `xPositions[5]` from
+  spelling. Rewriting only `xPositions[7]` from
+  `scaledXCos + (2.0f * scaledXSin)` to
+  `scaledXCos - -(2.0f * scaledXSin)` also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x1FBBB527/0xBCB1313B`, and the relinked focused score worsened to
+  `CURRENT (2503)`. The diff kept the `0x158` frame but shifted the early
+  negative-cosine register family plus first/outer position-array and later
+  UV/vertex scheduling. Source was restored and final full verify passed. Do
+  not repeat this single-site x7 minus-negative spelling. Rewriting only
+  `xPositions[5]` from
   `-scaledXCos - (2.0f * scaledXSin)` to
   `-(2.0f * scaledXSin) - scaledXCos` also missed: it widened the frame from
   target `0x158` to `0x160`, failed full verify with calculated CRCs
