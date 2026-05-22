@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:17:35Z
+- Generated at: 2026-05-22 22:20:12Z
 - Branch: `master`
-- HEAD: `ce21cae6`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected unused pad_sp100 carrier for paired first-ring scaledXCos - (xSin * 1280.0f) at xPositions[1]/zPositions[2]; promoted full build failed CRC 0x218F9FFA/0x18F4A6D6 and relinked diff worsened to CURRENT (13821) with 0x150 frame, then source restored.
+- HEAD: `62454c60`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected Z-grid-only bitmask shift spelling; promoted full build failed CRC 0x7856718A/0x66208CAA and relinked diff stayed CURRENT (2860) with the early gCurrentLevelModel spill at 0x60(sp), then source restored.
 
 ## Validation
 

@@ -2963,6 +2963,14 @@
   `CURRENT (2860)`. The diff kept the known early `gCurrentLevelModel` spill at
   `0x60(sp)` plus broad grid/tail register drift. Source was restored and
   final full verify passed; do not repeat this X-grid `var_a1 <<= 1` spelling.
+  Rewriting only the Z-grid bitmask doubling from `var_a1 *= 2` to
+  `var_a1 <<= 1` also missed in the same promoted-baseline family:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x7856718A/0x66208CAA`, and the relinked focused
+  score was `CURRENT (2860)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` and shifted the X/Z grid and tail
+  register schedule. Source was restored and final full verify passed; do not
+  repeat this Z-grid `var_a1 <<= 1` spelling.
   Rewriting the
   bottom `gTrackWaves` population loop from the existing backslash-preserved
   `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
