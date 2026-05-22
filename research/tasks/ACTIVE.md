@@ -2768,6 +2768,14 @@
   negated-sine subtraction into the outer-ring schedule while preserving the
   target-sized `0x158` frame. Source was restored and final full verify passed.
   Do not repeat this single-site z8 minus-negative spelling. Rewriting only
+  `zPositions[8]` from
+  `(2.0f * scaledXCos) + scaledXSin` to
+  `(scaledXCos * 2.0f) + scaledXSin` also produced no useful movement: full
+  verify failed with the known calculated CRCs `0x93D338FF/0x03D9C8FE`, the
+  relinked focused score stayed `CURRENT (1808)`, and the diff remained in the
+  same early negative-cosine/outer-ring register-order family. Source was
+  restored and final full verify passed. Do not repeat this single-site z8
+  multiply-order spelling. Rewriting only
   `zPositions[7]` from
   `(2.0f * scaledXCos) - scaledXSin` to
   `(2.0f * scaledXCos) + -scaledXSin` also produced no movement: full verify
