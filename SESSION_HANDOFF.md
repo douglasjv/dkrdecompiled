@@ -1,15 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 20:19:07Z
+- Generated at: 2026-05-22 20:22:23Z
 - Branch: `master`
-- HEAD: `a4c1b112`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded uCoords[6] plus-negative UV miss; source restored after relinked focused CURRENT (1808).
+- HEAD: `0840fde8`
+- Completed task: `func_80059208`
+- Summary: Recorded vertical lower-first clamp-order miss; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh trackbg_render_flashy --format plain --no-pager -U 80 (promoted uCoords[6] plus-negative UV): CURRENT (1808), failed full verify CRCs 0x93D338FF/0x03D9C8FE
+- Promoted func_80059208 vertical lower-first clamp order failed full verify with CRCs 0x53D101DF/0xB0C39AEC and relinked focused CURRENT (1035); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 
@@ -23,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a new non-repeated close save-family source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; continue func_80059208 only with a new non-repeated final-tail source shape, otherwise pivot among active func_80049794, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

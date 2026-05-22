@@ -1497,7 +1497,13 @@
   `CURRENT (1070)`, while changing only the lower branch to
   `if (diffY <= -100.0f)` failed with CRCs `0x53D141DF/0x5B9D4EFD` and
   worsened to `CURRENT (1070)`. Source was restored and final full verify
-  passed; do not repeat these vertical clamp strictness probes. Replacing
+  passed; do not repeat these vertical clamp strictness probes. Swapping only
+  the vertical clamp order to test the lower bound before the upper bound also
+  missed: full verify failed with calculated CRCs `0x53D101DF/0xB0C39AEC`,
+  the relinked focused score worsened from promoted baseline `CURRENT (870)`
+  to `CURRENT (1035)`, and the tail shifted the final vertical clamp
+  comparison/constant schedule. Source was restored and final full verify
+  passed; do not repeat this vertical lower-first clamp order. Replacing
   the final manual `diffX`/`diffY` clamp pairs with the repo `CLAMP` macro
   compiled but left the focused object score unchanged at `CURRENT (870)`.
   Inlining only `obj->trans.z_position` into the final object dot product while
