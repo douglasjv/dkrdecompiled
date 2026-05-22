@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 22:06:12Z
+- Generated at: 2026-05-22 22:10:49Z
 - Branch: `master`
-- HEAD: `bc47fe09`
-- Completed task: `func_80059208`
-- Summary: Recorded in-place pad object-dot miss; promoted C failed full verify with CRCs 0x539CDEEF/0x8B5DB390 and relinked focused worsened to CURRENT (1951), then source restored.
+- HEAD: `8d363c39`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected batch-offset local s16 source shape; restored guarded source after relinked diff regressed to CURRENT (3103).
 
 ## Validation
 
@@ -24,6 +24,6 @@
 
 - Task: `Run selector; continue func_80049794 only with a new non-repeated source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
-- Packet status: `ready`
+- Packet status: `unchanged`
 - Reasoning tier: `medium`
 - Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.

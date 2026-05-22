@@ -3115,6 +3115,15 @@
   widened to `CURRENT (1635)`, and the unwanted early `gCurrentLevelModel`
   spill remained at `0x64(sp)`. Source was restored and final full verify
   passed; do not repeat this flags-through-`faceNum` carrier.
+  A later promoted current-source probe changed only the batch offset locals
+  (`currentFaceOffset`, `nextFaceOffset`, and `currentVerticesOffset`) from
+  `s32` to `s16` to mirror the struct field width. It missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x293A6FA7/0xE00D71A8`, the relinked focused diff regressed
+  to `CURRENT (3103)`, `spB0` shifted from target `0xb0(sp)` to `0xb4(sp)`,
+  and the known early `gCurrentLevelModel` spill remained at `0x64(sp)`.
+  Source was restored and final full verify passed; do not repeat this
+  batch-offset-local `s16` spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
