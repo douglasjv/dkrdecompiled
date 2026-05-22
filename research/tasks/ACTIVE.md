@@ -1764,6 +1764,13 @@
   clamp instead of matching the target object-dot plus negated-checkpoint-dot
   schedule. Source was restored and final full verify passed; do not repeat
   this `diffX` final-sum carrier.
+  Accumulating the existing negated checkpoint-dot carrier directly into
+  `pad` (`pad += pad2; diffX = -(pad / divisor)`) compiled but produced no
+  relinked movement from the promoted baseline: full verify failed with
+  calculated CRCs `0x53D141DF/0xB9D4B481`, the focused score stayed
+  `CURRENT (870)`, and the final object-dot/checkpoint-dot register drift was
+  unchanged. Source was restored and final full verify passed; do not repeat
+  this direct `pad += pad2` final-sum spelling.
   Directly commuting the negated checkpoint-dot sum inside the existing
   `pad2` expression (`pad2 = -((diffX * tempX) + (tempZ * diffZ))`) also
   missed: full verify failed with calculated CRCs `0x53ABC0DF/0xA18C1BA8`,
