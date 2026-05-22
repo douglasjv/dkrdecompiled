@@ -1546,7 +1546,18 @@
   transient boolean through `0xaa(sp)`, still lacked target `$f20/$f21`
   prologue saves, and kept the early zero in `$f16` instead of target `$f14`.
   Source was restored and final full verify passed; do not repeat this
-  drift-flag boolean assignment spelling. A baseline
+  drift-flag boolean assignment spelling. A close save-family continuation
+  using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
+  grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the
+  early wave-gate player check to `PLAYER_COMPUTER != gCurrentPlayerIndex`,
+  also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0xB95979CD/0xA04AD574`, and the
+  relinked focused score was `CURRENT (3270)`. The diff kept the target
+  `0xf8` frame and `$f20/$f21` saves plus target `$f14` early zero, but the
+  player branch became current `beq t3,t1` opposite target `beq t1,t3`, and
+  the wave bound/index allocation still had `a0`/`v1` opposite the target.
+  Source was restored and final full verify passed; do not repeat this
+  close-branch commuted wave-gate player-check spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.

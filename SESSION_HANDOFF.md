@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:49:43Z
+- Generated at: 2026-05-22 21:54:45Z
 - Branch: `master`
-- HEAD: `cd40cf61`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded X-grid var_a1 <<= 1 miss; promoted C failed full verify with CRCs 0x7856718A/0x66208CAA and relinked focused stayed in CURRENT (2860) spill family, then source restored.
+- HEAD: `7239d391`
+- Completed task: `func_80049794`
+- Summary: Recorded close save-family commuted wave-gate player-check miss; promoted C failed full verify with CRCs 0xB95979CD/0xA04AD574 and relinked focused was CURRENT (3270), then source restored.
 
 ## Validation
 
