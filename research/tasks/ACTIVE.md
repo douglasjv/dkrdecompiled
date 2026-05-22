@@ -2730,7 +2730,14 @@
   diff worsened to `CURRENT (17634)`, the frame shrank from target `0x128` to
   `0x120`, and global offsets/tail labels shifted broadly. Source was restored
   and final full verify passed; do not repeat this bottom sort
-  `var_v0 + 1` bound spelling.
+  `var_v0 + 1` bound spelling. Rewriting the bottom bubble sort into a
+  target-shaped remainder loop plus four explicit adjacent comparisons per body
+  also missed: full verify failed with calculated CRCs
+  `0xA6D17436/0x0A68B3A1`, the relinked focused score worsened to
+  `CURRENT (5326)`, and the frame shrank from target `0x128` to `0x120` while
+  preserving the unwanted early `gCurrentLevelModel` spill/register drift.
+  Source was restored and final full verify passed; do not repeat this explicit
+  bottom-sort unroll spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

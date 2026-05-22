@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 19:56:58Z
+- Generated at: 2026-05-22 20:02:29Z
 - Branch: `master`
-- HEAD: `c396c521`
-- Completed task: `func_80059208`
-- Summary: Recorded lateral lower-first clamp miss; source restored after relinked focused CURRENT (1030).
+- HEAD: `1430970b`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded bottom sort unroll miss; source restored after relinked focused CURRENT (5326).
 
 ## Validation
 
 - gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source): Verify: OK
-- ./diff.sh func_80059208 --format plain --no-pager -U 35 (promoted lateral lower-first clamp): CURRENT (1030), failed full verify CRCs 0x53D8C1DF/0xDBE11CED
+- ./diff.sh func_8002B0F4 --format plain --no-pager -U 80 (promoted bottom sort unroll): CURRENT (5326), failed full verify CRCs 0xA6D17436/0x0A68B3A1
 
 ## Blockers Or Unknowns
 
