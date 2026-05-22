@@ -1241,7 +1241,14 @@
   reported `CURRENT (2430)`, and the function still lacked target `$f20/$f21`
   prologue saves, kept early zero in `$f16`, and kept the wave loop `a0`/`v1`
   allocation opposite the target. Source was restored and final full verify
-  passed; do not repeat this standalone `var_a0` register hint.
+  passed; do not repeat this standalone `var_a0` register hint. A sibling
+  current-baseline `register s32 var_v1` allocation hint was also a no-op:
+  full verify failed with the same promoted baseline CRC family
+  `0x5FDDE03F/0xEF7A0514`, the relinked focused diff stayed
+  `CURRENT (2430)`, and the target `$f20/$f21` saves, early `$f14` zero, and
+  wave `v1` bound / `a0` loop-index order were still missing. Source was
+  restored and final full verify passed; do not repeat this standalone
+  `var_v1` register hint.
   Carrying the wave-height threshold through existing `var_f0` on the same
   close save-family branch (`var_f0 = obj->trans.y_position + 5.0f`, then the
   scan compares wave height against `var_f0`) also missed: it kept the target
