@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 21:09:51Z
+- Generated at: 2026-05-22 21:12:13Z
 - Branch: `master`
-- HEAD: `574fbce3`
-- Completed task: `func_80059208`
-- Summary: Recorded final vertical diffZ carrier miss; source restored.
+- HEAD: `6b34db85`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded z5 plus-negative equivalence miss; source restored.
 
 ## Validation
 
-- Promoted func_80059208 with final vertical diffZ carrier failed full verify with CRCs 0x53D135E7/0x934392FC and relinked focused CURRENT (910); restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
+- Promoted trackbg_render_flashy with zPositions[5] plus-negative spelling failed full verify with CRCs 0x53DC5E0F/0x8B102C25 and relinked focused CURRENT (2831), matching the recorded z5 plus-negated-double miss family; restored source then gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK.
 
 ## Blockers Or Unknowns
 

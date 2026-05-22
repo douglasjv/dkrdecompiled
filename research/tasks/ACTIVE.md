@@ -2330,8 +2330,13 @@
   (`-(2.0f * scaledXCos) + scaledXSin`) also missed: full verify failed with
   calculated CRCs `0x53DC5E0F/0x8B102C25`, the relinked focused score worsened
   to `CURRENT (2831)`, and the early position-array schedule shifted instead
-  of matching target. Source was restored and final full verify passed. Do not
-  repeat this single-site z5 plus-negated-double spelling. Rewriting only
+  of matching target. The equivalent plus-negative spelling
+  (`scaledXSin + -(2.0f * scaledXCos)`) compiled into the same miss family:
+  object-only focused diff printed stale `CURRENT (0)`, full verify failed
+  with the same calculated CRCs `0x53DC5E0F/0x8B102C25`, and the relinked
+  focused score again worsened to `CURRENT (2831)`. Source was restored and
+  final full verify passed. Do not repeat either single-site z5
+  plus-negated-double spelling. Rewriting only
   `zPositions[5]` as a grouped negated-difference expression
   (`-((2.0f * scaledXCos) - scaledXSin)`) also missed: full verify failed with
   calculated CRCs `0x9C75F625/0x32EDAC40`, the relinked focused score worsened
