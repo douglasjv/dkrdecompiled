@@ -1911,7 +1911,14 @@
   `CURRENT (1808)`, full verify failed with calculated CRCs
   `0x93D338FF/0x03D9C8FE`, and the diff stayed in the same additive-double
   register-order family. Source was restored and final full verify passed. Do
-  not repeat this unused-`pad_sp100` positive x2/z3 carrier.
+  not repeat this unused-`pad_sp100` positive x2/z3 carrier. Moving only
+  `zPositions[3] = scaledXCos + scaledXSin` immediately after `xPositions[2]`
+  to pair the duplicated first-ring positive value also missed: the frame
+  stayed `0x158`, but relinked focused score worsened to `CURRENT (4433)`,
+  full verify failed with calculated CRCs `0xDC9ABB91/0xDA2977C2`, and the diff
+  shifted the early first-ring/outer-ring float schedule. Source was restored
+  and final full verify passed. Do not repeat this single-pair x2/z3
+  store-order probe.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
