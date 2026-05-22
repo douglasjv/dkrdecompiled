@@ -1840,6 +1840,12 @@
   `CURRENT (4558)`, full verify failed with calculated CRCs
   `0xD68DF16F/0x5A429915`, and the outer-ring position store schedule shifted
   much earlier. Do not repeat this single-site z5 subtract-chain spelling.
+  Rewriting only `zPositions[5]` as a plus-after-negated-double expression
+  (`-(2.0f * scaledXCos) + scaledXSin`) also missed: full verify failed with
+  calculated CRCs `0x53DC5E0F/0x8B102C25`, the relinked focused score worsened
+  to `CURRENT (2831)`, and the early position-array schedule shifted instead
+  of matching target. Source was restored and final full verify passed. Do not
+  repeat this single-site z5 plus-negated-double spelling.
   Adding a named
   `negScaledXCos` temporary for the first/outer position expressions also
   compiled but left the uncompressed linked diff at `CURRENT (1808)`. Swapping
