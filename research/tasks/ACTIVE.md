@@ -1838,6 +1838,12 @@
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
   `xPositions[2]` with `scaledXCos + scaledXSin` compiled but worsened the
   focused score to `CURRENT (12021)` and changed the frame to `0x150`.
+  Replacing only `zPositions[0]` with `-scaledXCos + scaledXSin` also missed:
+  full verify failed with calculated CRCs `0x218F9FFA/0x18F4A6D6`, the
+  relinked focused score worsened to `CURRENT (13471)`, and the frame shrank
+  to `0x150` with broad early position-array schedule drift. Source was
+  restored and final full verify passed; do not repeat this single-site z0
+  scaled-sine spelling.
   Replacing the outer-ring `2.0f * scaledXCos/scaledXSin` terms with additive
   doubles (`scaledXCos + scaledXCos`, `scaledXSin + scaledXSin`) compiled but
   left the uncompressed linked diff at `CURRENT (1808)` and a promoted full

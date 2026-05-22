@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 16:55:09Z
+- Generated at: 2026-05-22 16:57:27Z
 - Branch: `master`
-- HEAD: `6b8106f8`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical clamp strictness probes; source restored after evidence capture.
+- HEAD: `5d7cc433`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected single-site z0 scaled-sine spelling; source restored after evidence capture.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; upper vertical clamp >= probe failed with CRCs 0x53D141DF/0x8F101C3E and ./diff.sh func_80059208 => relinked CURRENT (1070); lower vertical clamp <= probe failed with CRCs 0x53D141DF/0x5B9D4EFD and relinked CURRENT (1070).
+- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore; zPositions[0] = -scaledXCos + scaledXSin probe failed with CRCs 0x218F9FFA/0x18F4A6D6 and ./diff.sh trackbg_render_flashy => relinked CURRENT (13471).
 
 ## Blockers Or Unknowns
 
