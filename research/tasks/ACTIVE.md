@@ -1765,7 +1765,14 @@
   and the tail only swapped the first checkpoint-dot multiply operand order
   while leaving the object-dot plus final vertical FPR drift. Source was
   restored and final full verify passed; do not repeat this post-swap
-  old-`diffX` checkpoint-dot carrier.
+  old-`diffX` checkpoint-dot carrier. Computing the negated checkpoint dot
+  before completing the axis swap (`diffY = diffX; pad2 = -((tempZ * -diffY)
+  + (diffZ * tempX)); diffX = diffZ; diffZ = -diffY`) also missed: full verify
+  failed with calculated CRCs `0xDF8F8E89/0x317A96FF`, the relinked focused
+  score worsened to `CURRENT (2614)`, and the function tail shifted by eight
+  bytes instead of matching the target object-dot plus negated-checkpoint-dot
+  schedule. Source was restored and final full verify passed; do not repeat
+  this pre-axis-swap checkpoint-dot spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
