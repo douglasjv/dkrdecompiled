@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:31:10Z
+- Generated at: 2026-05-22 23:34:46Z
 - Branch: `master`
-- HEAD: `28b354c7`
-- Completed task: `func_80049794`
-- Summary: Rejected nested current-baseline wave drift-start branch; promoted full build missed and relinked focused diff was CURRENT (2760), then source was restored.
+- HEAD: `28739b81`
+- Completed task: `func_8008FF1C`
+- Summary: Rejected post-if common hub-name store selected-track branch variants; one stayed in v1 branch drift and the no-temp sibling kept t2 but left the hub-name store after the join, then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a new non-repeated source shape, otherwise pivot among active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; default routing remains func_80049794 unless intentionally revisiting exhausted func_8008FF1C/func_80017A18/init_particle_buffers with PARKED.md notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`

@@ -688,9 +688,20 @@
   known bad `s16 selectedTrack` family: full verify failed with calculated
   CRCs `0x5B5E4609/0x72935A6E`, focused diff widened to `CURRENT (1340)`,
   added sign-extension/register churn, and still used `v1`; source restored
-  and final verify passed. If intentionally revisiting this no-park function,
-  use a new source shape that preserves the direct-table `t2` load and restores
-  the target delay-slot `sw v0, 0(s0)`.
+  and final verify passed. A 2026-05-22 post-if common-store revisit that kept
+  the current `temp`/`selectedTrack` assignments but used a direct table branch
+  and moved `cur->hubName = levelName` after the if/else also missed: full
+  verify failed with calculated CRCs `0xD60A52B7/0xA389682F`, focused diff
+  widened to `CURRENT (985)`, and the branch still used `v1` rather than
+  target `t2`. Removing the two selected-track temporary assignments from that
+  post-if common-store shape moved the load/branch into the target `t2` family,
+  but still missed: full verify failed with calculated CRCs
+  `0xDC0852B7/0x5580AC19`, focused diff was `CURRENT (975)`, and the common
+  hub-name store stayed after the join (`sw s4,0(s0)`) instead of the target
+  delay-slot `sw v0,0(s0)`. Source restored and final verify passed; do not
+  repeat either post-if common-store variant. If intentionally revisiting this
+  no-park function, use a new source shape that preserves the direct-table
+  `t2` load and restores the target delay-slot `sw v0, 0(s0)`.
 - `func_80017A18` has exhausted probe notes in `research/tasks/PARKED.md`:
   existing C compiles when promoted, but diff evidence points at frame size,
   saved-register allocation, and float-temp lifetime mismatches. Do not retry

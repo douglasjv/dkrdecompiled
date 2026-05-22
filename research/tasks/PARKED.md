@@ -57,7 +57,18 @@ when intentionally returning to them.
   `s16 selectedTrack` family: full verify failed with calculated CRCs
   `0x5B5E4609/0x72935A6E`, focused diff widened to `CURRENT (1340)`, added
   sign-extension/register churn, and still used `v1`; source was restored and
-  final full verify passed.
+  final full verify passed. A 2026-05-22 post-if common-store revisit that kept
+  the current `temp`/`selectedTrack` assignments but used a direct table branch
+  and moved `cur->hubName = levelName` after the if/else also missed: full
+  verify failed with calculated CRCs `0xD60A52B7/0xA389682F`, focused diff
+  widened to `CURRENT (985)`, and the branch still used `v1` rather than
+  target `t2`. Removing the two selected-track temporary assignments from that
+  post-if common-store shape moved the load/branch into the target `t2` family,
+  but still missed: full verify failed with calculated CRCs
+  `0xDC0852B7/0x5580AC19`, focused diff was `CURRENT (975)`, and the common
+  hub-name store stayed after the join (`sw s4,0(s0)`) instead of the target
+  delay-slot `sw v0,0(s0)`. Source was restored and final full verify passed;
+  do not repeat either post-if common-store variant.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
