@@ -121,7 +121,17 @@
   saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
   scan in the current `a0`-bound/`v1`-loop family. Source was restored and
   final full verify passed; do not repeat this course-height upper-cap
-  compare-order spelling. A
+  compare-order spelling. A 2026-05-23 current-baseline explicit
+  first-compare/do-loop wave-scan spelling missed by collapsing into the known
+  split-bound CRC family: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x5790053C/0x1C8C0179`, and the relinked focused diff regressed to
+  `CURRENT (5755)`. It split the saved wave bound into `a3` and the loop index
+  into `v0` instead of target `v1` bound plus `a0` loop, inserted `spA2`
+  stack-byte traffic, still lacked target `$f20/$f21` prologue saves, and kept
+  early zero in `$f16` instead of target `$f14`. Source was restored and final
+  full verify passed; do not repeat this current-baseline explicit
+  first-compare/do-loop wave-scan spelling. A
   2026-05-23 current-baseline first-speed boss-adjustment divide-before-subtract
   probe (`var_f20 = (var_f20 / 2.0) - 1.0`) missed: object-only focused diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
@@ -2392,6 +2402,18 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this course-height upper-cap compare-order spelling. A baseline
+  current-checkout explicit first-compare plus decrementing `do`-loop wave
+  scan (`var_v1 = gRacerWaveCount - 1; var_a0 = var_v1; if (...) do {
+  var_a0--; } while (...)`) also missed by reproducing the known split-bound
+  CRC family: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x5790053C/0x1C8C0179`, and the relinked
+  focused diff regressed to `CURRENT (5755)`. It allocated the saved bound in
+  `a3` and the walking index in `v0` rather than target `v1`/`a0`, inserted
+  `spA2` stack-byte traffic, still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and broadened wave-block
+  register churn. Source was restored and final full verify passed; do not
+  repeat this current-baseline explicit first-compare/do-loop wave-scan
+  spelling. A baseline
   current-checkout `ABSF` spelling
   for both absolute-velocity temporaries (`var_f14 = ABSF(racer->velocity);
   var_f0 = ABSF(racer->velocity)`) also missed: full verify failed with
