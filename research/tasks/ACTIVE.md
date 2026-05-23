@@ -2464,6 +2464,14 @@
   moved the `0x54(sp)` store while broadening the lateral/vertical FPR
   schedule. Source was restored and final full verify passed; do not repeat
   this single-assignment unary first-product checkpoint-dot spelling.
+  A sibling single-assignment unary second-product spelling of the negated
+  checkpoint dot (`pad2 = (diffX * -tempX) - (tempZ * diffZ)`) also missed:
+  full verify failed with calculated CRCs `0x53B8FDB5/0xDAD64A9D`, the
+  relinked focused diff worsened from promoted-baseline `CURRENT (870)` to
+  `CURRENT (1326)`, and the tail broadened the lateral/vertical FPR schedule
+  instead of matching the target object-dot/checkpoint-dot order. Source was
+  restored and final full verify passed; do not repeat this
+  unary-second-product checkpoint-dot spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
