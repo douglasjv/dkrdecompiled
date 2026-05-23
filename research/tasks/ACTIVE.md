@@ -194,6 +194,16 @@
   `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
   Source was restored and final full verify passed; do not repeat this
   exit-throttle single-precision literal spelling. A 2026-05-23
+  current-baseline exit-throttle direct dataflow probe
+  (`if (racer->exitObj) { racerThrottle = racer->throttle = 0.5; } else {
+  racerThrottle = racer->throttle; }`) missed badly: full verify failed with
+  calculated CRCs `0x37836355/0x67E5A883`, and the relinked focused diff
+  regressed to `CURRENT (4665)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave scan in the current `a0`-bound/`v1`-loop family, and disturbed later
+  call-adjacent/sound scheduling. Source was restored and final full verify
+  passed; do not repeat this exit-throttle direct dataflow spelling. A
+  2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
   CRCs `0x9A37265B/0xDC30F32A`, and the relinked focused diff regressed to
@@ -2610,7 +2620,17 @@
   `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this exit-throttle
-  single-precision literal spelling. A baseline current-checkout opening
+  single-precision literal spelling. A baseline current-checkout exit-throttle
+  direct dataflow spelling (`if (racer->exitObj) { racerThrottle =
+  racer->throttle = 0.5; } else { racerThrottle = racer->throttle; }`) also
+  missed badly: full verify failed with calculated CRCs
+  `0x37836355/0x67E5A883`, and the relinked focused diff regressed to
+  `CURRENT (4665)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop, and disturbed later call-adjacent/sound scheduling.
+  Source was restored and final full verify passed; do not repeat this
+  exit-throttle direct dataflow spelling. A baseline current-checkout opening
   update-rate single-precision multiplier spelling (`updateRateF *= 1.09f`)
   also missed badly: full verify failed with calculated CRCs
   `0x9A37265B/0xDC30F32A`, and the relinked focused diff regressed to

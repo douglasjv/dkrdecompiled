@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 06:44:14Z
+- Generated at: 2026-05-23 06:47:11Z
 - Branch: `master`
-- HEAD: `f569afb8`
+- HEAD: `391acefe`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline opening update-rate single-precision multiplier spelling: updateRateF *= 1.09f. Full verify failed with calculated CRCs 0x9A37265B/0xDC30F32A, and relinked focused diff regressed to CURRENT (4943): opening multiply became mul.s instead of target-like double-literal mul.d/cvt.s.d, no target $f20/$f21 saves, early zero stayed $f16, wave scan current a0-bound/v1-loop. Source was restored.
+- Summary: Rejected current-baseline exit-throttle direct dataflow spelling: if (racer->exitObj) { racerThrottle = racer->throttle = 0.5; } else { racerThrottle = racer->throttle; }. Full verify failed with calculated CRCs 0x37836355/0x67E5A883, and relinked focused diff regressed to CURRENT (4665): no target $f20/$f21 saves, early zero stayed $f16, wave scan current a0-bound/v1-loop, later call-adjacent/sound scheduling disturbed. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline exit-throttle direct dataflow, opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
