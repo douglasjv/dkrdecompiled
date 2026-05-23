@@ -2152,7 +2152,15 @@
   target `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this first-speed
-  boss-adjustment multiply spelling. A
+  boss-adjustment multiply spelling. A baseline current-checkout first-speed
+  upper-clamp zero-threshold spelling (`if (var_f20 > 0.0) { var_f20 = 4; }`)
+  also missed: full verify failed with calculated CRCs
+  `0x67440D57/0x26427635`, and the relinked focused diff worsened to
+  `CURRENT (3570)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this first-speed upper-clamp zero-threshold spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
