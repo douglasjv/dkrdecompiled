@@ -766,6 +766,15 @@
   in `$f16` instead of target `$f14`, and left the wave scan in the current
   `a0`-bound/`v1`-loop family. Source was restored and final full verify
   passed; do not repeat this drift-start `racerVelocity >= 8.0f` spelling. A
+  2026-05-23 current-baseline `spA2` speed-threshold single-precision probe
+  (`racerVelocity < 8.0f` only in the `spA2 = TRUE` guard) also missed: full
+  verify failed with calculated CRCs `0x602FD375/0x8F5948D3`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (5940)`. It shifted that
+  compare into a single-precision family, still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was
+  restored and final full verify passed; do not repeat this `spA2`
+  `racerVelocity < 8.0f` spelling. A
   2026-05-23 current-baseline grouped x/y first-speed expression probe
   (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
   with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff

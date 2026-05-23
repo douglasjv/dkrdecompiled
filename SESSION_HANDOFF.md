@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 12:05:11Z
+- Generated at: 2026-05-23 22:10:14Z
 - Branch: `master`
-- HEAD: `2502d653`
+- HEAD: `3e0ff525`
 - Completed task: `func_80049794`
-- Summary: Recorded drift-start racerVelocity >= 8.0f threshold miss: promoted full verify failed with CRCs 0x601FC875/0x0F7B5827, relinked focused diff was CURRENT (5670), and the known missing f20/f21 prologue saves, early f14 zero, and target wave-scan allocation remained; source restored.
+- Summary: Recorded spA2 racerVelocity < 8.0f threshold miss: promoted full verify failed with CRCs 0x602FD375/0x8F5948D3, relinked focused diff was CURRENT (5940), shifted that compare into a single-precision family, and the known f20/f21, early f14 zero, and wave-scan allocation drift remained; source restored.
 
 ## Validation
 
