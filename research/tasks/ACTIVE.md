@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline race-start y-velocity double-literal probe
+  (`obj->y_velocity = -5.0` instead of `-5.0f` in the
+  `gRaceStartTimer == 100` path) missed as a no-movement promoted-baseline
+  family: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  and the relinked focused diff stayed `CURRENT (2760)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
+  family, and only shifted constants and later call targets in the promoted
+  current-baseline family. Source was restored and final full verify passed;
+  do not repeat this race-start y-velocity double-literal spelling. A
   2026-05-23 current-baseline brake lower-clamp zero literal probe
   (`if (racer->brake < 0) { racer->brake = 0; }` instead of the `0.0f`
   compare/store) missed: full verify failed with calculated CRCs
