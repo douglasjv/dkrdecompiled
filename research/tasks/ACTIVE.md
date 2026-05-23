@@ -3724,7 +3724,16 @@
   `CURRENT (2860)` and still showed the unwanted early `gCurrentLevelModel`
   spill at `0x60(sp)` plus broad segment/grid/tail drift. Source was restored
   and final full verify passed; do not repeat this collision-output
-  store-order spelling.
+  store-order spelling. A promoted current-source pointer-arithmetic
+  segment-setup spelling without the earlier `pad3` removal (`currentSegment =
+  gCurrentLevelModel->segments + spB0[var_fp]`; `currentBoundingBox =
+  gCurrentLevelModel->segmentsBoundingBoxes + spB0[var_fp]`) also missed:
+  full verify failed with the promoted-baseline CRC family
+  `0x7856718A/0x66208CAA`, relinked `./diff.sh func_8002B0F4` stayed
+  `CURRENT (2860)`, and the unwanted early `gCurrentLevelModel` spill remained
+  at `0x60(sp)` with broad segment/grid/tail drift. Source was restored and
+  final full verify passed; do not repeat this current-layout
+  pointer-arithmetic segment-setup spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

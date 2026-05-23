@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:18:04Z
+- Generated at: 2026-05-23 02:21:57Z
 - Branch: `master`
-- HEAD: `ca46f987`
-- Completed task: `func_80049794`
-- Summary: Close save-family x/z/y/chained-zero/steer-noop branch with existing temp_t7 as the wave-bound carrier missed; full verify failed with CRCs 0xEA44B192/0x165715AD and relinked focused diff regressed to CURRENT (6825), preserving the target 0xf8 frame and f20/f21 saves but widening wave-register churn. Source was restored.
+- HEAD: `a3131811`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted current-source pointer-arithmetic segment setup without pad3 removal missed; full verify failed with CRCs 0x7856718A/0x66208CAA and relinked focused diff stayed CURRENT (2860), preserving the known unwanted early gCurrentLevelModel spill at 0x60(sp). Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat close save-family temp_t7/var_t9 wave-bound carriers; if staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating close-branch bound-carrier register aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat close save-family temp_t7/var_t9 wave-bound carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating close-branch bound-carrier register aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
