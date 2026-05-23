@@ -1732,6 +1732,14 @@
   the early zero still allocated in `$f16` instead of target `$f14`. Source
   was restored and final full verify passed; do not repeat this baseline
   `spD8` early-zero carrier.
+  A sibling baseline current-checkout early-zero carrier through existing
+  `spD4` (`spD4 = 0.0f; racer->unk84 = spD4; racer->unk88 = spD4`) also
+  produced no object movement: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`, target `$f20/$f21` prologue saves were still absent, and
+  the early zero still allocated in `$f16` instead of target `$f14`. Source
+  was restored and final full verify passed; do not repeat this baseline
+  `spD4` early-zero carrier.
   A close save-family continuation
   using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
   grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:55:04Z
+- Generated at: 2026-05-23 01:58:28Z
 - Branch: `master`
-- HEAD: `a4bc652e`
-- Completed task: `func_80059208`
-- Summary: Promoted func_80059208 and tested a checkpoint-dot sum-order/product-order variant, pad2 = -((diffX * tempX) + (diffZ * tempZ)). Full verify failed with calculated CRCs 0x53BCC0DF/0xB8771E78; relinked ./diff.sh func_80059208 worsened to CURRENT (1445) versus the promoted baseline CURRENT (870). Source was restored.
+- HEAD: `bbbb3115`
+- Completed task: `func_80049794`
+- Summary: Promoted func_80049794 and tested a baseline early-zero carrier through existing spD4 (spD4 = 0.0f; racer->unk84 = spD4; racer->unk88 = spD4). Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514; relinked ./diff.sh func_80049794 stayed CURRENT (2760), with target f20/f21 saves still absent and early zero still in f16 instead of target f14. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but func_80059208 remains active. Do not repeat the rejected checkpoint-dot variant pad2 = -((diffX * tempX) + (diffZ * tempZ)); prefer a fresh unsaturated final-tail hypothesis or pivot to another active packet if no narrow shape remains.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat the baseline spD4 early-zero carrier; if staying on func_80049794, prefer a fresh close save-family or wave-register hypothesis from ACTIVE.md rather than another simple baseline early-zero carrier.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
