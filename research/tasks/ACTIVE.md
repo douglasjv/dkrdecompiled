@@ -1923,7 +1923,16 @@
   `CURRENT (3830)`, and the early branch order changed without restoring the
   target `$f20/$f21` saves or `$f14` zero family. Source was restored and
   final full verify passed; do not repeat this commuted spinout-zap condition
-  order. A baseline
+  order. A baseline current-checkout wave-gate condition reorder
+  (`racer->vehicleIDPrev != VEHICLE_WIZPIG && gCurrentPlayerIndex !=
+  PLAYER_COMPUTER && gRacerWaveCount != 0`) also missed: full verify failed
+  with calculated CRCs `0x5EC30E74/0x34AE258F`, relinked focused diff
+  regressed to `CURRENT (4880)`, the branch order moved the vehicle check
+  before the current-player check instead of target player-first order,
+  `$f20/$f21` prologue saves were still absent, early zero stayed in `$f16`,
+  and the wave bound/index allocation remained current `a0`/`v1` instead of
+  target `v1`/`a0`. Source was restored and final full verify passed; do not
+  repeat this baseline wave-gate condition reorder. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.

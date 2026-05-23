@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:58:28Z
+- Generated at: 2026-05-23 03:01:55Z
 - Branch: `master`
-- HEAD: `574c59b0`
+- HEAD: `1f23ceaf`
 - Completed task: `func_80049794`
-- Summary: Current-baseline y-first speed magnitude expression order missed; full verify failed with CRCs 0x5FDDE03F/0x8DEA1B78 and relinked focused diff reported CURRENT (2775). The frame stayed 0xf8, but $f20/$f21 prologue saves were still absent, early zero stayed in $f16, and the wave bound/index allocation remained reversed as current a0/v1 instead of target v1/a0. Source was restored.
+- Summary: Baseline wave-gate condition reorder missed; full verify failed with CRCs 0x5EC30E74/0x34AE258F and relinked focused diff reported CURRENT (4880). The condition moved the vehicle check before the current-player check instead of target player-first order, $f20/$f21 prologue saves were still absent, early zero stayed in $f16, and the wave bound/index allocation remained reversed as current a0/v1 instead of target v1/a0. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline wave-gate condition reorder, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
