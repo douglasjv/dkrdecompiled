@@ -163,7 +163,15 @@
   `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target `$f14`,
   and left the wave scan in the current `a0`-bound/`v1`-loop family. Source was
   restored and final full verify passed; do not repeat this `newSpinoutTimer`
-  `s32` type spelling. A
+  `s32` type spelling. A current-baseline zipper rumble enum spelling probe
+  (`rumble_set(racer->playerIndex, RUMBLE_TYPE_8)` instead of the current
+  literal `8`) also missed as a no-movement family: full verify failed with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target `$f14`,
+  and left the wave scan in the current `a0`-bound/`v1`-loop family. Source was
+  restored and final full verify passed; do not repeat this zipper rumble
+  `RUMBLE_TYPE_8` spelling. A
   2026-05-23 current-baseline independent drift-reset check probe
   (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`
   instead of the current `||` guard) missed: full verify failed with
