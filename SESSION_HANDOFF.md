@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 03:13:00Z
+- Generated at: 2026-05-23 03:17:53Z
 - Branch: `master`
-- HEAD: `23184cf6`
+- HEAD: `cd87fa66`
 - Completed task: `func_80049794`
-- Summary: Current-baseline drift flag type probe (`s32 spA2` instead of `s8 spA2`) missed; full verify failed with CRCs 0x37DDDF63/0x9ECDB374 and relinked focused diff worsened to CURRENT (3417). The probe widened the frame to 0x100, shifted stack slots, still lacked $f20/$f21 prologue saves, kept early zero in $f16, and left the wave bound/index allocation reversed as current a0/v1 instead of target v1/a0. Source was restored.
+- Summary: Current-baseline first-speed carrier probes through existing spEC and spCC both missed; spEC failed full verify with CRCs 0x18B44436/0x9C5E8797 and relinked focused diff worsened to CURRENT (3320), while spCC failed with CRCs 0x5FF63A3F/0x2631AADC and CURRENT (3210). Both kept the target $f20/$f21 prologue saves absent, kept early zero in $f16 instead of $f14, and left the wave bound/index allocation reversed as current a0/v1 instead of target v1/a0. Source was restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- => Verify: OK after restore
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK after restoring source)
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline wave-gate condition reorder, current-baseline var_a0/var_v1 declaration-order swap, current-baseline drift_direction integer reset spelling, current-baseline s32 spA2 drift-flag type probe, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order, drift-flag type, or bound-carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline spEC/spCC first-speed carriers, z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline wave-gate condition reorder, current-baseline var_a0/var_v1 declaration-order swap, current-baseline drift_direction integer reset spelling, current-baseline s32 spA2 drift-flag type probe, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order, first-speed carrier, drift-flag type, or bound-carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
