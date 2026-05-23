@@ -138,6 +138,15 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline `spA3` type probe (`s32 spA3` instead of the
+  current byte local) missed: full verify failed with calculated CRCs
+  `0x8FDDDF9D/0x16677070`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (4010)`. It widened the frame to `0x100`, changed the target
+  byte-local traffic around `0xa3(sp)` into word traffic around `0xa8(sp)`,
+  still lacked target `$f20/$f21` prologue saves, kept early zero in `$f16`
+  instead of target `$f14`, and left the wave scan in the current
+  `a0`-bound/`v1`-loop family. Source was restored and final full verify passed;
+  do not repeat this `spA3` `s32` type spelling. A
   2026-05-23 current-baseline independent drift-reset check probe
   (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`
   instead of the current `||` guard) missed: full verify failed with
