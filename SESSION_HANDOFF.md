@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:11:07Z
+- Generated at: 2026-05-23 09:15:41Z
 - Branch: `master`
-- HEAD: `ae4c0162`
-- Completed task: `func_80049794`
-- Summary: Rejected current-baseline wave-height threshold commute; promoting source with gRacerCurrentWave[var_a0]->waveHeight < 5 + obj->trans.y_position failed verify with CRCs 0x5FE1E03F/0x88CC2028 and relinked focused diff worsened to CURRENT (2770), then source was restored.
+- HEAD: `d411bde7`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected partial bottom default-water store-order probe; promoting source with default writes ordered rot.x, waveHeight, rot.z, rot.y failed verify with CRCs 0x281EE85B/0x4ACE73BF and relinked focused diff regressed to CURRENT (3835), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For func_80049794, do not repeat current-baseline wave-height threshold commute, attach-point model-index postincrement, attach-point grounded-wheel branch-order, late boost-emitter branch-order, race-start y-velocity double-literal, brake lower-clamp zero literal, A-button throttle clamp literal, low-speed drag multiply grouping, or other recorded wave-scan/early-zero/current-baseline spellings in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For func_8002B0F4, do not repeat partial bottom default-water store-order, explicit default-water height-cast, target default-water store-order, bottom-water condition-order, bottom segment-range guard reorder, current-source texture-index carriers, grid bitmask rewrites, outer segment-loop while, or other recorded model-spill/tail spellings in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
