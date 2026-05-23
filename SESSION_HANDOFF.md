@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 07:13:19Z
+- Generated at: 2026-05-23 07:18:02Z
 - Branch: `master`
-- HEAD: `401d3ac6`
+- HEAD: `15f4bef1`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline buoyancy single-precision nonzero guard spelling: changed if (racer->buoyancy != 0.0) to if (racer->buoyancy != 0.0f) after the post-rotation unk1FE gravity assignments. Full verify failed with calculated CRCs 0xA7264CF3/0x20C04378, and relinked focused diff regressed to CURRENT (3790): target double zero compare became c.eq.s, no target $f20/$f21 saves, early zero stayed $f16, wave scan stayed current a0-bound/v1-loop, and later buoyancy/gravity stayed on $f14 instead of target $f20. Source was restored.
+- Summary: Rejected current-baseline direct selected-wave height subtraction spelling: changed the two-step waveHeight load/subtract into var_f2 = (obj->trans.y_position - gRacerCurrentWave[var_a0 + 1]->waveHeight) - 10. Object-only focused diff first printed stale CURRENT (0). Full verify failed with calculated CRCs 0x602A473F/0x3E5DF743, and relinked focused diff regressed to CURRENT (4055): no target $f20/$f21 saves, early zero stayed $f16, wave scan stayed current a0-bound/v1-loop, and the selected-wave height subtraction shifted away from target $f2/$f18/$f4/$f6 scheduling. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline buoyancy single-precision nonzero guard, gravity else-if spelling, 5.5f gravity literal, OBJ_EMIT_9 store-before-5.5 gravity assignment, grouped x/y or grouped z/y first-speed expression, throttle-rate single-precision literal, brake direct dataflow, exit-throttle direct dataflow, opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline direct selected-wave height subtraction, buoyancy single-precision nonzero guard, gravity else-if spelling, 5.5f gravity literal, OBJ_EMIT_9 store-before-5.5 gravity assignment, grouped x/y or grouped z/y first-speed expression, throttle-rate single-precision literal, brake direct dataflow, exit-throttle direct dataflow, opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, selected-wave pointer/index cache, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

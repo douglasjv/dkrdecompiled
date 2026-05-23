@@ -266,7 +266,18 @@
   `a0`-bound/`v1`-loop family, and kept the later buoyancy/gravity path on
   `$f14` instead of target `$f20`. Source was restored and final full verify
   passed; do not repeat this current-baseline buoyancy single-precision
-  nonzero guard spelling. A
+  nonzero guard spelling. A 2026-05-23 current-baseline direct selected-wave
+  height subtraction probe (`var_f2 = (obj->trans.y_position -
+  gRacerCurrentWave[var_a0 + 1]->waveHeight) - 10`) missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x602A473F/0x3E5DF743`, and the relinked focused diff
+  regressed to `CURRENT (4055)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave scan in the current `a0`-bound/`v1`-loop family, and shifted the local
+  selected-wave height subtraction into `$f18`/`$f4`/`$f6`/`$f8` scheduling
+  rather than target `$f2`/`$f18`/`$f4`/`$f6`. Source was restored and final
+  full verify passed; do not repeat this direct selected-wave height
+  subtraction spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2576,8 +2587,20 @@
   `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this selected-wave
-  pointer cache. A baseline current-checkout `register f32 var_f2` allocation
-  hint also missed as a no-improvement family: full verify failed with the
+  pointer cache. A baseline current-checkout direct selected-wave height
+  subtraction spelling (`var_f2 = (obj->trans.y_position -
+  gRacerCurrentWave[var_a0 + 1]->waveHeight) - 10`) also missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x602A473F/0x3E5DF743`, and the relinked focused diff
+  regressed to `CURRENT (4055)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop, and shifted the selected-wave height
+  subtraction into `$f18`/`$f4`/`$f6`/`$f8` scheduling rather than target
+  `$f2`/`$f18`/`$f4`/`$f6`. Source was restored and final full verify passed;
+  do not repeat this direct selected-wave height subtraction spelling. A
+  baseline current-checkout `register f32 var_f2` allocation hint also missed
+  as a no-improvement family: full verify failed with the
   promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused
   diff stayed `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue
   saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
