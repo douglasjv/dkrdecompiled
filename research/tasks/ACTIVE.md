@@ -538,6 +538,17 @@
   left the wave loop reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this normal-flight side-force guard condition-order spelling. A
+  2026-05-23 current-baseline normal-flight pitch damping factor probe (hoist
+  the shared `obj->trans.rotation.x_rotation -=
+  (obj->trans.rotation.x_rotation * updateRate) >> 4` before the R-trigger
+  `19`/`30` multiplier branch) missed: full verify failed with calculated CRCs
+  `0x81BCA331/0x35054A7B`, and relinked `./diff.sh func_80049794` reported
+  `CURRENT (2480)`. It did not recover target `$f20/$f21` prologue saves, used
+  the smaller saved-register stack slots, kept early zero in `$f16` instead of
+  `$f14`, and left the wave loop reversed as current `a0`-bound/`v1`-loop
+  instead of target `v1`-bound/`a0`-loop. Source was restored and final full
+  verify passed; do not repeat this normal-flight pitch damping factor
+  spelling. A
   2026-05-23 current-baseline grounded boss throttle/brake condition-order
   probe (`racer->velocity > -6.0 && racer->vehicleID >= VEHICLE_BOSSES`)
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
