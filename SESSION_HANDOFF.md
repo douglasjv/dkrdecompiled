@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:18:48Z
+- Generated at: 2026-05-23 22:21:03Z
 - Branch: `master`
-- HEAD: `65bf9224`
+- HEAD: `3c3a49dc`
 - Completed task: `func_80049794`
-- Summary: Recorded close save-family explicit-subtract wave-speed miss: x/z/y pre-sqrtf, chained-zero, steer-noop, no trailing pads plus racerVelocity = 0.0f - racer->velocity failed full verify with CRCs 0xB8278BD1/0xEE8E0068; relinked focused diff was CURRENT (5440), keeping f20/f21 saves but broadening wave FPR/register drift and still missing the call-adjacent f14 save/reload.
+- Summary: Recorded A-button throttle upper-compare single-precision miss: changing only racer->throttle > 1.0f failed full verify with CRCs 0x60AF757D/0x32C9B3B0; relinked focused diff was CURRENT (4400), dropped f20/f21 prologue saves, kept early zero in f16, and left wave a0/v1 drift.
 
 ## Validation
 

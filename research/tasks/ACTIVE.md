@@ -376,6 +376,15 @@
   call targets in the promoted current-baseline family. Source was restored and
   final full verify passed; do not repeat this A-button throttle clamp literal
   spelling. A
+  2026-05-23 current-baseline A-button throttle upper-compare single-precision
+  probe (`if (racer->throttle > 1.0f)`) also missed: full verify failed with
+  calculated CRCs `0x60AF757D/0x32C9B3B0`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (4400)`. It dropped the
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
+  family, and widened later gravity/particle FPR scheduling. Source was
+  restored and final full verify passed; do not repeat this A-button throttle
+  upper-compare `1.0f` spelling. A
   2026-05-23 current-baseline low-speed drag multiply grouping probe
   (`racer->velocity * (spD8 * 8.0f)` instead of
   `racer->velocity * spD8 * 8.0f`) missed: full verify failed with calculated
