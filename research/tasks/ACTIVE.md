@@ -23,15 +23,15 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 vertex pointer-loop probe (rewriting the final vertex population
-  from index loop to `xPositions`/`zPositions` pointer walk) missed. Full
-  verify failed with calculated CRCs `0x93853BFF/0xB63372C5`, and relinked
-  `./diff.sh trackbg_render_flashy` worsened from promoted baseline
-  `CURRENT (1808)` to `CURRENT (2278)` with a `0x160` frame. Source was
-  restored and final full verify passed; do not repeat this vertex pointer-loop
-  spelling. Earlier color fallback initialization-order, final global pointer
-  store-order, final triangle postincrement, and center position store-order
-  probes also missed; do not repeat them.
+  2026-05-23 outer-ring x5 multiply-order probe (`xPositions[5] =
+  -scaledXCos - (scaledXSin * 2.0f)`) missed with no relinked focused
+  movement: full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`,
+  and relinked `./diff.sh trackbg_render_flashy` stayed at promoted baseline
+  `CURRENT (1808)`. Source was restored and final full verify passed; do not
+  repeat this x5 multiply-order spelling. Earlier vertex pointer-loop, color
+  fallback initialization-order, final global pointer store-order, final
+  triangle postincrement, and center position store-order probes also missed;
+  do not repeat them.
   `func_80059208` also remains active after a 2026-05-23 courseCheckpoint
   threshold spelling (`racer->courseCheckpoint >= -0x7CFF` instead of
   `racer->courseCheckpoint > -0x7D00`) missed with no relinked focused
@@ -4537,6 +4537,14 @@
   sum shifted the early first/outer position-array schedule while preserving
   the target-sized `0x158` frame. Source was restored and final full verify
   passed. Do not repeat this single-site x5 grouped-negated-sum spelling.
+  Rewriting only `xPositions[5]` from
+  `-scaledXCos - (2.0f * scaledXSin)` to
+  `-scaledXCos - (scaledXSin * 2.0f)` also produced no relinked focused
+  movement: full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`,
+  `./diff.sh trackbg_render_flashy` stayed `CURRENT (1808)`, and the diff
+  remained in the same early negative-cosine/position-array register-order
+  family. Source was restored and final full verify passed; do not repeat this
+  single-site x5 multiply-order spelling.
   Rewriting only `xPositions[6]` from
   `scaledXCos - (2.0f * scaledXSin)` to
   `-(2.0f * scaledXSin) + scaledXCos` also produced no useful movement: full

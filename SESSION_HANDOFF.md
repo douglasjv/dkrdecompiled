@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 08:57:13Z
+- Generated at: 2026-05-23 09:00:52Z
 - Branch: `master`
-- HEAD: `8c9be1cb`
-- Completed task: `func_80059208`
-- Summary: Rejected courseCheckpoint threshold spelling; promoting current source with racer->courseCheckpoint >= -0x7CFF failed verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused diff stayed CURRENT (870), then source was restored.
+- HEAD: `48b8f576`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected outer-ring x5 multiply-order probe; promoting current source with xPositions[5] = -scaledXCos - (scaledXSin * 2.0f) failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For func_80059208, do not repeat courseCheckpoint threshold, splineIndex comparison-direction, splineIndex literal boolean, final object-dot/checkpoint-dot carrier, final cast-carrier, normalization reciprocal double-literal, normalization guard comparison-order, or magnitude sum-order spellings recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For trackbg_render_flashy, do not repeat x5 multiply-order, vertex pointer-loop, color fallback initialization-order, final global pointer store-order, final triangle postincrement, center position store-order, or other recorded first/outer position-array and UV spellings in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
