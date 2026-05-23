@@ -33,18 +33,18 @@
   vertex pointer-loop, color fallback initialization-order, final global
   pointer store-order, final triangle postincrement, and center position
   store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-23 final vertical
-  correction reciprocal-multiply spelling (`diffY =
-  (obj->trans.y_position - tempY) * (1.0f / divisor)` instead of dividing by
-  `divisor`) missed: full verify failed with calculated CRCs
-  `0x4BE5F47F/0x9BA27DDB`, and relinked `./diff.sh func_80059208` worsened
-  from promoted baseline `CURRENT (870)` to `CURRENT (1782)` by shifting the
-  final vertical and tail label schedule. Source was restored and final full
-  verify passed; do not repeat this final vertical reciprocal-multiply
-  spelling. Earlier courseCheckpoint threshold, splineIndex
-  comparison-direction, normalization reciprocal double-literal, normalization
-  guard comparison-order, and magnitude sum-order probes also missed; do not
-  repeat them.
+  `func_80059208` also remains active after a 2026-05-23 final lateral cast
+  width probe (`racer->unk1BA += (s16) diffX` instead of `(s32) diffX`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x4EB921DF/0x33EF7BFD`, and relinked
+  `./diff.sh func_80059208` worsened from promoted baseline `CURRENT (870)` to
+  `CURRENT (935)` by adding a halfword cast/sign-extension family in the final
+  lateral update while leaving the object-dot/checkpoint-dot tail drift. Source
+  was restored and final full verify passed; do not repeat this final lateral
+  `(s16) diffX` cast spelling. Earlier final vertical reciprocal-multiply,
+  courseCheckpoint threshold, splineIndex comparison-direction, normalization
+  reciprocal double-literal, normalization guard comparison-order, and
+  magnitude sum-order probes also missed; do not repeat them.
   `func_8002B0F4` remains active after a 2026-05-23 collision-plane index
   local type probe (`s32 temp` to `u16 temp`, matching `basePlaneIndex`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -3917,7 +3917,16 @@
   divide/multiply traffic in the final vertical correction path and shifted
   downstream tail labels while leaving the object-dot/checkpoint-dot drift
   unresolved. Source was restored and final full verify passed; do not repeat
-  this final vertical reciprocal-multiply spelling.
+  this final vertical reciprocal-multiply spelling. A 2026-05-23 final lateral
+  cast-width spelling that changed only `racer->unk1BA += (s32) diffX` to
+  `racer->unk1BA += (s16) diffX` also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x4EB921DF/0x33EF7BFD`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (935)`. The diff added a
+  halfword cast/sign-extension family in the final lateral update and left the
+  object-dot/checkpoint-dot plus vertical FPR drift unresolved. Source was
+  restored and final full verify passed; do not repeat this final lateral
+  `(s16) diffX` cast spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
