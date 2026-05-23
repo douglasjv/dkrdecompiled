@@ -1445,7 +1445,13 @@
   worsened to `CURRENT (4365)`, and although the target `0xf8` frame and
   `$f20/$f21` prologue saves remained, the wave `a0`/`v1` swap and later
   scheduling drift were unchanged. Source was restored and final full verify
-  passed; do not repeat this first-speed `segmentXVelocity` carrier. A
+  passed; do not repeat this first-speed `segmentXVelocity` carrier. A close
+  save-family `racerVelocity` first-speed carrier (`racerVelocity = x*x;
+  var_f20 = racerVelocity; var_f20 += z*z; var_f20 += y*y`) also missed: full
+  verify failed with calculated CRCs `0xB8B409CD/0xBE8F170B`, relinked focused
+  diff widened to `CURRENT (4555)`, early zero shifted from target `$f14` to
+  `$f12`, and the wave `a0`/`v1` swap remained. Source was restored and final
+  full verify passed; do not repeat this first-speed `racerVelocity` carrier. A
   2026-05-17 save-family
   wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
