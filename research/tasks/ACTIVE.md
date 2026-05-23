@@ -44,7 +44,12 @@
   focused diff regressed from promoted baseline `CURRENT (2780)` to
   `CURRENT (3745)`. It kept the unwanted early `gCurrentLevelModel` spill
   family. Source was restored and final full verify passed; do not repeat this
-  bottom default-water store-order spelling.
+  bottom default-water store-order spelling. A follow-up bottom-water
+  condition-order probe (`gWaveBlockCount != 0 && currentSegment->hasWaves`)
+  also missed: full verify failed with calculated CRCs
+  `0x779A718A/0xE51286EE`, and relinked `./diff.sh func_8002B0F4` regressed
+  to `CURRENT (4010)`. Source was restored and final full verify passed; do
+  not repeat this condition-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline attach-point model-index postincrement probe
@@ -5058,6 +5063,12 @@
   `0x60(sp)` and broadened segment/grid/tail drift. Source was restored and
   final full verify passed; do not repeat this bottom default-water store-order
   spelling.
+  A promoted current-source bottom-water condition-order spelling that changed
+  `if (currentSegment->hasWaves && gWaveBlockCount != 0)` to
+  `if (gWaveBlockCount != 0 && currentSegment->hasWaves)` also missed: full
+  verify failed with calculated CRCs `0x779A718A/0xE51286EE`, and relinked
+  `./diff.sh func_8002B0F4` regressed to `CURRENT (4010)`. Source was restored
+  and final full verify passed; do not repeat this condition-order spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

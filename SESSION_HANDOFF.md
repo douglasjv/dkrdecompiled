@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 08:25:36Z
+- Generated at: 2026-05-23 08:29:29Z
 - Branch: `master`
-- HEAD: `72bcfa2d`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected final vertex alpha ternary spelling in trackbg_render_flashy: changed (i <= 4) ? 255 : 0 to equivalent (i < 5) ? 255 : 0. Full verify failed with calculated CRCs 0x93D338FF/0x03D9C8FE, and relinked focused diff stayed CURRENT (1808) in the same early position-array register/order family. Source was restored.
+- HEAD: `6af01c41`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected bottom-water condition-order probe; promoted current source with gWaveBlockCount checked before currentSegment->hasWaves failed verify with CRCs 0x779A718A/0xE51286EE and relinked focused diff CURRENT (4010), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For trackbg_render_flashy, do not repeat final vertex alpha ternary, center position store-order, or the other recorded position/UV aliases in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For func_8002B0F4, do not repeat bottom-water condition-order, bottom default-water store-order, or the recorded pad3/model-spill families in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
