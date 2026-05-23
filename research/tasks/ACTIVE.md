@@ -1994,6 +1994,17 @@
   `v0` loop-index order instead of target `v0` count, `v1` bound, `a0`
   loop-index order. Source was restored and final full verify passed; do not
   repeat this current-baseline `var_v0` wave-count carrier. A baseline
+  current-checkout selected-wave index carrier (`var_t9 = var_a0 + 1`, then
+  using `gRacerCurrentWave[var_t9]` for both post-scan accesses) also missed:
+  full verify failed with calculated CRCs `0x3B15743F/0x1E2ED6C8`, and
+  relinked focused diff worsened to `CURRENT (4365)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, kept the wave loop reversed as current `a0` bound plus `v1`
+  loop-index rather than target `v1` bound plus `a0` loop-index, and
+  recomputed the selected-wave offset for the `rot.y` check instead of
+  reusing the target post-scan offset. Source was restored and final full
+  verify passed; do not repeat this current-baseline selected-wave index
+  carrier. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
