@@ -95,7 +95,14 @@
   promoted baseline `CURRENT (2860)`. It kept the unwanted early
   `gCurrentLevelModel` spill at `0x60(sp)` with broad segment/grid/tail drift.
   Source was restored and final full verify passed; do not repeat this
-  collision-plane index local type spelling.
+  collision-plane index local type spelling. A sibling collision-plane
+  nonzero literal-type probe (`if (tempVec4f.y != 0.0f)` instead of the
+  current double literal) also missed: full verify failed with calculated CRCs
+  `0xF03EAC35/0x346A795F`, and relinked `./diff.sh func_8002B0F4` regressed
+  to `CURRENT (3815)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` and broadened segment/grid/tail
+  drift. Source was restored and final full verify passed; do not repeat this
+  collision-plane nonzero `0.0f` literal spelling.
   Earlier partial/default water store-order, explicit default-water height
   cast, bottom segment-range guard reorder, target default-water store-order,
   and bottom-water condition-order probes also missed; do not repeat them.
@@ -5491,7 +5498,14 @@
   diff retained the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`
   plus broad segment/grid/tail register drift. Source was restored and final
   full verify passed; do not repeat this collision-plane nonzero guard
-  operand-order spelling.
+  operand-order spelling. A promoted current-source collision-plane nonzero
+  literal-type spelling (`if (tempVec4f.y != 0.0f)` instead of the current
+  double literal) also missed: full verify failed with calculated CRCs
+  `0xF03EAC35/0x346A795F`, and relinked `./diff.sh func_8002B0F4` regressed
+  to `CURRENT (3815)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` and broadened segment/grid/tail
+  drift. Source was restored and final full verify passed; do not repeat this
+  collision-plane nonzero `0.0f` literal spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
