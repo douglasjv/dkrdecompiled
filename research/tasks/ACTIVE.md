@@ -23,15 +23,15 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 outer-ring x5 multiply-order probe (`xPositions[5] =
-  -scaledXCos - (scaledXSin * 2.0f)`) missed with no relinked focused
+  2026-05-23 outer-ring z5 multiply-order probe (`zPositions[5] =
+  scaledXSin - (scaledXCos * 2.0f)`) missed with no relinked focused
   movement: full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`,
   and relinked `./diff.sh trackbg_render_flashy` stayed at promoted baseline
   `CURRENT (1808)`. Source was restored and final full verify passed; do not
-  repeat this x5 multiply-order spelling. Earlier vertex pointer-loop, color
-  fallback initialization-order, final global pointer store-order, final
-  triangle postincrement, and center position store-order probes also missed;
-  do not repeat them.
+  repeat this z5 multiply-order spelling. Earlier x5 multiply-order, vertex
+  pointer-loop, color fallback initialization-order, final global pointer
+  store-order, final triangle postincrement, and center position store-order
+  probes also missed; do not repeat them.
   `func_80059208` also remains active after a 2026-05-23 final vertical
   correction reciprocal-multiply spelling (`diffY =
   (obj->trans.y_position - tempY) * (1.0f / divisor)` instead of dividing by
@@ -4556,7 +4556,14 @@
   `./diff.sh trackbg_render_flashy` stayed `CURRENT (1808)`, and the diff
   remained in the same early negative-cosine/position-array register-order
   family. Source was restored and final full verify passed; do not repeat this
-  single-site x5 multiply-order spelling.
+  single-site x5 multiply-order spelling. Rewriting only `zPositions[5]` from
+  `scaledXSin - (2.0f * scaledXCos)` to
+  `scaledXSin - (scaledXCos * 2.0f)` also produced no relinked focused
+  movement: full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`,
+  `./diff.sh trackbg_render_flashy` stayed `CURRENT (1808)`, and the diff
+  remained in the same early negative-cosine/outer-ring register-order family.
+  Source was restored and final full verify passed; do not repeat this
+  single-site z5 multiply-order spelling.
   Rewriting only `xPositions[6]` from
   `scaledXCos - (2.0f * scaledXSin)` to
   `-(2.0f * scaledXSin) + scaledXCos` also produced no useful movement: full
