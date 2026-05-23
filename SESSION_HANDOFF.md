@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:49:17Z
+- Generated at: 2026-05-23 22:51:26Z
 - Branch: `master`
-- HEAD: `1bb78911`
+- HEAD: `784a1062`
 - Completed task: `func_80049794`
-- Summary: Brake-rate operand-order probe missed: changing both brake updates to 0.016 * updateRateF failed full verify with calculated CRCs 0x5FCD003F/0x88486FB6 and relinked ./diff.sh func_80049794 regressed to CURRENT (2780); source restored.
+- Summary: Throttle-rate operand-order probe missed: changing both throttle updates to 0.01 * updateRateF failed full verify with calculated CRCs 0x5FE5403F/0x70F0D8DF and relinked ./diff.sh func_80049794 regressed to CURRENT (2780); source restored.
 
 ## Validation
 

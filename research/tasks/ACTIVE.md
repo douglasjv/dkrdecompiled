@@ -732,8 +732,17 @@
   wave scan in the current `a0`-bound/`v1`-loop family, and disturbed later
   gravity/call-adjacent/sound scheduling. Source was restored and final full
   verify passed; do not repeat this throttle-rate single-precision literal
-  spelling. A 2026-05-23 current-baseline brake-rate single-precision literal
-  probe (`racer->brake += updateRateF * 0.016f` and
+  spelling. A sibling throttle-rate operand-order probe
+  (`racer->throttle += 0.01 * updateRateF` and
+  `racer->throttle -= 0.01 * updateRateF`) missed: full verify failed with
+  calculated CRCs `0x5FE5403F/0x70F0D8DF`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (2780)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
+  family, and slightly shifted later gravity/call-adjacent scheduling. Source
+  was restored and final full verify passed; do not repeat this throttle-rate
+  operand-order spelling. A 2026-05-23 current-baseline brake-rate
+  single-precision literal probe (`racer->brake += updateRateF * 0.016f` and
   `racer->brake -= updateRateF * 0.016f`) missed: guarded object-only focused
   diff first printed stale `CURRENT (0)`, promoted full verify failed with
   calculated CRCs `0x37F64CDD/0xCFC86BFD`, and relinked
