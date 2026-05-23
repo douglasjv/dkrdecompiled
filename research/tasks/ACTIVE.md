@@ -68,14 +68,18 @@
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
-  `func_8002B0F4` remains active after a 2026-05-23 X-grid bitmask doubling
-  probe (`var_a1 += var_a1` only in the first grid loop) missed: object-only
+  `func_8002B0F4` remains active after a 2026-05-23 Z-grid bitmask doubling
+  probe (`var_a1 += var_a1` only in the second grid loop) missed: object-only
   focused diff first printed stale `CURRENT (0)`, full verify failed with
-  calculated CRCs `0x78D4C012/0x0B98CE25`, and relinked
-  `./diff.sh func_8002B0F4` improved to `CURRENT (1805)` while still inserting
+  calculated CRCs `0x77E6007A/0x78D4AD50`, and relinked
+  `./diff.sh func_8002B0F4` regressed to `CURRENT (4130)` while still inserting
   the unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
   segment/grid/tail drift. Source was restored and final full verify passed; do
-  not repeat this single X-grid `var_a1 += var_a1` spelling. A sibling
+  not repeat this single Z-grid `var_a1 += var_a1` spelling. The sibling X-grid
+  bitmask doubling probe (`var_a1 += var_a1` only in the first grid loop)
+  missed with a more interesting relinked focused improvement to
+  `CURRENT (1805)`, but still retained the same model-spill family; do not
+  repeat that single X-grid spelling either. A sibling
   collision-plane index local type probe (`s32 temp` to `u16 temp`, matching
   `basePlaneIndex`) missed: object-only focused diff first printed stale
   `CURRENT (0)`, full verify failed with calculated CRCs
@@ -5014,6 +5018,14 @@
   `gCurrentLevelModel` spill at `0x60(sp)` and shifted the X/Z grid and tail
   register schedule. Source was restored and final full verify passed; do not
   repeat this Z-grid `var_a1 <<= 1` spelling.
+  Rewriting only the Z-grid bitmask doubling from `var_a1 *= 2` to
+  `var_a1 += var_a1` also missed worse than the single X-grid sibling:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify failed
+  with calculated CRCs `0x77E6007A/0x78D4AD50`, and the relinked focused score
+  regressed to `CURRENT (4130)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`, shifted the X/Z grid bitmask
+  register family, and broadened tail drift. Source was restored and final full
+  verify passed; do not repeat this single Z-grid `var_a1 += var_a1` spelling.
   Rewriting the
   bottom `gTrackWaves` population loop from the existing backslash-preserved
   `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
