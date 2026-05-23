@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:56:39Z
+- Generated at: 2026-05-22 23:59:42Z
 - Branch: `master`
-- HEAD: `22b4ac4b`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected combined first-ring and outer-ring target-store-order probe; full build missed and relinked focused score worsened to CURRENT (3810), shrinking the frame to 0x150 before source restore.
+- HEAD: `51af8450`
+- Completed task: `func_80049794`
+- Summary: Rejected close save-family register-var_v1 allocation hint; full build missed with known close-branch CRCs and relinked focused score worsened to CURRENT (4365), leaving wave bound/index allocation reversed.
 
 ## Validation
 

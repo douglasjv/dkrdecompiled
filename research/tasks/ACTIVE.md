@@ -57,8 +57,14 @@
   target frame/save family but widened the relinked focused score to
   `CURRENT (4252)`, failed full verify with calculated CRCs
   `0x527F28C9/0xA7E04D93`, and introduced extra `spA2` stack-byte traffic plus
-  broader wave-block register churn. Do not repeat this local-copy while-loop
-  wave-bound spelling. The
+  broader wave-block register churn. A close save-family `register s32 var_v1`
+  hint also missed: it kept the target `0xf8` frame and `$f20/$f21` saves, but
+  full verify failed with the known close-branch CRCs
+  `0xB8DD79CD/0xE47454ED`, the relinked focused score worsened to
+  `CURRENT (4365)`, and the wave bound/index allocation remained reversed with
+  current `a0` as bound and `v1` as loop index instead of target `v1` bound
+  and `a0` loop. Do not repeat this close-branch `register var_v1` hint or
+  this local-copy while-loop wave-bound spelling. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
@@ -1664,7 +1670,15 @@
   `0xf8` frame, `$f20/$f21` saves, and target `$f14` early zero remained, but
   the wave bound/index allocation still had `a0`/`v1` opposite the target.
   Source was restored and final full verify passed; do not repeat this
-  close-branch `register var_a0` hint. A baseline current-checkout spinout-zap
+  close-branch `register var_a0` hint. A close save-family sibling with
+  `register s32 var_v1` also missed: full verify failed with calculated CRCs
+  `0xB8DD79CD/0xE47454ED`, the relinked focused score worsened to
+  `CURRENT (4365)`, and the diff kept the target `0xf8` frame plus
+  `$f20/$f21` saves but moved the bound/index family further from target: the
+  current code used `a0` as the wave bound and `v1` as the loop index, still
+  opposite target `v1` bound and `a0` loop index. Source was restored and final
+  full verify passed; do not repeat this close-branch `register var_v1` hint.
+  A baseline current-checkout spinout-zap
   condition split (`if (racer->unk1FE == 4) { if (racer->spinout_timer == 0)
   ... }`) matched the local target branch shape in the object-only focused
   view, but did not move the relinked object: full verify failed with the
