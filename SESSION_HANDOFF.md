@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-22 23:59:42Z
+- Generated at: 2026-05-23 00:02:09Z
 - Branch: `master`
-- HEAD: `51af8450`
+- HEAD: `7a994790`
 - Completed task: `func_80049794`
-- Summary: Rejected close save-family register-var_v1 allocation hint; full build missed with known close-branch CRCs and relinked focused score worsened to CURRENT (4365), leaving wave bound/index allocation reversed.
+- Summary: Rejected close save-family register-var_v0 allocation hint; full build missed with known close-branch CRCs and relinked focused score worsened to CURRENT (4365), matching the register-var_v1 bad bound/index family.
 
 ## Validation
 
