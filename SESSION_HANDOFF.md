@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:41:53Z
+- Generated at: 2026-05-23 02:44:55Z
 - Branch: `master`
-- HEAD: `2f1b417d`
+- HEAD: `5b7e5a94`
 - Completed task: `func_80049794`
-- Summary: Close chained-zero/x/z/y/steer-noop save-family racerVelocity first-speed carrier missed; full verify failed with CRCs 0xB8B409CD/0xBE8F170B and relinked focused diff widened to CURRENT (4555). It kept the target frame/save prologue, but early zero shifted to f12 and the wave a0/v1 swap remained. Source was restored.
+- Summary: Close chained-zero/x/z/y/steer-noop save-family segmentZVelocity first-speed carrier missed; full verify failed with CRCs 0xB8DD79CD/0xCD5971FB and relinked focused diff stayed CURRENT (4365), collapsing into the segmentXVelocity carrier family. It kept the target frame/save prologue, but the wave a0/v1 swap and later scheduling drift remained. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first or x/y/z speed magnitude expression orders, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity or racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first or x/y/z speed magnitude expression orders, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -1451,7 +1451,15 @@
   verify failed with calculated CRCs `0xB8B409CD/0xBE8F170B`, relinked focused
   diff widened to `CURRENT (4555)`, early zero shifted from target `$f14` to
   `$f12`, and the wave `a0`/`v1` swap remained. Source was restored and final
-  full verify passed; do not repeat this first-speed `racerVelocity` carrier. A
+  full verify passed; do not repeat this first-speed `racerVelocity` carrier.
+  A sibling close save-family `segmentZVelocity` first-speed carrier
+  (`segmentZVelocity = x*x; var_f20 = segmentZVelocity; var_f20 += z*z;
+  var_f20 += y*y`) collapsed into the `segmentXVelocity` miss family: full
+  verify failed with calculated CRCs `0xB8DD79CD/0xCD5971FB`, relinked focused
+  diff stayed `CURRENT (4365)`, and the target `0xf8` frame plus `$f20/$f21`
+  prologue saves remained while the wave `a0`/`v1` swap and later scheduling
+  drift were unchanged. Source was restored and final full verify passed; do
+  not repeat this first-speed `segmentZVelocity` carrier. A
   2026-05-17 save-family
   wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
