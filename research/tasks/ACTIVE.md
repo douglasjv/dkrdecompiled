@@ -164,6 +164,15 @@
   `a0`-bound/`v1`-loop family, and greatly broadened later
   gravity/brake/sound scheduling. Source was restored and final full verify
   passed; do not repeat this brake-drag condition-order spelling. A
+  sibling grounded-wheel `spD8` multiplier literal probe (`spD8 *= 8.0f`
+  instead of `spD8 *= 8`) also missed: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, left the wave scan in the
+  current `a0`-bound/`v1`-loop family, and kept the later `$f14`/`$f20`
+  save-family register drift. Source was restored and final full verify
+  passed; do not repeat this grounded-wheel `spD8` multiplier literal spelling.
+  A
   2026-05-23 current-baseline early `spA1` initialization probe (moving
   `spA1 = FALSE` next to `playerObjectMoved = FALSE` and removing the later
   assignment inside the normal flight branch) missed: object-only focused diff
