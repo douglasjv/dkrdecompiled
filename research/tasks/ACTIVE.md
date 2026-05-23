@@ -178,7 +178,16 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan
   in the current `a0`-bound/`v1`-loop family. Source was restored and final
   full verify passed; do not repeat this final `unk201` condition-inversion
-  spelling. A
+  spelling. A sibling attach-point count-threshold spelling probe (changing
+  both late `obj->attachPoints->count >= 3` guards to `count > 2`) also missed
+  as a no-movement promoted-baseline family: full verify failed with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted object
+  disassembly still emitted the same `slti at,count,3`/`bnez` guard family at
+  both attach-point checks. It still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave scan
+  in the current `a0`-bound/`v1`-loop family. Source was restored and final
+  full verify passed; do not repeat this attach-point `count > 2` spelling. A
   2026-05-23 current-baseline attach-point grounded-wheel branch-order probe
   (`if (spA2 != FALSE || racer->groundedWheels != 0)` instead of the existing
   grounded-wheels-first guard) missed as a no-movement promoted-baseline
@@ -2891,8 +2900,17 @@
   saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
   scan in the current `a0`-bound/`v1`-loop family. Source was restored and
   final full verify passed; do not repeat this final `unk201`
-  condition-inversion spelling. A baseline current-checkout grouped z/y
-  first-speed
+  condition-inversion spelling. A baseline current-checkout attach-point
+  count-threshold spelling (`obj->attachPoints->count > 2` for both late
+  attach blocks) also missed as a no-movement promoted-baseline family: full
+  verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted object
+  disassembly still emitted `slti at,count,3` before the same attach branches.
+  It did not recover target `$f20/$f21` prologue saves, kept early zero in
+  `$f16` instead of target `$f14`, and left the wave scan in the current
+  `a0`-bound/`v1`-loop family. Source was restored and final full verify
+  passed; do not repeat this attach-point `count > 2` threshold spelling. A
+  baseline current-checkout grouped z/y first-speed
   expression
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
   calculated CRCs `0x6025B63F/0xF5C950EA`, and relinked focused diff reported
