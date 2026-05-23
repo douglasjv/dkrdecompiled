@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:14:50Z
+- Generated at: 2026-05-23 10:17:20Z
 - Branch: `master`
-- HEAD: `69cd4b2c`
+- HEAD: `e74d131d`
 - Completed task: `func_80059208`
-- Summary: Rejected final lateral splinePos clamp-limit carrier; promoting current source and routing the 5.0f lateral clamp through splinePos first printed stale object-only CURRENT (0), then failed verify with CRCs 0x440002C7/0xC48C782C and relinked focused diff regressed to CURRENT (1445), matching the bad lateral clamp-limit carrier family. Source was restored.
+- Summary: Rejected final lateral diffZ clamp-limit carrier; restored source after relinked CURRENT (1215) miss
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after source restore
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restore
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760), early spA1, early-zero, and close-save-family wave-register probes. For func_80059208, do not repeat final lateral scale/pad3/distance/splinePos clamp-limit carriers or other tail probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760), early spA1, early-zero, and close-save-family wave-register probes. For func_80059208, do not repeat final lateral scale/pad3/distance/splinePos/diffZ clamp-limit carriers or other tail probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
