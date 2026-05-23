@@ -136,7 +136,15 @@
   scan in the current `a0`-bound/`v1`-loop family, and broadened later
   gravity/particle scheduling. Source was restored and final full verify
   passed; do not repeat this brake-particle viewport condition-order spelling.
-  A
+  A sibling grounded-wheel zip-pad boost condition-order probe
+  (`i == SURFACE_ZIP_PAD && racer->boostTimer == 0` instead of the current
+  boost-timer-first guard) also missed: full verify failed with calculated CRCs
+  `0x67DFE437/0xF7295BC5`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (3505)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, left the wave scan in the
+  current `a0`-bound/`v1`-loop family, and broadened later
+  gravity/zip-pad/sound scheduling. Source was restored and final full verify
+  passed; do not repeat this zip-pad boost condition-order spelling. A
   2026-05-23 current-baseline early `spA1` initialization probe (moving
   `spA1 = FALSE` next to `playerObjectMoved = FALSE` and removing the later
   assignment inside the normal flight branch) missed: object-only focused diff
