@@ -80,7 +80,14 @@
   single-precision `sub.s`, shifted the early checkpoint-distance branches, and
   broadened downstream FPR/register scheduling. Source was restored and final
   full verify passed; do not repeat this checkpoint-distance `1.0f`
-  complement spelling.
+  complement spelling. A wrong-way velocity threshold single-precision literal
+  probe (`racer->velocity <= -1.0f` instead of the current double literal)
+  also missed: full verify failed with calculated CRCs
+  `0x10768535/0x41CC0F5A`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (2130)`. The diff changed
+  the wrong-way velocity compare away from the target double-compare family and
+  broadened downstream labels/final-tail drift. Source was restored and final
+  full verify passed; do not repeat this wrong-way velocity `-1.0f` spelling.
   Earlier final vertical reciprocal-multiply,
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
@@ -3611,6 +3618,14 @@
   shifted the mid-function angle branch family and did not improve the final
   object-dot plus negated-checkpoint-dot tail. Source was restored and final
   full verify passed; do not repeat this wrong-way angle branch-order spelling.
+  A wrong-way velocity threshold single-precision literal probe
+  (`racer->velocity <= -1.0f` instead of the current double literal) also
+  missed: full verify failed with calculated CRCs `0x10768535/0x41CC0F5A`,
+  and relinked `./diff.sh func_80059208` worsened from promoted baseline
+  `CURRENT (870)` to `CURRENT (2130)`. It changed the target double-compare
+  family in the wrong-way velocity guard and broadened downstream
+  labels/final-tail drift. Source was restored and final full verify passed;
+  do not repeat this wrong-way velocity `-1.0f` spelling.
   Reusing the already-loaded `distance` local in the early checkpoint-scale
   divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
   produced no relinked object movement: object-only focused diff first showed
