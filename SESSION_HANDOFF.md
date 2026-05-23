@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 08:46:52Z
+- Generated at: 2026-05-23 08:49:39Z
 - Branch: `master`
-- HEAD: `e9301791`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected vertex pointer-loop probe; promoting current source and rewriting the final vertex population as an xPositions/zPositions pointer walk failed verify with CRCs 0x93853BFF/0xB63372C5 and relinked focused diff regressed to CURRENT (2278) with a 0x160 frame, then source was restored.
+- HEAD: `ddb1cf65`
+- Completed task: `func_80059208`
+- Summary: Rejected splineIndex comparison-direction probe; promoting current source with if (1.0 <= splinePos) failed verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused diff stayed at CURRENT (870), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For trackbg_render_flashy, do not repeat vertex pointer-loop, color fallback initialization-order, final global pointer store-order, final triangle postincrement, final triangle two-at-a-time unroll, final vertex alpha ternary, center position store-order, or the recorded position/UV aliases in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For func_80059208, do not repeat splineIndex comparison-direction, splineIndex literal boolean, final object-dot/checkpoint-dot carrier, final cast-carrier, normalization reciprocal double-literal, normalization guard comparison-order, or magnitude sum-order spellings recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

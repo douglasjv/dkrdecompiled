@@ -32,15 +32,15 @@
   spelling. Earlier color fallback initialization-order, final global pointer
   store-order, final triangle postincrement, and center position store-order
   probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-23 normalization
-  reciprocal double-literal probe (`scale = 1.0 / distance`) missed: full
-  verify failed with calculated CRCs `0x9261C342/0x2708D89B`, and relinked
-  `./diff.sh func_80059208` regressed to `CURRENT (2610)` by adding broad
-  double-conversion scheduling around the normalization path. Source was
-  restored and final full verify passed; do not repeat this normalization
-  reciprocal double-literal spelling. Earlier normalization guard
-  comparison-order and magnitude sum-order probes also missed; do not repeat
-  them.
+  `func_80059208` also remains active after a 2026-05-23 splineIndex
+  comparison-direction probe (`if (1.0 <= splinePos)` instead of
+  `splinePos >= 1.0`) missed with no relinked focused movement: full verify
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208` stayed at promoted baseline `CURRENT (870)`.
+  Source was restored and final full verify passed; do not repeat this
+  splineIndex comparison-direction spelling. Earlier normalization reciprocal
+  double-literal, normalization guard comparison-order, and magnitude sum-order
+  probes also missed; do not repeat them.
   `func_8002B0F4` remains active after a 2026-05-23 bottom segment-range guard
   reorder (`levelSegmentIndex < gCurrentLevelModel->numberOfSegments &&
   levelSegmentIndex >= 0`) missed: full verify failed with calculated CRCs
@@ -3754,6 +3754,12 @@
   `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus vertical
   FPR drift remained. Source was restored and final full verify passed; do not
   repeat this `splineIndex` literal boolean spelling.
+  Reversing only the splineIndex threshold comparison to
+  `if (1.0 <= splinePos)` also missed with no relinked focused movement: full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, focused score
+  stayed `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus
+  vertical FPR drift remained. Source was restored and final full verify
+  passed; do not repeat this `splineIndex` comparison-direction spelling.
   Spelling the final lateral numerator as negated object-dot minus the existing
   negated checkpoint dot (`diffX = ((-pad) - pad2) / divisor`) also missed:
   full verify failed with calculated CRCs `0x53A8D1B5/0x58F0CEC9`, and the
