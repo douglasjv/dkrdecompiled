@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 06:56:45Z
+- Generated at: 2026-05-23 07:00:19Z
 - Branch: `master`
-- HEAD: `44264dff`
+- HEAD: `2c827ca2`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline grouped x/y first-speed expression: changed the first speed magnitude to sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0. Full verify failed with calculated CRCs 0x5FDDE03F/0xA73DFC7C, and relinked focused diff reported CURRENT (2770): no target $f20/$f21 saves, early zero stayed $f16, and wave scan stayed current a0-bound/v1-loop. Source was restored.
+- Summary: Rejected current-baseline OBJ_EMIT_9 store-before-5.5 gravity assignment spelling: moved obj->particleEmittersEnabled |= OBJ_EMIT_9 before var_f20 = 5.5 in the unk1FE == 0 block. Full verify failed with calculated CRCs 0x5FDDE03F/0x2087AB13, and relinked focused diff regressed to CURRENT (2820): no target $f20/$f21 saves, early zero stayed $f16, wave scan stayed current a0-bound/v1-loop, and the local block inserted an extra/reordered unk1FE reload around the 5.5 assignment. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline grouped x/y first-speed expression, throttle-rate single-precision literal, brake direct dataflow, exit-throttle direct dataflow, opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline OBJ_EMIT_9 store-before-5.5 gravity assignment, grouped x/y first-speed expression, throttle-rate single-precision literal, brake direct dataflow, exit-throttle direct dataflow, opening update-rate single-precision multiplier, exit-throttle single-precision literal, explicit exitObj pointer-test, trick divisor branch-polarity, later vehicleID upper-guard operand-order, first-speed boss guard operand-order, drift-direction nonzero spelling, split drift-reset condition, wave-lift divided-speed grouping, wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, drift-reset condition splitting/nonzero spelling, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

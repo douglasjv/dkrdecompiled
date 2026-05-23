@@ -227,7 +227,17 @@
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
   and final full verify passed; do not repeat this grouped x/y first-speed
-  expression. A
+  expression. A 2026-05-23 current-baseline `OBJ_EMIT_9` store-before-`5.5`
+  gravity assignment probe (moving `obj->particleEmittersEnabled |=
+  OBJ_EMIT_9` before `var_f20 = 5.5`) missed: full verify failed with
+  calculated CRCs `0x5FDDE03F/0x2087AB13`, and the relinked focused diff
+  regressed to `CURRENT (2820)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave scan in the current `a0`-bound/`v1`-loop family, and inserted an
+  extra/reordered `unk1FE` reload around the `5.5` assignment rather than
+  matching the target local schedule. Source was restored and final full
+  verify passed; do not repeat this `OBJ_EMIT_9` store-before-`5.5` spelling.
+  A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2435,7 +2445,18 @@
   loop reversed as current `a0` bound plus `v1` loop-index rather than target
   `v1` bound plus `a0` loop-index. Source was restored and final full verify
   passed; do not repeat this current-baseline grouped x/y first-speed
-  expression. A baseline current-checkout first-speed single-precision
+  expression. A baseline current-checkout `OBJ_EMIT_9` store-before-`5.5`
+  gravity assignment spelling (moving `obj->particleEmittersEnabled |=
+  OBJ_EMIT_9` before `var_f20 = 5.5`) also missed: full verify failed with
+  calculated CRCs `0x5FDDE03F/0x2087AB13`, and the relinked focused diff
+  regressed to `CURRENT (2820)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave loop
+  reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
+  bound plus `a0` loop-index, and inserted an extra/reordered `unk1FE` reload
+  around the `5.5` assignment rather than matching the target local schedule.
+  Source was restored and final full verify passed; do not repeat this
+  current-baseline `OBJ_EMIT_9` store-before-`5.5` spelling. A baseline
+  current-checkout first-speed single-precision
   subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
   also missed: full verify failed with calculated CRCs
   `0x12F152B3/0x7EB3E947`, and relinked focused diff worsened to `CURRENT
