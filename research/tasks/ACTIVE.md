@@ -2353,6 +2353,14 @@
   final-vertical local traffic while leaving the object-dot/checkpoint-dot
   drift unresolved. Source was restored and final full verify passed; do not
   repeat this final-vertical `splinePos` numerator carrier.
+  Reusing the now-dead `scale` local as the final vertical numerator carrier
+  (`scale = obj->trans.y_position - tempY; diffY = scale / divisor`) also
+  missed: full verify failed with calculated CRCs `0x0A76A8A6/0x783976A1`,
+  the relinked focused score worsened from promoted baseline `CURRENT (870)`
+  to `CURRENT (1875)`, and the tail inserted extra final-vertical local
+  traffic while leaving the object-dot/checkpoint-dot drift unresolved. Source
+  was restored and final full verify passed; do not repeat this final-vertical
+  `scale` numerator carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

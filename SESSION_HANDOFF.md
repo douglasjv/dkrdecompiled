@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:17:14Z
+- Generated at: 2026-05-23 00:21:17Z
 - Branch: `master`
-- HEAD: `b6b8493f`
-- Completed task: `trackbg_render_flashy`
-- Summary: Promoted trackbg_render_flashy and tested replacing only zPositions[1] with the existing scaledXSin carrier; full verify failed with calculated CRCs 0x218F9FFA/0x18F4A6D6 and relinked focused score worsened to CURRENT (13821), shrinking the frame from 0x158 to 0x150. Source was restored and final verify passed; do not repeat this single-site zPositions[1] scaledXSin spelling.
+- HEAD: `82b2e50a`
+- Completed task: `func_80059208`
+- Summary: Promoted func_80059208 and tested reusing the now-dead scale local for the final vertical numerator (scale = obj->trans.y_position - tempY; diffY = scale / divisor). Full verify failed with calculated CRCs 0x0A76A8A6/0x783976A1 and relinked focused score worsened to CURRENT (1875), inserting extra final-vertical local traffic while leaving the final object-dot/checkpoint-dot drift unresolved. Source was restored and final verify passed; do not repeat this final-vertical scale numerator carrier.
 
 ## Validation
 
