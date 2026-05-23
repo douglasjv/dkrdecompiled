@@ -2004,7 +2004,15 @@
   recomputed the selected-wave offset for the `rot.y` check instead of
   reusing the target post-scan offset. Source was restored and final full
   verify passed; do not repeat this current-baseline selected-wave index
-  carrier. A baseline
+  carrier. A baseline current-checkout grouped z/y first-speed expression
+  (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
+  calculated CRCs `0x6025B63F/0xF5C950EA`, and relinked focused diff reported
+  `CURRENT (2980)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave loop
+  reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
+  bound plus `a0` loop-index. Source was restored and final full verify
+  passed; do not repeat this current-baseline grouped z/y first-speed
+  expression. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
