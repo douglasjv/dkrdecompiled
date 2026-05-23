@@ -2178,7 +2178,19 @@
   early zero in `$f16` instead of target `$f14`, and left the wave bound/index
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
-  not repeat this existing-`var_f0` first-speed sqrt-result split. A
+  not repeat this existing-`var_f0` first-speed sqrt-result split. A close
+  save-family x/z/y pre-`sqrtf` branch with chained grounded-wheel zero,
+  steer-vel no-op, removed trailing `pad3`/`pad4`, and the target-looking
+  first-speed zero-threshold upper clamp (`if (var_f20 > 0.0) { var_f20 = 4;
+  }`) also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0xF07192B5/0xD69ABBCC`, and the
+  relinked focused diff regressed to `CURRENT (5315)`. It kept the target
+  `0xf8` frame, `$f20/$f21` prologue saves, and early `$f14` zero stores, but
+  left the wave bound/index allocation reversed as current `a0`-bound/
+  `v1`-loop instead of target `v1`-bound/`a0`-loop and disturbed later
+  call-adjacent/sound scheduling. Source was restored and final full verify
+  passed; do not repeat this close save-family zero-threshold clamp
+  combination. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
