@@ -1551,7 +1551,16 @@
   `racer->unk1BC = (s32) diffY + racer->unk1BC` also worsened the relinked
   focused score to `CURRENT (900)` and failed full verify with calculated CRCs
   `0x53CD41DF/0x291D30F4`; source was restored and final full verify passed.
-  Do not repeat either final `unk1BA` or `unk1BC` add-order spelling. An
+  A 2026-05-23 final offset compound-assignment implicit-cast spelling
+  (`racer->unk1BA += diffX` and `racer->unk1BC += diffY`, removing the explicit
+  `(s32)` casts) also missed badly: full verify failed with calculated CRCs
+  `0xC76F5A8F/0x277FF7CB`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (4195)` by changing the
+  final adds into float-add-before-convert traffic, shifting the
+  lateral/vertical update schedule, and moving downstream labels/global
+  offsets. Source was restored and final full verify passed. Do not repeat
+  either final `unk1BA`/`unk1BC` add-order spelling or this implicit-cast
+  compound-assignment spelling. An
   explicit-zero axis-negation spelling
   (`diffZ = 0.0f - diffY`) compiled but regressed the relinked focused score to
   `CURRENT (1626)` and failed full verify with calculated CRCs
