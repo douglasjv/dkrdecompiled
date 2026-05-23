@@ -941,7 +941,14 @@
   and the function still lacked target `$f20/$f21` prologue saves and kept the
   early zero in `$f16` instead of target `$f14`. Source was restored and final
   full verify passed; do not repeat this current-baseline z-first speed
-  magnitude expression-order spelling. Rewriting the first
+  magnitude expression-order spelling. A sibling promoted current-baseline
+  expression-order probe from `x*x + z*z + y*y` to `x*x + y*y + z*z` collapsed
+  into the same miss: full verify failed with calculated CRCs
+  `0x5FDDE03F/0x6CE3B8C9`, relinked focused diff stayed `CURRENT (2770)`,
+  target `$f20/$f21` prologue saves were still absent, and the early zero still
+  used `$f16` instead of target `$f14`. Source was restored and final full
+  verify passed; do not repeat this current-baseline x/y/z speed magnitude
+  expression-order spelling. Rewriting the first
   speed-derived upper
   clamp as explicit single-precision
   (`if (var_f20 > 4.0f) { var_f20 = 4.0f; }`) compiled but worsened the
