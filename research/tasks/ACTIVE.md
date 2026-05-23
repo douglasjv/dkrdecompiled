@@ -521,6 +521,14 @@
   `a0`-bound/`v1`-loop family, and widened/shifted later
   spinout/gravity/call-adjacent scheduling. Source was restored and final full
   verify passed; do not repeat this spinout brake single-precision literal
+  spelling. A 2026-05-23 current-baseline explicit wave-drift float-threshold
+  probe (`var_f2 < 35.0f` and `var_f2 < 38.0f` instead of integer literals)
+  missed as a no-movement promoted-baseline family: full verify failed with
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this explicit wave-drift float-threshold
   spelling. A 2026-05-23 current-baseline grouped x/y first-speed expression
   probe (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
   with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
