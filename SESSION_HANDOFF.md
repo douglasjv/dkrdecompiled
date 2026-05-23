@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:31:19Z
+- Generated at: 2026-05-23 01:34:32Z
 - Branch: `master`
-- HEAD: `cb69ce55`
-- Completed task: `func_80059208`
-- Summary: Promoted func_80059208 and commuted both final object-dot products while preserving term order. Full verify failed with calculated CRCs 0x53F1C1DF/0xFE149A6C, and relinked ./diff.sh func_80059208 worsened to CURRENT (880). Source was restored.
+- HEAD: `799e4c2d`
+- Completed task: `func_80049794`
+- Summary: Promoted func_80049794 and routed the grounded-wheel zero stores through existing spE0. Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked ./diff.sh func_80049794 stayed CURRENT (2760) with no f20/f21 saves or f14 early-zero movement. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default routing remains func_80049794 unless pivoting to active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Continue selector route at func_80049794 unless pivoting to active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
