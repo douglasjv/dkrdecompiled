@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:23:10Z
+- Generated at: 2026-05-23 01:27:08Z
 - Branch: `master`
-- HEAD: `72fe2fdb`
-- Completed task: `func_80049794`
-- Summary: Promoted func_80049794 with an early grounded-wheel zero carrier through existing spE4; full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked ./diff.sh func_80049794 stayed CURRENT (2760) with missing target $f20/$f21 saves and early zero still in $f16. Source was restored.
+- HEAD: `b1419513`
+- Completed task: `trackbg_render_flashy`
+- Summary: Promoted trackbg_render_flashy and collapsed the UV scale setup from var_f14 = 1280.0f; var_f14 *= 0.25f to var_f14 = 320.0f. Full verify failed with calculated CRCs 0x027233EC/0x55516330, and relinked ./diff.sh trackbg_render_flashy worsened to CURRENT (3510). Source was restored.
 
 ## Validation
 

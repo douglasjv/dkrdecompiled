@@ -3109,7 +3109,14 @@
   `0xC5B710C5/0x71187E4F`, changed the early negative-cosine register family
   from target `$f18` to `$f16`, and reshuffled the first/outer position-array
   stores. Source was restored and final full verify passed. Do not remove this
-  fake `var_a2` assignment.
+  fake `var_a2` assignment. Collapsing the UV scale setup from the two-step
+  `var_f14 = 1280.0f; var_f14 *= 0.25f` into `var_f14 = 320.0f` also missed:
+  full verify failed with calculated CRCs `0x027233EC/0x55516330`, relinked
+  `./diff.sh trackbg_render_flashy` worsened from the promoted baseline
+  `CURRENT (1808)` to `CURRENT (3510)`, and the diff shifted the scale
+  setup plus first/outer position-array schedule instead of matching target.
+  Source was restored and final full verify passed; do not repeat this
+  collapsed `var_f14` UV-scale spelling.
   Routing the doubled outer-ring cosine term through the existing unused
   `pad_sp100` local (`pad_sp100 = scaledXCos + scaledXCos`, then using it for
   `zPositions[5..8]`) also produced no useful movement: promoted full verify
