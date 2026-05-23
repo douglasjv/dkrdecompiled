@@ -64,7 +64,12 @@
   worsened to `CURRENT (4365)`, and the wave bound/index allocation remained
   reversed with current `a0` as bound and `v1` as loop index instead of target
   `v1` bound and `a0` loop. Do not repeat these close-branch register hints
-  (`var_v0`/`var_v1`) or this local-copy while-loop wave-bound spelling. The
+  (`var_v0`/`var_v1`) or this local-copy while-loop wave-bound spelling. A
+  close save-family `racerTrickType` wave-reset cache also missed: it failed
+  full verify with calculated CRCs `0xB14B79CD/0x12BCEA0A`, worsened relinked
+  focused score to `CURRENT (4375)`, and flipped the `trickType == -1`
+  compare from target `beq t1,v0` to current `beq v0,t1` while leaving the
+  bound/index allocation reversed. The
   2026-05-17 branch operand-order spelling
   (`PLAYER_COMPUTER == var_v0`) compiled but produced no object change from the
   promoted baseline and stayed `CURRENT (2550)`. Moving `spA3 = FALSE` before
@@ -1678,7 +1683,15 @@
   target: the current code used `a0` as the wave bound and `v1` as the loop
   index, still opposite target `v1` bound and `a0` loop index. Source was
   restored and final full verify passed; do not repeat these close-branch
-  `register var_v0` or `register var_v1` hints.
+  `register var_v0` or `register var_v1` hints. A close save-family
+  wave-reset condition probe that cached `racer->trickType` into the existing
+  `racerTrickType` local before testing `racerTrickType == 1 ||
+  racerTrickType == -1 || wave->rot.y < 0.4` also missed: full verify failed
+  with calculated CRCs `0xB14B79CD/0x12BCEA0A`, relinked focused score worsened
+  to `CURRENT (4375)`, and the diff flipped the `trickType == -1` compare from
+  target `beq t1,v0` to current `beq v0,t1` while leaving the wave bound/index
+  allocation reversed. Source was restored and final full verify passed; do
+  not repeat this close-branch `racerTrickType` wave-reset cache.
   A baseline current-checkout spinout-zap
   condition split (`if (racer->unk1FE == 4) { if (racer->spinout_timer == 0)
   ... }`) matched the local target branch shape in the object-only focused

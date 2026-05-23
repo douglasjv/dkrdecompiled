@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:02:09Z
+- Generated at: 2026-05-23 00:05:26Z
 - Branch: `master`
-- HEAD: `7a994790`
+- HEAD: `6412ad6d`
 - Completed task: `func_80049794`
-- Summary: Rejected close save-family register-var_v0 allocation hint; full build missed with known close-branch CRCs and relinked focused score worsened to CURRENT (4365), matching the register-var_v1 bad bound/index family.
+- Summary: Rejected close save-family racerTrickType wave-reset cache; full build missed with CRCs 0xB14B79CD/0x12BCEA0A and relinked focused score worsened to CURRENT (4375), flipping the trickType == -1 compare.
 
 ## Validation
 
