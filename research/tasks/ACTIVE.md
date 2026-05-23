@@ -163,9 +163,17 @@
   the current `a0`-bound/`v1`-loop family, and only shifted constants and
   later call targets in the promoted current-baseline family. Source was
   restored and final full verify passed; do not repeat this late
-  boost-emitter branch-order spelling. A
-  2026-05-23 current-baseline race-start y-velocity double-literal probe
-  (`obj->y_velocity = -5.0` instead of `-5.0f` in the
+  boost-emitter branch-order spelling. A 2026-05-23 current-baseline late
+  boost-emitter nonzero compare probe (`boostObj->unk70 != 0` instead of
+  `boostObj->unk70 > 0` in the high boost object test) missed as a
+  no-movement promoted-baseline family: full verify failed with calculated
+  CRCs `0x5FDDE03F/0xB46C45DD`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave scan
+  in the current `a0`-bound/`v1`-loop family. Source was restored and final
+  full verify passed; do not repeat this late boost-emitter nonzero compare
+  spelling. A 2026-05-23 current-baseline race-start y-velocity double-literal
+  probe (`obj->y_velocity = -5.0` instead of `-5.0f` in the
   `gRaceStartTimer == 100` path) missed as a no-movement promoted-baseline
   family: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
   and the relinked focused diff stayed `CURRENT (2760)`. It did not recover
