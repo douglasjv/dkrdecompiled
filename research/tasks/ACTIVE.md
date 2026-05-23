@@ -111,6 +111,16 @@
   first-speed/course-height plus wave-scan drift family. Source was restored
   and final full verify passed; do not repeat this first-speed
   boss-adjustment divide-before-subtract spelling. A
+  2026-05-23 current-baseline nested `spA2` wave-drift boolean probe
+  (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the promoted-baseline calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  and the relinked focused diff stayed in the promoted current-baseline family
+  at `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave scan
+  in the current `a0`-bound/`v1`-loop family instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this nested `spA2` wave-drift boolean spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -2075,6 +2085,15 @@
   and the wave bound/index allocation remained current `a0`/`v1` instead of
   target `v1`/`a0`. Source was restored and final full verify passed; do not
   repeat this current-baseline `s32 spA2` drift-flag type probe. A baseline
+  current-checkout nested `spA2` wave-drift boolean spelling
+  (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) also missed
+  as a no-movement promoted-baseline family: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and relinked focused diff stayed `CURRENT (2760)`.
+  `$f20/$f21` prologue saves were still absent, early zero stayed in `$f16`,
+  and the wave bound/index allocation remained current `a0`/`v1` instead of
+  target `v1`/`a0`. Source was restored and final full verify passed; do not
+  repeat this nested `spA2` wave-drift boolean spelling. A baseline
   current-checkout first-speed carrier family through existing float locals also
   missed: using `spEC` for the pre-`sqrtf` sum failed full verify with
   calculated CRCs `0x18B44436/0x9C5E8797` and worsened the relinked focused
