@@ -494,7 +494,16 @@
   wave scan in the current `a0`-bound/`v1`-loop family, and widened later
   gravity/call-adjacent scheduling drift. Source was restored and final full
   verify passed; do not repeat this brake upper-clamp single-precision compare
-  spelling. A
+  spelling. A 2026-05-23 current-baseline brake rumble-threshold
+  single-precision compare probe (`racer->velocity < -2.0f` instead of the
+  double literal compare) missed: promoted full verify failed with calculated
+  CRCs `0xD0FF913E/0xB80E8394`, and relinked `./diff.sh func_80049794`
+  regressed to `CURRENT (3965)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave scan in the current `a0`-bound/`v1`-loop family, and widened later
+  gravity/call-adjacent scheduling drift. Source was restored and final full
+  verify passed; do not repeat this brake rumble-threshold single-precision
+  compare spelling. A
   2026-05-23 current-baseline grouped x/y first-speed expression
   probe (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
   with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
