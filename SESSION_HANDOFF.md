@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:41:03Z
+- Generated at: 2026-05-23 00:44:57Z
 - Branch: `master`
-- HEAD: `1eee7940`
-- Completed task: `func_80059208`
-- Summary: Recorded final lateral clamp-limit distance-carrier miss: full verify failed with CRCs 0x440002C7/0xC48C782C, relinked focused diff CURRENT (1445), and the tail drift worsened versus the promoted baseline; source restored.
+- HEAD: `69887b27`
+- Completed task: `func_80049794`
+- Summary: Recorded baseline nested early wave-gate miss: object-only focused diff printed stale CURRENT (0), full verify failed with CRCs 0x5FDDE03F/0xEF7A0514, relinked focused diff CURRENT (2760), and source was restored.
 
 ## Validation
 
