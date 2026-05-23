@@ -220,7 +220,14 @@
   wave scan in the current `a0`-bound/`v1`-loop family, and disturbed later
   gravity/call-adjacent/sound scheduling. Source was restored and final full
   verify passed; do not repeat this throttle-rate single-precision literal
-  spelling. A
+  spelling. A 2026-05-23 current-baseline grouped x/y first-speed expression
+  probe (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
+  with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
+  reported `CURRENT (2770)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
+  and final full verify passed; do not repeat this grouped x/y first-speed
+  expression. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2420,6 +2427,14 @@
   reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
   bound plus `a0` loop-index. Source was restored and final full verify
   passed; do not repeat this current-baseline grouped z/y first-speed
+  expression. A baseline current-checkout grouped x/y first-speed expression
+  (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) also missed: full verify failed
+  with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
+  reported `CURRENT (2770)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  loop reversed as current `a0` bound plus `v1` loop-index rather than target
+  `v1` bound plus `a0` loop-index. Source was restored and final full verify
+  passed; do not repeat this current-baseline grouped x/y first-speed
   expression. A baseline current-checkout first-speed single-precision
   subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
   also missed: full verify failed with calculated CRCs
