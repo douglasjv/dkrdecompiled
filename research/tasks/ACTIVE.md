@@ -254,7 +254,19 @@
   removed the target-like `unk1FE` reload after the `5.5` gravity/`OBJ_EMIT_9`
   path while shifting later gravity work through `$f14` instead of target
   `$f20`. Source was restored and final full verify passed; do not repeat
-  this current-baseline gravity `else if` spelling. A
+  this current-baseline gravity `else if` spelling. A 2026-05-23
+  current-baseline buoyancy single-precision nonzero guard probe
+  (`if (racer->buoyancy != 0.0f)` after the post-rotation `unk1FE` gravity
+  assignments) missed: full verify failed with calculated CRCs
+  `0xA7264CF3/0x20C04378`, and the relinked focused diff regressed to
+  `CURRENT (3790)`. It changed the target buoyancy zero test from the
+  double-compare sequence (`cvt.d.s`/`c.eq.d`) into `c.eq.s`, still did not
+  recover target `$f20/$f21` prologue saves, kept early zero in `$f16`
+  instead of target `$f14`, left the wave scan in the current
+  `a0`-bound/`v1`-loop family, and kept the later buoyancy/gravity path on
+  `$f14` instead of target `$f20`. Source was restored and final full verify
+  passed; do not repeat this current-baseline buoyancy single-precision
+  nonzero guard spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2492,7 +2504,18 @@
   after the `5.5` gravity/`OBJ_EMIT_9` path, and shifted later gravity work
   through `$f14` instead of target `$f20`. Source was restored and final full
   verify passed; do not repeat this current-baseline gravity `else if`
-  spelling. A baseline
+  spelling. A baseline current-checkout buoyancy single-precision nonzero
+  guard spelling (`if (racer->buoyancy != 0.0f)` after the post-rotation
+  `unk1FE` gravity assignments) also missed: full verify failed with
+  calculated CRCs `0xA7264CF3/0x20C04378`, and the relinked focused diff
+  regressed to `CURRENT (3790)`. It changed the target buoyancy zero test from
+  the double-compare sequence (`cvt.d.s`/`c.eq.d`) into `c.eq.s`, still lacked
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave loop reversed as current `a0` bound plus `v1`
+  loop-index rather than target `v1` bound plus `a0` loop-index, and kept the
+  later buoyancy/gravity path on `$f14` instead of target `$f20`. Source was
+  restored and final full verify passed; do not repeat this current-baseline
+  buoyancy single-precision nonzero guard spelling. A baseline
   current-checkout first-speed single-precision
   subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
   also missed: full verify failed with calculated CRCs
