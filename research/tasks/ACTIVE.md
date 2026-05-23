@@ -2091,7 +2091,15 @@
   bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
   target `v1`-bound/`a0`-loop. Source was restored and final full verify
   passed; do not repeat this current-baseline `register var_f2` hint. A
-  baseline
+  baseline current-checkout wave-reset constant-left condition
+  (`if (1 == racer->trickType || -1 == racer->trickType || ... )`) also
+  missed as a no-movement family: full verify failed with the promoted-baseline
+  CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this constant-left wave-reset condition spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
