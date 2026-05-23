@@ -723,7 +723,16 @@
   `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop family, and
   widened later gravity/call-adjacent scheduling drift. Source was restored
   and final full verify passed; do not repeat this brake direct dataflow
-  spelling. A 2026-05-23 current-baseline throttle-rate single-precision
+  spelling. A 2026-05-23 current-baseline vertical stick-rate grouping probe
+  (`var_v1 = var_v0 * (updateRateF * 0.0625)` for the `unk1E8` update)
+  missed badly: full verify failed with calculated CRCs
+  `0x4B47F76E/0xEC3D5C69`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (7755)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, moved the vertical stick-rate
+  multiply away from the target double-literal shape, and broadened downstream
+  wave/gravity/call-adjacent scheduling. Source was restored and final full
+  verify passed; do not repeat this vertical stick-rate grouping spelling. A
+  2026-05-23 current-baseline throttle-rate single-precision
   literal probe (`racer->throttle += updateRateF * 0.01f` and
   `racer->throttle -= updateRateF * 0.01f`) missed badly: full verify failed
   with calculated CRCs `0xE2FEB7C7/0xB4368A76`, and the relinked focused diff

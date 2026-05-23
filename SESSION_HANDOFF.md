@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:51:26Z
+- Generated at: 2026-05-23 22:54:25Z
 - Branch: `master`
-- HEAD: `784a1062`
+- HEAD: `56cfc8a6`
 - Completed task: `func_80049794`
-- Summary: Throttle-rate operand-order probe missed: changing both throttle updates to 0.01 * updateRateF failed full verify with calculated CRCs 0x5FE5403F/0x70F0D8DF and relinked ./diff.sh func_80049794 regressed to CURRENT (2780); source restored.
+- Summary: Vertical stick-rate grouping probe missed: changing unk1E8 update to var_v0 * (updateRateF * 0.0625) failed full verify with calculated CRCs 0x4B47F76E/0xEC3D5C69 and relinked ./diff.sh func_80049794 regressed to CURRENT (7755); source restored.
 
 ## Validation
 
