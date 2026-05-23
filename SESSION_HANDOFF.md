@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:07:34Z
+- Generated at: 2026-05-23 10:09:53Z
 - Branch: `master`
-- HEAD: `729395b5`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical scale clamp-limit carrier; promoting current source and routing the 100.0f final vertical clamp through scale failed verify with CRCs 0x4400230F/0x7B651F08 and relinked focused diff regressed to CURRENT (1995), matching the bad vertical clamp-limit carrier family, then source was restored.
+- HEAD: `ae2e3dc9`
+- Completed task: `func_80049794`
+- Summary: Rejected current-baseline early spA1 initialization placement; moving spA1 = FALSE next to playerObjectMoved = FALSE first printed stale object-only CURRENT (0), then failed verify with CRCs 0x9935B12E/0xC848F044 and relinked focused diff regressed to CURRENT (4735), so source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80059208, do not repeat the final vertical scale/pad3/distance clamp-limit carriers or other tail probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760), early spA1, early-zero, and close-save-family wave-register probes. For func_80049794, do not repeat the early spA1 initialization placement or other wave/register/source-shape probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

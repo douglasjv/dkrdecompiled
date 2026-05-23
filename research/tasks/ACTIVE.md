@@ -101,6 +101,16 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline early `spA1` initialization probe (moving
+  `spA1 = FALSE` next to `playerObjectMoved = FALSE` and removing the later
+  assignment inside the normal flight branch) missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x9935B12E/0xC848F044`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (4735)`. It widened local stack-byte traffic, removed the target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and pushed the wave block back into broad register drift. Source was
+  restored and final full verify passed; do not repeat this early `spA1`
+  initialization placement. A
   2026-05-23 close save-family selected-wave index carrier probe
   (`var_t9 = var_a0 + 1`, then using `gRacerCurrentWave[var_t9]` for the
   post-scan `waveHeight` and `rot.y` accesses on top of the x/z/y
@@ -1483,6 +1493,15 @@
   `racerVelocity` clamp widened the frame to `0x100`, failed full verify with
   calculated CRCs `0x5FDDDEDF/0x01A99146`, and still kept the early zero in
   `$f16` instead of target `$f14`; do not repeat this zero-carrier family.
+  Moving the late normal-flight `spA1 = FALSE` initialization up next to
+  `playerObjectMoved = FALSE` also missed in the current checkout:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x9935B12E/0xC848F044`, and the relinked focused
+  score regressed to `CURRENT (4735)`. The diff inserted extra local byte
+  stack traffic, dropped the target `$f20/$f21` prologue saves, kept the early
+  zero in `$f16`, and widened the wave/register family; source was restored
+  and final full verify passed. Do not repeat this early `spA1`
+  initialization placement.
   Adding `register` to `racerThrottle` compiled but produced no object movement
   from the current promoted baseline: uncompressed focused diff stayed
   `CURRENT (1926)`, full verify failed with calculated CRCs
