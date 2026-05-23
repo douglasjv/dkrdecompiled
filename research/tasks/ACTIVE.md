@@ -1469,6 +1469,15 @@
   reversed as current `a0` bound plus `v1` loop index instead of target
   `v1`/`a0`. Source was restored and final full verify passed; do not repeat
   this current-baseline in-place `var_f20` first-speed spelling. A
+  current-baseline positive-break wave scan (`for (...; var_a0 >= 0;
+  var_a0--) { if (gRacerCurrentWave[var_a0]->waveHeight >=
+  obj->trans.y_position + 5) break; }`) also missed: full verify failed with
+  calculated CRCs `0xB9C0DBCD/0xB65AA559`, relinked focused diff regressed to
+  `CURRENT (8035)`, the frame stayed `0xf8` but `$f20/$f21` prologue saves
+  were still absent, early zero stayed in `$f16`, and the wave scan shifted
+  into a broader `v0/v1` pointer/index family with `c.le.s`/`bgez` flow.
+  Source was restored and final full verify passed; do not repeat this
+  current-baseline positive-break wave-scan spelling. A
   2026-05-17 save-family
   wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
