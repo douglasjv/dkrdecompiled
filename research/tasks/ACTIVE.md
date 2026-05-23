@@ -800,7 +800,16 @@
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
   and final full verify passed; do not repeat this grouped x/y first-speed
-  expression. A 2026-05-23 current-baseline `OBJ_EMIT_9` store-before-`5.5`
+  expression. A 2026-05-23 current-baseline first-speed suffix
+  single-precision probe (`sqrtf(...) - 2.0f` instead of the current `- 2.0`)
+  missed: full verify failed with calculated CRCs `0x12F152B3/0x7EB3E947`, and
+  relinked `./diff.sh func_80049794` regressed to `CURRENT (4560)`. It still
+  did not recover target `$f20/$f21` prologue saves, kept early zero in `$f16`
+  instead of target `$f14`, left the wave scan in the current
+  `a0`-bound/`v1`-loop family, and widened later gravity/buoyancy scheduling.
+  Source was restored and final full verify passed; do not repeat this
+  first-speed `- 2.0f` suffix spelling. A 2026-05-23 current-baseline
+  `OBJ_EMIT_9` store-before-`5.5`
   gravity assignment probe (moving `obj->particleEmittersEnabled |=
   OBJ_EMIT_9` before `var_f20 = 5.5`) missed: full verify failed with
   calculated CRCs `0x5FDDE03F/0x2087AB13`, and the relinked focused diff
