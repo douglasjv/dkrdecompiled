@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:27:08Z
+- Generated at: 2026-05-23 01:31:19Z
 - Branch: `master`
-- HEAD: `b1419513`
-- Completed task: `trackbg_render_flashy`
-- Summary: Promoted trackbg_render_flashy and collapsed the UV scale setup from var_f14 = 1280.0f; var_f14 *= 0.25f to var_f14 = 320.0f. Full verify failed with calculated CRCs 0x027233EC/0x55516330, and relinked ./diff.sh trackbg_render_flashy worsened to CURRENT (3510). Source was restored.
+- HEAD: `cb69ce55`
+- Completed task: `func_80059208`
+- Summary: Promoted func_80059208 and commuted both final object-dot products while preserving term order. Full verify failed with calculated CRCs 0x53F1C1DF/0xFE149A6C, and relinked ./diff.sh func_80059208 worsened to CURRENT (880). Source was restored.
 
 ## Validation
 

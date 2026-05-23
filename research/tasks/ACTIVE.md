@@ -2278,6 +2278,14 @@
   earlier x-product commute while broadening the final vertical FPR drift.
   Source was restored and final full verify passed; do not repeat this
   final object-dot z-multiply commute.
+  Commuting both final object-dot products while preserving term order
+  (`pad = ((diffX * splinePos) + (distance * diffZ))`) also missed: full
+  verify failed with calculated CRCs `0x53F1C1DF/0xFE149A6C`, relinked
+  `./diff.sh func_80059208` worsened from promoted baseline `CURRENT (870)`
+  to `CURRENT (880)`, and the tail stayed in the small object-dot
+  multiply-order family while broadening final vertical FPR drift. Source was
+  restored and final full verify passed; do not repeat this both-product
+  object-dot commute.
   Rewriting the final vertical numerator as a negated reversed subtraction
   (`diffY = -((tempY - obj->trans.y_position) / divisor)`) also missed:
   full verify failed with calculated CRCs `0x53C55FB5/0x7A9D66B3`, relinked
