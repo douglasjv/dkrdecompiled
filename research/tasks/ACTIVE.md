@@ -63,7 +63,15 @@
   `CURRENT (890)`. It added the same narrow-cast/sign-extension direction in
   the final vertical update while leaving the object-dot/checkpoint-dot plus
   vertical FPR drift unresolved. Source was restored and final full verify
-  passed; do not repeat this final vertical `(s16) diffY` cast spelling.
+  passed; do not repeat this final vertical `(s16) diffY` cast spelling. A
+  final vertical clamp-limit carrier through the now-dead `scale` local
+  (`scale = 100.0f; if (diffY > scale) ...; if (diffY < -scale) ...`) also
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x4400230F/0x7B651F08`, and relinked
+  `./diff.sh func_80059208` worsened from promoted baseline `CURRENT (870)` to
+  `CURRENT (1995)`, matching the bad vertical clamp-limit carrier family.
+  Source was restored and final full verify passed; do not repeat this final
+  vertical `scale` clamp-limit carrier.
   Earlier final vertical reciprocal-multiply,
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
@@ -3423,7 +3431,16 @@
   diff inserted extra vertical-clamp float traffic, shifted the final
   object-dot/checkpoint-dot register family, and moved the epilogue labels.
   Source was restored and final full verify passed; do not repeat this final
-  vertical `pad3` clamp-limit carrier. Rewriting the final lateral
+  vertical `pad3` clamp-limit carrier. Reusing the now-dead `scale` local for
+  the same final vertical clamp-limit carrier (`scale = 100.0f; if (diffY >
+  scale) ...; if (diffY < -scale) ...`) also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x4400230F/0x7B651F08`, and the relinked focused score worsened from
+  promoted-baseline `CURRENT (870)` to `CURRENT (1995)`. This matches the same
+  bad vertical clamp-limit carrier family as the `pad3`/`distance` variants,
+  adding final-clamp float traffic and shifting the tail schedule. Source was
+  restored and final full verify passed; do not repeat this final vertical
+  `scale` clamp-limit carrier. Rewriting the final lateral
   correction as a reciprocal multiply (`diffX = -((pad + pad2) * (1.0f /
   divisor))`) compiled but worsened the relinked focused score to
   `CURRENT (1420)`, failed full verify with calculated CRCs

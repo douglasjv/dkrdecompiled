@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:03:51Z
+- Generated at: 2026-05-23 10:07:34Z
 - Branch: `master`
-- HEAD: `af6ccae1`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected single Z-grid bitmask doubling probe; promoting current source and changing only the second var_a1 *= 2 to var_a1 += var_a1 failed verify with CRCs 0x77E6007A/0x78D4AD50 and relinked focused diff regressed to CURRENT (4130) with the early gCurrentLevelModel spill, then source was restored.
+- HEAD: `729395b5`
+- Completed task: `func_80059208`
+- Summary: Rejected final vertical scale clamp-limit carrier; promoting current source and routing the 100.0f final vertical clamp through scale failed verify with CRCs 0x4400230F/0x7B651F08 and relinked focused diff regressed to CURRENT (1995), matching the bad vertical clamp-limit carrier family, then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_8002B0F4, do not repeat the single Z-grid or X-grid var_a1 += var_a1 probes or other grid/model-spill probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80059208, do not repeat the final vertical scale/pad3/distance clamp-limit carriers or other tail probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
