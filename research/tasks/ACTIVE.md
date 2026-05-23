@@ -3542,6 +3542,14 @@
   standalone texture-index carrier's `CURRENT (2435)`. Source was restored and
   final full verify passed; do not repeat this current-source texture-index
   plus flags-through-`temp` carrier spelling.
+  Moving only the bottom `SURFACE_WATER_WAVY` store before the
+  `levelSegmentIndex` current-segment setup while promoting the current source
+  also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0x77D5718A/0x18F6F0C5`, and the
+  relinked focused score worsened to `CURRENT (3730)`. The diff inserted the
+  known unwanted early `gCurrentLevelModel` spill at `0x60(sp)` and broadly
+  shifted segment/grid/tail labels. Source was restored and final full verify
+  passed; do not repeat this bottom wave-type store-order spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

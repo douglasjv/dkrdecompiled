@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:48:07Z
+- Generated at: 2026-05-23 00:52:18Z
 - Branch: `master`
-- HEAD: `e13c9194`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded single-site xPositions[0] scaledXSin replacement miss: object-only focused diff printed stale CURRENT (0), full verify failed with CRCs 0x218F9FFA/0x18F4A6D6, relinked focused diff CURRENT (13821), frame shrank to 0x150, and source was restored.
+- HEAD: `91faf54e`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded bottom SURFACE_WATER_WAVY store-order miss: promoted current source failed full verify with CRCs 0x77D5718A/0x18F6F0C5, relinked focused diff worsened to CURRENT (3730), and source was restored.
 
 ## Validation
 
