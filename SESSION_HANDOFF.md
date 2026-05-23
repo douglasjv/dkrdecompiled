@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:38:20Z
+- Generated at: 2026-05-23 09:42:38Z
 - Branch: `master`
-- HEAD: `eb3d634b`
-- Completed task: `func_80059208`
-- Summary: Rejected final lateral cast-width probe; promoting current source and changing racer->unk1BA += (s32) diffX to (s16) diffX failed verify with CRCs 0x4EB921DF/0x33EF7BFD and relinked focused diff worsened to CURRENT (935), then source was restored.
+- HEAD: `b59cde1f`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected xPositions[6] multiply-order probe; promoting current source and changing scaledXCos - (2.0f * scaledXSin) to scaledXCos - (scaledXSin * 2.0f) failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80059208, do not repeat final lateral (s16) diffX cast, final vertical reciprocal-multiply, final offset object-dot/checkpoint-dot carriers, clamp-order/strictness, cast carriers, splineIndex, normalization, or courseCheckpoint probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For trackbg_render_flashy, do not repeat x6/x7/z6/z5/x5 multiply-order or other probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
