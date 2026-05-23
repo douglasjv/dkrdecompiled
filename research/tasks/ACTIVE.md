@@ -24,6 +24,15 @@
   `src/racer.c`.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline first-speed grouped z/y add probe
+  (`sqrtf(x*x + (z*z + y*y)) - 2.0`) missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x6025B63F/0xF5C950EA`, and the relinked focused diff regressed to
+  `CURRENT (2980)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of `$f14`, and left the wave loop reversed
+  as current `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop.
+  Source was restored and final full verify passed; do not repeat this
+  first-speed grouped z/y add spelling. A
   2026-05-23 current-baseline R-trigger grounded-wheel stash guard probe
   (`racer->groundedWheels > 0`) missed: object-only focused diff first printed
   stale `CURRENT (0)`, full verify failed with calculated CRCs

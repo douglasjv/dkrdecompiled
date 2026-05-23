@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:01:56Z
+- Generated at: 2026-05-23 05:06:14Z
 - Branch: `master`
-- HEAD: `aff73d7f`
+- HEAD: `ba87bd1a`
 - Completed task: `func_80049794`
-- Summary: Current-baseline R-trigger grounded-wheel stash guard probe (racer->groundedWheels > 0) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x2FDDE03F/0x495E14B9, and relinked focused diff stayed in the promoted current-baseline family at CURRENT (2760). Source was restored.
+- Summary: Current-baseline first-speed grouped z/y add probe (sqrtf(x*x + (z*z + y*y)) - 2.0) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x6025B63F/0xF5C950EA, and relinked focused diff regressed to CURRENT (2980). Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline R-trigger grounded-wheel stash guard spelling (racer->groundedWheels > 0), grounded boss throttle/brake condition-order spelling, course-height compare operand-order spelling, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, or carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline first-speed grouped z/y add spelling (sqrtf(x*x + (z*z + y*y)) - 2.0), R-trigger grounded-wheel stash guard spelling, grounded boss throttle/brake condition-order spelling, course-height compare operand-order spelling, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, or carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
