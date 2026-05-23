@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:53:01Z
+- Generated at: 2026-05-23 05:58:00Z
 - Branch: `master`
-- HEAD: `515c9401`
+- HEAD: `581d3e56`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline wave-drift clamp-assignment suffix probe: racerVelocity = 4.0f with subtract/compare/divide unchanged. Object-only diff first showed stale CURRENT (0), full verify failed with CRCs 0xA72E8795/0xE7316761, and relinked diff regressed to CURRENT (3355). Target $f20/$f21 saves stayed absent, early zero stayed in current $f16 rather than target $f14, wave a0/v1 allocation stayed reversed, and later $f14/$f20 gravity scheduling broadened. Source was restored.
+- Summary: Rejected current-baseline course-height buoyancy subtract spelling: var_f20 -= var_f2 / 25.0 instead of var_f20 += -var_f2 / 25.0. Object-only diff first showed stale CURRENT (0), full verify failed with CRCs 0x5FE112BA/0x09397095, and relinked diff regressed to CURRENT (3305). Target $f20/$f21 saves stayed absent, early zero stayed in current $f16 rather than target $f14, wave a0/v1 allocation stayed reversed, and later buoyancy/gravity scheduling moved away from the target $f20 family. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or early $f14/$f20 save-family interaction.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
