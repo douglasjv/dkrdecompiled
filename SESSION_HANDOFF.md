@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:03:03Z
+- Generated at: 2026-05-23 02:05:53Z
 - Branch: `master`
-- HEAD: `3853cb3d`
+- HEAD: `4e471c55`
 - Completed task: `func_80049794`
-- Summary: Promoted func_80049794 and tested the retained-pad var_f2 z/y component-staging branch with register f32 var_f2. Full verify failed with calculated CRCs 0x5FEF1D9D/0x4258C5C1; relinked ./diff.sh func_80049794 reported CURRENT (3620), still lacking target f20/f21 saves with early zero in f16 and wave a0/v1 drift. Source was restored.
+- Summary: Promoted func_80049794 and tested the close save-family x/z/y/chained-zero/steer-noop branch with a register s32 var_t0 allocation hint. Full verify failed with calculated CRCs 0xB8DD79CD/0xE47454ED; relinked ./diff.sh func_80049794 reported CURRENT (4365), preserving the target 0xf8 frame, f20/f21 saves, and f14 early zero but leaving the wave a0/v1 bound/index allocation reversed with later scheduling drift. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat the retained-pad register var_f2 component-staging branch; if staying on func_80049794, prefer a fresh close save-family or wave-register hypothesis from ACTIVE.md that targets the missing f20/f21 saves or wave a0/v1 order without repeating rejected carriers.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat the close-branch register var_t0 allocation hint; if staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without losing the 0xf8 frame and f20/f21 save family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

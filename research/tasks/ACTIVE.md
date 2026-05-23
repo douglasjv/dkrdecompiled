@@ -1778,6 +1778,15 @@
   index, still opposite target `v1` bound and `a0` loop index. Source was
   restored and final full verify passed; do not repeat these close-branch
   `register var_v0` or `register var_v1` hints. A close save-family
+  `register s32 var_t0` allocation hint on the same x/z/y/chained-zero/
+  steer-noop branch also missed: full verify failed with the same close-family
+  calculated CRCs `0xB8DD79CD/0xE47454ED`, and the relinked focused diff
+  worsened to `CURRENT (4365)`. It preserved the target `0xf8` frame,
+  `$f20/$f21` saves, and target `$f14` early zero, but the wave bound/index
+  allocation remained reversed with current `a0` as bound and `v1` as loop
+  index, and later scheduling drift increased. Source was restored and final
+  full verify passed; do not repeat this close-branch `register var_t0` hint.
+  A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
   racerTrickType == -1 || wave->rot.y < 0.4` also missed: full verify failed
