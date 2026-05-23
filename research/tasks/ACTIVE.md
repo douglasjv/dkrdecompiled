@@ -3883,6 +3883,13 @@
   schedule rather than recovering target ordering. Source was restored and
   final full verify passed; do not repeat this center position store-order
   spelling.
+  Rewriting only the final vertex alpha ternary from
+  `(i <= 4) ? 255 : 0` to the equivalent `(i < 5) ? 255 : 0` also produced no
+  focused movement: full verify failed with the known calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, the relinked focused score stayed
+  `CURRENT (1808)`, and the diff remained in the same early position-array
+  register/order family. Source was restored and final full verify passed.
+  Do not repeat this final vertex alpha ternary spelling.
   Reordering only the `uCoords[7]` UV expression to put `pos.z` first
   (`uCoords[7] = (s16) (pos.z + (2.0f * xCos)) + var_v0`) compiled but did not
   move the function: focused diff stayed `CURRENT (1808)`, full verify failed
