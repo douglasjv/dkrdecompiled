@@ -2144,6 +2144,15 @@
   bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
   target `v1`-bound/`a0`-loop. Source was restored and final full verify
   passed; do not repeat this `newSpinoutTimer` spinout assignment carrier. A
+  baseline current-checkout first-speed boss-adjustment multiply spelling
+  (`var_f20 = (var_f20 - 2.0) * 0.5`) also missed as a no-movement family:
+  full verify failed with the promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`,
+  and the relinked focused diff stayed `CURRENT (2760)`. It still lacked
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
+  restored and final full verify passed; do not repeat this first-speed
+  boss-adjustment multiply spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
