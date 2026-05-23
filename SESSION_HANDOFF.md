@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:27:14Z
+- Generated at: 2026-05-23 00:30:29Z
 - Branch: `master`
-- HEAD: `38859c09`
+- HEAD: `c6e6395e`
 - Completed task: `func_8002B0F4`
-- Summary: Promoted func_8002B0F4 and combined the current-layout texture-index temp carrier with moving the batch offset loads before the surface read. Full verify failed with calculated CRCs 0x7C4CE18A/0x3A298210 and relinked focused score stayed CURRENT (2435), matching the standalone texture-index carrier family with the same early gCurrentLevelModel spill at 0x60(sp). Source was restored and final verify passed; do not repeat this current-layout texture-index plus batch-offset-before-surface-read ordering.
+- Summary: Recorded current-source texture-index temp plus faceNum flags carrier miss: full verify failed with CRCs 0x7B5E2034/0x63827015, focused diff CURRENT (3260), and the known early gCurrentLevelModel spill stayed at 0x60(sp); source restored.
 
 ## Validation
 

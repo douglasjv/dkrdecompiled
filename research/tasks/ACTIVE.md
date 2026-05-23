@@ -3489,6 +3489,15 @@
   with broad grid/tail register drift. Source was restored and final full
   verify passed; do not repeat this collision-plane index multiply-order
   spelling.
+  A promoted current-source texture-index `temp` carrier combined with routing
+  `currentBatch->flags` through the existing `faceNum` local before the face
+  loop also missed: full verify failed with calculated CRCs
+  `0x7B5E2034/0x63827015`, and the focused diff widened to
+  `CURRENT (3260)`. The diff still kept the known unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`, regressing from the standalone
+  texture-index carrier's `CURRENT (2435)`. Source was restored and final full
+  verify passed; do not repeat this current-source texture-index plus
+  flags-through-`faceNum` carrier spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
