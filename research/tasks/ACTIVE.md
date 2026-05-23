@@ -1947,7 +1947,14 @@
   stayed in `$f16`, and the wave bound/index allocation remained current
   `a0`/`v1` instead of target `v1`/`a0`. Source was restored and final full
   verify passed; do not repeat this current-baseline `drift_direction = 0`
-  spelling. A baseline
+  spelling. A current-baseline drift flag type probe (`s32 spA2` instead of
+  `s8 spA2`) also missed: full verify failed with calculated CRCs
+  `0x37DDDF63/0x9ECDB374`, the relinked focused diff worsened to
+  `CURRENT (3417)`, the frame widened to `0x100`, stack slots shifted,
+  `$f20/$f21` prologue saves were still absent, early zero stayed in `$f16`,
+  and the wave bound/index allocation remained current `a0`/`v1` instead of
+  target `v1`/`a0`. Source was restored and final full verify passed; do not
+  repeat this current-baseline `s32 spA2` drift-flag type probe. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
