@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 03:42:46Z
+- Generated at: 2026-05-23 03:45:18Z
 - Branch: `master`
-- HEAD: `f1d30c46`
+- HEAD: `88be913a`
 - Completed task: `func_80049794`
-- Summary: Current-baseline wave-speed lower-clamp operand-order spelling (`if (0.0f > racerVelocity)`) missed in the promoted-baseline family; full verify failed with CRCs 0x5FDDE03F/0xEF7A0514 and relinked focused diff reported CURRENT (2760). The probe still lacked target $f20/$f21 prologue saves, kept early zero in $f16 instead of target $f14, and left the wave loop reversed as current a0-bound/v1-loop instead of target v1-bound/a0-loop. Source was restored.
+- Summary: Current-baseline boss-branch polarity spelling (`if (racer->vehicleID < VEHICLE_BOSSES) { } else { ... }`) missed in the promoted-baseline family; full verify failed with CRCs 0x5FDDE03F/0xEF7A0514 and relinked focused diff reported CURRENT (2760). The probe still lacked target $f20/$f21 prologue saves, kept early zero in $f16 instead of target $f14, and left the wave loop reversed as current a0-bound/v1-loop instead of target v1-bound/a0-loop. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline wave-speed lower-clamp operand-order spelling, first-speed 2.0f subtract spelling, grouped z/y first-speed expression, selected-wave index carrier, var_v0 wave-count carrier, post-scan wave-index increment spelling, explicit-subtract wave speed spelling, spEC/spCC first-speed carriers, z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline wave-gate condition reorder, current-baseline var_a0/var_v1 declaration-order swap, current-baseline drift_direction integer reset spelling, current-baseline s32 spA2 drift-flag type probe, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order, constant-spelling, wave-speed spelling, lower-clamp operand-order, first-speed carrier, drift-flag type, count/bound-carrier aliases, selected-wave index aliases, grouped first-speed aliases, or drift-flag stack-byte shapes.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline boss-branch polarity spelling, wave-speed lower-clamp operand-order spelling, first-speed 2.0f subtract spelling, grouped z/y first-speed expression, selected-wave index carrier, var_v0 wave-count carrier, post-scan wave-index increment spelling, explicit-subtract wave speed spelling, spEC/spCC first-speed carriers, z-first, y-first, or x/y/z speed magnitude expression orders, current-baseline in-place var_f20 first-speed magnitude spelling, current-baseline segmentXVelocity/segmentZVelocity first-speed component-carrier spelling, current-baseline positive-break wave scan, current-baseline wave-gate condition reorder, current-baseline var_a0/var_v1 declaration-order swap, current-baseline drift_direction integer reset spelling, current-baseline s32 spA2 drift-flag type probe, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, close save-family segmentXVelocity/segmentZVelocity/racerVelocity first-speed carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order, branch-polarity, constant-spelling, wave-speed spelling, lower-clamp operand-order, first-speed carrier, drift-flag type, count/bound-carrier aliases, selected-wave index aliases, grouped first-speed aliases, or drift-flag stack-byte shapes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
