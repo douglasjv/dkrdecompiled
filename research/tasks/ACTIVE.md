@@ -580,7 +580,16 @@
   wave scan in the current `a0`-bound/`v1`-loop family, and widened later
   gravity/call-adjacent scheduling drift. Source was restored and final full
   verify passed; do not repeat this brake upper-clamp single-precision compare
-  spelling. A 2026-05-23 current-baseline brake rumble-threshold
+  spelling. A sibling brake upper-clamp store-width probe (`racer->brake =
+  1.2` instead of `1.2f` while keeping the double compare) missed as a
+  no-movement promoted-baseline family: full verify failed with calculated
+  CRCs `0x5FDDE03F/0xEF7A0514`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored and final full verify passed; do not repeat this brake
+  upper-clamp double store-width spelling. A 2026-05-23 current-baseline brake
+  rumble-threshold
   single-precision compare probe (`racer->velocity < -2.0f` instead of the
   double literal compare) missed: promoted full verify failed with calculated
   CRCs `0xD0FF913E/0xB80E8394`, and relinked `./diff.sh func_80049794`
@@ -3344,6 +3353,15 @@
   of target `v1`-bound/`a0`-loop, and disturbed later
   gravity/call-adjacent/sound scheduling. Source was restored and final full
   verify passed; do not repeat this throttle-rate single-precision literal
+  spelling. A baseline current-checkout brake upper-clamp double store-width
+  spelling (`racer->brake = 1.2` instead of `1.2f` while keeping the double
+  compare) also missed as a no-movement family: full verify failed with the
+  promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused
+  diff stayed `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop. Source was restored and final full verify
+  passed; do not repeat this brake upper-clamp double store-width
   spelling. A baseline current-checkout opening
   update-rate single-precision multiplier spelling (`updateRateF *= 1.09f`)
   also missed badly: full verify failed with calculated CRCs

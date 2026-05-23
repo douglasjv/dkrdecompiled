@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 11:06:01Z
+- Generated at: 2026-05-23 11:11:12Z
 - Branch: `master`
-- HEAD: `c8380620`
+- HEAD: `87350795`
 - Completed task: `func_80049794`
-- Summary: Rejected late boost pointer += racerIndex probe; source restored after CURRENT (2760) miss
+- Summary: Rejected brake upper-clamp double store-width probe; source restored after CURRENT (2760) miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp/brake lower-clamp/brake rumble-threshold/brake rumble guard-order/spinout brake literal/explicit wave-drift float-threshold/late boost-emitter branch-order/late boost-emitter nonzero compare/late boost pointer += racerIndex/attach-point postincrement/attach-point store-order/final unk201 condition-inversion/attach-point count > 2/attach-point -= 2.0/attach-point += 1.0f probes, and avoid recorded func_80059208 final-tail/normalization/checkpoint-distance literal probes; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
+- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp compare/brake upper-clamp double store-width/brake lower-clamp/brake rumble-threshold/brake rumble guard-order/spinout brake literal/explicit wave-drift float-threshold/late boost-emitter branch-order/late boost-emitter nonzero compare/late boost pointer += racerIndex/attach-point postincrement/attach-point store-order/final unk201 condition-inversion/attach-point count > 2/attach-point -= 2.0/attach-point += 1.0f probes, and avoid recorded func_80059208 final-tail/normalization/checkpoint-distance literal probes; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
