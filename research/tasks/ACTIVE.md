@@ -152,6 +152,16 @@
   `$f14`/`$f20` gravity scheduling drift. Source was restored and final full
   verify passed; do not repeat this current-baseline wave-drift subtract-only
   suffix spelling. A
+  2026-05-23 current-baseline wave-drift clamp-assignment suffix probe
+  (`racerVelocity = 4.0f` with the subtract/compare/divide spelling unchanged)
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0xA72E8795/0xE7316761`, and the relinked
+  focused diff regressed to `CURRENT (3355)`. It still did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, kept the wave scan as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop, and broadened later `$f14`/`$f20` gravity
+  scheduling drift. Source was restored and final full verify passed; do not
+  repeat this current-baseline wave-drift clamp-assignment suffix spelling. A
   2026-05-23 close save-family plus wave-drift subtract-suffix probe
   (promoted close chained-zero/x/z/y/no-trailing-pad shape with only
   `racerVelocity -= 8.0f` changed) missed: object-only focused diff first
@@ -2164,9 +2174,19 @@
   bound/index allocation remained current `a0`/`v1` instead of target
   `v1`/`a0`, and later `$f14`/`$f20` gravity scheduling drift broadened.
   Source was restored and final full verify passed; do not repeat this
-  current-baseline wave-drift subtract-only suffix spelling. A 2026-05-23
-  close save-family plus
-  wave-drift subtract-suffix probe (promoted close chained-zero/x/z/y/
+  current-baseline wave-drift subtract-only suffix spelling. A baseline
+  current-checkout wave-drift clamp-assignment suffix spelling
+  (`racerVelocity = 4.0f` with the subtract/compare/divide spelling unchanged)
+  also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0xA72E8795/0xE7316761`, and the
+  relinked focused diff regressed to `CURRENT (3355)`. `$f20/$f21` prologue
+  saves were still absent, early zero stayed in current `$f16` instead of
+  target `$f14`, the wave bound/index allocation remained current `a0`/`v1`
+  instead of target `v1`/`a0`, and later `$f14`/`$f20` gravity scheduling
+  drift broadened. Source was restored and final full verify passed; do not
+  repeat this current-baseline wave-drift clamp-assignment suffix spelling. A
+  2026-05-23 close save-family plus wave-drift subtract-suffix probe
+  (promoted close chained-zero/x/z/y/
   no-trailing-pad shape with `racerVelocity -= 8.0f` only) also missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
   failed with calculated CRCs `0xA8F39A57/0xC08781AF`, and the relinked focused
