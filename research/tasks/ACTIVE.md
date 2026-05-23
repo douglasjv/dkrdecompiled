@@ -1664,7 +1664,16 @@
   `CURRENT (2760)`. It stayed in the missing `$f20/$f21` prologue-save,
   early `$f16` zero, and wave `a0`/`v1` drift family. Source was restored and
   final full verify passed; do not repeat this nested drift-start branch
-  spelling. A baseline current-checkout nested early wave-gate spelling
+  spelling. A baseline current-checkout comma-gate drift-flag initialization
+  (`if ((spA2 = FALSE, gCurrentPlayerIndex != PLAYER_COMPUTER) && ...)`) also
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with the promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and
+  the relinked focused score was `CURRENT (2760)`. The diff still lacked
+  target `$f20/$f21` prologue saves, kept the early zero in `$f16` instead of
+  target `$f14`, and left the wave bound/index allocation as current
+  `a0`/`v1` opposite target `v1`/`a0`. Source was restored and final full
+  verify passed; do not repeat this comma-gate `spA2` initialization spelling.
+  A baseline current-checkout nested early wave-gate spelling
   (`if (gCurrentPlayerIndex != PLAYER_COMPUTER) { if (racer->vehicleIDPrev !=
   VEHICLE_WIZPIG) { if (gRacerWaveCount != 0) ... } }`) also missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:56:40Z
+- Generated at: 2026-05-23 01:00:11Z
 - Branch: `master`
-- HEAD: `de5f1b67`
+- HEAD: `b10925cf`
 - Completed task: `func_80049794`
-- Summary: Recorded current-baseline existing-var_v0 wave-bound carrier miss: promoted source failed full verify with CRCs 0x422CAA9F/0x6001E375, relinked focused diff worsened to CURRENT (4660), and source was restored.
+- Summary: Recorded baseline comma-gate spA2 initialization miss: promoted source failed full verify with CRCs 0x5FDDE03F/0xEF7A0514, relinked focused diff stayed in CURRENT (2760), and source was restored.
 
 ## Validation
 
