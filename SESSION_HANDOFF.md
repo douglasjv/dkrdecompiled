@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:53:17Z
+- Generated at: 2026-05-23 23:58:19Z
 - Branch: `master`
-- HEAD: `4866d6fe`
-- Completed task: `func_80059208`
-- Summary: Nested wrong-way counter condition probe missed; source restored after focused diff stayed CURRENT (870).
+- HEAD: `def8640e`
+- Completed task: `func_80049794`
+- Summary: Worker-tested late boost-emitter high-boost condition order missed; relinked diff stayed CURRENT (2760).
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x53D141DF/0xB9D4B481; relinked diff CURRENT (870)); ./score.sh -s: Decomp progress 97.30%, documentation progress 65.47%.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (main checkout after metadata closeout: Verify: OK; worker rejected probe CRCs 0x5FE1E03F/0xA0AF4D76; relinked diff CURRENT (2760)).
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80059208 with a fresh final-tail object-dot/checkpoint-dot source-shape hypothesis, or pivot to the next selector-routable bounded packet if tail variants repeat.`
+- Task: `Continue func_80049794 only with a non-boost-emitter saved-FPR or wave-bound allocation hypothesis, or pivot to the next selector-routable bounded packet if no fresh source-shape remains.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

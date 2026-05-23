@@ -397,7 +397,17 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan
   in the current `a0`-bound/`v1`-loop family. Source was restored and final
   full verify passed; do not repeat this late boost-emitter nonzero compare
-  spelling. A sibling late boost-emitter pointer-index spelling probe
+  spelling. A worker-tested sibling late boost-emitter high-boost
+  condition-order probe (`boostObj->unk74 > 0.0 || boostObj->unk70 > 0`
+  instead of the current `unk70`-first guard) also missed as a no-movement
+  promoted-baseline family: probe verify failed with calculated CRCs
+  `0x5FE1E03F/0xA0AF4D76`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Worker source was restored and verified;
+  do not repeat this high-boost `unk74 || unk70` operand-order spelling. A
+  sibling late boost-emitter pointer-index spelling probe
   (`boostObj += racer->racerIndex` instead of
   `boostObj = &boostObj[racer->racerIndex]`) missed: full verify failed with
   calculated CRCs `0x5A11E03F/0x019B7EA6`, relinked
@@ -3424,7 +3434,15 @@
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was
   restored and final full verify passed; do not repeat this late boost-emitter
-  pointer `+= racerIndex` spelling. A baseline current-checkout movement-block
+  pointer `+= racerIndex` spelling. A worker-tested late boost-emitter
+  high-boost condition-order probe (`boostObj->unk74 > 0.0 ||
+  boostObj->unk70 > 0`) produced no relinked movement: probe verify failed with
+  calculated CRCs `0x5FE1E03F/0xA0AF4D76`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed
+  `CURRENT (2760)`. The same missing `$f20/$f21` prologue saves, early
+  `$f16` zero, and current `a0`-bound/`v1` wave scan remained. Worker source
+  was restored and verified; do not repeat this high-boost condition operand
+  order. A baseline current-checkout movement-block
   approach-target pointer-test spelling (`if (!racer->approachTarget)` instead
   of `== NULL`) also missed as a no-movement promoted-baseline family: full
   verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked
