@@ -55,6 +55,16 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline wave-height threshold commute
+  (`gRacerCurrentWave[var_a0]->waveHeight < 5 + obj->trans.y_position`
+  instead of `obj->trans.y_position + 5`) missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x5FE1E03F/0x88CC2028`, and the relinked focused diff worsened to
+  `CURRENT (2770)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this current-baseline wave-height threshold
+  commute. A
   2026-05-23 current-baseline attach-point model-index postincrement probe
   (`temp_v0_obj->modelIndex++` instead of `temp_v0_obj->modelIndex += 1` for
   the first attach-point model advance) missed as a no-movement
@@ -756,9 +766,19 @@
   widened the relinked focused score to `CURRENT (5590)`, failed full verify
   with calculated CRCs `0x5F811F98/0x9CE14139`, and still lacked the target
   `$f20`/`$f21` prologue saves plus early `$f14` zero. Do not repeat this
-  current-baseline threshold-local spelling. A close save-family continuation
-  with x/z/y pre-`sqrtf` accumulation, chained grounded-wheel zero, steer-vel
-  no-op, and removed trailing `pad3`/`pad4` tested an existing-`var_t0`
+  current-baseline threshold-local spelling. A current-baseline wave-height
+  threshold commute
+  (`gRacerCurrentWave[var_a0]->waveHeight < 5 + obj->trans.y_position`)
+  also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0x5FE1E03F/0x88CC2028`, and the
+  relinked focused diff worsened to `CURRENT (2770)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16`, left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop, and shifted the current-baseline family rather
+  than improving it. Source was restored and final full verify passed; do not
+  repeat this current-baseline threshold-commute spelling. A close save-family
+  continuation with x/z/y pre-`sqrtf` accumulation, chained grounded-wheel
+  zero, steer-vel no-op, and removed trailing `pad3`/`pad4` tested an existing-`var_t0`
   wave-bound carrier (`var_t0 = gRacerWaveCount - 1; for (var_a0 = var_t0;
   ...); if (var_a0 == var_t0)`). It kept the target `0xf8` frame and
   `$f20/$f21` prologue saves, but worsened the relinked focused score to
