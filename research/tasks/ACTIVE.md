@@ -934,7 +934,14 @@
   two mutating assignments (`var_f20 -= 2.0; var_f20 /= 2.0`) compiled but
   worsened the focused object score from `CURRENT (2550)` to `CURRENT (3235)`
   by broadening first-speed/gravity float-register drift and still did not
-  introduce target `$f20/$f21` prologue saves. Rewriting the first
+  introduce target `$f20/$f21` prologue saves. Reordering only the promoted
+  current-baseline first speed-magnitude expression from `x*x + z*z + y*y` to
+  `z*z + x*x + y*y` also missed: full verify failed with calculated CRCs
+  `0x5FDDE03F/0x6CE3B8C9`, relinked focused diff worsened to `CURRENT (2770)`,
+  and the function still lacked target `$f20/$f21` prologue saves and kept the
+  early zero in `$f16` instead of target `$f14`. Source was restored and final
+  full verify passed; do not repeat this current-baseline z-first speed
+  magnitude expression-order spelling. Rewriting the first
   speed-derived upper
   clamp as explicit single-precision
   (`if (var_f20 > 4.0f) { var_f20 = 4.0f; }`) compiled but worsened the
