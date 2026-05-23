@@ -1459,7 +1459,16 @@
   diff stayed `CURRENT (4365)`, and the target `0xf8` frame plus `$f20/$f21`
   prologue saves remained while the wave `a0`/`v1` swap and later scheduling
   drift were unchanged. Source was restored and final full verify passed; do
-  not repeat this first-speed `segmentZVelocity` carrier. A
+  not repeat this first-speed `segmentZVelocity` carrier. A current-baseline
+  in-place `var_f20` first-speed magnitude spelling (`var_f20 = x; var_f20 *=
+  var_f20; var_f20 += z*z; var_f20 += y*y; var_f20 = sqrtf(var_f20) - 2.0`)
+  also missed: full verify failed with calculated CRCs
+  `0x5FF65B3F/0xBF0023C8`, relinked focused diff reported `CURRENT (3255)`,
+  the frame stayed `0xf8` but `$f20/$f21` prologue saves were still absent,
+  early zero stayed in `$f16`, and the wave bound/index allocation remained
+  reversed as current `a0` bound plus `v1` loop index instead of target
+  `v1`/`a0`. Source was restored and final full verify passed; do not repeat
+  this current-baseline in-place `var_f20` first-speed spelling. A
   2026-05-17 save-family
   wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
