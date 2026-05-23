@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:37:28Z
+- Generated at: 2026-05-23 05:40:49Z
 - Branch: `master`
-- HEAD: `049f4620`
+- HEAD: `69559d7c`
 - Completed task: `func_80049794`
-- Summary: Current-baseline explicit wave-height subtract constant probe (var_f2 = (obj->trans.y_position - var_f2) - 10.0f) missed as a no-movement promoted-baseline family; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked focused diff stayed CURRENT (2760). Source was restored.
+- Summary: Current-baseline wave-drift single-precision normalization constants probe (racerVelocity -= 8.0f; clamp to 4.0f; divide by 4.0f) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x5B9A8D6D/0x2117429E, and relinked focused diff regressed to CURRENT (6330). It aligned the early zero with target $f14 but still lacked target $f20/$f21 saves and kept the wave a0/v1 allocation reversed. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat explicit wave-height subtract 10.0f, nested spA2 wave-drift boolean, first-speed boss-adjustment divide-before-subtract, spA3 course-height placement, course-height compare operand-order, current-baseline spA2 declaration-initialization, first-speed grouped z/y add, R-trigger grounded-wheel stash guard, grounded boss throttle/brake condition-order, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat wave-drift single-precision normalization constants, explicit wave-height subtract 10.0f, nested spA2 wave-drift boolean, first-speed boss-adjustment divide-before-subtract, spA3 course-height placement, course-height compare operand-order, current-baseline spA2 declaration-initialization, first-speed grouped z/y add, R-trigger grounded-wheel stash guard, grounded boss throttle/brake condition-order, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or the early $f14/$f20 save-family interaction without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
