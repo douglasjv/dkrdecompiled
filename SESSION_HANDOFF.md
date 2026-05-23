@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:10:09Z
+- Generated at: 2026-05-23 01:14:21Z
 - Branch: `master`
-- HEAD: `a4f46717`
-- Completed task: `func_80059208`
-- Summary: Recorded final checkpoint-dot unary first-product miss: promoted source failed full verify with CRCs 0x53C0A2B5/0x47AA3C12, relinked focused diff worsened to CURRENT (1445), and source was restored.
+- HEAD: `5fc2902c`
+- Completed task: `func_80049794`
+- Summary: Recorded baseline spE8 early-zero carrier miss: promoted source failed full verify with CRCs 0x5FDDE03F/0xEF7A0514, relinked focused diff stayed CURRENT (2760), and source was restored.
 
 ## Validation
 

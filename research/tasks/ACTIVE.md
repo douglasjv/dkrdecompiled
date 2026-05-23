@@ -1693,6 +1693,14 @@
   saves, kept early zero in `$f16`, and moved the wave block into broader
   register churn rather than target `v1/a0/v0`. Source was restored and final
   full verify passed; do not repeat this baseline nested wave-reset condition.
+  A 2026-05-23 baseline current-checkout early-zero carrier through the
+  existing `spE8` local (`spE8 = 0.0f; racer->unk84 = spE8; racer->unk88 =
+  spE8`) also produced no object movement: full verify failed with the
+  promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, the relinked focused diff
+  stayed `CURRENT (2760)`, target `$f20/$f21` prologue saves were still
+  absent, and the early zero still allocated in `$f16` instead of target
+  `$f14`. Source was restored and final full verify passed; do not repeat this
+  baseline `spE8` early-zero carrier.
   A close save-family continuation
   using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
   grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the
