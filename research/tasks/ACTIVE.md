@@ -32,6 +32,15 @@
   position store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline `spA2` declaration-initialization probe
+  (`s8 spA2 = FALSE;` with the later standalone assignment removed) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0xC22DF330/0x3B2BA987`, and the relinked focused
+  diff regressed to `CURRENT (4869)`. It inserted an early `sb zero,0xa2(sp)`,
+  lost target `$f20/$f21` prologue saves after relink, kept early zero in
+  `$f16`, and widened the wave-scan register/order drift. Source was restored
+  and final full verify passed; do not repeat this `spA2`
+  declaration-initialization spelling. A
   2026-05-23 current-baseline first-speed grouped z/y add probe
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) missed: object-only focused diff first
   printed stale `CURRENT (0)`, full verify failed with calculated CRCs
@@ -301,7 +310,16 @@
   score worsened to `CURRENT (4660)`, and the diff inserted an extra early
   `0xa2(sp)` byte store while the early zero still used `$f16` and the
   `$f20/$f21` prologue saves were still absent. Source was restored and final
-  full verify passed; do not repeat this early `spA2` timing spelling.
+  full verify passed; do not repeat this early `spA2` timing spelling. A
+  current-baseline `spA2` declaration-initialization spelling
+  (`s8 spA2 = FALSE;` with the later standalone `spA2 = FALSE;` removed) also
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0xC22DF330/0x3B2BA987`, and the relinked
+  focused score worsened to `CURRENT (4869)`. The relinked diff inserted an
+  early `sb zero,0xa2(sp)`, still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16`, and broadened the wave-scan register/order drift.
+  Source was restored and final full verify passed; do not repeat this `spA2`
+  declaration-initialization spelling.
   Rewriting the current-baseline drift flag test from the guarded assignment to
   direct boolean assignment (`spA2 = var_f2 < 35 && racerVelocity < 8.0`)
   widened the frame to `0x100`, introduced stack-byte traffic for the drift
