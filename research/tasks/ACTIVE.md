@@ -39,19 +39,15 @@
   full verify passed; do not repeat this normalization guard comparison-order
   spelling. Earlier normalization magnitude sum-order
   (`sqrtf((diffZ * diffZ) + (diffX * diffX))`) also missed; do not repeat it.
-  `func_8002B0F4` remains active after a 2026-05-23 bottom default-water
-  store-order probe (`rot.x`, `rot.z`, `waveHeight`, then `rot.y`) missed:
-  object-only focused diff first printed stale `CURRENT (0)`, full verify
-  failed with calculated CRCs `0x281EE85B/0xEE22BD90`, and the relinked
-  focused diff regressed from promoted baseline `CURRENT (2780)` to
-  `CURRENT (3745)`. It kept the unwanted early `gCurrentLevelModel` spill
-  family. Source was restored and final full verify passed; do not repeat this
-  bottom default-water store-order spelling. A follow-up bottom-water
-  condition-order probe (`gWaveBlockCount != 0 && currentSegment->hasWaves`)
-  also missed: full verify failed with calculated CRCs
-  `0x779A718A/0xE51286EE`, and relinked `./diff.sh func_8002B0F4` regressed
-  to `CURRENT (4010)`. Source was restored and final full verify passed; do
-  not repeat this condition-order spelling.
+  `func_8002B0F4` remains active after a 2026-05-23 bottom segment-range guard
+  reorder (`levelSegmentIndex < gCurrentLevelModel->numberOfSegments &&
+  levelSegmentIndex >= 0`) missed: full verify failed with calculated CRCs
+  `0x281EE7B3/0xDC10368B`, and relinked `./diff.sh func_8002B0F4` regressed
+  to `CURRENT (4020)`. It kept the unwanted early `gCurrentLevelModel` spill
+  family and broadened segment/grid/tail drift. Source was restored and final
+  full verify passed; do not repeat this bottom segment-range guard reorder.
+  Earlier bottom default-water store-order and bottom-water condition-order
+  probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline attach-point model-index postincrement probe
@@ -5084,6 +5080,15 @@
   verify failed with calculated CRCs `0x779A718A/0xE51286EE`, and relinked
   `./diff.sh func_8002B0F4` regressed to `CURRENT (4010)`. Source was restored
   and final full verify passed; do not repeat this condition-order spelling.
+  A promoted current-source bottom segment-range guard reorder spelling that
+  changed `if (levelSegmentIndex >= 0 && levelSegmentIndex <
+  gCurrentLevelModel->numberOfSegments)` to `if (levelSegmentIndex <
+  gCurrentLevelModel->numberOfSegments && levelSegmentIndex >= 0)` also missed:
+  full verify failed with calculated CRCs `0x281EE7B3/0xDC10368B`, and relinked
+  `./diff.sh func_8002B0F4` regressed to `CURRENT (4020)`. The diff retained
+  the unwanted early `gCurrentLevelModel` spill family and broadened
+  segment/grid/tail drift. Source was restored and final full verify passed; do
+  not repeat this bottom segment-range guard reorder.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

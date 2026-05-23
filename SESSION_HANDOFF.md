@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 08:34:18Z
+- Generated at: 2026-05-23 08:36:28Z
 - Branch: `master`
-- HEAD: `5a0ff4ad`
-- Completed task: `func_80059208`
-- Summary: Rejected normalization guard comparison-order probe; promoted current source with if (0.0f != distance) failed verify with CRCs 0x53D141DF/0xB9D4B481 and relinked focused diff stayed CURRENT (870), then source was restored.
+- HEAD: `12596a07`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected bottom segment-range guard reorder; promoted current source with levelSegmentIndex < gCurrentLevelModel->numberOfSegments before levelSegmentIndex >= 0 failed verify with CRCs 0x281EE7B3/0xDC10368B and relinked focused diff regressed to CURRENT (4020), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For func_80059208, do not repeat normalization guard comparison-order, normalization magnitude sum-order, or the recorded final object-dot/checkpoint-dot source shapes in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For func_8002B0F4, do not repeat bottom segment-range guard reorder, bottom-water condition-order, bottom default-water store-order, or the recorded pad3/model-spill families in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
