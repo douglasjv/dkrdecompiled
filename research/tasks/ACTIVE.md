@@ -2161,6 +2161,14 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this first-speed upper-clamp zero-threshold spelling. A
+  baseline current-checkout negative inverse-gravity spelling
+  (`var_f20 = -(var_f20 / 4.0)`) also missed: full verify failed with
+  calculated CRCs `0xF1FCA843/0x71D137FF`, and the relinked focused diff
+  worsened to `CURRENT (4340)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop. Source was restored and final full verify
+  passed; do not repeat this negative inverse-gravity spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
