@@ -732,6 +732,15 @@
   multiply away from the target double-literal shape, and broadened downstream
   wave/gravity/call-adjacent scheduling. Source was restored and final full
   verify passed; do not repeat this vertical stick-rate grouping spelling. A
+  2026-05-23 current-baseline horizontal steer-rate operand-order probe
+  (`var_v1 = updateRateF * var_v0 / var_f2` for the `steerAngle` update)
+  missed as a no-movement family: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this horizontal steer-rate operand-order
+  spelling. A
   2026-05-23 current-baseline throttle-rate single-precision
   literal probe (`racer->throttle += updateRateF * 0.01f` and
   `racer->throttle -= updateRateF * 0.01f`) missed badly: full verify failed
