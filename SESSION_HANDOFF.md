@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 11:55:06Z
+- Generated at: 2026-05-23 12:00:59Z
 - Branch: `master`
-- HEAD: `15473554`
-- Completed task: `func_80049794`
-- Summary: Rejected independent drift-reset checks; source restored after CURRENT (3590) miss
+- HEAD: `827a9b6c`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded pad3-removal plus X-grid var_a1 += var_a1 miss: full verify failed while promoted with CRCs 0x78D4C01A/0xEA4191D0, relinked focused diff was CURRENT (1813), and the unwanted early gCurrentLevelModel spill remained at 0x64(sp); source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restore
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK)
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, with active alternates only for fresh bounded probes. Do not repeat the recorded func_80049794 independent drift-reset checks, split drift-reset condition, drift-direction nonzero, wave-lift, wave-scan, prologue-save, early-zero, grounded-wheel, brake, attach-point, late boost-emitter, or first-speed probe families. Choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
+- Task: `func_80049794`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

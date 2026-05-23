@@ -111,9 +111,15 @@
   bitmask doubling probe (`var_a1 += var_a1` only in the first grid loop)
   missed with a more interesting relinked focused improvement to
   `CURRENT (1805)`, but still retained the same model-spill family; do not
-  repeat that single X-grid spelling either. A sibling
-  collision-plane index local type probe (`s32 temp` to `u16 temp`, matching
-  `basePlaneIndex`) missed: object-only focused diff first printed stale
+  repeat that single X-grid spelling either. Combining the better pad3-removal
+  stack-shape branch with that X-grid `var_a1 += var_a1` spelling also missed:
+  full verify failed with calculated CRCs `0x78D4C01A/0xEA4191D0`, relinked
+  `./diff.sh func_8002B0F4` reported `CURRENT (1813)`, and the unwanted early
+  `gCurrentLevelModel` spill remained at `0x64(sp)` with broad
+  segment/grid/tail drift. Source was restored and final full verify passed;
+  do not repeat this combined pad3-removal plus X-grid doubling spelling. A
+  sibling collision-plane index local type probe (`s32 temp` to `u16 temp`,
+  matching `basePlaneIndex`) missed: object-only focused diff first printed stale
   `CURRENT (0)`, full verify failed with calculated CRCs
   `0x7856718A/0x66208CAA`, and relinked `./diff.sh func_8002B0F4` stayed at
   promoted baseline `CURRENT (2860)`. It kept the unwanted early
@@ -5502,6 +5508,13 @@
   `gCurrentLevelModel` spill at `0x60(sp)`, shifted the X/Z grid bitmask
   register family, and broadened tail drift. Source was restored and final full
   verify passed; do not repeat this single Z-grid `var_a1 += var_a1` spelling.
+  Combining the better pad3-removal stack-shape branch with the single X-grid
+  `var_a1 += var_a1` spelling also missed: full verify failed with calculated
+  CRCs `0x78D4C01A/0xEA4191D0`, relinked `./diff.sh func_8002B0F4` reported
+  `CURRENT (1813)`, and the unwanted early `gCurrentLevelModel` spill remained
+  at `0x64(sp)` with broad segment/grid/tail drift. Source was restored and
+  final full verify passed; do not repeat this combined pad3-removal plus
+  X-grid doubling spelling.
   Rewriting the
   bottom `gTrackWaves` population loop from the existing backslash-preserved
   `for` into an explicit `while (var_v0 < yOutCount)` spelling also missed:
