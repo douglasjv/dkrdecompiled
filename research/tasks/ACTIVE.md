@@ -1438,7 +1438,15 @@
   focused diff worsened to `CURRENT (4640)`, and the early zero allocation
   shifted away from the target `$f14` family while the wave `a0`/`v1` drift
   remained. Source was restored and final full verify passed; do not repeat
-  this first-speed `var_f2` z-product carrier. A 2026-05-17 save-family
+  this first-speed `var_f2` z-product carrier. A close save-family
+  `segmentXVelocity` first-speed carrier (`segmentXVelocity = x*x; var_f20 =
+  segmentXVelocity; var_f20 += z*z; var_f20 += y*y`) also missed: full verify
+  failed with calculated CRCs `0xB8DD79CD/0xCD5971FB`, relinked focused diff
+  worsened to `CURRENT (4365)`, and although the target `0xf8` frame and
+  `$f20/$f21` prologue saves remained, the wave `a0`/`v1` swap and later
+  scheduling drift were unchanged. Source was restored and final full verify
+  passed; do not repeat this first-speed `segmentXVelocity` carrier. A
+  2026-05-17 save-family
   wave-bound comma-assignment probe
   (`var_a0 = (var_v1 = gRacerWaveCount - 1)` and `if (var_a0 == var_v1)`) on
   top of the close chained-zero/x/z/y/steer-noop branch kept the target `0xf8`
