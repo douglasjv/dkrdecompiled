@@ -1973,7 +1973,17 @@
   bound/index allocation as current `a0`/`v1` instead of target `v1`/`a0`, and
   broadened float-register drift through the wave/gravity path. Source was
   restored and final full verify passed; do not repeat this current-baseline
-  explicit-subtract wave speed spelling. A baseline
+  explicit-subtract wave speed spelling. A baseline current-checkout
+  post-scan wave-index increment spelling (`var_a0++` after the wave scan,
+  then `gRacerCurrentWave[var_a0]` instead of repeated
+  `gRacerCurrentWave[var_a0 + 1]`) also missed: full verify failed with
+  calculated CRCs `0x6763F03F/0xAFC9BBAD`, and relinked focused diff was
+  `CURRENT (3315)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, shifted the wave scan into an
+  `a1`/`v1`/`a0`-style register family rather than target `v1`/`a0`
+  bound/index allocation, and inserted post-scan pointer/index adjustment
+  drift. Source was restored and final full verify passed; do not repeat this
+  current-baseline post-scan wave-index increment spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
