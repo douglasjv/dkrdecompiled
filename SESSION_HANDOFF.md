@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:11:07Z
+- Generated at: 2026-05-23 00:14:44Z
 - Branch: `master`
-- HEAD: `2d2545da`
-- Completed task: `func_80049794`
-- Summary: Promoted func_80049794 and tested commuting the spinout-zap condition to check spinout_timer before unk1FE; full verify failed with calculated CRCs 0x5FDDE03F/0x274DE960 and relinked focused score worsened to CURRENT (3830). Source was restored and final verify passed; do not repeat this commuted spinout-zap condition order.
+- HEAD: `b8de928e`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted func_8002B0F4 and tested the pad3-removed three-level surface guard plus textureIndex-through-temp path with currentBatch->flags also routed through temp; full verify failed with calculated CRCs 0x7C5E203C/0xE0335DD6 and relinked focused score worsened to CURRENT (3268). Source was restored and final verify passed; do not repeat this flags-through-temp carrier on that branch.
 
 ## Validation
 

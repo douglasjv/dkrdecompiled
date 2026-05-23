@@ -3377,6 +3377,13 @@
   `gCurrentLevelModel` spill remained at `0x64(sp)`. Source was restored and
   final full verify passed; do not repeat this pad3-removal plus three-level
   surface-guard split without a separate fix for the model-spill family.
+  Extending the pad3-removed three-level surface guard plus texture-index
+  `temp` carrier by also routing `currentBatch->flags` through `temp` missed:
+  full verify failed with calculated CRCs `0x7C5E203C/0xE0335DD6`, the
+  relinked focused score worsened to `CURRENT (3268)`, and the same unwanted
+  early `gCurrentLevelModel` spill remained before broader grid/tail drift.
+  Source was restored and final full verify passed; do not repeat this
+  flags-through-`temp` carrier on that branch.
   Adding direct volatile `gCurrentLevelModel` reloads at the initial
   `currentSegment`/`currentBoundingBox` setup on top of that same
   pad3-removed three-level guard branch also missed: object-only focused diff
