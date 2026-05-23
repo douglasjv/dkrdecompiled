@@ -366,6 +366,16 @@
   offsets, and left the wave scan in the current `a0`-bound/`v1`-loop family.
   Source was restored and final full verify passed; do not repeat this first
   transform `x_rotation` store-order spelling. A
+  2026-05-23 current-baseline first transform `sp60` call-site cast probe
+  (use `(MtxF *) &sp60` for the three first `mtxf_transform_point` calls while
+  leaving `sp60` as `f32 sp60[4]`) missed: it compiled with incompatible
+  pointer-type warnings, full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, shifted late
+  rodata/global offsets, and left the wave scan in the current
+  `a0`-bound/`v1`-loop family. Source was restored and final full verify
+  passed; do not repeat this first transform `sp60` call-site cast spelling. A
   movement-block approach-target pointer-test spelling probe
   (`if (!racer->approachTarget)` instead of `== NULL`) also missed as a
   no-movement promoted-baseline family: full verify failed with calculated

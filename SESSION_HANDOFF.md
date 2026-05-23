@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:39:11Z
+- Generated at: 2026-05-23 22:42:19Z
 - Branch: `master`
-- HEAD: `c5234cd0`
+- HEAD: `5e9a4c69`
 - Completed task: `func_80049794`
-- Summary: Rejected first transform x_rotation store-order shape; exposing func_80049794 with gCurrentRacerTransform.rotation.x_rotation moved after the zero position stores failed full verify with calculated CRCs 0xDBDDE1B6/0x5C94BA6C, and relinked focused diff reported CURRENT (3350).
+- Summary: Rejected first transform sp60 call-site cast shape; exposing func_80049794 with the three first mtxf_transform_point calls using (MtxF *) &sp60 compiled with pointer warnings, failed full verify with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked focused diff stayed CURRENT (2760).
 
 ## Validation
 
