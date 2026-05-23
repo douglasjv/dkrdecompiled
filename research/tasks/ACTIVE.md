@@ -112,6 +112,16 @@
   shifted later buoyancy/gravity scheduling away from the target `$f20`
   family. Source was restored and final full verify passed; do not repeat this
   course-height buoyancy subtract spelling. A
+  2026-05-23 current-baseline course-height upper-cap compare-order spelling
+  (`if (2.5 < var_f20)`) missed as a no-movement promoted-baseline family:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the promoted-baseline calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still did not recover target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  scan in the current `a0`-bound/`v1`-loop family. Source was restored and
+  final full verify passed; do not repeat this course-height upper-cap
+  compare-order spelling. A
   2026-05-23 current-baseline first-speed boss-adjustment divide-before-subtract
   probe (`var_f20 = (var_f20 / 2.0) - 1.0`) missed: object-only focused diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
@@ -2372,8 +2382,17 @@
   `v1`-bound/`a0`-loop, and shifted the later buoyancy/gravity block into
   `$f14`/`$f18`/`$f10` scheduling rather than the target `$f20` family. Source
   was restored and final full verify passed; do not repeat this
-  course-height buoyancy subtract spelling. A baseline current-checkout `ABSF`
-  spelling
+  course-height buoyancy subtract spelling. A baseline current-checkout
+  course-height upper-cap compare-order spelling (`if (2.5 < var_f20)`) also
+  missed as a no-movement family: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with the promoted-baseline calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this course-height upper-cap compare-order spelling. A baseline
+  current-checkout `ABSF` spelling
   for both absolute-velocity temporaries (`var_f14 = ABSF(racer->velocity);
   var_f0 = ABSF(racer->velocity)`) also missed: full verify failed with
   calculated CRCs `0x40ED9F86/0xDE608AA0`, and the relinked focused diff
