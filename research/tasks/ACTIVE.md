@@ -1804,7 +1804,15 @@
   negated `pad2` also compiled but left the focused object score unchanged at
   `CURRENT (870)`. Routing the final `5.0f` lateral clamp limit through the
   unused `pad3` local compiled but worsened the focused object score to
-  `CURRENT (1015)`. Making `pad2` volatile compiled but worsened the focused
+  `CURRENT (1015)`. Reusing the now-dead `distance` local as the final `5.0f`
+  lateral clamp-limit carrier (`distance = 5.0f; if (diffX > distance) ...;
+  if (diffX < -distance) ...`) also missed: full verify failed with calculated
+  CRCs `0x440002C7/0xC48C782C`, and the relinked focused diff worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1445)`. The tail broadened
+  versus the earlier `scale`/`pad3` clamp-limit carriers and shifted later
+  epilogue/global offsets. Source was restored and final full verify passed;
+  do not repeat this final lateral `distance` clamp-limit carrier. Making
+  `pad2` volatile compiled but worsened the focused
   score to `CURRENT (955)` by forcing stack traffic and shifting final-block
   scheduling. Rewriting the final lateral correction as a
   relative-position dot product (`splinePos = obj->trans.x_position - tempX;

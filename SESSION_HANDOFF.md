@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:37:38Z
+- Generated at: 2026-05-23 00:41:03Z
 - Branch: `master`
-- HEAD: `3ef274c2`
+- HEAD: `1eee7940`
 - Completed task: `func_80059208`
-- Summary: Recorded final vertical clamp-limit distance-carrier miss: full verify failed with CRCs 0x4400230F/0x7B651F08, relinked focused diff CURRENT (1995), matching the bad vertical clamp-limit family; source restored.
+- Summary: Recorded final lateral clamp-limit distance-carrier miss: full verify failed with CRCs 0x440002C7/0xC48C782C, relinked focused diff CURRENT (1445), and the tail drift worsened versus the promoted baseline; source restored.
 
 ## Validation
 
