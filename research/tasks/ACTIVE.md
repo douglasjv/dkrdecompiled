@@ -634,6 +634,15 @@
   target `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop
   family. Source was restored and final full verify passed; do not repeat this
   trick-input horizontal `else if` spelling. A 2026-05-23 current-baseline
+  pitch-flip boost-duration decimal spelling (`normalise_time(10)` instead of
+  `normalise_time(0xA)` in the `trickType == 2` completion path) missed as a
+  no-movement promoted-baseline family: full verify failed with calculated
+  CRCs `0x5FDDE03F/0xEF7A0514`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop
+  family. Source was restored and final full verify passed; do not repeat this
+  pitch-flip boost-duration decimal spelling. A 2026-05-23 current-baseline
   explicit wave-drift float-threshold
   probe (`var_f2 < 35.0f` and `var_f2 < 38.0f` instead of integer literals)
   missed as a no-movement promoted-baseline family: full verify failed with
@@ -3501,6 +3510,16 @@
   bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
   target `v1`-bound/`a0`-loop. Source was restored and final full verify
   passed; do not repeat this trick-input horizontal `else if` spelling. A
+  baseline current-checkout pitch-flip boost-duration decimal spelling
+  (`normalise_time(10)` instead of `normalise_time(0xA)` in the
+  `trickType == 2` completion path) also missed as a no-movement family: full
+  verify failed with the promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and
+  the relinked focused diff stayed `CURRENT (2760)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
+  restored and final full verify passed; do not repeat this pitch-flip
+  boost-duration decimal spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
