@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline brake negative-velocity double-zero probe
+  (`racer->velocity < 0.0` instead of `racer->velocity < 0.0f` in the
+  B-button brake condition) missed: full verify failed with calculated CRCs
+  `0x334AD7AC/0x83F55E31`, and the relinked focused diff regressed to
+  `CURRENT (5125)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, left the wave scan in the
+  current `a0`-bound/`v1`-loop family, and added broad double-conversion
+  scheduling around the later brake/gravity path. Source was restored and
+  final full verify passed; do not repeat this brake negative-velocity
+  double-zero spelling. A
   2026-05-23 current-baseline forwardVel damping sum-order probe
   (`((racer->velocity * 0.05) + racer->forwardVel)` instead of
   `(racer->forwardVel + (racer->velocity * 0.05))`) missed: object-only
