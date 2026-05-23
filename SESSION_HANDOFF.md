@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:15:24Z
+- Generated at: 2026-05-23 22:18:48Z
 - Branch: `master`
-- HEAD: `135c6e12`
+- HEAD: `65bf9224`
 - Completed task: `func_80049794`
-- Summary: Recorded close save-family moved-spCC identity preserve miss: x/z/y pre-sqrtf, chained-zero, steer-noop, no trailing pads, moved spCC, and spCC = var_f14 + 0.0f across apply_vehicle_rotation_offset failed full verify with CRCs 0xF40EFA11/0x4DD27B9B; relinked focused diff was CURRENT (4336), still spilled f4 at 0xdc(sp) instead of target f14 and omitted the target reload.
+- Summary: Recorded close save-family explicit-subtract wave-speed miss: x/z/y pre-sqrtf, chained-zero, steer-noop, no trailing pads plus racerVelocity = 0.0f - racer->velocity failed full verify with CRCs 0xB8278BD1/0xEE8E0068; relinked focused diff was CURRENT (5440), keeping f20/f21 saves but broadening wave FPR/register drift and still missing the call-adjacent f14 save/reload.
 
 ## Validation
 

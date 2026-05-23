@@ -2393,7 +2393,17 @@
   compressed `--max-size 620` score to `CURRENT (620)`, but full verify still
   failed with calculated CRCs `0xB8DD79CD/0xE47454ED`. Remaining focused drift
   was the wave-scan `a0`/`v1` register/order swap plus first-speed arithmetic
-  register-family drift. Reversing only the wave count comparison spelling to
+  register-family drift. A 2026-05-23 close save-family explicit-subtract
+  wave-speed probe on that same x/z/y/chained-zero/steer-noop/no-trailing-pad
+  branch (`racerVelocity = 0.0f - racer->velocity`) also missed: full verify
+  failed with calculated CRCs `0xB8278BD1/0xEE8E0068`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (5440)`. It kept the target
+  `0xf8` frame and `$f20/$f21` prologue saves, but changed the wave-speed
+  negate into a subtract family, broadened wave FPR/register scheduling,
+  preserved the wave `a0`/`v1` drift, and still omitted the target
+  call-adjacent `$f14` save/reload. Source was restored and final full verify
+  passed; do not repeat this close save-family explicit-subtract wave-speed
+  spelling. Reversing only the wave count comparison spelling to
   `(gRacerWaveCount - 1) == var_a0` was a no-op: full verify produced the same
   CRCs and the relinked focused diff stayed `CURRENT (620)` with the same
   `a0`/`v1` swap. Making only the wave-height threshold explicit single
