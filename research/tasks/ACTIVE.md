@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline forwardVel damping sum-order probe
+  (`((racer->velocity * 0.05) + racer->forwardVel)` instead of
+  `(racer->forwardVel + (racer->velocity * 0.05))`) missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x5FDD003F/0x3118A39C`, and the relinked focused diff
+  stayed `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  scan in the current `a0`-bound/`v1`-loop family while later gravity remained
+  in the wrong `$f14` family. Source was restored and final full verify passed;
+  do not repeat this forwardVel damping sum-order spelling. A
   2026-05-23 current-baseline grounded stick-scale operand-order probe
   (`gCurrentStickY = ((f32) gCurrentStickY) * (1.0 - var_f20)`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
