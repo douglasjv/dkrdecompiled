@@ -23,7 +23,15 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 outer-ring x6 multiply-order probe (`xPositions[6] =
+  2026-05-23 `vCoords[8]` plus-negative UV probe
+  (`vCoords[8] = (s16) ((2.0f * pos.x) - -var_f16) + var_v1`) missed: full
+  verify failed with calculated CRCs `0x1FC35A27/0x9CAAD958`, and relinked
+  `./diff.sh trackbg_render_flashy` worsened from promoted baseline
+  `CURRENT (1808)` to `CURRENT (2358)` while keeping the early
+  negative-cosine register drift and shifting later scheduling. Source was
+  restored and final full verify passed; do not repeat this `vCoords[8]`
+  plus-negative UV spelling. A sibling 2026-05-23 outer-ring x6
+  multiply-order probe (`xPositions[6] =
   scaledXCos - (scaledXSin * 2.0f)`) missed with no relinked focused movement:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
   failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
@@ -4568,6 +4576,13 @@
   leaving the early negative-cosine carrier drifted from target `$f18` to
   current `$f16`. Source was restored and final full verify passed. Do not
   repeat this `vCoords[8]` grouped-negated-sum UV spelling. Rewriting only
+  `vCoords[8]` from `((2.0f * pos.x) + var_f16)` to
+  `((2.0f * pos.x) - -var_f16)` also missed: full verify failed with
+  calculated CRCs `0x1FC35A27/0x9CAAD958`, the relinked focused score worsened
+  from baseline `CURRENT (1808)` to `CURRENT (2358)`, and the diff kept the
+  early negative-cosine register drift while shifting later UV/global
+  scheduling. Source was restored and final full verify passed. Do not repeat
+  this `vCoords[8]` plus-negative UV spelling. Rewriting only
   `uCoords[5]` from
   `(-var_f14 - (2.0f * xCos))` to `(-var_f14 - (xCos + xCos))` also produced
   no relinked focused movement: full verify failed with the known calculated
