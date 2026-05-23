@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline grounded stick-scale operand-order probe
+  (`gCurrentStickY = ((f32) gCurrentStickY) * (1.0 - var_f20)`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x6036E63F/0x817F988F`, and the relinked
+  focused diff regressed to `CURRENT (2795)`. It did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family
+  while shifting later gravity registers toward the `$f14` family. Source was
+  restored and final full verify passed; do not repeat this grounded
+  stick-scale operand-order spelling. A
   2026-05-23 current-baseline boost non-positive-first branch-order probe
   (`if (racer->boostTimer <= 0) { reset } else if (gRaceStartTimer == 0)`)
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
@@ -2646,6 +2656,17 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this terminal wave-bound inverted empty-if spelling. A
+  baseline current-checkout grounded stick-scale operand-order spelling
+  (`gCurrentStickY = ((f32) gCurrentStickY) * (1.0 - var_f20)`) also missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x6036E63F/0x817F988F`, and the relinked
+  focused diff regressed to `CURRENT (2795)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and shifted
+  later gravity work through `$f14` instead of the target `$f20` family.
+  Source was restored and final full verify passed; do not repeat this
+  grounded stick-scale operand-order spelling. A
   baseline current-checkout boost non-positive-first branch-order spelling
   (`if (racer->boostTimer <= 0) { racer->boostTimer = 0; } else if
   (gRaceStartTimer == 0) { ... }`) also missed as a no-movement
