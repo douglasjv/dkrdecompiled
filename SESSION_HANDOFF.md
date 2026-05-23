@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:10:14Z
+- Generated at: 2026-05-23 22:15:24Z
 - Branch: `master`
-- HEAD: `3e0ff525`
+- HEAD: `135c6e12`
 - Completed task: `func_80049794`
-- Summary: Recorded spA2 racerVelocity < 8.0f threshold miss: promoted full verify failed with CRCs 0x602FD375/0x8F5948D3, relinked focused diff was CURRENT (5940), shifted that compare into a single-precision family, and the known f20/f21, early f14 zero, and wave-scan allocation drift remained; source restored.
+- Summary: Recorded close save-family moved-spCC identity preserve miss: x/z/y pre-sqrtf, chained-zero, steer-noop, no trailing pads, moved spCC, and spCC = var_f14 + 0.0f across apply_vehicle_rotation_offset failed full verify with CRCs 0xF40EFA11/0x4DD27B9B; relinked focused diff was CURRENT (4336), still spilled f4 at 0xdc(sp) instead of target f14 and omitted the target reload.
 
 ## Validation
 

@@ -2259,7 +2259,17 @@
   traffic but shrank the frame to `0xf0`, dropped target `$f20/$f21` saves, and
   worsened to `CURRENT (4284)`. Do not repeat moved or volatile `spCC`
   declaration variants unless new evidence shows how to keep `$f20/$f21` and
-  target `$f14` allocation together. Adding `register f32 var_f14` to this
+  target `$f14` allocation together. A 2026-05-23 close save-family moved-`spCC`
+  identity-preserve probe (`spCC = var_f14 + 0.0f` before
+  `apply_vehicle_rotation_offset`, then `var_f14 = spCC` after, on top of the
+  x/z/y pre-`sqrtf`, chained-zero, steer-noop, no-trailing-pad branch) also
+  missed: full verify failed with calculated CRCs `0xF40EFA11/0x4DD27B9B`, and
+  relinked `./diff.sh func_80049794` regressed to `CURRENT (4336)`. It kept
+  the `0xdc(sp)` call-delay spill slot but still spilled `$f4` instead of
+  target `$f14`, omitted the target `$f14` reload, kept the wave `a0`/`v1`
+  drift, and broadened downstream scheduling. Source was restored and final
+  full verify passed; do not repeat this moved-`spCC` identity-preserve
+  spelling. Adding `register f32 var_f14` to this
   x/z/y save-family `spCC` preserve branch produced no improvement: original
   `spCC` stayed `CURRENT (3526)`, moved `spCC` stayed `CURRENT (3666)`, and
   the moved slot still spilled the wrong source FPR at `0xdc(sp)` instead of
