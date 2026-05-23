@@ -41,15 +41,15 @@
   splineIndex comparison-direction spelling. Earlier normalization reciprocal
   double-literal, normalization guard comparison-order, and magnitude sum-order
   probes also missed; do not repeat them.
-  `func_8002B0F4` remains active after a 2026-05-23 bottom segment-range guard
-  reorder (`levelSegmentIndex < gCurrentLevelModel->numberOfSegments &&
-  levelSegmentIndex >= 0`) missed: full verify failed with calculated CRCs
-  `0x281EE7B3/0xDC10368B`, and relinked `./diff.sh func_8002B0F4` regressed
-  to `CURRENT (4020)`. It kept the unwanted early `gCurrentLevelModel` spill
-  family and broadened segment/grid/tail drift. Source was restored and final
-  full verify passed; do not repeat this bottom segment-range guard reorder.
-  Earlier bottom default-water store-order and bottom-water condition-order
-  probes also missed; do not repeat them.
+  `func_8002B0F4` remains active after a 2026-05-23 bottom default-water height
+  cast probe (`D_8011D128[yOutCount].waveHeight = (f32)
+  currentSegment->unk38`) missed: full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, and relinked `./diff.sh func_8002B0F4` stayed
+  `CURRENT (2860)`. It kept the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` with broad segment/grid/tail drift. Source was restored and final
+  full verify passed; do not repeat this explicit height-cast spelling.
+  Earlier bottom segment-range guard reorder, bottom default-water store-order,
+  and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline attach-point model-index postincrement probe
@@ -5124,6 +5124,14 @@
   the unwanted early `gCurrentLevelModel` spill family and broadened
   segment/grid/tail drift. Source was restored and final full verify passed; do
   not repeat this bottom segment-range guard reorder.
+  A promoted current-source bottom default-water height cast spelling that
+  changed `D_8011D128[yOutCount].waveHeight = currentSegment->unk38` to
+  `D_8011D128[yOutCount].waveHeight = (f32) currentSegment->unk38` also missed:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, relinked
+  `./diff.sh func_8002B0F4` stayed `CURRENT (2860)`, and the diff retained the
+  unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
+  segment/grid/tail drift. Source was restored and final full verify passed; do
+  not repeat this explicit default-water height-cast spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
