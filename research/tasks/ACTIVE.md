@@ -23,13 +23,15 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 center position store-order probe (`zPositions[4] = 0.0f` before
-  `xPositions[4] = 0.0f`) missed. Full verify failed with calculated CRCs
-  `0x93D338FF/0xC989AC94`, the relinked focused score worsened from baseline
-  `CURRENT (1808)` to `CURRENT (1880)`, and the diff shifted the same early
-  negative-cosine/position-array register schedule in the wrong direction.
-  Source was restored and final full verify passed; do not repeat this center
-  position store-order spelling. `func_80059208` also remains active after a
+  2026-05-23 final triangle postincrement probe (`var_v0_3++` for the three
+  index advances) missed. Full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, the relinked focused score stayed
+  `CURRENT (1808)`, and the diff remained in the same early
+  negative-cosine/position-array register schedule. Source was restored and
+  final full verify passed; do not repeat this final triangle postincrement
+  spelling. Earlier center position store-order (`zPositions[4] = 0.0f` before
+  `xPositions[4] = 0.0f`) also missed; do not repeat it.
+  `func_80059208` also remains active after a
   2026-05-23 normalization magnitude sum-order probe
   (`sqrtf((diffZ * diffZ) + (diffX * diffX))`) missed: object-only focused diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
@@ -4175,6 +4177,13 @@
   early position-array register/order family before reaching the tail-loop
   scheduling. Source was restored and final full verify passed. Do not repeat
   this final triangle two-at-a-time unroll spelling.
+  Rewriting only the final triangle index advances from `var_v0_3 += 1` to
+  `var_v0_3++` also missed: full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, the relinked focused score stayed
+  `CURRENT (1808)`, and the diff remained in the same early
+  negative-cosine/position-array register schedule. Source was restored and
+  final full verify passed. Do not repeat this final triangle postincrement
+  spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
