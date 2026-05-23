@@ -2074,6 +2074,16 @@
   reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
   bound plus `a0` loop-index. Source was restored and final full verify passed;
   do not repeat this course-height range-guard order. A baseline
+  current-checkout selected-wave pointer cache (`WaterProperties *wave =
+  gRacerCurrentWave[var_a0 + 1]`, reused for both `waveHeight` and `rot.y`)
+  also missed: full verify failed with calculated CRCs
+  `0x6DFA65AE/0x7EEB0391`, and the relinked focused diff worsened to
+  `CURRENT (5395)`. It widened the frame to `0x100`, still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
+  restored and final full verify passed; do not repeat this selected-wave
+  pointer cache. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
