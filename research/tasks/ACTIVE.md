@@ -41,7 +41,16 @@
   `CURRENT (935)` by adding a halfword cast/sign-extension family in the final
   lateral update while leaving the object-dot/checkpoint-dot tail drift. Source
   was restored and final full verify passed; do not repeat this final lateral
-  `(s16) diffX` cast spelling. Earlier final vertical reciprocal-multiply,
+  `(s16) diffX` cast spelling. A sibling 2026-05-23 final vertical cast-width
+  probe (`racer->unk1BC += (s16) diffY` instead of `(s32) diffY`) also missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x53C341DF/0x1D08B7B9`, and relinked
+  `./diff.sh func_80059208` worsened from promoted baseline `CURRENT (870)` to
+  `CURRENT (890)`. It added the same narrow-cast/sign-extension direction in
+  the final vertical update while leaving the object-dot/checkpoint-dot plus
+  vertical FPR drift unresolved. Source was restored and final full verify
+  passed; do not repeat this final vertical `(s16) diffY` cast spelling.
+  Earlier final vertical reciprocal-multiply,
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
@@ -3948,7 +3957,16 @@
   halfword cast/sign-extension family in the final lateral update and left the
   object-dot/checkpoint-dot plus vertical FPR drift unresolved. Source was
   restored and final full verify passed; do not repeat this final lateral
-  `(s16) diffX` cast spelling.
+  `(s16) diffX` cast spelling. A sibling final vertical cast-width spelling
+  that changed only `racer->unk1BC += (s32) diffY` to
+  `racer->unk1BC += (s16) diffY` also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x53C341DF/0x1D08B7B9`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (890)`. The diff added
+  a narrow-cast/sign-extension direction in the final vertical update and left
+  the object-dot/checkpoint-dot plus vertical FPR drift unresolved. Source was
+  restored and final full verify passed; do not repeat this final vertical
+  `(s16) diffY` cast spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
