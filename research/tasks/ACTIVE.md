@@ -3168,7 +3168,14 @@
   the relinked focused score stayed `CURRENT (1808)`, and the diff remained in
   the same early position-array register/order family. Source was restored and
   final full verify passed. Do not repeat this single-site x6 plus-negative
-  spelling. Rewriting only `zPositions[6]` from
+  spelling. Rewriting only `xPositions[6]` as a grouped negated difference
+  (`-((2.0f * scaledXSin) - scaledXCos)`) missed badly: full verify failed
+  with calculated CRCs `0x701BB399/0xEE9EA39F`, the relinked focused score
+  worsened from baseline `CURRENT (1808)` to `CURRENT (4468)`, and the diff
+  moved the early negative-cosine carrier from target `$f18` to `$f16` while
+  broadening first/outer position-array scheduling. Source was restored and
+  final full verify passed. Do not repeat this single-site x6 grouped-negated
+  difference spelling. Rewriting only `zPositions[6]` from
   `-(2.0f * scaledXCos) - scaledXSin` to
   `-scaledXSin - (2.0f * scaledXCos)` also missed: full verify failed with
   calculated CRCs `0x93D438FF/0x1A841372`, the relinked focused score worsened
