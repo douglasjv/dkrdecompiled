@@ -239,7 +239,18 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan
   in the current `a0`-bound/`v1`-loop family. Source was restored and final
   full verify passed; do not repeat this late boost-emitter nonzero compare
-  spelling. A 2026-05-23 current-baseline race-start y-velocity double-literal
+  spelling. A sibling late boost-emitter pointer-index spelling probe
+  (`boostObj += racer->racerIndex` instead of
+  `boostObj = &boostObj[racer->racerIndex]`) missed: full verify failed with
+  calculated CRCs `0x5A11E03F/0x019B7EA6`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted object
+  disassembly changed the local pointer add to `addu v1,v0,t9` instead of the
+  target/current `addu v1,t9,v0`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  scan in the current `a0`-bound/`v1`-loop family. Source was restored and
+  final full verify passed; do not repeat this late boost-emitter pointer
+  `+= racerIndex` spelling. A 2026-05-23 current-baseline race-start
+  y-velocity double-literal
   probe (`obj->y_velocity = -5.0` instead of `-5.0f` in the
   `gRaceStartTimer == 100` path) missed as a no-movement promoted-baseline
   family: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
@@ -2951,7 +2962,18 @@
   raising paths. It did not recover target `$f20/$f21` prologue saves, kept
   early zero in `$f16` instead of target `$f14`, and left the wave scan in the
   current `a0`-bound/`v1`-loop family. Source was restored and final full
-  verify passed; do not repeat this attach-point `+= 1.0f` raising spelling. A
+  verify passed; do not repeat this attach-point `+= 1.0f` raising spelling.
+  A baseline current-checkout late boost-emitter pointer-index spelling
+  (`boostObj += racer->racerIndex` instead of
+  `boostObj = &boostObj[racer->racerIndex]`) also missed: full verify failed
+  with calculated CRCs `0x5A11E03F/0x019B7EA6`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted object
+  disassembly changed the local pointer add to `addu v1,v0,t9` instead of the
+  target/current `addu v1,t9,v0`. It did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was
+  restored and final full verify passed; do not repeat this late boost-emitter
+  pointer `+= racerIndex` spelling. A
   baseline current-checkout grouped z/y first-speed
   expression
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
