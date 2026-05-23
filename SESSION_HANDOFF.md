@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:17:43Z
+- Generated at: 2026-05-23 23:30:28Z
 - Branch: `master`
-- HEAD: `62b37b93`
+- HEAD: `9d69e9a3`
 - Completed task: `func_80049794`
-- Summary: Recorded current-baseline zipper rumble enum spelling miss; restored source passes Verify: OK
+- Summary: Recorded A-button throttle lower-compare single-precision miss; restored source passes Verify: OK
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x5FDDE03F/0xEF7A0514, diff CURRENT (2760))
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0xA746C795/0x4D4908D0, diff CURRENT (2430) under --max-size 900)
 
 ## Blockers Or Unknowns
 
@@ -22,8 +22,8 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794`
+- Task: `func_80049794 or next selector-recommended bounded packet`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
-- Step: Continue with another bounded unrecorded source-shape probe; do not repeat the zipper rumble `RUMBLE_TYPE_8` spelling, `newSpinoutTimer`, `spA1`, `spA2`, or `spA3` `s32` type probes, `newSpinoutTimer` assignment carrier, zipper fallback damping single-precision literal, `spA3` boolean guard spelling, horizontal steer-rate divide-before-multiply, horizontal steer-rate operand-order, vertical stick-rate grouping, throttle/brake rate operand-order, or prior transform/store/cast probes. Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.
+- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.

@@ -72,6 +72,13 @@
   the final vertical update while leaving the object-dot/checkpoint-dot plus
   vertical FPR drift unresolved. Source was restored and final full verify
   passed; do not repeat this final vertical `(s16) diffY` cast spelling. A
+  2026-05-23 explicit final self-add assignment probe
+  (`racer->unk1BA = racer->unk1BA + (s32) diffX` and
+  `racer->unk1BC = racer->unk1BC + (s32) diffY`) also missed as a no-movement
+  family: full verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`,
+  and relinked `./diff.sh func_80059208` stayed at promoted baseline
+  `CURRENT (870)`. Source was restored and final full verify passed; do not
+  repeat this explicit final self-add assignment spelling. A
   final vertical clamp-limit carrier through the now-dead `scale` local
   (`scale = 100.0f; if (diffY > scale) ...; if (diffY < -scale) ...`) also
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
@@ -171,7 +178,17 @@
   `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target `$f14`,
   and left the wave scan in the current `a0`-bound/`v1`-loop family. Source was
   restored and final full verify passed; do not repeat this zipper rumble
-  `RUMBLE_TYPE_8` spelling. A
+  `RUMBLE_TYPE_8` spelling. A current-baseline zipper success range-order probe
+  (`steerVisualRotationOffset > -0x400 && steerVisualRotationOffset < 0x400`
+  instead of the current upper-bound-first spelling) also missed: full verify
+  failed with calculated CRCs `0x27DDE03F/0x4EBA4D1F`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (3170)`. The focused diff
+  inverted the local branch polarity/order against the target, which tests
+  `< 0x400` first and then `> -0x400`; it still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
+  and final full verify passed; do not repeat this zipper success range-order
+  spelling. A
   2026-05-23 current-baseline independent drift-reset check probe
   (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`
   instead of the current `||` guard) missed: full verify failed with
@@ -465,7 +482,17 @@
   target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
   family, and widened later gravity/particle FPR scheduling. Source was
   restored and final full verify passed; do not repeat this A-button throttle
-  upper-compare `1.0f` spelling. A
+  upper-compare `1.0f` spelling. A sibling current-baseline A-button throttle
+  lower-compare single-precision probe (`if (racer->throttle < 0.0f)`,
+  leaving the upper compare/store unchanged) also missed: full verify failed
+  with calculated CRCs `0xA746C795/0x4D4908D0`, and relinked
+  `./diff.sh func_80049794 --max-size 900 --compress-matching 2 --no-pager`
+  reported `CURRENT (2430)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave
+  scan in the current `a0`-bound/`v1`-loop family, and widened later
+  throttle/gravity/boost FPR drift. Source was restored and final full verify
+  passed; do not repeat this A-button throttle lower-compare `0.0f` spelling.
+  A
   2026-05-23 current-baseline low-speed drag multiply grouping probe
   (`racer->velocity * (spD8 * 8.0f)` instead of
   `racer->velocity * spD8 * 8.0f`) missed: full verify failed with calculated
@@ -4689,7 +4716,14 @@
   a narrow-cast/sign-extension direction in the final vertical update and left
   the object-dot/checkpoint-dot plus vertical FPR drift unresolved. Source was
   restored and final full verify passed; do not repeat this final vertical
-  `(s16) diffY` cast spelling.
+  `(s16) diffY` cast spelling. A 2026-05-23 explicit final self-add assignment
+  probe (`racer->unk1BA = racer->unk1BA + (s32) diffX` and
+  `racer->unk1BC = racer->unk1BC + (s32) diffY`) also missed: full verify
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked
+  `./diff.sh func_80059208` stayed at promoted baseline `CURRENT (870)`, and
+  the same final object-dot/checkpoint-dot plus vertical FPR drift remained.
+  Source was restored and final full verify passed; do not repeat this
+  explicit final self-add assignment spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
