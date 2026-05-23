@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:44:57Z
+- Generated at: 2026-05-23 00:48:07Z
 - Branch: `master`
-- HEAD: `69887b27`
-- Completed task: `func_80049794`
-- Summary: Recorded baseline nested early wave-gate miss: object-only focused diff printed stale CURRENT (0), full verify failed with CRCs 0x5FDDE03F/0xEF7A0514, relinked focused diff CURRENT (2760), and source was restored.
+- HEAD: `e13c9194`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded single-site xPositions[0] scaledXSin replacement miss: object-only focused diff printed stale CURRENT (0), full verify failed with CRCs 0x218F9FFA/0x18F4A6D6, relinked focused diff CURRENT (13821), frame shrank to 0x150, and source was restored.
 
 ## Validation
 

@@ -2400,7 +2400,16 @@
   four x/z position assignments with `scaledXSin` widened the frame to `0x168`
   and worsened the focused score to `CURRENT (12121)`; reordering the index
   5-8 x/z position stores to match the apparent target store sequence worsened
-  the focused score to `CURRENT (2551)` and shifted later scheduling. A
+  the focused score to `CURRENT (2551)` and shifted later scheduling. Replacing
+  only `xPositions[0] = -scaledXCos - (xSin * 1280.0f)` with
+  `xPositions[0] = -scaledXCos - scaledXSin` also collapsed into the bad
+  frame-shrink family: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`, and the relinked focused score worsened to
+  `CURRENT (13821)`. The frame shrank from target `0x158` to `0x150`, the
+  early position-array schedule broadened, and global offsets/tail labels
+  shifted. Source was restored and final full verify passed; do not repeat
+  this single-site `xPositions[0]` scaledXSin replacement. A
   narrower single-site outer-ring reorder that moved only `zPositions[6]`
   before `xPositions[6]` compiled but worsened the relinked focused score to
   `CURRENT (3860)`, failed full verify with calculated CRCs
