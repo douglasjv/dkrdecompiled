@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:23:07Z
+- Generated at: 2026-05-23 09:27:20Z
 - Branch: `master`
-- HEAD: `007398d0`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected outer-ring x7 multiply-order probe; promoting source with xPositions[7] = scaledXCos + (scaledXSin * 2.0f) failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
+- HEAD: `5e1d42fc`
+- Completed task: `func_80049794`
+- Summary: Rejected close save-family selected-wave index carrier; promoting x/z/y pre-sqrt accumulation, chained grounded-wheel zero, no trailing pad3/pad4, and var_t9 = var_a0 + 1 for selected waveHeight/rot.y failed verify with CRCs 0x1457E419/0x21494B92 and relinked focused diff regressed to CURRENT (6025), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For trackbg_render_flashy, do not repeat x7/z6/z5/x5 multiply-order, x6/z6/x7/z7 operand-order, x6/z6/z7 grouped-negation, x7/x8/z8 single-site outer-ring spellings, vertex pointer-loop, color fallback initialization-order, final global pointer store-order, final triangle postincrement, center position store-order, or other recorded first/outer position-array families in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80049794, do not repeat current-baseline selected-wave index carriers, close-save-family selected-wave index carrier, x/z/y pre-sqrt plus chained-zero/no-trailing-pad base without a new hypothesis, wave-bound carrier/register-hint families, first-speed carriers, early-zero carriers, wave-drift suffix/literal probes, or other recorded wave a0/v1 and f14/f16 allocation families in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

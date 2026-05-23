@@ -58,6 +58,17 @@
   also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 close save-family selected-wave index carrier probe
+  (`var_t9 = var_a0 + 1`, then using `gRacerCurrentWave[var_t9]` for the
+  post-scan `waveHeight` and `rot.y` accesses on top of the x/z/y
+  pre-`sqrtf`, chained-zero, no-trailing-pad shape) missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x1457E419/0x21494B92`, and the relinked focused diff
+  regressed to `CURRENT (6025)`. It kept the target `0xf8` frame and
+  `$f20/$f21` saves but broadened the wave block into `a0`/`v1`/`t*` register
+  churn, left early zero in `$f16` instead of target `$f14`, and disturbed
+  later call-adjacent scheduling. Source was restored and final full verify
+  passed; do not repeat this close-branch selected-wave index carrier. A
   2026-05-23 current-baseline wave-height threshold commute
   (`gRacerCurrentWave[var_a0]->waveHeight < 5 + obj->trans.y_position`
   instead of `obj->trans.y_position + 5`) missed: object-only focused diff
@@ -2520,6 +2531,17 @@
   target `beq t1,v0` to current `beq v0,t1` while leaving the wave bound/index
   allocation reversed. Source was restored and final full verify passed; do
   not repeat this close-branch `racerTrickType` wave-reset cache.
+  A close save-family selected-wave index carrier (`var_t9 = var_a0 + 1`, then
+  using `gRacerCurrentWave[var_t9]` for both post-scan `waveHeight` and `rot.y`
+  accesses on top of the x/z/y pre-`sqrtf`, chained-zero, no-trailing-pad
+  branch) also missed: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x1457E419/0x21494B92`, and the relinked focused score regressed to
+  `CURRENT (6025)`. It kept the target `0xf8` frame and `$f20/$f21` prologue
+  saves, but broadened the wave block into `a0`/`v1`/`t*` register churn, left
+  early zero in `$f16` instead of target `$f14`, and disturbed later
+  call-adjacent scheduling. Source was restored and final full verify passed;
+  do not repeat this close-branch selected-wave index carrier.
   A baseline current-checkout spinout-zap
   condition split (`if (racer->unk1FE == 4) { if (racer->spinout_timer == 0)
   ... }`) matched the local target branch shape in the object-only focused
