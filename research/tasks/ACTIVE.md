@@ -149,7 +149,16 @@
   the current `a0`-bound/`v1`-loop family, and only shifted constants and
   later call targets in the promoted current-baseline family. Source was
   restored and final full verify passed; do not repeat this attach-point
-  model-index postincrement spelling. A
+  model-index postincrement spelling. A sibling attach-point store-order probe
+  (moving the first third-attach-object `modelIndex += 1` before
+  `trans.rotation.y_rotation = 0x4000`) also missed as a no-movement
+  promoted-baseline family: full verify failed with calculated CRCs
+  `0x5CF5E03F/0x566478E3`, and relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this attach-point model-index/rotation
+  store-order spelling. A
   2026-05-23 current-baseline attach-point grounded-wheel branch-order probe
   (`if (spA2 != FALSE || racer->groundedWheels != 0)` instead of the existing
   grounded-wheels-first guard) missed as a no-movement promoted-baseline
@@ -2843,7 +2852,17 @@
   recomputed the selected-wave offset for the `rot.y` check instead of
   reusing the target post-scan offset. Source was restored and final full
   verify passed; do not repeat this current-baseline selected-wave index
-  carrier. A baseline current-checkout grouped z/y first-speed expression
+  carrier. A baseline current-checkout attach-point store-order spelling
+  (moving the first third-attach-object `modelIndex += 1` before
+  `trans.rotation.y_rotation = 0x4000`) also missed as a no-movement
+  promoted-baseline family: full verify failed with calculated CRCs
+  `0x5CF5E03F/0x566478E3`, and relinked `./diff.sh func_80049794` stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this attach-point model-index/rotation
+  store-order spelling. A baseline current-checkout grouped z/y first-speed
+  expression
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
   calculated CRCs `0x6025B63F/0xF5C950EA`, and relinked focused diff reported
   `CURRENT (2980)`. It still lacked target `$f20/$f21` prologue saves, kept
