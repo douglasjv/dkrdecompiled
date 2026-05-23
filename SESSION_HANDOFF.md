@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:24:29Z
+- Generated at: 2026-05-23 00:27:14Z
 - Branch: `master`
-- HEAD: `6513e0c1`
+- HEAD: `38859c09`
 - Completed task: `func_8002B0F4`
-- Summary: Promoted func_8002B0F4 and combined the current-layout texture-index temp carrier with a three-level water-surface guard split. Full verify failed with calculated CRCs 0x7C4CE18A/0x3A298210 and relinked focused score stayed CURRENT (2435), matching the standalone texture-index carrier family with the same early gCurrentLevelModel spill at 0x60(sp). Source was restored and final verify passed; do not repeat this current-layout texture-index plus three-level guard split.
+- Summary: Promoted func_8002B0F4 and combined the current-layout texture-index temp carrier with moving the batch offset loads before the surface read. Full verify failed with calculated CRCs 0x7C4CE18A/0x3A298210 and relinked focused score stayed CURRENT (2435), matching the standalone texture-index carrier family with the same early gCurrentLevelModel spill at 0x60(sp). Source was restored and final verify passed; do not repeat this current-layout texture-index plus batch-offset-before-surface-read ordering.
 
 ## Validation
 
