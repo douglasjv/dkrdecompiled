@@ -168,7 +168,15 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan in
   the current `a0`-bound/`v1`-loop family. Source was restored and final full
   verify passed; do not repeat this later vehicleID upper-guard operand-order
-  spelling. A
+  spelling. A 2026-05-23 current-baseline trick divisor branch-polarity probe
+  (`if (racer->trickType == 0) { var_f2 = 8.0; } else { var_f2 = 4.0; }`)
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x97DCE260/0x7D421449`, and the relinked
+  focused diff regressed to `CURRENT (3815)`. It still did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop family, and
+  shifted later call-adjacent scheduling. Source was restored and final full
+  verify passed; do not repeat this trick divisor branch-polarity spelling. A
   2026-05-23 current-baseline nested `spA2` wave-drift boolean probe
   (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -2548,7 +2556,17 @@
   `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this later vehicleID
-  upper-guard operand-order spelling. A
+  upper-guard operand-order spelling. A baseline current-checkout trick
+  divisor branch-polarity spelling (`if (racer->trickType == 0) { var_f2 =
+  8.0; } else { var_f2 = 4.0; }`) also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x97DCE260/0x7D421449`, and the relinked focused diff regressed to
+  `CURRENT (3815)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop, and shifted later call-adjacent scheduling. Source was
+  restored and final full verify passed; do not repeat this trick divisor
+  branch-polarity spelling. A
   baseline current-checkout first-speed
   upper-clamp zero-threshold spelling (`if (var_f20 > 0.0) { var_f20 = 4; }`)
   also missed: full verify failed with calculated CRCs
