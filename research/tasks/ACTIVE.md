@@ -142,7 +142,18 @@
   to `CURRENT (3815)`. The diff still inserted the unwanted early
   `gCurrentLevelModel` spill at `0x60(sp)` and broadened segment/grid/tail
   drift. Source was restored and final full verify passed; do not repeat this
-  collision-plane nonzero `0.0f` literal spelling.
+  collision-plane nonzero `0.0f` literal spelling. A current-source
+  surface-skip branch inversion probe also missed: promoting the current C and
+  changing only the water/hidden-collision guard to an inverted empty-if
+  (`surface == SURFACE_WATER_CALM || surface == SURFACE_WATER_UNK_F ||
+  !flags`) with `currentFaceOffset = nextFaceOffset` in `else` failed full
+  verify with calculated CRCs `0x77D9E18A/0xB9F696E2`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` regressed from
+  the promoted baseline `CURRENT (2780)` to `CURRENT (2995)`. The diff still
+  inserted the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`,
+  broadened segment/grid register rotation, and shifted tail labels by 4
+  bytes. Source was restored and final full verify passed; do not repeat this
+  inverted empty-if surface-skip branch shape.
   Earlier partial/default water store-order, explicit default-water height
   cast, bottom segment-range guard reorder, target default-water store-order,
   and bottom-water condition-order probes also missed; do not repeat them.

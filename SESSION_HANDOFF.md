@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:37:49Z
+- Generated at: 2026-05-23 23:41:21Z
 - Branch: `master`
-- HEAD: `e66c35e7`
-- Completed task: `func_80059208`
-- Summary: Recorded final offset implicit-cast compound-assignment miss; restored source passes Verify: OK
+- HEAD: `d8b0f9d6`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded current-source surface-skip inverted empty-if miss; restored source passes Verify: OK
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0xC76F5A8F/0x277FF7CB, diff CURRENT (4195))
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x77D9E18A/0xB9F696E2, diff CURRENT (2995))
 
 ## Blockers Or Unknowns
 
