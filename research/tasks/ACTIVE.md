@@ -5431,7 +5431,15 @@
   diff retained the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`
   plus broad segment/grid/tail register drift. Source was restored and final
   full verify passed; do not repeat this collision-plane index local type
-  spelling.
+  spelling. A promoted current-source collision-plane nonzero guard operand-
+  order spelling (`if (0.0 != tempVec4f.y)`) also missed without object-family
+  movement: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4` stayed at promoted baseline `CURRENT (2860)`. The
+  diff retained the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`
+  plus broad segment/grid/tail register drift. Source was restored and final
+  full verify passed; do not repeat this collision-plane nonzero guard
+  operand-order spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

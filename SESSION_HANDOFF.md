@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:20:09Z
+- Generated at: 2026-05-23 10:22:34Z
 - Branch: `master`
-- HEAD: `321928fd`
-- Completed task: `func_80049794`
-- Summary: Rejected brake-rate single-precision literal promotion; source restored after CURRENT (5463) miss
+- HEAD: `4f3dd5cc`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected collision-plane nonzero guard operand-order promotion; source restored after CURRENT (2860) no-movement miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but do not accept object-only CURRENT (0) while the NON_EQUIVALENT guard still falls back to assembly. For func_80049794, avoid the recorded early spA1, early-zero, wave-register, throttle-rate, and brake-rate literal probes; choose a fresh bounded source-shape probe or an active alternate with unrecorded evidence.`
+- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid the recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate probes, func_8002B0F4 segment/grid/default-water/collision-plane guard/type probes, and func_80059208 final clamp carriers; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
