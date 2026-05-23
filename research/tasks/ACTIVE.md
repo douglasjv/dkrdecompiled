@@ -86,6 +86,14 @@
   current `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source
   was restored and final full verify passed; do not repeat this course-height
   compare operand-order spelling. A
+  2026-05-23 current-baseline `spA3` course-height placement probe (moving
+  `spA3 = FALSE` after the course-height subtraction and immediately before
+  the range guard) missed: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xAA1C31A9`, and the relinked focused diff regressed to
+  `CURRENT (3000)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this `spA3` course-height placement spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -836,7 +844,15 @@
   compiled but left the focused score unchanged at `CURRENT (2550)` and did not
   move the `$f14/$f16` allocation split. Moving `spA3 = FALSE` after the
   `var_f20 = 1.0 - (var_f20 / 4.0)` inverse-gravity calculation also compiled
-  but left the focused score unchanged at `CURRENT (2550)`. Combining
+  but left the focused score unchanged at `CURRENT (2550)`. A later
+  current-baseline `spA3` course-height placement probe that moved
+  `spA3 = FALSE` after `var_f2 = (gCurrentCourseHeight - 50.0) -
+  obj->trans.y_position` and immediately before the range guard missed: full
+  verify failed with calculated CRCs `0x5FDDE03F/0xAA1C31A9`, and the relinked
+  focused diff worsened to `CURRENT (3000)` while preserving the missing
+  `$f20/$f21` saves, early `$f16` zero, and current `a0`-bound/`v1`-loop wave
+  family. Source was restored and final full verify passed; do not repeat this
+  `spA3` course-height placement spelling. Combining
   `register f32 var_f20` with `register f32 var_f14` also compiled but left the
   focused score unchanged at `CURRENT (2550)` and did not force the target
   `$f20/$f21` save pair. Routing the early grounded-wheel zero through the
