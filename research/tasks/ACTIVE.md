@@ -1852,7 +1852,14 @@
   `CURRENT (2760)`, target `$f20/$f21` prologue saves were still absent, and
   the early zero still allocated in `$f16` instead of target `$f14`. Source
   was restored and final full verify passed; do not repeat this baseline
-  `spD4` early-zero carrier.
+  `spD4` early-zero carrier. A sibling baseline current-checkout early-zero
+  carrier through existing `spD0` (`spD0 = 0.0f; racer->unk84 = spD0;
+  racer->unk88 = spD0`) also collapsed into the same no-movement family: full
+  verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked focused
+  diff stayed `CURRENT (2760)`, target `$f20/$f21` prologue saves were still
+  absent, and the early zero still allocated in `$f16` instead of target
+  `$f14`. Source was restored and final full verify passed; do not repeat this
+  baseline `spD0` early-zero carrier.
   A close save-family continuation
   using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
   grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the
