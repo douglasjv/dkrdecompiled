@@ -1932,7 +1932,14 @@
   `$f20/$f21` prologue saves were still absent, early zero stayed in `$f16`,
   and the wave bound/index allocation remained current `a0`/`v1` instead of
   target `v1`/`a0`. Source was restored and final full verify passed; do not
-  repeat this baseline wave-gate condition reorder. A baseline
+  repeat this baseline wave-gate condition reorder. A current-baseline
+  adjacent declaration-order swap of `var_a0` and `var_v1` also missed as a
+  no-op: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  the relinked focused diff stayed `CURRENT (2760)`, `$f20/$f21` prologue
+  saves were still absent, early zero stayed in `$f16`, and the wave
+  bound/index allocation remained current `a0`/`v1` instead of target
+  `v1`/`a0`. Source was restored and final full verify passed; do not repeat
+  this current-baseline `var_a0`/`var_v1` declaration-order swap. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
