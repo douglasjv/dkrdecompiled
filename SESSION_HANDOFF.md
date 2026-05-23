@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:57:27Z
+- Generated at: 2026-05-23 10:00:53Z
 - Branch: `master`
-- HEAD: `19ad193f`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected xPositions[8] multiply-order probe; promoting current source and changing -scaledXCos + (2.0f * scaledXSin) to -scaledXCos + (scaledXSin * 2.0f) failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
+- HEAD: `0f278bc3`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected single X-grid bitmask doubling probe; promoting current source and changing only the first var_a1 *= 2 to var_a1 += var_a1 failed verify with CRCs 0x78D4C012/0x0B98CE25 and relinked focused diff improved to CURRENT (1805) but retained the early gCurrentLevelModel spill, then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For trackbg_render_flashy, do not repeat the x8/z7/x7/z6/z5/x5/x6 multiply-order or other probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_8002B0F4, do not repeat the single X-grid var_a1 += var_a1 probe or other grid/model-spill probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

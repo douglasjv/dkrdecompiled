@@ -68,14 +68,22 @@
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
-  `func_8002B0F4` remains active after a 2026-05-23 collision-plane index
-  local type probe (`s32 temp` to `u16 temp`, matching `basePlaneIndex`) missed:
-  object-only focused diff first printed stale `CURRENT (0)`, full verify
-  failed with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
-  `./diff.sh func_8002B0F4` stayed at promoted baseline `CURRENT (2860)`. It
-  kept the unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
-  segment/grid/tail register drift. Source was restored and final full verify
-  passed; do not repeat this collision-plane index local type spelling.
+  `func_8002B0F4` remains active after a 2026-05-23 X-grid bitmask doubling
+  probe (`var_a1 += var_a1` only in the first grid loop) missed: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x78D4C012/0x0B98CE25`, and relinked
+  `./diff.sh func_8002B0F4` improved to `CURRENT (1805)` while still inserting
+  the unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
+  segment/grid/tail drift. Source was restored and final full verify passed; do
+  not repeat this single X-grid `var_a1 += var_a1` spelling. A sibling
+  collision-plane index local type probe (`s32 temp` to `u16 temp`, matching
+  `basePlaneIndex`) missed: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, and relinked `./diff.sh func_8002B0F4` stayed at
+  promoted baseline `CURRENT (2860)`. It kept the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` with broad segment/grid/tail drift.
+  Source was restored and final full verify passed; do not repeat this
+  collision-plane index local type spelling.
   Earlier partial/default water store-order, explicit default-water height
   cast, bottom segment-range guard reorder, target default-water store-order,
   and bottom-water condition-order probes also missed; do not repeat them.
@@ -4989,6 +4997,15 @@
   `CURRENT (2860)`. The diff kept the known early `gCurrentLevelModel` spill at
   `0x60(sp)` plus broad grid/tail register drift. Source was restored and
   final full verify passed; do not repeat this X-grid `var_a1 <<= 1` spelling.
+  Rewriting only the X-grid bitmask doubling from `var_a1 *= 2` to
+  `var_a1 += var_a1` was a more interesting miss: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x78D4C012/0x0B98CE25`, and the relinked focused score improved from promoted
+  baseline to `CURRENT (1805)`. The target `$f20`/`$f22` prologue shape stayed,
+  but the diff still inserted the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` and broadened segment/grid/tail drift. Source was restored and
+  final full verify passed; do not repeat this single X-grid `var_a1 += var_a1`
+  spelling.
   Rewriting only the Z-grid bitmask doubling from `var_a1 *= 2` to
   `var_a1 <<= 1` also missed in the same promoted-baseline family:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
