@@ -2126,7 +2126,16 @@
   bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
   target `v1`-bound/`a0`-loop. Source was restored and final full verify
   passed; do not repeat this `ABSF` absolute-velocity spelling. A baseline
-  check of `func_80059208` was still
+  current-checkout logical-not spinout-zap zero test
+  (`racer->unk1FE == 4 && !racer->spinout_timer`) also missed as a
+  no-movement family: full verify failed with the promoted-baseline CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this logical-not spinout-zap zero-test spelling. A baseline check
+  of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
