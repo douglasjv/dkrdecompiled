@@ -583,6 +583,17 @@
   `v1`-bound/`a0`-loop, and broadened later `$f14`/`$f20` gravity scheduling
   drift. Source was restored and final full verify passed; do not repeat this
   current-baseline wave-lift divided-speed grouping. A
+  2026-05-23 current-baseline wave-lift positive-stick half-division probe
+  (`gCurrentStickY = gCurrentStickY / 2` instead of `gCurrentStickY >>= 1`)
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x581EE800/0x4D6819EC`, and the relinked
+  focused diff regressed to `CURRENT (3560)`. It still missed target
+  `$f20/$f21` prologue saves, shifted saved GPR slots down by 8 bytes, kept
+  early zero in `$f16` instead of target `$f14`, left the wave scan as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and broadened
+  later `$f14`/`$f20` gravity scheduling drift. Source was restored and final
+  full verify passed; do not repeat this current-baseline wave-lift
+  positive-stick half-division spelling. A
   2026-05-23 current-baseline split drift-reset condition probe
   (`if (racerVelocity < 8.0) { reset } else if (gCurrentStickY < -10) {
   reset }`) missed: object-only focused diff first printed stale `CURRENT (0)`,
@@ -3140,7 +3151,18 @@
   wave bound/index allocation reversed as current `a0`-bound/`v1`-loop instead
   of target `v1`-bound/`a0`-loop, and disturbed later `$f14`/`$f20` gravity
   scheduling. Source was restored and final full verify passed; do not repeat
-  this wave-lift divided-speed grouping. A baseline current-checkout split
+  this wave-lift divided-speed grouping. A baseline current-checkout wave-lift
+  positive-stick half-division spelling (`gCurrentStickY = gCurrentStickY / 2`
+  instead of `gCurrentStickY >>= 1`) also missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x581EE800/0x4D6819EC`, and the relinked focused diff regressed to
+  `CURRENT (3560)`. It still lacked target `$f20/$f21` prologue saves, moved
+  saved GPR slots down by 8 bytes, kept early zero in `$f16` instead of target
+  `$f14`, left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and disturbed
+  later `$f14`/`$f20` gravity scheduling. Source was restored and final full
+  verify passed; do not repeat this wave-lift positive-stick half-division
+  spelling. A baseline current-checkout split
   drift-reset condition
   (`if (racerVelocity < 8.0) { reset } else if (gCurrentStickY < -10) {
   reset }`) also missed: object-only focused diff first printed stale
