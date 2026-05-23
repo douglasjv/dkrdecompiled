@@ -1965,6 +1965,15 @@
   current `a0`/`v1` instead of target `v1`/`a0`. Source was restored and final
   full verify passed; do not repeat these current-baseline `spEC`/`spCC`
   first-speed carrier probes. A baseline
+  current-checkout wave speed spelling as an explicit zero subtract
+  (`racerVelocity = 0.0f - racer->velocity`) also missed: full verify failed
+  with calculated CRCs `0x6035C737/0x97D59D33`, and relinked focused diff
+  worsened to `CURRENT (4160)`. It moved the early zero allocation into
+  `$f14`, but still lacked target `$f20/$f21` prologue saves, kept the wave
+  bound/index allocation as current `a0`/`v1` instead of target `v1`/`a0`, and
+  broadened float-register drift through the wave/gravity path. Source was
+  restored and final full verify passed; do not repeat this current-baseline
+  explicit-subtract wave speed spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
