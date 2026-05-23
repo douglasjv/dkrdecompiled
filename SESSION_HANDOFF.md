@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:34:32Z
+- Generated at: 2026-05-23 01:37:06Z
 - Branch: `master`
-- HEAD: `799e4c2d`
+- HEAD: `b83ce19d`
 - Completed task: `func_80049794`
-- Summary: Promoted func_80049794 and routed the grounded-wheel zero stores through existing spE0. Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked ./diff.sh func_80049794 stayed CURRENT (2760) with no f20/f21 saves or f14 early-zero movement. Source was restored.
+- Summary: Promoted func_80049794 and routed the grounded-wheel zero stores through existing spD8. Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked ./diff.sh func_80049794 stayed CURRENT (2760) with no f20/f21 saves or f14 early-zero movement. Source was restored.
 
 ## Validation
 
