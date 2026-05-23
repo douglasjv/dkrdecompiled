@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline low-speed drag multiply grouping probe
+  (`racer->velocity * (spD8 * 8.0f)` instead of
+  `racer->velocity * spD8 * 8.0f`) missed: full verify failed with calculated
+  CRCs `0x5FD5CB40/0x334EF099`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, left the wave scan in the
+  current `a0`-bound/`v1`-loop family, and only shifted constants and later
+  call targets in the promoted current-baseline family. Source was restored and
+  final full verify passed; do not repeat this low-speed drag multiply
+  grouping spelling. A
   2026-05-23 current-baseline low-speed drag condition-order probe
   (`!(gCurrentRacerInput & A_BUTTON) && spEC < 1.0f` instead of
   `spEC < 1.0f && !(gCurrentRacerInput & A_BUTTON)`) missed: full verify
