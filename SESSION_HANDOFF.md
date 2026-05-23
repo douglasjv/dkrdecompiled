@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:33:29Z
+- Generated at: 2026-05-23 22:36:49Z
 - Branch: `master`
-- HEAD: `69da7514`
+- HEAD: `5509f48f`
 - Completed task: `func_80049794`
-- Summary: Rejected normal-flight pitch damping factor shape; exposing func_80049794 with the shared x_rotation damping hoisted before the R_TRIG multiplier branch failed full verify with calculated CRCs 0x81BCA331/0x35054A7B, and relinked focused diff reported CURRENT (2480) with the promoted-baseline missing-f20/f21 and wave a0/v1 drift still present.
+- Summary: Rejected late position-delta reciprocal double-literal shape; exposing func_80049794 with var_f0 = 1.0 / updateRateF built but failed full verify with calculated CRCs 0x916D4F5C/0xD6E2A760, and relinked focused diff regressed to CURRENT (6207) with a widened 0x100 frame.
 
 ## Validation
 

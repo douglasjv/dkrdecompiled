@@ -347,6 +347,15 @@
   family, and only shifted constants and later call targets in the promoted
   current-baseline family. Source was restored and final full verify passed;
   do not repeat this race-start y-velocity double-literal spelling. A
+  2026-05-23 current-baseline late position-delta reciprocal double-literal
+  probe (`var_f0 = 1.0 / updateRateF` instead of `1.0f / updateRateF`) missed:
+  full verify failed with calculated CRCs `0x916D4F5C/0xD6E2A760`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (6207)`. It widened the frame
+  to `0x100`, dropped target `$f20/$f21` prologue saves, kept early zero in
+  `$f16` instead of target `$f14`, shifted late rodata/global offsets, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
+  and final full verify passed; do not repeat this late position-delta
+  reciprocal double-literal spelling. A
   movement-block approach-target pointer-test spelling probe
   (`if (!racer->approachTarget)` instead of `== NULL`) also missed as a
   no-movement promoted-baseline family: full verify failed with calculated
