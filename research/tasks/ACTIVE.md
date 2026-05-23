@@ -29,7 +29,14 @@
   `CURRENT (1808)` to `CURRENT (1880)`, and the diff shifted the same early
   negative-cosine/position-array register schedule in the wrong direction.
   Source was restored and final full verify passed; do not repeat this center
-  position store-order spelling.
+  position store-order spelling. `func_80059208` also remains active after a
+  2026-05-23 normalization magnitude sum-order probe
+  (`sqrtf((diffZ * diffZ) + (diffX * diffX))`) missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x53D141DF/0x1FD84747`, and the relinked focused diff regressed from
+  baseline `CURRENT (870)` to `CURRENT (916)`. It did not improve the final
+  object-dot/checkpoint-dot tail. Source was restored and final full verify
+  passed; do not repeat this normalization magnitude sum-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline `spA2` declaration-initialization probe
@@ -2272,7 +2279,15 @@
   `0x53D141DF/0xB9D4B481`, and the relinked focused score stayed
   `CURRENT (870)` with the same final object-dot plus negated-checkpoint-dot
   drift. Source was restored and final full verify passed; do not repeat this
-  divisor-distance reuse spelling. Other rejected probes:
+  divisor-distance reuse spelling. Commuting only the normalization magnitude
+  sum from `sqrtf((diffX * diffX) + (diffZ * diffZ))` to
+  `sqrtf((diffZ * diffZ) + (diffX * diffX))` missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x53D141DF/0x1FD84747`, and the relinked focused diff regressed from
+  baseline `CURRENT (870)` to `CURRENT (916)` without improving the final
+  object-dot/checkpoint-dot tail. Source was restored and final full verify
+  passed; do not repeat this normalization magnitude sum-order spelling. Other
+  rejected probes:
   reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
   signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
   `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
