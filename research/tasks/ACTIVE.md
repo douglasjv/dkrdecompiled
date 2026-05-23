@@ -277,7 +277,16 @@
   selected-wave height subtraction into `$f18`/`$f4`/`$f6`/`$f8` scheduling
   rather than target `$f2`/`$f18`/`$f4`/`$f6`. Source was restored and final
   full verify passed; do not repeat this direct selected-wave height
-  subtraction spelling. A
+  subtraction spelling. A 2026-05-23 current-baseline wave-height upper-reset
+  constant-left compare probe (`if (100.0f < var_f2)`) missed as a no-movement
+  promoted-baseline family: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still did not recover target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  scan in the current `a0`-bound/`v1`-loop family. Source was restored and
+  final full verify passed; do not repeat this wave-height upper-reset
+  constant-left compare spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2599,6 +2608,16 @@
   subtraction into `$f18`/`$f4`/`$f6`/`$f8` scheduling rather than target
   `$f2`/`$f18`/`$f4`/`$f6`. Source was restored and final full verify passed;
   do not repeat this direct selected-wave height subtraction spelling. A
+  baseline current-checkout wave-height upper-reset constant-left compare
+  spelling (`if (100.0f < var_f2)`) also missed as a no-movement family:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the promoted-baseline calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this wave-height upper-reset constant-left compare spelling. A
   baseline current-checkout `register f32 var_f2` allocation hint also missed
   as a no-improvement family: full verify failed with the
   promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused
