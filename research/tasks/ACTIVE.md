@@ -1700,7 +1700,14 @@
   stayed `CURRENT (2430)`, and the same missing `$f20/$f21` saves, shifted
   saved-register slots, early `$f16` zero, and wave `a0`/`v1` drift remained.
   Source was restored and final full verify passed; do not repeat this
-  baseline nested spinout-zap condition spelling. A baseline
+  baseline nested spinout-zap condition spelling. Commuting only the same
+  spinout-zap condition order (`if (racer->spinout_timer == 0 &&
+  racer->unk1FE == 4)`) also missed: full verify failed with calculated CRCs
+  `0x5FDDE03F/0x274DE960`, the relinked focused score worsened to
+  `CURRENT (3830)`, and the early branch order changed without restoring the
+  target `$f20/$f21` saves or `$f14` zero family. Source was restored and
+  final full verify passed; do not repeat this commuted spinout-zap condition
+  order. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.

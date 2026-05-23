@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:09:16Z
+- Generated at: 2026-05-23 00:11:07Z
 - Branch: `master`
-- HEAD: `4566e34b`
-- Completed task: `func_80059208`
-- Summary: Promoted func_80059208 and tested routing the final vertical numerator through the now-dead splinePos local; full verify failed with calculated CRCs 0x0A7688A6/0x4502A514 and relinked focused diff worsened from promoted baseline CURRENT (870) to CURRENT (1890). Source was restored and final verify passed; do not repeat this final-vertical splinePos numerator carrier.
+- HEAD: `2d2545da`
+- Completed task: `func_80049794`
+- Summary: Promoted func_80049794 and tested commuting the spinout-zap condition to check spinout_timer before unk1FE; full verify failed with calculated CRCs 0x5FDDE03F/0x274DE960 and relinked focused score worsened to CURRENT (3830). Source was restored and final verify passed; do not repeat this commuted spinout-zap condition order.
 
 ## Validation
 
