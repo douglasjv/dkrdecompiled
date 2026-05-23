@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 06:10:00Z
+- Generated at: 2026-05-23 06:15:56Z
 - Branch: `master`
-- HEAD: `ecb81662`
+- HEAD: `87566f52`
 - Completed task: `func_80049794`
-- Summary: Rejected current-baseline trailing pad3/pad4 removal. Object-only diff first showed stale CURRENT (0), full verify failed with calculated CRCs 0x5FDDE55F/0x6EE6C1E0, and relinked diff regressed to CURRENT (3261). It shrank the frame to 0xf0, shifted saved-register and parameter stack slots down by 8 bytes, still missed target $f20/$f21 saves plus early $f14 zero, and left the wave scan in current bound/index order. Source was restored.
+- Summary: Rejected current-baseline wave-lift single-precision literal spelling: ((38.0f - var_f2) * updateRateF * racerVelocity) / 8.0f. Object-only diff first showed stale CURRENT (0), full verify failed with calculated CRCs 0x6006EA9F/0x791FEBA1, and relinked diff regressed to CURRENT (5085): full 0xf8 frame and early $f14 zero, but still no target $f20/$f21 saves, GPR save slots shifted down, wave scan current a0-bound/v1-loop, later $f14/$f20 scheduling drift. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, or early $f14/$f20 save-family interaction.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline wave-lift single-precision literal spelling, trailing pad3/pad4 removal, explicit first-compare/do-loop wave scan, split wave-bound spelling, course-height upper-cap compare-order spelling, course-height buoyancy subtract spelling, wave-drift clamp-assignment suffix, subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound/course-height aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order without stack-byte traffic/frame shrinkage, course-height grouping, first-speed arithmetic, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

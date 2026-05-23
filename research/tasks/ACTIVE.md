@@ -212,6 +212,17 @@
   later float-register scheduling. Source was restored and final full verify
   passed; do not repeat this close save-family plus wave-drift subtract-suffix
   combination. A
+  2026-05-23 current-baseline wave-lift single-precision literal probe
+  (`((38.0f - var_f2) * updateRateF * racerVelocity) / 8.0f`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x6006EA9F/0x791FEBA1`, and the relinked
+  focused diff regressed to `CURRENT (5085)`. It kept the full `0xf8` frame
+  and aligned the early zero allocation with target `$f14`, but still missed
+  target `$f20/$f21` prologue saves, shifted saved GPR slots down by 8 bytes,
+  left the wave scan as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop, and broadened later `$f14`/`$f20` gravity scheduling
+  drift. Source was restored and final full verify passed; do not repeat this
+  current-baseline wave-lift single-precision literal spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -2505,7 +2516,17 @@
   `v1`-loop instead of target `v1`-bound/`a0`-loop and disturbed later
   call-adjacent/sound scheduling. Source was restored and final full verify
   passed; do not repeat this close save-family zero-threshold clamp
-  combination. A
+  combination. A baseline current-checkout wave-lift single-precision literal
+  spelling (`((38.0f - var_f2) * updateRateF * racerVelocity) / 8.0f`) also
+  missed: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x6006EA9F/0x791FEBA1`, and the relinked
+  focused diff regressed to `CURRENT (5085)`. It kept the target `0xf8` frame
+  and early `$f14` zero stores, but still lacked target `$f20/$f21` prologue
+  saves, moved saved GPR slots down by 8 bytes, left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop, and disturbed later `$f14`/`$f20` gravity scheduling.
+  Source was restored and final full verify passed; do not repeat this
+  wave-lift single-precision literal spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
