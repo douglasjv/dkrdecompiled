@@ -2820,6 +2820,12 @@
   `swc1 $f0, 0x110(sp)`, shifted later scheduling/global offsets, worsened the
   linked score to `CURRENT (5579)`, and failed promoted full verify with CRC
   `0xF82B92BE/0x5DCC04AE`. Moving only
+  `zPositions[3] = scaledXSin + scaledXCos` also produced no relinked
+  movement: full verify failed with the promoted-baseline CRCs
+  `0x93D338FF/0x03D9C8FE`, focused score stayed `CURRENT (1808)`, and the
+  early negative-cosine carrier remained current `$f16` instead of target
+  `$f18`. Source was restored and final full verify passed; do not repeat this
+  single-site z3 positive-sum operand-order spelling. Moving only
   `xPositions[5] = -scaledXCos - (2.0f * scaledXSin)` before `zPositions[5]`
   compiled but worsened the uncompressed linked diff to `CURRENT (2408)`.
   Adding `register f32 negScaledXCos` and using it for the first/outer negative

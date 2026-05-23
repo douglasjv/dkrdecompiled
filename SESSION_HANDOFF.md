@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:14:21Z
+- Generated at: 2026-05-23 01:17:01Z
 - Branch: `master`
-- HEAD: `5fc2902c`
-- Completed task: `func_80049794`
-- Summary: Recorded baseline spE8 early-zero carrier miss: promoted source failed full verify with CRCs 0x5FDDE03F/0xEF7A0514, relinked focused diff stayed CURRENT (2760), and source was restored.
+- HEAD: `1232bff7`
+- Completed task: `trackbg_render_flashy`
+- Summary: Recorded zPositions[3] positive-sum operand-order miss: promoted source failed full verify with CRCs 0x93D338FF/0x03D9C8FE, relinked focused diff stayed CURRENT (1808), and source was restored.
 
 ## Validation
 
