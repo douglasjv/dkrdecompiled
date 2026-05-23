@@ -3498,6 +3498,14 @@
   texture-index carrier's `CURRENT (2435)`. Source was restored and final full
   verify passed; do not repeat this current-source texture-index plus
   flags-through-`faceNum` carrier spelling.
+  A sibling current-source texture-index `temp` carrier that reused `temp` for
+  `currentBatch->flags` before the surface skip condition also missed: full
+  verify failed with calculated CRCs `0x7C5E2034/0x8DDE76F8`, and the focused
+  diff widened to `CURRENT (3260)`. The diff stayed in the same known early
+  `gCurrentLevelModel` spill family at `0x60(sp)`, regressing from the
+  standalone texture-index carrier's `CURRENT (2435)`. Source was restored and
+  final full verify passed; do not repeat this current-source texture-index
+  plus flags-through-`temp` carrier spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this

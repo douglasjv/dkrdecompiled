@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:30:29Z
+- Generated at: 2026-05-23 00:34:33Z
 - Branch: `master`
-- HEAD: `c6e6395e`
+- HEAD: `27bd52c8`
 - Completed task: `func_8002B0F4`
-- Summary: Recorded current-source texture-index temp plus faceNum flags carrier miss: full verify failed with CRCs 0x7B5E2034/0x63827015, focused diff CURRENT (3260), and the known early gCurrentLevelModel spill stayed at 0x60(sp); source restored.
+- Summary: Recorded current-source texture-index temp plus temp flags carrier miss: full verify failed with CRCs 0x7C5E2034/0x8DDE76F8, focused diff CURRENT (3260), and the known early gCurrentLevelModel spill stayed at 0x60(sp); source restored.
 
 ## Validation
 
