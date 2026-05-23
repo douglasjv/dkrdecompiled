@@ -198,7 +198,18 @@
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was
   restored and final full verify passed; do not repeat this attach-point
-  `-= 2.0` lowering spelling. A
+  `-= 2.0` lowering spelling. A sibling attach-point raising
+  compound-assignment probe (changing both
+  `trans.y_position = trans.y_position + 1.0f` stores to
+  `trans.y_position += 1.0f`) also missed as a no-movement promoted-baseline
+  family: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  relinked `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted
+  object disassembly still emitted the same local `add.s`/store sequence for
+  both attach-point raising paths. It still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. Source was
+  restored and final full verify passed; do not repeat this attach-point
+  `+= 1.0f` raising spelling. A
   2026-05-23 current-baseline attach-point grounded-wheel branch-order probe
   (`if (spA2 != FALSE || racer->groundedWheels != 0)` instead of the existing
   grounded-wheels-first guard) missed as a no-movement promoted-baseline
@@ -2931,7 +2942,16 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan
   in the current `a0`-bound/`v1`-loop family. Source was restored and final
   full verify passed; do not repeat this attach-point `-= 2.0` lowering
-  spelling. A
+  spelling. A baseline current-checkout attach-point raising compound
+  assignment (`temp_v0_obj->trans.y_position += 1.0f` for both raised objects)
+  also missed as a no-movement promoted-baseline family: full verify failed
+  with calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and promoted object
+  disassembly still emitted the same local `add.s`/store sequence for both
+  raising paths. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this attach-point `+= 1.0f` raising spelling. A
   baseline current-checkout grouped z/y first-speed
   expression
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
