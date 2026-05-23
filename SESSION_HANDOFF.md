@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:04:26Z
+- Generated at: 2026-05-23 23:06:50Z
 - Branch: `master`
-- HEAD: `f6d7f7af`
+- HEAD: `6ae71ce4`
 - Completed task: `func_80049794`
-- Summary: spA3 boolean guard spelling probe missed: changing the apply_vehicle_rotation_offset setup guard from spA3 == FALSE to !spA3 failed full verify with calculated CRCs 0x5FDDE03F/0xEF7A0514 and relinked ./diff.sh func_80049794 stayed CURRENT (2760); source restored.
+- Summary: Zipper fallback damping single-precision literal probe missed: changing the three 0.75 velocity dampers to 0.75f failed full verify with calculated CRCs 0xCF769843/0x5618CD3F; relinked ./diff.sh func_80049794 reported CURRENT (2555) but moved the damping block away from the target double-literal shape; source restored.
 
 ## Validation
 
@@ -26,4 +26,4 @@
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
-- Step: Continue with another bounded unrecorded source-shape probe; do not repeat `spA3` boolean guard spelling, horizontal steer-rate divide-before-multiply, horizontal steer-rate operand-order, vertical stick-rate grouping, throttle/brake rate operand-order, or prior transform/store/cast probes. Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.
+- Step: Continue with another bounded unrecorded source-shape probe; do not repeat zipper fallback damping single-precision literal, `spA3` boolean guard spelling, horizontal steer-rate divide-before-multiply, horizontal steer-rate operand-order, vertical stick-rate grouping, throttle/brake rate operand-order, or prior transform/store/cast probes. Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.

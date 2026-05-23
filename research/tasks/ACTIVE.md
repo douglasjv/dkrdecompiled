@@ -760,6 +760,16 @@
   `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
   Source was restored and final full verify passed; do not repeat this `spA3`
   boolean guard spelling. A
+  2026-05-23 current-baseline zipper fallback damping single-precision literal
+  probe (changing the three `0.75` velocity dampers to `0.75f`) missed: full
+  verify failed with calculated CRCs `0xCF769843/0x5618CD3F`, and relinked
+  `./diff.sh func_80049794` reported `CURRENT (2555)`. The numeric score
+  improved, but the diff moved the zipper fallback damping block away from the
+  target double-literal shape into a single-precision literal family, shifted
+  nearby labels/call targets, and still did not recover target `$f20/$f21`
+  prologue saves or the early `$f14` zero family. Source was restored and final
+  full verify passed; do not repeat this zipper fallback damping
+  single-precision literal spelling. A
   2026-05-23 current-baseline throttle-rate single-precision
   literal probe (`racer->throttle += updateRateF * 0.01f` and
   `racer->throttle -= updateRateF * 0.01f`) missed badly: full verify failed
