@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:45:17Z
+- Generated at: 2026-05-23 23:49:41Z
 - Branch: `master`
-- HEAD: `3eba83a8`
+- HEAD: `fc4cbf0e`
 - Completed task: `func_80049794`
-- Summary: Recorded boost-active assignment-order misses; restored source passes Verify: OK
+- Summary: Recorded bounded worker split-bound pointer-carry wave-scan miss; main source passes Verify: OK
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0xF1E91063/0x5815ED91 and 0x5FDDE03F/0xEF7A0514, diff CURRENT (2430))
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (main checkout: Verify: OK; worker rejected probe CRCs 0x0F72E671/0xB9F156E0, diff CURRENT (7197))
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 saved-FPR or wave bound/index allocation hypothesis, or next selector-recommended bounded packet`
+- Task: `func_80049794 saved-FPR/early-zero carrier outside direct wave-bound variants, or next selector-recommended bounded packet`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

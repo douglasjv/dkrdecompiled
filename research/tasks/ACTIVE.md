@@ -2897,7 +2897,16 @@
   early zero in `$f16`, and broadened the wave scan into `a*/v1` register
   churn instead of solving target `v1/a0/v0` allocation. Source was restored
   and final full verify passed; do not repeat this current-baseline
-  `wavePtr` pointer-walk spelling. A current-baseline local
+  `wavePtr` pointer-walk spelling. A bounded worker sibling that combined the
+  split `var_v1 = gRacerWaveCount - 1; var_a0 = var_v1` bound/index shape with
+  a `WaterProperties **wave = &gRacerCurrentWave[var_a0]` pointer-carry also
+  missed: full verify failed with calculated CRCs
+  `0x0F72E671/0xB9F156E0`, relinked focused diff regressed to
+  `CURRENT (7197)`, the frame widened to `0x100`, stack locals shifted, target
+  `$f20/$f21` prologue saves and early `$f14` zero were still absent, and the
+  target `v1` bound plus `a0` loop-index allocation was still missing. Worker
+  source was restored and verified; do not repeat this split-bound
+  pointer-carry sibling. A current-baseline local
   `WaterProperties *wave` element carrier with an explicit `for`/`break` scan
   and later `wave->rot.y` reuse missed even worse: full verify failed with
   calculated CRCs `0x1EB8E425/0x5BFDC8B4`, the relinked focused score
