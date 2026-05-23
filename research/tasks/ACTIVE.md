@@ -1786,6 +1786,14 @@
   allocation remained reversed with current `a0` as bound and `v1` as loop
   index, and later scheduling drift increased. Source was restored and final
   full verify passed; do not repeat this close-branch `register var_t0` hint.
+  A sibling close save-family `register s32 var_t9` allocation hint produced
+  the same bad family: full verify failed with calculated CRCs
+  `0xB8DD79CD/0xE47454ED`, and the relinked focused diff reported
+  `CURRENT (4365)`. It preserved the target `0xf8` frame, `$f20/$f21` saves,
+  and target `$f14` early zero, but kept the wave bound/index allocation
+  reversed with current `a0` as bound and `v1` as loop index. Source was
+  restored and final full verify passed; do not repeat this close-branch
+  `register var_t9` hint.
   A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
