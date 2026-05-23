@@ -35,7 +35,14 @@
   printed stale `CURRENT (0)`, full verify failed with calculated CRCs
   `0x93D338FF/0x03D9C8FE`, and relinked `./diff.sh trackbg_render_flashy`
   stayed at promoted baseline `CURRENT (1808)`. Source was restored and final
-  full verify passed; do not repeat this z7 multiply-order spelling. Earlier
+  full verify passed; do not repeat this z7 multiply-order spelling. Another
+  sibling x8 multiply-order probe (`xPositions[8] = -scaledXCos +
+  (scaledXSin * 2.0f)`) missed in the same no-movement family: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy` stayed at promoted baseline
+  `CURRENT (1808)`. Source was restored and final full verify passed; do not
+  repeat this x8 multiply-order spelling. Earlier
   x7/z6/z5/x5
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
@@ -4573,7 +4580,15 @@
   negated-difference shape broadened first/outer position-array scheduling plus
   global-offset drift while preserving the target-sized `0x158` frame. Source
   was restored and final full verify passed. Do not repeat this single-site x8
-  grouped-negated-difference spelling. Commuting only `zPositions[8]` from
+  grouped-negated-difference spelling. Rewriting only `xPositions[8]` from
+  `-scaledXCos + (2.0f * scaledXSin)` to
+  `-scaledXCos + (scaledXSin * 2.0f)` also produced no useful movement:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, and the
+  relinked focused score stayed `CURRENT (1808)` with the same early
+  position-array register/order family. Source was restored and final full
+  verify passed. Do not repeat this single-site x8 multiply-order spelling.
+  Commuting only `zPositions[8]` from
   `(2.0f * scaledXCos) + scaledXSin` to
   `scaledXSin + (2.0f * scaledXCos)` produced no useful movement: full verify
   failed with the known additive-double CRCs `0x93D338FF/0x03D9C8FE`, the
