@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:17:01Z
+- Generated at: 2026-05-23 01:21:02Z
 - Branch: `master`
-- HEAD: `1232bff7`
-- Completed task: `trackbg_render_flashy`
-- Summary: Recorded zPositions[3] positive-sum operand-order miss: promoted source failed full verify with CRCs 0x93D338FF/0x03D9C8FE, relinked focused diff stayed CURRENT (1808), and source was restored.
+- HEAD: `c3ead6ca`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted func_8002B0F4 with a register arg3 output-pointer carrier; full verify failed with calculated CRCs 0x7856718A/0x66208CAA, and relinked ./diff.sh func_8002B0F4 stayed CURRENT (2860) with the known early gCurrentLevelModel spill at 0x60(sp). Source was restored.
 
 ## Validation
 
