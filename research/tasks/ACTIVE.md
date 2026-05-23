@@ -24,6 +24,16 @@
   `src/racer.c`.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline R-trigger grounded-wheel stash guard probe
+  (`racer->groundedWheels > 0`) missed: object-only focused diff first printed
+  stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x2FDDE03F/0x495E14B9`, and the relinked focused diff stayed in the
+  promoted current-baseline family at `CURRENT (2760)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  `$f14`, and left the wave loop reversed as current `a0`-bound/`v1`-loop
+  instead of target `v1`-bound/`a0`-loop. Source was restored and final full
+  verify passed; do not repeat this R-trigger grounded-wheel stash guard
+  spelling. A
   2026-05-23 current-baseline grounded boss throttle/brake condition-order
   probe (`racer->velocity > -6.0 && racer->vehicleID >= VEHICLE_BOSSES`)
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
