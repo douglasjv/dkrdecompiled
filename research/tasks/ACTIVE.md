@@ -177,6 +177,15 @@
   `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop family, and
   shifted later call-adjacent scheduling. Source was restored and final full
   verify passed; do not repeat this trick divisor branch-polarity spelling. A
+  2026-05-23 current-baseline explicit `exitObj` pointer-test probe
+  (`if (racer->exitObj != NULL)`) missed as a no-movement family: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with the
+  promoted-baseline calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked
+  focused diff stayed `CURRENT (2760)`. It still did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored and final full verify passed; do not repeat this
+  explicit `exitObj` pointer-test spelling. A
   2026-05-23 current-baseline nested `spA2` wave-drift boolean probe
   (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -2566,7 +2575,16 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop, and shifted later call-adjacent scheduling. Source was
   restored and final full verify passed; do not repeat this trick divisor
-  branch-polarity spelling. A
+  branch-polarity spelling. A baseline current-checkout explicit `exitObj`
+  pointer-test spelling (`if (racer->exitObj != NULL)`) also missed as a
+  no-movement family: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with the promoted-baseline CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this explicit `exitObj` pointer-test spelling. A
   baseline current-checkout first-speed
   upper-clamp zero-threshold spelling (`if (var_f20 > 0.0) { var_f20 = 4; }`)
   also missed: full verify failed with calculated CRCs
