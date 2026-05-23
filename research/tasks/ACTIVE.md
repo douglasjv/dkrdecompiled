@@ -3378,7 +3378,16 @@
   promoted baseline `CURRENT (870)` to `CURRENT (1445)`. The tail broadened
   versus the earlier `scale`/`pad3` clamp-limit carriers and shifted later
   epilogue/global offsets. Source was restored and final full verify passed;
-  do not repeat this final lateral `distance` clamp-limit carrier. Making
+  do not repeat this final lateral `distance` clamp-limit carrier. Reusing the
+  now-dead `splinePos` local as the final `5.0f` lateral clamp-limit carrier
+  (`splinePos = 5.0f; if (diffX > splinePos) ...; if (diffX < -splinePos)
+  ...`) also missed in the same family: object-only focused diff first printed
+  stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x440002C7/0xC48C782C`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (1445)`. The tail matched
+  the bad final lateral clamp-limit carrier family and shifted downstream
+  labels/global offsets. Source was restored and final full verify passed; do
+  not repeat this final lateral `splinePos` clamp-limit carrier. Making
   `pad2` volatile compiled but worsened the focused
   score to `CURRENT (955)` by forcing stack traffic and shifting final-block
   scheduling. Rewriting the final lateral correction as a
