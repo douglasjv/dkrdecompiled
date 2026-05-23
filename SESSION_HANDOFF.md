@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:27:35Z
+- Generated at: 2026-05-23 22:30:12Z
 - Branch: `master`
-- HEAD: `935841d6`
+- HEAD: `9b33af54`
 - Completed task: `func_80049794`
-- Summary: Recorded first-speed suffix single-precision miss: changing only the initial sqrtf speed expression suffix from - 2.0 to - 2.0f failed full verify with CRCs 0x12F152B3/0x7EB3E947; relinked focused diff regressed to CURRENT (4560), still missing target f20/f21 saves, keeping early zero in f16 instead of f14, and leaving wave scan in the current a0/v1 family while widening later gravity/buoyancy scheduling.
+- Summary: Recorded normal-flight side-force guard condition-order miss: changing only the guard to test racer->groundedWheels == 0 before the R_TRIG input test failed full verify with CRCs 0x605DE9ED/0x38B1F9D8; relinked focused diff stayed CURRENT (2760), so it remained in the promoted-baseline family with f20/f21 saves absent, early zero in f16, and wave a0/v1 drift unchanged.
 
 ## Validation
 

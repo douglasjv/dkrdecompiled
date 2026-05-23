@@ -529,7 +529,15 @@
   `$f14`, and left the wave loop reversed as current `a0`-bound/`v1`-loop
   instead of target `v1`-bound/`a0`-loop. Source was restored and final full
   verify passed; do not repeat this R-trigger grounded-wheel stash guard
-  spelling. A
+  spelling. A 2026-05-23 current-baseline normal-flight side-force guard
+  condition-order probe (`racer->groundedWheels == 0 ||
+  !(gCurrentRacerInput & R_TRIG) || racer->zipperDirCorrection != 0`) missed:
+  full verify failed with calculated CRCs `0x605DE9ED/0x38B1F9D8`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of `$f14`, and
+  left the wave loop reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this normal-flight side-force guard condition-order spelling. A
   2026-05-23 current-baseline grounded boss throttle/brake condition-order
   probe (`racer->velocity > -6.0 && racer->vehicleID >= VEHICLE_BOSSES`)
   missed: object-only focused diff first printed stale `CURRENT (0)`, full
