@@ -1470,6 +1470,16 @@
   register churn plus `spA2` stack-byte traffic instead of solving the target
   `v1/a0/v0` allocation. Source was restored and final full verify passed; do
   not repeat this current-baseline existing-`i` wave-bound carrier. A
+  current-baseline existing-`var_v0` wave-bound carrier (`var_v0 =
+  gRacerWaveCount - 1; for (var_a0 = var_v0; ...); if (var_a0 == var_v0)`)
+  also missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0x422CAA9F/0x6001E375`, and the
+  relinked focused score worsened to `CURRENT (4660)`. The diff still lacked
+  the target `$f20/$f21` prologue saves, kept the early zero in `$f16` instead
+  of target `$f14`, and shifted the wave block into a broader `v1/a0/v0`
+  register family rather than target `v1` bound plus `a0` loop index. Source
+  was restored and final full verify passed; do not repeat this
+  current-baseline existing-`var_v0` wave-bound carrier. A
   current-baseline explicit `var_t1 = PLAYER_COMPUTER` allocation
   probe reused that local for the early `gCurrentPlayerIndex` wave gate and
   `trickType == -1` check. It did create the target-like early `li t1,-1`

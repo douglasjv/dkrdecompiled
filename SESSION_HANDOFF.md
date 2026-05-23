@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:52:18Z
+- Generated at: 2026-05-23 00:56:40Z
 - Branch: `master`
-- HEAD: `91faf54e`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded bottom SURFACE_WATER_WAVY store-order miss: promoted current source failed full verify with CRCs 0x77D5718A/0x18F6F0C5, relinked focused diff worsened to CURRENT (3730), and source was restored.
+- HEAD: `de5f1b67`
+- Completed task: `func_80049794`
+- Summary: Recorded current-baseline existing-var_v0 wave-bound carrier miss: promoted source failed full verify with CRCs 0x422CAA9F/0x6001E375, relinked focused diff worsened to CURRENT (4660), and source was restored.
 
 ## Validation
 
