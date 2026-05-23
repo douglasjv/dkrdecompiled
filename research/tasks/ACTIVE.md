@@ -71,7 +71,16 @@
   `./diff.sh func_80059208` worsened from promoted baseline `CURRENT (870)` to
   `CURRENT (1995)`, matching the bad vertical clamp-limit carrier family.
   Source was restored and final full verify passed; do not repeat this final
-  vertical `scale` clamp-limit carrier.
+  vertical `scale` clamp-limit carrier. A checkpoint-distance complement
+  single-precision literal probe (`splinePos = 1.0f -
+  racer->checkpoint_distance`) also missed: full verify failed with calculated
+  CRCs `0xC0802A15/0xAB5B7DB7`, and relinked `./diff.sh func_80059208`
+  regressed from promoted baseline `CURRENT (870)` to `CURRENT (3020)`. The
+  diff changed the first complement from the target double subtract to a
+  single-precision `sub.s`, shifted the early checkpoint-distance branches, and
+  broadened downstream FPR/register scheduling. Source was restored and final
+  full verify passed; do not repeat this checkpoint-distance `1.0f`
+  complement spelling.
   Earlier final vertical reciprocal-multiply,
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
@@ -3380,7 +3389,17 @@
   from promoted baseline `CURRENT (870)` to `CURRENT (2610)` by adding broad
   double-conversion scheduling around the normalization path and shifting later
   labels. Source was restored and final full verify passed; do not repeat this
-  normalization reciprocal double-literal spelling. Other rejected probes:
+  normalization reciprocal double-literal spelling. Changing only the initial
+  checkpoint-distance complement from `splinePos = 1.0 -
+  racer->checkpoint_distance` to `splinePos = 1.0f -
+  racer->checkpoint_distance` also missed: full verify failed with calculated
+  CRCs `0xC0802A15/0xAB5B7DB7`, and relinked `./diff.sh func_80059208`
+  regressed from promoted baseline `CURRENT (870)` to `CURRENT (3020)`. The
+  diff replaced the target double subtract with a single-precision `sub.s`,
+  shifted the early checkpoint-distance branch schedule, and broadened
+  downstream FPR/register scheduling well before the final tail. Source was
+  restored and final full verify passed; do not repeat this checkpoint-distance
+  `1.0f` complement spelling. Other rejected probes:
   reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
   signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
   `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
