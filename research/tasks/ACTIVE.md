@@ -237,7 +237,14 @@
   extra/reordered `unk1FE` reload around the `5.5` assignment rather than
   matching the target local schedule. Source was restored and final full
   verify passed; do not repeat this `OBJ_EMIT_9` store-before-`5.5` spelling.
-  A
+  A 2026-05-23 current-baseline `5.5f` gravity literal probe (`var_f20 =
+  5.5f` in the `unk1FE == 0` block) missed as a no-movement promoted-baseline
+  family: full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  and the relinked focused diff stayed `CURRENT (2760)`. It still did not
+  recover target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
+  of target `$f14`, and left the wave scan in the current
+  `a0`-bound/`v1`-loop family. Source was restored and final full verify
+  passed; do not repeat this `5.5f` gravity literal spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2456,6 +2463,15 @@
   around the `5.5` assignment rather than matching the target local schedule.
   Source was restored and final full verify passed; do not repeat this
   current-baseline `OBJ_EMIT_9` store-before-`5.5` spelling. A baseline
+  current-checkout `5.5f` gravity literal spelling (`var_f20 = 5.5f` in the
+  `unk1FE == 0` block) also missed as a no-movement promoted-baseline family:
+  full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the
+  relinked focused diff stayed `CURRENT (2760)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave loop reversed as current `a0` bound plus `v1`
+  loop-index rather than target `v1` bound plus `a0` loop-index. Source was
+  restored and final full verify passed; do not repeat this current-baseline
+  `5.5f` gravity literal spelling. A baseline
   current-checkout first-speed single-precision
   subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
   also missed: full verify failed with calculated CRCs
