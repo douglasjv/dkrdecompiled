@@ -47,6 +47,15 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline implicit wave-count gate probe
+  (`... && gRacerWaveCount` instead of `... && gRacerWaveCount != 0`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the promoted-baseline calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this implicit wave-count gate spelling. A
   2026-05-23 current-baseline terminal wave-bound inverted empty-if probe
   (`if (var_a0 != gRacerWaveCount - 1) { } else { var_a0--; }`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -2628,6 +2637,16 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this terminal wave-bound inverted empty-if spelling. A
+  baseline current-checkout implicit wave-count gate spelling
+  (`... && gRacerWaveCount` instead of `... && gRacerWaveCount != 0`) also
+  missed as a no-movement promoted-baseline family: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave bound/index
+  allocation reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
+  not repeat this implicit wave-count gate spelling. A
   baseline current-checkout wave-height upper-reset constant-left compare
   spelling (`if (100.0f < var_f2)`) also missed as a no-movement family:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
