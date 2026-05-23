@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:14:44Z
+- Generated at: 2026-05-23 00:17:14Z
 - Branch: `master`
-- HEAD: `b8de928e`
-- Completed task: `func_8002B0F4`
-- Summary: Promoted func_8002B0F4 and tested the pad3-removed three-level surface guard plus textureIndex-through-temp path with currentBatch->flags also routed through temp; full verify failed with calculated CRCs 0x7C5E203C/0xE0335DD6 and relinked focused score worsened to CURRENT (3268). Source was restored and final verify passed; do not repeat this flags-through-temp carrier on that branch.
+- HEAD: `b6b8493f`
+- Completed task: `trackbg_render_flashy`
+- Summary: Promoted trackbg_render_flashy and tested replacing only zPositions[1] with the existing scaledXSin carrier; full verify failed with calculated CRCs 0x218F9FFA/0x18F4A6D6 and relinked focused score worsened to CURRENT (13821), shrinking the frame from 0x158 to 0x150. Source was restored and final verify passed; do not repeat this single-site zPositions[1] scaledXSin spelling.
 
 ## Validation
 
