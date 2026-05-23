@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:50:05Z
+- Generated at: 2026-05-23 01:55:04Z
 - Branch: `master`
-- HEAD: `97104733`
-- Completed task: `func_80049794`
-- Summary: Promoted func_80049794 and tested a current-baseline top-speed multiply regrouping, var_f14 = var_f14 * (handle_racer_top_speed(obj, racer) * 1.8). Full verify failed with calculated CRCs 0xAC61AD1B/0xFE0F8158; relinked ./diff.sh func_80049794 stayed CURRENT (2760) with missing target f20/f21 saves, early zero in f16, and the known wave a0/v1 drift. Source was restored.
+- HEAD: `a4bc652e`
+- Completed task: `func_80059208`
+- Summary: Promoted func_80059208 and tested a checkpoint-dot sum-order/product-order variant, pad2 = -((diffX * tempX) + (diffZ * tempZ)). Full verify failed with calculated CRCs 0x53BCC0DF/0xB8771E78; relinked ./diff.sh func_80059208 worsened to CURRENT (1445) versus the promoted baseline CURRENT (870). Source was restored.
 
 ## Validation
 
@@ -22,8 +22,8 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but avoid repeating the now-rejected current-baseline top-speed regrouping and saturated early-zero/wave families. If staying on func_80049794, prefer a fresh x/z/y save-family or wave-register hypothesis from ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but func_80059208 remains active. Do not repeat the rejected checkpoint-dot variant pad2 = -((diffX * tempX) + (diffZ * tempZ)); prefer a fresh unsaturated final-tail hypothesis or pivot to another active packet if no narrow shape remains.`
 - Packet class: `matching_impl`
-- Packet status: `active`
+- Packet status: `ready`
 - Reasoning tier: `medium`
 - Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.

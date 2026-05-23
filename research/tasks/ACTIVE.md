@@ -2480,6 +2480,14 @@
   instead of matching the target object-dot/checkpoint-dot order. Source was
   restored and final full verify passed; do not repeat this
   unary-second-product checkpoint-dot spelling.
+  A later checkpoint-dot sum-order/product-order variant
+  (`pad2 = -((diffX * tempX) + (diffZ * tempZ))`) also missed: full verify
+  failed with calculated CRCs `0x53BCC0DF/0xB8771E78`, the relinked focused
+  diff worsened from promoted baseline `CURRENT (870)` to `CURRENT (1445)`,
+  and the tail stayed in the broadened checkpoint-dot FPR schedule instead of
+  matching the target object-dot/checkpoint-dot order. Source was restored and
+  final full verify passed; do not repeat this checkpoint-dot sum/product-order
+  spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
