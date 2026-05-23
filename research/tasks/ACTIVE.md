@@ -23,14 +23,14 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 final triangle postincrement probe (`var_v0_3++` for the three
-  index advances) missed. Full verify failed with calculated CRCs
-  `0x93D338FF/0x03D9C8FE`, the relinked focused score stayed
-  `CURRENT (1808)`, and the diff remained in the same early
-  negative-cosine/position-array register schedule. Source was restored and
-  final full verify passed; do not repeat this final triangle postincrement
-  spelling. Earlier center position store-order (`zPositions[4] = 0.0f` before
-  `xPositions[4] = 0.0f`) also missed; do not repeat it.
+  2026-05-23 final global pointer store-order probe (`gTrackTriPtr = tris`
+  before `gTrackVtxPtr = verts`) missed. Full verify failed with calculated
+  CRCs `0x93D338FF/0x3EBCCB8F`, and relinked
+  `./diff.sh trackbg_render_flashy` worsened from promoted baseline
+  `CURRENT (1808)` to `CURRENT (1846)`. Source was restored and final full
+  verify passed; do not repeat this final global pointer store-order spelling.
+  Earlier final triangle postincrement and center position store-order probes
+  also missed; do not repeat them.
   `func_80059208` also remains active after a 2026-05-23 normalization
   reciprocal double-literal probe (`scale = 1.0 / distance`) missed: full
   verify failed with calculated CRCs `0x9261C342/0x2708D89B`, and relinked
@@ -4194,6 +4194,12 @@
   negative-cosine/position-array register schedule. Source was restored and
   final full verify passed. Do not repeat this final triangle postincrement
   spelling.
+  Reordering only the final global pointer stores from `gTrackVtxPtr = verts;
+  gTrackTriPtr = tris;` to `gTrackTriPtr = tris; gTrackVtxPtr = verts;` also
+  missed: full verify failed with calculated CRCs `0x93D338FF/0x3EBCCB8F`, and
+  relinked `./diff.sh trackbg_render_flashy` worsened from promoted baseline
+  `CURRENT (1808)` to `CURRENT (1846)`. Source was restored and final full
+  verify passed. Do not repeat this final global pointer store-order spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
