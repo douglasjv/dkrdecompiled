@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:46:46Z
+- Generated at: 2026-05-23 05:49:24Z
 - Branch: `master`
-- HEAD: `3d7f3d67`
+- HEAD: `27c32a2a`
 - Completed task: `func_80049794`
-- Summary: Rejected close save-family plus wave-drift subtract-suffix probe: object-only diff first showed stale CURRENT (0), full verify failed with CRCs 0xA8F39A57/0xC08781AF, and relinked diff regressed to CURRENT (7769) while preserving the target 0xf8 frame, $f20/$f21 saves, and early $f14 zero but widening the wave a0/v1 drift.
+- Summary: Rejected current-baseline wave-drift subtract-only suffix probe: racerVelocity -= 8.0f with clamp/divide unchanged. Object-only diff first showed stale CURRENT (0), full verify failed with CRCs 0x6006EA9D/0x93E5B79C, and relinked diff regressed to CURRENT (4900). Target $f20/$f21 saves stayed absent, wave a0/v1 allocation stayed reversed, and later $f14/$f20 gravity scheduling broadened. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat the close save-family plus wave-drift subtract-suffix combination; continue with a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or the early $f14/$f20 save-family interaction without repeating recorded aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline wave-drift subtract-only suffix, close save-family plus wave-drift subtract-suffix, or the recorded normalization/first-speed/wave-bound aliases in ACTIVE.md. Continue with a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or early $f14/$f20 save-family interaction.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
