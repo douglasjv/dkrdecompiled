@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:03:19Z
+- Generated at: 2026-05-23 01:10:09Z
 - Branch: `master`
-- HEAD: `437ffe20`
-- Completed task: `func_80049794`
-- Summary: Recorded baseline nested wave-reset condition miss: promoted source failed full verify with CRCs 0xFF986DDD/0x8281F72F, relinked focused diff worsened to CURRENT (6055), and source was restored.
+- HEAD: `a4f46717`
+- Completed task: `func_80059208`
+- Summary: Recorded final checkpoint-dot unary first-product miss: promoted source failed full verify with CRCs 0x53C0A2B5/0x47AA3C12, relinked focused diff worsened to CURRENT (1445), and source was restored.
 
 ## Validation
 

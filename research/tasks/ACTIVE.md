@@ -2417,6 +2417,14 @@
   adding final-clamp float traffic and shifting the tail schedule. Source was
   restored and final full verify passed; do not repeat this final vertical
   `distance` clamp-limit carrier.
+  A 2026-05-23 single-assignment unary first-product spelling of the negated
+  checkpoint dot (`pad2 = -(tempZ * diffZ) - (diffX * tempX)`) also collapsed
+  into the same split-negated checkpoint-dot family: full verify failed with
+  calculated CRCs `0x53C0A2B5/0x47AA3C12`, the relinked focused diff worsened
+  from promoted-baseline `CURRENT (870)` to `CURRENT (1445)`, and the tail
+  moved the `0x54(sp)` store while broadening the lateral/vertical FPR
+  schedule. Source was restored and final full verify passed; do not repeat
+  this single-assignment unary first-product checkpoint-dot spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
