@@ -3423,6 +3423,14 @@
   `0x60(sp)` with broad segment/grid/tail register drift. Source was restored
   and final full verify passed; do not repeat this standalone texture-index
   `temp` carrier without a separate model-spill fix.
+  Combining the current-source texture-index `temp` carrier with a three-level
+  water-surface skip guard also missed without moving the object family: full
+  verify failed with the same calculated CRCs `0x7C4CE18A/0x3A298210`,
+  relinked focused score stayed `CURRENT (2435)`, and the unwanted early
+  `gCurrentLevelModel` spill remained at `0x60(sp)` with broad
+  segment/grid/tail register drift. Source was restored and final full verify
+  passed; do not repeat this current-layout texture-index plus three-level
+  guard split.
   Routing the same `currentBatch->textureIndex` through the existing `i` local
   on the pad3-removed three-level guard branch also missed: full verify failed
   with calculated CRCs `0x75D0E1AA/0xB8D0E2B5`, relinked focused diff scored

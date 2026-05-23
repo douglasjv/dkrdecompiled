@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:21:17Z
+- Generated at: 2026-05-23 00:24:29Z
 - Branch: `master`
-- HEAD: `82b2e50a`
-- Completed task: `func_80059208`
-- Summary: Promoted func_80059208 and tested reusing the now-dead scale local for the final vertical numerator (scale = obj->trans.y_position - tempY; diffY = scale / divisor). Full verify failed with calculated CRCs 0x0A76A8A6/0x783976A1 and relinked focused score worsened to CURRENT (1875), inserting extra final-vertical local traffic while leaving the final object-dot/checkpoint-dot drift unresolved. Source was restored and final verify passed; do not repeat this final-vertical scale numerator carrier.
+- HEAD: `6513e0c1`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted func_8002B0F4 and combined the current-layout texture-index temp carrier with a three-level water-surface guard split. Full verify failed with calculated CRCs 0x7C4CE18A/0x3A298210 and relinked focused score stayed CURRENT (2435), matching the standalone texture-index carrier family with the same early gCurrentLevelModel spill at 0x60(sp). Source was restored and final verify passed; do not repeat this current-layout texture-index plus three-level guard split.
 
 ## Validation
 
