@@ -22,6 +22,14 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-23 center position store-order probe (`zPositions[4] = 0.0f` before
+  `xPositions[4] = 0.0f`) missed. Full verify failed with calculated CRCs
+  `0x93D338FF/0xC989AC94`, the relinked focused score worsened from baseline
+  `CURRENT (1808)` to `CURRENT (1880)`, and the diff shifted the same early
+  negative-cosine/position-array register schedule in the wrong direction.
+  Source was restored and final full verify passed; do not repeat this center
+  position store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline first-speed grouped z/y add probe
@@ -2977,7 +2985,16 @@
   `CURRENT (2138)`. The diff moved the first multiply/register family from
   target `$f18` toward `$f16` and broadened early position-array scheduling.
   Source was restored and final full verify passed; do not repeat this
-  initial scaled multiply operand-order spelling.
+  initial scaled multiply operand-order spelling. Reordering only the center
+  position stores from `xPositions[4] = 0.0f; zPositions[4] = 0.0f;` to
+  `zPositions[4] = 0.0f; xPositions[4] = 0.0f;` also missed: object-only focused
+  diff first printed stale `CURRENT (0)`, full verify failed with calculated
+  CRCs `0x93D338FF/0xC989AC94`, and the relinked focused score worsened from
+  baseline `CURRENT (1808)` to `CURRENT (1880)`. The diff moved the early
+  negative-cosine carrier/register family and broadened the position-array
+  schedule rather than recovering target ordering. Source was restored and
+  final full verify passed; do not repeat this center position store-order
+  spelling.
   Reordering only the `uCoords[7]` UV expression to put `pos.z` first
   (`uCoords[7] = (s16) (pos.z + (2.0f * xCos)) + var_v0`) compiled but did not
   move the function: focused diff stayed `CURRENT (1808)`, full verify failed
