@@ -2338,6 +2338,14 @@
   `CURRENT (870)`, and the same final object-dot/checkpoint-dot plus vertical
   FPR drift remained. Source was restored and final full verify passed; do not
   repeat this current-order in-place `pad` object-dot spelling.
+  Reusing the now-dead `splinePos` local as the final vertical numerator
+  carrier (`splinePos = obj->trans.y_position - tempY; diffY = splinePos /
+  divisor`) also missed: full verify failed with calculated CRCs
+  `0x0A7688A6/0x4502A514`, the relinked focused score worsened from promoted
+  baseline `CURRENT (870)` to `CURRENT (1890)`, and the tail inserted extra
+  final-vertical local traffic while leaving the object-dot/checkpoint-dot
+  drift unresolved. Source was restored and final full verify passed; do not
+  repeat this final-vertical `splinePos` numerator carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
