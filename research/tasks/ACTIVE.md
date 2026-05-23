@@ -131,7 +131,16 @@
   stack-byte traffic, still lacked target `$f20/$f21` prologue saves, and kept
   early zero in `$f16` instead of target `$f14`. Source was restored and final
   full verify passed; do not repeat this current-baseline explicit
-  first-compare/do-loop wave-scan spelling. A
+  first-compare/do-loop wave-scan spelling. A 2026-05-23 current-baseline
+  trailing-pad removal probe (removing only unused `pad3`/`pad4`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x5FDDE55F/0x6EE6C1E0`, and the relinked
+  focused diff regressed to `CURRENT (3261)`. It shrank the frame to `0xf0`,
+  shifted saved-register and parameter stack slots down by 8 bytes, still
+  lacked target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
+  of target `$f14`, and left the wave scan with the current bound/index order.
+  Source was restored and final full verify passed; do not repeat this
+  current-baseline trailing `pad3`/`pad4` removal. A
   2026-05-23 current-baseline first-speed boss-adjustment divide-before-subtract
   probe (`var_f20 = (var_f20 / 2.0) - 1.0`) missed: object-only focused diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
@@ -2413,7 +2422,16 @@
   kept early zero in `$f16` instead of target `$f14`, and broadened wave-block
   register churn. Source was restored and final full verify passed; do not
   repeat this current-baseline explicit first-compare/do-loop wave-scan
-  spelling. A baseline
+  spelling. A baseline current-checkout trailing-pad removal probe (removing
+  only unused `pad3`/`pad4` while promoting the current source) also missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x5FDDE55F/0x6EE6C1E0`, and the relinked
+  focused diff regressed to `CURRENT (3261)`. It shrank the frame from target
+  `0xf8` to `0xf0`, moved saved-register and parameter stack slots down by 8
+  bytes, still lacked target `$f20/$f21` prologue saves, kept early zero in
+  `$f16` instead of target `$f14`, and left the wave scan in current
+  bound/index order. Source was restored and final full verify passed; do not
+  repeat this current-baseline trailing `pad3`/`pad4` removal. A baseline
   current-checkout `ABSF` spelling
   for both absolute-velocity temporaries (`var_f14 = ABSF(racer->velocity);
   var_f0 = ABSF(racer->velocity)`) also missed: full verify failed with
