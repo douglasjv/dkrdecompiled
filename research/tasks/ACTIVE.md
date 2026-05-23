@@ -149,7 +149,16 @@
   early zero in `$f16` instead of target `$f14`, and broadened the same
   first-speed/course-height plus wave-scan drift family. Source was restored
   and final full verify passed; do not repeat this first-speed
-  boss-adjustment divide-before-subtract spelling. A
+  boss-adjustment divide-before-subtract spelling. A 2026-05-23
+  current-baseline first-speed boss guard operand-order probe
+  (`if (VEHICLE_BOSSES <= racer->vehicleID)`) missed as a no-movement family:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with the promoted-baseline calculated CRCs `0x5FDDE03F/0xEF7A0514`,
+  and the relinked focused diff stayed `CURRENT (2760)`. It still did not
+  recover target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
+  of target `$f14`, and left the wave scan in the current `a0`-bound/
+  `v1`-loop family. Source was restored and final full verify passed; do not
+  repeat this first-speed boss guard operand-order spelling. A
   2026-05-23 current-baseline nested `spA2` wave-drift boolean probe
   (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -2511,6 +2520,16 @@
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this first-speed
   boss-adjustment multiply spelling. A baseline current-checkout first-speed
+  boss guard operand-order spelling (`if (VEHICLE_BOSSES <=
+  racer->vehicleID)`) also missed as a no-movement family: object-only focused
+  diff first printed stale `CURRENT (0)`, full verify failed with the
+  promoted-baseline CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused
+  diff stayed `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop. Source was restored and final full verify
+  passed; do not repeat this first-speed boss guard operand-order spelling. A
+  baseline current-checkout first-speed
   upper-clamp zero-threshold spelling (`if (var_f20 > 0.0) { var_f20 = 4; }`)
   also missed: full verify failed with calculated CRCs
   `0x67440D57/0x26427635`, and the relinked focused diff worsened to
