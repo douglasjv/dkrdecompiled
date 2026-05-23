@@ -32,13 +32,15 @@
   fallback initialization-order, final global pointer store-order, final
   triangle postincrement, and center position store-order probes also missed;
   do not repeat them.
-  `func_80059208` also remains active after a 2026-05-23 courseCheckpoint
-  threshold spelling (`racer->courseCheckpoint >= -0x7CFF` instead of
-  `racer->courseCheckpoint > -0x7D00`) missed with no relinked focused
-  movement: full verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`,
-  and relinked `./diff.sh func_80059208` stayed at promoted baseline
-  `CURRENT (870)`. Source was restored and final full verify passed; do not
-  repeat this courseCheckpoint threshold spelling. Earlier splineIndex
+  `func_80059208` also remains active after a 2026-05-23 final vertical
+  correction reciprocal-multiply spelling (`diffY =
+  (obj->trans.y_position - tempY) * (1.0f / divisor)` instead of dividing by
+  `divisor`) missed: full verify failed with calculated CRCs
+  `0x4BE5F47F/0x9BA27DDB`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (1782)` by shifting the
+  final vertical and tail label schedule. Source was restored and final full
+  verify passed; do not repeat this final vertical reciprocal-multiply
+  spelling. Earlier courseCheckpoint threshold, splineIndex
   comparison-direction, normalization reciprocal double-literal, normalization
   guard comparison-order, and magnitude sum-order probes also missed; do not
   repeat them.
@@ -3861,6 +3863,16 @@
   -0x7cff` block while the final object-dot/checkpoint-dot tail drift remained.
   Source was restored and final full verify passed; do not repeat this
   courseCheckpoint threshold spelling.
+  A 2026-05-23 final vertical reciprocal-multiply spelling that changed
+  `diffY = (obj->trans.y_position - tempY) / divisor` to
+  `diffY = (obj->trans.y_position - tempY) * (1.0f / divisor)` also missed:
+  full verify failed with calculated CRCs `0x4BE5F47F/0x9BA27DDB`, and
+  relinked `./diff.sh func_80059208` worsened from promoted baseline
+  `CURRENT (870)` to `CURRENT (1782)`. The probe inserted reciprocal
+  divide/multiply traffic in the final vertical correction path and shifted
+  downstream tail labels while leaving the object-dot/checkpoint-dot drift
+  unresolved. Source was restored and final full verify passed; do not repeat
+  this final vertical reciprocal-multiply spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
