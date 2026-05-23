@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:21:52Z
+- Generated at: 2026-05-23 05:25:21Z
 - Branch: `master`
-- HEAD: `4aeab87c`
-- Completed task: `func_80049794`
-- Summary: Current-baseline spA3 course-height placement probe (moving spA3 = FALSE after the course-height subtraction and immediately before the range guard) missed; full verify failed with calculated CRCs 0x5FDDE03F/0xAA1C31A9, and relinked focused diff regressed to CURRENT (3000). Source was restored.
+- HEAD: `c9229717`
+- Completed task: `func_8002B0F4`
+- Summary: Bottom default-water store-order probe (rot.x, rot.z, waveHeight, then rot.y) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x281EE85B/0xEE22BD90, and relinked focused diff regressed from CURRENT (2780) to CURRENT (3745). Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat spA3 course-height placement, course-height compare operand-order, current-baseline spA2 declaration-initialization, first-speed grouped z/y add, R-trigger grounded-wheel stash guard, grounded boss throttle/brake condition-order, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
+- Task: `Run selector; default route remains func_80049794, but func_8002B0F4 remains active. Do not repeat func_8002B0F4 bottom default-water store-order spelling or the recorded model-spill, pad-removal, grid-loop, segment-index carrier, bottom sort/population, texture-index carrier, surface-guard, collision-output store-order, or bottom wave-type store-order aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

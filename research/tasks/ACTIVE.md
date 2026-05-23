@@ -37,6 +37,14 @@
   baseline `CURRENT (870)` to `CURRENT (916)`. It did not improve the final
   object-dot/checkpoint-dot tail. Source was restored and final full verify
   passed; do not repeat this normalization magnitude sum-order spelling.
+  `func_8002B0F4` remains active after a 2026-05-23 bottom default-water
+  store-order probe (`rot.x`, `rot.z`, `waveHeight`, then `rot.y`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x281EE85B/0xEE22BD90`, and the relinked
+  focused diff regressed from promoted baseline `CURRENT (2780)` to
+  `CURRENT (3745)`. It kept the unwanted early `gCurrentLevelModel` spill
+  family. Source was restored and final full verify passed; do not repeat this
+  bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 current-baseline `spA2` declaration-initialization probe
@@ -4202,6 +4210,16 @@
   at `0x60(sp)` with broad segment/grid/tail drift. Source was restored and
   final full verify passed; do not repeat this current-layout
   pointer-arithmetic segment-setup spelling.
+  A promoted current-source bottom default-water store-order spelling that
+  reordered the default path writes as `rot.x`, `rot.z`, `waveHeight`, then
+  `rot.y` also missed: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x281EE85B/0xEE22BD90`, and relinked `./diff.sh func_8002B0F4` regressed
+  from promoted baseline `CURRENT (2780)` to `CURRENT (3745)`. The diff
+  retained the known unwanted early `gCurrentLevelModel` spill family at
+  `0x60(sp)` and broadened segment/grid/tail drift. Source was restored and
+  final full verify passed; do not repeat this bottom default-water store-order
+  spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
