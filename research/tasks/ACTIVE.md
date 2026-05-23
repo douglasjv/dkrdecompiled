@@ -24,6 +24,15 @@
   `src/racer.c`.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline course-height guard operand-order probe
+  (`0.0f > var_f2`) missed: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0xA7DACB8B/0x793F4084`, and the relinked focused diff regressed to
+  `CURRENT (3575)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of `$f14`, and left the wave loop reversed as
+  current `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source
+  was restored and final full verify passed; do not repeat this course-height
+  compare operand-order spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
