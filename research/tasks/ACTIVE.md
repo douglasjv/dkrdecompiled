@@ -861,6 +861,14 @@
   the top-speed multiply into two assignments (`var_f14 *=
   handle_racer_top_speed(...); var_f14 *= 1.8;`) compiled but widened the
   frame to `0x100` and worsened the focused object score to `CURRENT (5977)`.
+  A promoted current-baseline top-speed multiply regrouping
+  (`var_f14 = var_f14 * (handle_racer_top_speed(obj, racer) * 1.8)`) also
+  missed: full verify failed with calculated CRCs `0xAC61AD1B/0xFE0F8158`,
+  relinked `./diff.sh func_80049794` stayed at `CURRENT (2760)`, and the
+  function still lacked target `$f20/$f21` prologue saves while keeping the
+  early zero in `$f16` and the wave scan in the known `a0`/`v1` drift family.
+  Source was restored and final full verify passed; do not repeat this
+  top-speed multiply regrouping.
   Initializing `var_f20` at declaration (`f32 var_f20 = 0.0f`) compiled but
   left the focused object score unchanged at `CURRENT (2550)` and still did not
   introduce the target `$f20/$f21` prologue saves. Reusing `var_f20` for the

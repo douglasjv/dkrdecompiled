@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:46:49Z
+- Generated at: 2026-05-23 01:50:05Z
 - Branch: `master`
-- HEAD: `967ed48f`
-- Completed task: `func_8002B0F4`
-- Summary: Promoted func_8002B0F4 and tested collision-output target-store-order spelling: type, rot.x, rot.y, rot.z, then waveHeight. Full verify failed with calculated CRCs 0x7856718A/0x66208CAA; relinked ./diff.sh func_8002B0F4 stayed CURRENT (2860) with the unwanted early gCurrentLevelModel spill at 0x60(sp). Source was restored.
+- HEAD: `97104733`
+- Completed task: `func_80049794`
+- Summary: Promoted func_80049794 and tested a current-baseline top-speed multiply regrouping, var_f14 = var_f14 * (handle_racer_top_speed(obj, racer) * 1.8). Full verify failed with calculated CRCs 0xAC61AD1B/0xFE0F8158; relinked ./diff.sh func_80049794 stayed CURRENT (2760) with missing target f20/f21 saves, early zero in f16, and the known wave a0/v1 drift. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but avoid repeating saturated early-zero/wave families. If pivoting, func_8002B0F4 remains active with the collision-output store-order spelling now rejected.`
+- Task: `Run selector; default route remains func_80049794, but avoid repeating the now-rejected current-baseline top-speed regrouping and saturated early-zero/wave families. If staying on func_80049794, prefer a fresh x/z/y save-family or wave-register hypothesis from ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
