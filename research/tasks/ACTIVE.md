@@ -1468,8 +1468,17 @@
   early zero stayed in `$f16`, and the wave bound/index allocation remained
   reversed as current `a0` bound plus `v1` loop index instead of target
   `v1`/`a0`. Source was restored and final full verify passed; do not repeat
-  this current-baseline in-place `var_f20` first-speed spelling. A
-  current-baseline positive-break wave scan (`for (...; var_a0 >= 0;
+  this current-baseline in-place `var_f20` first-speed spelling. A sibling
+  current-baseline named-component first-speed spelling (`segmentXVelocity =
+  x*x; segmentZVelocity = z*z; var_f20 = sqrtf(segmentXVelocity +
+  segmentZVelocity + y*y) - 2.0`) also missed: full verify failed with
+  calculated CRCs `0xCBBC5B5C/0x66C212B9`, relinked focused diff regressed to
+  `CURRENT (5950)`, the frame stayed `0xf8` but `$f20/$f21` prologue saves
+  were still absent, early zero stayed in `$f16`, and the wave bound/index
+  allocation remained reversed with extra float-register churn. Source was
+  restored and final full verify passed; do not repeat this current-baseline
+  `segmentXVelocity`/`segmentZVelocity` first-speed component-carrier spelling.
+  A current-baseline positive-break wave scan (`for (...; var_a0 >= 0;
   var_a0--) { if (gRacerCurrentWave[var_a0]->waveHeight >=
   obj->trans.y_position + 5) break; }`) also missed: full verify failed with
   calculated CRCs `0xB9C0DBCD/0xB65AA559`, relinked focused diff regressed to
