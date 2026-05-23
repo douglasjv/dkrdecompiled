@@ -31,14 +31,15 @@
   final full verify passed; do not repeat this final triangle postincrement
   spelling. Earlier center position store-order (`zPositions[4] = 0.0f` before
   `xPositions[4] = 0.0f`) also missed; do not repeat it.
-  `func_80059208` also remains active after a 2026-05-23 normalization guard
-  comparison-order probe (`if (0.0f != distance)`) missed: full verify failed
-  with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
-  `./diff.sh func_80059208` stayed at promoted baseline `CURRENT (870)` with
-  the same final object-dot/checkpoint-dot drift. Source was restored and final
-  full verify passed; do not repeat this normalization guard comparison-order
-  spelling. Earlier normalization magnitude sum-order
-  (`sqrtf((diffZ * diffZ) + (diffX * diffX))`) also missed; do not repeat it.
+  `func_80059208` also remains active after a 2026-05-23 normalization
+  reciprocal double-literal probe (`scale = 1.0 / distance`) missed: full
+  verify failed with calculated CRCs `0x9261C342/0x2708D89B`, and relinked
+  `./diff.sh func_80059208` regressed to `CURRENT (2610)` by adding broad
+  double-conversion scheduling around the normalization path. Source was
+  restored and final full verify passed; do not repeat this normalization
+  reciprocal double-literal spelling. Earlier normalization guard
+  comparison-order and magnitude sum-order probes also missed; do not repeat
+  them.
   `func_8002B0F4` remains active after a 2026-05-23 bottom segment-range guard
   reorder (`levelSegmentIndex < gCurrentLevelModel->numberOfSegments &&
   levelSegmentIndex >= 0`) missed: full verify failed with calculated CRCs
@@ -3151,7 +3152,14 @@
   `0x53D141DF/0xB9D4B481`, and the relinked focused score stayed
   `CURRENT (870)` with the same final object-dot plus negated-checkpoint-dot
   drift. Source was restored and final full verify passed; do not repeat this
-  normalization guard comparison-order spelling. Other rejected probes:
+  normalization guard comparison-order spelling. Changing only the
+  normalization reciprocal literal from `scale = 1.0f / distance` to
+  `scale = 1.0 / distance` also missed: full verify failed with calculated CRCs
+  `0x9261C342/0x2708D89B`, and relinked `./diff.sh func_80059208` regressed
+  from promoted baseline `CURRENT (870)` to `CURRENT (2610)` by adding broad
+  double-conversion scheduling around the normalization path and shifting later
+  labels. Source was restored and final full verify passed; do not repeat this
+  normalization reciprocal double-literal spelling. Other rejected probes:
   reordering `pad`/`pad2`, accumulating into `pad`, `register f32 pad2`,
   signed-zero `0.0f - (...)`, removing `UNUSED` from `pad`/`pad2`, two-step
   `pad2 = expr; pad2 = -pad2`, operand-order swaps, inline `pad2` use, and
