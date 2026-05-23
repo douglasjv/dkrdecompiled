@@ -625,8 +625,16 @@
   kept early zero in `$f16` instead of target `$f14`, and left the wave scan
   in the current `a0`-bound/`v1`-loop family. Source was restored and final
   full verify passed; do not repeat this pitch-flip `0x180` mask
-  simplification spelling. A 2026-05-23 current-baseline explicit wave-drift
-  float-threshold
+  simplification spelling. A 2026-05-23 current-baseline trick-input
+  horizontal `else if` probe (`if (gCurrentStickX > 40) { ... } else if
+  (gCurrentStickX < -40) { ... }`) missed: full verify failed with calculated
+  CRCs `0xE9D841B7/0xEEDBB8BB`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop
+  family. Source was restored and final full verify passed; do not repeat this
+  trick-input horizontal `else if` spelling. A 2026-05-23 current-baseline
+  explicit wave-drift float-threshold
   probe (`var_f2 < 35.0f` and `var_f2 < 38.0f` instead of integer literals)
   missed as a no-movement promoted-baseline family: full verify failed with
   calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the relinked focused diff stayed
@@ -3484,7 +3492,15 @@
   `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this pitch-flip
-  `0x180` mask simplification spelling. A
+  `0x180` mask simplification spelling. A baseline current-checkout
+  trick-input horizontal `else if` spelling (`if (gCurrentStickX > 40) { ... }
+  else if (gCurrentStickX < -40) { ... }`) also missed: full verify failed
+  with calculated CRCs `0xE9D841B7/0xEEDBB8BB`, and the relinked focused diff
+  stayed `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop instead of
+  target `v1`-bound/`a0`-loop. Source was restored and final full verify
+  passed; do not repeat this trick-input horizontal `else if` spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
