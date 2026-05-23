@@ -154,7 +154,16 @@
   `0xab(sp)`, still lacked target `$f20/$f21` prologue saves, kept early zero in
   `$f16` instead of target `$f14`, and left the wave scan in the current
   `a0`-bound/`v1`-loop family. Source was restored and final full verify passed;
-  do not repeat this `spA1` `s32` type spelling. A
+  do not repeat this `spA1` `s32` type spelling. A sibling current-baseline
+  `newSpinoutTimer` type probe (`s32 newSpinoutTimer` instead of the current
+  dead byte local) also missed: full verify failed with calculated CRCs
+  `0x5FDDDF2F/0xDBEDB019`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (3245)`. It widened the frame to `0x100`, shifted the target
+  byte-local traffic around `0xa3(sp)` to `0xab(sp)`, still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target `$f14`,
+  and left the wave scan in the current `a0`-bound/`v1`-loop family. Source was
+  restored and final full verify passed; do not repeat this `newSpinoutTimer`
+  `s32` type spelling. A
   2026-05-23 current-baseline independent drift-reset check probe
   (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`
   instead of the current `||` guard) missed: full verify failed with
