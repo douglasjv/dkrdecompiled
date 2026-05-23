@@ -244,7 +244,17 @@
   recover target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
   of target `$f14`, and left the wave scan in the current
   `a0`-bound/`v1`-loop family. Source was restored and final full verify
-  passed; do not repeat this `5.5f` gravity literal spelling. A
+  passed; do not repeat this `5.5f` gravity literal spelling. A 2026-05-23
+  current-baseline `unk1FE == 1` gravity `else if` probe (changing the second
+  post-rotation `if (racer->unk1FE == 1)` into `else if`) missed: full verify
+  failed with calculated CRCs `0x5FDDE812/0x3B1FD959`, and the relinked
+  focused diff regressed to `CURRENT (3215)`. It still did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop family, and
+  removed the target-like `unk1FE` reload after the `5.5` gravity/`OBJ_EMIT_9`
+  path while shifting later gravity work through `$f14` instead of target
+  `$f20`. Source was restored and final full verify passed; do not repeat
+  this current-baseline gravity `else if` spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
   (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
@@ -2471,7 +2481,18 @@
   `$f14`, and left the wave loop reversed as current `a0` bound plus `v1`
   loop-index rather than target `v1` bound plus `a0` loop-index. Source was
   restored and final full verify passed; do not repeat this current-baseline
-  `5.5f` gravity literal spelling. A baseline
+  `5.5f` gravity literal spelling. A baseline current-checkout `unk1FE == 1`
+  gravity `else if` spelling (changing the second post-rotation
+  `if (racer->unk1FE == 1)` into `else if`) also missed: full verify failed
+  with calculated CRCs `0x5FDDE812/0x3B1FD959`, and the relinked focused diff
+  regressed to `CURRENT (3215)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave
+  loop reversed as current `a0` bound plus `v1` loop-index rather than target
+  `v1` bound plus `a0` loop-index, removed the target-like `unk1FE` reload
+  after the `5.5` gravity/`OBJ_EMIT_9` path, and shifted later gravity work
+  through `$f14` instead of target `$f20`. Source was restored and final full
+  verify passed; do not repeat this current-baseline gravity `else if`
+  spelling. A baseline
   current-checkout first-speed single-precision
   subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
   also missed: full verify failed with calculated CRCs
