@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:40:49Z
+- Generated at: 2026-05-23 05:46:46Z
 - Branch: `master`
-- HEAD: `69559d7c`
+- HEAD: `3d7f3d67`
 - Completed task: `func_80049794`
-- Summary: Current-baseline wave-drift single-precision normalization constants probe (racerVelocity -= 8.0f; clamp to 4.0f; divide by 4.0f) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x5B9A8D6D/0x2117429E, and relinked focused diff regressed to CURRENT (6330). It aligned the early zero with target $f14 but still lacked target $f20/$f21 saves and kept the wave a0/v1 allocation reversed. Source was restored.
+- Summary: Rejected close save-family plus wave-drift subtract-suffix probe: object-only diff first showed stale CURRENT (0), full verify failed with CRCs 0xA8F39A57/0xC08781AF, and relinked diff regressed to CURRENT (7769) while preserving the target 0xf8 frame, $f20/$f21 saves, and early $f14 zero but widening the wave a0/v1 drift.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK after restoring source)
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after source restore
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat wave-drift single-precision normalization constants, explicit wave-height subtract 10.0f, nested spA2 wave-drift boolean, first-speed boss-adjustment divide-before-subtract, spA3 course-height placement, course-height compare operand-order, current-baseline spA2 declaration-initialization, first-speed grouped z/y add, R-trigger grounded-wheel stash guard, grounded boss throttle/brake condition-order, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or the early $f14/$f20 save-family interaction without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat the close save-family plus wave-drift subtract-suffix combination; continue with a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, first-speed arithmetic, or the early $f14/$f20 save-family interaction without repeating recorded aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

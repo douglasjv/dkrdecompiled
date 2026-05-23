@@ -142,6 +142,17 @@
   broadened drift/inverse-gravity float-register churn. Source was restored
   and final full verify passed; do not repeat this wave-drift
   single-precision normalization-constant spelling. A
+  2026-05-23 close save-family plus wave-drift subtract-suffix probe
+  (promoted close chained-zero/x/z/y/no-trailing-pad shape with only
+  `racerVelocity -= 8.0f` changed) missed: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0xA8F39A57/0xC08781AF`, and the relinked focused diff regressed to
+  `CURRENT (7769)`. It preserved the target `0xf8` frame, `$f20/$f21` saves,
+  and early `$f14` zero family, but left/widened the wave scan as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop and disturbed
+  later float-register scheduling. Source was restored and final full verify
+  passed; do not repeat this close save-family plus wave-drift subtract-suffix
+  combination. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -2134,7 +2145,17 @@
   remained current `a0`/`v1` instead of target `v1`/`a0`, and the drift/
   inverse-gravity float-register schedule broadened. Source was restored and
   final full verify passed; do not repeat this wave-drift single-precision
-  normalization-constant spelling. A baseline
+  normalization-constant spelling. A 2026-05-23 close save-family plus
+  wave-drift subtract-suffix probe (promoted close chained-zero/x/z/y/
+  no-trailing-pad shape with `racerVelocity -= 8.0f` only) also missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0xA8F39A57/0xC08781AF`, and the relinked focused
+  diff regressed to `CURRENT (7769)`. It preserved the target `0xf8` frame,
+  `$f20/$f21` prologue saves, and early `$f14` zero family, but widened the
+  wave block into current `a0`-bound/`v1`-loop allocation instead of target
+  `v1`-bound/`a0`-loop and disturbed later float-register scheduling. Source
+  was restored and final full verify passed; do not repeat this close
+  save-family plus wave-drift subtract-suffix combination. A baseline
   current-checkout first-speed carrier family through existing float locals also
   missed: using `spEC` for the pre-`sqrtf` sum failed full verify with
   calculated CRCs `0x18B44436/0x9C5E8797` and worsened the relinked focused
