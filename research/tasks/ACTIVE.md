@@ -2065,7 +2065,15 @@
   target `$f14`, and left the wave loop reversed as current `a0` bound plus
   `v1` loop-index rather than target `v1` bound plus `a0` loop-index. Source
   was restored and final full verify passed; do not repeat this grouped
-  course-height subtraction spelling. A baseline
+  course-height subtraction spelling. A baseline current-checkout
+  course-height range-guard reorder (`if (var_f2 < 0 && racer->trickType < 2 &&
+  racer->trickType >= -1)`) also missed: full verify failed with calculated
+  CRCs `0x5FDDD6C1/0xA30A4934`, and the relinked focused diff worsened to
+  `CURRENT (3770)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave loop
+  reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
+  bound plus `a0` loop-index. Source was restored and final full verify passed;
+  do not repeat this course-height range-guard order. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
