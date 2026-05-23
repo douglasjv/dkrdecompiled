@@ -211,6 +211,15 @@
   `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop family, and
   widened later gravity/call-adjacent scheduling drift. Source was restored
   and final full verify passed; do not repeat this brake direct dataflow
+  spelling. A 2026-05-23 current-baseline throttle-rate single-precision
+  literal probe (`racer->throttle += updateRateF * 0.01f` and
+  `racer->throttle -= updateRateF * 0.01f`) missed badly: full verify failed
+  with calculated CRCs `0xE2FEB7C7/0xB4368A76`, and the relinked focused diff
+  regressed to `CURRENT (6518)`. It still did not recover target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave scan in the current `a0`-bound/`v1`-loop family, and disturbed later
+  gravity/call-adjacent/sound scheduling. Source was restored and final full
+  verify passed; do not repeat this throttle-rate single-precision literal
   spelling. A
   2026-05-23
   current-baseline opening update-rate single-precision multiplier probe
@@ -2648,7 +2657,17 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop, and widened later gravity/call-adjacent scheduling
   drift. Source was restored and final full verify passed; do not repeat this
-  brake direct dataflow spelling. A baseline current-checkout opening
+  brake direct dataflow spelling. A baseline current-checkout throttle-rate
+  single-precision literal spelling (`racer->throttle += updateRateF * 0.01f`
+  and `racer->throttle -= updateRateF * 0.01f`) also missed badly: full verify
+  failed with calculated CRCs `0xE2FEB7C7/0xB4368A76`, and the relinked focused
+  diff regressed to `CURRENT (6518)`. It still lacked target `$f20/$f21`
+  prologue saves, kept early zero in `$f16` instead of target `$f14`, left the
+  wave bound/index allocation reversed as current `a0`-bound/`v1`-loop instead
+  of target `v1`-bound/`a0`-loop, and disturbed later
+  gravity/call-adjacent/sound scheduling. Source was restored and final full
+  verify passed; do not repeat this throttle-rate single-precision literal
+  spelling. A baseline current-checkout opening
   update-rate single-precision multiplier spelling (`updateRateF *= 1.09f`)
   also missed badly: full verify failed with calculated CRCs
   `0x9A37265B/0xDC30F32A`, and the relinked focused diff regressed to
