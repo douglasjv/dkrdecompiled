@@ -35,6 +35,14 @@ when intentionally returning to them.
   `cur->hubName = levelName` before the `lh` instead of scheduling it in the
   branch delay slot: full verify failed with calculated CRCs
   `0x53D440E3/0x6E70641F` and focused diff worsened to `CURRENT (125)`.
+  A 2026-05-23 RHS comma-side-effect variant
+  (`if (gTrackSelectIDs[trackY][trackX] != (cur->hubName = levelName, -1))`)
+  collapsed into that same direct-table family: full verify failed with
+  calculated CRCs `0x53D440E3/0x6E70641F`, focused diff stayed
+  `CURRENT (125)`, the selected-track load/branch used target `t2`, but
+  `cur->hubName = levelName` still emitted before the `lh` instead of in the
+  target branch delay slot. Source was restored and final full verify passed;
+  do not repeat this RHS comma-side-effect store spelling.
   Duplicating the common hub-name store inside both branch arms also missed:
   full verify failed with calculated CRCs `0xAED257D4/0xAE31DFED`, focused diff
   widened to `CURRENT (500)`, and extra `move v1,v0` / duplicate store drift

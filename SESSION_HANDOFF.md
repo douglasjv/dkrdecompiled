@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:30:28Z
+- Generated at: 2026-05-23 23:34:05Z
 - Branch: `master`
-- HEAD: `9d69e9a3`
-- Completed task: `func_80049794`
-- Summary: Recorded A-button throttle lower-compare single-precision miss; restored source passes Verify: OK
+- HEAD: `99630883`
+- Completed task: `func_8008FF1C`
+- Summary: Recorded RHS comma-side-effect direct-table branch miss; restored source passes Verify: OK
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0xA746C795/0x4D4908D0, diff CURRENT (2430) under --max-size 900)
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x53D440E3/0x6E70641F, diff CURRENT (125))
 
 ## Blockers Or Unknowns
 

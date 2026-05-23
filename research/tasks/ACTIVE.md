@@ -22,6 +22,9 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  RHS comma-side-effect direct-table branch probe collapsed into the known
+  `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-23 `vCoords[8]` plus-negative UV probe
   (`vCoords[8] = (s16) ((2.0f * pos.x) - -var_f16) + var_v1`) missed: full
