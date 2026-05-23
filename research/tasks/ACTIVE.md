@@ -1478,6 +1478,14 @@
   allocation remained reversed with extra float-register churn. Source was
   restored and final full verify passed; do not repeat this current-baseline
   `segmentXVelocity`/`segmentZVelocity` first-speed component-carrier spelling.
+  A current-baseline y-first speed magnitude expression order
+  (`sqrtf(y*y + x*x + z*z) - 2.0`) also missed: full verify failed with
+  calculated CRCs `0x5FDDE03F/0x8DEA1B78`, relinked focused diff reported
+  `CURRENT (2775)`, the frame stayed `0xf8` but `$f20/$f21` prologue saves
+  were still absent, early zero stayed in `$f16`, and the wave bound/index
+  allocation remained reversed as current `a0`/`v1` instead of target
+  `v1`/`a0`. Source was restored and final full verify passed; do not repeat
+  this current-baseline y-first speed magnitude expression order.
   A current-baseline positive-break wave scan (`for (...; var_a0 >= 0;
   var_a0--) { if (gRacerCurrentWave[var_a0]->waveHeight >=
   obj->trans.y_position + 5) break; }`) also missed: full verify failed with
