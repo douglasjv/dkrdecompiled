@@ -1683,7 +1683,17 @@
   early zero still used `$f16` instead of `$f14`, and the wave bound/index
   allocation still had `a0`/`v1` opposite the target. Source was restored and
   final full verify passed; do not repeat this baseline nested early
-  wave-gate spelling. A close save-family continuation
+  wave-gate spelling. A baseline current-checkout nested wave-reset condition
+  spelling (`if (trickType == 1) { reset } else if (trickType == -1) { reset
+  } else if (wave->rot.y < 0.4) { reset }`) also missed badly: object-only
+  focused diff first printed stale `CURRENT (0)`, full verify failed with
+  calculated CRCs `0xFF986DDD/0x8281F72F`, and the relinked focused score
+  worsened to `CURRENT (6055)`. The diff duplicated reset-branch control flow,
+  inserted `spA2` stack-byte traffic, still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16`, and moved the wave block into broader
+  register churn rather than target `v1/a0/v0`. Source was restored and final
+  full verify passed; do not repeat this baseline nested wave-reset condition.
+  A close save-family continuation
   using x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained
   grounded-wheel zero, and removed trailing `pad3`/`pad4`, but commuting the
   early wave-gate player check to `PLAYER_COMPUTER != gCurrentPlayerIndex`,
