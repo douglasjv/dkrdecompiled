@@ -1487,7 +1487,16 @@
   the wave scan into broad integer-register churn rather than target `v1`
   bound plus `a0` loop-index allocation. Source was restored and final full
   verify passed; do not repeat this current-baseline existing-`temp_t7`
-  wave-bound carrier. A current-baseline existing-`i` wave-bound carrier
+  wave-bound carrier. A current-baseline sibling using existing `var_t0` as
+  the wave-bound carrier (`var_t0 = gRacerWaveCount - 1; for (var_a0 =
+  var_t0; ...); if (var_a0 == var_t0)`) also missed: full verify failed with
+  calculated CRCs `0x9AF972E0/0xD531DD3C`, and the relinked focused diff
+  worsened to `CURRENT (4970)`. The diff still lacked target `$f20/$f21`
+  prologue saves, kept the early zero in `$f16`, and shifted the wave scan
+  into `t0/v0/v1` register churn rather than target `v1` bound plus `a0`
+  loop-index allocation. Source was restored and final full verify passed; do
+  not repeat this current-baseline existing-`var_t0` wave-bound carrier. A
+  current-baseline existing-`i` wave-bound carrier
   (`i = gRacerWaveCount - 1; for (var_a0 = i; ...); if (var_a0 == i)`) also
   missed: full verify failed with calculated CRCs `0x1E560907/0x082E5A2F`,
   the relinked focused score worsened from current promoted baseline
