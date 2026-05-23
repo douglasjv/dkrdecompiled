@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:32:19Z
+- Generated at: 2026-05-23 02:35:57Z
 - Branch: `master`
-- HEAD: `60081e29`
+- HEAD: `f9c0c5e0`
 - Completed task: `func_80049794`
-- Summary: Promoted current-baseline x/y/z first-speed magnitude expression missed; full verify failed with CRCs 0x5FDDE03F/0x6CE3B8C9 and relinked focused diff stayed CURRENT (2770), collapsing into the same miss family as current-baseline z-first. Target f20/f21 saves were still absent and the early zero still used f16 instead of target f14. Source was restored.
+- Summary: Close chained-zero/x/z/y/steer-noop save-family explicit-break wave scan missed; full verify failed with CRCs 0xE5832189/0x7F0FCADC and relinked focused diff widened to CURRENT (8805). It kept the target frame/save prologue but shifted the wave block into a3/v1 plus early spA2 stack-byte traffic rather than target v1/a0. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first or x/y/z speed magnitude expression orders, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline z-first or x/y/z speed magnitude expression orders, current-baseline var_t0/temp_t7/var_t9/i/var_v0 wave-bound carriers, close save-family temp_t7/var_t9 wave-bound carriers, close save-family explicit-break wave scan, or the func_8002B0F4 current-layout pointer-arithmetic segment setup. If staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating recorded expression-order or bound-carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

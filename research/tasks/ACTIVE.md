@@ -1415,7 +1415,15 @@
   wave-block register churn rather than the target `a0`/`v1` allocation. Do
   not repeat this local-copy while-loop wave-bound spelling; keep the function
   active and continue by solving the wave register/order or first-speed
-  arithmetic drift without losing the frame/save family. Two first-speed carrier variants on
+  arithmetic drift without losing the frame/save family. An explicit-break
+  loop on the close chained-zero/x/z/y/steer-noop save-family branch
+  (`var_v1 = gRacerWaveCount - 1; for (var_a0 = var_v1; var_a0 >= 0; var_a0--) {
+  if (!(...)) break; } if (var_a0 == var_v1)`) also missed worse: full verify
+  failed with calculated CRCs `0xE5832189/0x7F0FCADC`, relinked focused diff
+  widened to `CURRENT (8805)`, and the wave block shifted into `a3/v1` plus
+  early `spA2` stack-byte traffic rather than target `v1/a0`. Source was
+  restored and final full verify passed; do not repeat this explicit-break
+  close-branch wave-scan spelling. Two first-speed carrier variants on
   that same branch both regressed by losing the target frame/save family: using
   existing `var_f6` for the pre-`sqrtf` sum failed full verify with calculated
   CRCs `0x6035EC5F/0x4C26F14E` and relinked focused `CURRENT (2326)`, while
