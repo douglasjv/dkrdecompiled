@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:49:41Z
+- Generated at: 2026-05-23 23:53:17Z
 - Branch: `master`
-- HEAD: `fc4cbf0e`
-- Completed task: `func_80049794`
-- Summary: Recorded bounded worker split-bound pointer-carry wave-scan miss; main source passes Verify: OK
+- HEAD: `4866d6fe`
+- Completed task: `func_80059208`
+- Summary: Nested wrong-way counter condition probe missed; source restored after focused diff stayed CURRENT (870).
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (main checkout: Verify: OK; worker rejected probe CRCs 0x0F72E671/0xB9F156E0, diff CURRENT (7197))
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x53D141DF/0xB9D4B481; relinked diff CURRENT (870)); ./score.sh -s: Decomp progress 97.30%, documentation progress 65.47%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 saved-FPR/early-zero carrier outside direct wave-bound variants, or next selector-recommended bounded packet`
+- Task: `Continue func_80059208 with a fresh final-tail object-dot/checkpoint-dot source-shape hypothesis, or pivot to the next selector-routable bounded packet if tail variants repeat.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

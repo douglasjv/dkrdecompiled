@@ -106,6 +106,12 @@
   the wrong-way velocity compare away from the target double-compare family and
   broadened downstream labels/final-tail drift. Source was restored and final
   full verify passed; do not repeat this wrong-way velocity `-1.0f` spelling.
+  A nested wrong-way counter condition probe (`if (wrongWayCounter < 200) { if
+  (velocity <= -1.0) ... }`) also missed: full verify failed with calculated
+  CRCs `0x53D141DF/0xB9D4B481`, and relinked `./diff.sh func_80059208` stayed
+  at promoted baseline `CURRENT (870)` with the same final lateral/vertical
+  object-dot and tempY register drift. Source was restored and final full verify
+  passed; do not repeat this nested wrong-way counter spelling.
   Earlier final vertical reciprocal-multiply,
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
@@ -3970,6 +3976,14 @@
   family in the wrong-way velocity guard and broadened downstream
   labels/final-tail drift. Source was restored and final full verify passed;
   do not repeat this wrong-way velocity `-1.0f` spelling.
+  A nested wrong-way counter condition spelling (`if (racer->wrongWayCounter <
+  200) { if (racer->velocity <= -1.0) ... }`) produced no relinked object
+  movement: full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, and relinked `./diff.sh func_80059208` stayed at
+  promoted baseline `CURRENT (870)`. The key drift remained the final
+  lateral/vertical object-dot and tempY register allocation, not the wrong-way
+  counter branch shape. Source was restored and final full verify passed; do
+  not repeat this nested wrong-way counter spelling.
   Reusing the already-loaded `distance` local in the early checkpoint-scale
   divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
   produced no relinked object movement: object-only focused diff first showed
