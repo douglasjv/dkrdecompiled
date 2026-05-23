@@ -1315,6 +1315,14 @@
   `0xdc(sp)`, but still dropped the target `$f20/$f21` prologue saves, shifted
   saved `ra`/`s1`/`s0` stack slots, kept early zero in `$f16`, and left the wave
   `a0`/`v1` drift. Do not repeat this `register var_f14` allocation hint on the
+  retained-pad `var_f2` branch. Adding `register f32 var_f2` to that same
+  retained-pad z/y component-staging branch also missed: full verify failed
+  with calculated CRCs `0x5FEF1D9D/0x4258C5C1`, and the relinked focused diff
+  reported `CURRENT (3620)`. It kept the target `0xf8` frame and the
+  target-like call-adjacent `$f14` save/reload at `0xdc(sp)`, but still lacked
+  target `$f20/$f21` prologue saves, kept early zero in `$f16`, and left the
+  wave `a0`/`v1` register/order swap. Source was restored and final full verify
+  passed; do not repeat this `register var_f2` allocation hint on the
   retained-pad `var_f2` branch. Changing the inverse-gravity expression to
   multiply form (`var_f20 = 1.0 - (var_f20 * 0.25)`) on a promoted
   retained-pad `var_f2` z/y component-staging branch also missed: full verify
