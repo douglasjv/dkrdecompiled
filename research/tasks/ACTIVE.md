@@ -512,8 +512,16 @@
   scan in the current `a0`-bound/`v1`-loop family, and widened later
   gravity/call-adjacent scheduling drift. Source was restored and final full
   verify passed; do not repeat this brake rumble guard operand-order spelling.
-  A
-  2026-05-23 current-baseline grouped x/y first-speed expression
+  A 2026-05-23 current-baseline spinout brake single-precision literal probe
+  (`racer->brake = 1.0f` instead of `1` in the spinout path) missed:
+  promoted full verify failed with calculated CRCs `0xA746C795/0x4D4908D0`,
+  and relinked `./diff.sh func_80049794` regressed to `CURRENT (3355)`. It
+  did not recover target `$f20/$f21` prologue saves, kept early zero in
+  `$f16` instead of target `$f14`, left the wave scan in the current
+  `a0`-bound/`v1`-loop family, and widened/shifted later
+  spinout/gravity/call-adjacent scheduling. Source was restored and final full
+  verify passed; do not repeat this spinout brake single-precision literal
+  spelling. A 2026-05-23 current-baseline grouped x/y first-speed expression
   probe (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
   with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
   reported `CURRENT (2770)`. It still did not recover target `$f20/$f21`

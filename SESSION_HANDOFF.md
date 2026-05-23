@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:28:06Z
+- Generated at: 2026-05-23 10:32:22Z
 - Branch: `master`
-- HEAD: `b55a6dd3`
+- HEAD: `7cb852d2`
 - Completed task: `func_80049794`
-- Summary: Rejected brake rumble guard operand-order promotion; source restored after CURRENT (3525) miss
+- Summary: Rejected spinout brake single-precision literal promotion; source restored after CURRENT (3355) miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid the recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp/brake rumble-threshold/brake rumble guard-order probes, func_8002B0F4 segment/grid/default-water/collision-plane guard/type probes, and func_80059208 final clamp carriers; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
+- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid the recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp/brake rumble-threshold/brake rumble guard-order/spinout brake literal probes, func_8002B0F4 segment/grid/default-water/collision-plane guard/type probes, and func_80059208 final clamp carriers; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
