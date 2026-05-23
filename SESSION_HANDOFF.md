@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:15:41Z
+- Generated at: 2026-05-23 09:19:40Z
 - Branch: `master`
-- HEAD: `d411bde7`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected partial bottom default-water store-order probe; promoting source with default writes ordered rot.x, waveHeight, rot.z, rot.y failed verify with CRCs 0x281EE85B/0x4ACE73BF and relinked focused diff regressed to CURRENT (3835), then source was restored.
+- HEAD: `d8f97b03`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected outer-ring z6 multiply-order probe; promoting source with zPositions[6] = -(scaledXCos * 2.0f) - scaledXSin failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For func_8002B0F4, do not repeat partial bottom default-water store-order, explicit default-water height-cast, target default-water store-order, bottom-water condition-order, bottom segment-range guard reorder, current-source texture-index carriers, grid bitmask rewrites, outer segment-loop while, or other recorded model-spill/tail spellings in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) family. For trackbg_render_flashy, do not repeat z6/z5/x5 multiply-order, x6/z6 operand-order, x6/z6 grouped-negation, x7/z7/x8/z8 single-site outer-ring spellings, vertex pointer-loop, color fallback initialization-order, final global pointer store-order, final triangle postincrement, center position store-order, or other recorded first/outer position-array families in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

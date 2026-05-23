@@ -23,12 +23,13 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 outer-ring z5 multiply-order probe (`zPositions[5] =
-  scaledXSin - (scaledXCos * 2.0f)`) missed with no relinked focused
-  movement: full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`,
-  and relinked `./diff.sh trackbg_render_flashy` stayed at promoted baseline
+  2026-05-23 outer-ring z6 multiply-order probe (`zPositions[6] =
+  -(scaledXCos * 2.0f) - scaledXSin`) missed with no relinked focused
+  movement: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy` stayed at promoted baseline
   `CURRENT (1808)`. Source was restored and final full verify passed; do not
-  repeat this z5 multiply-order spelling. Earlier x5 multiply-order, vertex
+  repeat this z6 multiply-order spelling. Earlier z5/x5 multiply-order, vertex
   pointer-loop, color fallback initialization-order, final global pointer
   store-order, final triangle postincrement, and center position store-order
   probes also missed; do not repeat them.
@@ -4586,6 +4587,15 @@
   remained in the same early negative-cosine/outer-ring register-order family.
   Source was restored and final full verify passed; do not repeat this
   single-site z5 multiply-order spelling.
+  Rewriting only `zPositions[6]` from
+  `-(2.0f * scaledXCos) - scaledXSin` to
+  `-(scaledXCos * 2.0f) - scaledXSin` also produced no relinked focused
+  movement: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, relinked
+  `./diff.sh trackbg_render_flashy` stayed `CURRENT (1808)`, and the diff
+  remained in the same early negative-cosine/outer-ring register-order family.
+  Source was restored and final full verify passed; do not repeat this
+  single-site z6 multiply-order spelling.
   Rewriting only `xPositions[6]` from
   `scaledXCos - (2.0f * scaledXSin)` to
   `-(2.0f * scaledXSin) + scaledXCos` also produced no useful movement: full
