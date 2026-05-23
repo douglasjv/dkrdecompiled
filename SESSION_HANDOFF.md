@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 11:51:48Z
+- Generated at: 2026-05-23 11:55:06Z
 - Branch: `master`
-- HEAD: `8be3bbe9`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected vCoords[8] plus-negative UV spelling; source restored after CURRENT (2358) miss
+- HEAD: `15473554`
+- Completed task: `func_80049794`
+- Summary: Rejected independent drift-reset checks; source restored after CURRENT (3590) miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, with active alternates only for fresh bounded probes. Do not repeat the recorded trackbg_render_flashy vCoords[8] plus-negative/additive/operand/grouped-negated UV spellings or earlier outer-ring/store-order/triangle probes. Choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
+- Task: `Run selector; default route remains func_80049794, with active alternates only for fresh bounded probes. Do not repeat the recorded func_80049794 independent drift-reset checks, split drift-reset condition, drift-direction nonzero, wave-lift, wave-scan, prologue-save, early-zero, grounded-wheel, brake, attach-point, late boost-emitter, or first-speed probe families. Choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

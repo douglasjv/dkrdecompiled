@@ -132,6 +132,16 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline independent drift-reset check probe
+  (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`
+  instead of the current `||` guard) missed: full verify failed with
+  calculated CRCs `0xEAC7CF58/0x7D4B28D3`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (3590)`. It still lacked
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
+  family, and changed the drift-reset branch shape away from the target.
+  Source was restored and final full verify passed; do not repeat this
+  independent drift-reset check spelling. A
   2026-05-23 current-baseline grounded-wheel surface-scan condition-order
   probe (`i < racer->wheel_surfaces[var_t0] &&
   racer->wheel_surfaces[var_t0] != SURFACE_NONE` instead of the current
@@ -923,6 +933,16 @@
   player/wave plus later `$f14`/`$f20` temporary-register scheduling drift.
   Source was restored and final full verify passed; do not repeat this
   current-baseline split drift-reset condition spelling. A
+  2026-05-23 current-baseline independent drift-reset check spelling
+  (`if (racerVelocity < 8.0) { reset } if (gCurrentStickY < -10) { reset }`)
+  also missed: full verify failed with calculated CRCs
+  `0xEAC7CF58/0x7D4B28D3`, and relinked `./diff.sh func_80049794` regressed
+  to `CURRENT (3590)`. It still missed target `$f20/$f21` prologue saves,
+  shifted saved GPR slots down by 8 bytes, kept early zero in `$f16` instead
+  of target `$f14`, left the wave scan as current `a0`-bound/`v1`-loop
+  instead of target `v1`-bound/`a0`-loop, and changed the drift-reset branch
+  shape away from the target. Source was restored and final full verify
+  passed; do not repeat this independent drift-reset check spelling. A
   2026-05-23 current-baseline drift-direction nonzero spelling probe
   (`if (racer->drift_direction)` instead of `!= 0`) missed: object-only
   focused diff first printed stale `CURRENT (0)`, full verify failed with
