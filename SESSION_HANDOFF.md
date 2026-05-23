@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 12:00:59Z
+- Generated at: 2026-05-23 12:05:11Z
 - Branch: `master`
-- HEAD: `827a9b6c`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded pad3-removal plus X-grid var_a1 += var_a1 miss: full verify failed while promoted with CRCs 0x78D4C01A/0xEA4191D0, relinked focused diff was CURRENT (1813), and the unwanted early gCurrentLevelModel spill remained at 0x64(sp); source restored.
+- HEAD: `2502d653`
+- Completed task: `func_80049794`
+- Summary: Recorded drift-start racerVelocity >= 8.0f threshold miss: promoted full verify failed with CRCs 0x601FC875/0x0F7B5827, relinked focused diff was CURRENT (5670), and the known missing f20/f21 prologue saves, early f14 zero, and target wave-scan allocation remained; source restored.
 
 ## Validation
 

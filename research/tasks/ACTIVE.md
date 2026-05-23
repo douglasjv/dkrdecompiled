@@ -756,8 +756,18 @@
   early zero in `$f16` instead of target `$f14`, and left the wave scan in the
   current `a0`-bound/`v1`-loop family. Source was restored and final full
   verify passed; do not repeat this explicit wave-drift float-threshold
-  spelling. A 2026-05-23 current-baseline grouped x/y first-speed expression
-  probe (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
+  spelling. A 2026-05-23 current-baseline drift-start speed-threshold
+  single-precision probe (`racerVelocity >= 8.0f` in only the
+  `drift_direction == 0` start branch) also missed: full verify failed with
+  calculated CRCs `0x601FC875/0x0F7B5827`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (5670)`. It changed the
+  start-branch compare into a single-precision family, shifted late-rodata
+  references, still lacked target `$f20/$f21` prologue saves, kept early zero
+  in `$f16` instead of target `$f14`, and left the wave scan in the current
+  `a0`-bound/`v1`-loop family. Source was restored and final full verify
+  passed; do not repeat this drift-start `racerVelocity >= 8.0f` spelling. A
+  2026-05-23 current-baseline grouped x/y first-speed expression probe
+  (`sqrtf(((x*x) + (y*y)) + (z*z)) - 2.0`) missed: full verify failed
   with calculated CRCs `0x5FDDE03F/0xA73DFC7C`, and the relinked focused diff
   reported `CURRENT (2770)`. It still did not recover target `$f20/$f21`
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
