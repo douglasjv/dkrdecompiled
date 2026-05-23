@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:49:53Z
+- Generated at: 2026-05-23 10:54:23Z
 - Branch: `master`
-- HEAD: `bc579905`
-- Completed task: `func_80059208`
-- Summary: Rejected checkpoint-distance 1.0f complement probe; source restored after CURRENT (3020) miss
+- HEAD: `2dec064a`
+- Completed task: `func_80049794`
+- Summary: Rejected final unk201 condition-inversion probe; source restored after CURRENT (2760) no-movement miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp/brake lower-clamp/brake rumble-threshold/brake rumble guard-order/spinout brake literal/explicit wave-drift float-threshold/late boost-emitter branch-order/late boost-emitter nonzero compare/attach-point postincrement/attach-point store-order probes, and avoid recorded func_80059208 final-tail/normalization/checkpoint-distance literal probes; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
+- Task: `Run selector; default route remains func_80049794. Do not accept object-only CURRENT (0) for guarded functions that still fall back to assembly. Avoid recorded func_80049794 early spA1/early-zero/wave-register/throttle-rate/brake-rate/brake upper-clamp/brake lower-clamp/brake rumble-threshold/brake rumble guard-order/spinout brake literal/explicit wave-drift float-threshold/late boost-emitter branch-order/late boost-emitter nonzero compare/attach-point postincrement/attach-point store-order/final unk201 condition-inversion probes, and avoid recorded func_80059208 final-tail/normalization/checkpoint-distance literal probes; choose a fresh bounded source-shape probe or another active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
