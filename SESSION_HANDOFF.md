@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:42:22Z
+- Generated at: 2026-05-23 01:46:49Z
 - Branch: `master`
-- HEAD: `70e00f81`
-- Completed task: `func_80059208`
-- Summary: Promoted func_80059208 and tested a single-assignment unary second-product checkpoint-dot spelling, pad2 = (diffX * -tempX) - (tempZ * diffZ). Full verify failed with calculated CRCs 0x53B8FDB5/0xDAD64A9D, and relinked ./diff.sh func_80059208 worsened to CURRENT (1326). Source was restored.
+- HEAD: `967ed48f`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted func_8002B0F4 and tested collision-output target-store-order spelling: type, rot.x, rot.y, rot.z, then waveHeight. Full verify failed with calculated CRCs 0x7856718A/0x66208CAA; relinked ./diff.sh func_8002B0F4 stayed CURRENT (2860) with the unwanted early gCurrentLevelModel spill at 0x60(sp). Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but if staying off the saturated early-zero family, pivot to active func_80059208, func_8002B0F4, or trackbg_render_flashy with ACTIVE.md miss notes checked first.`
+- Task: `Run selector; default route remains func_80049794, but avoid repeating saturated early-zero/wave families. If pivoting, func_8002B0F4 remains active with the collision-output store-order spelling now rejected.`
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`

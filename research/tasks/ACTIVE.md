@@ -3653,7 +3653,14 @@
   `./diff.sh func_8002B0F4` stayed `CURRENT (2860)`, and the known unwanted
   early `gCurrentLevelModel` spill at `0x60(sp)` remained. Source was restored
   and final full verify passed; do not repeat this `arg3` register-carrier
-  spelling.
+  spelling. A promoted current-source collision-output target-store-order probe
+  also missed: ordering the hit writes as `type`, `rot.x`, `rot.y`, `rot.z`,
+  then `waveHeight` failed full verify with calculated CRCs
+  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4` stayed
+  `CURRENT (2860)` and still showed the unwanted early `gCurrentLevelModel`
+  spill at `0x60(sp)` plus broad segment/grid/tail drift. Source was restored
+  and final full verify passed; do not repeat this collision-output
+  store-order spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
