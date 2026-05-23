@@ -193,7 +193,16 @@
   `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
   `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
   Source was restored and final full verify passed; do not repeat this
-  exit-throttle single-precision literal spelling. A
+  exit-throttle single-precision literal spelling. A 2026-05-23
+  current-baseline opening update-rate single-precision multiplier probe
+  (`updateRateF *= 1.09f`) missed badly: full verify failed with calculated
+  CRCs `0x9A37265B/0xDC30F32A`, and the relinked focused diff regressed to
+  `CURRENT (4943)`. It changed the opening multiply from target-like
+  double-literal `mul.d`/`cvt.s.d` to `mul.s`, still did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored and final full verify passed; do not repeat this opening
+  update-rate single-precision multiplier spelling. A
   2026-05-23 current-baseline nested `spA2` wave-drift boolean probe
   (`if (var_f2 < 35) { if (racerVelocity < 8.0) spA2 = TRUE; }`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify
@@ -2601,7 +2610,17 @@
   `$f14`, and left the wave bound/index allocation reversed as current
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
   restored and final full verify passed; do not repeat this exit-throttle
-  single-precision literal spelling. A
+  single-precision literal spelling. A baseline current-checkout opening
+  update-rate single-precision multiplier spelling (`updateRateF *= 1.09f`)
+  also missed badly: full verify failed with calculated CRCs
+  `0x9A37265B/0xDC30F32A`, and the relinked focused diff regressed to
+  `CURRENT (4943)`. It changed the opening multiply from target-like
+  double-literal `mul.d`/`cvt.s.d` to `mul.s`, still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
+  restored and final full verify passed; do not repeat this opening
+  update-rate single-precision multiplier spelling. A
   baseline current-checkout first-speed
   upper-clamp zero-threshold spelling (`if (var_f20 > 0.0) { var_f20 = 4; }`)
   also missed: full verify failed with calculated CRCs
