@@ -234,6 +234,17 @@
   `v1`-bound/`a0`-loop, and broadened later `$f14`/`$f20` gravity scheduling
   drift. Source was restored and final full verify passed; do not repeat this
   current-baseline wave-lift divided-speed grouping. A
+  2026-05-23 current-baseline split drift-reset condition probe
+  (`if (racerVelocity < 8.0) { reset } else if (gCurrentStickY < -10) {
+  reset }`) missed: object-only focused diff first printed stale `CURRENT (0)`,
+  full verify failed with calculated CRCs `0x7CB10841/0x43C4193E`, and the
+  relinked focused diff regressed to `CURRENT (5300)`. It still missed target
+  `$f20/$f21` prologue saves, shifted saved GPR slots down by 8 bytes, kept
+  early zero in `$f16` instead of target `$f14`, left the wave scan as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and broadened
+  player/wave plus later `$f14`/`$f20` temporary-register scheduling drift.
+  Source was restored and final full verify passed; do not repeat this
+  current-baseline split drift-reset condition spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -2548,7 +2559,19 @@
   wave bound/index allocation reversed as current `a0`-bound/`v1`-loop instead
   of target `v1`-bound/`a0`-loop, and disturbed later `$f14`/`$f20` gravity
   scheduling. Source was restored and final full verify passed; do not repeat
-  this wave-lift divided-speed grouping. A
+  this wave-lift divided-speed grouping. A baseline current-checkout split
+  drift-reset condition
+  (`if (racerVelocity < 8.0) { reset } else if (gCurrentStickY < -10) {
+  reset }`) also missed: object-only focused diff first printed stale
+  `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x7CB10841/0x43C4193E`, and the relinked focused diff regressed to
+  `CURRENT (5300)`. It still lacked target `$f20/$f21` prologue saves, moved
+  saved GPR slots down by 8 bytes, kept early zero in `$f16` instead of target
+  `$f14`, left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and disturbed
+  player/wave plus later `$f14`/`$f20` temporary-register scheduling. Source
+  was restored and final full verify passed; do not repeat this split
+  drift-reset condition spelling. A
   baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
