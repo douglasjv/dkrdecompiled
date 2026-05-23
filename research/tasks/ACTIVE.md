@@ -2361,6 +2361,15 @@
   traffic while leaving the object-dot/checkpoint-dot drift unresolved. Source
   was restored and final full verify passed; do not repeat this final-vertical
   `scale` numerator carrier.
+  Reusing the now-dead `distance` local only as the final vertical clamp-limit
+  carrier (`distance = 100.0f; if (diffY > distance) ...; if (diffY <
+  -distance) ...`) also missed: full verify failed with calculated CRCs
+  `0x4400230F/0x7B651F08`, and the relinked focused diff worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1995)`. This collapsed into
+  the same bad vertical clamp-limit family as the earlier `pad3` carrier,
+  adding final-clamp float traffic and shifting the tail schedule. Source was
+  restored and final full verify passed; do not repeat this final vertical
+  `distance` clamp-limit carrier.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C

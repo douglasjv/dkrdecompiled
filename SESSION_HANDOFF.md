@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 00:34:33Z
+- Generated at: 2026-05-23 00:37:38Z
 - Branch: `master`
-- HEAD: `27bd52c8`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded current-source texture-index temp plus temp flags carrier miss: full verify failed with CRCs 0x7C5E2034/0x8DDE76F8, focused diff CURRENT (3260), and the known early gCurrentLevelModel spill stayed at 0x60(sp); source restored.
+- HEAD: `3ef274c2`
+- Completed task: `func_80059208`
+- Summary: Recorded final vertical clamp-limit distance-carrier miss: full verify failed with CRCs 0x4400230F/0x7B651F08, relinked focused diff CURRENT (1995), matching the bad vertical clamp-limit family; source restored.
 
 ## Validation
 
