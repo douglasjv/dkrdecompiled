@@ -741,7 +741,16 @@
   recover target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
   of target `$f14`, and widened the wave-scan/register-offset drift. Source
   was restored and final full verify passed; do not repeat this brake-rate
-  single-precision literal spelling. A 2026-05-23 current-baseline brake
+  single-precision literal spelling. A sibling brake-rate operand-order probe
+  (`racer->brake += 0.016 * updateRateF` and
+  `racer->brake -= 0.016 * updateRateF`) missed: full verify failed with
+  calculated CRCs `0x5FCD003F/0x88486FB6`, and relinked
+  `./diff.sh func_80049794` regressed to `CURRENT (2780)`. It did not recover
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave scan in the current `a0`-bound/`v1`-loop
+  family, and slightly shifted later gravity/call-adjacent scheduling. Source
+  was restored and final full verify passed; do not repeat this brake-rate
+  operand-order spelling. A 2026-05-23 current-baseline brake
   upper-clamp comparison-width probe (`if (racer->brake > 1.2f)` instead of
   the double literal compare) missed: guarded object-only focused diff first
   printed stale `CURRENT (0)`, promoted full verify failed with calculated

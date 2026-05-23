@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:46:44Z
+- Generated at: 2026-05-23 22:49:17Z
 - Branch: `master`
-- HEAD: `f7b8be2b`
+- HEAD: `1bb78911`
 - Completed task: `func_80049794`
-- Summary: First transform scale-before-position store-order probe missed: probe full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, relinked ./diff.sh func_80049794 stayed CURRENT (2760), source restored.
+- Summary: Brake-rate operand-order probe missed: changing both brake updates to 0.016 * updateRateF failed full verify with calculated CRCs 0x5FCD003F/0x88486FB6 and relinked ./diff.sh func_80049794 regressed to CURRENT (2780); source restored.
 
 ## Validation
 
