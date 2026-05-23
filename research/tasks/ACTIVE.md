@@ -2021,6 +2021,15 @@
   current `a0` bound plus `v1` loop-index rather than target `v1` bound plus
   `a0` loop-index. Source was restored and final full verify passed; do not
   repeat this first-speed `2.0f` subtract spelling. A baseline
+  current-checkout wave-speed lower-clamp operand-order spelling
+  (`if (0.0f > racerVelocity)`) also missed in the promoted-baseline family:
+  full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and the
+  relinked focused diff stayed `CURRENT (2760)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave loop reversed as current `a0` bound plus `v1`
+  loop-index rather than target `v1` bound plus `a0` loop-index. Source was
+  restored and final full verify passed; do not repeat this wave-speed
+  lower-clamp operand-order spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
