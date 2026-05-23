@@ -126,7 +126,17 @@
   early zero in `$f16` instead of target `$f14`, left the wave scan in the
   current `a0`-bound/`v1`-loop family, and broadened later gravity/surface
   scheduling. Source was restored and final full verify passed; do not repeat
-  this grounded-wheel surface-scan condition-order spelling. A
+  this grounded-wheel surface-scan condition-order spelling. A sibling
+  grounded-wheel brake-particle viewport condition-order probe
+  (`gNumViewports < 3 && (gCurrentRacerInput & B_BUTTON)` instead of the
+  current input-first guard) also missed: full verify failed with calculated
+  CRCs `0x60DFE03F/0x93188AD7`, and relinked `./diff.sh func_80049794`
+  regressed to `CURRENT (3195)`. It still lacked target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave
+  scan in the current `a0`-bound/`v1`-loop family, and broadened later
+  gravity/particle scheduling. Source was restored and final full verify
+  passed; do not repeat this brake-particle viewport condition-order spelling.
+  A
   2026-05-23 current-baseline early `spA1` initialization probe (moving
   `spA1 = FALSE` next to `playerObjectMoved = FALSE` and removing the later
   assignment inside the normal flight branch) missed: object-only focused diff
