@@ -47,6 +47,16 @@
   bottom default-water store-order spelling.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-23 current-baseline lateral drag scale grouping probe
+  (`racer->lateral_velocity * (spD4 * 4.0f)` instead of
+  `racer->lateral_velocity * spD4 * 4.0f`) missed: full verify failed with
+  calculated CRCs `0x6001A43F/0x2E622A7C`, and the relinked focused diff
+  stayed `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, left the wave
+  scan in the current `a0`-bound/`v1`-loop family, and only shifted constants
+  and later call targets in the promoted current-baseline family. Source was
+  restored and final full verify passed; do not repeat this lateral drag scale
+  grouping spelling. A
   2026-05-23 current-baseline trick lift scale constant-grouping probe
   (`racer->velocity * (0.058823529411764705 * 1.5)` instead of
   `racer->velocity * 0.058823529411764705 * 1.5`) missed: full verify failed
