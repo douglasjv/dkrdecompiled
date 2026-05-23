@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:50:55Z
+- Generated at: 2026-05-23 09:53:33Z
 - Branch: `master`
-- HEAD: `b7a4e952`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical cast-width probe; promoting current source and changing racer->unk1BC += (s32) diffY to racer->unk1BC += (s16) diffY failed verify with CRCs 0x53C341DF/0x1D08B7B9 and relinked focused diff worsened to CURRENT (890), then source was restored.
+- HEAD: `053a3b3e`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected zPositions[7] multiply-order probe; promoting current source and changing (2.0f * scaledXCos) - scaledXSin to (scaledXCos * 2.0f) - scaledXSin failed verify with CRCs 0x93D338FF/0x03D9C8FE and relinked focused diff stayed CURRENT (1808), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80059208, do not repeat the final vertical (s16) diffY cast spelling or other probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For trackbg_render_flashy, do not repeat the z7/x7/z6/z5/x5/x6 multiply-order or other probes recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

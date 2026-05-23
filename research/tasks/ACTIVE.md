@@ -29,7 +29,14 @@
   failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
   `./diff.sh trackbg_render_flashy` stayed at promoted baseline
   `CURRENT (1808)`. Source was restored and final full verify passed; do not
-  repeat this x6 multiply-order spelling. Earlier x7/z6/z5/x5
+  repeat this x6 multiply-order spelling. A sibling 2026-05-23 outer-ring z7
+  multiply-order probe (`zPositions[7] = (scaledXCos * 2.0f) - scaledXSin`)
+  missed in the same no-movement family: object-only focused diff first
+  printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, and relinked `./diff.sh trackbg_render_flashy`
+  stayed at promoted baseline `CURRENT (1808)`. Source was restored and final
+  full verify passed; do not repeat this z7 multiply-order spelling. Earlier
+  x7/z6/z5/x5
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
@@ -4610,7 +4617,16 @@
   `CURRENT (4289)`, and the diff shifted the early first/outer
   position-array register schedule while preserving the target-sized frame.
   Source was restored and final full verify passed. Do not repeat this
-  single-site z7 grouped-negated-difference spelling. Commuting only
+  single-site z7 grouped-negated-difference spelling. Rewriting only
+  `zPositions[7]` from
+  `(2.0f * scaledXCos) - scaledXSin` to
+  `(scaledXCos * 2.0f) - scaledXSin` also produced no relinked focused
+  movement: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, relinked
+  `./diff.sh trackbg_render_flashy` stayed `CURRENT (1808)`, and the diff
+  remained in the same early negative-cosine/outer-ring register-order family.
+  Source was restored and final full verify passed; do not repeat this
+  single-site z7 multiply-order spelling. Commuting only
   `xPositions[7]` from
   `scaledXCos + (2.0f * scaledXSin)` to
   `(2.0f * scaledXSin) + scaledXCos` also produced no movement: full verify
