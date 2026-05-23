@@ -596,6 +596,19 @@
   `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
   Source was restored and final full verify passed; do not repeat this boost
   non-positive-first branch-order spelling. A
+  2026-05-23 current-baseline boost-active assignment-order probe also missed:
+  promoting the current C and moving `racer->boostTimer -= updateRate` before
+  `racer->throttle = 1` failed full verify with calculated CRCs
+  `0xF1E91063/0x5815ED91`, and the relinked focused diff improved from
+  promoted baseline `CURRENT (2760)` to `CURRENT (2430)` but still missed
+  target `$f20/$f21` prologue saves, kept the early zero in `$f16`, and left
+  the wave scan in the current `a0`-bound/`v1`-loop family. A sibling order
+  (`racer->throttle = 1; racer->boostTimer -= updateRate; var_f14 = 2.0f`)
+  also stayed `CURRENT (2430)` but failed with baseline CRCs
+  `0x5FDDE03F/0xEF7A0514`. Source was restored and final full verify passed;
+  do not repeat these boost-active assignment-order spellings. Next
+  `func_80049794` work should pivot away from boost assignment ordering unless
+  paired with a broader saved-FPR or wave bound/index allocation hypothesis. A
   2026-05-23 current-baseline implicit wave-count gate probe
   (`... && gRacerWaveCount` instead of `... && gRacerWaveCount != 0`) missed:
   object-only focused diff first printed stale `CURRENT (0)`, full verify

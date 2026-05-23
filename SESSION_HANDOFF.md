@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 23:41:21Z
+- Generated at: 2026-05-23 23:45:17Z
 - Branch: `master`
-- HEAD: `d8b0f9d6`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded current-source surface-skip inverted empty-if miss; restored source passes Verify: OK
+- HEAD: `3eba83a8`
+- Completed task: `func_80049794`
+- Summary: Recorded boost-active assignment-order misses; restored source passes Verify: OK
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0x77D9E18A/0xB9F696E2, diff CURRENT (2995))
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (restored source: Verify: OK; rejected probe CRCs 0xF1E91063/0x5815ED91 and 0x5FDDE03F/0xEF7A0514, diff CURRENT (2430))
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 or next selector-recommended bounded packet`
+- Task: `func_80049794 saved-FPR or wave bound/index allocation hypothesis, or next selector-recommended bounded packet`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
