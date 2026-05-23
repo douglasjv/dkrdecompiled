@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 10:17:20Z
+- Generated at: 2026-05-23 10:20:09Z
 - Branch: `master`
-- HEAD: `e74d131d`
-- Completed task: `func_80059208`
-- Summary: Rejected final lateral diffZ clamp-limit carrier; restored source after relinked CURRENT (1215) miss
+- HEAD: `321928fd`
+- Completed task: `func_80049794`
+- Summary: Rejected brake-rate single-precision literal promotion; source restored after CURRENT (5463) miss
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760), early spA1, early-zero, and close-save-family wave-register probes. For func_80059208, do not repeat final lateral scale/pad3/distance/splinePos/diffZ clamp-limit carriers or other tail probes recorded in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but do not accept object-only CURRENT (0) while the NON_EQUIVALENT guard still falls back to assembly. For func_80049794, avoid the recorded early spA1, early-zero, wave-register, throttle-rate, and brake-rate literal probes; choose a fresh bounded source-shape probe or an active alternate with unrecorded evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
