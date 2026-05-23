@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 01:21:02Z
+- Generated at: 2026-05-23 01:23:10Z
 - Branch: `master`
-- HEAD: `c3ead6ca`
-- Completed task: `func_8002B0F4`
-- Summary: Promoted func_8002B0F4 with a register arg3 output-pointer carrier; full verify failed with calculated CRCs 0x7856718A/0x66208CAA, and relinked ./diff.sh func_8002B0F4 stayed CURRENT (2860) with the known early gCurrentLevelModel spill at 0x60(sp). Source was restored.
+- HEAD: `72fe2fdb`
+- Completed task: `func_80049794`
+- Summary: Promoted func_80049794 with an early grounded-wheel zero carrier through existing spE4; full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked ./diff.sh func_80049794 stayed CURRENT (2760) with missing target $f20/$f21 saves and early zero still in $f16. Source was restored.
 
 ## Validation
 
