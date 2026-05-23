@@ -356,6 +356,16 @@
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was restored
   and final full verify passed; do not repeat this late position-delta
   reciprocal double-literal spelling. A
+  2026-05-23 current-baseline first transform `x_rotation` store-order probe
+  (move `gCurrentRacerTransform.rotation.x_rotation =
+  obj->trans.rotation.x_rotation` after the zero position stores, before
+  `scale`) missed: full verify failed with calculated CRCs
+  `0xDBDDE1B6/0x5C94BA6C`, and relinked `./diff.sh func_80049794` reported
+  `CURRENT (3350)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, shifted late rodata/global
+  offsets, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored and final full verify passed; do not repeat this first
+  transform `x_rotation` store-order spelling. A
   movement-block approach-target pointer-test spelling probe
   (`if (!racer->approachTarget)` instead of `== NULL`) also missed as a
   no-movement promoted-baseline family: full verify failed with calculated

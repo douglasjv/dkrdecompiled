@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:36:49Z
+- Generated at: 2026-05-23 22:39:11Z
 - Branch: `master`
-- HEAD: `5509f48f`
+- HEAD: `c5234cd0`
 - Completed task: `func_80049794`
-- Summary: Rejected late position-delta reciprocal double-literal shape; exposing func_80049794 with var_f0 = 1.0 / updateRateF built but failed full verify with calculated CRCs 0x916D4F5C/0xD6E2A760, and relinked focused diff regressed to CURRENT (6207) with a widened 0x100 frame.
+- Summary: Rejected first transform x_rotation store-order shape; exposing func_80049794 with gCurrentRacerTransform.rotation.x_rotation moved after the zero position stores failed full verify with calculated CRCs 0xDBDDE1B6/0x5C94BA6C, and relinked focused diff reported CURRENT (3350).
 
 ## Validation
 
