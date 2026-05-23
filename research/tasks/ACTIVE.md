@@ -1955,16 +1955,20 @@
   and the wave bound/index allocation remained current `a0`/`v1` instead of
   target `v1`/`a0`. Source was restored and final full verify passed; do not
   repeat this current-baseline `s32 spA2` drift-flag type probe. A baseline
-  current-checkout first-speed carrier pair through existing float locals also
+  current-checkout first-speed carrier family through existing float locals also
   missed: using `spEC` for the pre-`sqrtf` sum failed full verify with
   calculated CRCs `0x18B44436/0x9C5E8797` and worsened the relinked focused
   diff to `CURRENT (3320)`, while using `spCC` failed full verify with
   calculated CRCs `0x5FF63A3F/0x2631AADC` and relinked focused `CURRENT
-  (3210)`. Both kept `$f20/$f21` prologue saves absent, kept early zero in
-  `$f16` instead of target `$f14`, and left the wave bound/index allocation as
-  current `a0`/`v1` instead of target `v1`/`a0`. Source was restored and final
-  full verify passed; do not repeat these current-baseline `spEC`/`spCC`
-  first-speed carrier probes. A baseline
+  (3210)`. A sibling current-checkout `var_f6` carrier
+  (`var_f6 = x*x; var_f6 += z*z; var_f6 += y*y; var_f20 = sqrtf(var_f6) -
+  2.0`) collapsed into the same `spCC` miss family: full verify failed with
+  calculated CRCs `0x5FF63A3F/0x2631AADC`, and relinked focused diff reported
+  `CURRENT (3210)`. All kept `$f20/$f21` prologue saves absent, kept early zero
+  in `$f16` instead of target `$f14`, and left the wave bound/index allocation
+  as current `a0`/`v1` instead of target `v1`/`a0`. Source was restored and
+  final full verify passed; do not repeat these current-baseline `spEC`/`spCC`/
+  `var_f6` first-speed carrier probes. A baseline
   current-checkout wave speed spelling as an explicit zero subtract
   (`racerVelocity = 0.0f - racer->velocity`) also missed: full verify failed
   with calculated CRCs `0x6035C737/0x97D59D33`, and relinked focused diff
