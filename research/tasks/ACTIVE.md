@@ -2012,7 +2012,15 @@
   reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
   bound plus `a0` loop-index. Source was restored and final full verify
   passed; do not repeat this current-baseline grouped z/y first-speed
-  expression. A baseline
+  expression. A baseline current-checkout first-speed single-precision
+  subtract spelling (`sqrtf(...) - 2.0f` for the first speed magnitude only)
+  also missed: full verify failed with calculated CRCs
+  `0x12F152B3/0x7EB3E947`, and relinked focused diff worsened to `CURRENT
+  (4560)`. It still lacked target `$f20/$f21` prologue saves, kept early zero
+  in `$f16` instead of target `$f14`, and left the wave loop reversed as
+  current `a0` bound plus `v1` loop-index rather than target `v1` bound plus
+  `a0` loop-index. Source was restored and final full verify passed; do not
+  repeat this first-speed `2.0f` subtract spelling. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
