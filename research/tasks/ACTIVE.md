@@ -376,6 +376,15 @@
   rodata/global offsets, and left the wave scan in the current
   `a0`-bound/`v1`-loop family. Source was restored and final full verify
   passed; do not repeat this first transform `sp60` call-site cast spelling. A
+  2026-05-23 current-baseline first transform scale-before-position store-order
+  probe (move `gCurrentRacerTransform.scale = 1.0f` before the zero position
+  stores) also missed as a no-movement promoted-baseline family: full verify
+  failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`. It did not recover target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored and final full verify passed; do not repeat this first
+  transform scale-before-position store-order spelling. A
   movement-block approach-target pointer-test spelling probe
   (`if (!racer->approachTarget)` instead of `== NULL`) also missed as a
   no-movement promoted-baseline family: full verify failed with calculated

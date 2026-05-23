@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 22:42:19Z
+- Generated at: 2026-05-23 22:46:44Z
 - Branch: `master`
-- HEAD: `5e9a4c69`
+- HEAD: `f7b8be2b`
 - Completed task: `func_80049794`
-- Summary: Rejected first transform sp60 call-site cast shape; exposing func_80049794 with the three first mtxf_transform_point calls using (MtxF *) &sp60 compiled with pointer warnings, failed full verify with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked focused diff stayed CURRENT (2760).
+- Summary: First transform scale-before-position store-order probe missed: probe full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, relinked ./diff.sh func_80049794 stayed CURRENT (2760), source restored.
 
 ## Validation
 
