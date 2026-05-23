@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 09:27:20Z
+- Generated at: 2026-05-23 09:33:52Z
 - Branch: `master`
-- HEAD: `5e1d42fc`
-- Completed task: `func_80049794`
-- Summary: Rejected close save-family selected-wave index carrier; promoting x/z/y pre-sqrt accumulation, chained grounded-wheel zero, no trailing pad3/pad4, and var_t9 = var_a0 + 1 for selected waveHeight/rot.y failed verify with CRCs 0x1457E419/0x21494B92 and relinked focused diff regressed to CURRENT (6025), then source was restored.
+- HEAD: `ad9cdb97`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected collision-plane index local type probe; promoting current source and changing s32 temp to u16 temp for basePlaneIndex failed verify with CRCs 0x7856718A/0x66208CAA and relinked focused diff stayed CURRENT (2860), then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_80049794, do not repeat current-baseline selected-wave index carriers, close-save-family selected-wave index carrier, x/z/y pre-sqrt plus chained-zero/no-trailing-pad base without a new hypothesis, wave-bound carrier/register-hint families, first-speed carriers, early-zero carriers, wave-drift suffix/literal probes, or other recorded wave a0/v1 and f14/f16 allocation families in ACTIVE.md.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond saturated CURRENT (2760) and close-save-family wave-register families. For func_8002B0F4, do not repeat collision-plane index local type, bottom default-water store-order, condition-order, segment-range guard, texture-index carriers, flags carriers, segment-index carriers, model-cache/reload, or grid/bottom-sort families recorded in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -45,17 +45,17 @@
   comparison-direction, normalization reciprocal double-literal, normalization
   guard comparison-order, and magnitude sum-order probes also missed; do not
   repeat them.
-  `func_8002B0F4` remains active after a 2026-05-23 partial bottom
-  default-water store-order probe (`rot.x`, `waveHeight`, `rot.z`, then
-  `rot.y`) missed: object-only focused diff first printed stale `CURRENT (0)`,
-  full verify failed with calculated CRCs `0x281EE85B/0x4ACE73BF`, and
-  relinked `./diff.sh func_8002B0F4` regressed to `CURRENT (3835)`. It kept
-  the unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broader
-  segment/grid/tail drift. Source was restored and final full verify passed;
-  do not repeat this partial default-water store-order spelling. Earlier
-  explicit default-water height cast, bottom segment-range guard reorder,
-  target default-water store-order, and bottom-water condition-order probes
-  also missed; do not repeat them.
+  `func_8002B0F4` remains active after a 2026-05-23 collision-plane index
+  local type probe (`s32 temp` to `u16 temp`, matching `basePlaneIndex`) missed:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4` stayed at promoted baseline `CURRENT (2860)`. It
+  kept the unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
+  segment/grid/tail register drift. Source was restored and final full verify
+  passed; do not repeat this collision-plane index local type spelling.
+  Earlier partial/default water store-order, explicit default-water height
+  cast, bottom segment-range guard reorder, target default-water store-order,
+  and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
   2026-05-23 close save-family selected-wave index carrier probe
@@ -5240,7 +5240,17 @@
   `./diff.sh func_8002B0F4` stayed `CURRENT (2860)`, and the diff retained the
   unwanted early `gCurrentLevelModel` spill at `0x60(sp)` with broad
   segment/grid/tail drift. Source was restored and final full verify passed; do
-  not repeat this explicit default-water height-cast spelling.
+  not repeat this explicit default-water height-cast spelling. A promoted
+  current-source collision-plane index local type spelling that changed only
+  `s32 temp` to `u16 temp` (matching the `basePlaneIndex` field and the nearby
+  `collision_get_y` local type) also missed without object-family movement:
+  object-only focused diff first printed stale `CURRENT (0)`, full verify
+  failed with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4` stayed at promoted baseline `CURRENT (2860)`. The
+  diff retained the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`
+  plus broad segment/grid/tail register drift. Source was restored and final
+  full verify passed; do not repeat this collision-plane index local type
+  spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
