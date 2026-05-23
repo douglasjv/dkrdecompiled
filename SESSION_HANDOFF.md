@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 05:25:21Z
+- Generated at: 2026-05-23 05:28:28Z
 - Branch: `master`
-- HEAD: `c9229717`
-- Completed task: `func_8002B0F4`
-- Summary: Bottom default-water store-order probe (rot.x, rot.z, waveHeight, then rot.y) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0x281EE85B/0xEE22BD90, and relinked focused diff regressed from CURRENT (2780) to CURRENT (3745). Source was restored.
+- HEAD: `b9d502a2`
+- Completed task: `func_80049794`
+- Summary: Current-baseline first-speed boss-adjustment divide-before-subtract probe (var_f20 = (var_f20 / 2.0) - 1.0) missed; object-only focused diff first printed stale CURRENT (0), full verify failed with calculated CRCs 0xCF9C57E6/0xCC0EF4F1, and relinked focused diff regressed to CURRENT (4030). Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794, but func_8002B0F4 remains active. Do not repeat func_8002B0F4 bottom default-water store-order spelling or the recorded model-spill, pad-removal, grid-loop, segment-index carrier, bottom sort/population, texture-index carrier, surface-guard, collision-output store-order, or bottom wave-type store-order aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
+- Task: `Run selector; default route remains func_80049794. Do not repeat first-speed boss-adjustment divide-before-subtract, spA3 course-height placement, course-height compare operand-order, current-baseline spA2 declaration-initialization, first-speed grouped z/y add, R-trigger grounded-wheel stash guard, grounded boss throttle/brake condition-order, or the recorded wave/first-speed/save-family aliases in ACTIVE.md. If staying on func_80049794, use a fresh hypothesis targeting wave v1-bound/a0-loop order, course-height grouping, or first-speed arithmetic without repeating recorded guard compare, expression-order, accumulator-shape, condition-order, close save-family, drift-flag timing, or carrier aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

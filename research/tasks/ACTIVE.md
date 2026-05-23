@@ -102,6 +102,15 @@
   early zero in `$f16` instead of target `$f14`, and left the wave scan in the
   current `a0`-bound/`v1`-loop family. Source was restored and final full
   verify passed; do not repeat this `spA3` course-height placement spelling. A
+  2026-05-23 current-baseline first-speed boss-adjustment divide-before-subtract
+  probe (`var_f20 = (var_f20 / 2.0) - 1.0`) missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0xCF9C57E6/0xCC0EF4F1`, and the relinked focused diff regressed to
+  `CURRENT (4030)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and broadened the same
+  first-speed/course-height plus wave-scan drift family. Source was restored
+  and final full verify passed; do not repeat this first-speed
+  boss-adjustment divide-before-subtract spelling. A
   2026-05-17 current-baseline reversed chained-zero probe
   (`racer->unk84 = (racer->unk88 = 0.0f)`) compiled, but missed: full verify
   failed with calculated CRCs `0x5FDDE03F/0x127A8488`, the relinked focused
@@ -1029,7 +1038,16 @@
   two mutating assignments (`var_f20 -= 2.0; var_f20 /= 2.0`) compiled but
   worsened the focused object score from `CURRENT (2550)` to `CURRENT (3235)`
   by broadening first-speed/gravity float-register drift and still did not
-  introduce target `$f20/$f21` prologue saves. Reordering only the promoted
+  introduce target `$f20/$f21` prologue saves. A current-baseline
+  divide-before-subtract boss-adjustment spelling
+  (`var_f20 = (var_f20 / 2.0) - 1.0`) also missed: object-only focused diff
+  first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
+  `0xCF9C57E6/0xCC0EF4F1`, and the relinked focused diff worsened to
+  `CURRENT (4030)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16`, and broadened the same first-speed/course-height plus
+  wave-scan drift family. Source was restored and final full verify passed; do
+  not repeat this first-speed boss-adjustment divide-before-subtract spelling.
+  Reordering only the promoted
   current-baseline first speed-magnitude expression from `x*x + z*z + y*y` to
   `z*z + x*x + y*y` also missed: full verify failed with calculated CRCs
   `0x5FDDE03F/0x6CE3B8C9`, relinked focused diff worsened to `CURRENT (2770)`,
