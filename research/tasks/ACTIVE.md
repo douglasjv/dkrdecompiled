@@ -1984,6 +1984,16 @@
   bound/index allocation, and inserted post-scan pointer/index adjustment
   drift. Source was restored and final full verify passed; do not repeat this
   current-baseline post-scan wave-index increment spelling. A baseline
+  current-checkout wave-count carrier
+  (`var_v0 = gRacerWaveCount; var_v1 = var_v0 - 1; for (var_a0 = var_v1;
+  ...); if (var_a0 == var_v1)`) also missed: full verify failed with
+  calculated CRCs `0xC88B59B4/0xF77ED7E9`, and relinked focused diff worsened
+  to `CURRENT (6185)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, inserted `spA2` stack-byte
+  traffic, and shifted the wave scan into current `v1` count, `a0` bound,
+  `v0` loop-index order instead of target `v0` count, `v1` bound, `a0`
+  loop-index order. Source was restored and final full verify passed; do not
+  repeat this current-baseline `var_v0` wave-count carrier. A baseline
   check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
