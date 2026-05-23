@@ -32,15 +32,16 @@
   spelling. Earlier color fallback initialization-order, final global pointer
   store-order, final triangle postincrement, and center position store-order
   probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-23 splineIndex
-  comparison-direction probe (`if (1.0 <= splinePos)` instead of
-  `splinePos >= 1.0`) missed with no relinked focused movement: full verify
-  failed with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
-  `./diff.sh func_80059208` stayed at promoted baseline `CURRENT (870)`.
-  Source was restored and final full verify passed; do not repeat this
-  splineIndex comparison-direction spelling. Earlier normalization reciprocal
-  double-literal, normalization guard comparison-order, and magnitude sum-order
-  probes also missed; do not repeat them.
+  `func_80059208` also remains active after a 2026-05-23 courseCheckpoint
+  threshold spelling (`racer->courseCheckpoint >= -0x7CFF` instead of
+  `racer->courseCheckpoint > -0x7D00`) missed with no relinked focused
+  movement: full verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`,
+  and relinked `./diff.sh func_80059208` stayed at promoted baseline
+  `CURRENT (870)`. Source was restored and final full verify passed; do not
+  repeat this courseCheckpoint threshold spelling. Earlier splineIndex
+  comparison-direction, normalization reciprocal double-literal, normalization
+  guard comparison-order, and magnitude sum-order probes also missed; do not
+  repeat them.
   `func_8002B0F4` remains active after a 2026-05-23 bottom default-water height
   cast probe (`D_8011D128[yOutCount].waveHeight = (f32)
   currentSegment->unk38`) missed: full verify failed with calculated CRCs
@@ -3851,6 +3852,15 @@
   matching the target object-dot/checkpoint-dot order. Source was restored and
   final full verify passed; do not repeat this checkpoint-dot sum/product-order
   spelling.
+  A 2026-05-23 courseCheckpoint threshold spelling that changed
+  `racer->courseCheckpoint > -0x7D00` to
+  `racer->courseCheckpoint >= -0x7CFF` also missed as a no-movement family:
+  full verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, relinked
+  `./diff.sh func_80059208` stayed `CURRENT (870)`, and the early
+  courseCheckpoint guard still compiled to the same target-like `slti
+  -0x7cff` block while the final object-dot/checkpoint-dot tail drift remained.
+  Source was restored and final full verify passed; do not repeat this
+  courseCheckpoint threshold spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
