@@ -2100,7 +2100,15 @@
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
   not repeat this constant-left wave-reset condition spelling. A baseline
-  check of `func_80059208` was still
+  current-checkout existing-`var_f0` first-speed accumulator spelling
+  (`var_f0 = x^2 + z^2; var_f0 += y^2; sqrtf(var_f0) - 2.0`) also missed:
+  full verify failed with calculated CRCs `0xF436DADF/0x9C800F7B`, and the
+  relinked focused diff worsened to `CURRENT (3550)`. It still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop. Source was
+  restored and final full verify passed; do not repeat this existing-`var_f0`
+  first-speed accumulator spelling. A baseline check of `func_80059208` was still
   `CURRENT (870)`, with the same final-offset expression/load-order drift; do
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
