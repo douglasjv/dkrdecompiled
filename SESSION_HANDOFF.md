@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 02:14:08Z
+- Generated at: 2026-05-23 02:18:04Z
 - Branch: `master`
-- HEAD: `bcb02103`
-- Completed task: `trackbg_render_flashy`
-- Summary: xPositions[6] grouped-negated outer-ring probe missed; CRCs 0x701BB399/0xEE9EA39F and focused diff regressed to CURRENT (4468), moving the early negative-cosine carrier to f16 and broadening position-array drift; source restored
+- HEAD: `ca46f987`
+- Completed task: `func_80049794`
+- Summary: Close save-family x/z/y/chained-zero/steer-noop branch with existing temp_t7 as the wave-bound carrier missed; full verify failed with CRCs 0xEA44B192/0x165715AD and relinked focused diff regressed to CURRENT (6825), preserving the target 0xf8 frame and f20/f21 saves but widening wave-register churn. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with the active selector; trackbg_render_flashy remains routable, but do not repeat the xPositions[6] grouped-negated difference spelling`
+- Task: `Run selector; default route remains func_80049794. Do not repeat close save-family temp_t7/var_t9 wave-bound carriers; if staying on func_80049794, use a fresh hypothesis that targets wave v1-bound/a0-loop order or first-speed arithmetic without repeating close-branch bound-carrier register aliases.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

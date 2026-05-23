@@ -1608,7 +1608,15 @@
   and failed full verify with calculated CRCs `0xEA44B192/0x165715AD`. The
   wave block shifted into broader `v1/v0/t*` register churn rather than target
   `v1/a0/v0`, with downstream scheduling drift. Source was restored and final
-  full verify passed. Do not repeat this close-branch existing-`var_t9`
+  full verify passed. A close save-family sibling using the existing
+  `temp_t7` local as the same wave-bound carrier (`temp_t7 =
+  gRacerWaveCount - 1; for (var_a0 = temp_t7; ...); if (var_a0 == temp_t7)`)
+  also missed: full verify failed with the same calculated CRCs
+  `0xEA44B192/0x165715AD`, the relinked focused diff regressed to
+  `CURRENT (6825)`, and the diff kept the target `0xf8` frame plus
+  `$f20/$f21` saves but widened wave-register churn instead of solving the
+  target `v1/a0/v0` allocation. Source was restored and final full verify
+  passed. Do not repeat this close-branch existing-`var_t9` or `temp_t7`
   wave-bound carrier. A 2026-05-17 close save-family predecrement wave-loop
   spelling (`for (var_a0 = gRacerWaveCount; --var_a0 >= 0 && ...;)`) kept the
   target `0xf8` frame and `$f20/$f21` prologue saves, but failed full verify
