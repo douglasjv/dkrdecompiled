@@ -3120,7 +3120,14 @@
   near the final lateral/vertical offset math: target preserves the negated
   `pad2 = -((tempZ * diffZ) + (diffX * tempX))` temporary and adds it to `pad`,
   while current folds the equivalent math into a subtract. Rejected probes:
-  reusing the already-loaded `distance` local in the early checkpoint-scale
+  commuting the wrong-way angle guard to negative-first order
+  (`angle < -0x4000 || angle > 0x4000`) missed: full verify failed with
+  calculated CRCs `0x5BD141DF/0x44652332`, and the relinked focused diff
+  worsened from promoted baseline `CURRENT (870)` to `CURRENT (1280)`. It
+  shifted the mid-function angle branch family and did not improve the final
+  object-dot plus negated-checkpoint-dot tail. Source was restored and final
+  full verify passed; do not repeat this wrong-way angle branch-order spelling.
+  Reusing the already-loaded `distance` local in the early checkpoint-scale
   divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
   produced no relinked object movement: object-only focused diff first showed
   stale prior output, full verify failed with calculated CRCs

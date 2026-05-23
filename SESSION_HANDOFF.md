@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-23 08:20:22Z
+- Generated at: 2026-05-23 08:23:27Z
 - Branch: `master`
-- HEAD: `bc52145a`
-- Completed task: `func_80049794`
-- Summary: Rejected current-baseline attach-point model-index postincrement spelling: changed the first attach-point model advance from temp_v0_obj->modelIndex += 1 to temp_v0_obj->modelIndex++. Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514, and relinked focused diff stayed CURRENT (2760): no target $f20/$f21 saves, early zero stayed $f16 instead of target $f14, wave scan stayed current a0-bound/v1-loop, and only constants/later call targets shifted in the promoted current-baseline family. Source was restored.
+- HEAD: `e5b06d3f`
+- Completed task: `func_80059208`
+- Summary: Rejected wrong-way angle branch-order spelling in func_80059208: changed angle > 0x4000 || angle < -0x4000 to angle < -0x4000 || angle > 0x4000. Full verify failed with calculated CRCs 0x5BD141DF/0x44652332, and relinked focused diff worsened from CURRENT (870) to CURRENT (1280) without improving the final object-dot/negated-checkpoint-dot tail. Source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default route remains func_80049794. Do not repeat current-baseline attach-point model-index postincrement, attach-point grounded-wheel branch-order, late boost-emitter branch-order, or the other recorded func_80049794 probe aliases in ACTIVE.md. Consider an alternate active candidate if another bounded func_80049794 probe cannot target a fresh exact-match hypothesis beyond the saturated CURRENT (2760) promoted-baseline family.`
+- Task: `Run selector; default route remains func_80049794, but consider another active alternate if no fresh func_80049794 hypothesis exists beyond the saturated CURRENT (2760) family. For func_80059208, do not repeat wrong-way angle branch-order, normalization magnitude sum-order, divisor-distance reuse, or the other recorded final-tail aliases in ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
