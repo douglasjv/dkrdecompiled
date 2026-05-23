@@ -323,6 +323,15 @@
   family, and only shifted constants and later call targets in the promoted
   current-baseline family. Source was restored and final full verify passed;
   do not repeat this race-start y-velocity double-literal spelling. A
+  movement-block approach-target pointer-test spelling probe
+  (`if (!racer->approachTarget)` instead of `== NULL`) also missed as a
+  no-movement promoted-baseline family: full verify failed with calculated
+  CRCs `0x5FDDE03F/0xEF7A0514`, and relinked `./diff.sh func_80049794`
+  stayed `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue
+  saves, kept early zero in `$f16` instead of target `$f14`, and left the wave
+  scan in the current `a0`-bound/`v1`-loop family. Source was restored and
+  final full verify passed; do not repeat this movement-block approach-target
+  pointer-test spelling. A
   2026-05-23 current-baseline brake lower-clamp zero literal probe
   (`if (racer->brake < 0) { racer->brake = 0; }` instead of the `0.0f`
   compare/store) missed: full verify failed with calculated CRCs
@@ -3081,7 +3090,14 @@
   prologue saves, kept early zero in `$f16` instead of target `$f14`, and left
   the wave scan in the current `a0`-bound/`v1`-loop family. Source was
   restored and final full verify passed; do not repeat this late boost-emitter
-  pointer `+= racerIndex` spelling. A
+  pointer `+= racerIndex` spelling. A baseline current-checkout movement-block
+  approach-target pointer-test spelling (`if (!racer->approachTarget)` instead
+  of `== NULL`) also missed as a no-movement promoted-baseline family: full
+  verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, relinked
+  `./diff.sh func_80049794` stayed `CURRENT (2760)`, and the same missing
+  `$f20/$f21` prologue saves, early `$f16` zero, and current `a0`-bound/`v1`
+  wave-scan family remained. Source was restored and final full verify passed;
+  do not repeat this movement-block approach-target pointer-test spelling. A
   baseline current-checkout grouped z/y first-speed
   expression
   (`sqrtf(x*x + (z*z + y*y)) - 2.0`) also missed: full verify failed with
