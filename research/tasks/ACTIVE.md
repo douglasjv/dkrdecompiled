@@ -255,6 +255,20 @@
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 worker-assisted promoted direct `xCos * 1280.0f` first-ring
+  expression probe missed. The source removed the `NON_MATCHING` guard and
+  changed only the first-ring `xPositions[0..3]` / `zPositions[0..3]` terms to
+  direct `xCos * 1280.0f` expressions while preserving `scaledXSin` and the
+  `0x158` frame. Full verify failed with calculated CRCs
+  `0x93BF98FF/0x27187E1D`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` improved
+  from promoted baseline to `CURRENT (1668)`. The early negative-cosine carrier
+  still allocated current `$f16` instead of target `$f18`, doubled-cosine/
+  doubled-sine FPRs shifted, and outer-ring store scheduling drifted. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` reported 97.30%; do not repeat direct `xCos * 1280.0f`
+  first-ring rewrites without a distinct early FPR allocation fix.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted existing-`var_f16` negative-cosine carrier probe missed.
   The source promoted the function, assigned `var_f16 = -scaledXCos`, and used
   that existing local for the first/outer negative scaled-cosine position

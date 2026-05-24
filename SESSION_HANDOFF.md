@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:21:16Z
+- Generated at: 2026-05-24 05:25:31Z
 - Branch: `master`
-- HEAD: `9c04bcdd`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted five-node pointer-fill loop probe: guard removal plus pointer locals over posX/posY/posZ failed full verify with CRCs 0x53D13B3F/0xB6EAEAF5; relinked diff was CURRENT (1499), frame grew to 0xc8 and local arrays shifted by 8 while later tail drift remained. Source restored.
+- HEAD: `152ea9af`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted direct xCos-scaled first-ring expression probe. A worker proposed changing only first-ring xPositions/zPositions to direct xCos * 1280.0f terms while preserving scaledXSin and stack layout; after main-thread promotion, full verify failed with calculated CRCs 0x93BF98FF/0x27187E1D and relinked focused diff reported CURRENT (1668). Frame stayed 0x158 and score improved over baseline, but early negative-cosine and outer-ring FPR allocation shifted across f18/f16 and later outer stores drifted. Source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK after restore; ./score.sh -s reported 97.30%; python3 tools/check_active_surface.py reported active surface ok; git diff -- src/racer.c and git diff --check were clean.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK after restore; ./score.sh -s reported 97.30%; python3 tools/check_active_surface.py reported active surface ok; git diff -- src/tracks.c and git diff --check were clean.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with a distinct func_80059208 hypothesis outside five-node pointer-fill/index-loop spelling, or pivot to trackbg_render_flashy/func_8002B0F4 if selector saturation remains higher than a concrete new family.`
+- Task: `Continue trackbg_render_flashy only with a distinct early FPR allocation hypothesis that preserves 0x158 frame and avoids direct xCos-scaled first-ring terms, or pivot to another routable candidate if no non-repeat family is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
