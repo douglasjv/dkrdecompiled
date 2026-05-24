@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:57:04Z
+- Generated at: 2026-05-24 05:02:18Z
 - Branch: `master`
-- HEAD: `33a24a09`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted func_8002B0F4 sp108 > 7 early guard spelling; focused diff stayed at CURRENT (2860).
+- HEAD: `b333c13b`
+- Completed task: `func_80049794`
+- Summary: Rejected worker func_80049794 close save-family predecrement wave-loop probe; relinked focused diff regressed to CURRENT (6209).
 
 ## Validation
 
-- Probe failed CRCs 0x7856718A/0x66208CAA; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- Worker probe failed CRCs 0x11949F63/0x3C85367C and restored source; main gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_8002B0F4 early sp108 guard spellings and plain promotion; choose a distinct model-spill/register-family hypothesis or another routable candidate.`
+- Task: `Pivot away from func_80049794 wave pointer/predecrement/cache spellings; first recover close save-family pressure while keeping $f20/$f21 saves alive, or choose another routable candidate.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -23,6 +23,22 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-tested close save-family predecrement wave-loop probe
+  missed. The source promoted guarded C, applied the close save-family base
+  shape, then rewrote the wave scan with `count = gRacerWaveCount`, saved
+  `bound = count - 1`, `index = bound`, a first-load check, and explicit
+  predecrement of index plus wave pointer before later compares. Full verify
+  failed with calculated CRCs `0x11949F63/0x3C85367C`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (6209)`. The frame stayed `0xf8`, but `$f20/$f21` prologue saves
+  were lost, the wave scan allocated into an `a1/a0/v1` count/bound/index
+  drift instead of target `v0/v1/a0`, the pointer predecrement compiled as
+  `lw -4(v0)` before `addiu v0,-4`, and extra `spA2` stack-byte traffic
+  appeared. Worker source was restored, main `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat wave pointer/predecrement/cache spellings
+  until the close save-family pressure keeps `$f20/$f21` saves alive.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted selected-wave byte-offset carrier probe missed. The
   source removed the `NON_EQUIVALENT` guard, kept the wave scan intact,
   computed `var_t9 = var_a0 << 2`, conditionally subtracted four bytes when
