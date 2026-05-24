@@ -23,6 +23,21 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted texture-mask setup-order spelling missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and only swapped the initial
+  mask assignments so `vCoordMask = (texHeader->height << 5) - 1` was emitted
+  before `uCoordMask = (texHeader->width << 5) - 1`. Full verify failed with
+  calculated CRCs `0x978A68F7/0x3956A96A`; relinked `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3857)`. The probe reversed the target's first texture-dimension
+  loads (`lbu t8, 1(v1)` / `lbu s3, 0(v1)`) into width-first/height-second,
+  moved the v-mask spill from target `0x14c(sp)` to `0x148(sp)`, and broadened
+  the known early negative-cosine/position-array schedule drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok; do not repeat this texture-mask setup-order
+  spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted explicit trig-argument cast spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and rewrote only the `sins_f` and
   `coss_f` arguments from `-camera->trans.rotation.x` to

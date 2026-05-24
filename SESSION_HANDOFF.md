@@ -1,20 +1,18 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:03:56Z
+- Generated at: 2026-05-24 11:08:02Z
 - Branch: `master`
-- HEAD: `ce4e1d4e`
-- Completed task: `func_8008FF1C`
-- Summary: Rejected parked selected-track condition-assignment spelling; relinked focused diff regressed to CURRENT (1195), branch still used v1 instead of target t2, and source was restored.
+- HEAD: `fbf79d92`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected texture-mask setup-order spelling; relinked focused diff regressed to CURRENT (3857), dimension loads reversed from target height-first/width-second, and source was restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf-: Verify: OK after restore
-- ./score.sh -s: decomp progress 97.30%
-- python3 tools/check_active_surface.py: active surface ok
+- gmake -j4 CROSS=tools/binutils/mips64-elf-: Verify: OK after restore; ./score.sh -s: decomp progress 97.30%; python3 tools/check_active_surface.py: active surface ok
 
 ## Blockers Or Unknowns
 
-- No setup or behavior blocker; func_8008FF1C remains parked/exhausted. Revisit only with a new shape that keeps direct-table t2 load while preserving target branch-delay-slot hub-name store.
+- No open blockers recorded.
 
 ## Ask The User Only If
 
