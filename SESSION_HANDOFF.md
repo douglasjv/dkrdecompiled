@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:22:16Z
+- Generated at: 2026-05-24 00:26:46Z
 - Branch: `master`
-- HEAD: `c6ec3858`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected UV scale multiplier-order probe; source restored
+- HEAD: `933c540a`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected current-source segment-pointer register hint; it compiled but stayed in the promoted-baseline CRC/diff family.
 
 ## Validation
 
-- probe failed gmake -j4 CROSS=tools/binutils/mips64-elf- CRC 0xCBC5BBA5/0xBDF6EEC6; relinked ./diff.sh trackbg_render_flashy CURRENT (2028); restored gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%
+- Probe: promoted func_8002B0F4 and changed currentSegment/currentBoundingBox declarations to register pointers; gmake failed as expected with CRCs 0x7856718A/0x66208CAA, relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed CURRENT (2860) with the early gCurrentLevelModel spill at 0x60(sp). Restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports us.v77 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,8 +22,8 @@
 
 ## Next Work Packet
 
-- Task: `trackbg_render_flashy: avoid UV scale multiplier-order and saturated position/UV expression families; try only a fresh position-array scheduling hypothesis or pivot to another selector-routable candidate`
+- Task: `Continue with a bounded active candidate; for func_8002B0F4 do not repeat segment-pointer register hints, and prefer a distinct model-spill hypothesis or route to another active packet if no fresh shape is available.`
 - Packet class: `matching_impl`
-- Packet status: `ready`
+- Packet status: `unchanged`
 - Reasoning tier: `medium`
 - Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.
