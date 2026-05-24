@@ -76,8 +76,17 @@
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-24 positive
-  checkpoint-dot numerator probe (`pad2 = (tempZ * diffZ) + (diffX * tempX);
+  `func_80059208` also remains active after a 2026-05-24 alternate-route
+  sentinel operand-order probe (`if (-1 == temp_v0_4->altRouteID)` at both
+  early alternate-route checks) missed: promoted full verify failed with
+  calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (870)`. The final object-dot/checkpoint-dot plus
+  vertical FPR drift was unchanged. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this alternate-route
+  sentinel operand-order spelling. A 2026-05-24 positive checkpoint-dot
+  numerator probe (`pad2 = (tempZ * diffZ) + (diffX * tempX);
   diffX = (pad2 - pad) / divisor`) missed: promoted full verify failed with
   calculated CRCs `0xC7D996EA/0xC6D1DFDE`, and relinked
   `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
@@ -4271,6 +4280,16 @@
   lateral/vertical object-dot and tempY register allocation, not the wrong-way
   counter branch shape. Source was restored and final full verify passed; do
   not repeat this nested wrong-way counter spelling.
+  A 2026-05-24 alternate-route sentinel operand-order spelling
+  (`if (-1 == temp_v0_4->altRouteID)` at both early alternate-route checks)
+  produced no relinked object movement: promoted full verify failed with
+  calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  baseline `CURRENT (870)`. The early alternate-route branch family remained
+  target-like, and the key drift stayed in the final object-dot/checkpoint-dot
+  plus vertical FPR allocation tail. Source was restored, final full verify
+  passed, and `./score.sh -s` remained 97.30%; do not repeat this
+  alternate-route sentinel operand-order spelling.
   Routing the final `diffX`/`diffZ` swap through the existing `pad` float local
   (`pad = diffX; diffX = diffZ; diffZ = -pad`) also missed: full verify failed
   with calculated CRCs `0x0A689858/0x4CFBB1F6`, and relinked
