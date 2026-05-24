@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:17:55Z
+- Generated at: 2026-05-24 11:20:45Z
 - Branch: `master`
-- HEAD: `ef44e7e5`
+- HEAD: `c6356070`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected promoted early sp108 zero-bang guard spelling; full verify failed with CRCs 0x7856718A/0x66208CAA and relinked diff stayed CURRENT (2860) with the known early gCurrentLevelModel spill, then source was restored.
+- Summary: Rejected promoted triangle-hit predicate operand-order spelling; full verify failed with CRCs 0xC349F192/0x2D70F23E and relinked diff worsened to CURRENT (3635), retaining the known early gCurrentLevelModel spill, then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with a non-repeated routable packet; avoid func_8002B0F4 early sp108 guard micro-variants unless paired with an independent gCurrentLevelModel spill fix.`
+- Task: `Continue with a non-repeated routable packet; avoid func_8002B0F4 triangle-hit predicate operand-order variants unless paired with an independent gCurrentLevelModel spill fix.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
