@@ -286,6 +286,21 @@
   and `./score.sh -s` reported 97.30%; do not repeat this five-node
   pointer-fill loop spelling without a distinct frame/stack-slot fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted five-node fill-loop counter-wrap comparison probe
+  missed. The source removed the `NON_MATCHING` guard and changed only
+  `if (counter == temp_v0)` to behavior-equivalent `if (counter >= temp_v0)`
+  inside the one-step checkpoint sampling loop. Full verify failed with
+  calculated CRCs `0x52D04491/0x026BB530`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed from
+  promoted baseline `CURRENT (870)` to `CURRENT (1575)`: the target
+  `bne s0,t0` wrap check became an `slt at,s0,t0` / `bnez at` family, the
+  sampling-loop pointer increments moved, and the final object-dot/checkpoint-
+  dot plus vertical FPR tail shifted. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this five-node fill-loop counter-wrap comparison spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted crossed final object-dot spelling missed. The source
   removed the `NON_MATCHING` guard and changed only the final lateral object
   dot from `pad = (objX * diffX) + (diffZ * objZ)` to
