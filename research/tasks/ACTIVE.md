@@ -4934,7 +4934,14 @@
   negative-cosine carrier/register family and broadened the position-array
   schedule rather than recovering target ordering. Source was restored and
   final full verify passed; do not repeat this center position store-order
-  spelling.
+  spelling. A 2026-05-24 center position chained-zero assignment probe
+  (`xPositions[4] = zPositions[4] = 0.0f`) also missed: full verify failed with
+  calculated CRCs `0x96E81A7F/0x02FF87C9`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` worsened
+  from promoted baseline `CURRENT (1808)` to `CURRENT (1992)`. It shifted the
+  center/outer position stack schedule while keeping the early negative-cosine
+  `$f18`/`$f16` register drift. Source was restored and final full verify passed;
+  do not repeat this center chained-zero assignment spelling.
   Rewriting only the final vertex alpha ternary from
   `(i <= 4) ? 255 : 0` to the equivalent `(i < 5) ? 255 : 0` also produced no
   focused movement: full verify failed with the known calculated CRCs

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:35:33Z
+- Generated at: 2026-05-24 00:38:42Z
 - Branch: `master`
-- HEAD: `007c0020`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical plus-negated numerator spelling; full verify failed with promoted-baseline CRCs and focused diff stayed CURRENT (870), then source restored.
+- HEAD: `6736010d`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected center position chained-zero assignment probe; source restored after focused diff worsened from CURRENT (1808) to CURRENT (1992).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with func_80059208 only for a fresh final-tail allocation hypothesis, or pivot to trackbg_render_flashy/func_8002B0F4 if no non-repeated source shape is available.`
+- Task: `Continue with trackbg_render_flashy only for a fresh non-repeated position-array/FPR allocation hypothesis, or pivot to func_8002B0F4 if no fresh shape remains.`
 - Packet class: `matching_impl`
 - Packet status: `evidence`
 - Reasoning tier: `medium`
