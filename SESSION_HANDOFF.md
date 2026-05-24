@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:33:48Z
+- Generated at: 2026-05-24 12:37:46Z
 - Branch: `master`
-- HEAD: `e9ca9450`
-- Completed task: `func_80059208-spline-fill-loop-plain-bound`
-- Summary: Rejected promoted func_80059208 spline fill-loop plain-bound spelling: changed the NON_MATCHING guard to #if 1 and rewrote only for (i = 0; (i < 5) ^ 0; i++) as for (i = 0; i < 5; i++). Full verify failed with CRCs 0x53905373/0x65198BEE; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager worsened to CURRENT (1515), changing the control-point fill-loop pointer/index schedule from sltu-based pointer compare to bne and carrying FPR drift into the final object/checkpoint-dot and vertical tail. Source restored.
+- HEAD: `6d7a348a`
+- Completed task: `func_80059208-prefill-counter-expression`
+- Summary: Rejected promoted func_80059208 pre-fill counter expression spelling: changed the NON_MATCHING guard to #if 1 and rewrote only counter = racer->nextCheckpoint - 2 as counter = racer->nextCheckpoint + -2. Full verify failed with CRCs 0x53D141DF/0xB9D4B481; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager stayed at CURRENT (870), with no movement in the pre-fill counter setup and the same final object/checkpoint-dot plus vertical FPR tail drift around 0x5a260. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_80059208 spline fill-loop plain-bound, upper-half decrement/alternate-route, normalization-boolean, final object-dot, and final-tail clamp/negation microvariants unless paired with a distinct spline dataflow fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_80059208 pre-fill counter expression/guard, spline fill-loop, upper-half decrement/alternate-route, normalization-boolean, final object-dot, and final-tail clamp/negation microvariants unless paired with a distinct spline dataflow fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
