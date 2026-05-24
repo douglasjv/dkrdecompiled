@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:32:01Z
+- Generated at: 2026-05-24 11:34:22Z
 - Branch: `master`
-- HEAD: `c0e050c2`
-- Completed task: `func_8008FF1C-duplicated-hubname-store`
-- Summary: Rejected promoted func_8008FF1C duplicated branch-local hubName store; focused diff regressed to CURRENT (485), source restored.
+- HEAD: `82bef5f5`
+- Completed task: `func_80049794-late-velocity-store-order`
+- Summary: Rejected promoted func_80049794 late velocity store-order spelling; focused diff stayed at CURRENT (2760), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid func_8008FF1C duplicated branch-local hubName store spellings.`
+- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid late velocity store-order spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

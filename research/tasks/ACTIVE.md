@@ -22,6 +22,20 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted late velocity store-order spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and reordered only the final
+  post-physics stores from `obj->x_velocity = var_f20; obj->z_velocity =
+  spEC;` to `obj->z_velocity = spEC; obj->x_velocity = var_f20;`. Full verify
+  failed with calculated CRCs `0x5FDDE03F/0x4C176571`; relinked `./diff.sh
+  func_80049794 --compress-matching 2 --no-pager` stayed at the promoted
+  baseline `CURRENT (2760)`. The late velocity store region produced no
+  useful movement, and the diff retained the known missing target `$f20`/`$f21`
+  prologue saves, early zero in current `$f16` instead of target `$f14`, and
+  wave scan `a0`-bound/`v1`-loop drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this late velocity store-order spelling.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 duplicated `hubName` branch-store probe missed. The source
   changed the `NON_MATCHING` guard to `#if 1`, moved the single
