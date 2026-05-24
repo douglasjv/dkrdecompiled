@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:30:08Z
+- Generated at: 2026-05-24 12:33:48Z
 - Branch: `master`
-- HEAD: `5140d9ce`
-- Completed task: `func_8002B0F4-initial-clear-order`
-- Summary: Rejected promoted func_8002B0F4 initial clear-order spelling: changed only initial ordering from D_8011D308 = 0; *arg3 = NULL; to *arg3 = NULL; D_8011D308 = 0. Full verify failed with CRCs 0x281EE857/0x10F947B1; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager worsened to CURRENT (6088), moving the global clear after stack/save setup and retaining the unwanted early gCurrentLevelModel spill at 0x60(sp) plus broad segment/grid/tail drift. Source restored.
+- HEAD: `e9ca9450`
+- Completed task: `func_80059208-spline-fill-loop-plain-bound`
+- Summary: Rejected promoted func_80059208 spline fill-loop plain-bound spelling: changed the NON_MATCHING guard to #if 1 and rewrote only for (i = 0; (i < 5) ^ 0; i++) as for (i = 0; i < 5; i++). Full verify failed with CRCs 0x53905373/0x65198BEE; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager worsened to CURRENT (1515), changing the control-point fill-loop pointer/index schedule from sltu-based pointer compare to bne and carrying FPR drift into the final object/checkpoint-dot and vertical tail. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_8002B0F4 initial clear-order, model-spill, texture-index carrier, and batch-offset microvariants unless paired with a distinct segment-loop register-family fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_80059208 spline fill-loop plain-bound, upper-half decrement/alternate-route, normalization-boolean, final object-dot, and final-tail clamp/negation microvariants unless paired with a distinct spline dataflow fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
