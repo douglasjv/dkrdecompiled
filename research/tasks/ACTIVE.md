@@ -207,7 +207,16 @@
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
-  `func_8002B0F4` also remains active after a 2026-05-24 dead `vert = NULL`
+  `func_8002B0F4` also remains active after a 2026-05-24 early `sp108`
+  positive-range guard spelling (`if (!(sp108 != 0 && sp108 < 8))`) missed:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, and
+  relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed
+  at promoted baseline `CURRENT (2860)`. The unwanted pre-loop
+  `gCurrentLevelModel` spill at `0x60(sp)` plus broad segment/grid/tail
+  register drift remained. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this early `sp108`
+  positive-range guard spelling. A 2026-05-24 dead `vert = NULL`
   lifetime-seed probe before the outer segment loop missed: full verify failed
   with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
   `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
@@ -323,7 +332,18 @@
   Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   `spA2` `s32` type spelling. A
-  2026-05-24 worker-tested manual first-load / loop-flag wave scan
+  2026-05-24 worker-tested saved wave-count/bound carrier
+  (`var_v0 = gRacerWaveCount; var_v1 = var_v0 - 1; var_a0 = var_v1`, terminal
+  compare against `var_v1`) missed: full verify failed with calculated CRCs
+  `0xC79BC23F/0x82216C34`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (2760)` to `CURRENT (5580)`. The diff still
+  lacked target `$f20/$f21` prologue saves, kept early zero in `$f16` instead
+  of target `$f14`, and moved the wave scan into an `a1/a0/v0` drift family
+  instead of target `v0` count, `v1` saved bound, and `a0` loop index. Worker
+  source was restored and active-surface check passed; do not repeat this
+  saved wave-count/bound carrier without a separate proven saved-FPR source
+  shape. A 2026-05-24 worker-tested manual first-load / loop-flag wave scan
   (`var_v1 = gRacerWaveCount - 1; var_a0 = var_v1`, first compare into
   `var_v0`, then `while (var_v0)` decrementing only `var_a0`) missed:
   full verify failed with calculated CRCs `0xF20C8121/0xFE69FF37`, and
@@ -6273,7 +6293,16 @@
   `CURRENT (3060)`, and the guard changed the target `beqz` into `blez` while
   preserving the unwanted early `gCurrentLevelModel` spill family. Source was
   restored and final full verify passed. Do not repeat this early
-  `sp108 <= 0` guard spelling. Rewriting only the outer
+  `sp108 <= 0` guard spelling. A sibling early `sp108` positive-range guard
+  spelling (`if (!(sp108 != 0 && sp108 < 8))`) missed as a no-movement family:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, and
+  relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed
+  at promoted baseline `CURRENT (2860)`. The target-like early return shape
+  was not the blocker; the known unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` plus broad segment/grid/tail register drift remained. Source was
+  restored, final full verify passed, and `./score.sh -s` remained 97.30%; do
+  not repeat this early `sp108` positive-range guard spelling. Rewriting only
+  the outer
   segment-loop bound from
   `var_fp < sp108` to `var_fp != sp108` also missed: full verify failed with
   calculated CRCs `0x68167010/0x71B268DB`, the relinked focused score worsened
