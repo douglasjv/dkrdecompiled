@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:41:40Z
+- Generated at: 2026-05-24 05:45:49Z
 - Branch: `master`
-- HEAD: `f2eaf1d7`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted final vertical negative-divisor spelling: changed diffY to (tempY - obj->trans.y_position) / -divisor; focused diff regressed to CURRENT (1930) and full verify failed with calculated CRCs 0x53C47BB5/0x00B78968; source restored.
+- HEAD: `306c3163`
+- Completed task: `func_80049794`
+- Summary: Rejected promoted early wave speed var_f14 carrier: removed the dedicated racerVelocity local and routed the early wave speed clamp/lift through var_f14; relinked object diff worsened to CURRENT (2704) and full verify failed with calculated CRCs 0x5FD89617/0xF4C6A984; source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 only with a distinct non-repeat wave bound/index or saved-FPR allocation hypothesis, or pivot to trackbg_render_flashy/func_8002B0F4 if no concrete new family is available.`
+- Task: `Run the selector again; continue func_80049794 only with a distinct non-repeat saved-FPR plus wave bound/index allocation hypothesis, otherwise pivot to func_80059208, trackbg_render_flashy, or func_8002B0F4 per selector.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -38,6 +38,21 @@
   packet or repeat this narrow pre-wave `var_f20` update-rate carrier without
   a distinct allocation family.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted early wave speed `var_f14` carrier missed. The source
+  removed the `NON_EQUIVALENT` guard, removed the dedicated `racerVelocity`
+  local, and routed the early wave speed clamp/lift through existing
+  `var_f14`. Full verify failed with calculated CRCs
+  `0x5FD89617/0xF4C6A984`, and relinked
+  `./diff.sh -o func_80049794 --compress-matching 2 --no-pager` worsened from
+  promoted object baseline `CURRENT (2550)` to `CURRENT (2704)`. The probe
+  still lacked target `$f20/$f21` prologue saves, kept early zero in `$f16`
+  instead of target `$f14`, left the wave bound/index allocation reversed as
+  current `a0`/`v1`, and shifted later gravity scheduling into the `$f14`
+  family. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  reported 97.30%; do not repeat this early wave speed `var_f14` carrier
+  without a separate saved-FPR and wave bound/index allocation fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-tested close save-family plus target-bound while
   wave-scan probe missed. The worker promoted guarded C, applied the close
   save-family base shape, then rewrote the wave scan with explicit
