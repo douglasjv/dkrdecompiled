@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:50:21Z
+- Generated at: 2026-05-24 08:53:39Z
 - Branch: `master`
-- HEAD: `aacf5c13`
+- HEAD: `a13013ad`
 - Completed task: `func_80059208`
-- Summary: Rejected upper-half lap guard comparison spelling; relinked diff stayed CURRENT (870) with the same final offset tail drift.
+- Summary: Rejected upper-half courseCheckpoint decrement spelling; relinked diff stayed CURRENT (870) with the same final offset tail drift.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer a bounded routable target or independent func_80059208 family, avoiding lap guard >=1 spelling, alternate-route clear spelling, and saturated final-tail object-dot/clamp variants.`
+- Task: `Run selector again; prefer a bounded routable target or independent func_80059208 family, avoiding courseCheckpoint += -1 spelling, lap guard >=1 spelling, alternate-route clear spelling, and saturated final-tail object-dot/clamp variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
