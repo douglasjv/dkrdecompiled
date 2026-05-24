@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:57:15Z
+- Generated at: 2026-05-24 08:00:07Z
 - Branch: `master`
-- HEAD: `65a8bbb8`
-- Completed task: `func-80049794-register-var-f20`
-- Summary: Rejected declaration-only register var_f20 saved-FPR pressure hint; full verify failed and relinked diff returned CURRENT (2760), source restored.
+- HEAD: `3e89d40e`
+- Completed task: `func-80049794-wave-bound-split`
+- Summary: Rejected explicit var_v1 wave bound/index split; relinked diff returned CURRENT (5755), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default remains func_80049794, but avoid declaration-only register var_f20 and target a distinct saved-FPR/frame-pressure plus wave bound/index allocation fix or pivot to another routable packet`
+- Task: `Run selector; default remains func_80049794, but do not repeat explicit cached wave-bound/index split alone. Combine a known save-family shape with a different cursor-addressing form, or pivot to another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
