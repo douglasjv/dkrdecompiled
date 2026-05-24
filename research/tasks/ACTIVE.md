@@ -26,7 +26,16 @@
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-23 `vCoords[8]` plus-negative UV probe
+  2026-05-24 UV carrier probe (`pos.x = pos.z` instead of recomputing
+  `var_a1 * xCos`) collapsed into the bad first-ring frame-shrink family:
+  promoted full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  worsened from promoted baseline `CURRENT (1808)` to `CURRENT (13821)` with
+  frame `0x150` and broad early position-array/global-offset drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  `pos.x = pos.z` UV carrier. A 2026-05-23 `vCoords[8]` plus-negative UV probe
   (`vCoords[8] = (s16) ((2.0f * pos.x) - -var_f16) + var_v1`) missed: full
   verify failed with calculated CRCs `0x1FC35A27/0x9CAAD958`, and relinked
   `./diff.sh trackbg_render_flashy` worsened from promoted baseline
