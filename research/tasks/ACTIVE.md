@@ -138,7 +138,17 @@
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
-  `func_8002B0F4` remains active after a 2026-05-24 triangle-inside boolean
+  `func_8002B0F4` also remains active after a 2026-05-24 dead `vert = NULL`
+  lifetime-seed probe before the outer segment loop missed: full verify failed
+  with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2860)`. The unwanted pre-loop
+  `gCurrentLevelModel` load/spill at `0x60(sp)` and broad segment/grid/tail
+  register drift were unchanged. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this dead `vert = NULL`
+  lifetime-seed spelling. `func_8002B0F4` remains active after a 2026-05-24
+  triangle-inside boolean
   width probe (`s16 temp_ra_1`, `temp_ra_2`, `temp_ra_3` instead of `s32`)
   missed: full verify failed with calculated CRCs `0x987293C4/0xFED1F035`,
   and relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:56:25Z
+- Generated at: 2026-05-24 01:02:06Z
 - Branch: `master`
-- HEAD: `7f645bd4`
+- HEAD: `bcc2dd51`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected temp_ra_1/2/3 s16 triangle-boolean width probe; focused diff worsened to CURRENT (4658), source restored.
+- Summary: Rejected dead vert NULL seed probe; focused diff stayed CURRENT (2860), source restored.
 
 ## Validation
 
