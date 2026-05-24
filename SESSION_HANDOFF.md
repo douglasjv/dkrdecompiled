@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:43:12Z
+- Generated at: 2026-05-24 09:47:19Z
 - Branch: `master`
-- HEAD: `f863aadf`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected `trackbg_render_flashy` explicit header pointer-load spelling. The promoted source changed only `var_t2 = *gCurrentLevelHeader2->unk74` to `var_t2 = gCurrentLevelHeader2->unk74[0]`. Pre-build focused diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at promoted baseline `CURRENT (1808)` with the same position-array/FPR scheduling drift and no useful movement at the header pointer load. Source restored.
+- HEAD: `82c2db92`
+- Completed task: `func_80059208`
+- Summary: Rejected func_80059208 angle subtract grouping spelling; promoted source grouped steerVisualRotation mask plus 0x8000, but full verify failed with CRCs 0x53D141DF/0xB9D4B481 and relinked diff stayed CURRENT (870) in final object-dot/checkpoint-dot tail.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Return to selector routing; prefer an independent func_80049794 family that targets saved-FPR/frame pressure or wave allocation, or another active guarded candidate if the selector packet remains saturated.`
+- Task: `Return to selector routing; prefer an independent func_80049794 family that targets saved-FPR/frame pressure or wave allocation, or another active guarded candidate if selector packet remains saturated.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
