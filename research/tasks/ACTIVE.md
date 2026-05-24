@@ -23,6 +23,23 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted pitch damping multiplier-carrier spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1`, kept the pitch damping
+  factor-out shape, and replaced the duplicated `R_TRIG` branch-specific
+  `19`/`30` pitch input stores with `var_v1 = 19/30` followed by one shared
+  `obj->trans.rotation.x_rotation -= ((var_t0 >> 1) * var_v1 * updateRate) >>
+  1`. Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x830ECE16/0x21DD0D2A`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to the
+  promoted baseline `CURRENT (2760)` instead of preserving the factor-out-only
+  `CURRENT (2480)` improvement. The known missing `$f20/$f21` prologue saves,
+  early `$f16` zero, and wave scan `a0`-bound/`v1`-loop drift remained. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this pitch multiplier-carrier spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight pitch damping factor-out spelling missed
   but improved focused drift. The source changed the `NON_EQUIVALENT` guard to
   `#if 1` and moved the shared

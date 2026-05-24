@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:01:14Z
+- Generated at: 2026-05-24 09:03:46Z
 - Branch: `master`
-- HEAD: `5e45a577`
+- HEAD: `fd553ced`
 - Completed task: `func_80049794`
-- Summary: Rejected normal-flight pitch damping factor-out spelling; relinked diff improved to CURRENT (2480) but still retained the saved-FPR/early-zero drift and failed full verify.
+- Summary: Rejected pitch damping multiplier-carrier spelling; relinked diff regressed to CURRENT (2760) versus the factor-out-only CURRENT (2480).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family informed by the pitch damping factor-out improvement, but avoid accepting it alone; also avoid tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
