@@ -40,6 +40,21 @@
   hypothesis should avoid this upper-half decrement spelling and saturated
   final-tail object-dot/clamp variants.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted upper-half lap guard comparison spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the
+  rewind lap-decrement guard from `racer->lap > 0` to `racer->lap >= 1`.
+  Pre-build `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with the
+  promoted-baseline calculated CRCs `0x53D141DF/0xB9D4B481`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The diff stayed in the same final lateral/vertical offset
+  tail family, with no useful movement in the rewind lap branch. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok; do not repeat this lap guard `>= 1` spelling.
+  Next hypothesis should avoid this upper-half lap comparison and saturated
+  final-tail object-dot/clamp variants.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted alternate-route clear literal spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and rewrote only the two early
   alternate-route clears from `racer->isOnAlternateRoute = FALSE` to
