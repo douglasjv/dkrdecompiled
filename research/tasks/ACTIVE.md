@@ -969,12 +969,21 @@
   restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   `i != 5` five-node fill loop-condition spelling.
-- Latest worker-side note: `func_80049794` remains active after a bounded
-  worker probe changed only the grounded-wheel zero literals from `0.0f` to
-  integer `0`. The worker restored its source and reported object-only focused
-  `CURRENT (0)`, but no promoted full gate or relinked focused diff was run;
-  treat this as weak rejection evidence only, not acceptance evidence. Do not
-  repeat literal-only early-zero spelling without a promoted full gate.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted grounded-wheel integer-zero literal probe missed. The
+  source changed only the `NON_EQUIVALENT` guard to `#if 1` and rewrote the
+  early grounded-wheel zero stores from `0.0f` to integer `0`. Compressed
+  focused diff misleadingly reported `CURRENT (0)`, but full verify failed
+  with calculated CRCs `0x5F5DCE35/0xD7FC778D`; uncompressed relinked
+  `./diff.sh func_80049794 --no-pager` showed `CURRENT (4895)`. The diff still
+  lacked target `$f20/$f21` prologue saves, shifted saved GPR slots down by
+  eight bytes, put the two zero stores in separate `$f4`/`$f6` FPRs instead of
+  target `$f14`, and left the wave bound/index allocation reversed as current
+  `a0` bound / `v1` loop instead of target `v1` bound / `a0` loop. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat literal-only early-zero spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 close save-family wave scan probe missed. The promoted shape
   removed the trailing pads, chained the grounded-wheel zero, accumulated the

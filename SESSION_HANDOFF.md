@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:22:29Z
+- Generated at: 2026-05-24 07:24:56Z
 - Branch: `master`
-- HEAD: `1316163c`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted UV dimension shift spelling for trackbg_render_flashy; explicit width/height << 4 products stayed at promoted baseline.
+- HEAD: `eff54c7c`
+- Completed task: `func_80049794-grounded-zero-literal`
+- Summary: Rejected promoted grounded-wheel integer-zero literal probe for func_80049794; full gate failed and uncompressed diff showed the usual missing F20/F21 saves plus wave bound/index reversal.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 only with a distinct wave bound/index or saved-FPR allocation fix; otherwise keep using trackbg_render_flashy only for non-repeat FPR/allocation hypotheses.`
+- Task: `Continue selector func_80049794 only with a distinct wave bound/index or saved-FPR allocation fix; otherwise pivot to another active packet instead of repeating literal-only or exhausted wave-scan spellings.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
