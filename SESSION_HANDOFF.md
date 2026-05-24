@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:29:52Z
+- Generated at: 2026-05-24 06:33:07Z
 - Branch: `master`
-- HEAD: `2b8e791a`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected final byte-cast spelling; promoted source stayed at focused CURRENT (2860), then source was restored.
+- HEAD: `585e3b6a`
+- Completed task: `func_80017A18`
+- Summary: Rejected plain guarded-C promotion; compressed focused diff was misleadingly CURRENT (0), but full verify failed and uncompressed diff showed CURRENT (8376).
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; use func_80049794 only with a distinct save-pressure/wave allocation family, otherwise choose trackbg_render_flashy, func_8002B0F4, or func_80059208 only with a non-repeat hypothesis from ACTIVE.md`
+- Task: `Run selector; use func_80049794 only with a distinct save-pressure/wave allocation family, otherwise choose func_80017A18, trackbg_render_flashy, func_8002B0F4, or func_80059208 only with a non-repeat hypothesis from ACTIVE.md`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

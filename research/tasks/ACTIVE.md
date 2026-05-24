@@ -22,6 +22,19 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80017A18` remains active after a
+  2026-05-24 plain guarded-C promotion missed. The source changed only the
+  `NON_EQUIVALENT` guard to `#if 1`. Compressed
+  `./diff.sh func_80017A18 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x0075F167/0x927B806A`, and uncompressed
+  `./diff.sh func_80017A18 --no-pager` showed `CURRENT (8376)`. The promoted C
+  widened the frame from `0x120` to `0x138` and shifted stack slots plus FPR/GPR
+  allocation across the plane-intersection loops. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  treat compressed `CURRENT (0)` as acceptance evidence for this packet.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted pointer-object current-wave cursor probe missed. The
   source removed the `NON_EQUIVALENT` guard, introduced
