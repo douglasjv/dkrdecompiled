@@ -272,6 +272,18 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-24 current-baseline `spA2` type probe (`s32 spA2` instead of the
+  current byte local) missed: full verify failed with calculated CRCs
+  `0x37DDDF63/0x9ECDB374`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed from
+  promoted baseline `CURRENT (2760)` to `CURRENT (3417)`. It widened the frame
+  to `0x100`, shifted saved-register slots, changed the expected byte-local
+  traffic into word traffic around `0xa4(sp)`, still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave scan in the current `a0`-bound/`v1`-loop family.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  `spA2` `s32` type spelling. A
   2026-05-24 worker-tested manual first-load / loop-flag wave scan
   (`var_v1 = gRacerWaveCount - 1; var_a0 = var_v1`, first compare into
   `var_v0`, then `while (var_v0)` decrementing only `var_a0`) missed:
@@ -322,8 +334,18 @@
   `$f16` instead of target `$f14`, and left the wave scan in the current
   `a0`-bound/`v1`-loop family. Source was restored and final full verify passed;
   do not repeat this `spA1` `s32` type spelling. A sibling current-baseline
-  `newSpinoutTimer` type probe (`s32 newSpinoutTimer` instead of the current
-  dead byte local) also missed: full verify failed with calculated CRCs
+  `spA2` type probe (`s32 spA2` instead of the current byte local) also
+  missed: full verify failed with calculated CRCs `0x37DDDF63/0x9ECDB374`,
+  and relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  regressed to `CURRENT (3417)`. It widened the frame to `0x100`, shifted
+  saved-register slots, changed the expected byte-local traffic into word
+  traffic around `0xa4(sp)`, still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave scan in
+  the current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this `spA2` `s32` type spelling. A sibling
+  current-baseline `newSpinoutTimer` type probe (`s32 newSpinoutTimer`
+  instead of the current dead byte local) also missed: full verify failed with
+  calculated CRCs
   `0x5FDDDF2F/0xDBEDB019`, and relinked `./diff.sh func_80049794` regressed to
   `CURRENT (3245)`. It widened the frame to `0x100`, shifted the target
   byte-local traffic around `0xa3(sp)` to `0xab(sp)`, still lacked target
