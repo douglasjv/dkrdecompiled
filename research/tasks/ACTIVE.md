@@ -23,6 +23,20 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted zipper-wrap ternary spelling missed. A worker found
+  object-only `CURRENT (0)` while the function stayed guarded, but promoting
+  the source and changing only the `steerVisualRotationOffset` wrap
+  corrections from two `if` statements to ternary reassignments failed the
+  full gate with calculated CRCs `0x5FDDE03F/0xEF7A0514`. Relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` again reported
+  `CURRENT (2760)`: target `$f20/$f21` prologue saves were still absent, saved
+  register slots shifted, early zeroing still allocated `$f16` instead of
+  target `$f14`, and wave scan registers stayed in the current `a0`/`v1`
+  family. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat zipper-wrap ternary reassignment promotion
+  without a distinct save-pressure or wave allocation fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 direct guarded-C promotion probe missed. Removing only the
   `NON_EQUIVALENT` wrapper failed the full gate with calculated CRCs
   `0x5FDDE03F/0xEF7A0514`; relinked `./diff.sh func_80049794
@@ -83,6 +97,18 @@
   restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted UV scroll scale division-commute probe missed. The
+  source changed the scroll offsets from `position * (var_f14 / dimension)` to
+  `(position / dimension) * var_f14` for both X and Z. Full verify failed with
+  calculated CRCs `0x93BF9907/0x8148592D`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported
+  `CURRENT (3120)`. The frame stayed `0x158`, but the early negative-cosine
+  carrier still used current `$f16` instead of target `$f18`, with broad
+  UV/FPR and vertex scheduling drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this UV scroll scale division-commute spelling
+  as the FPR allocation fix.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted color-mask carrier through `var_a3` missed. The source
   shape kept `var_a3 = -0x100` as the fallback mask and changed only the
