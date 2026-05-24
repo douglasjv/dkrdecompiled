@@ -605,6 +605,20 @@
   `./score.sh -s` remained 97.30%; do not repeat this wrong-way angle
   explicit positive-bound spelling.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted wrong-way angle explicit negative-bound spelling missed.
+  The source removed the `NON_MATCHING` guard and changed only the negative
+  half of the wrong-way angle guard from `angle < -0x4000` to equivalent
+  `angle <= -0x4001`, preserving the existing operand order. Full verify
+  failed with the promoted-baseline calculated CRCs
+  `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The key drift remained the final object-dot/checkpoint-dot
+  plus vertical FPR allocation tail; source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this wrong-way angle explicit negative-bound spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted lateral dot explicit pad-minus-pad2 spelling missed.
   The source shape changed the final lateral numerator from negative
   checkpoint-dot plus sum (`pad2 = -checkpointDot; diffX = -((pad + pad2) /
