@@ -98,6 +98,21 @@
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this final byte-cast spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted register-parameter plus texture-index carrier probe
+  missed. The source removed the `NON_EQUIVALENT` guard, added `register` to
+  the `xIn`/`zIn` float parameters, and changed the batch surface read to
+  `temp = currentBatch->textureIndex; surface =
+  gCurrentLevelModel->textures[temp].surfaceType;`. Full verify failed with
+  calculated CRCs `0x7C4CE18A/0x3A298210`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` reported
+  `CURRENT (2435)`, collapsing into the existing standalone texture-index
+  `temp` carrier family. The early unwanted `gCurrentLevelModel` spill remained
+  at `0x60(sp)` and broad segment/grid/tail drift persisted. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this register-parameter plus texture-index carrier combination.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted return-through-global spelling missed. The source
   removed the `NON_EQUIVALENT` guard, preserved the final target store order,
   and changed only `return yOutCount;` to `return D_8011D308;`. Full verify

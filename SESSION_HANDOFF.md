@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:41:24Z
+- Generated at: 2026-05-24 06:44:50Z
 - Branch: `master`
-- HEAD: `0da387fc`
-- Completed task: `func_80049794-integer-current-wave-cursor`
-- Summary: Recorded worker-tested integer-local current-wave cursor miss for func_80049794; source restored and selector packet remains routable.
+- HEAD: `c177a488`
+- Completed task: `func_8002B0F4-register-params-texture-index-carrier`
+- Summary: Rejected register-parameter plus texture-index temp carrier for func_8002B0F4; source restored and packet remains routable.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; if it still picks func_80049794, try a saved-FPR/frame-pressure hypothesis before more wave pointer allocation variants, otherwise take the next routable packet.`
+- Task: `Run selector; prefer func_80049794 only with a distinct saved-FPR/frame-pressure idea, otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 only with a non-repeat hypothesis from ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
