@@ -22,6 +22,20 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted explicit trig-argument cast spelling missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and rewrote only the `sins_f` and
+  `coss_f` arguments from `-camera->trans.rotation.x` to
+  `(s16) -camera->trans.rotation.x`. Full verify failed with the known
+  calculated CRCs `0x93D338FF/0x03D9C8FE`; relinked `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  `CURRENT (1808)`. The diff preserved the known early drift: target keeps the
+  negative scaled-cosine carrier in `$f18`, while current keeps it in `$f16`,
+  then diverges through the doubled-cosine/outer position-array schedule.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `python3 tools/check_active_surface.py` had already
+  reported active surface ok. Do not repeat this explicit trig-argument cast
+  spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted head-turn branch-order spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
