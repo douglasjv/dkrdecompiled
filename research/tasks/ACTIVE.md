@@ -66,6 +66,19 @@
   `./score.sh -s` remained 97.30%, and
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this output-pointer clear `arg3[0]` spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted `pad3` removal plus output-pointer clear spelling
+  missed. The source removed the `NON_EQUIVALENT` guard, removed the dead
+  `pad3` slot, and changed only the initial clear from `*arg3 = NULL` to
+  `arg3[0] = NULL`. Full verify failed with the plain `pad3`-removal
+  calculated CRCs `0x785671AA/0x0D6F6A4A`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` reported
+  `CURRENT (2868)`. The `arg3[0]` spelling did not improve the `pad3`-removed
+  branch: the unwanted early `gCurrentLevelModel` spill remained at `0x64(sp)`
+  with broad segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this combined `pad3` removal plus
+  output-pointer clear spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-suggested saved-FPR pressure carrier before the wave scan
   missed. The source removed the `NON_EQUIVALENT` guard, assigned

@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:58:32Z
+- Generated at: 2026-05-24 06:03:40Z
 - Branch: `master`
-- HEAD: `50bca281`
-- Completed task: `func_80059208`
-- Summary: Rejected splineIndex assignment-order probe; object-only CURRENT (0) still failed full verify with promoted-baseline CRCs, source restored.
+- HEAD: `5a29576c`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected pad3-removal plus arg3[0] output-clear probe; it stayed in the plain pad3-removal CRC family with early gCurrentLevelModel spill at 0x64(sp), source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; pivot away from func_80049794 unless there is a distinct saved-FPR/frame-pressure allocation fix, and do not repeat func_80059208 splineIndex assignment-order/boolean variants; otherwise use trackbg_render_flashy or func_8002B0F4 per non-repeat notes.`
+- Task: `Run selector again; pivot away from func_80049794 unless there is a distinct saved-FPR/frame-pressure allocation fix, avoid trackbg_render_flashy pure first-ring FPR expression rewrites, and do not repeat func_8002B0F4 pad3-removal plus output-pointer clear; otherwise use func_80059208 or another non-repeat func_8002B0F4 model-spill hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
