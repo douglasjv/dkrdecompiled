@@ -23,6 +23,19 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted final `playerObjectMoved` boolean-check spelling
+  missed. The source removed the `NON_EQUIVALENT` guard and changed only
+  `if (playerObjectMoved != FALSE)` to `if (playerObjectMoved)`. Full verify
+  failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (2760)`: target `$f20/$f21` prologue saves were still absent,
+  early zeroing still allocated `$f16` instead of target `$f14`, and wave
+  scan registers stayed in the current `a0`/`v1` family. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` reported 97.30%; do not repeat final `playerObjectMoved`
+  boolean-check spellings without a distinct save-pressure or wave allocation
+  fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted wave-scan while/threshold-carrier probe missed. The
   source removed the `NON_EQUIVALENT` guard and rewrote the wave scan so
   `var_v1 = gRacerWaveCount - 1`, `var_a0 = var_v1`, and an explicit `while`
