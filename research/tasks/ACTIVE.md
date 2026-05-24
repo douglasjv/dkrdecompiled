@@ -107,6 +107,18 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this split negated checkpoint-dot spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted wrong-way reset literal spelling missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and changed only
+  `racer->wrongWayCounter = 0` to `racer->wrongWayCounter = FALSE`. Full verify
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked `./diff.sh
+  func_80059208 --compress-matching 2 --no-pager` stayed at `CURRENT (870)`.
+  The diff retained the same checkpoint-dot/object-dot FPR drift around
+  `0x5a260`-`0x5a29c`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat wrong-way counter reset/update micro-variants unless
+  paired with a distinct earlier lifetime or spline-dataflow hypothesis.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 promoted `register s32 temp` selected-track carrier missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and changed only the
