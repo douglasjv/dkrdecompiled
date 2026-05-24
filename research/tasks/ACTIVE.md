@@ -22,6 +22,19 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted lateral dot explicit pad-minus-pad2 spelling missed.
+  The source shape changed the final lateral numerator from negative
+  checkpoint-dot plus sum (`pad2 = -checkpointDot; diffX = -((pad + pad2) /
+  divisor)`) to positive checkpoint-dot with explicit subtraction
+  (`pad2 = checkpointDot; diffX = -((pad - pad2) / divisor)`). Full verify
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (870)`. The final object-dot/checkpoint-dot FPR
+  allocation drift was unchanged; source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this lateral
+  pad-minus-positive-checkpoint-dot spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted top-tested wave threshold carrier probe missed. The
   source shape kept the current wave loop structure but materialized

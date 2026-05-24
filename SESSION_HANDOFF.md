@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:37:57Z
+- Generated at: 2026-05-24 02:41:23Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80049794`
-- Summary: Rejected promoted wave threshold spCC carrier; full gate failed 0x5F811F98/0x9CE14139 and relinked diff worsened from CURRENT (2760) to CURRENT (5425), then source restored.
+- Completed task: `func_80059208`
+- Summary: Rejected promoted lateral dot explicit pad-minus-pad2 spelling; full gate failed baseline CRCs 0x53D141DF/0xB9D4B481 and relinked diff stayed CURRENT (870), then source restored.
 
 ## Validation
 
@@ -23,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794: avoid top-tested wave threshold spCC carrier; next try a different saved-FPR/source-lifetime hypothesis or pivot to another active candidate if no non-repeated shape is available.`
+- Task: `Run selector; continue func_80049794 only with a genuinely fresh saved-FPR/source-lifetime hypothesis, otherwise pivot among active packets with a new non-repeated family.`
 - Packet class: `matching_impl`
 - Packet status: `active`
 - Reasoning tier: `medium`
