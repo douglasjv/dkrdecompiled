@@ -5652,7 +5652,15 @@
   `CURRENT (1808)` to `CURRENT (3510)`, and the diff shifted the scale
   setup plus first/outer position-array schedule instead of matching target.
   Source was restored and final full verify passed; do not repeat this
-  collapsed `var_f14` UV-scale spelling.
+  collapsed `var_f14` UV-scale spelling. Reversing the two-step UV scale
+  multiplier order (`var_f14 = 0.25f; var_f14 *= 1280.0f`) also missed: full
+  verify failed with calculated CRCs `0xCBC5BBA5/0xBDF6EEC6`, and relinked
+  `./diff.sh trackbg_render_flashy` worsened from promoted baseline
+  `CURRENT (1808)` to `CURRENT (2028)`. The diff shifted the early
+  negative-cosine FPR from target `$f18` toward `$f16`, moved scale setup, and
+  broadened first/outer position-array scheduling. Source was restored and
+  final full verify passed; do not repeat this UV scale multiplier-order
+  spelling.
   Routing the doubled outer-ring cosine term through the existing unused
   `pad_sp100` local (`pad_sp100 = scaledXCos + scaledXCos`, then using it for
   `zPositions[5..8]`) also produced no useful movement: promoted full verify

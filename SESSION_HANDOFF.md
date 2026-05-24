@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:19:51Z
+- Generated at: 2026-05-24 00:22:16Z
 - Branch: `master`
-- HEAD: `334c414c`
-- Completed task: `func_80059208`
-- Summary: Rejected final object-dot distance accumulation; source restored
+- HEAD: `c6ec3858`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected UV scale multiplier-order probe; source restored
 
 ## Validation
 
-- probe failed gmake -j4 CROSS=tools/binutils/mips64-elf- CRC 0x53C1B1DF/0xF7700159; relinked ./diff.sh func_80059208 CURRENT (2043); restored gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%
+- probe failed gmake -j4 CROSS=tools/binutils/mips64-elf- CRC 0xCBC5BBA5/0xBDF6EEC6; relinked ./diff.sh trackbg_render_flashy CURRENT (2028); restored gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80059208: avoid final object-dot distance accumulation and saturated final-tail carriers; try only a fresh final-tail allocation hypothesis or pivot to another selector-routable candidate`
+- Task: `trackbg_render_flashy: avoid UV scale multiplier-order and saturated position/UV expression families; try only a fresh position-array scheduling hypothesis or pivot to another selector-routable candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
