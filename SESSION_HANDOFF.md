@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:25:05Z
+- Generated at: 2026-05-24 08:27:28Z
 - Branch: `master`
-- HEAD: `d89f087e`
+- HEAD: `48b172fe`
 - Completed task: `func_80059208`
-- Summary: Rejected final lateral correction outer-negate spelling; promoted full verify failed and relinked focused diff regressed to CURRENT (1600), then source restored.
+- Summary: Rejected final vertical additive-negation spelling; promoted full verify failed with baseline CRC family and relinked focused diff stayed CURRENT (870), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; start with func_80049794 unless choosing localized func_80059208 fallback, but do not repeat the outer-negate final lateral correction spelling.`
+- Task: `Run selector again; start with func_80049794 unless choosing localized func_80059208 fallback, but do not repeat the final vertical additive-negation spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

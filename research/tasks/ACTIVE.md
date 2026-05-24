@@ -23,6 +23,19 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted final vertical additive-negation spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `diffY = (obj->trans.y_position - tempY) / divisor` as
+  `diffY = (obj->trans.y_position + -tempY) / divisor`. Pre-build
+  `./diff.sh func_80059208 --no-pager` misleadingly reported `CURRENT (0)`,
+  but full verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`;
+  relinked `./diff.sh func_80059208 --no-pager` stayed at promoted baseline
+  `CURRENT (870)`. The spelling produced no useful final-tail object-code
+  movement. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this final vertical additive-negation spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted final lateral correction outer-negate spelling missed.
   The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
   `diffX = -((pad + pad2) / divisor)` as `diffX = -(pad + pad2) / divisor`.
