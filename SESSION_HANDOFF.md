@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:17:06Z
+- Generated at: 2026-05-24 05:21:16Z
 - Branch: `master`
-- HEAD: `7a940349`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted pad3-removal plus scaled collision-plane index local probe. Removing pad3 and storing basePlaneIndex * 4 in temp failed full verify with calculated CRCs 0x7E7421AA/0xA14ED9A9; relinked focused diff reported CURRENT (2733), slightly worse than the scaled-index-only CURRENT (2725), with the unwanted early gCurrentLevelModel spill retained at 0x64(sp). Source was restored.
+- HEAD: `9c04bcdd`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted five-node pointer-fill loop probe: guard removal plus pointer locals over posX/posY/posZ failed full verify with CRCs 0x53D13B3F/0xB6EAEAF5; relinked diff was CURRENT (1499), frame grew to 0xc8 and local arrays shifted by 8 while later tail drift remained. Source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok; git diff -- src/tracks.c clean; git diff --check clean.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK after restore; ./score.sh -s reported 97.30%; python3 tools/check_active_surface.py reported active surface ok; git diff -- src/racer.c and git diff --check were clean.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_8002B0F4 only with a distinct model-spill/register-family fix; do not repeat pad3 removal plus scaled collision-plane index local, or pivot to another routable candidate if no model-spill hypothesis is available.`
+- Task: `Continue with a distinct func_80059208 hypothesis outside five-node pointer-fill/index-loop spelling, or pivot to trackbg_render_flashy/func_8002B0F4 if selector saturation remains higher than a concrete new family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -149,6 +149,20 @@
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted five-node pointer-fill loop probe missed. The source
+  removed the `NON_MATCHING` guard and rewrote only the checkpoint fill from
+  the indexed `i` loop to pointer locals over `posX`/`posY`/`posZ`, with
+  `posZPtr++` before the stores, `*posXPtr`/`*posYPtr`, `posZPtr[-1]`, and
+  post-body `posYPtr++` to imitate the target pointer schedule. Full verify
+  failed with calculated CRCs `0x53D13B3F/0xB6EAEAF5`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` reported
+  `CURRENT (1499)`. The loop moved toward the target `sltu` pointer family,
+  but the frame grew from `0xc0` to `0xc8`, local arrays shifted by eight
+  bytes, and final object-dot/vertical tail drift remained. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` reported 97.30%; do not repeat this five-node
+  pointer-fill loop spelling without a distinct frame/stack-slot fix.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted crossed final object-dot spelling missed. The source
   removed the `NON_MATCHING` guard and changed only the final lateral object
   dot from `pad = (objX * diffX) + (diffZ * objZ)` to
