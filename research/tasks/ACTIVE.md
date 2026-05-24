@@ -52,6 +52,20 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this late velocity store-order spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-probed early wave count-down-derived-index spelling
+  missed. The worker changed the `NON_EQUIVALENT` guard to `#if 1`, scanned
+  with `var_v1 = gRacerWaveCount` and `gRacerCurrentWave[var_v1 - 1]`, then
+  derived `var_a0 = var_v1 - 1`. Full verify failed with calculated CRCs
+  `0xA80DF324/0x1C0D36A7`; relinked `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` regressed to `CURRENT (6300)`. The wave
+  scan allocated around `a1/v1` with extra derived-index work instead of target
+  `v0` count, `v1` bound, and `a0` loop index; target `$f20/$f21` prologue
+  saves were still missing, and early zero stayed in current `$f16` instead of
+  target `$f14`. Worker restored `src/racer.c`, verified `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and parent `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat
+  this wave count-down-derived-index spelling.
 - Latest alternate-packet note: `func_80059208` remains active after two
   2026-05-24 promoted declaration-only `pad3` removal missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and removed only the unused
