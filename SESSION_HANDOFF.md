@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:25:30Z
+- Generated at: 2026-05-24 11:29:15Z
 - Branch: `master`
-- HEAD: `15e62127`
-- Completed task: `func_80059208-normalization-store-order`
-- Summary: Rejected promoted func_80059208 unit-vector normalization store-order spelling; focused diff worsened to CURRENT (942), source restored.
+- HEAD: `111b4361`
+- Completed task: `init_particle_buffers-dead-pad-removal`
+- Summary: Rejected promoted init_particle_buffers dead-pad removal; focused diff worsened to CURRENT (2176), frame shrank to 0x60, source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector routing from func_80049794 only if a distinct independent family is available; otherwise use the latest ACTIVE.md alternate-packet notes to choose a bounded non-repeated probe.`
+- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid init_particle_buffers declaration-only local removals.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

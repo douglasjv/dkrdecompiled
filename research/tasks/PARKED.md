@@ -130,5 +130,9 @@ when intentionally returning to them.
   tag still in `s0`. Adding a named `colourTag` local initialized after
   `free_particle_vertices_triangles()` and passing it to every semitrans-grey
   allocation made no object-code movement; focused diff stayed score `2098`.
+  Removing only the unused `s32 pad` local while promoting shrank the frame to
+  `0x60` instead of target `0x68`, worsened focused score to `2176`, shifted
+  parameter stack slots, and kept the same saved-register allocation family.
   Source was restored and full verify passed. Revisit with a narrower
-  saved-register/lifetime strategy, not these same probes.
+  saved-register/lifetime strategy, not these same probes or declaration-only
+  local removals.
