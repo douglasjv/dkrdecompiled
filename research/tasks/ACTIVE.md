@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted head-turn branch-order spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
+  player/computer head-turn branch from `gCurrentPlayerIndex !=
+  PLAYER_COMPUTER` with `handle_racer_head_turning` first to
+  `gCurrentPlayerIndex == PLAYER_COMPUTER` with `slowly_reset_head_angle`
+  first. Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x3C39E22F/0x8EC77BBA`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3090)`. The diff dropped the target `$f20`/`$f21` prologue saves,
+  kept early `$f16` zero allocation instead of target `$f14`, and broadened
+  wave-scan/global-offset drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this head-turn branch-order spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted batch-loop `currentBatch` pointer-carry spelling missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
