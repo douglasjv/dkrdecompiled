@@ -41,6 +41,18 @@
   repeat close save-family wave-gate split/register variants without a
   distinct bound/index allocation fix.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted UV dimension shift spelling missed. The source changed
+  only the `NON_MATCHING` guard to `#if 1` and rewrote the UV scale products
+  from `texHeader->width * 16` / `texHeader->height * 16` to explicit
+  `<< 4` products, including the fake duplicate `var_a2` assignment. Compressed
+  focused diff misleadingly reported `CURRENT (0)`, but full verify failed
+  with promoted-baseline CRCs `0x93D338FF/0x03D9C8FE`; uncompressed relinked
+  `./diff.sh trackbg_render_flashy --no-pager` stayed at `CURRENT (1808)`.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this UV dimension `<< 4` product spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted first-ring `xPositions[2]` scaled-sine reuse probe
   missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
   rewrote `xPositions[2] = scaledXCos + (xSin * 1280.0f)` as
