@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:05:56Z
+- Generated at: 2026-05-24 07:08:53Z
 - Branch: `master`
-- HEAD: `516ea0e3`
-- Completed task: `trackbg_render_flashy-register-xcos`
-- Summary: Rejected promoted register-xCos allocation hint for trackbg_render_flashy; full verify failed with promoted baseline CRCs and relinked focused diff stayed CURRENT (1808), source restored.
+- HEAD: `640467c2`
+- Completed task: `func_8002B0F4-s16-surface`
+- Summary: Rejected promoted s16 surface local-width probe for func_8002B0F4; full verify failed with promoted baseline CRCs and relinked focused diff stayed CURRENT (2860), source restored.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended only with a distinct saved-FPR/wave allocation idea; otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 with a non-repeat hypothesis from ACTIVE.md. For trackbg_render_flashy do not repeat register xCos allocation hints.`
+- Task: `func_80049794 remains selector-recommended only with a distinct saved-FPR/wave allocation idea; otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 with a non-repeat hypothesis from ACTIVE.md. For func_8002B0F4 do not repeat s8 surface -> s16/s32 local-width probes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
