@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:26:46Z
+- Generated at: 2026-05-24 00:30:48Z
 - Branch: `master`
-- HEAD: `933c540a`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected current-source segment-pointer register hint; it compiled but stayed in the promoted-baseline CRC/diff family.
+- HEAD: `9b01a8b9`
+- Completed task: `func_80059208`
+- Summary: Rejected five-node sampling loop i != 5 condition probe; source restored.
 
 ## Validation
 
-- Probe: promoted func_8002B0F4 and changed currentSegment/currentBoundingBox declarations to register pointers; gmake failed as expected with CRCs 0x7856718A/0x66208CAA, relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed CURRENT (2860) with the early gCurrentLevelModel spill at 0x60(sp). Restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports us.v77 97.30%.
+- Probe: promoted func_80059208 and changed the five-node fill loop from (i < 5) ^ 0 to i != 5; gmake failed as expected with CRCs 0x53905373/0x65198BEE, relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager worsened from promoted baseline CURRENT (870) to CURRENT (1515) with sampling-loop pointer increment/limit-test drift. Restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports us.v77 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with a bounded active candidate; for func_8002B0F4 do not repeat segment-pointer register hints, and prefer a distinct model-spill hypothesis or route to another active packet if no fresh shape is available.`
+- Task: `Continue with a bounded active candidate; for func_80059208 do not repeat five-node loop cleanup variants ((i < 5) or i != 5), and prefer a distinct final-offset register/order hypothesis or pivot to another active packet if no fresh shape is available.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`

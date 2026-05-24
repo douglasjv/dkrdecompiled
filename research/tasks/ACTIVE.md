@@ -4709,8 +4709,13 @@
   sampling-loop pointer increments/limit test away from the target
   pointer-limit family (`a2`/`v1` updates and `bne v1,t8` vs target
   `sltu at,v1,t8`/`bnez at`), while later tail labels shifted by four bytes.
-  Source was restored and final full verify passed; do not repeat this loop
-  condition cleanup.
+  Source was restored and final full verify passed. A 2026-05-24 sibling
+  five-node loop condition spelling (`i != 5`) collapsed into the same miss:
+  full verify failed with the same calculated CRCs `0x53905373/0x65198BEE`,
+  and relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  worsened to `CURRENT (1515)` with the same sampling-loop pointer
+  increment/limit-test drift. Source was restored and final full verify
+  passed; do not repeat these loop condition cleanup variants.
   Spelling only the cubic-spline boolean carrier literals as
   `splineIndex = 0` and `splineIndex = 1` instead of `FALSE`/`TRUE` also
   missed: full verify failed with the baseline calculated CRCs
