@@ -149,6 +149,20 @@
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this triangle-hit predicate operand-order spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted batch offset-load-before-surface-read scheduling probe
+  missed. The source changed the `NON_EQUIVALENT` guard to `#if 1` and moved
+  only `currentFaceOffset`, `currentVerticesOffset`, and `nextFaceOffset`
+  loads before the `surface = gCurrentLevelModel->textures[...]` read. Full
+  verify failed with calculated CRCs `0x7856718A/0x66208CAA`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2860)`. The diff still inserted the unwanted
+  early `gCurrentLevelModel` spill at `0x60(sp)` and kept broad segment/grid
+  register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this current-baseline batch offset scheduling
+  spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted `pad3`-removed plus texture-index temp carrier missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1`, removed the unused
   `pad3` local, and routed `currentBatch->textureIndex` through existing

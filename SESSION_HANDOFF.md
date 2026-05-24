@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:52:50Z
+- Generated at: 2026-05-24 11:56:30Z
 - Branch: `master`
-- HEAD: `e75bb79c`
-- Completed task: `func_80059208-pad3-removal`
-- Summary: Rejected promoted func_80059208 pad3 removal; frame shrank to 0xb8 and focused diff worsened to CURRENT (1218), source restored.
+- HEAD: `44ff5828`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted batch offset-load-before-surface-read scheduling probe: full verify failed with CRCs 0x7856718A/0x66208CAA; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed at CURRENT (2860) with unwanted early gCurrentLevelModel spill at 0x60(sp). Source restored.
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-`: Verify: OK after restore; `./score.sh -s`: decomp progress 97.30%; `python3 tools/check_active_surface.py`: active surface ok
+- gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s remained 97.30%; python3 tools/check_active_surface.py reported active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector and prefer func_80049794 only with a distinct independent family or another bounded routable packet; avoid func_80059208 declaration-only pad3 removal.`
+- Task: `Continue func_8002B0F4 only with a distinct model-spill/register-family hypothesis, or pivot back to selector func_80049794 with an independent non-repeat family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
