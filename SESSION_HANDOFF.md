@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:27:47Z
+- Generated at: 2026-05-24 04:31:57Z
 - Branch: `master`
-- HEAD: `07203f50`
-- Completed task: `trackbg_render_flashy-z2-scaledXSin`
-- Summary: Rejected promoted trackbg_render_flashy single-site zPositions[2] direct scaledXSin replacement; it collapsed into the bad first-ring direct-scaledXSin frame-shrink family.
+- HEAD: `02195938`
+- Completed task: `trackbg_render_flashy-var_f16-negative-cos`
+- Summary: Rejected trackbg_render_flashy existing-var_f16 negative-cosine carrier; it preserved the frame but kept the wrong FPR family.
 
 ## Validation
 
-- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0x218F9FFA/0x18F4A6D6; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager reported CURRENT (13821) and shrank the frame from 0x158 to 0x150. After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
+- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0xDC79F591/0x31DBA03C; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager reported CURRENT (3108), preserved frame 0x158, but kept neg.s on f16 instead of target f18 and shifted outer position/global scheduling. After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from trackbg_render_flashy direct first-ring scaledXSin replacements; choose a different routable candidate or a distinct non-frame-shrinking FPR allocation hypothesis.`
+- Task: `Pivot away from trackbg_render_flashy negative-cosine carrier locals and direct first-ring scaledXSin replacements; choose a different routable candidate or a distinct non-position-array source-shape hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

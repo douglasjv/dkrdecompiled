@@ -157,6 +157,20 @@
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted existing-`var_f16` negative-cosine carrier probe missed.
+  The source promoted the function, assigned `var_f16 = -scaledXCos`, and used
+  that existing local for the first/outer negative scaled-cosine position
+  expressions. Full verify failed with calculated CRCs
+  `0xDC79F591/0x31DBA03C`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported
+  `CURRENT (3108)`. The frame stayed target-sized at `0x158`, but the early
+  `neg.s` still allocated current `$f16` instead of target `$f18`, and outer
+  position/global scheduling shifted in the same carrier-local family as the
+  `pad_sp108` miss. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat existing-local negative-cosine carriers for
+  `trackbg_render_flashy`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted UV scroll scale division-commute probe missed. The
   source changed the scroll offsets from `position * (var_f14 / dimension)` to
   `(position / dimension) * var_f14` for both X and Z. Full verify failed with
