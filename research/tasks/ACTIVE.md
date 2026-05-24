@@ -94,6 +94,19 @@
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat these final checkpoint-dot positive/`pad + -pad2`
   expression spellings.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 worker-probed split negated checkpoint-dot spelling missed. The
+  worker changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `pad2 = -((tempZ * diffZ) + (diffX * tempX))` as
+  `pad2 = (tempZ * diffZ) + (diffX * tempX); pad2 = -pad2`. Full verify in the
+  worker fork failed with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The diff retained the same object/checkpoint-dot `sub.s`
+  family around `0x5a260`-`0x5a29c` and unchanged vertical FPR drift. Worker
+  restored source; the main tree stayed clean, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this split negated checkpoint-dot spelling.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 promoted `register s32 temp` selected-track carrier missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and changed only the
