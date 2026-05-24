@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:12:29Z
+- Generated at: 2026-05-24 06:15:07Z
 - Branch: `master`
-- HEAD: `75314eb8`
+- HEAD: `b60eb0a2`
 - Completed task: `func_80059208`
-- Summary: Rejected post-rewind zero-clamp inclusive comparison; promoted source changed c.lt.s to c.le.s, regressed focused diff to CURRENT (1070), then source was restored.
+- Summary: Rejected early lap-reset level_id boolean spelling; promoted source stayed in baseline CRC/focused CURRENT (870), then source was restored.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; prefer a distinct func_80049794 save-pressure/wave allocation family if identified, otherwise pivot to trackbg_render_flashy or func_8002B0F4 only with a non-repeat hypothesis from ACTIVE.md`
+- Task: `Run selector; use func_80049794 only with a distinct save-pressure/wave allocation family, otherwise choose trackbg_render_flashy, func_8002B0F4, or func_80059208 only with a non-repeat hypothesis from ACTIVE.md`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

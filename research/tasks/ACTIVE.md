@@ -725,6 +725,19 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this early lap-reset
   comparison operand spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 early lap-reset `level_id` boolean spelling missed. The promoted
+  source removed the `NON_MATCHING` guard and changed only
+  `level_id() == 0` to `!level_id()` while preserving the existing
+  `racer->nextCheckpoint >= temp_v0` comparison. Full verify failed with the
+  promoted-baseline calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The final object-dot/checkpoint-dot plus vertical FPR drift
+  remained unchanged; source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this early lap-reset `level_id` boolean spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted first-ring raw-sine continuation (`zPositions[3] =
   scaledXCos + (xSin * 1280.0f)` instead of the lone `scaledXSin` use there)
