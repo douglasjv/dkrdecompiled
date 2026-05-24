@@ -25,6 +25,25 @@
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted five-node fill loop-condition spelling missed. The
+  source shape changed only `for (i = 0; (i < 5) ^ 0; i++)` to
+  `for (i = 0; i != 5; i++)`. Full verify failed with calculated CRCs
+  `0x53905373/0x65198BEE`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1515)`. The fill loop changed
+  from target `sltu at,v1,t8`/`bnez at` pointer scheduling to `bne v1,t8`,
+  shifted `a2`/`v1` increments and stores, and left the final
+  object-dot/checkpoint-dot plus vertical FPR drift unresolved. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  `i != 5` five-node fill loop-condition spelling.
+- Latest worker-side note: `func_80049794` remains active after a bounded
+  worker probe changed only the grounded-wheel zero literals from `0.0f` to
+  integer `0`. The worker restored its source and reported object-only focused
+  `CURRENT (0)`, but no promoted full gate or relinked focused diff was run;
+  treat this as weak rejection evidence only, not acceptance evidence. Do not
+  repeat literal-only early-zero spelling without a promoted full gate.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 close save-family wave scan probe missed. The promoted shape
   removed the trailing pads, chained the grounded-wheel zero, accumulated the

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:26:59Z
+- Generated at: 2026-05-24 02:31:09Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80049794`
-- Summary: Rejected bottom-tested wave threshold carrier and lap-reset operand probes; source restored after promoted full-gate misses.
+- Completed task: `func_80059208`
+- Summary: Rejected promoted five-node i != 5 loop-condition probe; recorded weak worker literal-zero rejection for func_80049794; source restored.
 
 ## Validation
 
