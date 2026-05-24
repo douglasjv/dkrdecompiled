@@ -101,6 +101,17 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted normalization positive-distance guard probe missed. The
+  source removed the `NON_MATCHING` guard and changed only
+  `if (distance != 0.0f)` to `if (distance > 0.0f)`. Full verify failed with
+  calculated CRCs `0x53B461F3/0x9A237E15`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed from
+  promoted baseline to `CURRENT (1270)`. The normalization branch changed to
+  `c.lt.s`/`bc1f`, while the final object/checkpoint plus vertical FPR drift
+  remained. Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`, and `./score.sh -s` reported 97.30%; do not repeat
+  this normalization positive-distance guard spelling.
 - Latest alternate-packet note: `func_80059208` remains active but saturated
   after a 2026-05-24 promoted final-vertical double-literal clamp probe missed.
   The source changed only the final vertical clamp constants from

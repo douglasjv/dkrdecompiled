@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:39:04Z
+- Generated at: 2026-05-24 04:44:17Z
 - Branch: `master`
-- HEAD: `19f0ec55`
-- Completed task: `func_80049794-playerObjectMoved-check`
-- Summary: Rejected promoted func_80049794 final playerObjectMoved truthy-check spelling; it stayed in the direct-promotion drift family.
+- HEAD: `e7495aa4`
+- Completed task: `func_80059208-normalization-positive-guard`
+- Summary: Rejected promoted func_80059208 normalization positive-distance guard; it regressed the final tail drift.
 
 ## Validation
 
-- Probe gate failed with CRCs 0x5FDDE03F/0xEF7A0514; ./diff.sh func_80049794 --compress-matching 2 --no-pager reported CURRENT (2760), still missing target $f20/$f21 saves, using early $f16 instead of $f14, and keeping the current a0/v1 wave-register family. Source restored; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- Probe gate failed with CRCs 0x53B461F3/0x9A237E15; ./diff.sh func_80059208 --compress-matching 2 --no-pager reported CURRENT (1270), changing the normalization branch to c.lt.s/bc1f and leaving the final object/checkpoint plus vertical FPR drift. Source restored; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_80049794 final playerObjectMoved boolean-check spellings unless paired with a distinct save-pressure or wave allocation fix; choose a different routable candidate or a distinct non-wave source-shape hypothesis.`
+- Task: `Pivot away from func_80059208 normalization guard spellings and the duplicate old-diffZ axis-swap staging shape; choose a different routable candidate or a distinct final-tail source-shape hypothesis not already recorded.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
