@@ -295,6 +295,20 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   reported 97.30%; do not repeat final vertical negative-divisor spellings
   unless paired with a distinct object/checkpoint-dot allocation fix.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted final update-order spelling missed. The source removed
+  the `NON_MATCHING` guard and moved only `racer->unk1BA += (s32) diffX` after
+  the final vertical correction/clamp/update, applying `unk1BC` before
+  `unk1BA`. Full verify failed with calculated CRCs
+  `0x53ACFAA7/0x47C757C4`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3135)`. The tail moved the final lateral cast/store below the
+  vertical block, broadened the final vertical FPR/cast scheduling, and still
+  retained the object-dot/checkpoint-dot drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this final `unk1BC` before `unk1BA` update-order spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted inverse-gravity quarter-multiply spelling missed in a
   worker probe. The source changed only `var_f20 = 1.0 - (var_f20 / 4.0)` to

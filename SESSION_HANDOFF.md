@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:44:50Z
+- Generated at: 2026-05-24 06:47:21Z
 - Branch: `master`
-- HEAD: `c177a488`
-- Completed task: `func_8002B0F4-register-params-texture-index-carrier`
-- Summary: Rejected register-parameter plus texture-index temp carrier for func_8002B0F4; source restored and packet remains routable.
+- HEAD: `ce18ad70`
+- Completed task: `func_80059208-final-update-order`
+- Summary: Rejected final update-order probe for func_80059208; source restored and packet remains routable.
 
 ## Validation
 
