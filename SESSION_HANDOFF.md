@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:42:59Z
+- Generated at: 2026-05-24 03:48:37Z
 - Branch: `master`
-- HEAD: `a64711ee`
-- Completed task: `func_80049794-ternary-wrap-and-trackbg-uv-scale`
-- Summary: Rejected func_80049794 zipper wrap ternary promotion and trackbg_render_flashy UV scale commute probes; both failed full ROM verify, sources restored, baseline Verify: OK.
+- HEAD: `8828b5ef`
+- Completed task: `func_80049794-quarter-multiply-and-func_8002B0F4-pointer-add`
+- Summary: Rejected two probes: func_80049794 inverse-gravity 0.25 multiply promotion failed verify with CRCs 0x4555932A/0x3BB0F237 and relinked CURRENT (2760); func_8002B0F4 pointer-addition segment/bounding-box setup stopped at link with drm_checksum_balloon/drm_vehicle_traction unresolved and focused diff stayed in the early gCurrentLevelModel spill family. Sources restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_80049794 remains recommended, but do not repeat direct guard removal/object-only CURRENT(0), zipper wrap ternary reassignment promotion, or trackbg_render_flashy UV scroll scale division-commute spelling without a distinct save-pressure/FPR allocation hypothesis.`
+- Task: `Run selector; func_80049794 remains recommended, but do not repeat inverse-gravity 0.25 multiply, direct guard/object-only promotion, zipper-wrap ternary, or func_8002B0F4 pointer-addition segment/bounding-box setup without a distinct save-pressure/model-spill hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

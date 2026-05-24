@@ -23,6 +23,18 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted inverse-gravity quarter-multiply spelling missed in a
+  worker probe. The source changed only `var_f20 = 1.0 - (var_f20 / 4.0)` to
+  `var_f20 = 1.0 - (var_f20 * 0.25)`. Full verify failed with calculated CRCs
+  `0x4555932A/0x3BB0F237`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` again reported
+  `CURRENT (2760)`: target `$f20/$f21` prologue saves were still absent, saved
+  register slots shifted, early zeroing still allocated `$f16` instead of
+  target `$f14`, and wave scan registers stayed in the current `a0`/`v1`
+  family. Source was restored, and main validation after restore reached
+  `Verify: OK`; do not repeat the inverse-gravity `0.25` multiply spelling
+  without a distinct lifetime/pressure fix before the wave scan.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted zipper-wrap ternary spelling missed. A worker found
   object-only `CURRENT (0)` while the function stayed guarded, but promoting
   the source and changing only the `steerVisualRotationOffset` wrap
@@ -160,6 +172,20 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this single-site x2
   scaled-sine left-operand spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 pointer-addition model-access probe missed. The promoted source
+  changed only the initial segment and bounding-box setup from
+  `&gCurrentLevelModel->segments[spB0[var_fp]]` /
+  `&gCurrentLevelModel->segmentsBoundingBoxes[spB0[var_fp]]` to pointer-add
+  forms. The focused diff reported `CURRENT (2940)` and stayed in the known
+  early cached `gCurrentLevelModel` spill family, loading the model pointer
+  before the outer segment loop and spilling it at `0x60(sp)`. The full gate
+  stopped at link with unresolved `drm_checksum_balloon` and
+  `drm_vehicle_traction` after the asm block was removed, so this is rejection
+  evidence rather than ROM-CRC evidence. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this pointer-addition segment/bounding-box
+  setup without a separate model-spill/linkage-family fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 direct guarded-C promotion probe missed. Removing only the
   `NON_EQUIVALENT` wrapper failed the full gate with calculated CRCs
