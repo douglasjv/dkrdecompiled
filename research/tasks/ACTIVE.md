@@ -139,6 +139,22 @@
   `Verify: OK`, `./score.sh -s` remained 97.30%, and
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this side-force multiply grouping.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted early lap-reset zero-store order spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the
+  reset block from `lap`, `nextCheckpoint`, `courseCheckpoint` zero stores to
+  `nextCheckpoint`, `lap`, `courseCheckpoint`. Pre-build
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x53D141DF/0xB7822901`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (880)`. The top block showed the reset stores opposite target
+  (`0x192` then `0x193` instead of target `0x193` then `0x192`), while the
+  known final object-dot/checkpoint-dot plus vertical FPR drift remained.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this early lap-reset zero-store order spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight `xRotationOffset` denominator spelling
   missed. The source changed the `NON_EQUIVALENT` guard to `#if 1` and

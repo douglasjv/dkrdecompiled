@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:31:40Z
+- Generated at: 2026-05-24 09:36:34Z
 - Branch: `master`
-- HEAD: `ca5fdbb9`
-- Completed task: `func_80049794`
-- Summary: Rejected post-physics landing-crash guard condition-order spelling; promoted func_80049794 and rewrote only the guard from var_t0 == 0 && racer->groundedWheels != 0 && racer->spinout_timer != 0 to racer->spinout_timer != 0 && var_t0 == 0 && racer->groundedWheels != 0. Pre-build diff misleadingly reported CURRENT (0), full verify failed with calculated CRCs 0x23E5E3D7/0x8A077140, and relinked diff stayed at CURRENT (2760) with the known missing f20/f21 saves, early f16 versus target f14, and wave-scan drift. Source restored.
+- HEAD: `567a8b35`
+- Completed task: `func_80059208`
+- Summary: Promoted `func_80059208` and changed only the early lap-reset zero-store order from `lap`, `nextCheckpoint`, `courseCheckpoint` to `nextCheckpoint`, `lap`, `courseCheckpoint`. Pre-build diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x53D141DF/0xB7822901`, and relinked diff regressed to `CURRENT (880)`: the top block stores were opposite target (`0x192` then `0x193` instead of target `0x193` then `0x192`), while the known final object-dot/checkpoint-dot plus vertical FPR drift remained. Source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%; python3 tools/check_active_surface.py active surface ok
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`; `./score.sh -s` reported 97.30%; `python3 tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns
 
@@ -22,8 +22,8 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector packet func_80049794 only with an independent, unrecorded source-shape family or pivot to another routable packet if no useful func_80049794 family remains; do not repeat post-physics landing-crash guard order.`
+- Task: `Continue with a distinct func_80059208 family that targets the final object-dot/checkpoint-dot tail without changing early lap-reset store order, or pivot to another active guarded candidate if no fresh bounded shape remains.`
 - Packet class: `matching_impl`
-- Packet status: `unchanged`
+- Packet status: `ready`
 - Reasoning tier: `medium`
 - Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.
