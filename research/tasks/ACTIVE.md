@@ -95,6 +95,24 @@
   object-dot, and final-tail clamp/negation microvariants unless paired with a
   distinct spline dataflow fix, or pivot to another bounded routable packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted collision-plane zero-branch spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `if (tempVec4f.y != 0.0)` as
+  `if (tempVec4f.y == 0.0) { } else { ... }`. Full verify failed with
+  calculated CRCs `0x77D9E18A/0xB9F696E2`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` worsened to
+  `CURRENT (2995)`. The shape collapsed into the known X-grid fake-barrier
+  family: it introduced the unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)`, shifted the X-grid accumulator from target `s1` to current `s2`,
+  and broadened segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this collision-plane zero-branch spelling or the
+  X-grid fake-barrier family unless paired with a distinct model-spill fix.
+  Next hypothesis should avoid `func_8002B0F4` collision-plane scalar guard,
+  X-grid fake-barrier, initial clear-order/model-spill/texture-index carrier,
+  and batch-offset microvariants, or pivot to another bounded routable packet.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted initial clear-order spelling missed. The source changed
   the `NON_EQUIVALENT` guard to `#if 1` and reordered only the opening clears
   from `D_8011D308 = 0; *arg3 = NULL;` to `*arg3 = NULL; D_8011D308 = 0`.
