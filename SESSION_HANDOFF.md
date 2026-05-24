@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 01:18:15Z
+- Generated at: 2026-05-24 01:22:51Z
 - Branch: `master`
-- HEAD: `b51b2060`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical pad clamp-limit carrier; restored guard
+- HEAD: `1bee8cf7`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected pre-call coordinate conversion probe and worker wave-scan probe
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 only with a fresh saved-FPR/wave-bound hypothesis, or pivot to another compact active packet with a non-repeated source-shape.`
+- Task: `Continue selector func_80049794 only with a fresh non-repeated saved-FPR/wave-bound hypothesis, or pivot to another compact active packet with a non-repeated source-shape.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
