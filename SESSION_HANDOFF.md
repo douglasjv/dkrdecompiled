@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:44:17Z
+- Generated at: 2026-05-24 04:48:40Z
 - Branch: `master`
-- HEAD: `e7495aa4`
-- Completed task: `func_80059208-normalization-positive-guard`
-- Summary: Rejected promoted func_80059208 normalization positive-distance guard; it regressed the final tail drift.
+- HEAD: `84ea9720`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted func_8002B0F4 var_s1 late-zero scheduling probe; relinked focused diff regressed to CURRENT (3070) with the known early gCurrentLevelModel spill at 0x60(sp).
 
 ## Validation
 
-- Probe gate failed with CRCs 0x53B461F3/0x9A237E15; ./diff.sh func_80059208 --compress-matching 2 --no-pager reported CURRENT (1270), changing the normalization branch to c.lt.s/bc1f and leaving the final object/checkpoint plus vertical FPR drift. Source restored; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK); ./score.sh -s (97.30%)
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_80059208 normalization guard spellings and the duplicate old-diffZ axis-swap staging shape; choose a different routable candidate or a distinct final-tail source-shape hypothesis not already recorded.`
+- Task: `Continue with func_8002B0F4 only if pairing a model-spill fix with a non-repeated grid/surface scheduling hypothesis; otherwise pivot to another routable candidate with fresh evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
