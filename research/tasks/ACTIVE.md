@@ -3892,7 +3892,16 @@
   early zero in `$f16` instead of target `$f14`, and left the wave bound/index
   allocation reversed as current `a0`-bound/`v1`-loop instead of target
   `v1`-bound/`a0`-loop. Source was restored and final full verify passed; do
-  not repeat this existing-`var_f0` first-speed sqrt-result split. A close
+  not repeat this existing-`var_f0` first-speed sqrt-result split. A baseline
+  current-checkout late Wizpig animation guard branch-polarity spelling
+  (`if (obj->animationID >= 3) { var_f20 = 0.0f; } else { var_f20 = 4.0f; }`)
+  also missed: full verify failed with calculated CRCs
+  `0x55404BDB/0xC3B5A8D9`, and relinked `./diff.sh func_80049794` regressed to
+  `CURRENT (3765)`. The local Wizpig block changed from target `beqz` after
+  `slti` to `bnez`, still lacked target `$f20/$f21` prologue saves, kept early
+  zero in `$f16` instead of target `$f14`, and widened the usual wave-bound/FPR
+  drift. Source was restored and final full verify passed; do not repeat this
+  late Wizpig branch-polarity spelling. A close
   save-family x/z/y pre-`sqrtf` branch with chained grounded-wheel zero,
   steer-vel no-op, removed trailing `pad3`/`pad4`, and the target-looking
   first-speed zero-threshold upper clamp (`if (var_f20 > 0.0) { var_f20 = 4;

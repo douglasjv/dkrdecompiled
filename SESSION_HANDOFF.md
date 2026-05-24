@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:05:40Z
+- Generated at: 2026-05-24 00:08:38Z
 - Branch: `master`
-- HEAD: `e795ffdf`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected bottom func_800BB2F4 rot address spelling; restored GLOBAL_ASM baseline
+- HEAD: `1c8b599f`
+- Completed task: `func_80049794`
+- Summary: Rejected late Wizpig animation guard branch-polarity spelling; source restored
 
 ## Validation
 
-- probe failed gmake -j4 CROSS=tools/binutils/mips64-elf- CRC 0x7A567F98/0xC658B8F4; relinked ./diff.sh func_8002B0F4 CURRENT (4298); restored gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%
+- probe failed gmake -j4 CROSS=tools/binutils/mips64-elf- CRC 0x55404BDB/0xC3B5A8D9; relinked ./diff.sh func_80049794 CURRENT (3765); restored gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_8002B0F4: pivot away from bottom address/store-order families; inspect outer segment/grid model-spill family or select another bounded active candidate if no fresh hypothesis`
+- Task: `func_80049794: avoid late Wizpig branch-polarity and saturated boost/wave-bound families; pivot to a fresh saved-FPR allocation hypothesis or the next selector-routable candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
