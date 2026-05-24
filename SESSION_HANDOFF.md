@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:53:28Z
+- Generated at: 2026-05-24 03:02:36Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted color-mask carrier through var_a3; full gate failed baseline CRCs 0x93D338FF/0x03D9C8FE and relinked diff stayed CURRENT (1808), then source restored.
+- Completed task: `func_80049794`
+- Summary: Rejected promoted var_f14 grounded-wheel zero carrier; full gate failed and source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a genuinely fresh saved-FPR/source-lifetime hypothesis, otherwise pivot among active packets with a new non-repeated family.`
+- Task: `Continue func_80049794; avoid guarded object-only CURRENT(0) and solve source promotion save-family/wave-register drift.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -22,6 +22,20 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted `var_f14` grounded-wheel zero carrier missed. A worker
+  found object-only `CURRENT (0)` while the function stayed under
+  `NON_EQUIVALENT`, but promoting the source and adding
+  `var_f14 = 0.0f; racer->unk84 = var_f14; racer->unk88 = var_f14` failed the
+  full gate with calculated CRCs `0x5FDDE03F/0xEF7A0514`. Relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (2760)`: target `$f20/$f21` prologue saves were still absent, saved
+  register slots shifted, early zeroing still allocated `$f16` instead of
+  target `$f14`, and wave scan registers stayed in the current `a0`/`v1`
+  family. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
+  `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted color-mask carrier through `var_a3` missed. The source
   shape kept `var_a3 = -0x100` as the fallback mask and changed only the
