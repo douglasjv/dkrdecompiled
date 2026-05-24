@@ -288,6 +288,15 @@
   `CURRENT (2860)` with the same unwanted early `gCurrentLevelModel` spill at
   `0x60(sp)` and broad segment/grid/tail drift. Source was restored and final
   full verify passed; do not repeat these segment-pointer register hints.
+  A 2026-05-24 promoted current-source global-clear literal spelling
+  (`D_8011D308 = FALSE` instead of `0`) also missed as a no-movement family:
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (2860)`. The diff retained the unwanted early `gCurrentLevelModel`
+  spill at `0x60(sp)` plus broad segment/grid/tail register drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` remained 97.30%; do not repeat this global-clear `FALSE`
+  literal spelling.
   Earlier partial/default water store-order, explicit default-water height
   cast, bottom segment-range guard reorder, target default-water store-order,
   and bottom-water condition-order probes also missed; do not repeat them.
@@ -6412,7 +6421,16 @@
   `./diff.sh func_8002B0F4` stayed `CURRENT (2860)`, and the known unwanted
   early `gCurrentLevelModel` spill at `0x60(sp)` remained. Source was restored
   and final full verify passed; do not repeat this `arg3` register-carrier
-  spelling. A promoted current-source collision-output target-store-order probe
+  spelling. A promoted current-source global-clear literal spelling
+  (`D_8011D308 = FALSE` instead of `0`) also missed without object-family
+  movement: full verify failed with calculated CRCs `0x7856718A/0x66208CAA`,
+  and relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
+  stayed at `CURRENT (2860)`. The diff retained the known unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)` plus broad segment/grid/tail
+  register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this global-clear `FALSE` literal spelling. A
+  promoted current-source collision-output target-store-order probe
   also missed: ordering the hit writes as `type`, `rot.x`, `rot.y`, `rot.z`,
   then `waveHeight` failed full verify with calculated CRCs
   `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4` stayed
