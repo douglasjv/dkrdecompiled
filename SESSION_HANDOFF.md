@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:03:46Z
+- Generated at: 2026-05-24 09:07:22Z
 - Branch: `master`
-- HEAD: `fd553ced`
+- HEAD: `f7c02f03`
 - Completed task: `func_80049794`
-- Summary: Rejected pitch damping multiplier-carrier spelling; relinked diff regressed to CURRENT (2760) versus the factor-out-only CURRENT (2480).
+- Summary: Rejected normal-flight xRotationOffset denominator double-literal spelling; promoted source failed full verify with calculated CRCs 0x5F88CFDD/0xCE72FB1A and relinked diff stayed at CURRENT (2760).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat the normal-flight xRotationOffset 4096.0 denominator spelling, pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
