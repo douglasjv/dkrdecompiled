@@ -309,6 +309,21 @@
   `./score.sh -s` remained 97.30%, and
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this final `unk1BC` before `unk1BA` update-order spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted final lateral object-minus-spline delta-form probe
+  missed. The source removed the `NON_MATCHING` guard and changed only the
+  final lateral numerator from separate object/checkpoint dot terms to
+  `pad = splinePos - tempX; pad2 = distance - tempZ; diffX = -(((pad * diffX)
+  + (pad2 * diffZ)) / divisor);`. Initial compressed focused diff
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x0FBA7B07/0x87E4E665`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (2527)`. The final tail loaded the object pointer earlier,
+  changed the object/checkpoint dot FPR schedule, and broadened the vertical
+  update FPR allocation. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this final lateral delta-form spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted inverse-gravity quarter-multiply spelling missed in a
   worker probe. The source changed only `var_f20 = 1.0 - (var_f20 / 4.0)` to
