@@ -23,6 +23,23 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted early A-button throttle branch-polarity spelling missed.
+  The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  the throttle update branch from `if (gCurrentRacerInput & A_BUTTON) { add
+  throttle } else { subtract throttle }` to the behavior-equivalent inverted
+  `if (!(gCurrentRacerInput & A_BUTTON)) { subtract throttle } else { add
+  throttle }`. Pre-build `./diff.sh func_80049794 --compress-matching 2
+  --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0xC592EE11/0x5932D245`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (6090)`. The diff still lacked target `$f20/$f21` prologue saves,
+  kept early zero in current `$f16` instead of target `$f14`, changed the
+  branch shape around the early input block, and retained the known wave scan
+  `a0`-bound/`v1`-loop drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this A-button throttle branch-polarity spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight side-force multiply grouping missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
   `var_f20 = racer->velocity * var_t0 * 0.00015` as
