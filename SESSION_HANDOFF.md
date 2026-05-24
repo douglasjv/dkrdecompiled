@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:13:46Z
+- Generated at: 2026-05-24 07:17:51Z
 - Branch: `master`
-- HEAD: `45f22a70`
-- Completed task: `trackbg_render_flashy-x2-scaledxsin`
-- Summary: trackbg_render_flashy xPositions[2] scaledXSin reuse missed; restored source after relinked diff showed frame shrink to 0x150 and CURRENT (13681).
+- HEAD: `ff1c62d0`
+- Completed task: `func_80049794-close-wave-gate-split`
+- Summary: Rejected close save-family nested wave-gate split for func_80049794; preserved target frame/FPR saves but stayed in close-family CRCs with a0/v1 wave bound-index reversal.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector recommendation, but pivot only with a distinct saved-FPR/frame-pressure hypothesis; otherwise choose another active packet with a non-repeat source-shape lever.`
+- Task: `func_80049794 remains selector recommendation only with a distinct wave bound/index or saved-FPR allocation fix; otherwise pivot to another active packet rather than repeating close save-family gate/register variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
