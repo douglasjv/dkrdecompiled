@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:10:08Z
+- Generated at: 2026-05-24 10:13:17Z
 - Branch: `master`
-- HEAD: `55aff7aa`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected bottom hasWaves explicit-nonzero condition probe; restored promoted source after CRC miss.
+- HEAD: `1f74c43d`
+- Completed task: `func_80059208`
+- Summary: Rejected normalization boolean guard spelling; source changed only distance != 0.0f to distance.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains recommended next; avoid saved-FPR/wave-scan micro-variants unless a distinct source family is identified.`
+- Task: `Run selector; func_80049794 remains recommended but saturated, so use a distinct independent source family or pivot to another active routable candidate.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
