@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:27:28Z
+- Generated at: 2026-05-24 08:32:44Z
 - Branch: `master`
-- HEAD: `48b172fe`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical additive-negation spelling; promoted full verify failed with baseline CRC family and relinked focused diff stayed CURRENT (870), then source restored.
+- HEAD: `d37c95f4`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted triangle-hit nested-predicate spelling; relinked diff stayed CURRENT (2860) with the same early gCurrentLevelModel spill family.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; start with func_80049794 unless choosing localized func_80059208 fallback, but do not repeat the final vertical additive-negation spelling.`
+- Task: `Continue with another bounded func_8002B0F4 hypothesis that avoids early gCurrentLevelModel hoisting/spilling, or pivot to another routable candidate if no independent source family is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted triangle-hit nested-predicate spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `if (temp_ra_1 == temp_ra_2 && temp_ra_2 != temp_ra_3)` as nested
+  `if (temp_ra_1 == temp_ra_2) { if (temp_ra_2 != temp_ra_3) { ... } }`.
+  Pre-build `./diff.sh func_8002B0F4 --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with the promoted-baseline calculated
+  CRCs `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` stayed at `CURRENT (2860)`. The diff kept
+  the same early `gCurrentLevelModel` load/spill at `0x60(sp)` plus broad
+  segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this triangle-hit nested-predicate spelling. Next
+  hypothesis should avoid early model hoisting/spilling or pivot to another
+  independent routable packet.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted final vertical additive-negation spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
