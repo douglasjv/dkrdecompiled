@@ -23,6 +23,21 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 plain guarded-C promotion recheck missed. Before promotion,
+  `./diff.sh func_80049794 --no-pager` misleadingly reported `CURRENT (0)`
+  against the guarded source. Promoting only the `NON_EQUIVALENT` guard to
+  `#if 1` failed the full gate with the known current-baseline CRCs
+  `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --no-pager` showed `CURRENT (2760)`. The promoted
+  object still missed target `$f20/$f21` prologue saves, used `$f16` for early
+  zeroing instead of target `$f14`, and kept the wave scan in current
+  `a0`-bound/`v1`-loop allocation instead of target `v1`-bound/`a0`-loop.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  accept pre-promotion object-only `CURRENT (0)` evidence or repeat plain
+  guarded-C promotion without a distinct saved-FPR plus wave bound/index fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 close save-family nested wave-gate split missed. The source
   promoted the guarded C, recreated the close save-family base
   (x/z/y pre-`sqrtf` accumulation, chained grounded-wheel zero, steer-vel

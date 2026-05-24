@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:29:03Z
+- Generated at: 2026-05-24 07:32:36Z
 - Branch: `master`
-- HEAD: `99834182`
-- Completed task: `trackbg_render_flashy-z6-plus-negative`
-- Summary: Rejected promoted zPositions[6] plus-negative spelling for trackbg_render_flashy; full gate failed and relinked diff stayed in the early negative-cosine/outer-ring register family.
+- HEAD: `8b2b3705`
+- Completed task: `func_80049794`
+- Summary: Plain guarded-C promotion rejected after stale pre-promotion diff
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> Verify: OK; `./score.sh -s` -> 97.30%; `python3 tools/check_active_surface.py` -> active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 only with a distinct wave bound/index or saved-FPR allocation fix; otherwise use another active packet with a clearly non-repeat allocation/dataflow hypothesis.`
+- Task: `func_80049794 only with distinct saved-FPR plus wave bound/index allocation fix, otherwise pivot to another routable packet`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
