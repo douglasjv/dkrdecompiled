@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:08:02Z
+- Generated at: 2026-05-24 11:11:09Z
 - Branch: `master`
-- HEAD: `fbf79d92`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected texture-mask setup-order spelling; relinked focused diff regressed to CURRENT (3857), dimension loads reversed from target height-first/width-second, and source was restored.
+- HEAD: `68d00279`
+- Completed task: `func_80059208`
+- Summary: Rejected early rewind threshold comparison-order spelling; relinked focused diff stayed CURRENT (870), leaving final object/checkpoint-dot plus vertical FPR tail drift, and source was restored.
 
 ## Validation
 

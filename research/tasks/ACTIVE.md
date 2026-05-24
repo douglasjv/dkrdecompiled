@@ -22,6 +22,19 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted early rewind threshold comparison-order spelling
+  missed. The source changed the `NON_MATCHING` guard to `#if 1` and rewrote
+  only `if (splinePos < -0.2)` as `if (-0.2 > splinePos)`. Full verify failed
+  with the promoted-baseline calculated CRCs `0x53D141DF/0xB9D4B481`;
+  relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed
+  at `CURRENT (870)`. The early threshold block was unchanged in the focused
+  window, and the diff retained the final object/checkpoint-dot plus vertical
+  FPR tail drift around `0x5a260`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this early rewind threshold comparison-order
+  spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted texture-mask setup-order spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and only swapped the initial
