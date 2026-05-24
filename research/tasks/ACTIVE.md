@@ -223,7 +223,17 @@
   courseCheckpoint threshold, splineIndex comparison-direction, normalization
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
-  `func_8002B0F4` also remains active after a 2026-05-24 early `sp108`
+  `func_8002B0F4` also remains active after a 2026-05-24 promoted
+  collision-plane scalar-local probe (`Vec4f tempVec4f` replaced with
+  `planeX`/`planeY`/`planeZ`/`planeW`) missed as a no-movement family: full
+  verify failed with the promoted-baseline calculated CRCs
+  `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (2860)`. The unwanted early `gCurrentLevelModel` spill at
+  `0x60(sp)` plus broad segment/grid/tail register drift remained. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  collision-plane scalar-local spelling. A 2026-05-24 early `sp108`
   positive-range guard spelling (`if (!(sp108 != 0 && sp108 < 8))`) missed:
   full verify failed with calculated CRCs `0x7856718A/0x66208CAA`, and
   relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed

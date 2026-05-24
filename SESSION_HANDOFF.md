@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:12:57Z
+- Generated at: 2026-05-24 02:17:16Z
 - Branch: `master`
-- HEAD: `dfd9b0c2`
-- Completed task: `func_80059208`
-- Summary: Rejected promotion-only focused match; restored guard
+- HEAD: `8423cfa0`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted collision-plane scalar-local probe; full verify failed with baseline CRCs 0x7856718A/0x66208CAA and relinked focused diff stayed CURRENT (2860), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with fresh non-repeated full-gate evidence, or pivot to func_80059208 only with a concrete full-ROM promotion/layout hypothesis rather than focused CURRENT (0) alone.`
+- Task: `Run selector; keep func_8002B0F4 routable only with a fresh hypothesis that attacks the early gCurrentLevelModel spill/register family rather than plane local spelling, or pivot to another active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
