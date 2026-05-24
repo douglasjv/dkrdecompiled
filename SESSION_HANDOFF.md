@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:21:45Z
+- Generated at: 2026-05-24 06:24:51Z
 - Branch: `master`
-- HEAD: `735db65a`
+- HEAD: `c5043742`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected final output-pointer assignment spelling; promoted source stayed in baseline CRC/focused CURRENT (2860), then source was restored.
+- Summary: Rejected final store-order swap; promoted source regressed focused diff to CURRENT (3305), then source was restored.
 
 ## Validation
 

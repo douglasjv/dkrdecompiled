@@ -54,6 +54,20 @@
   pointer-object current-wave cursor with independent integer bound and saved
   FPR pressure, or a pivot to another routable packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted final store-order probe missed. The source removed the
+  `NON_EQUIVALENT` guard and swapped only the final tail from
+  `*arg3 = gTrackWaves; D_8011D308 = yOutCount;` to
+  `D_8011D308 = yOutCount; *arg3 = gTrackWaves;`. Full verify failed with
+  calculated CRCs `0x7856718A/0x9DAD43C2`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3305)`. The tail now stored `D_8011D308` before the output pointer,
+  opposite the target, while retaining the known unwanted early
+  `gCurrentLevelModel` spill and broad register drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this final store-order swap.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted final output-pointer assignment spelling missed. The
   source removed the `NON_EQUIVALENT` guard and changed only the final output
   assignment from `*arg3 = gTrackWaves` to `arg3[0] = gTrackWaves`, leaving the
