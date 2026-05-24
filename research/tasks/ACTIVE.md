@@ -260,6 +260,18 @@
   reported active surface ok; do not repeat this texture-mask setup-order
   spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted final-vertex RGB decimal-literal spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `verts->r/g/b = 0xFF` as `verts->r/g/b = 255`. Full verify failed with
+  calculated CRCs `0x93D338FF/0x03D9C8FE`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed
+  at promoted baseline `CURRENT (1808)`. The diff remained in the same early
+  position-array FPR schedule drift and produced no final vertex-store
+  movement. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this final RGB decimal-literal spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted explicit trig-argument cast spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and rewrote only the `sins_f` and
   `coss_f` arguments from `-camera->trans.rotation.x` to
