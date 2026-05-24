@@ -1,19 +1,21 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:33:21Z
+- Generated at: 2026-05-24 10:37:00Z
 - Branch: `master`
-- HEAD: `a430cd27`
-- Completed task: `func_80049794`
-- Summary: Rejected promoted head-turn branch-order probe; relinked diff regressed to CURRENT (3090), dropped target f20/f21 saves, and restored source verifies OK
+- HEAD: `67fb8cd1`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted post-hit yOutCount > 19 limit spelling; relinked diff stayed at CURRENT (2860) with early gCurrentLevelModel spill and source restored verifies OK
 
 ## Validation
 
 - Rejected probe full build failed with calculated CRCs
-  `0x3C39E22F/0x8EC77BBA`; relinked `./diff.sh func_80049794
-  --compress-matching 2 --no-pager` regressed to `CURRENT (3090)`. After
-  source restore, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
-  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
-  tools/check_active_surface.py` reported active surface ok.
+  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` stayed at `CURRENT (2860)` with the
+  unwanted early `gCurrentLevelModel` spill at `0x60(sp)` and broad
+  segment/grid/tail drift. After source restore, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok.
 
 ## Blockers Or Unknowns
 

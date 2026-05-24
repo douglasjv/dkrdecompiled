@@ -39,6 +39,20 @@
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this head-turn branch-order spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted post-hit `yOutCount > 19` limit spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `if (yOutCount >= 20)` after incrementing `yOutCount` to
+  `if (yOutCount > 19)`. Pre-build `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (2860)`. The diff retained the unwanted early `gCurrentLevelModel`
+  spill at `0x60(sp)` and broad segment/grid/tail drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat
+  this post-hit `yOutCount > 19` limit spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted batch-loop `currentBatch` pointer-carry spelling missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
   the batch loop from recomputing `currentBatch =
