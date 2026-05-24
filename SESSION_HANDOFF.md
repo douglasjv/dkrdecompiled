@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:24:54Z
+- Generated at: 2026-05-24 04:27:47Z
 - Branch: `master`
-- HEAD: `c0bf73d4`
-- Completed task: `func_80059208-local-rodata-threshold`
-- Summary: Rejected promoted func_80059208 function-local static f64 rewind-threshold probe; it reproduced the named-rodata miss with wrong late-rodata placement and final-tail drift.
+- HEAD: `07203f50`
+- Completed task: `trackbg_render_flashy-z2-scaledXSin`
+- Summary: Rejected promoted trackbg_render_flashy single-site zPositions[2] direct scaledXSin replacement; it collapsed into the bad first-ring direct-scaledXSin frame-shrink family.
 
 ## Validation
 
-- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0x53CFD9B3/0xC564A533; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager reported CURRENT (900). After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
+- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0x218F9FFA/0x18F4A6D6; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager reported CURRENT (13821) and shrank the frame from 0x158 to 0x150. After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot to a different routable candidate or a distinct non-rodata source-shape hypothesis; do not repeat func_80059208 local/static/file-scope f64 naming for D_800E6920.`
+- Task: `Pivot away from trackbg_render_flashy direct first-ring scaledXSin replacements; choose a different routable candidate or a distinct non-frame-shrinking FPR allocation hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -218,7 +218,15 @@
   early position-array/UV scheduling broadened. Source was restored,
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this single-site x2
-  scaled-sine left-operand spelling.
+  scaled-sine left-operand spelling. A promoted single-site
+  `zPositions[2] = scaledXCos - scaledXSin` direct replacement also missed in
+  the same direct-`scaledXSin` frame-shrink family: full verify failed with
+  calculated CRCs `0x218F9FFA/0x18F4A6D6`, and relinked `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` regressed to
+  `CURRENT (13821)`. The frame shrank from target `0x158` to `0x150` and the
+  first/outer position-array stack schedule shifted broadly. Source was
+  restored and final full verify passed; do not repeat direct first-ring
+  `scaledXSin` replacements as the FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 pointer-addition model-access probe missed. The promoted source
   changed only the initial segment and bounding-box setup from
