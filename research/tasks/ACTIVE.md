@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted direct `var_f16` UV sine-carrier spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1`, removed the
+  post-scale `xCos = var_f16` alias, and used `var_f16` directly in the
+  `uCoords[0]`, `uCoords[1]`, `uCoords[5]`, `uCoords[6]`, `uCoords[7]`, and
+  `uCoords[8]` expressions. Pre-build `./diff.sh trackbg_render_flashy
+  --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0x07616968/0xE7EACAF4`; relinked
+  `./diff.sh trackbg_render_flashy --no-pager` regressed to
+  `CURRENT (15227)`. The probe widened the frame to `0x160`, added
+  `$f20`/`$f21` saves, and immediately shifted the early position and UV FPR
+  schedule away from the target. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat direct `var_f16` UV sine-carrier alias removal.
+  Next `trackbg_render_flashy` hypothesis should preserve the `xCos` alias or
+  pivot to a different early position/store family.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 inline final object-dot object-load spelling missed. The source
   promoted the `NON_MATCHING` guard to `#if 1`, removed the `splinePos` and

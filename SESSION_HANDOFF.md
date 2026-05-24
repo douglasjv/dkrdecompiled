@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:06:17Z
+- Generated at: 2026-05-24 08:09:20Z
 - Branch: `master`
-- HEAD: `f21fefe1`
-- Completed task: `func-80059208-inline-object-dot`
-- Summary: Rejected inline final object-dot object-load spelling; relinked diff worsened to CURRENT (1356), source restored.
+- HEAD: `acaedcb2`
+- Completed task: `trackbg-render-flashy-direct-var-f16-uv`
+- Summary: Rejected direct var_f16 UV sine-carrier spelling; relinked diff regressed to CURRENT (15227), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants and func_80059208 final object-dot micro-variants unless a new independent source family is found. Otherwise choose another routable packet.`
+- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, and trackbg_render_flashy direct var_f16 UV alias-removal unless a new independent source family is found. Otherwise choose another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
