@@ -77,7 +77,17 @@
   through the five-node fill and final tail. Source was restored,
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this checkpoint-scale divisor
-  lerp spelling. `func_80059208` also remains active after 2026-05-24 sibling
+  lerp spelling. A 2026-05-24 final vertical `pad` clamp-limit carrier probe
+  (`pad = 100.0f; if (diffY > pad) ...; if (diffY < -pad) ...`) missed:
+  full verify failed with calculated CRCs `0x4400230F/0x7B651F08`, and
+  relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  worsened from promoted baseline `CURRENT (870)` to `CURRENT (1995)`.
+  The diff stayed in the bad final vertical clamp-limit carrier family,
+  shifted constant/FPR scheduling, and broadened final object-dot/checkpoint-dot
+  plus epilogue/global-offset drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this final vertical `pad`
+  clamp-limit carrier. `func_80059208` also remains active after 2026-05-24 sibling
   probes around
   the wrong-way counter and final lateral cast carriers missed: spelling the
   wrong-way increment as an explicit byte wrap
