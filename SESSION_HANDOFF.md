@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:09:20Z
+- Generated at: 2026-05-24 08:12:05Z
 - Branch: `master`
-- HEAD: `acaedcb2`
-- Completed task: `trackbg-render-flashy-direct-var-f16-uv`
-- Summary: Rejected direct var_f16 UV sine-carrier spelling; relinked diff regressed to CURRENT (15227), source restored.
+- HEAD: `114a33d5`
+- Completed task: `func-8002b0f4-loop-local-model-pointer`
+- Summary: Rejected loop-local LevelModel pointer setup; relinked diff improved to CURRENT (1678) but hoisted/spilled gCurrentLevelModel and source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, and trackbg_render_flashy direct var_f16 UV alias-removal unless a new independent source family is found. Otherwise choose another routable packet.`
+- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, trackbg_render_flashy direct var_f16 UV alias-removal, and normal loop-local func_8002B0F4 model-pointer setup unless a new independent source family is found. Otherwise choose another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
