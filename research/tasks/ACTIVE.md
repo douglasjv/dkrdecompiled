@@ -135,7 +135,15 @@
   by eight bytes, and the final object-dot/checkpoint-dot FPR drift remained.
   Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this plain
-  source-level `D_800E6920` constant naming as the rodata placement fix.
+  source-level `D_800E6920` constant naming as the rodata placement fix. A
+  promoted function-local `static const f64 rewindThreshold = -0.2` spelling
+  also missed in the same family: full verify failed with calculated CRCs
+  `0x53CFD9B3/0xC564A533`, and relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` reported `CURRENT (900)`. The diff still
+  referenced the wrong late-rodata address, shifted later racer constants by
+  eight bytes, and left the final object-dot/checkpoint-dot drift. Source was
+  restored and final full verify passed; do not repeat local/static/file-scope
+  f64 naming for this threshold.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 early rewind threshold single-precision spelling missed. The
   promoted source changed only `splinePos < -0.2` to `splinePos < -0.2f`.
