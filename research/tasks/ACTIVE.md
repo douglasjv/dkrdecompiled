@@ -236,6 +236,17 @@
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted `splineIndex` assignment-order probe missed. The source
+  removed the `NON_MATCHING` guard and changed only the threshold branch body
+  from `splinePos -= 1.0; splineIndex = TRUE;` to
+  `splineIndex = TRUE; splinePos -= 1.0;`. Focused
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with the promoted-baseline
+  calculated CRCs `0x53D141DF/0xB9D4B481`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this `splineIndex` assignment-order spelling
+  or trust object-only `CURRENT (0)` for this packet.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted `splineIndex` boolean-assignment probe missed. The source
   removed the `NON_MATCHING` guard and changed the setup from `splineIndex =
   FALSE` plus in-branch `TRUE` assignment to `splineIndex = splinePos >= 1.0`
