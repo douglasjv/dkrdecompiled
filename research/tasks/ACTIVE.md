@@ -58,7 +58,18 @@
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after 2026-05-24 sibling probes around
+  `func_80059208` also remains active after a 2026-05-24 checkpoint-scale
+  divisor lerp probe (`divisor = (scale * splinePos) + (distance * (1.0f -
+  splinePos))`) missed: full verify failed with calculated CRCs
+  `0x8227660E/0xF9723FA3`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (2955)`. The diff disrupted
+  the checkpoint-scale interpolation block and cascaded float-register drift
+  through the five-node fill and final tail. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this checkpoint-scale divisor
+  lerp spelling. `func_80059208` also remains active after 2026-05-24 sibling
+  probes around
   the wrong-way counter and final lateral cast carriers missed: spelling the
   wrong-way increment as an explicit byte wrap
   (`racer->wrongWayCounter = (u8) (racer->wrongWayCounter + updateRate)`) and

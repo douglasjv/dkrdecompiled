@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 01:06:48Z
+- Generated at: 2026-05-24 01:09:40Z
 - Branch: `master`
-- HEAD: `50e09219`
-- Completed task: `func_80049794`
-- Summary: Rejected worker-tested spCC post-sqrtf carrier; focused diff worsened to CURRENT (3154), source restored.
+- HEAD: `ebac39a4`
+- Completed task: `func_80059208`
+- Summary: Rejected checkpoint-scale divisor lerp probe; focused diff worsened to CURRENT (2955), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 only with a fresh wave-bound/index or save-family hypothesis that avoids recorded carrier variants, or pivot if no non-repeated shape remains.`
+- Task: `Continue func_80059208 only with a fresh final-tail hypothesis, or pivot back to func_80049794 with a non-repeated wave-bound/save-family shape.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
