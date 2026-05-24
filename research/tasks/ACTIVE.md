@@ -159,7 +159,15 @@
   inserted the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`,
   broadened segment/grid register rotation, and shifted tail labels by 4
   bytes. Source was restored and final full verify passed; do not repeat this
-  inverted empty-if surface-skip branch shape.
+  inverted empty-if surface-skip branch shape. A current-source bottom
+  `func_800BB2F4` rot-output address spelling probe also missed: changing
+  `&(yOutCount + D_8011D128)->rot` to `&D_8011D128[yOutCount].rot` failed full
+  verify with calculated CRCs `0x7A567F98/0xC658B8F4`, and relinked
+  `./diff.sh func_8002B0F4` regressed to `CURRENT (4298)`. The diff changed the
+  bottom call address setup to `addiu a3,v1,4`, spilled `v1` at `0x68(sp)`, and
+  widened the known unwanted early `gCurrentLevelModel` spill/tail register
+  drift. Source was restored and final full verify passed; do not repeat this
+  bottom rot-output address spelling.
   Earlier partial/default water store-order, explicit default-water height
   cast, bottom segment-range guard reorder, target default-water store-order,
   and bottom-water condition-order probes also missed; do not repeat them.
