@@ -25,6 +25,35 @@
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 close save-family wave scan probe missed. The promoted shape
+  removed the trailing pads, chained the grounded-wheel zero, accumulated the
+  first speed `sqrtf` numerator through `var_f6`, and rewrote the wave scan as
+  a bottom-tested loop with `var_v1` as the high bound plus `var_f0 =
+  obj->trans.y_position + 5.0f` as the threshold carrier. Worker object-only
+  focused diff first reported stale `CURRENT (0)`, but the main promoted full
+  gate failed with calculated CRCs `0x4FA0E2A5/0x9BEC6D73`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` showed
+  `CURRENT (8583)`. Key drift: the frame shrank to `0xf0`, the target
+  `$f20/$f21` prologue saves disappeared, early zeroing still used `$f16`
+  rather than target `$f14`, and the wave block moved into a different
+  register family. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this bottom-tested wave
+  threshold carrier / pad-removal shape, and do not trust object-only
+  `CURRENT (0)` for this function without a promoted full gate plus relinked
+  focused diff.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 early lap-reset comparison operand spelling missed. The promoted
+  shape changed the lap-reset guard from `racer->nextCheckpoint >= temp_v0` to
+  `temp_v0 <= racer->nextCheckpoint`. Full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (870)` with the final object-dot/checkpoint-dot
+  plus vertical FPR drift unchanged. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this early lap-reset
+  comparison operand spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted first-ring raw-sine continuation (`zPositions[3] =
   scaledXCos + (xSin * 1280.0f)` instead of the lone `scaledXSin` use there)

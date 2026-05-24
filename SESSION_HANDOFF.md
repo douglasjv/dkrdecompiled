@@ -1,14 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:20:28Z
+- Generated at: 2026-05-24 02:26:59Z
 - Branch: `master`
-- HEAD: `34e8f0d8`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted zPositions[3] raw xSin multiply spelling; full verify failed with CRCs 0xF82B92BE/0x5DCC04AE and relinked focused diff worsened to CURRENT (5579), then source restored.
+- HEAD: post-closeout commit; run `git log -1 --oneline`
+- Completed task: `func_80049794`
+- Summary: Rejected bottom-tested wave threshold carrier and lap-reset operand probes; source restored after promoted full-gate misses.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK after restore); ./score.sh -s => 97.30%
+- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK after restore)
+- ./score.sh -s => 97.30%
 
 ## Blockers Or Unknowns
 
@@ -22,7 +23,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with fresh non-repeated full-gate evidence, or pivot among active packets with a new family rather than first-ring/raw-sine trackbg variants.`
+- Task: `Run selector; continue func_80049794 only with fresh non-repeated full-gate evidence, or pivot among active packets with a new family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
