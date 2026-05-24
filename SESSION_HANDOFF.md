@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:20:31Z
+- Generated at: 2026-05-24 12:24:55Z
 - Branch: `master`
-- HEAD: `354633c0`
-- Completed task: `func_80059208-wrong-way-reset-false`
-- Summary: Rejected promoted func_80059208 wrong-way reset literal spelling: changed only racer->wrongWayCounter = 0 to racer->wrongWayCounter = FALSE. Full verify failed with CRCs 0x53D141DF/0xB9D4B481; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager stayed at CURRENT (870), retaining the same checkpoint-dot/object-dot FPR drift around 0x5a260-0x5a29c. Source restored.
+- HEAD: `ae54edba`
+- Completed task: `trackbg-render-flashy-uv-dimension-multiply-before-shift`
+- Summary: Rejected promoted trackbg_render_flashy UV dimension multiply-before-shift spelling: changed only texHeader width/height scale setup from texHeader->width * 16 * unkA0 / texHeader->height * 16 * unkA1 to (texHeader->width * unkA0) << 4 / (texHeader->height * unkA1) << 4, including the duplicate height assignment. Full verify failed with CRCs 0x9D8339EB/0x5359A7D5; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager worsened to CURRENT (2963), keeping the early negative-cosine FPR drift and inserting multiply-then-shift integer traffic. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_80059208 wrong-way counter reset/update micro-variants and final-tail dot/clamp variants unless paired with a distinct earlier lifetime/spline dataflow hypothesis; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid trackbg_render_flashy UV dimension shift/multiply-before-shift spellings, color/sentinel variants, and first-ring negative-cosine carriers unless paired with a distinct FPR allocation fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

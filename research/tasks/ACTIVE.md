@@ -2068,6 +2068,21 @@
   first/outer position-array stack schedule shifted broadly. Source was
   restored and final full verify passed; do not repeat direct first-ring
   `scaledXSin` replacements as the FPR allocation fix.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted UV dimension multiply-before-shift spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the
+  width/height scale setup from `texHeader->width * 16 * unkA0` /
+  `texHeader->height * 16 * unkA1` to `(texHeader->width * unkA0) << 4` /
+  `(texHeader->height * unkA1) << 4`, including the duplicate height assignment.
+  Full verify failed with calculated CRCs `0x9D8339EB/0x5359A7D5`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` worsened
+  from promoted baseline `CURRENT (1808)` to `CURRENT (2963)`. The diff kept the
+  early negative-cosine FPR drift and inserted multiply-then-shift integer
+  traffic in the UV dimension setup. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat UV dimension shift or multiply-before-shift
+  spellings without a distinct early FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted `pad3` removal plus scaled collision-plane index local
   probe missed. The source removed the `NON_EQUIVALENT` guard, removed the
