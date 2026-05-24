@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:32:44Z
+- Generated at: 2026-05-24 08:36:06Z
 - Branch: `master`
-- HEAD: `d37c95f4`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted triangle-hit nested-predicate spelling; relinked diff stayed CURRENT (2860) with the same early gCurrentLevelModel spill family.
+- HEAD: `03608e04`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected selected-color load-order spelling; relinked diff stayed CURRENT (1808) with the same early position-array register drift.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with another bounded func_8002B0F4 hypothesis that avoids early gCurrentLevelModel hoisting/spilling, or pivot to another routable candidate if no independent source family is available.`
+- Task: `Run selector again; prefer a bounded routable target with an independent source family, avoiding trackbg_render_flashy selected-color load-order and saturated first/outer position arithmetic/store-order variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
