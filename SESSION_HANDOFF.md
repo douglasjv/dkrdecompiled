@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:21:22Z
+- Generated at: 2026-05-24 08:25:05Z
 - Branch: `master`
-- HEAD: `ccef52fd`
-- Completed task: `trackbg-render-flashy-triangle-indexed-table`
-- Summary: Rejected final triangle indexed-table spelling; relinked diff CURRENT (12773), source restored.
+- HEAD: `d89f087e`
+- Completed task: `func_80059208`
+- Summary: Rejected final lateral correction outer-negate spelling; promoted full verify failed and relinked focused diff regressed to CURRENT (1600), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, func_8002B0F4 normal loop-local model-pointer setup or Z grid-mask unroll, and trackbg_render_flashy direct var_f16 UV alias-removal, scaledXSin first-ring reuse, or final triangle indexed-table spelling unless a new independent source family is found. Otherwise choose another routable packet.`
+- Task: `Run selector again; start with func_80049794 unless choosing localized func_80059208 fallback, but do not repeat the outer-negate final lateral correction spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
