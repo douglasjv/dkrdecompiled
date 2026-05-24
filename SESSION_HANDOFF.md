@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:23:56Z
+- Generated at: 2026-05-24 10:26:53Z
 - Branch: `master`
-- HEAD: `e2797b1b`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted texture mask multiply spelling; source changed only width/height << 5 masks to * 32, relinked focused diff stayed CURRENT (1808), and restored source verifies OK
+- HEAD: `28273659`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted edge-comparison > -1 spelling; source changed only the three temp_ra_* >= 0 comparisons to > -1, relinked focused diff stayed CURRENT (2860), and restored source verifies OK
 
 ## Validation
 
 - Rejected probe full build failed with calculated CRCs
-  `0x93D338FF/0x03D9C8FE`; after source restore, `gmake -j4
+  `0x7856718A/0x66208CAA`; after source restore, `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok.
@@ -26,7 +26,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_80049794 remains recommended but saturated, so use a distinct independent source family or pivot to another active routable candidate rather than repeating trackbg_render_flashy position/UV/mask micro-variants`
+- Task: `Run selector; func_80049794 remains recommended but saturated, so choose a distinct independent source family or another active routable candidate rather than repeating guard/order micro-variants`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
