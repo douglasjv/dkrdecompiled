@@ -4871,7 +4871,14 @@
   the object pointer/z load earlier, broadened the final object-dot FPR
   schedule, and shifted final vertical/clamp register allocation. Source was
   restored and final full verify passed; do not repeat this final object-dot
-  distance accumulation spelling.
+  distance accumulation spelling. A 2026-05-24 final vertical plus-negated
+  numerator spelling (`diffY = (obj->trans.y_position + -tempY) / divisor`)
+  also missed as a no-movement family: full verify failed with the
+  promoted-baseline CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed
+  `CURRENT (870)` with the same final object-dot/checkpoint-dot plus vertical
+  FPR drift. Source was restored and final full verify passed; do not repeat
+  this final vertical plus-negated numerator spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
