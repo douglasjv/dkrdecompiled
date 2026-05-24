@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:15:58Z
+- Generated at: 2026-05-24 09:19:35Z
 - Branch: `master`
-- HEAD: `8966e63a`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected early sp108 return guard condition-order spelling; promoted source failed full verify with calculated CRCs 0x7856718E/0xC7219F23 and relinked diff regressed to CURRENT (2930).
+- HEAD: `99f79b4f`
+- Completed task: `func_80049794`
+- Summary: Rejected low-boost fallback condition-order spelling; promoted source failed full verify with calculated CRCs 0x105BE9DA/0x11DA74B9 and relinked diff stayed at CURRENT (2760).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Avoid func_8002B0F4 early sp108 guard-order, sp108 > 7, sp108 <= 0, sp108 split/positive-range guards, and the known gCurrentLevelModel spill micro-variants; also avoid the recent func_80049794 throttle branch, side-force grouping, xRotationOffset denominator, pitch damping, tappedR, and late attach-point guard variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Avoid func_80049794 low-boost fallback condition order, throttle branch, side-force grouping, xRotationOffset denominator, pitch damping, tappedR, late attach-point guard, saved-FPR/wave-scan micro-variants, and gravity/boost-emitter variants already recorded.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
