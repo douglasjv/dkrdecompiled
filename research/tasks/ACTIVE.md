@@ -3257,6 +3257,15 @@
   bound/index allocation remained current `a0`/`v1` instead of target
   `v1`/`a0`. Source was restored and final full verify passed; do not repeat
   this current-baseline `var_a0`/`var_v1` declaration-order swap. A
+  current-baseline roll-trick `x_rotation_vel` comma no-op removal probe
+  (`racer->x_rotation_vel = var_v1 + ((racer->trickType * 0x600) *
+  updateRate)`) also missed as a no-movement family: full verify failed with
+  calculated CRCs `0x60E1E03F/0x46C688CD`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this roll-trick comma no-op removal spelling. A
   current-baseline drift reset integer spelling (`racer->drift_direction = 0`
   instead of `0.0f`) also missed as a no-op: full verify failed with
   calculated CRCs `0x5FDDE03F/0xEF7A0514`, the relinked focused diff stayed
