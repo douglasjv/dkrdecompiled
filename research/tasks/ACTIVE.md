@@ -40,6 +40,23 @@
   hypothesis should avoid this upper-half decrement spelling and saturated
   final-tail object-dot/clamp variants.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted pointer-sentinel comparison spelling missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and rewrote only the two
+  `unk74` sentinel checks from `(u32) pointer !=/== -1U` to pointer comparisons
+  against `(LevelHeader_70 *) -1`. Pre-build `./diff.sh trackbg_render_flashy
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with the promoted-baseline calculated CRCs
+  `0x93D338FF/0x03D9C8FE`; relinked `./diff.sh trackbg_render_flashy
+  --compress-matching 2 --no-pager` stayed at `CURRENT (1808)`. The diff stayed
+  in the same early negative-cosine and first/outer position-array register
+  drift, with no useful movement at the selected-color sentinel block. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this pointer-sentinel comparison spelling. Next hypothesis should avoid
+  `trackbg_render_flashy` sentinel/color-order variants and saturated
+  position/UV micro-variants.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted selected-color load-order spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and reordered only the
   `if (var_t2 != NULL)` color assignments so
