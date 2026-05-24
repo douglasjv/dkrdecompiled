@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:24:56Z
+- Generated at: 2026-05-24 07:29:03Z
 - Branch: `master`
-- HEAD: `eff54c7c`
-- Completed task: `func_80049794-grounded-zero-literal`
-- Summary: Rejected promoted grounded-wheel integer-zero literal probe for func_80049794; full gate failed and uncompressed diff showed the usual missing F20/F21 saves plus wave bound/index reversal.
+- HEAD: `99834182`
+- Completed task: `trackbg_render_flashy-z6-plus-negative`
+- Summary: Rejected promoted zPositions[6] plus-negative spelling for trackbg_render_flashy; full gate failed and relinked diff stayed in the early negative-cosine/outer-ring register family.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector func_80049794 only with a distinct wave bound/index or saved-FPR allocation fix; otherwise pivot to another active packet instead of repeating literal-only or exhausted wave-scan spellings.`
+- Task: `Continue selector func_80049794 only with a distinct wave bound/index or saved-FPR allocation fix; otherwise use another active packet with a clearly non-repeat allocation/dataflow hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

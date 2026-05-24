@@ -53,6 +53,20 @@
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this UV dimension `<< 4` product spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted outer-ring `zPositions[6]` plus-negative spelling
+  missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
+  rewrote `zPositions[6] = -(2.0f * scaledXCos) - scaledXSin` as
+  `zPositions[6] = -(2.0f * scaledXCos) + -scaledXSin`. Compressed focused
+  diff misleadingly reported `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0x93D438FF/0x1A841372`; uncompressed relinked
+  `./diff.sh trackbg_render_flashy --no-pager` showed `CURRENT (1813)`. The
+  diff stayed in the early negative-cosine `$f18`/`$f16` mismatch and broadened
+  first/outer position-array register-order drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this single-site `zPositions[6]` plus-negative spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted first-ring `xPositions[2]` scaled-sine reuse probe
   missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
   rewrote `xPositions[2] = scaledXCos + (xSin * 1280.0f)` as
