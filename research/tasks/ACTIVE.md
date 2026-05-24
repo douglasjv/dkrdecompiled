@@ -36,6 +36,21 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this late velocity store-order spelling.
+- Latest alternate-packet note: `func_80059208` remains active after two
+  2026-05-24 promoted final checkpoint-dot expression spellings missed. Both
+  probes changed the `NON_MATCHING` guard to `#if 1`: first `pad2 =
+  (tempZ * diffZ) + (diffX * tempX); diffX = -((pad + -pad2) / divisor);`,
+  then split-accumulated positive `pad2` as `pad2 = tempZ * diffZ; pad2 +=
+  diffX * tempX; diffX = -((pad - pad2) / divisor);`. Both full verifies
+  failed with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked `./diff.sh
+  func_80059208 --compress-matching 2 --no-pager` stayed at `CURRENT (870)`.
+  The final tail still folds the object/checkpoint dot into current `sub.s`
+  where target materializes a negated checkpoint-dot temporary then `add.s`,
+  and the vertical FPR drift remains unchanged. Source was restored, `gmake
+  -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat these final checkpoint-dot positive/`pad + -pad2`
+  expression spellings.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 duplicated `hubName` branch-store probe missed. The source
   changed the `NON_MATCHING` guard to `#if 1`, moved the single

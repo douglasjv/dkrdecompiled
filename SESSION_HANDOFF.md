@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:34:22Z
+- Generated at: 2026-05-24 11:38:31Z
 - Branch: `master`
-- HEAD: `82bef5f5`
-- Completed task: `func_80049794-late-velocity-store-order`
-- Summary: Rejected promoted func_80049794 late velocity store-order spelling; focused diff stayed at CURRENT (2760), source restored.
+- HEAD: `4d77cd7b`
+- Completed task: `func_80059208-final-checkpoint-dot-expressions`
+- Summary: Rejected promoted func_80059208 final checkpoint-dot positive and pad-plus-negative expression spellings; focused diff stayed at CURRENT (870), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid late velocity store-order spelling.`
+- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid func_80059208 final checkpoint-dot positive/pad-plus-negative expression spellings.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
