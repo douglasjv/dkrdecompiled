@@ -346,7 +346,18 @@
   bound/index allocation reversed as current `a0`-bound/`v1`-loop. Source was
   restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
   and `./score.sh -s` remained 97.30%; do not repeat this positive-count
-  wave-gate spelling. A
+  wave-gate spelling. A 2026-05-24 current-baseline course-height trick-type
+  guard reorder (`racer->trickType >= -1 && racer->trickType < 2 && var_f2 <
+  0`) also missed: full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEE2BD2FC`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3170)`. It changed the local branch family but still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this course-height
+  trick-type guard order. A
   2026-05-23 current-baseline `spA3` type probe (`s32 spA3` instead of the
   current byte local) missed: full verify failed with calculated CRCs
   `0x8FDDDF9D/0x16677070`, and relinked `./diff.sh func_80049794` regressed to
@@ -3770,6 +3781,18 @@
   reversed as current `a0` bound plus `v1` loop-index rather than target `v1`
   bound plus `a0` loop-index. Source was restored and final full verify passed;
   do not repeat this course-height range-guard order. A baseline
+  current-checkout course-height trick-type guard reorder
+  (`racer->trickType >= -1 && racer->trickType < 2 && var_f2 < 0`) also
+  missed: full verify failed with calculated CRCs `0x5FDDE03F/0xEE2BD2FC`,
+  and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (3170)`. It changed the local branch family but still lacked target
+  `$f20/$f21` prologue saves, kept early zero in `$f16` instead of target
+  `$f14`, and left the wave bound/index allocation reversed as current
+  `a0`-bound/`v1`-loop. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this course-height trick-type guard order. A
+  baseline
   current-checkout selected-wave pointer cache (`WaterProperties *wave =
   gRacerCurrentWave[var_a0 + 1]`, reused for both `waveHeight` and `rot.y`)
   also missed: full verify failed with calculated CRCs

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 01:39:58Z
+- Generated at: 2026-05-24 01:42:24Z
 - Branch: `master`
-- HEAD: `8f5228e4`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected global-clear FALSE literal probe; restored guard
+- HEAD: `c9a1f3bf`
+- Completed task: `func_80049794`
+- Summary: Rejected course-height trick-type guard reorder; restored guard
 
 ## Validation
 
