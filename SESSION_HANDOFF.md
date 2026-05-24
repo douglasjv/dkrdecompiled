@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:24:51Z
+- Generated at: 2026-05-24 06:26:59Z
 - Branch: `master`
-- HEAD: `c5043742`
+- HEAD: `fed500aa`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected final store-order swap; promoted source regressed focused diff to CURRENT (3305), then source was restored.
+- Summary: Rejected return-through-global spelling; promoted source regressed focused diff to CURRENT (3535), then source was restored.
 
 ## Validation
 
