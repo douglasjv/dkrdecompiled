@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:53:18Z
+- Generated at: 2026-05-24 04:57:04Z
 - Branch: `master`
-- HEAD: `bf0356b6`
-- Completed task: `func_80049794`
-- Summary: Rejected promoted func_80049794 selected-wave byte-offset carrier; relinked focused diff regressed to CURRENT (5460).
+- HEAD: `33a24a09`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted func_8002B0F4 sp108 > 7 early guard spelling; focused diff stayed at CURRENT (2860).
 
 ## Validation
 
-- Probe failed CRCs 0x784EE4A7/0x63167E71; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- Probe failed CRCs 0x7856718A/0x66208CAA; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_80049794 selected-wave index/pointer/byte-offset carriers unless paired with a proven save-pressure fix; choose a different routable candidate or a distinct non-wave source-shape hypothesis.`
+- Task: `Pivot away from func_8002B0F4 early sp108 guard spellings and plain promotion; choose a distinct model-spill/register-family hypothesis or another routable candidate.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

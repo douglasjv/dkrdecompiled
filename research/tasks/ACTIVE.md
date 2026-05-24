@@ -282,6 +282,17 @@
   restored and final full verify passed; do not repeat direct first-ring
   `scaledXSin` replacements as the FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted early `sp108 > 7` guard spelling missed. The source
+  removed the `NON_EQUIVALENT` guard and changed only the second half of the
+  initial return guard from `sp108 >= 8` to `sp108 > 7`. Full verify failed
+  with calculated CRCs `0x7856718A/0x66208CAA`, and relinked `./diff.sh
+  func_8002B0F4 --compress-matching 2 --no-pager` stayed at promoted baseline
+  `CURRENT (2860)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` load/spill at `0x60(sp)` and broadened segment/grid/tail
+  register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this early `sp108 > 7` guard spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted X-grid mask accumulator late-zero scheduling probe
   missed. The source removed the `NON_EQUIVALENT` guard and moved only
   `var_s1 = 0` from immediately after `var_a1 = 1` to just before the first
