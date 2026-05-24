@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:41:23Z
+- Generated at: 2026-05-24 11:45:47Z
 - Branch: `master`
-- HEAD: `9dad0d81`
-- Completed task: `func_8002B0F4-current-stack-texture-index-carrier`
-- Summary: Rejected promoted func_8002B0F4 current-stack texture-index carrier and nested water guard; focused diff improved to CURRENT (2435) but source restored.
+- HEAD: `7e51b517`
+- Completed task: `func_8008FF1C-register-s32-temp`
+- Summary: Rejected promoted func_8008FF1C register s32 temp carrier; focused diff regressed to CURRENT (935) and source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf-: Verify: OK after restore; ./score.sh -s: decomp progress 97.30%; python3 tools/check_active_surface.py: active surface ok
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-`: Verify: OK after restore; `./score.sh -s`: decomp progress 97.30%; `python3 tools/check_active_surface.py`: active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid func_8002B0F4 current-stack texture-index carrier alone or with only nested water-surface guards.`
+- Task: `Return to selector recommended func_80049794 only with a distinct independent family, or choose another bounded routable probe; avoid func_8008FF1C temp/register carriers.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

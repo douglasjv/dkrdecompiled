@@ -52,6 +52,19 @@
   surface ok; do not repeat these final checkpoint-dot positive/`pad + -pad2`
   expression spellings.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  2026-05-24 promoted `register s32 temp` selected-track carrier missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and changed only the
+  existing `s16 temp` carrier to `register s32 temp`, preserving the current
+  unsequenced selected-track assignment and hub-name store shape. Full verify
+  failed with calculated CRCs `0x553930E7/0x227AD4A3`; relinked `./diff.sh
+  func_8008FF1C --no-pager` regressed from the parked baseline `CURRENT (10)`
+  to `CURRENT (935)`. The branch still did not recover the target `t2`
+  halfword load family and broadened visible-track register drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat
+  this `register s32 temp` carrier.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 duplicated `hubName` branch-store probe missed. The source
   changed the `NON_MATCHING` guard to `#if 1`, moved the single
   `cur->hubName = levelName` statement into both `selectedTrack != -1` branch

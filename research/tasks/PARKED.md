@@ -109,7 +109,15 @@ when intentionally returning to them.
   `CURRENT (485)`, the selected-track branch still used `v1` instead of target
   `t2`, and the would-be delay-slot store became `move a1,v0` followed by a
   later `sw a1,0(s0)`. Source was restored and final full verify passed; do
-  not repeat duplicated branch-local `hubName` store spellings.
+  not repeat duplicated branch-local `hubName` store spellings. A sibling
+  `register s32 temp` carrier also missed: promoting `func_8008FF1C` and
+  changing only the existing `s16 temp` selected-track carrier to `register
+  s32 temp` failed full verify with calculated CRCs
+  `0x553930E7/0x227AD4A3`; relinked `./diff.sh func_8008FF1C --no-pager`
+  regressed from parked baseline `CURRENT (10)` to `CURRENT (935)`, still did
+  not recover the target `t2` halfword load family, and broadened visible-track
+  register drift. Source was restored and final full verify passed; do not
+  repeat this `register s32 temp` selected-track carrier.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
