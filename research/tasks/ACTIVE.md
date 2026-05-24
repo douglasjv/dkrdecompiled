@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 inline final object-dot object-load spelling missed. The source
+  promoted the `NON_MATCHING` guard to `#if 1`, removed the `splinePos` and
+  `distance` temporaries from the final object-dot calculation, and used
+  `obj->trans.x_position` / `obj->trans.z_position` directly in `pad`.
+  Pre-build `./diff.sh func_80059208 --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x53A81EDF/0x116C7718`; relinked
+  `./diff.sh func_80059208 --no-pager` worsened to `CURRENT (1356)` from the
+  promoted baseline `CURRENT (870)`. The relinked diff introduced early
+  checkpoint-distance FPR/stack-slot drift around `$f0`/`$f2` and
+  `0x2c`/`0x58`/`0x28`, while the final object/checkpoint-dot tail remained
+  unresolved. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat direct inline final object x/z load object-dot
+  spelling. Next hypothesis should use an independent `func_80059208` family or
+  pivot away from final object-dot micro-variants.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 combined close-save plus cached wave-bound split missed. The
   source promoted the `NON_EQUIVALENT` guard to `#if 1`, removed trailing
