@@ -134,6 +134,19 @@
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted crossed final object-dot spelling missed. The source
+  removed the `NON_MATCHING` guard and changed only the final lateral object
+  dot from `pad = (objX * diffX) + (diffZ * objZ)` to
+  `pad = (objZ * diffX) + (diffZ * objX)`. Full verify failed with calculated
+  CRCs `0x53CD81DF/0xC82CEDAE`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (875)`. The tail shifted into
+  the same small object-dot multiply-order family as the x/z product commutes,
+  with final vertical FPR drift still present. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat crossed-coordinate final object-dot
+  spellings.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted normalization positive-distance guard probe missed. The
   source removed the `NON_MATCHING` guard and changed only
   `if (distance != 0.0f)` to `if (distance > 0.0f)`. Full verify failed with

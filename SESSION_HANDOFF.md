@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:02:18Z
+- Generated at: 2026-05-24 05:05:54Z
 - Branch: `master`
-- HEAD: `b333c13b`
-- Completed task: `func_80049794`
-- Summary: Rejected worker func_80049794 close save-family predecrement wave-loop probe; relinked focused diff regressed to CURRENT (6209).
+- HEAD: `0a8b67e9`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted func_80059208 crossed final object-dot spelling; focused diff worsened to CURRENT (875).
 
 ## Validation
 
-- Worker probe failed CRCs 0x11949F63/0x3C85367C and restored source; main gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- Probe failed CRCs 0x53CD81DF/0xC82CEDAE; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_80049794 wave pointer/predecrement/cache spellings; first recover close save-family pressure while keeping $f20/$f21 saves alive, or choose another routable candidate.`
+- Task: `Avoid func_80059208 final object-dot product-order and crossed-coordinate spellings; choose a distinct final-tail register-family hypothesis or another routable candidate.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
