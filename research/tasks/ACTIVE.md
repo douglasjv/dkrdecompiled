@@ -85,6 +85,19 @@
   remained 97.30%; do not repeat new-local/storage negative-cosine carriers.
   Next `trackbg_render_flashy` hypothesis should preserve the existing stack
   layout while influencing the target `neg.s` FPR allocation.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 grouped first-ring negative-sum spelling missed. The promoted
+  source changed only `xPositions[0]` from
+  `-scaledXCos - (xSin * 1280.0f)` to
+  `-((xSin * 1280.0f) + scaledXCos)`. Full verify failed with calculated CRCs
+  `0xD6EC5F94/0xFD1467AB`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` worsened
+  from promoted baseline `CURRENT (1808)` to `CURRENT (10447)`. The frame
+  widened to `0x160`, stack offsets shifted, and the early negative-cosine
+  carrier still missed target `$f18`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this single-site grouped first-ring
+  negative-sum spelling.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted normalization direct-division spelling missed. The source
   shape changed the guarded unit-vector normalization from
