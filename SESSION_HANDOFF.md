@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24T06:54:56Z
+- Generated at: 2026-05-24T06:58:45Z
 - Branch: `master`
-- HEAD: `9761a141`
-- Completed task: `func_8002B0F4-surface-local-widening`
-- Summary: Rejected promoted `s8 surface` -> `s32 surface` local-type probe for func_8002B0F4; source restored and packet remains routable.
+- HEAD: `3f223c57`
+- Completed task: `trackbg_render_flashy-selected-color-shift-mask`
+- Summary: Rejected promoted selected-color shift-mask probe for trackbg_render_flashy; source restored and packet remains routable.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; prefer func_80049794 only with a distinct saved-FPR/frame-pressure idea, otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 only with a non-repeat hypothesis from ACTIVE.md. For func_8002B0F4 do not repeat the rejected surface-local widening probe; target the early model pointer spill/segment setup or pivot.`
+- Task: `Run selector; prefer func_80049794 only with a distinct saved-FPR/frame-pressure idea, otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 only with a non-repeat hypothesis from ACTIVE.md. For trackbg_render_flashy do not repeat selected-color mask rewrites; target the early negative-cosine FPR allocation or pivot.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

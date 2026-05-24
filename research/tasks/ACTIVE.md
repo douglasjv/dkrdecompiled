@@ -537,6 +537,23 @@
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted selected-color shift-mask spelling missed. The source
+  removed the `NON_MATCHING` guard and changed only
+  `levelHeader->rgba.word & (~0xFF)` to `(levelHeader->rgba.word >> 8) << 8`.
+  Compressed `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x19BC4411/0xC7375025`; uncompressed
+  `./diff.sh trackbg_render_flashy --no-pager` showed `CURRENT (3463)`. The
+  shift-mask spelling unexpectedly moved the early position-array FPR schedule,
+  keeping current `$f16` instead of target `$f18` for the negative scaled
+  cosine and broadening outer-ring/global-offset drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this selected-color shift-mask spelling. Next `trackbg_render_flashy`
+  hypothesis should still target the early negative-cosine FPR allocation or
+  pivot to another routable packet.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted compound scaled trig temporary setup missed. The source
   removed the `NON_MATCHING` guard and changed only
   `scaledXSin = xSin * 1280.0f; scaledXCos = xCos * 1280.0f;` to
