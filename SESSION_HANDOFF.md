@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:12:38Z
+- Generated at: 2026-05-24 04:17:46Z
 - Branch: `master`
-- HEAD: `41a0763e`
-- Completed task: `func_80049794-wave-pointer-carrier`
-- Summary: Rejected close save-family decrementing WaterProperties pointer-carrier wave-scan probe: adding a wave pointer local widened the frame to 0x100, failed full verify, and worsened focused diff to CURRENT (8081). Source restored.
+- HEAD: `b60fcba1`
+- Completed task: `func_8002B0F4-xz-int-s16`
+- Summary: Rejected promoted current-source XInInt/ZInInt s16 local type probe for func_8002B0F4; it worsened the focused diff and kept the unwanted early gCurrentLevelModel spill family.
 
 ## Validation
 
-- Probe full verify failed CRCs 0x9ED4C306/0xE6587C63; focused ./diff.sh func_80049794 --compress-matching 2 --no-pager reported CURRENT (8081). After restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s => 97.30%.
+- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0x93CE4D86/0x8EE561B4; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager reported CURRENT (4425). After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,8 +22,8 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from func_80049794 wave-scan allocation probes for the next packet; use selector candidates to try a bounded distinct hypothesis on func_80059208, trackbg_render_flashy, or func_8002B0F4 unless a new func_80049794 save-pressure hypothesis is materially different from the rejected wave local/pointer families.`
+- Task: `Continue func_8002B0F4 only with a distinct model-spill/register-family hypothesis; do not repeat XInInt/ZInInt s16 local typing.`
 - Packet class: `matching_impl`
-- Packet status: `unchanged`
+- Packet status: `ready`
 - Reasoning tier: `medium`
 - Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.

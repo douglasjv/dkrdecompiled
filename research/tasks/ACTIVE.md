@@ -7087,7 +7087,15 @@
   to `CURRENT (3815)`. The diff still inserted the unwanted early
   `gCurrentLevelModel` spill at `0x60(sp)` and broadened segment/grid/tail
   drift. Source was restored and final full verify passed; do not repeat this
-  collision-plane nonzero `0.0f` literal spelling.
+  collision-plane nonzero `0.0f` literal spelling. A promoted current-source
+  X/Z integer local type spelling that changed only `XInInt`/`ZInInt` from
+  `s32` to `s16` also missed: full verify failed with calculated CRCs
+  `0x93CE4D86/0x8EE561B4`, and relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` regressed to `CURRENT (4425)`. The diff
+  inserted explicit sign-extension work for the narrowed X/Z locals and still
+  kept the unwanted early `gCurrentLevelModel` spill family. Source was
+  restored and final full verify passed; do not repeat this X/Z `s16` local
+  type spelling.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
