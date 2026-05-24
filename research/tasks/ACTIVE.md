@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted first-ring full `scaledXSin` reuse spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and reused the existing
+  `scaledXSin` local for all first-ring x/z position expressions that had
+  repeated `(xSin * 1280.0f)`, while preserving the `xCos = var_f16` UV alias.
+  Pre-build `./diff.sh trackbg_render_flashy --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x8310DF9D/0x03EA48C03`; relinked
+  `./diff.sh trackbg_render_flashy --no-pager` regressed to
+  `CURRENT (13581)`. The relinked object widened the frame to `0x168`, added
+  `s2` plus `$f20`/`$f21` saves, and shifted early position-array FP
+  temporaries and stack slots immediately away from the target. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok; do not repeat all-first-ring `scaledXSin` reuse
+  spellings. Next hypothesis should pivot to another independent
+  `trackbg_render_flashy` family or another routable packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted loop-local `LevelModel *levelModel` setup probe missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1`, declared

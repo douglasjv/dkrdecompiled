@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:12:05Z
+- Generated at: 2026-05-24 08:15:41Z
 - Branch: `master`
-- HEAD: `114a33d5`
-- Completed task: `func-8002b0f4-loop-local-model-pointer`
-- Summary: Rejected loop-local LevelModel pointer setup; relinked diff improved to CURRENT (1678) but hoisted/spilled gCurrentLevelModel and source was restored.
+- HEAD: `8b2979f7`
+- Completed task: `trackbg-render-flashy-first-ring-scaledxsin`
+- Summary: Rejected first-ring scaledXSin reuse spelling; relinked diff CURRENT (13581), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, trackbg_render_flashy direct var_f16 UV alias-removal, and normal loop-local func_8002B0F4 model-pointer setup unless a new independent source family is found. Otherwise choose another routable packet.`
+- Task: `Run selector; default may still recommend func_80049794, but current routing should pivot away from func_80049794 save/wave micro-variants, func_80059208 final object-dot micro-variants, func_8002B0F4 normal loop-local model-pointer setup, and trackbg_render_flashy direct var_f16 UV alias-removal or scaledXSin first-ring reuse unless a new independent source family is found. Otherwise choose another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
