@@ -23,6 +23,23 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted airborne throttle-min guard condition-order spelling
+  missed. The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote
+  only the later guard from `racer->groundedWheels == 0 &&
+  racerThrottle < 0.4 && racer->vehicleID != VEHICLE_CARPET` to
+  `racerThrottle < 0.4 && racer->groundedWheels == 0 &&
+  racer->vehicleID != VEHICLE_CARPET`. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x5FDDE03F/0x546B28B8`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (2760)`. The diff still lacked target `$f20/$f21` prologue saves,
+  kept early zero in current `$f16` instead of target `$f14`, and retained the
+  known wave scan drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this airborne throttle-min guard-order spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted main B-button brake condition-order spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
   main brake guard from `gCurrentRacerInput & B_BUTTON &&
