@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:51:20Z
+- Generated at: 2026-05-24 09:53:58Z
 - Branch: `master`
-- HEAD: `d859cd00`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected trackbg_render_flashy final triangle flags store-order spelling; promoted source moved tris->flags = 0x40 after the vi/uv stores in the triangle loop. Full verify failed with CRCs 0x93C6F83F/0x0C9FB0E5, and relinked diff regressed to CURRENT (2018) with early position-array FPR drift plus the expected tail flags-store movement. Source restored.
+- HEAD: `36c47777`
+- Completed task: `func_80059208`
+- Summary: Rejected func_80059208 alternate-route guard boolean spelling; promoted source changed only if (racer->isOnAlternateRoute) to if (racer->isOnAlternateRoute != FALSE). Full verify failed with CRCs 0x53D141DF/0xB9D4B481, and relinked diff stayed CURRENT (870) in the final object-dot/checkpoint-dot tail. Source restored.
 
 ## Validation
 
