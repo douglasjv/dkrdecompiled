@@ -3329,8 +3329,12 @@
 - `init_particle_buffers` has exhausted probe notes in
   `research/tasks/PARKED.md`: existing C compiles when promoted, but diff
   evidence points at saved-register allocation for the particle counts and
-  allocator colour tag. Do not retry the recorded `register` parameter, local
-  count alias, or pointer-to-global probes as the next packet.
+  allocator colour tag. A 2026-05-24 fresh promotion recheck failed full verify
+  with CRCs `0xC451FA61/0xDA992566` and relinked focused diff score `2098`;
+  adding a named allocator `colourTag` local made no object-code movement and
+  stayed score `2098`. Source was restored and final verify passed. Do not
+  retry the recorded `register` parameter, local count alias, pointer-to-global,
+  plain-promotion, or allocator-tag-local probes as the next packet.
 - `func_80049794` is active, not parked. Current focused evidence points at
   target `$f20/$f21` saves and broad `$f20` float-temp allocation across the
   plane physics function. Tested probes that did not solve it: `register f32

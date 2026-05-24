@@ -105,5 +105,11 @@ when intentionally returning to them.
   `register` on the five count parameters (no object change), explicit local
   aliases for the five counts (worsened to frame `0x78`, score `3620`), and a
   local pointer-to-`gParticleTriangleBuffer` write (no useful allocation
-  change, score `1824`). Revisit with a narrower saved-register/lifetime
-  strategy, not these same probes.
+  change, score `1824`). A 2026-05-24 fresh promotion recheck failed the full
+  gate with CRCs `0xC451FA61/0xDA992566`; relinked focused diff showed score
+  `2098`, with the same count allocation family (`s3/s1/s7/s2/s4`) and colour
+  tag still in `s0`. Adding a named `colourTag` local initialized after
+  `free_particle_vertices_triangles()` and passing it to every semitrans-grey
+  allocation made no object-code movement; focused diff stayed score `2098`.
+  Source was restored and full verify passed. Revisit with a narrower
+  saved-register/lifetime strategy, not these same probes.
