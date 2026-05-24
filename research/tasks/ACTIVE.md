@@ -7095,7 +7095,15 @@
   inserted explicit sign-extension work for the narrowed X/Z locals and still
   kept the unwanted early `gCurrentLevelModel` spill family. Source was
   restored and final full verify passed; do not repeat this X/Z `s16` local
-  type spelling.
+  type spelling. A promoted current-source field-base pointer reload spelling
+  that introduced separate `segments` and `segmentsBoundingBoxes` locals before
+  the initial segment/bounding-box indexing also missed: full verify failed
+  with calculated CRCs `0x78E9013A/0xAD05D630`, and relinked `./diff.sh
+  func_8002B0F4 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (4142)`. The diff widened the frame to `0x130`, kept the unwanted
+  early `gCurrentLevelModel` spill at `0x60(sp)`, and changed the first segment
+  setup into a worse base-pointer schedule. Source was restored and final full
+  verify passed; do not repeat these separate field-base pointer locals.
   Keep this function active,
   but do not repeat those source
   shapes, either standalone Z-loop unroll, this sort-limit-hoist spelling, this
