@@ -209,6 +209,25 @@
   Next hypothesis may combine this improvement with an independent family, but
   acceptance still requires full `Verify: OK`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted normal-flight pitch damping factor-out plus `R_TRIG`-
+  first branch-polarity spelling missed. The source changed the
+  `NON_EQUIVALENT` guard to `#if 1`, hoisted the shared
+  `obj->trans.rotation.x_rotation -= (obj->trans.rotation.x_rotation *
+  updateRate) >> 4` subtraction before the branch, then tested
+  `if (gCurrentRacerInput & R_TRIG)` with the `30` term first and the `19`
+  term in `else`. Pre-build `./diff.sh func_80049794 --compress-matching 2
+  --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0x81BCA333/0xB748193D`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed in the
+  factor-out family at `CURRENT (2480)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the current wave scan `a0`-bound/`v1`-loop
+  allocation. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this pitch damping factor-out plus `R_TRIG`-first
+  polarity spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight `tappedR` boolean spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
   trick-entry branch from `if (racer->tappedR)` to

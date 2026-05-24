@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:36:34Z
+- Generated at: 2026-05-24 09:39:48Z
 - Branch: `master`
-- HEAD: `567a8b35`
-- Completed task: `func_80059208`
-- Summary: Promoted `func_80059208` and changed only the early lap-reset zero-store order from `lap`, `nextCheckpoint`, `courseCheckpoint` to `nextCheckpoint`, `lap`, `courseCheckpoint`. Pre-build diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x53D141DF/0xB7822901`, and relinked diff regressed to `CURRENT (880)`: the top block stores were opposite target (`0x192` then `0x193` instead of target `0x193` then `0x192`), while the known final object-dot/checkpoint-dot plus vertical FPR drift remained. Source restored.
+- HEAD: `b52456c8`
+- Completed task: `func_80049794`
+- Summary: Rejected normal-flight pitch damping factor-out plus `R_TRIG`-first branch-polarity spelling. The promoted source hoisted the shared x-rotation damping subtraction before the branch, then tested `if (gCurrentRacerInput & R_TRIG)` with the `30` term first and `19` in `else`. Pre-build focused diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x81BCA333/0xB748193D`, and relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed in the factor-out family at `CURRENT (2480)`. The diff still lacked target `$f20/$f21` saves, kept early zero in `$f16` instead of `$f14`, and retained current wave scan allocation. Source restored.
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`; `./score.sh -s` reported 97.30%; `python3 tools/check_active_surface.py` reported active surface ok.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- Verify: OK; ./score.sh -s 97.30%; python3 tools/check_active_surface.py active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with a distinct func_80059208 family that targets the final object-dot/checkpoint-dot tail without changing early lap-reset store order, or pivot to another active guarded candidate if no fresh bounded shape remains.`
+- Task: `Continue selector packet func_80049794 only with an independent family that targets the missing f20/f21 prologue saves, early f14 zero, or wave scan allocation; do not repeat pitch damping factor-out, multiplier-carrier, or R_TRIG-first polarity spellings by themselves.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
