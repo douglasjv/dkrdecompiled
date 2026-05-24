@@ -56,6 +56,22 @@
   repeat close save-family wave-gate split/register variants without a
   distinct bound/index allocation fix.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted declaration-only `register f32 scaledXCos` allocation
+  hint missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
+  declared `scaledXCos` as `register`, targeting the early negative scaled
+  cosine FPR allocation without adding a new carrier local. Pre-build
+  `./diff.sh trackbg_render_flashy --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with promoted-baseline calculated CRCs
+  `0x93D338FF/0x03D9C8FE`; relinked uncompressed
+  `./diff.sh trackbg_render_flashy --no-pager` stayed at promoted baseline
+  `CURRENT (1808)`. The early negative-cosine carrier still allocated current
+  `$f16` instead of target `$f18`, with the same doubled sine/cosine and
+  outer-ring register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat declaration-only `register scaledXCos` allocation
+  hints.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted UV dimension shift spelling missed. The source changed
   only the `NON_MATCHING` guard to `#if 1` and rewrote the UV scale products
   from `texHeader->width * 16` / `texHeader->height * 16` to explicit
