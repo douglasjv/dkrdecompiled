@@ -4044,8 +4044,16 @@
   `0x53D141DF/0xB9D4B481`, and the relinked focused score stayed
   `CURRENT (870)` with the same final object-dot plus negated-checkpoint-dot
   drift. Source was restored and final full verify passed; do not repeat this
-  divisor-distance reuse spelling. Commuting only the normalization magnitude
-  sum from `sqrtf((diffX * diffX) + (diffZ * diffZ))` to
+  divisor-distance reuse spelling. A baseline current-checkout early lap-reset
+  nested guard branch-shape probe (`if (level_id() == 0) { if
+  (racer->nextCheckpoint >= temp_v0) ... }`) also missed with no useful
+  movement: object-only focused diff first printed stale `CURRENT (0)`, full
+  verify failed with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208` stayed `CURRENT (870)`. The final
+  object-dot/checkpoint-dot plus vertical FPR drift remained unchanged. Source
+  was restored and final full verify passed; do not repeat this early
+  lap-reset nested guard branch-shape spelling. Commuting only the
+  normalization magnitude sum from `sqrtf((diffX * diffX) + (diffZ * diffZ))` to
   `sqrtf((diffZ * diffZ) + (diffX * diffX))` missed: object-only focused diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs
   `0x53D141DF/0x1FD84747`, and the relinked focused diff regressed from
