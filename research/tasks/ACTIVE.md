@@ -153,6 +153,19 @@
   `./score.sh -s` remained 97.30%, and
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   treat compressed `CURRENT (0)` as acceptance evidence for this packet.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  2026-05-24 plain current guarded-C promotion recheck missed. Before
+  promotion, `./diff.sh func_8008FF1C --no-pager` misleadingly reported
+  `CURRENT (0)`. Promoting only the `NON_MATCHING` guard to `#if 1` failed the
+  full gate with baseline CRCs `0x55C240E7/0x18E4F9B4`; relinked
+  `./diff.sh func_8008FF1C --no-pager` showed `CURRENT (10)`, with only the
+  selected-track halfword load/branch still using current `v1` instead of
+  target `t2` while the hub-name store stayed in the target branch delay slot.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  accept pre-promotion object-only `CURRENT (0)` or repeat plain current
+  guarded-C promotion for this parked packet.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted pointer-object current-wave cursor probe missed. The
   source removed the `NON_EQUIVALENT` guard, introduced

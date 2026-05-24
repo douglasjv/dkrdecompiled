@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:32:36Z
+- Generated at: 2026-05-24 07:36:29Z
 - Branch: `master`
-- HEAD: `8b2b3705`
-- Completed task: `func_80049794`
-- Summary: Plain guarded-C promotion rejected after stale pre-promotion diff
+- HEAD: `3b857b79`
+- Completed task: `func_8008FF1C-plain-promotion-recheck`
+- Summary: Rejected plain current guarded-C promotion for func_8008FF1C after stale object-only CURRENT(0); full gate failed with baseline CRCs and relinked diff stayed CURRENT(10).
 
 ## Validation
 
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` -> Verify: OK; `./score.sh -s` -> 97.30%; `python3 tools/check_active_surface.py` -> active surface ok
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 only with distinct saved-FPR plus wave bound/index allocation fix, otherwise pivot to another routable packet`
+- Task: `Default selector remains func_80049794; continue only with a distinct saved-FPR plus wave bound/index allocation fix, otherwise choose another routable packet with non-repeat evidence.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

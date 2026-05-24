@@ -76,7 +76,14 @@ when intentionally returning to them.
   `0xDC0852B7/0x5580AC19`, focused diff was `CURRENT (975)`, and the common
   hub-name store stayed after the join (`sw s4,0(s0)`) instead of the target
   delay-slot `sw v0,0(s0)`. Source was restored and final full verify passed;
-  do not repeat either post-if common-store variant.
+  do not repeat either post-if common-store variant. A 2026-05-24 plain
+  current guarded-C promotion recheck also missed: pre-promotion
+  `./diff.sh func_8008FF1C --no-pager` misleadingly reported `CURRENT (0)`,
+  promoting only the `NON_MATCHING` guard failed full verify with baseline CRCs
+  `0x55C240E7/0x18E4F9B4`, and relinked focused diff returned to
+  `CURRENT (10)`. Source was restored and final full verify passed; do not
+  accept object-only `CURRENT (0)` for this parked packet or repeat plain
+  current guarded-C promotion.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
