@@ -36,6 +36,17 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
+- Latest alternate-packet note: `func_80059208` remains active but saturated
+  after a 2026-05-24 promoted existing-C diagnostic. Removing the
+  `NON_MATCHING` guard without source-shape changes failed the full gate with
+  calculated CRCs `0x53D141DF/0xB9D4B481`; `cmp` put the first real code drift
+  at ROM byte offset 369250 (`0x5A262`) in the final
+  object-dot/checkpoint-dot tail, while racer object `.rodata` still carried
+  the `-0.2` bytes at the expected object rodata offset. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not treat the promoted existing-C miss as
+  a simple rodata-placement problem or repeat final-tail micro-variants without
+  a distinct codegen-family hypothesis.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted named-rodata probe missed. The source shape removed the
   `NON_MATCHING` guard, added `const f64 D_800E6920 = -0.2`, and changed the

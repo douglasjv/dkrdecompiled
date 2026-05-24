@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:06:51Z
+- Generated at: 2026-05-24 03:12:19Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
 - Completed task: `func_80059208`
-- Summary: Rejected promoted named -0.2 rodata constant; full gate failed new CRC family and source restored.
+- Summary: Rejected promoted existing-C diagnostic after restore: full gate failed CRCs 0x53D141DF/0xB9D4B481; cmp first code drift is ROM offset 369250/0x5A262 in the final object-dot/checkpoint-dot tail, while racer rodata still carries the -0.2 bytes at the expected object rodata offset, so do not treat this as a simple rodata-placement miss.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 or func_80059208 only with a distinct source/rodata hypothesis backed by full-gate validation, not object-only CURRENT(0).`
+- Task: `Run selector; prefer func_80049794 or another routable candidate over more func_80059208 final-tail micro-variants unless a distinct save-pressure or codegen-family hypothesis is documented.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
