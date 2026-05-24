@@ -23,6 +23,23 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 combined close-save plus cached wave-bound split missed. The
+  source promoted the `NON_EQUIVALENT` guard to `#if 1`, removed trailing
+  `pad3`/`pad4`, chained grounded-wheel zero stores, split the pre-`sqrtf`
+  x/z/y accumulation, and added explicit `var_v1 = gRacerWaveCount - 1` with
+  `var_a0` as cursor. Pre-build `./diff.sh func_80049794 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x5F138B9C/0x62404784`; relinked
+  `./diff.sh func_80049794 --no-pager` returned `CURRENT (6743)`. The relinked
+  object shrank the frame to current `0xf0`, lost target `$f20/$f21` prologue
+  saves, used current `$f16`/stack slots for early float state, and still
+  assigned the wave split to `a3/v0` rather than target `v1/a0`. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok; do not repeat this combined close-save plus
+  cached-bound spelling. Next hypothesis should pivot away from `func_80049794`
+  save/wave micro-variants unless a new independent source family is found.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 explicit wave bound/index split missed. The source promoted the
   `NON_EQUIVALENT` guard to `#if 1`, assigned
   `var_v1 = gRacerWaveCount - 1`, started the loop with

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:00:07Z
+- Generated at: 2026-05-24 08:02:28Z
 - Branch: `master`
-- HEAD: `3e89d40e`
-- Completed task: `func-80049794-wave-bound-split`
-- Summary: Rejected explicit var_v1 wave bound/index split; relinked diff returned CURRENT (5755), source restored.
+- HEAD: `a1fa9cd5`
+- Completed task: `func-80049794-close-save-cached-bound`
+- Summary: Rejected combined close-save plus cached wave-bound split; relinked diff returned CURRENT (6743), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default remains func_80049794, but do not repeat explicit cached wave-bound/index split alone. Combine a known save-family shape with a different cursor-addressing form, or pivot to another routable packet.`
+- Task: `Run selector; default may remain func_80049794, but pivot away from save/wave micro-variants unless a new independent source family is found. Otherwise choose another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
