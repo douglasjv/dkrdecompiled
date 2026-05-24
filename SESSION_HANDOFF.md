@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:06:41Z
+- Generated at: 2026-05-24 10:10:08Z
 - Branch: `master`
-- HEAD: `6e447399`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted checkpoint-distance single-precision literal spelling; source changed only splinePos = 1.0 - racer->checkpoint_distance to 1.0f - racer->checkpoint_distance. Pre-build focused diff reported CURRENT (0), full verify failed with CRCs 0xC0802A15/0xAB5B7DB7, and relinked diff regressed to CURRENT (3020) by replacing the target double subtraction and shifting rodata/calls. Source restored.
+- HEAD: `55aff7aa`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected bottom hasWaves explicit-nonzero condition probe; restored promoted source after CRC miss.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid func_80059208 checkpoint-distance literal/threshold spellings unless paired with a separate final object-dot/checkpoint-dot allocation fix.`
+- Task: `func_80049794 remains recommended next; avoid saved-FPR/wave-scan micro-variants unless a distinct source family is identified.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
