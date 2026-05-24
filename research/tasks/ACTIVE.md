@@ -619,6 +619,23 @@
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this wrong-way angle explicit negative-bound spelling.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted post-rewind zero-clamp inclusive comparison probe
+  missed. The source removed the `NON_MATCHING` guard and changed only
+  `if (splinePos < 0.0f)` to the behavior-equivalent
+  `if (splinePos <= 0.0f)` before assigning `splinePos = 0.0f`. Full verify
+  failed with calculated CRCs `0x53D141DF/0xF191E9CE`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed from
+  promoted baseline `CURRENT (870)` to `CURRENT (1070)`: the local compare
+  changed from target `c.lt.s` to `c.le.s`, while the final object-dot/
+  checkpoint-dot plus vertical FPR drift remained. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this post-rewind zero-clamp inclusive comparison spelling. A
+  sidecar-suggested positive checkpoint-dot/object-dot ordering was not applied
+  because it overlaps existing no-repeat positive checkpoint-dot and
+  target-dataflow final-tail notes.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted lateral dot explicit pad-minus-pad2 spelling missed.
   The source shape changed the final lateral numerator from negative
   checkpoint-dot plus sum (`pad2 = -checkpointDot; diffX = -((pad + pad2) /
