@@ -205,6 +205,22 @@
   spelling. Next hypothesis should use an independent `func_80059208` family or
   pivot away from final object-dot micro-variants.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 plain current-C promotion missed. The source changed only the
+  `NON_EQUIVALENT` guard to `#if 1`. Pre-build `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` returned
+  `CURRENT (2760)`. The relinked object lost target `$f20/$f21` prologue saves,
+  moved saved GPR slots down by eight bytes, used current `$f16` for early zero
+  stores instead of target `$f14`, and kept the wave scan bound/index allocation
+  reversed as current `a0`-bound/`v1`-loop instead of target
+  `v1`-bound/`a0`-loop. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat plain current-C promotion. Next hypothesis should
+  pivot away from `func_80049794` save/wave micro-variants unless a new
+  independent source family is found.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 combined close-save plus cached wave-bound split missed. The
   source promoted the `NON_EQUIVALENT` guard to `#if 1`, removed trailing
   `pad3`/`pad4`, chained grounded-wheel zero stores, split the pre-`sqrtf`
