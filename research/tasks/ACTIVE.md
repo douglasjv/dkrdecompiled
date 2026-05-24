@@ -58,7 +58,19 @@
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-24 final vertical
+  `func_80059208` also remains active after 2026-05-24 sibling probes around
+  the wrong-way counter and final lateral cast carriers missed: spelling the
+  wrong-way increment as an explicit byte wrap
+  (`racer->wrongWayCounter = (u8) (racer->wrongWayCounter + updateRate)`) and
+  routing the final lateral cast through the dead `updateRate` parameter
+  (`updateRate = (s32) diffX; racer->unk1BA += updateRate`) both failed full
+  verify with calculated CRCs `0x53D141DF/0xB9D4B481`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (870)`. The final object-dot/checkpoint-dot plus
+  vertical FPR drift was unchanged. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat these wrong-way byte-wrap or
+  final lateral `updateRate` cast-carrier spellings. A 2026-05-24 final vertical
   `updateRate` cast-carrier probe (`updateRate = (s32) diffY;
   racer->unk1BC += updateRate`) missed: full verify failed with calculated
   CRCs `0x53D141DF/0xB9D4B481`, and relinked
