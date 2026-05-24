@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:17:16Z
+- Generated at: 2026-05-24 02:20:28Z
 - Branch: `master`
-- HEAD: `8423cfa0`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted collision-plane scalar-local probe; full verify failed with baseline CRCs 0x7856718A/0x66208CAA and relinked focused diff stayed CURRENT (2860), then source restored.
+- HEAD: `34e8f0d8`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted zPositions[3] raw xSin multiply spelling; full verify failed with CRCs 0xF82B92BE/0x5DCC04AE and relinked focused diff worsened to CURRENT (5579), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; keep func_8002B0F4 routable only with a fresh hypothesis that attacks the early gCurrentLevelModel spill/register family rather than plane local spelling, or pivot to another active packet.`
+- Task: `Run selector; continue func_80049794 only with fresh non-repeated full-gate evidence, or pivot among active packets with a new family rather than first-ring/raw-sine trackbg variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
