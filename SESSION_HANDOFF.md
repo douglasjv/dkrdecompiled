@@ -1,18 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:26:53Z
+- Generated at: 2026-05-24 10:30:40Z
 - Branch: `master`
-- HEAD: `28273659`
+- HEAD: `98134dfb`
 - Completed task: `func_8002B0F4`
-- Summary: Rejected promoted edge-comparison > -1 spelling; source changed only the three temp_ra_* >= 0 comparisons to > -1, relinked focused diff stayed CURRENT (2860), and restored source verifies OK
+- Summary: Rejected promoted batch-loop currentBatch pointer-carry probe; relinked diff regressed to CURRENT (4310) with early gCurrentLevelModel spill still at 0x60(sp).
 
 ## Validation
 
 - Rejected probe full build failed with calculated CRCs
-  `0x7856718A/0x66208CAA`; after source restore, `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
-  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
-  surface ok.
+  `0x5FB2D180/0x62259969`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` regressed to `CURRENT (4310)`. After
+  source restore, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns
 
@@ -26,7 +27,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_80049794 remains recommended but saturated, so choose a distinct independent source family or another active routable candidate rather than repeating guard/order micro-variants`
+- Task: `Continue with func_8002B0F4 only for a distinct model-spill fix, or pivot to another routable candidate if no independent source-shape is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
