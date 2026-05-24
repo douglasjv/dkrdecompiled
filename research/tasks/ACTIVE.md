@@ -3862,6 +3862,18 @@
   reversed with current `a0` as bound and `v1` as loop index. Source was
   restored and final full verify passed; do not repeat this close-branch
   `register var_t9` hint.
+  A close save-family nested spinout-zap condition split also missed: on top of
+  the x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained grounded-wheel
+  zero, and removed trailing `pad3`/`pad4`, splitting
+  `racer->unk1FE == 4 && racer->spinout_timer == 0` into nested `if`
+  statements preserved the close-family failed full-verify CRCs
+  `0xB8DD79CD/0xE47454ED` and regressed the relinked focused diff to
+  `CURRENT (4365)`. It kept the target `0xf8` frame and `$f20/$f21` saves, but
+  the wave bound/index allocation remained reversed (`a0` bound / `v1` loop)
+  and later scheduling drift increased. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this close-branch nested
+  spinout-zap condition split.
   A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
