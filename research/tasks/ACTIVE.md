@@ -22,6 +22,21 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted initial clear-order spelling missed. The source changed
+  the `NON_EQUIVALENT` guard to `#if 1` and reordered only the opening clears
+  from `D_8011D308 = 0; *arg3 = NULL;` to `*arg3 = NULL; D_8011D308 = 0`.
+  Full verify failed with calculated CRCs `0x281EE857/0x10F947B1`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` worsened to
+  `CURRENT (6088)`. The diff moved the global clear after stack/save setup,
+  retained the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`, and
+  broadened segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this initial clear-order spelling. Next hypothesis
+  should avoid `func_8002B0F4` initial clear-order/model-spill/texture-index
+  carrier/batch-offset microvariants unless paired with a distinct segment-loop
+  register-family fix, or pivot to another bounded routable packet.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-probed pitch factor-out plus explicit `x_rotation_vel`
   self-assignment spelling missed. The worker promoted the `NON_EQUIVALENT`

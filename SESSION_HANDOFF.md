@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:24:55Z
+- Generated at: 2026-05-24 12:30:08Z
 - Branch: `master`
-- HEAD: `ae54edba`
-- Completed task: `trackbg-render-flashy-uv-dimension-multiply-before-shift`
-- Summary: Rejected promoted trackbg_render_flashy UV dimension multiply-before-shift spelling: changed only texHeader width/height scale setup from texHeader->width * 16 * unkA0 / texHeader->height * 16 * unkA1 to (texHeader->width * unkA0) << 4 / (texHeader->height * unkA1) << 4, including the duplicate height assignment. Full verify failed with CRCs 0x9D8339EB/0x5359A7D5; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager worsened to CURRENT (2963), keeping the early negative-cosine FPR drift and inserting multiply-then-shift integer traffic. Source restored.
+- HEAD: `5140d9ce`
+- Completed task: `func_8002B0F4-initial-clear-order`
+- Summary: Rejected promoted func_8002B0F4 initial clear-order spelling: changed only initial ordering from D_8011D308 = 0; *arg3 = NULL; to *arg3 = NULL; D_8011D308 = 0. Full verify failed with CRCs 0x281EE857/0x10F947B1; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager worsened to CURRENT (6088), moving the global clear after stack/save setup and retaining the unwanted early gCurrentLevelModel spill at 0x60(sp) plus broad segment/grid/tail drift. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid trackbg_render_flashy UV dimension shift/multiply-before-shift spellings, color/sentinel variants, and first-ring negative-cosine carriers unless paired with a distinct FPR allocation fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_8002B0F4 initial clear-order, model-spill, texture-index carrier, and batch-offset microvariants unless paired with a distinct segment-loop register-family fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
