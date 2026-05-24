@@ -23,6 +23,18 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 direct guarded-C promotion probe missed. Removing only the
+  `NON_EQUIVALENT` wrapper failed the full gate with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; relinked `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` reported `CURRENT (2760)`. The promoted
+  source still lacked target `$f20/$f21` prologue saves, kept early zeroing in
+  `$f16` instead of target `$f14`, and left the wave bound/index allocation in
+  the current `a0`/`v1` family. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat direct guard removal / object-only
+  `CURRENT (0)` promotion unless paired with a distinct save-pressure or wave
+  allocation fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted `var_f14` grounded-wheel zero carrier missed. A worker
   found object-only `CURRENT (0)` while the function stayed under
   `NON_EQUIVALENT`, but promoting the source and adding
@@ -122,6 +134,16 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this single-site x2
   scaled-sine left-operand spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 direct guarded-C promotion probe missed. Removing only the
+  `NON_EQUIVALENT` wrapper failed the full gate with calculated CRCs
+  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` reported `CURRENT (2860)`. The promoted
+  source inserted the known unwanted early `gCurrentLevelModel` load/spill at
+  `0x60(sp)` and broadened segment/grid/tail register drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` remained 97.30%; do not repeat plain guard removal
+  without a separate model-spill/register-family fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 scaled collision-plane index local probe missed. The promoted
   source stored `basePlaneIndex * 4` in `temp` and used

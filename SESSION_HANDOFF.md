@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:32:52Z
+- Generated at: 2026-05-24 03:37:19Z
 - Branch: `master`
-- HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80059208`
-- Summary: Rejected early rewind threshold single-precision spelling: promoted source changed splinePos < -0.2 to splinePos < -0.2f; full gate failed CRCs 0xA4F54F99/0xA2F49F7F and relinked focused diff worsened to CURRENT (3342), replacing the target double compare with a single-precision compare and shifting downstream spline/final-tail scheduling; source restored.
+- HEAD: `3b993826`
+- Completed task: `promotion-probes`
+- Summary: Rejected direct C promotions for func_80049794 and func_8002B0F4: func_80049794 guard removal failed CRCs 0x5FDDE03F/0xEF7A0514 with focused CURRENT (2760), missing target f20/f21 saves, f16 zeroing, and reversed wave bound/index allocation; func_8002B0F4 guard removal failed CRCs 0x7856718A/0x66208CAA with focused CURRENT (2860), inserting early gCurrentLevelModel spill at 0x60(sp). Sources restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_80059208 remains active but do not repeat early rewind threshold -0.2f single-precision spelling, which changes the target double-compare family and broadens downstream drift.`
+- Task: `Run selector; func_80049794 remains recommended but do not repeat direct guard removal/object-only CURRENT(0) promotion unless paired with a distinct save-pressure/wave allocation fix; consider the next bounded routable non-repeated hypothesis from ACTIVE.md.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
