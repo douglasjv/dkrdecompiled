@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted final triangle indexed-table spelling missed. The source
+  changed the `NON_MATCHING` guard to `#if 1`, removed the `var_v0_3 =
+  D_800DC92C` cursor, and populated the eight final triangles with direct
+  `D_800DC92C[(i * 3) + n]` index expressions for each vertex/UV lookup.
+  Pre-build `./diff.sh trackbg_render_flashy --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xEF56CD99/0xECCC3EA5`; relinked
+  `./diff.sh trackbg_render_flashy --no-pager` regressed to
+  `CURRENT (12773)`. The relinked object perturbed early negative-cosine and
+  doubled-trig FPR allocation (`$f18`/`$f16` and `$f8`/`$f18`) long before the
+  triangle loop, then broadly shifted the later vertex/triangle tail. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat final triangle indexed-table spellings. Next hypothesis should use a
+  different `trackbg_render_flashy` family or pivot to another routable packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted Z grid-mask four-way unroll spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the Z
