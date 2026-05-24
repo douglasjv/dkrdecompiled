@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 00:42:42Z
+- Generated at: 2026-05-24 00:47:19Z
 - Branch: `master`
-- HEAD: `6d537577`
-- Completed task: `func_80059208`
-- Summary: Rejected final vertical updateRate cast carrier; focused diff stayed CURRENT (870), source restored.
+- HEAD: `474d1cba`
+- Completed task: `func_80049794`
+- Summary: Rejected current-baseline wave gate gRacerWaveCount > 0 probe; focused diff worsened to CURRENT (2960), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80059208 only for a fresh final-tail FPR/object-dot hypothesis, or use selector recommended func_80049794 if no non-repeated shape remains.`
+- Task: `Continue func_80049794 only for a fresh FPR lifetime/save-family hypothesis that avoids repeated wave-bound spelling, or pivot to another selector-routable active target if no non-repeated shape remains.`
 - Packet class: `matching_impl`
 - Packet status: `evidence`
 - Reasoning tier: `medium`

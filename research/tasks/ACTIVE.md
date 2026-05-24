@@ -190,6 +190,17 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-24 current-baseline wave-gate positive-count probe
+  (`... && gRacerWaveCount > 0` instead of `gRacerWaveCount != 0`) missed:
+  full verify failed with calculated CRCs `0x2FDDE03F/0xA529100F`, and
+  relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  worsened from promoted baseline `CURRENT (2760)` to `CURRENT (2960)`. It
+  changed the gate to `blez`, still lacked target `$f20/$f21` prologue saves,
+  kept early zero in `$f16` instead of target `$f14`, and left the wave
+  bound/index allocation reversed as current `a0`-bound/`v1`-loop. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` remained 97.30%; do not repeat this positive-count
+  wave-gate spelling. A
   2026-05-23 current-baseline `spA3` type probe (`s32 spA3` instead of the
   current byte local) missed: full verify failed with calculated CRCs
   `0x8FDDDF9D/0x16677070`, and relinked `./diff.sh func_80049794` regressed to
