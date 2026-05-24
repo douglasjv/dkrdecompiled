@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:49:30Z
+- Generated at: 2026-05-24 02:53:28Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80059208`
-- Summary: Rejected direct normalization division probe; restored source after focused diff worsened from CURRENT (870) to CURRENT (2580).
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted color-mask carrier through var_a3; full gate failed baseline CRCs 0x93D338FF/0x03D9C8FE and relinked diff stayed CURRENT (1808), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with func_80049794 selector packet only if a fresh wave/save-family hypothesis exists; otherwise pivot among active func_8002B0F4, func_80059208, or trackbg_render_flashy without repeating recorded probes.`
+- Task: `Run selector; continue func_80049794 only with a genuinely fresh saved-FPR/source-lifetime hypothesis, otherwise pivot among active packets with a new non-repeated family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

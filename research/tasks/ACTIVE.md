@@ -22,6 +22,18 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted color-mask carrier through `var_a3` missed. The source
+  shape kept `var_a3 = -0x100` as the fallback mask and changed only the
+  selected-color path from `levelHeader->rgba.word & (~0xFF)` to
+  `levelHeader->rgba.word & var_a3`. Full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (1808)`. The diff remained in the early
+  position-array `$f18`/`$f16` drift family; source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this color-mask `var_a3`
+  carrier spelling.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted normalization direct-division spelling missed. The source
   shape changed the guarded unit-vector normalization from
