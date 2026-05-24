@@ -1,19 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:53:23Z
+- Generated at: 2026-05-24 07:57:15Z
 - Branch: `master`
-- HEAD: `0842bcad`
-- Completed task: `trackbg-render-flashy-register-scaledxcos`
-- Summary: Rejected promoted register scaledXCos allocation hint; relinked diff stayed at CURRENT (1808), source restored.
+- HEAD: `65a8bbb8`
+- Completed task: `func-80049794-register-var-f20`
+- Summary: Rejected declaration-only register var_f20 saved-FPR pressure hint; full verify failed and relinked diff returned CURRENT (2760), source restored.
 
 ## Validation
 
-- ./diff.sh trackbg_render_flashy --no-pager before full build: misleading CURRENT (0) against the pre-relink object
-- gmake -j4 CROSS=tools/binutils/mips64-elf- after promotion: failed, calculated CRCs 0x93D338FF/0x03D9C8FE
-- ./diff.sh trackbg_render_flashy --no-pager after promotion/relink: CURRENT (1808), early negative-cosine still current `$f16` instead of target `$f18`
-- gmake -j4 CROSS=tools/binutils/mips64-elf- after restore: Verify: OK
-- ./score.sh -s: Decomp progress [us.v77]: 97.30%
-- python3 tools/check_active_surface.py: active surface ok
+- gmake -j4 CROSS=tools/binutils/mips64-elf- after restore: Verify: OK; ./score.sh -s: 97.30%; python3 tools/check_active_surface.py: active surface ok
 
 ## Blockers Or Unknowns
 
@@ -27,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default remains func_80049794 unless choosing a fresh non-repeat alternate hypothesis such as trackbg_render_flashy early FPR allocation without declaration-only register hints`
+- Task: `Run selector; default remains func_80049794, but avoid declaration-only register var_f20 and target a distinct saved-FPR/frame-pressure plus wave bound/index allocation fix or pivot to another routable packet`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
