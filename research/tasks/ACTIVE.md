@@ -36,6 +36,18 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted named-rodata probe missed. The source shape removed the
+  `NON_MATCHING` guard, added `const f64 D_800E6920 = -0.2`, and changed the
+  early rewind guard to `if (splinePos < D_800E6920)`. Full verify failed with
+  calculated CRCs `0x53CFD9B3/0xC564A533`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed from
+  the promoted text-only `CURRENT (0)` family to `CURRENT (900)`. The named
+  const was placed at the wrong rodata address, shifted later racer constants
+  by eight bytes, and the final object-dot/checkpoint-dot FPR drift remained.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this plain
+  source-level `D_800E6920` constant naming as the rodata placement fix.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted color-mask carrier through `var_a3` missed. The source
   shape kept `var_a3 = -0x100` as the fallback mask and changed only the
