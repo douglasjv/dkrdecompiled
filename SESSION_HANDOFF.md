@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:58:59Z
+- Generated at: 2026-05-24 09:01:14Z
 - Branch: `master`
-- HEAD: `2cc20f9b`
+- HEAD: `5e45a577`
 - Completed task: `func_80049794`
-- Summary: Rejected normal-flight tappedR boolean spelling; relinked diff stayed CURRENT (2760) with the known promoted-baseline saved-FPR/wave drift.
+- Summary: Rejected normal-flight pitch damping factor-out spelling; relinked diff improved to CURRENT (2480) but still retained the saved-FPR/early-zero drift and failed full verify.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer a bounded routable target or independent func_80049794 family, avoiding tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family informed by the pitch damping factor-out improvement, but avoid accepting it alone; also avoid tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

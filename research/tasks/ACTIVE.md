@@ -23,6 +23,26 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted normal-flight pitch damping factor-out spelling missed
+  but improved focused drift. The source changed the `NON_EQUIVALENT` guard to
+  `#if 1` and moved the shared
+  `obj->trans.rotation.x_rotation -= (obj->trans.rotation.x_rotation *
+  updateRate) >> 4` subtraction out of the adjacent `R_TRIG` if/else before
+  the branch-specific `19`/`30` pitch input terms. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, full verify failed with calculated CRCs
+  `0x81BCA331/0x35054A7B`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` improved from
+  the promoted baseline `CURRENT (2760)` to `CURRENT (2480)`. The diff still
+  lacked target `$f20/$f21` prologue saves, kept early zero in current `$f16`
+  instead of target `$f14`, and retained wave scan `a0`-bound/`v1`-loop drift,
+  so the factor-out alone is not acceptable. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this pitch damping factor-out spelling by itself.
+  Next hypothesis may combine this improvement with an independent family, but
+  acceptance still requires full `Verify: OK`.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight `tappedR` boolean spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
   trick-entry branch from `if (racer->tappedR)` to
