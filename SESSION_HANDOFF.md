@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:04:12Z
+- Generated at: 2026-05-24 12:08:36Z
 - Branch: `master`
-- HEAD: `099123ad`
-- Completed task: `trackbg_render_flashy-rgb-decimal-literals`
-- Summary: Rejected promoted final-vertex RGB decimal-literal spelling: changed only verts->r/g/b from 0xFF to 255. Full verify failed with CRCs 0x93D338FF/0x03D9C8FE; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager stayed at CURRENT (1808) with the known early position-array FPR schedule drift. Source restored.
+- HEAD: `4498bc68`
+- Completed task: `func_8002B0F4-currentBatch-pointer-add`
+- Summary: Rejected promoted func_8002B0F4 currentBatch pointer-add spelling: changed only currentBatch = &currentSegment->batches[batchNum] to currentSegment->batches + batchNum. Full verify failed with CRCs 0x7856718A/0x66208CAA; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed at CURRENT (2860) with unwanted early gCurrentLevelModel spill at 0x60(sp). Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid pure func_80049794 wave-bound/index variants, trackbg_render_flashy final RGB literal/store micro-variants, and func_8002B0F4 current-baseline model-spill micro-variants unless paired with a distinct register-family hypothesis.`
+- Task: `Run selector; avoid func_8002B0F4 current-baseline batch pointer-add/pointer-carry and model-spill micro-variants unless paired with a distinct register-family hypothesis; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

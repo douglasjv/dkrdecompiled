@@ -405,6 +405,20 @@
   surface ok; do not repeat this batch-loop `currentBatch` pointer-carry
   spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted `currentBatch` pointer-add spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `currentBatch = &currentSegment->batches[batchNum]` as
+  `currentBatch = currentSegment->batches + batchNum`, preserving the existing
+  loop structure. Full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` stayed at the promoted baseline
+  `CURRENT (2860)`. The diff retained the unwanted early `gCurrentLevelModel`
+  spill at `0x60(sp)` and broad segment/grid/tail drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat this
+  `currentBatch` pointer-add spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted edge-comparison `> -1` spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the three
   `temp_ra_*` edge tests from `>= 0` to `> -1`. Pre-build
