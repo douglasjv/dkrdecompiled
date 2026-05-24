@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:07:22Z
+- Generated at: 2026-05-24 09:09:43Z
 - Branch: `master`
-- HEAD: `f7c02f03`
+- HEAD: `12e39cc2`
 - Completed task: `func_80049794`
-- Summary: Rejected normal-flight xRotationOffset denominator double-literal spelling; promoted source failed full verify with calculated CRCs 0x5F88CFDD/0xCE72FB1A and relinked diff stayed at CURRENT (2760).
+- Summary: Rejected normal-flight side-force multiply grouping; promoted source failed full verify with calculated CRCs 0x5F87643D/0xC95EBDF1 and relinked diff stayed at CURRENT (2760).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat the normal-flight xRotationOffset 4096.0 denominator spelling, pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat the normal-flight side-force racer->velocity * (var_t0 * 0.00015) grouping, xRotationOffset 4096.0 denominator spelling, pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

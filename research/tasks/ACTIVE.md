@@ -23,6 +23,22 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted normal-flight side-force multiply grouping missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `var_f20 = racer->velocity * var_t0 * 0.00015` as
+  `var_f20 = racer->velocity * (var_t0 * 0.00015)`. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x5F87643D/0xC95EBDF1`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at the
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the known wave scan `a0`-bound/`v1`-loop drift.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this side-force multiply grouping.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight `xRotationOffset` denominator spelling
   missed. The source changed the `NON_EQUIVALENT` guard to `#if 1` and
   rewrote only `var_t0 *= (f32) (1.0 - ((f32) xRotationOffset / 4096))` as
