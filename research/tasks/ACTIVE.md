@@ -381,7 +381,18 @@
   progress. Source was restored and `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`; do not repeat this
   simple top-speed `spCC` live-float carrier or accept object-only
-  `CURRENT (0)` as progress. A
+  `CURRENT (0)` as progress. A 2026-05-24 worker-tested current-baseline
+  wave pointer-cache probe (`lastWaveIndex = gRacerWaveCount - 1; wave =
+  &gRacerCurrentWave[var_a0]; if (var_a0 == lastWaveIndex) { var_a0--;
+  wave--; }`, then use `wave[1]`) missed: compressed focused diff first
+  printed stale `CURRENT (0)`, promoted full verify failed with calculated CRCs
+  `0x9CF1F322/0x005EC88D`, and uncompressed `./diff.sh func_80049794
+  --no-pager` showed `CURRENT (5700)`. The probe widened the frame to `0x100`,
+  dropped target `$f20/$f21` prologue saves, kept early zero in `$f16`, and
+  moved wave scan registers into a `v1/a0/v0` drift family. Source was
+  restored; do not repeat this current-baseline wave pointer-cache spelling or
+  trust compressed `CURRENT (0)` on this function without uncompressed/full-gate
+  evidence. A
   2026-05-24 current-baseline wave-gate positive-count probe
   (`... && gRacerWaveCount > 0` instead of `gRacerWaveCount != 0`) missed:
   full verify failed with calculated CRCs `0x2FDDE03F/0xA529100F`, and
@@ -3325,7 +3336,18 @@
   target `a0` toward `v1/a3` and inserted stack-byte drift for the drift flag,
   so it did not fix the target bound/index allocation. Source was restored and
   final full verify passed; do not repeat this close-branch compare-only
-  wave-bound cache. A baseline
+  wave-bound cache. A current-baseline wave pointer-cache probe
+  (`lastWaveIndex = gRacerWaveCount - 1; wave =
+  &gRacerCurrentWave[var_a0]; if (var_a0 == lastWaveIndex) { var_a0--;
+  wave--; }`, then use `wave[1]` for wave-height and `rot.y`) also missed:
+  compressed focused diff first printed stale `CURRENT (0)`, but promoted full
+  verify failed with calculated CRCs `0x9CF1F322/0x005EC88D`, and uncompressed
+  `./diff.sh func_80049794 --no-pager` showed `CURRENT (5700)`. It widened
+  the frame to `0x100`, dropped the target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of `$f14`, and moved the wave scan into a
+  `v1/a0/v0` drift family rather than target `v0` count, `v1` bound, and `a0`
+  loop index. Source was restored; do not repeat this current-baseline wave
+  pointer-cache spelling. A baseline
   current-checkout drift-flag boolean assignment probe
   (`spA2 = var_f2 < 35 && racerVelocity < 8.0`) also missed: object-only diff
   first printed stale `CURRENT (0)`, full verify failed with calculated CRCs

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:03:51Z
+- Generated at: 2026-05-24 02:09:24Z
 - Branch: `master`
-- HEAD: `b6483bf3`
+- HEAD: `a1533548`
 - Completed task: `func_80049794`
-- Summary: Rejected worker top-speed spCC live-float carrier; restored source
+- Summary: Rejected wave pointer-cache probe; restored source
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a fresh non-repeated saved-FPR hypothesis paired to evidence, or pivot to func_80059208/trackbg_render_flashy/func_8002B0F4 with a non-repeated source-shape.`
+- Task: `Run selector; continue func_80049794 only with a fresh non-repeated saved-FPR/wave allocation hypothesis, using uncompressed diff/full-gate evidence, or pivot to another active routable target with a non-repeated source-shape.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
