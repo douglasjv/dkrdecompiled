@@ -1,21 +1,21 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:37:00Z
+- Generated at: 2026-05-24 10:43:08Z
 - Branch: `master`
-- HEAD: `67fb8cd1`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted post-hit yOutCount > 19 limit spelling; relinked diff stayed at CURRENT (2860) with early gCurrentLevelModel spill and source restored verifies OK
+- HEAD: `ea68be49`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted wrong-way WRAP explicit-if expansion; relinked diff stayed at CURRENT (870) with final lateral/vertical FPR tail drift and source restored verifies OK
 
 ## Validation
 
 - Rejected probe full build failed with calculated CRCs
-  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
-  --compress-matching 2 --no-pager` stayed at `CURRENT (2860)` with the
-  unwanted early `gCurrentLevelModel` spill at `0x60(sp)` and broad
-  segment/grid/tail drift. After source restore, `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
-  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
-  surface ok.
+  `0x53D141DF/0xB9D4B481`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` stayed at `CURRENT (870)`. The wrong-way
+  wrap block was not the source of drift; the diff remained in the final
+  lateral object-dot plus vertical FPR tail family. After source restore,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns
 

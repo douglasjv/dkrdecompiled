@@ -38,6 +38,21 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this head-turn branch-order spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted wrong-way `WRAP` explicit-if expansion missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `WRAP(angle, -0x8000, 0x8000)` after `arctan2_f(diffX, diffZ)` into explicit
+  `if (angle > 0x8000) angle -= 0xFFFF;` / `if (angle < -0x8000) angle +=
+  0xFFFF;` statements. Pre-build `./diff.sh func_80059208 --compress-matching
+  2 --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed
+  with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The wrong-way wrap block was not the source of drift; the
+  diff remained in the final lateral object-dot plus vertical FPR tail family.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat this
+  wrong-way `WRAP` explicit-if expansion.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted post-hit `yOutCount > 19` limit spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
