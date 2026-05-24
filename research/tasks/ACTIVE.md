@@ -22,6 +22,20 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted first-ring `xPositions[2]` scaled-sine reuse probe
+  missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
+  rewrote `xPositions[2] = scaledXCos + (xSin * 1280.0f)` as
+  `xPositions[2] = scaledXCos + scaledXSin`. Compressed focused diff
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x218EDFFA/0xDD1EF586`; uncompressed relinked
+  `./diff.sh trackbg_render_flashy --no-pager` showed `CURRENT (13681)`.
+  The probe shrank the frame from target `0x158` to `0x150`, shifted stack
+  slots, and broadened the early position-array schedule. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this single-site `xPositions[2]` scaledXSin reuse.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted `surface` local halfword-width probe missed. The source
   changed only the `NON_EQUIVALENT` guard to `#if 1` and changed the batch
