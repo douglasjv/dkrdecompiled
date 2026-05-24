@@ -242,6 +242,19 @@
   restored and final full verify passed; do not repeat direct first-ring
   `scaledXSin` replacements as the FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted direct batch skip-offset assignment probe missed. The
+  source kept the current surface-skip condition but assigned
+  `currentFaceOffset = currentBatch[1].facesOffset` instead of using the
+  existing `nextFaceOffset` local. Full verify failed with calculated CRCs
+  `0x2A78E7DF/0xC1A5BFE8`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` reported
+  `CURRENT (3190)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` load/spill at `0x60(sp)` and broadened segment/grid/tail
+  drift beyond the promoted baseline. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat direct batch skip-offset assignment without a
+  separate model-spill fix.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 pointer-addition model-access probe missed. The promoted source
   changed only the initial segment and bounding-box setup from
   `&gCurrentLevelModel->segments[spB0[var_fp]]` /

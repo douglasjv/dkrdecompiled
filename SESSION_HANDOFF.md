@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:31:57Z
+- Generated at: 2026-05-24 04:35:20Z
 - Branch: `master`
-- HEAD: `02195938`
-- Completed task: `trackbg_render_flashy-var_f16-negative-cos`
-- Summary: Rejected trackbg_render_flashy existing-var_f16 negative-cosine carrier; it preserved the frame but kept the wrong FPR family.
+- HEAD: `7edb3ccf`
+- Completed task: `func_8002B0F4-direct-skip-offset`
+- Summary: Rejected func_8002B0F4 direct batch skip-offset assignment; it worsened the model-spill family.
 
 ## Validation
 
-- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0xDC79F591/0x31DBA03C; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager reported CURRENT (3108), preserved frame 0x158, but kept neg.s on f16 instead of target f18 and shifted outer position/global scheduling. After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
+- Probe gmake -j4 CROSS=tools/binutils/mips64-elf- failed with calculated CRCs 0x2A78E7DF/0xC1A5BFE8; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager reported CURRENT (3190), still inserted the unwanted early gCurrentLevelModel load/spill at 0x60(sp), and broadened segment/grid/tail drift. After source restore, gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reports 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Pivot away from trackbg_render_flashy negative-cosine carrier locals and direct first-ring scaledXSin replacements; choose a different routable candidate or a distinct non-position-array source-shape hypothesis.`
+- Task: `Pivot away from func_8002B0F4 batch-skip offset lifetime variants unless paired with a separate model-spill fix; choose a different routable candidate or a distinct non-model-spill source-shape hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
