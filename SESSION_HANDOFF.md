@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:59:46Z
+- Generated at: 2026-05-24 10:03:20Z
 - Branch: `master`
-- HEAD: `62754512`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted wrong-way counter explicit add assignment; focused pre-build diff reported CURRENT (0), full verify failed with CRCs 0x53D141DF/0xB9D4B481, relinked diff stayed at CURRENT (870) in earlier spline math, and source was restored.
+- HEAD: `388e4a89`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted final vertex store-order spelling; source changed only the vertex loop order to write y, x, RGB, z, alpha. Pre-build focused diff reported CURRENT (0), full verify failed with CRCs 0x93D338FF/0x8D381EFE, and relinked diff worsened to CURRENT (2263) with early negative-cosine/position-array FPR drift plus shifted final vertex store schedule. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid another func_80059208 wrong-way counter spelling unless it addresses the relinked spline-math drift.`
+- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid trackbg_render_flashy final vertex store-order/alpha/pointer-loop spellings unless paired with an early negative-cosine position-array fix.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
