@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:29:28Z
+- Generated at: 2026-05-24 03:32:52Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected single-site x2 scaled-sine left-operand spelling: promoted source changed xPositions[2] to scaledXSin + scaledXCos; full gate failed CRCs 0x218F9FFA/0x18F4A6D6 and relinked focused diff regressed to CURRENT (12478) with frame shrunk to 0x150 and broad early position-array/UV scheduling drift; source restored.
+- Completed task: `func_80059208`
+- Summary: Rejected early rewind threshold single-precision spelling: promoted source changed splinePos < -0.2 to splinePos < -0.2f; full gate failed CRCs 0xA4F54F99/0xA2F49F7F and relinked focused diff worsened to CURRENT (3342), replacing the target double compare with a single-precision compare and shifting downstream spline/final-tail scheduling; source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; trackbg_render_flashy remains active but do not repeat single-site x2 scaled-sine left-operand spelling, which collapsed into the known bad frame-shrink family.`
+- Task: `Run selector; func_80059208 remains active but do not repeat early rewind threshold -0.2f single-precision spelling, which changes the target double-compare family and broadens downstream drift.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

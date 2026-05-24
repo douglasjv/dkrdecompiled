@@ -59,6 +59,18 @@
   Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this plain
   source-level `D_800E6920` constant naming as the rodata placement fix.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 early rewind threshold single-precision spelling missed. The
+  promoted source changed only `splinePos < -0.2` to `splinePos < -0.2f`.
+  Full verify failed with calculated CRCs `0xA4F54F99/0xA2F49F7F`, and
+  relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  worsened from promoted baseline `CURRENT (870)` to `CURRENT (3342)`.
+  The diff replaced the target double compare against `D_800E6920` with a
+  single-precision compare, shifted downstream spline stack slots, and
+  broadened the final object-dot/checkpoint-dot tail drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted color-mask carrier through `var_a3` missed. The source
   shape kept `var_a3 = -0x100` as the fallback mask and changed only the
