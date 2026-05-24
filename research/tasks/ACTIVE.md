@@ -66,6 +66,24 @@
   scalar cached-bound `for` spelling. Next hypothesis should be a distinct
   pointer-object current-wave cursor with independent integer bound and saved
   FPR pressure, or a pivot to another routable packet.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-tested integer-local current-wave cursor probe missed. The
+  worker promoted guarded C, scanned from `&gRacerCurrentWave[var_a0]` using an
+  integer pointer cursor, kept `var_v1` as the last index, decremented `var_a0`
+  as the scan index, and read the selected wave through `(var_v0 + 4)`. Full
+  verify failed with calculated CRCs `0xD9ECC055/0xCEF62DE7`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (6590)`. The probe recovered pointer-predecrement behavior but in
+  the wrong register family: current still allocated as indexed/cursor
+  `a0/a3/v1` instead of target pointer `v0`, bound `v1`, index `a0`; target
+  `$f20/$f21` saves were still absent and the early zero remained in `$f16`
+  instead of `$f14`. Worker source was restored, the main worktree was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this integer-local cursor family. The next distinct probe should fix
+  saved-FPR/frame pressure before more wave pointer allocation variants, or
+  pivot to another routable selector packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted final byte-cast spelling missed. The source removed the
   `NON_EQUIVALENT` guard and changed only `D_8011D308 = yOutCount;` to

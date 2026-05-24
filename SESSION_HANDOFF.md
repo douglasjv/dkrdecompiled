@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 06:35:50Z
+- Generated at: 2026-05-24 06:41:24Z
 - Branch: `master`
-- HEAD: `8985457c`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected compound scaled trig temporary setup; promoted source stayed at focused CURRENT (1808), then source was restored.
+- HEAD: `0da387fc`
+- Completed task: `func_80049794-integer-current-wave-cursor`
+- Summary: Recorded worker-tested integer-local current-wave cursor miss for func_80049794; source restored and selector packet remains routable.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restore
-- ./score.sh -s -> Decomp progress [us.v77]: 97.30%
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK
+- ./score.sh -s -> Decomp progress [us.v77]: 97.30%; Documentation progress: 65.47%
 - python3 tools/check_active_surface.py -> active surface ok
 
 ## Blockers Or Unknowns
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; use func_80049794 only with a distinct save-pressure/wave allocation family, otherwise choose trackbg_render_flashy, func_8002B0F4, func_80017A18, or func_80059208 only with a non-repeat hypothesis from ACTIVE.md`
+- Task: `Run selector; if it still picks func_80049794, try a saved-FPR/frame-pressure hypothesis before more wave pointer allocation variants, otherwise take the next routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
