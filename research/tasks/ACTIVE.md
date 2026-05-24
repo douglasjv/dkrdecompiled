@@ -85,6 +85,22 @@
   saved-FPR/frame pressure before more wave pointer allocation variants, or
   pivot to another routable selector packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted `surface` local widening probe missed. The source removed
+  the `NON_EQUIVALENT` guard and changed only the batch `surface` local from
+  `s8` to `s32`, leaving the texture read expression unchanged. Compressed
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x78567172/0xAF051F1E`; uncompressed `./diff.sh func_8002B0F4 --no-pager`
+  showed `CURRENT (2936)`. The probe widened the frame to `0x130`, shifted the
+  output pointer and segment-count stack slots, and kept the unwanted early
+  `gCurrentLevelModel` spill at `0x64(sp)` with broad segment/grid/tail drift.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this `s8 surface` -> `s32 surface` local-type probe. Next hypothesis
+  for this packet should target the early model pointer spill/segment loop setup
+  or pivot to another routable packet.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted final byte-cast spelling missed. The source removed the
   `NON_EQUIVALENT` guard and changed only `D_8011D308 = yOutCount;` to
   `D_8011D308 = (s8) yOutCount;`. Full verify failed with calculated CRCs
