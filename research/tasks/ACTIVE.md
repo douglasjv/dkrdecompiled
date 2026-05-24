@@ -23,6 +23,22 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-probed pitch factor-out plus explicit `x_rotation_vel`
+  self-assignment spelling missed. The worker promoted the `NON_EQUIVALENT`
+  guard to `#if 1`, hoisted the shared normal-flight pitch damping subtraction
+  before the `R_TRIG` branch, and changed only
+  `racer->x_rotation_vel -= (racer->x_rotation_vel * updateRate) >> 4` to
+  `var_v1 = racer->x_rotation_vel; racer->x_rotation_vel = var_v1 -
+  ((var_v1 * updateRate) >> 4)`. Full relink/build failed with calculated
+  CRCs `0x81BCA331/0x35054A7B`; relinked `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` reported `CURRENT (2480)`, identical to
+  the prior pitch factor-out-only family. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the known wave scan drift. Worker restored
+  `src/racer.c` and verified `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`; do not repeat pitch factor-out plus explicit
+  `x_rotation_vel` self-assignment.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted late velocity store-order spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and reordered only the final
   post-physics stores from `obj->x_velocity = var_f20; obj->z_velocity =
@@ -119,6 +135,20 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this triangle-hit predicate operand-order spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted `pad3`-removed plus texture-index temp carrier missed.
+  The source changed the `NON_EQUIVALENT` guard to `#if 1`, removed the unused
+  `pad3` local, and routed `currentBatch->textureIndex` through existing
+  `temp` before `surface = gCurrentLevelModel->textures[temp].surfaceType`.
+  Full verify failed with calculated CRCs `0x7C4CE1AA/0x7C1438D3`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` reported
+  `CURRENT (2443)`. The diff still inserted the unwanted early
+  `gCurrentLevelModel` spill at `0x64(sp)` and kept broad segment/grid/tail
+  register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this `pad3`-removed plus texture-index `temp`
+  carrier combination.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 current-stack texture-index carrier probe improved but missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and routed only
