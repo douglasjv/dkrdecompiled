@@ -221,6 +221,16 @@
   and bottom-water condition-order probes also missed; do not repeat them.
 - Latest no-park routing note: `func_80049794` remains active and should not be
   parked solely because the current source-shape families are saturated. A
+  2026-05-24 worker-tested post-`sqrtf` `spCC` carrier
+  (`spCC = sqrtf(...); var_f20 = spCC - 2.0`) missed: focused
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` worsened from the
+  promoted baseline `CURRENT (2760)` to `CURRENT (3154)`. The diff still lacked
+  target `$f20/$f21` prologue saves, kept early zero in `$f16` instead of
+  target `$f14`, left the wave bound/index allocation reversed as current
+  `a0`/`v1`, and broadened later first-speed/gravity scheduling. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` remained 97.30%; do not repeat this post-`sqrtf` `spCC`
+  carrier. A
   2026-05-24 current-baseline wave-gate positive-count probe
   (`... && gRacerWaveCount > 0` instead of `gRacerWaveCount != 0`) missed:
   full verify failed with calculated CRCs `0x2FDDE03F/0xA529100F`, and

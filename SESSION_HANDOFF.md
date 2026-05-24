@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 01:02:06Z
+- Generated at: 2026-05-24 01:06:48Z
 - Branch: `master`
-- HEAD: `bcc2dd51`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected dead vert NULL seed probe; focused diff stayed CURRENT (2860), source restored.
+- HEAD: `50e09219`
+- Completed task: `func_80049794`
+- Summary: Rejected worker-tested spCC post-sqrtf carrier; focused diff worsened to CURRENT (3154), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_8002B0F4 only with a fresh model-spill fix hypothesis, or pivot to another active routable target if no non-repeated shape remains.`
+- Task: `Continue func_80049794 only with a fresh wave-bound/index or save-family hypothesis that avoids recorded carrier variants, or pivot if no non-repeated shape remains.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
