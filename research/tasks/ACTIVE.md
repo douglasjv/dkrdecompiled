@@ -326,6 +326,19 @@
   restored and final full verify passed; do not repeat direct first-ring
   `scaledXSin` replacements as the FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted `pad3` removal plus scaled collision-plane index local
+  probe missed. The source removed the `NON_EQUIVALENT` guard, removed the
+  dead `pad3` slot, then stored `basePlaneIndex * 4` in `temp` and used
+  `collisionPlanes[temp + n]`. Full verify failed with calculated CRCs
+  `0x7E7421AA/0xA14ED9A9`, and relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` reported `CURRENT (2733)`, slightly worse
+  than the scaled-index-only `CURRENT (2725)`. The unwanted early
+  `gCurrentLevelModel` load/spill remained, shifted to `0x64(sp)`, with broad
+  segment/grid/tail register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat `pad3` removal plus scaled collision-plane
+  index local without a distinct model-spill/register-family fix.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted collision-hit post-increment limit equality probe
   missed. The source removed the `NON_EQUIVALENT` guard and changed only the
   post-hit limit check from `if (yOutCount >= 20)` to
