@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:12:33Z
+- Generated at: 2026-05-24 09:15:58Z
 - Branch: `master`
-- HEAD: `83b00b1a`
-- Completed task: `func_80049794`
-- Summary: Rejected early A-button throttle branch-polarity spelling; promoted source failed full verify with calculated CRCs 0xC592EE11/0x5932D245 and relinked diff regressed to CURRENT (6090).
+- HEAD: `8966e63a`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected early sp108 return guard condition-order spelling; promoted source failed full verify with calculated CRCs 0x7856718E/0xC7219F23 and relinked diff regressed to CURRENT (2930).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Do not repeat the A-button throttle branch-polarity swap, normal-flight side-force racer->velocity * (var_t0 * 0.00015) grouping, xRotationOffset 4096.0 denominator spelling, pitch damping factor-out alone, pitch multiplier carrier, tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, or already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Avoid func_8002B0F4 early sp108 guard-order, sp108 > 7, sp108 <= 0, sp108 split/positive-range guards, and the known gCurrentLevelModel spill micro-variants; also avoid the recent func_80049794 throttle branch, side-force grouping, xRotationOffset denominator, pitch damping, tappedR, and late attach-point guard variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

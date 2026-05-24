@@ -22,6 +22,21 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted early `sp108` return guard condition-order spelling
+  missed. The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote
+  only the initial `if (sp108 == 0 || sp108 >= 8)` guard as
+  `if (sp108 >= 8 || sp108 == 0)`. Pre-build
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x7856718E/0xC7219F23`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (2930)`. The diff inverted the early `slti`/zero-test order,
+  introduced the known unwanted early `gCurrentLevelModel` spill at `0x60(sp)`,
+  and broadened segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this early `sp108` guard-order spelling.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted early A-button throttle branch-polarity spelling missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
