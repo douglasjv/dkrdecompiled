@@ -3894,6 +3894,17 @@
   recomputation. Source was restored, worker and main validation both reached
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   explicit surviving count-bound local shape.
+  A close save-family decrementing `WaterProperties **wave` pointer-carrier
+  probe also missed: adding the pointer local on top of the x/z/y pre-`sqrtf`,
+  steer-noop, chained-zero, and no-trailing-pad branch widened the frame to
+  `0x100`, full verify failed with calculated CRCs
+  `0x9ED4C306/0xE6587C63`, and relinked focused diff worsened to
+  `CURRENT (8081)`. The target `v1` bound / `a0` loop-index roles were still
+  reversed, and the pointer update scheduled as `lw -4(v0)` followed by
+  `addiu v0,-4` instead of target predecrement. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this close-branch explicit
+  decrementing pointer-carrier shape.
   A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
