@@ -76,7 +76,17 @@
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-24 checkpoint-scale
+  `func_80059208` also remains active after a 2026-05-24 final swap-temp
+  spelling (`pad = diffX; diffX = diffZ; diffZ = -pad`) missed: full verify
+  failed with calculated CRCs `0x0A689858/0x4CFBB1F6`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1798)`. The diff moved the
+  final swap/tail away from the target pre-swap `0x50(sp)` store, shifted the
+  object-dot FPR schedule, and broadened final vertical correction register
+  drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this final swap through
+  `pad` spelling. A 2026-05-24 checkpoint-scale
   divisor lerp probe (`divisor = (scale * splinePos) + (distance * (1.0f -
   splinePos))`) missed: full verify failed with calculated CRCs
   `0x8227660E/0xF9723FA3`, and relinked
@@ -4199,6 +4209,15 @@
   lateral/vertical object-dot and tempY register allocation, not the wrong-way
   counter branch shape. Source was restored and final full verify passed; do
   not repeat this nested wrong-way counter spelling.
+  Routing the final `diffX`/`diffZ` swap through the existing `pad` float local
+  (`pad = diffX; diffX = diffZ; diffZ = -pad`) also missed: full verify failed
+  with calculated CRCs `0x0A689858/0x4CFBB1F6`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1798)`. It inserted an early
+  `neg.s`/store to `0x4c(sp)`, failed to preserve the target pre-swap
+  `0x50(sp)` store family, shifted object-dot FPR allocation, and broadened
+  final vertical correction drift. Source was restored and final full verify
+  passed; do not repeat this final swap-through-`pad` spelling.
   Reusing the already-loaded `distance` local in the early checkpoint-scale
   divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
   produced no relinked object movement: object-only focused diff first showed
