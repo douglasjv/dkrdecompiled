@@ -71,6 +71,20 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this color-mask `var_a3`
   carrier spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 worker negative-cosine carrier probe missed. The promoted source
+  added a new `negScaledXCos = -scaledXCos` local and used it for first-ring
+  and outer negative-cosine position expressions. Full verify failed with
+  calculated CRCs `0xDC79FC91/0xA51F89F4`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` worsened
+  from promoted baseline `CURRENT (1808)` to `CURRENT (3382)`. The frame stayed
+  `0x158`, but temp stack slots shifted, early negative cosine still used
+  `$f16` instead of target `$f18`, and first position-array scheduling
+  broadened. Source was restored, main `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat new-local/storage negative-cosine carriers.
+  Next `trackbg_render_flashy` hypothesis should preserve the existing stack
+  layout while influencing the target `neg.s` FPR allocation.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted normalization direct-division spelling missed. The source
   shape changed the guarded unit-vector normalization from

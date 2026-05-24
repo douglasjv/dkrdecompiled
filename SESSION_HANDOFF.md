@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:12:19Z
+- Generated at: 2026-05-24 03:17:57Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted existing-C diagnostic after restore: full gate failed CRCs 0x53D141DF/0xB9D4B481; cmp first code drift is ROM offset 369250/0x5A262 in the final object-dot/checkpoint-dot tail, while racer rodata still carries the -0.2 bytes at the expected object rodata offset, so do not treat this as a simple rodata-placement miss.
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected worker negative-cosine carrier probe: promoted source with a new negScaledXCos local for first/outer negative-cosine position expressions failed CRCs 0xDC79FC91/0xA51F89F4 and worsened relinked focused diff to CURRENT (3382); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; prefer func_80049794 or another routable candidate over more func_80059208 final-tail micro-variants unless a distinct save-pressure or codegen-family hypothesis is documented.`
+- Task: `Run selector; prefer func_80049794 or a distinct active-candidate hypothesis, and for trackbg_render_flashy avoid new local/storage negative-cosine carriers; next trackbg hypothesis should preserve stack layout and target neg.s FPR allocation.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
