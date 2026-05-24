@@ -1,14 +1,16 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:45:28Z
+- Generated at: 2026-05-24 07:49:13Z
 - Branch: `master`
-- HEAD: `66c52fbd`
-- Completed task: `trackbg_render_flashy-first-ring-paired-store-reuse`
-- Summary: Rejected promoted first-ring paired array-slot reuse/store-carrier probe; relinked diff regressed to CURRENT (7643), source restored.
+- HEAD: `b484aecd`
+- Completed task: `func_8002B0F4-segment-bbox-first-setup-order`
+- Summary: Rejected promoted segment setup assignment-order probe; relinked diff regressed to CURRENT (3965), added early gCurrentLevelModel spill at 0x60(sp), source restored.
 
 ## Validation
 
-- ./diff.sh trackbg_render_flashy --no-pager after promotion/relink: CURRENT (7643), frame 0x150 vs target 0x158, early neg-cos still current `$f16` instead of target `$f18`
+- ./diff.sh func_8002B0F4 --no-pager before full build: misleading CURRENT (0) against the pre-relink object
+- gmake -j4 CROSS=tools/binutils/mips64-elf- after promotion: failed, calculated CRCs 0x7856718A/0xA6A743D8
+- ./diff.sh func_8002B0F4 --no-pager after promotion/relink: CURRENT (3965), early gCurrentLevelModel spill at 0x60(sp), segment loop body shifted
 - gmake -j4 CROSS=tools/binutils/mips64-elf- after restore: Verify: OK
 - ./score.sh -s: Decomp progress [us.v77]: 97.30%
 - python3 tools/check_active_surface.py: active surface ok
@@ -25,7 +27,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default remains func_80049794 unless choosing a fresh non-repeat alternate hypothesis`
+- Task: `Run selector; default remains func_80049794 unless choosing a fresh non-repeat alternate hypothesis such as func_8002B0F4 segment loop setup without introducing a hoisted model spill`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

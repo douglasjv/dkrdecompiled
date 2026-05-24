@@ -96,6 +96,24 @@
   `python3 tools/check_active_surface.py` reported active surface ok; do not
   repeat this single-site `xPositions[2]` scaledXSin reuse.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted segment setup assignment-order probe missed. The source
+  changed only the `NON_EQUIVALENT` guard to `#if 1` and reordered the segment
+  loop setup so `currentBoundingBox =
+  &gCurrentLevelModel->segmentsBoundingBoxes[spB0[var_fp]]` came before
+  `currentSegment = &gCurrentLevelModel->segments[spB0[var_fp]]`, attempting to
+  mirror the target member load order. Pre-build `./diff.sh func_8002B0F4
+  --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0x7856718A/0xA6A743D8`; relinked uncompressed
+  `./diff.sh func_8002B0F4 --no-pager` regressed to `CURRENT (3965)`. The diff
+  introduced an early hoisted `gCurrentLevelModel` load/spill to `0x60(sp)`,
+  shifted the segment/grid loop by four bytes, and still diverged broadly from
+  the target. Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this assignment-order/member-load-order spelling. Next hypothesis for
+  this packet should target segment loop setup without hoisting/spilling
+  `gCurrentLevelModel`, or pivot to another routable packet.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted `surface` local halfword-width probe missed. The source
   changed only the `NON_EQUIVALENT` guard to `#if 1` and changed the batch
   `surface` local from `s8` to `s16`. Full verify failed with calculated CRCs
