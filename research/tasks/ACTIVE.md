@@ -76,7 +76,18 @@
   multiply-order, vertex pointer-loop, color fallback initialization-order,
   final global pointer store-order, final triangle postincrement, and center
   position store-order probes also missed; do not repeat them.
-  `func_80059208` also remains active after a 2026-05-24 final swap-temp
+  `func_80059208` also remains active after a 2026-05-24 positive
+  checkpoint-dot numerator probe (`pad2 = (tempZ * diffZ) + (diffX * tempX);
+  diffX = (pad2 - pad) / divisor`) missed: promoted full verify failed with
+  calculated CRCs `0xC7D996EA/0xC6D1DFDE`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1300)`. The diff preserved
+  more of the target pre-swap store family than the prior swap-through-`pad`
+  miss, but removed the target post-divide `neg.s`, shifted the object-dot FPR
+  allocation, and broadened final vertical correction drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` remained 97.30%; do not repeat this positive
+  checkpoint-dot numerator spelling. A 2026-05-24 final swap-temp
   spelling (`pad = diffX; diffX = diffZ; diffZ = -pad`) missed: full verify
   failed with calculated CRCs `0x0A689858/0x4CFBB1F6`, and relinked
   `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
@@ -4218,6 +4229,16 @@
   `0x50(sp)` store family, shifted object-dot FPR allocation, and broadened
   final vertical correction drift. Source was restored and final full verify
   passed; do not repeat this final swap-through-`pad` spelling.
+  A positive checkpoint-dot numerator spelling (`pad2 = (tempZ * diffZ) +
+  (diffX * tempX); diffX = (pad2 - pad) / divisor`) also missed: promoted
+  full verify failed with calculated CRCs `0xC7D996EA/0xC6D1DFDE`, and
+  relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  worsened from promoted baseline `CURRENT (870)` to `CURRENT (1300)`. It
+  kept the target pre-swap store family closer than the swap-through-`pad`
+  probe, but removed the target post-divide `neg.s`, shifted the object-dot
+  FPR allocation (`$f16` to `$f12` family), and broadened final vertical
+  correction drift. Source was restored and final full verify passed; do not
+  repeat this positive checkpoint-dot numerator spelling.
   Reusing the already-loaded `distance` local in the early checkpoint-scale
   divisor expression (`divisor = ((scale - distance) * splinePos) + distance`)
   produced no relinked object movement: object-only focused diff first showed
