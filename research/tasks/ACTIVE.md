@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted Z grid-mask four-way unroll spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the Z
+  bounding-box mask loop from `for (i = 0; i < 8; i++)` to `i += 4` with four
+  inlined copies of the same mask/update body. Pre-build
+  `./diff.sh func_8002B0F4 --no-pager` misleadingly reported `CURRENT (0)`,
+  but full verify failed with calculated CRCs `0x7856718A/0xC40F5151`;
+  relinked `./diff.sh func_8002B0F4 --no-pager` regressed to
+  `CURRENT (3325)`. The relinked object hoisted `gCurrentLevelModel` before the
+  candidate loop and spilled it to `0x60(sp)`, shifting the segment setup and
+  later loops by four bytes despite the Z mask block shape. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok; do not repeat Z grid-mask four-way unroll
+  spellings. Next hypothesis should avoid early model hoisting/spilling or
+  pivot to another routable packet.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted first-ring full `scaledXSin` reuse spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and reused the existing
