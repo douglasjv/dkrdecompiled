@@ -668,6 +668,20 @@
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted first-ring paired-store reuse probe missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and rewrote the first-ring
+  position stores to reuse paired array slots (`zPositions[1] = xPositions[0]`,
+  `zPositions[2] = xPositions[1]`, `xPositions[3] = zPositions[0]`,
+  `zPositions[3] = xPositions[2]`). Full verify failed with calculated CRCs
+  `0x0A819FB5/0x0003CE66`, and relinked uncompressed
+  `./diff.sh trackbg_render_flashy --no-pager` regressed to `CURRENT (7643)`.
+  The frame shrank from target `0x158` to `0x150`, early negative-cosine still
+  used current `$f16` instead of target `$f18`, and first-ring store scheduling
+  broadened. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and active surface
+  remained ok; do not repeat first-ring paired array-slot reuse/store-carrier
+  spellings.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted selected-color shift-mask spelling missed. The source
   removed the `NON_MATCHING` guard and changed only
   `levelHeader->rgba.word & (~0xFF)` to `(levelHeader->rgba.word >> 8) << 8`.

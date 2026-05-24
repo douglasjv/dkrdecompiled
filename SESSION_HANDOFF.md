@@ -1,15 +1,15 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:41:53Z
+- Generated at: 2026-05-24 07:45:28Z
 - Branch: `master`
-- HEAD: `9bfb186d`
-- Completed task: `init_particle_buffers`
-- Summary: Recorded failed promotion and allocator-tag-local probe; source restored after relinked diff stayed at score 2098.
+- HEAD: `66c52fbd`
+- Completed task: `trackbg_render_flashy-first-ring-paired-store-reuse`
+- Summary: Rejected promoted first-ring paired array-slot reuse/store-carrier probe; relinked diff regressed to CURRENT (7643), source restored.
 
 ## Validation
 
-- ./diff.sh init_particle_buffers --no-pager: relinked focused diff score 2098 after promotion; allocator-tag local made no object-code movement
-- gmake -j4 CROSS=tools/binutils/mips64-elf-: Verify: OK after restore
+- ./diff.sh trackbg_render_flashy --no-pager after promotion/relink: CURRENT (7643), frame 0x150 vs target 0x158, early neg-cos still current `$f16` instead of target `$f18`
+- gmake -j4 CROSS=tools/binutils/mips64-elf- after restore: Verify: OK
 - ./score.sh -s: Decomp progress [us.v77]: 97.30%
 - python3 tools/check_active_surface.py: active surface ok
 
@@ -25,7 +25,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; default remains func_80049794 unless choosing a fresh non-repeat parked-target hypothesis`
+- Task: `Run selector; default remains func_80049794 unless choosing a fresh non-repeat alternate hypothesis`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
