@@ -25,6 +25,19 @@
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted Z-grid fake marker removal missed. The source shape
+  removed only the no-op `if (1) {}` after the `// @fake for s3 vs s2` comment
+  before the Z grid loop. Full verify failed with calculated CRCs
+  `0x7884718A/0x8596E436`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (2860)` to `CURRENT (2900)`. The diff changed the
+  target-like `s3` constant holder to `s2`, preserved the unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`, and broadened grid/tail register
+  drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this Z-grid fake-marker
+  removal shape.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted five-node fill loop-condition spelling missed. The
   source shape changed only `for (i = 0; (i < 5) ^ 0; i++)` to

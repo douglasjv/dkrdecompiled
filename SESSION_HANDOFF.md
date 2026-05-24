@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:31:09Z
+- Generated at: 2026-05-24 02:34:15Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted five-node i != 5 loop-condition probe; recorded weak worker literal-zero rejection for func_80049794; source restored.
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted Z-grid fake-marker removal; source restored after relinked focused diff worsened.
 
 ## Validation
 
