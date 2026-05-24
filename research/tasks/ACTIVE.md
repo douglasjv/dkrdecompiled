@@ -281,6 +281,21 @@
   repeat this late attach-point guard-merge spelling. Next hypothesis should
   use an independent `func_80049794` family or pivot to another routable
   packet, avoiding saved-FPR/wave-scan micro-variants already recorded.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted final `spA1` R-trigger restore boolean spelling missed.
+  The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  the final restore check from `if (spA1 != FALSE)` to `if (spA1)`. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the known wave scan `a0`-bound/`v1`-loop drift.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this final `spA1` boolean spelling.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted wrong-way counter limit spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and rewrote only

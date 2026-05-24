@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:53:58Z
+- Generated at: 2026-05-24 09:56:37Z
 - Branch: `master`
-- HEAD: `36c47777`
-- Completed task: `func_80059208`
-- Summary: Rejected func_80059208 alternate-route guard boolean spelling; promoted source changed only if (racer->isOnAlternateRoute) to if (racer->isOnAlternateRoute != FALSE). Full verify failed with CRCs 0x53D141DF/0xB9D4B481, and relinked diff stayed CURRENT (870) in the final object-dot/checkpoint-dot tail. Source restored.
+- HEAD: `23e89b68`
+- Completed task: `func_80049794`
+- Summary: Rejected func_80049794 final spA1 R-trigger restore boolean spelling; promoted source changed only if (spA1 != FALSE) to if (spA1). Full verify failed with CRCs 0x5FDDE03F/0xEF7A0514, and relinked diff stayed CURRENT (2760) with missing target f20/f21 prologue saves, early zero in f16 instead of f14, and the known wave scan register drift. Source restored.
 
 ## Validation
 
