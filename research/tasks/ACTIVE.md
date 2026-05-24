@@ -573,6 +573,17 @@
   reciprocal double-literal, normalization guard comparison-order, and
   magnitude sum-order probes also missed; do not repeat them.
   `func_8002B0F4` also remains active after a 2026-05-24 promoted
+  coordinate-local type probe (`s32 XInInt`/`ZInInt` narrowed to `s16`)
+  missed: full verify failed with calculated CRCs
+  `0x93CE4D86/0x8EE561B4`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (4425)`. The narrowed locals inserted extra sign-extension
+  scheduling, shifted `spB0` from target `0xb0(sp)` to current `0xb4(sp)`, and
+  retained the unwanted pre-loop `gCurrentLevelModel` spill at `0x64(sp)` with
+  broad segment/grid/tail drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this `XInInt`/`ZInInt`
+  `s16` local-type spelling. A 2026-05-24 promoted
   collision-plane scalar-local probe (`Vec4f tempVec4f` replaced with
   `planeX`/`planeY`/`planeZ`/`planeW`) missed as a no-movement family: full
   verify failed with the promoted-baseline calculated CRCs
