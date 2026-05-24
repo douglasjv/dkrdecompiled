@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:45:49Z
+- Generated at: 2026-05-24 05:50:54Z
 - Branch: `master`
-- HEAD: `306c3163`
-- Completed task: `func_80049794`
-- Summary: Rejected promoted early wave speed var_f14 carrier: removed the dedicated racerVelocity local and routed the early wave speed clamp/lift through var_f14; relinked object diff worsened to CURRENT (2704) and full verify failed with calculated CRCs 0x5FD89617/0xF4C6A984; source restored.
+- HEAD: `b0b883d1`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted current-source output-pointer clear spelling arg3[0] = NULL; full verify failed with CRCs 0x7856718A/0x66208CAA and relinked func_8002B0F4 stayed CURRENT (2860) with the known early gCurrentLevelModel spill at 0x60(sp). Also recorded worker func_80049794 cached-bound for-loop miss: CRCs 0x5790053C/0x1C8C0179, focused CURRENT (5755), wave setup drifted to v1/a3/v0 and still missed saved FPRs.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring src/racer.c; ./score.sh -s -> 97.30%
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring source; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run the selector again; continue func_80049794 only with a distinct non-repeat saved-FPR plus wave bound/index allocation hypothesis, otherwise pivot to func_80059208, trackbg_render_flashy, or func_8002B0F4 per selector.`
+- Task: `Run selector again; continue func_80049794 only with a distinct pointer-object current-wave cursor plus saved-FPR allocation hypothesis, otherwise pivot to func_80059208, trackbg_render_flashy, or func_8002B0F4 per non-repeat notes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

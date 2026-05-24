@@ -23,6 +23,33 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-tested cached-bound `for` spelling missed. The worker
+  promoted guarded C, cached `var_v1 = gRacerWaveCount - 1`, started
+  `for (var_a0 = var_v1; ...)`, and compared the final selected wave against
+  `var_v1`. Full verify failed with calculated CRCs
+  `0x5790053C/0x1C8C0179`, and focused
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (5755)`. The wave setup drifted to `v1/a3/v0` instead of target
+  `v0/v1/a0`, kept indexed reload churn instead of pointer-predecrement, and
+  still missed target `$f20/$f21` saves plus early `$f14` zeroing. Worker
+  source was restored and the main worktree stayed clean; do not repeat this
+  scalar cached-bound `for` spelling. Next hypothesis should be a distinct
+  pointer-object current-wave cursor with independent integer bound and saved
+  FPR pressure, or a pivot to another routable packet.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted current-source output-pointer clear spelling missed. The
+  source removed the `NON_EQUIVALENT` guard and changed only `*arg3 = NULL` to
+  `arg3[0] = NULL`. Full verify failed with calculated CRCs
+  `0x7856718A/0x66208CAA`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2860)`. The diff retained the known unwanted
+  early `gCurrentLevelModel` spill at `0x60(sp)` plus broad segment/grid/tail
+  register drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this output-pointer clear `arg3[0]` spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-suggested saved-FPR pressure carrier before the wave scan
   missed. The source removed the `NON_EQUIVALENT` guard, assigned
   `var_f20 = updateRateF` before the wave scan, then restored
