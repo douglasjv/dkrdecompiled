@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:03:20Z
+- Generated at: 2026-05-24 10:06:41Z
 - Branch: `master`
-- HEAD: `388e4a89`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted final vertex store-order spelling; source changed only the vertex loop order to write y, x, RGB, z, alpha. Pre-build focused diff reported CURRENT (0), full verify failed with CRCs 0x93D338FF/0x8D381EFE, and relinked diff worsened to CURRENT (2263) with early negative-cosine/position-array FPR drift plus shifted final vertex store schedule. Source restored.
+- HEAD: `6e447399`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted checkpoint-distance single-precision literal spelling; source changed only splinePos = 1.0 - racer->checkpoint_distance to 1.0f - racer->checkpoint_distance. Pre-build focused diff reported CURRENT (0), full verify failed with CRCs 0xC0802A15/0xAB5B7DB7, and relinked diff regressed to CURRENT (3020) by replacing the target double subtraction and shifting rodata/calls. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid trackbg_render_flashy final vertex store-order/alpha/pointer-loop spellings unless paired with an early negative-cosine position-array fix.`
+- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid func_80059208 checkpoint-distance literal/threshold spellings unless paired with a separate final object-dot/checkpoint-dot allocation fix.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
