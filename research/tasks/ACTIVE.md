@@ -42,6 +42,26 @@
   a distinct saved-FPR/register-pressure fix, or pivot to another bounded
   routable packet.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted early lap-reset guard-commute spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `if ((level_id() == 0) && (racer->nextCheckpoint >= temp_v0))` as
+  `if ((racer->nextCheckpoint >= temp_v0) && (level_id() == 0))`. Pre-build
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x8A644220/0xBE221594`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` regressed to `CURRENT (1585)`. The guard
+  commute moved the `level_id()` call after the checkpoint compare and still
+  retained the final object-dot/checkpoint-dot plus vertical FPR drift. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat this
+  early lap-reset guard-commute spelling. Next hypothesis should avoid
+  `func_80059208` early lap-reset guard commute, level_id boolean/nested guard,
+  splineIndex boolean/comparison, pre-fill/fill-loop, normalization, wrong-way
+  counter, final object-dot/checkpoint-dot, and final clamp/vertical-tail
+  microvariants unless paired with a distinct final-tail allocation fix, or
+  pivot to another bounded routable packet.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted `splinePos` lower-clamp constant-left spelling missed.
   The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
   `if (splinePos < 0.0f)` as `if (0.0f > splinePos)`. Full verify failed with

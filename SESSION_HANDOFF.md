@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:48:24Z
+- Generated at: 2026-05-24 12:54:29Z
 - Branch: `master`
-- HEAD: `d62ddb2e`
-- Completed task: `func_8002B0F4-collision-plane-zero-branch`
-- Summary: Rejected promoted func_8002B0F4 collision-plane zero-branch spelling: changed the NON_EQUIVALENT guard to #if 1 and rewrote only if (tempVec4f.y != 0.0) as if (tempVec4f.y == 0.0) { } else { ... }. Full verify failed with calculated CRCs 0x77D9E18A/0xB9F696E2; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager regressed to CURRENT (2995), collapsing into the known X-grid fake-barrier family with early gCurrentLevelModel spill at 0x60(sp), X-grid accumulator shifted from target s1 to current s2, and broad segment/grid/tail drift. Source restored.
+- HEAD: `3427ba22`
+- Completed task: `func_80059208-lap-reset-guard-commute`
+- Summary: Rejected promoted func_80059208 early lap-reset guard commute: changed the NON_MATCHING guard to #if 1 and rewrote only if ((level_id() == 0) && (racer->nextCheckpoint >= temp_v0)) as if ((racer->nextCheckpoint >= temp_v0) && (level_id() == 0)). Full verify failed with calculated CRCs 0x8A644220/0xBE221594; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager regressed to CURRENT (1585), moving the level_id() call after the checkpoint compare and still retaining the final object-dot/checkpoint-dot plus vertical FPR drift. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_8002B0F4 collision-plane zero-branch, collision-plane scalar guard variants, X-grid fake barrier variants, initial clear-order/model-spill/texture-index carrier/batch-offset microvariants unless paired with a distinct model-spill fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_80059208 early lap-reset guard commute, level_id boolean/nested guard, splineIndex boolean/comparison, pre-fill/fill-loop, normalization, wrong-way counter, final object-dot/checkpoint-dot, and final clamp/vertical-tail microvariants unless paired with a distinct final-tail allocation fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
