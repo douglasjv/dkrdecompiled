@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:05:54Z
+- Generated at: 2026-05-24 05:09:23Z
 - Branch: `master`
-- HEAD: `0a8b67e9`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted func_80059208 crossed final object-dot spelling; focused diff worsened to CURRENT (875).
+- HEAD: `b43b02df`
+- Completed task: `func_8002B0F4`
+- Summary: Promoted collision-hit post-increment limit equality probe missed: changing yOutCount >= 20 to yOutCount == 20 failed full verify with calculated CRCs 0xA74DDBBC/0xC4B262D4; relinked focused diff regressed to CURRENT (8360), with the hit-limit site compiling to li s7,0x14 plus bne s5,s7 instead of the target slti/bnez shape. Source was restored.
 
 ## Validation
 
-- Probe failed CRCs 0x53CD81DF/0xC82CEDAE; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok; git diff --check clean.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Avoid func_80059208 final object-dot product-order and crossed-coordinate spellings; choose a distinct final-tail register-family hypothesis or another routable candidate.`
+- Task: `Continue with func_8002B0F4 only on a distinct model-spill/register-family or plane-output lifetime hypothesis; do not repeat post-hit yOutCount == 20/equality limit spelling.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

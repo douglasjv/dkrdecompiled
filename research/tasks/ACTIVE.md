@@ -311,6 +311,21 @@
   restored and final full verify passed; do not repeat direct first-ring
   `scaledXSin` replacements as the FPR allocation fix.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted collision-hit post-increment limit equality probe
+  missed. The source removed the `NON_EQUIVALENT` guard and changed only the
+  post-hit limit check from `if (yOutCount >= 20)` to
+  `if (yOutCount == 20)`. Full verify failed with calculated CRCs
+  `0xA74DDBBC/0xC4B262D4`, and relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` regressed from promoted baseline
+  `CURRENT (2860)` to `CURRENT (8360)`. The hit-limit site compiled into a
+  constant-register equality compare (`li s7,0x14`; `bne s5,s7`) instead of
+  the target post-increment `slti`/`bnez` shape, while the known early
+  `gCurrentLevelModel` load/spill family remained. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat post-hit `yOutCount == 20`
+  or equality-limit spellings without a distinct model-spill/register-family
+  fix.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted early `sp108 > 7` guard spelling missed. The source
   removed the `NON_EQUIVALENT` guard and changed only the second half of the
   initial return guard from `sp108 >= 8` to `sp108 > 7`. Full verify failed
