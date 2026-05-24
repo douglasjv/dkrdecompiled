@@ -22,6 +22,21 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  2026-05-24 duplicated `hubName` branch-store probe missed. The source
+  changed the `NON_MATCHING` guard to `#if 1`, moved the single
+  `cur->hubName = levelName` statement into both `selectedTrack != -1` branch
+  arms, and otherwise kept the current selected-track temp/table-load shape.
+  Full verify failed with calculated CRCs `0xB0D677D4/0x7578039A`; relinked
+  `./diff.sh func_8008FF1C --no-pager` regressed from the parked baseline
+  `CURRENT (10)` to `CURRENT (485)`. The duplicate-store shape emitted
+  `move a1,v0` in the target delay-slot position plus a later `sw a1,0(s0)`,
+  still branched on `v1` instead of target `t2`, and shifted all later
+  addresses by eight bytes. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this duplicated branch-local `hubName` store
+  spelling.
 - Latest parked-packet revisit note: `init_particle_buffers` remains parked
   after a 2026-05-24 promoted dead-`pad` removal probe missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and removed only the unused

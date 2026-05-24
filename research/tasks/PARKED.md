@@ -102,7 +102,14 @@ when intentionally returning to them.
   register allocation shifted broadly. Source was restored, `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this selected-track condition-assignment
-  spelling.
+  spelling. A later duplicated branch-local `hubName` store probe
+  (`cur->hubName = levelName` as the first statement in both selected-track
+  branch arms) also missed: full verify failed with calculated CRCs
+  `0xB0D677D4/0x7578039A`, relinked focused diff regressed to
+  `CURRENT (485)`, the selected-track branch still used `v1` instead of target
+  `t2`, and the would-be delay-slot store became `move a1,v0` followed by a
+  later `sw a1,0(s0)`. Source was restored and final full verify passed; do
+  not repeat duplicated branch-local `hubName` store spellings.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
