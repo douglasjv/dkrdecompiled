@@ -205,6 +205,14 @@
   the wrong-way velocity compare away from the target double-compare family and
   broadened downstream labels/final-tail drift. Source was restored and final
   full verify passed; do not repeat this wrong-way velocity `-1.0f` spelling.
+  A 2026-05-24 promotion-only check of the current C also failed the canonical
+  gate: after removing the `NON_MATCHING` guard, uncompressed
+  `./diff.sh func_80059208 --no-pager` reported `CURRENT (0)`, but
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` failed SHA with calculated CRCs
+  `0x53D141DF/0xB9D4B481`. Object sections kept matching sizes and inspected
+  `.rodata` bytes matched, but source was restored because acceptance requires
+  full `Verify: OK`; do not promote `func_80059208` from focused `CURRENT (0)`
+  alone.
   A nested wrong-way counter condition probe (`if (wrongWayCounter < 200) { if
   (velocity <= -1.0) ... }`) also missed: full verify failed with calculated
   CRCs `0x53D141DF/0xB9D4B481`, and relinked `./diff.sh func_80059208` stayed
@@ -4324,6 +4332,14 @@
   near the final lateral/vertical offset math: target preserves the negated
   `pad2 = -((tempZ * diffZ) + (diffX * tempX))` temporary and adds it to `pad`,
   while current folds the equivalent math into a subtract. Rejected probes:
+  a 2026-05-24 promotion-only recheck of the current C removed the
+  `NON_MATCHING` guard and showed uncompressed `./diff.sh func_80059208
+  --no-pager` at `CURRENT (0)`, but the full matching build failed SHA with
+  calculated CRCs `0x53D141DF/0xB9D4B481`. Object section sizes matched the
+  expected object and inspected `.rodata` bytes matched, but the source was
+  restored because the canonical gate did not reach `Verify: OK`; do not accept
+  focused `CURRENT (0)` promotion-only evidence for this function without a
+  passing full build.
   commuting the wrong-way angle guard to negative-first order
   (`angle < -0x4000 || angle > 0x4000`) missed: full verify failed with
   calculated CRCs `0x5BD141DF/0x44652332`, and the relinked focused diff

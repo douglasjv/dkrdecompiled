@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 02:09:24Z
+- Generated at: 2026-05-24 02:12:57Z
 - Branch: `master`
-- HEAD: `a1533548`
-- Completed task: `func_80049794`
-- Summary: Rejected wave pointer-cache probe; restored source
+- HEAD: `dfd9b0c2`
+- Completed task: `func_80059208`
+- Summary: Rejected promotion-only focused match; restored guard
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; continue func_80049794 only with a fresh non-repeated saved-FPR/wave allocation hypothesis, using uncompressed diff/full-gate evidence, or pivot to another active routable target with a non-repeated source-shape.`
+- Task: `Run selector; continue func_80049794 only with fresh non-repeated full-gate evidence, or pivot to func_80059208 only with a concrete full-ROM promotion/layout hypothesis rather than focused CURRENT (0) alone.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
