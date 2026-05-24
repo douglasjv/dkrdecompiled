@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 12:41:34Z
+- Generated at: 2026-05-24 12:44:57Z
 - Branch: `master`
-- HEAD: `b5661bbb`
-- Completed task: `func_80049794-magnet-condition-truthy`
-- Summary: Rejected promoted func_80049794 magnetTimer truthy spelling: changed the NON_EQUIVALENT guard to #if 1 and rewrote only if (racer->magnetTimer != 0) as if (racer->magnetTimer). Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514; relinked ./diff.sh func_80049794 --compress-matching 2 --no-pager stayed at CURRENT (2760), with no useful movement at the magnet override and the same missing target `$f20`/`$f21` prologue saves, early zero in current `$f16` instead of target `$f14`, and wave scan a0-bound/v1-loop drift. Source restored.
+- HEAD: `26c0db97`
+- Completed task: `func_80059208-splinepos-zero-constant-left`
+- Summary: Rejected promoted func_80059208 splinePos lower-clamp constant-left spelling: changed the NON_MATCHING guard to #if 1 and rewrote only if (splinePos < 0.0f) as if (0.0f > splinePos). Full verify failed with calculated CRCs 0x53D141DF/0xB9D4B481; relinked ./diff.sh func_80059208 --compress-matching 2 --no-pager stayed at CURRENT (870), with no movement in the lower clamp and the same final object-dot/checkpoint-dot plus vertical FPR tail drift. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_80049794 magnetTimer truthy, save/wave microvariants, early grounded-zero carriers, and throttle/brake literals unless paired with a distinct saved-FPR/register-pressure fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_80059208 splinePos lower-clamp constant-left, pre-fill counter expression/guard, fill-loop, upper-half decrement/alternate-route, normalization, wrong-way counter, final object-dot, and final-tail clamp/negation microvariants unless paired with a distinct spline dataflow fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
