@@ -1,21 +1,22 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:49:19Z
+- Generated at: 2026-05-24 10:55:58Z
 - Branch: `master`
-- HEAD: `dc49dacd`
-- Completed task: `func_80049794`
-- Summary: Rejected promoted initial grounded-wheel boolean guard spelling; relinked diff regressed to CURRENT (2960), changed target blez to beqz, and source restored verifies OK
+- HEAD: `b397af40`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted pad3-slot LevelModel carrier plus three-level surface guard and texture-index temp carrier; full verify failed and relinked diff remained in model-spill/grid drift
 
 ## Validation
 
 - Rejected probe full build failed with calculated CRCs
-  `0x5FDDE03F/0x408C160F`; relinked `./diff.sh func_80049794
-  --compress-matching 2 --no-pager` regressed to `CURRENT (2960)`. The
-  initial grounded-wheel guard changed away from target `blez` to `beqz`,
-  early zeroing stayed in current `$f16` instead of target `$f14`, and the
-  target `$f20`/`$f21` prologue saves were still absent. After source restore,
-  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
-  `./score.sh -s` remained 97.30%, and `python3
+  `0x7C2820DA/0x9A7063A4`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` reported `CURRENT (2503)`. The
+  pad3-slot `LevelModel *levelModel` carrier plus three-level surface guard
+  and `textureIndex` temp carrier improved over the promoted baseline, but
+  still inserted an early `gCurrentLevelModel` load/spill at `0x94(sp)`,
+  shifted the outer grid register family, and left bottom/tail labels drifting.
+  After source restore, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
   tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns

@@ -84,6 +84,26 @@
   tools/check_active_surface.py` reported active surface ok; do not repeat this
   wrong-way `WRAP` explicit-if expansion.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted pad3-slot `LevelModel *levelModel` carrier plus
+  three-level water-surface guard and `textureIndex` temp carrier missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1`, replaced the dead
+  `pad3` slot with `LevelModel *levelModel`, loaded it before the outer
+  segment/bounding-box setup, reused it for texture lookup, staged
+  `currentBatch->textureIndex` through `temp`, and split the water/hidden
+  surface skip into nested `surface != SURFACE_WATER_CALM`, `surface !=
+  SURFACE_WATER_UNK_F`, and flags guards. Pre-build
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x7C2820DA/0x9A7063A4`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` reported `CURRENT (2503)`. The probe
+  improved over the promoted baseline but still inserted an early
+  `gCurrentLevelModel` load/spill at `0x94(sp)`, shifted the outer grid
+  register family, and left bottom/tail labels drifting. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat
+  this pad3-slot model-carrier plus three-level surface/temp carrier spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted post-hit `yOutCount > 19` limit spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
   `if (yOutCount >= 20)` after incrementing `yOutCount` to
