@@ -53,6 +53,19 @@
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this late velocity store-order spelling.
 - Latest alternate-packet note: `func_80059208` remains active after two
+  2026-05-24 promoted declaration-only `pad3` removal missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and removed only the unused
+  `UNUSED f32 pad3` stack slot. Full verify failed with calculated CRCs
+  `0x53D13F77/0x21BEEE76`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` worsened from promoted baseline
+  `CURRENT (870)` to `CURRENT (1218)`. The frame shrank from target `0xc0` to
+  `0xb8`, shifted local stack slots through the spline/final-tail blocks, and
+  kept the known final object-dot/checkpoint-dot plus vertical FPR drift.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat this
+  declaration-only `pad3` removal.
+- Latest alternate-packet note: `func_80059208` remains active after two
   2026-05-24 promoted final checkpoint-dot expression spellings missed. Both
   probes changed the `NON_MATCHING` guard to `#if 1`: first `pad2 =
   (tempZ * diffZ) + (diffX * tempX); diffX = -((pad + -pad2) / divisor);`,
