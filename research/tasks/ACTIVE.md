@@ -22,6 +22,20 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted checkpoint-count logical-not guard spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `if (temp_v0 == 0)` as `if (!temp_v0)` after `get_checkpoint_count()`.
+  Pre-build `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with the
+  promoted-baseline calculated CRCs `0x53D141DF/0xB9D4B481`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. The diff retained the final object-dot/checkpoint-dot plus
+  vertical FPR tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported
+  active surface ok; do not repeat this checkpoint-count logical-not guard
+  spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted collision-plane scalar boolean guard spelling missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
