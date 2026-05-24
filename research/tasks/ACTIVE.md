@@ -379,6 +379,21 @@
   surface ok; do not repeat this selected-color load-order spelling. Next
   hypothesis should avoid `trackbg_render_flashy` selected-color ordering and
   saturated first/outer position arithmetic/store-order variants.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted header pointer-load spelling missed. The source changed
+  the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `var_t2 = *gCurrentLevelHeader2->unk74` as
+  `var_t2 = gCurrentLevelHeader2->unk74[0]`. Pre-build
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x93D338FF/0x03D9C8FE`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (1808)`. The diff remained in the earlier
+  position-array/FPR scheduling drift with no useful movement at the header
+  pointer load. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this explicit `unk74[0]` header-load spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted triangle-hit nested-predicate spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only

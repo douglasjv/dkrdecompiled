@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:39:48Z
+- Generated at: 2026-05-24 09:43:12Z
 - Branch: `master`
-- HEAD: `b52456c8`
-- Completed task: `func_80049794`
-- Summary: Rejected normal-flight pitch damping factor-out plus `R_TRIG`-first branch-polarity spelling. The promoted source hoisted the shared x-rotation damping subtraction before the branch, then tested `if (gCurrentRacerInput & R_TRIG)` with the `30` term first and `19` in `else`. Pre-build focused diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x81BCA333/0xB748193D`, and relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed in the factor-out family at `CURRENT (2480)`. The diff still lacked target `$f20/$f21` saves, kept early zero in `$f16` instead of `$f14`, and retained current wave scan allocation. Source restored.
+- HEAD: `f863aadf`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected `trackbg_render_flashy` explicit header pointer-load spelling. The promoted source changed only `var_t2 = *gCurrentLevelHeader2->unk74` to `var_t2 = gCurrentLevelHeader2->unk74[0]`. Pre-build focused diff misleadingly reported `CURRENT (0)`, full verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at promoted baseline `CURRENT (1808)` with the same position-array/FPR scheduling drift and no useful movement at the header pointer load. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector packet func_80049794 only with an independent family that targets the missing f20/f21 prologue saves, early f14 zero, or wave scan allocation; do not repeat pitch damping factor-out, multiplier-carrier, or R_TRIG-first polarity spellings by themselves.`
+- Task: `Return to selector routing; prefer an independent func_80049794 family that targets saved-FPR/frame pressure or wave allocation, or another active guarded candidate if the selector packet remains saturated.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
