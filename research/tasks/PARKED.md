@@ -83,7 +83,16 @@ when intentionally returning to them.
   `0x55C240E7/0x18E4F9B4`, and relinked focused diff returned to
   `CURRENT (10)`. Source was restored and final full verify passed; do not
   accept object-only `CURRENT (0)` for this parked packet or repeat plain
-  current guarded-C promotion.
+  current guarded-C promotion. A 2026-05-24 current-shape selected-track
+  `temp` removal probe also missed: promoting the guard and removing only the
+  unused `s16 temp` declaration plus `temp = (temp =
+  gTrackSelectIDs[trackY][trackX])` failed full verify with calculated CRCs
+  `0x553930E7/0x227AD4A3`; relinked `./diff.sh func_8008FF1C --no-pager`
+  worsened from parked baseline `CURRENT (10)` to `CURRENT (935)`. The
+  selected-track load/branch shifted away from target `t2` into `v1` and
+  broadened register drift through the visible-track block. Source was
+  restored and final full verify passed; do not repeat this current-shape
+  selected-track `temp` removal.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused

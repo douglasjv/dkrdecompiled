@@ -38,6 +38,22 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this head-turn branch-order spelling.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  2026-05-24 current-shape selected-track `temp` removal probe missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and removed only the
+  unused `s16 temp` declaration plus `temp = (temp =
+  gTrackSelectIDs[trackY][trackX])`, leaving the existing `selectedTrack =
+  gTrackSelectIDs[trackY][trackX]` and delay-slot-friendly
+  `cur->hubName = levelName` before the branch. Pre-build
+  `./diff.sh func_8008FF1C --no-pager` misleadingly reported `CURRENT (0)`,
+  but full verify failed with calculated CRCs `0x553930E7/0x227AD4A3`;
+  relinked `./diff.sh func_8008FF1C --no-pager` worsened from parked baseline
+  `CURRENT (10)` to `CURRENT (935)`. The selected-track load/branch shifted
+  away from target `t2` into `v1` and broadened register drift through the
+  visible-track block. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this current-shape selected-track `temp` removal.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted wrong-way `WRAP` explicit-if expansion missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only

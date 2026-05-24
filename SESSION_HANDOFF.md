@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:43:08Z
+- Generated at: 2026-05-24 10:46:07Z
 - Branch: `master`
-- HEAD: `ea68be49`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted wrong-way WRAP explicit-if expansion; relinked diff stayed at CURRENT (870) with final lateral/vertical FPR tail drift and source restored verifies OK
+- HEAD: `41d5aa2a`
+- Completed task: `func_8008FF1C`
+- Summary: Rejected parked func_8008FF1C current-shape temp-removal probe; relinked diff worsened to CURRENT (935) and source restored verifies OK
 
 ## Validation
 
-- Rejected probe full build failed with calculated CRCs
-  `0x53D141DF/0xB9D4B481`; relinked `./diff.sh func_80059208
-  --compress-matching 2 --no-pager` stayed at `CURRENT (870)`. The wrong-way
-  wrap block was not the source of drift; the diff remained in the final
-  lateral object-dot plus vertical FPR tail family. After source restore,
-  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+- Rejected parked-packet probe full build failed with calculated CRCs
+  `0x553930E7/0x227AD4A3`; relinked `./diff.sh func_8008FF1C --no-pager`
+  worsened from parked baseline `CURRENT (10)` to `CURRENT (935)`. The
+  selected-track load/branch shifted away from target `t2` into `v1` and
+  broadened register drift through the visible-track block. After source
+  restore, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
   `./score.sh -s` remained 97.30%, and `python3
   tools/check_active_surface.py` reported active surface ok.
 
