@@ -22,6 +22,19 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted top-tested wave threshold carrier probe missed. The
+  source shape kept the current wave loop structure but materialized
+  `obj->trans.y_position + 5.0f` through existing local `spCC` before the loop.
+  Full verify failed with calculated CRCs `0x5F811F98/0x9CE14139`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (2760)` to `CURRENT (5425)`. The diff hoisted the
+  threshold add before the wave pointer load, broadened early wave/FPR drift,
+  still lacked target `$f20/$f21` prologue saves, and kept early zeroing in
+  `$f16` instead of target `$f14`. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this top-tested `spCC`
+  threshold carrier spelling.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
