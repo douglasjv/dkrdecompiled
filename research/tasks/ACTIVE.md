@@ -98,6 +98,18 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this single-site grouped first-ring
   negative-sum spelling.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 scaled collision-plane index local probe missed. The promoted
+  source stored `basePlaneIndex * 4` in `temp` and used
+  `collisionPlanes[temp + n]`. Full verify failed with calculated CRCs
+  `0x7E74218A/0xA93D6001`, and relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` improved from
+  promoted baseline `CURRENT (2860)` to `CURRENT (2725)` but still inserted
+  the unwanted early `gCurrentLevelModel` load/spill at `0x60(sp)` and kept
+  broad segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this scaled collision-plane index local
+  without a separate model-spill/register-family fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted normalization direct-division spelling missed. The source
   shape changed the guarded unit-vector normalization from

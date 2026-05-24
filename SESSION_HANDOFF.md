@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:20:18Z
+- Generated at: 2026-05-24 03:23:43Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected grouped first-ring negative-sum spelling: promoted source changed xPositions[0] to -((xSin * 1280.0f) + scaledXCos); full gate failed CRCs 0xD6EC5F94/0xFD1467AB and relinked focused diff worsened to CURRENT (10447); source restored.
+- Completed task: `func_8002B0F4`
+- Summary: Rejected scaled collision-plane index local: promoted source stored basePlaneIndex * 4 in temp and indexed collisionPlanes[temp + n]; full gate failed CRCs 0x7E74218A/0xA93D6001 and relinked focused diff improved to CURRENT (2725) but still retained the early gCurrentLevelModel spill at 0x60(sp); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid trackbg_render_flashy new-local negative-cosine carriers and single-site grouped first-ring negative-sum spelling; only continue trackbg if the next hypothesis preserves the 0x158 frame and existing stack layout.`
+- Task: `Run selector; func_8002B0F4 scaled collision-plane index local was a useful miss (CURRENT 2725) but still needs a separate fix for the early gCurrentLevelModel spill/register family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
