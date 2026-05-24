@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:13:25Z
+- Generated at: 2026-05-24 11:17:55Z
 - Branch: `master`
-- HEAD: `efa9dec0`
-- Completed task: `func_80059208`
-- Summary: Rejected pre-fill counter negative-guard spelling; relinked focused diff stayed CURRENT (870), leaving final object/checkpoint-dot plus vertical FPR tail drift, and source was restored.
+- HEAD: `ef44e7e5`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted early sp108 zero-bang guard spelling; full verify failed with CRCs 0x7856718A/0x66208CAA and relinked diff stayed CURRENT (2860) with the known early gCurrentLevelModel spill, then source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_80049794 remains recommended, but prefer a distinct independent source family or another routable packet over saturated saved-FPR/wave micro-variants`
+- Task: `Continue with a non-repeated routable packet; avoid func_8002B0F4 early sp108 guard micro-variants unless paired with an independent gCurrentLevelModel spill fix.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
