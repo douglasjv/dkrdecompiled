@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 07:02:49Z
+- Generated at: 2026-05-24 07:05:56Z
 - Branch: `master`
-- HEAD: `db034de6`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted posZ subtraction regrouping probe; full verify failed after compressed diff false-positive, uncompressed diff was CURRENT (1575), source restored.
+- HEAD: `516ea0e3`
+- Completed task: `trackbg_render_flashy-register-xcos`
+- Summary: Rejected promoted register-xCos allocation hint for trackbg_render_flashy; full verify failed with promoted baseline CRCs and relinked focused diff stayed CURRENT (1808), source restored.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 selector packet remains recommended; for func_80059208 do not repeat posZ subtract-product regrouping, next hypothesis should pivot away from sampling-loop sign spelling toward final object/checkpoint dot or another routable packet.`
+- Task: `func_80049794 remains selector-recommended only with a distinct saved-FPR/wave allocation idea; otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 with a non-repeat hypothesis from ACTIVE.md. For trackbg_render_flashy do not repeat register xCos allocation hints.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

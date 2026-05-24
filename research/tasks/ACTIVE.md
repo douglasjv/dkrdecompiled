@@ -22,6 +22,21 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted declaration-only `register f32 xCos` allocation hint
+  missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
+  declared `xCos` as `register`. Full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, and the relinked uncompressed focused diff stayed
+  at promoted baseline `CURRENT (1808)`. The early position-array drift still
+  used current `$f16` for the first negative-cosine carrier instead of target
+  `$f18`, with broad first/outer position-array register-order drift. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this `register xCos` allocation hint. Next `trackbg_render_flashy`
+  hypothesis should pivot away from declaration-only allocation hints and
+  target a distinct early position expression/store family, or choose another
+  routable packet.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted five-node `posZ` subtract-product regrouping probe
   missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
