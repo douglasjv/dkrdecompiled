@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted five-node `posZ` subtract-product regrouping probe
+  missed. The source changed only the `NON_MATCHING` guard to `#if 1` and
+  rewrote `temp_v0_4->z + ((scale * (-rotationXFrac)) * unk1BA)` as
+  `temp_v0_4->z - ((scale * rotationXFrac) * unk1BA)`. Compressed
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xC7A9F9F0/0x58059DF2`; uncompressed
+  `./diff.sh func_80059208 --no-pager` showed `CURRENT (1575)`. The probe
+  converted the target loop's explicit `neg.s` plus add family into a
+  sub-product family and shifted later addresses by one instruction. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this `posZ` subtract-product regrouping. Next hypothesis for this
+  packet should pivot away from sampling-loop sign spelling toward the final
+  object/checkpoint dot-product tail, or choose another routable packet.
 - Latest alternate-packet note: `func_80017A18` remains active after a
   2026-05-24 plain guarded-C promotion missed. The source changed only the
   `NON_EQUIVALENT` guard to `#if 1`. Compressed

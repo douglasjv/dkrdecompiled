@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24T06:58:45Z
+- Generated at: 2026-05-24 07:02:49Z
 - Branch: `master`
-- HEAD: `3f223c57`
-- Completed task: `trackbg_render_flashy-selected-color-shift-mask`
-- Summary: Rejected promoted selected-color shift-mask probe for trackbg_render_flashy; source restored and packet remains routable.
+- HEAD: `db034de6`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted posZ subtraction regrouping probe; full verify failed after compressed diff false-positive, uncompressed diff was CURRENT (1575), source restored.
 
 ## Validation
 
@@ -24,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; prefer func_80049794 only with a distinct saved-FPR/frame-pressure idea, otherwise choose func_80059208, trackbg_render_flashy, or func_8002B0F4 only with a non-repeat hypothesis from ACTIVE.md. For trackbg_render_flashy do not repeat selected-color mask rewrites; target the early negative-cosine FPR allocation or pivot.`
+- Task: `func_80049794 selector packet remains recommended; for func_80059208 do not repeat posZ subtract-product regrouping, next hypothesis should pivot away from sampling-loop sign spelling toward final object/checkpoint dot or another routable packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
