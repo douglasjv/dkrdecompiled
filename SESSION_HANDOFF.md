@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:36:28Z
+- Generated at: 2026-05-24 05:41:40Z
 - Branch: `master`
-- HEAD: `812ee455`
-- Completed task: `func_80049794`
-- Summary: Rejected saved-FPR pressure carrier before the wave scan: compressed diff misleadingly showed CURRENT (0), but full verify failed and uncompressed diff showed CURRENT (8068) with missing target f20/f21 prologue saves; source restored.
+- HEAD: `f2eaf1d7`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted final vertical negative-divisor spelling: changed diffY to (tempY - obj->trans.y_position) / -divisor; focused diff regressed to CURRENT (1930) and full verify failed with calculated CRCs 0x53C47BB5/0x00B78968; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring src/racer.c
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring src/racer.c; ./score.sh -s -> 97.30%
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 only with a distinct non-repeat wave bound/index or saved-FPR allocation hypothesis, or pivot to trackbg_render_flashy if no concrete new family is available.`
+- Task: `Continue func_80049794 only with a distinct non-repeat wave bound/index or saved-FPR allocation hypothesis, or pivot to trackbg_render_flashy/func_8002B0F4 if no concrete new family is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

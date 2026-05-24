@@ -111,6 +111,19 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` reported 97.29%; do not repeat this wave-scan while /
   threshold-carrier promotion.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted final vertical negative-divisor spelling missed. The
+  source removed the `NON_MATCHING` guard and changed only the final vertical
+  correction from `(obj->trans.y_position - tempY) / divisor` to
+  `(tempY - obj->trans.y_position) / -divisor`. Full verify failed with
+  calculated CRCs `0x53C47BB5/0x00B78968`, and relinked
+  `./diff.sh func_80059208 --no-pager` regressed from promoted baseline to
+  `CURRENT (1930)`. The tail stayed in the final object-dot/checkpoint-dot
+  plus vertical FPR drift family, with broader scheduling drift than the
+  existing final-vertical sign variants. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  reported 97.30%; do not repeat final vertical negative-divisor spellings
+  unless paired with a distinct object/checkpoint-dot allocation fix.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted inverse-gravity quarter-multiply spelling missed in a
   worker probe. The source changed only `var_f20 = 1.0 - (var_f20 / 4.0)` to
