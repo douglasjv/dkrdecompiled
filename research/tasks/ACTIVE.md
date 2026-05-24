@@ -26,7 +26,16 @@
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-24 UV carrier probe (`pos.x = pos.z` instead of recomputing
+  2026-05-24 final vertex `vertY` explicit-cast probe (`vertY = (s16)
+  (camera->trans.y_position + 192.0f)`) missed with no focused movement:
+  object-only focused diff first printed stale `CURRENT (0)`, promoted full
+  verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy --no-pager` stayed at promoted baseline
+  `CURRENT (1808)`. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this final vertex `vertY`
+  explicit-cast spelling. A 2026-05-24 UV carrier probe (`pos.x = pos.z`
+  instead of recomputing
   `var_a1 * xCos`) collapsed into the bad first-ring frame-shrink family:
   promoted full verify failed with calculated CRCs
   `0x218F9FFA/0x18F4A6D6`, and relinked
@@ -5854,6 +5863,16 @@
   shifted first/outer position-array plus later UV/global scheduling. Source
   was restored and final full verify passed; do not repeat this combined
   first/outer target-store-order probe.
+  A final vertex `vertY` explicit-cast probe (`vertY = (s16)
+  (camera->trans.y_position + 192.0f)`) produced no useful movement:
+  object-only `./diff.sh trackbg_render_flashy --no-pager` first printed stale
+  `CURRENT (0)`, promoted full verify failed with calculated CRCs
+  `0x93D338FF/0x03D9C8FE`, and relinked focused score stayed
+  `CURRENT (1808)`. The diff remained in the same early
+  negative-cosine/doubled-cosine register drift family. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%. Do not repeat this final vertex `vertY`
+  explicit-cast spelling.
 - `func_8002B0F4` is active, not parked. A declaration-only `register s32
   XInInt` / `register s32 ZInInt` hint in the current promoted source missed:
   relinked focused score worsened to `CURRENT (2860)`, full verify failed with
