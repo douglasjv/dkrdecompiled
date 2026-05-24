@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:05:21Z
+- Generated at: 2026-05-24 04:10:04Z
 - Branch: `master`
-- HEAD: `6b7b7532`
-- Completed task: `func_80049794-close-course-height-nest`
-- Summary: Rejected close save-family nested course-height guard probe: x/z/y pre-sqrt accumulation, steer no-op, chained zero, removed trailing pads, and nested var_f2 < 0 guard preserved close-family CRCs but focused diff stayed/regressed to CURRENT (4365). Source restored.
+- HEAD: `9a8cac40`
+- Completed task: `func_80049794-wave-bound-local-count`
+- Summary: Rejected worker close save-family explicit wave-bound local-count probe: assigning var_v1 = gRacerWaveCount - 1 and iterating var_a0 from var_v1 worsened focused diff to CURRENT (5755) and broadened wave scan allocation instead of fixing target v1/a0 roles. Source restored.
 
 ## Validation
 
-- Probe full verify failed CRCs 0xB8DD79CD/0xE47454ED; after restore gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s => 97.30%.
+- Worker probe full verify failed CRCs 0x5790053C/0x1C8C0179 and focused diff reported CURRENT (5755); worker restored source and verified OK. Main worktree gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s => 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector recommended_next func_80049794 only with a distinct close save-family hypothesis that fixes wave v1/a0 allocation or first-speed/register drift without repeating nested course-height guard, nested spinout split, wave-bound carriers, or first-speed carrier variants.`
+- Task: `Continue selector recommended_next func_80049794 only with a distinct close save-family wave-scan hypothesis that keeps a decrementing pointer carrier without making a surviving named count-bound local, or pivot to another routable candidate if wave allocation probes remain non-moving.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`

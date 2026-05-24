@@ -3885,6 +3885,15 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this close-branch nested
   course-height guard spelling.
+  A worker close save-family explicit wave-bound local-count probe also missed:
+  assigning `var_v1 = gRacerWaveCount - 1`, iterating `var_a0` from `var_v1`,
+  and comparing `if (var_a0 == var_v1)` worsened the focused diff to
+  `CURRENT (5755)` after full verify failed with calculated CRCs
+  `0x5790053C/0x1C8C0179`. Instead of the target `v1` bound / `a0` loop-index
+  family, the scan broadened into `a3`/`v0`/`v1` allocation with pointer
+  recomputation. Source was restored, worker and main validation both reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
+  explicit surviving count-bound local shape.
   A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
