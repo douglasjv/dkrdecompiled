@@ -372,7 +372,16 @@
   `a0`/`v1`, and broadened later first-speed/gravity scheduling. Source was
   restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
   and `./score.sh -s` remained 97.30%; do not repeat this post-`sqrtf` `spCC`
-  carrier. A
+  carrier. A 2026-05-24 worker-tested top-speed live-float carrier through
+  `spCC` (`spCC = var_f14; var_f14 = (spCC *
+  handle_racer_top_speed(obj, racer)) * 1.8`) optimized away against the
+  promoted object: `NON_MATCHING=1` object compile plus
+  `./diff.sh -o func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (0)`, so it produced no useful movement and is not matching
+  progress. Source was restored and `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`; do not repeat this
+  simple top-speed `spCC` live-float carrier or accept object-only
+  `CURRENT (0)` as progress. A
   2026-05-24 current-baseline wave-gate positive-count probe
   (`... && gRacerWaveCount > 0` instead of `gRacerWaveCount != 0`) missed:
   full verify failed with calculated CRCs `0x2FDDE03F/0xA529100F`, and
@@ -2369,7 +2378,15 @@
   function still lacked target `$f20/$f21` prologue saves while keeping the
   early zero in `$f16` and the wave scan in the known `a0`/`v1` drift family.
   Source was restored and final full verify passed; do not repeat this
-  top-speed multiply regrouping.
+  top-speed multiply regrouping. A worker-tested top-speed live-float carrier
+  through existing `spCC` (`spCC = var_f14; var_f14 = (spCC *
+  handle_racer_top_speed(obj, racer)) * 1.8`) compiled back to the same
+  promoted object shape: `NON_MATCHING=1` object compile plus
+  `./diff.sh -o func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (0)`. It produced no saved `$f20/$f21` prologue-save movement, no
+  early-zero allocation movement, and no wave bound/index movement. Source was
+  restored and final full verify passed; do not repeat simple top-speed
+  `spCC` live-float carrier spelling.
   Initializing `var_f20` at declaration (`f32 var_f20 = 0.0f`) compiled but
   left the focused object score unchanged at `CURRENT (2550)` and still did not
   introduce the target `$f20/$f21` prologue saves. Reusing `var_f20` for the
