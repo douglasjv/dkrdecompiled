@@ -3231,7 +3231,16 @@
   `CURRENT (3830)`, and the early branch order changed without restoring the
   target `$f20/$f21` saves or `$f14` zero family. Source was restored and
   final full verify passed; do not repeat this commuted spinout-zap condition
-  order. A baseline current-checkout wave-gate condition reorder
+  order. A baseline current-checkout spinout clear condition-order probe
+  (`racer->groundedWheels >= 3 && racer->velocity > -2.0` instead of the
+  current velocity-first guard) also missed as a no-movement family: full
+  verify failed with calculated CRCs `0x5E20AA2C/0x0360F9F3`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed
+  `CURRENT (2760)`. It did not recover target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`-bound/`v1`-loop family. Source was restored and final full
+  verify passed; do not repeat this spinout clear condition-order spelling. A
+  baseline current-checkout wave-gate condition reorder
   (`racer->vehicleIDPrev != VEHICLE_WIZPIG && gCurrentPlayerIndex !=
   PLAYER_COMPUTER && gRacerWaveCount != 0`) also missed: full verify failed
   with calculated CRCs `0x5EC30E74/0x34AE258F`, relinked focused diff
