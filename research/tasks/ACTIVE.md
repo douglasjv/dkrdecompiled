@@ -149,6 +149,18 @@
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted `splineIndex` boolean-assignment probe missed. The source
+  removed the `NON_MATCHING` guard and changed the setup from `splineIndex =
+  FALSE` plus in-branch `TRUE` assignment to `splineIndex = splinePos >= 1.0`
+  followed by `if (splineIndex)`. Full verify failed with calculated CRCs
+  `0x73555B47/0x49EFC995`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed from
+  promoted baseline to `CURRENT (1440)`. The spelling inserted an extra `v0`
+  boolean branch around the splineIndex test, then cascaded the same final
+  object-dot plus vertical FPR drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  reported 97.30%; do not repeat this `splineIndex` boolean-assignment spelling.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted five-node pointer-fill loop probe missed. The source
   removed the `NON_MATCHING` guard and rewrote only the checkpoint fill from
   the indexed `i` loop to pointer locals over `posX`/`posY`/`posZ`, with
