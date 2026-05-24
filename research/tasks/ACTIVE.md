@@ -26,7 +26,15 @@
   RHS comma-side-effect direct-table branch probe collapsed into the known
   `CURRENT (125)` family; detailed evidence is in `research/tasks/PARKED.md`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-24 final vertex `vertY` explicit-cast probe (`vertY = (s16)
+  2026-05-24 color fallback mask literal spelling (`var_a3 = ~0xFF` instead
+  of `-0x100`) missed with no focused movement: promoted full verify failed
+  with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed
+  at promoted baseline `CURRENT (1808)`. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this color fallback
+  `~0xFF` mask literal spelling. A 2026-05-24 final vertex `vertY`
+  explicit-cast probe (`vertY = (s16)
   (camera->trans.y_position + 192.0f)`) missed with no focused movement:
   object-only focused diff first printed stale `CURRENT (0)`, promoted full
   verify failed with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
@@ -5540,6 +5548,14 @@
   worsened from promoted baseline `CURRENT (1808)` to `CURRENT (2088)`.
   Source was restored and final full verify passed. Do not repeat this color
   fallback initialization-order spelling.
+  Rewriting only the fallback color mask literal from `var_a3 = -0x100` to
+  `var_a3 = ~0xFF` also missed as a no-movement family: full verify failed
+  with calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed
+  at promoted baseline `CURRENT (1808)` with the same early negative-cosine
+  register drift and position/UV scheduling mismatch. Source was restored,
+  final full verify passed, and `./score.sh -s` remained 97.30%; do not repeat
+  this color fallback `~0xFF` mask literal spelling.
   Flipping
   only `xPositions[2]` to `(xSin * 1280.0f) + scaledXCos` compiled but left the
   linked focused score unchanged at `CURRENT (1808)`. Replacing only
