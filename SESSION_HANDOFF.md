@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:20:45Z
+- Generated at: 2026-05-24 11:25:30Z
 - Branch: `master`
-- HEAD: `c6356070`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted triangle-hit predicate operand-order spelling; full verify failed with CRCs 0xC349F192/0x2D70F23E and relinked diff worsened to CURRENT (3635), retaining the known early gCurrentLevelModel spill, then source was restored.
+- HEAD: `15e62127`
+- Completed task: `func_80059208-normalization-store-order`
+- Summary: Rejected promoted func_80059208 unit-vector normalization store-order spelling; focused diff worsened to CURRENT (942), source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with a non-repeated routable packet; avoid func_8002B0F4 triangle-hit predicate operand-order variants unless paired with an independent gCurrentLevelModel spill fix.`
+- Task: `Continue selector routing from func_80049794 only if a distinct independent family is available; otherwise use the latest ACTIVE.md alternate-packet notes to choose a bounded non-repeated probe.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
