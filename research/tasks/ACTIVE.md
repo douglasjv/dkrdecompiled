@@ -23,6 +23,20 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted wave-scan while/threshold-carrier probe missed. The
+  source removed the `NON_EQUIVALENT` guard and rewrote the wave scan so
+  `var_v1 = gRacerWaveCount - 1`, `var_a0 = var_v1`, and an explicit `while`
+  loop compared `gRacerCurrentWave[var_a0]->waveHeight` against a `var_f0 =
+  obj->trans.y_position + 5.0f` threshold. Full verify failed with calculated
+  CRCs `0xC81C158F/0x7475EA56`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported
+  `CURRENT (6105)`. The target `$f20/$f21` prologue saves were still absent,
+  early zeroing still allocated `$f16` instead of target `$f14`, and the wave
+  loop broadened into a different integer-register family. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` reported 97.29%; do not repeat this wave-scan while /
+  threshold-carrier promotion.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted inverse-gravity quarter-multiply spelling missed in a
   worker probe. The source changed only `var_f20 = 1.0 - (var_f20 / 4.0)` to
   `var_f20 = 1.0 - (var_f20 * 0.25)`. Full verify failed with calculated CRCs
@@ -74,6 +88,19 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
+- Latest alternate-packet note: `func_80059208` remains active but saturated
+  after a 2026-05-24 promoted final-vertical negation spelling missed. The
+  source changed only the vertical correction from
+  `(obj->trans.y_position - tempY) / divisor` to
+  `-(tempY - obj->trans.y_position) / divisor`. Full verify failed with
+  calculated CRCs `0x53D45BB5/0x11D3A734`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1125)`. The final vertical
+  block inserted an extra `neg.s`, shifted the object-dot/checkpoint-dot FPR
+  family, and broadened the final vertical clamp/register drift. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  and `./score.sh -s` reported 97.29%; do not repeat this final vertical
+  negation spelling.
 - Latest alternate-packet note: `func_80059208` remains active but saturated
   after a 2026-05-24 promoted existing-C diagnostic. Removing the
   `NON_MATCHING` guard without source-shape changes failed the full gate with
