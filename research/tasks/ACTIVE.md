@@ -23,6 +23,21 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-tested close save-family plus target-bound while
+  wave-scan probe missed. The worker promoted guarded C, applied the close
+  save-family base shape, then rewrote the wave scan with explicit
+  `var_v0 = gRacerWaveCount`, `var_v1 = var_v0 - 1`, `var_a0 = var_v1`, and a
+  `while` loop intended to keep `var_v1` as bound and `var_a0` as loop index.
+  Full verify failed with calculated CRCs `0x57263252/0x731465D5`, and the
+  relinked focused diff regressed to `CURRENT (8135)`. The wave scan still
+  missed target `v0/v1/a0`, compiling into `a1/a0/v0/v1` churn with indexed
+  reloads instead of target pointer-predecrement allocation. Worker source was
+  restored, main `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat close
+  save-family plus explicit `var_v0`/`var_v1`/`var_a0` while wave-scan
+  spellings without a distinct pointer-predecrement or saved-FPR allocation
+  fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-tested close save-family predecrement wave-loop probe
   missed. The source promoted guarded C, applied the close save-family base
   shape, then rewrote the wave scan with `count = gRacerWaveCount`, saved

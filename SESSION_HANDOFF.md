@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:09:23Z
+- Generated at: 2026-05-24 05:14:09Z
 - Branch: `master`
-- HEAD: `b43b02df`
-- Completed task: `func_8002B0F4`
-- Summary: Promoted collision-hit post-increment limit equality probe missed: changing yOutCount >= 20 to yOutCount == 20 failed full verify with calculated CRCs 0xA74DDBBC/0xC4B262D4; relinked focused diff regressed to CURRENT (8360), with the hit-limit site compiling to li s7,0x14 plus bne s5,s7 instead of the target slti/bnez shape. Source was restored.
+- HEAD: `ba2f202b`
+- Completed task: `func_80049794`
+- Summary: Worker rejected promoted close save-family plus target-bound while wave-scan probe: full verify failed with calculated CRCs 0x57263252/0x731465D5; relinked focused diff regressed to CURRENT (8135). The shape preserved the close save-family base but the wave scan compiled into a1/a0/v0/v1 churn with indexed reloads instead of target pointer-predecrement allocation. Worker source was restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok; git diff --check clean.
+- Worker fork: restored source and final gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK. Main checkout: gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok; git diff --check clean.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with func_8002B0F4 only on a distinct model-spill/register-family or plane-output lifetime hypothesis; do not repeat post-hit yOutCount == 20/equality limit spelling.`
+- Task: `Avoid func_80049794 close save-family plus explicit var_v0/var_v1/var_a0 while wave-scan spellings; either find a distinct saved-FPR wave pointer-predecrement source shape or pivot to another routable candidate such as func_8002B0F4 model-spill/register-family work.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
