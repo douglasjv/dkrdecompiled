@@ -38,6 +38,20 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this head-turn branch-order spelling.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted initial grounded-wheel boolean guard spelling missed.
+  The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  the early zeroing guard from `if (racer->groundedWheels > 0)` to
+  `if (racer->groundedWheels)`. Pre-build `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x5FDDE03F/0x408C160F`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (2960)`. The guard changed away from target `blez` to `beqz`, kept
+  early zeroing in current `$f16` instead of target `$f14`, and did not recover
+  the target `$f20`/`$f21` prologue saves. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this initial grounded-wheel boolean guard spelling.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 current-shape selected-track `temp` removal probe missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and removed only the

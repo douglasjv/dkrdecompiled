@@ -1,19 +1,20 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 10:46:07Z
+- Generated at: 2026-05-24 10:49:19Z
 - Branch: `master`
-- HEAD: `41d5aa2a`
-- Completed task: `func_8008FF1C`
-- Summary: Rejected parked func_8008FF1C current-shape temp-removal probe; relinked diff worsened to CURRENT (935) and source restored verifies OK
+- HEAD: `dc49dacd`
+- Completed task: `func_80049794`
+- Summary: Rejected promoted initial grounded-wheel boolean guard spelling; relinked diff regressed to CURRENT (2960), changed target blez to beqz, and source restored verifies OK
 
 ## Validation
 
-- Rejected parked-packet probe full build failed with calculated CRCs
-  `0x553930E7/0x227AD4A3`; relinked `./diff.sh func_8008FF1C --no-pager`
-  worsened from parked baseline `CURRENT (10)` to `CURRENT (935)`. The
-  selected-track load/branch shifted away from target `t2` into `v1` and
-  broadened register drift through the visible-track block. After source
-  restore, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+- Rejected probe full build failed with calculated CRCs
+  `0x5FDDE03F/0x408C160F`; relinked `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` regressed to `CURRENT (2960)`. The
+  initial grounded-wheel guard changed away from target `blez` to `beqz`,
+  early zeroing stayed in current `$f16` instead of target `$f14`, and the
+  target `$f20`/`$f21` prologue saves were still absent. After source restore,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
   `./score.sh -s` remained 97.30%, and `python3
   tools/check_active_surface.py` reported active surface ok.
 
