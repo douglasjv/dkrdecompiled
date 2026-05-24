@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:56:25Z
+- Generated at: 2026-05-24 08:58:59Z
 - Branch: `master`
-- HEAD: `abce9047`
+- HEAD: `2cc20f9b`
 - Completed task: `func_80049794`
-- Summary: Rejected late attach-point guard-merge spelling; relinked diff stayed CURRENT (2760) with the known promoted-baseline saved-FPR/wave drift.
+- Summary: Rejected normal-flight tappedR boolean spelling; relinked diff stayed CURRENT (2760) with the known promoted-baseline saved-FPR/wave drift.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer a bounded routable target or independent func_80049794 family, avoiding late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
+- Task: `Run selector again; prefer a bounded routable target or independent func_80049794 family, avoiding tappedR boolean spelling, late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

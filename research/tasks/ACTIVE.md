@@ -23,6 +23,25 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted normal-flight `tappedR` boolean spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
+  trick-entry branch from `if (racer->tappedR)` to
+  `if (racer->tappedR != FALSE)`. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with the plain promoted
+  calculated CRCs `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at the
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the known wave scan `a0`-bound/`v1`-loop drift,
+  with no useful movement at the `tappedR` branch. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this `tappedR != FALSE` spelling. Next hypothesis should use an
+  independent `func_80049794` family or pivot to another routable packet,
+  avoiding saved-FPR/wave-scan micro-variants already recorded.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted late attach-point guard-merge spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and merged only the two
   adjacent late `obj->attachPoints != NULL && obj->attachPoints->count >= 3`
