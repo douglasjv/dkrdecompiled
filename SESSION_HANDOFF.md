@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:19:35Z
+- Generated at: 2026-05-24 09:23:05Z
 - Branch: `master`
-- HEAD: `99f79b4f`
-- Completed task: `func_80049794`
-- Summary: Rejected low-boost fallback condition-order spelling; promoted source failed full verify with calculated CRCs 0x105BE9DA/0x11DA74B9 and relinked diff stayed at CURRENT (2760).
+- HEAD: `78293408`
+- Completed task: `func_80059208`
+- Summary: Rejected wrong-way counter limit spelling; promoted source failed full verify with calculated CRCs 0x53D141DF/0xB9D4B481 and relinked diff stayed at CURRENT (870).
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Avoid func_80049794 low-boost fallback condition order, throttle branch, side-force grouping, xRotationOffset denominator, pitch damping, tappedR, late attach-point guard, saved-FPR/wave-scan micro-variants, and gravity/boost-emitter variants already recorded.`
+- Task: `Run selector again; prefer an independent func_80049794 family or another routable target. Avoid func_80059208 wrong-way counter <= 199, existing upper-half checkpoint spellings, normalization guard/division spellings, splineIndex/five-node loop spellings, and saturated final object-dot/clamp tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
