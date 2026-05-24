@@ -23,6 +23,21 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 worker-suggested saved-FPR pressure carrier before the wave scan
+  missed. The source removed the `NON_EQUIVALENT` guard, assigned
+  `var_f20 = updateRateF` before the wave scan, then restored
+  `updateRateF = var_f20` after the wave block. Compressed focused diff
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x60DDDE6F/0x79AAF0F1`; uncompressed
+  `./diff.sh func_80049794 --no-pager` showed `CURRENT (8068)`. The function
+  still missed the target `$f20/$f21` prologue saves, kept the current early
+  zero/FPR allocation drift, and moved later gravity scheduling away from the
+  target. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not trust compressed `CURRENT (0)` evidence for this
+  packet or repeat this narrow pre-wave `var_f20` update-rate carrier without
+  a distinct allocation family.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-tested close save-family plus target-bound while
   wave-scan probe missed. The worker promoted guarded C, applied the close
   save-family base shape, then rewrote the wave scan with explicit

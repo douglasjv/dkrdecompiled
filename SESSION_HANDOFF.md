@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:29:02Z
+- Generated at: 2026-05-24 05:36:28Z
 - Branch: `master`
-- HEAD: `bac58c2d`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted splineIndex boolean-assignment probe. The source removed the NON_MATCHING guard and changed the spline index setup from FALSE plus in-branch TRUE assignment to splineIndex = splinePos >= 1.0 followed by if (splineIndex). Full verify failed with calculated CRCs 0x73555B47/0x49EFC995; relinked focused diff reported CURRENT (1440), inserting an extra v0 boolean branch around the splineIndex test and cascading the existing final tail FPR drift. Source restored.
+- HEAD: `812ee455`
+- Completed task: `func_80049794`
+- Summary: Rejected saved-FPR pressure carrier before the wave scan: compressed diff misleadingly showed CURRENT (0), but full verify failed and uncompressed diff showed CURRENT (8068) with missing target f20/f21 prologue saves; source restored.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK after restore; ./score.sh -s reported 97.30%; python3 tools/check_active_surface.py reported active surface ok; git diff -- src/racer.c and git diff --check were clean.
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring src/racer.c
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80059208 only with a distinct non-repeat final-tail/FPR allocation hypothesis, or pivot to trackbg_render_flashy/func_8002B0F4 if no concrete new family is available.`
+- Task: `Continue func_80049794 only with a distinct non-repeat wave bound/index or saved-FPR allocation hypothesis, or pivot to trackbg_render_flashy if no concrete new family is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
