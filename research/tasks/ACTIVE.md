@@ -4851,7 +4851,15 @@
   `./diff.sh func_80059208` stayed at promoted baseline `CURRENT (870)`, and
   the same final object-dot/checkpoint-dot plus vertical FPR drift remained.
   Source was restored and final full verify passed; do not repeat this
-  explicit final self-add assignment spelling.
+  explicit final self-add assignment spelling. A final object-dot distance
+  accumulation spelling (`distance *= diffZ; pad = (splinePos * diffX) +
+  distance`) also missed: full verify failed with calculated CRCs
+  `0x53C1B1DF/0xF7700159`, and relinked `./diff.sh func_80059208` worsened
+  from promoted baseline `CURRENT (870)` to `CURRENT (2043)`. The probe pulled
+  the object pointer/z load earlier, broadened the final object-dot FPR
+  schedule, and shifted final vertical/clamp register allocation. Source was
+  restored and final full verify passed; do not repeat this final object-dot
+  distance accumulation spelling.
   Keep this function active; do not park it just because these final-offset
   probes missed.
 - `trackbg_render_flashy` is active, not parked. Promoting the existing C
