@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 08:53:39Z
+- Generated at: 2026-05-24 08:56:25Z
 - Branch: `master`
-- HEAD: `a13013ad`
-- Completed task: `func_80059208`
-- Summary: Rejected upper-half courseCheckpoint decrement spelling; relinked diff stayed CURRENT (870) with the same final offset tail drift.
+- HEAD: `abce9047`
+- Completed task: `func_80049794`
+- Summary: Rejected late attach-point guard-merge spelling; relinked diff stayed CURRENT (2760) with the known promoted-baseline saved-FPR/wave drift.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; prefer a bounded routable target or independent func_80059208 family, avoiding courseCheckpoint += -1 spelling, lap guard >=1 spelling, alternate-route clear spelling, and saturated final-tail object-dot/clamp variants.`
+- Task: `Run selector again; prefer a bounded routable target or independent func_80049794 family, avoiding late attach-point guard merge, saved-FPR/wave-scan micro-variants, and already recorded func_80059208 final-tail variants.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

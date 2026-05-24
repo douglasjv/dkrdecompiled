@@ -22,6 +22,25 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted late attach-point guard-merge spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and merged only the two
+  adjacent late `obj->attachPoints != NULL && obj->attachPoints->count >= 3`
+  checks into one outer guard covering propeller model-index advancement plus
+  the grounded/airborne propeller visibility update. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xDA53E0EB/0x04A68346`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at the
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and retained the known wave scan `a0`-bound/`v1`-loop drift.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this late attach-point guard-merge spelling. Next hypothesis should
+  use an independent `func_80049794` family or pivot to another routable
+  packet, avoiding saved-FPR/wave-scan micro-variants already recorded.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted upper-half courseCheckpoint decrement spelling missed.
   The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
