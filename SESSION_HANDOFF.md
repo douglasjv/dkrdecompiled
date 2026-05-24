@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 04:48:40Z
+- Generated at: 2026-05-24 04:53:18Z
 - Branch: `master`
-- HEAD: `84ea9720`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted func_8002B0F4 var_s1 late-zero scheduling probe; relinked focused diff regressed to CURRENT (3070) with the known early gCurrentLevelModel spill at 0x60(sp).
+- HEAD: `bf0356b6`
+- Completed task: `func_80049794`
+- Summary: Rejected promoted func_80049794 selected-wave byte-offset carrier; relinked focused diff regressed to CURRENT (5460).
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- (Verify: OK); ./score.sh -s (97.30%)
+- Probe failed CRCs 0x784EE4A7/0x63167E71; restored source; gmake -j4 CROSS=tools/binutils/mips64-elf- reached Verify: OK; ./score.sh -s reported 97.30%.
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue with func_8002B0F4 only if pairing a model-spill fix with a non-repeated grid/surface scheduling hypothesis; otherwise pivot to another routable candidate with fresh evidence.`
+- Task: `Pivot away from func_80049794 selected-wave index/pointer/byte-offset carriers unless paired with a proven save-pressure fix; choose a different routable candidate or a distinct non-wave source-shape hypothesis.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

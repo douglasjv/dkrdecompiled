@@ -23,6 +23,22 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted selected-wave byte-offset carrier probe missed. The
+  source removed the `NON_EQUIVALENT` guard, kept the wave scan intact,
+  computed `var_t9 = var_a0 << 2`, conditionally subtracted four bytes when
+  `var_a0 == gRacerWaveCount - 1`, and reused
+  `(*(WaterProperties **)((u8 *) gRacerCurrentWave + var_t9 + 4))` for both
+  selected-wave `waveHeight` and `rot.y` accesses. Full verify failed with
+  calculated CRCs `0x784EE4A7/0x63167E71`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed from
+  promoted baseline `CURRENT (2760)` to `CURRENT (5460)`. The probe reused an
+  offset but shifted it into an `a2` family instead of target `a1`, dropped the
+  target `$f20/$f21` prologue saves, kept early zero in `$f16`, and inserted
+  `spA2` stack-byte traffic. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat selected-wave byte-offset carriers without a
+  distinct save-pressure or wave register-family fix.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted final `playerObjectMoved` boolean-check spelling
   missed. The source removed the `NON_EQUIVALENT` guard and changed only
   `if (playerObjectMoved != FALSE)` to `if (playerObjectMoved)`. Full verify
