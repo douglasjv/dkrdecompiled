@@ -89,6 +89,18 @@
   remained 97.30%; do not repeat this guarded object-only `CURRENT (0)` /
   `var_f14` grounded-wheel zero carrier without a distinct save-pressure fix.
 - Latest alternate-packet note: `func_80059208` remains active but saturated
+  after a 2026-05-24 promoted final-vertical double-literal clamp probe missed.
+  The source changed only the final vertical clamp constants from
+  `100.0f`/`-100.0f` to `100.0`/`-100.0`. Full verify failed with calculated
+  CRCs `0x01672C72/0xAF96E3E2`, and relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (3605)`. The tail introduced
+  double compare/conversion traffic for the vertical clamp, shifted rodata
+  references, and broadened final object-dot/checkpoint-dot plus vertical FPR
+  drift. Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`, and `./score.sh -s` reported 97.29%; do not repeat
+  this final vertical double-literal clamp spelling.
+- Latest alternate-packet note: `func_80059208` remains active but saturated
   after a 2026-05-24 promoted final-vertical negation spelling missed. The
   source changed only the vertical correction from
   `(obj->trans.y_position - tempY) / divisor` to
