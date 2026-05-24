@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:38:31Z
+- Generated at: 2026-05-24 11:41:23Z
 - Branch: `master`
-- HEAD: `4d77cd7b`
-- Completed task: `func_80059208-final-checkpoint-dot-expressions`
-- Summary: Rejected promoted func_80059208 final checkpoint-dot positive and pad-plus-negative expression spellings; focused diff stayed at CURRENT (870), source restored.
+- HEAD: `9dad0d81`
+- Completed task: `func_8002B0F4-current-stack-texture-index-carrier`
+- Summary: Rejected promoted func_8002B0F4 current-stack texture-index carrier and nested water guard; focused diff improved to CURRENT (2435) but source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid func_80059208 final checkpoint-dot positive/pad-plus-negative expression spellings.`
+- Task: `Continue selector routing from func_80049794 only with a distinct independent family, or choose another bounded non-repeated routable probe from ACTIVE.md; avoid func_8002B0F4 current-stack texture-index carrier alone or with only nested water-surface guards.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
