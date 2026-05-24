@@ -459,6 +459,20 @@
   `Verify: OK`, and `./score.sh -s` remained 97.30%; do not repeat this
   early rewind threshold `-0.2f` single-precision spelling.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted compound scaled trig temporary setup missed. The source
+  removed the `NON_MATCHING` guard and changed only
+  `scaledXSin = xSin * 1280.0f; scaledXCos = xCos * 1280.0f;` to
+  assignment-then-multiply form for both locals. Full verify failed with
+  calculated CRCs `0x93D338FF/0x03D9C8FE`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (1808)`. The early negative-cosine carrier still
+  allocated current `$f16` instead of target `$f18`, with the same doubled
+  sine/cosine and outer-ring register drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok; do not
+  repeat this compound scaled trig temporary setup.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 worker-assisted promoted direct `xCos * 1280.0f` first-ring
   expression probe missed. The source removed the `NON_MATCHING` guard and
   changed only the first-ring `xPositions[0..3]` / `zPositions[0..3]` terms to
