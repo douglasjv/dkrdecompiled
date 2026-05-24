@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 05:50:54Z
+- Generated at: 2026-05-24 05:54:06Z
 - Branch: `master`
-- HEAD: `b0b883d1`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted current-source output-pointer clear spelling arg3[0] = NULL; full verify failed with CRCs 0x7856718A/0x66208CAA and relinked func_8002B0F4 stayed CURRENT (2860) with the known early gCurrentLevelModel spill at 0x60(sp). Also recorded worker func_80049794 cached-bound for-loop miss: CRCs 0x5790053C/0x1C8C0179, focused CURRENT (5755), wave setup drifted to v1/a3/v0 and still missed saved FPRs.
+- HEAD: `9673a2ca`
+- Completed task: `func_80049794`
+- Summary: Rejected promoted pointer-object current-wave cursor probe: introduced WaterProperties **wave, cached var_v1 = gRacerWaveCount - 1, scanned by decrementing wave with var_a0, and reused wave[1] for selected wave accesses; full verify failed with calculated CRCs 0x56B32B55/0xCE72FDA3 and relinked focused diff regressed to CURRENT (7008) with a 0x100 frame, lost target f20/f21 saves, early zero still in f16, and wave scan shifted to a0/a3/v0/v1.
 
 ## Validation
 
-- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring source; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok
+- gmake -j4 CROSS=tools/binutils/mips64-elf- -> Verify: OK after restoring src/racer.c; ./score.sh -s -> 97.30%; python3 tools/check_active_surface.py -> active surface ok; git diff --check -> clean
 
 ## Blockers Or Unknowns
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector again; continue func_80049794 only with a distinct pointer-object current-wave cursor plus saved-FPR allocation hypothesis, otherwise pivot to func_80059208, trackbg_render_flashy, or func_8002B0F4 per non-repeat notes.`
+- Task: `Run selector again; pivot away from func_80049794 unless there is a distinct saved-FPR/frame-pressure allocation fix, otherwise use func_80059208, trackbg_render_flashy, or func_8002B0F4 per non-repeat notes.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

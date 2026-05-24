@@ -23,6 +23,23 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted pointer-object current-wave cursor probe missed. The
+  source removed the `NON_EQUIVALENT` guard, introduced
+  `WaterProperties **wave`, cached `var_v1 = gRacerWaveCount - 1`, scanned
+  with `while (var_a0 >= 0 && (*wave)->waveHeight < obj->trans.y_position + 5)
+  { var_a0--; wave--; }`, and reused `wave[1]` for selected wave height and
+  `rot.y`. Full verify failed with calculated CRCs
+  `0x56B32B55/0xCE72FDA3`, and relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (7008)`. The new pointer local widened the frame to `0x100`, lost
+  target `$f20/$f21` saves, kept early zero in `$f16`, and shifted the wave
+  scan into a `a0/a3/v0/v1` family rather than target `v0/v1/a0` with cursor
+  at `v0`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this new-local pointer-cursor
+  wave scan without a separate saved-FPR/frame-pressure fix. Pivot to another
+  routable packet if no distinct allocation family is available.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 worker-tested cached-bound `for` spelling missed. The worker
   promoted guarded C, cached `var_v1 = gRacerWaveCount - 1`, started
   `for (var_a0 = var_v1; ...)`, and compared the final selected wave against
