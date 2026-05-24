@@ -3957,7 +3957,15 @@
   `a0`-bound/`v1`-loop instead of target `v1`-bound/`a0`-loop, and disturbed
   player/wave plus later `$f14`/`$f20` temporary-register scheduling. Source
   was restored and final full verify passed; do not repeat this split
-  drift-reset condition spelling. A baseline current-checkout
+  drift-reset condition spelling. A worker current-checkout early wave
+  magnitude carrier probe (`spEC = -racer->velocity`, then clamp/compare/use
+  `spEC` in place of `racerVelocity` only in the early wave block) also missed:
+  relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed
+  `CURRENT (2760)`. It still lacked target `$f20/$f21` prologue saves, kept
+  early zero in `$f16` instead of target `$f14`, and left the wave scan in the
+  current `a0`/`v1` register-family drift. Worker source was restored, parent
+  source guard was restored, and final full verify passed; do not repeat this
+  `spEC` early wave magnitude carrier. A baseline current-checkout
   drift-direction nonzero spelling (`if (racer->drift_direction)` instead of
   `!= 0`) also missed: object-only focused diff first printed stale
   `CURRENT (0)`, full verify failed with calculated CRCs
