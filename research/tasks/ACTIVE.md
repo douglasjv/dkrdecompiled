@@ -3874,6 +3874,17 @@
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
   `./score.sh -s` remained 97.30%; do not repeat this close-branch nested
   spinout-zap condition split.
+  A close save-family nested course-height guard probe also missed: on top of
+  the x/z/y pre-`sqrtf` accumulation, steer-vel no-op, chained grounded-wheel
+  zero, and removed trailing `pad3`/`pad4`, keeping the trick-type range guard
+  first and nesting only `if (var_f2 < 0)` preserved the close-family failed
+  full-verify CRCs `0xB8DD79CD/0xE47454ED` and relinked focused diff reported
+  `CURRENT (4365)`. It kept the target `0xf8` frame and `$f20/$f21` saves, but
+  the wave bound/index allocation remained reversed (`a0` bound / `v1` loop)
+  and later scheduling drift remained. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this close-branch nested
+  course-height guard spelling.
   A close save-family
   wave-reset condition probe that cached `racer->trickType` into the existing
   `racerTrickType` local before testing `racerTrickType == 1 ||
