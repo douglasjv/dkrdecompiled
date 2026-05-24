@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:28:58Z
+- Generated at: 2026-05-24 09:31:40Z
 - Branch: `master`
-- HEAD: `65bfcae3`
+- HEAD: `ca5fdbb9`
 - Completed task: `func_80049794`
-- Summary: Rejected airborne throttle-min guard condition-order spelling; promoted func_80049794 and rewrote only the later guard from racer->groundedWheels == 0 && racerThrottle < 0.4 && racer->vehicleID != VEHICLE_CARPET to racerThrottle < 0.4 && racer->groundedWheels == 0 && racer->vehicleID != VEHICLE_CARPET. Pre-build diff misleadingly reported CURRENT (0), full verify failed with calculated CRCs 0x5FDDE03F/0x546B28B8, and relinked diff stayed at CURRENT (2760) with the known missing f20/f21 saves, early f16 versus target f14, and wave-scan drift. Source restored.
+- Summary: Rejected post-physics landing-crash guard condition-order spelling; promoted func_80049794 and rewrote only the guard from var_t0 == 0 && racer->groundedWheels != 0 && racer->spinout_timer != 0 to racer->spinout_timer != 0 && var_t0 == 0 && racer->groundedWheels != 0. Pre-build diff misleadingly reported CURRENT (0), full verify failed with calculated CRCs 0x23E5E3D7/0x8A077140, and relinked diff stayed at CURRENT (2760) with the known missing f20/f21 saves, early f16 versus target f14, and wave-scan drift. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue selector packet func_80049794 only with an independent, unrecorded source-shape family or pivot to another routable packet if no useful func_80049794 family remains; do not repeat airborne throttle-min guard order.`
+- Task: `Continue selector packet func_80049794 only with an independent, unrecorded source-shape family or pivot to another routable packet if no useful func_80049794 family remains; do not repeat post-physics landing-crash guard order.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
