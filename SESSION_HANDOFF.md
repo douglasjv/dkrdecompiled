@@ -1,19 +1,20 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 11:00:27Z
+- Generated at: 2026-05-24 11:03:56Z
 - Branch: `master`
-- HEAD: `ec73103e`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected explicit trig-argument cast spelling; promoted C still failed with known CRCs and relinked focused diff stayed CURRENT (1808), so source was restored.
+- HEAD: `ce4e1d4e`
+- Completed task: `func_8008FF1C`
+- Summary: Rejected parked selected-track condition-assignment spelling; relinked focused diff regressed to CURRENT (1195), branch still used v1 instead of target t2, and source was restored.
 
 ## Validation
 
-- python3 tools/check_active_surface.py: active surface ok
 - gmake -j4 CROSS=tools/binutils/mips64-elf-: Verify: OK after restore
+- ./score.sh -s: decomp progress 97.30%
+- python3 tools/check_active_surface.py: active surface ok
 
 ## Blockers Or Unknowns
 
-- No setup or behavior blocker; trackbg_render_flashy remains active but should avoid the explicit trig-argument cast spelling and other saturated position/UV micro-variants.
+- No setup or behavior blocker; func_8008FF1C remains parked/exhausted. Revisit only with a new shape that keeps direct-table t2 load while preserving target branch-delay-slot hub-name store.
 
 ## Ask The User Only If
 
@@ -23,7 +24,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; prefer func_80049794 unless choosing a distinct non-repeated trackbg_render_flashy family`
+- Task: `Run selector; func_80049794 remains recommended, but prefer a distinct independent source family or another routable packet over saturated saved-FPR/wave micro-variants`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

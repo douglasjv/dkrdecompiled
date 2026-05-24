@@ -67,6 +67,13 @@
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
   surface ok; do not repeat this initial grounded-wheel boolean guard spelling.
 - Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
+  2026-05-24 selected-track condition-assignment probe missed. Evidence is in
+  `research/tasks/PARKED.md`: the promoted shape kept the hub-name store before
+  the branch and changed only the selected-track condition to assignment-form,
+  but relinked focused diff regressed to `CURRENT (1195)` and the branch still
+  used `v1` instead of target `t2`. Source was restored and full verify passed;
+  do not repeat this condition-assignment selected-track spelling.
+- Latest parked-packet revisit note: `func_8008FF1C` remains parked after a
   2026-05-24 current-shape selected-track `temp` removal probe missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and removed only the
   unused `s16 temp` declaration plus `temp = (temp =

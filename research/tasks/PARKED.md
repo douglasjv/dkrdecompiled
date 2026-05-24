@@ -92,7 +92,17 @@ when intentionally returning to them.
   selected-track load/branch shifted away from target `t2` into `v1` and
   broadened register drift through the visible-track block. Source was
   restored and final full verify passed; do not repeat this current-shape
-  selected-track `temp` removal.
+  selected-track `temp` removal. A 2026-05-24 selected-track condition
+  assignment probe (`cur->hubName = levelName; if ((selectedTrack =
+  gTrackSelectIDs[trackY][trackX]) != -1)`) also missed: promoting the guard
+  failed full verify with calculated CRCs `0x553930E3/0x01786EF7`, and the
+  relinked focused diff regressed from parked baseline `CURRENT (10)` to
+  `CURRENT (1195)`. The store moved before the selected-track load, the branch
+  still used `v1` instead of target `t2`, and downstream visible-track
+  register allocation shifted broadly. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
+  remained 97.30%; do not repeat this selected-track condition-assignment
+  spelling.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
