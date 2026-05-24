@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 09:56:37Z
+- Generated at: 2026-05-24 09:59:46Z
 - Branch: `master`
-- HEAD: `23e89b68`
-- Completed task: `func_80049794`
-- Summary: Rejected func_80049794 final spA1 R-trigger restore boolean spelling; promoted source changed only if (spA1 != FALSE) to if (spA1). Full verify failed with CRCs 0x5FDDE03F/0xEF7A0514, and relinked diff stayed CURRENT (2760) with missing target f20/f21 prologue saves, early zero in f16 instead of f14, and the known wave scan register drift. Source restored.
+- HEAD: `62754512`
+- Completed task: `func_80059208`
+- Summary: Rejected promoted wrong-way counter explicit add assignment; focused pre-build diff reported CURRENT (0), full verify failed with CRCs 0x53D141DF/0xB9D4B481, relinked diff stayed at CURRENT (870) in earlier spline math, and source was restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Return to selector routing; prefer an independent func_80049794 family only if it is not another saved-FPR/wave-scan micro-variant, or another active guarded candidate with a distinct unrecorded source-shape family.`
+- Task: `Run the selector and prefer a distinct unrecorded family on an active guarded candidate; avoid another func_80059208 wrong-way counter spelling unless it addresses the relinked spline-math drift.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
