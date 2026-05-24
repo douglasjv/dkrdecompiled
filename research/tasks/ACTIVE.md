@@ -98,6 +98,18 @@
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and `./score.sh -s`
   remained 97.30%; do not repeat this single-site grouped first-ring
   negative-sum spelling.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 single-site x2 scaled-sine left-operand spelling missed. The
+  promoted source changed only `xPositions[2]` from
+  `scaledXCos + (xSin * 1280.0f)` to `scaledXSin + scaledXCos`. Full verify
+  failed with calculated CRCs `0x218F9FFA/0x18F4A6D6`, and relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  regressed from promoted baseline `CURRENT (1773)` to `CURRENT (12478)`.
+  The frame shrank from target `0x158` to `0x150`, stack slots shifted, and
+  early position-array/UV scheduling broadened. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` remained 97.30%; do not repeat this single-site x2
+  scaled-sine left-operand spelling.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 scaled collision-plane index local probe missed. The promoted
   source stored `basePlaneIndex * 4` in `temp` and used

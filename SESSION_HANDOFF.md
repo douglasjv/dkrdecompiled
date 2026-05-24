@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-24 03:23:43Z
+- Generated at: 2026-05-24 03:29:28Z
 - Branch: `master`
 - HEAD: post-closeout commit; run `git log -1 --oneline`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected scaled collision-plane index local: promoted source stored basePlaneIndex * 4 in temp and indexed collisionPlanes[temp + n]; full gate failed CRCs 0x7E74218A/0xA93D6001 and relinked focused diff improved to CURRENT (2725) but still retained the early gCurrentLevelModel spill at 0x60(sp); source restored.
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected single-site x2 scaled-sine left-operand spelling: promoted source changed xPositions[2] to scaledXSin + scaledXCos; full gate failed CRCs 0x218F9FFA/0x18F4A6D6 and relinked focused diff regressed to CURRENT (12478) with frame shrunk to 0x150 and broad early position-array/UV scheduling drift; source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; func_8002B0F4 scaled collision-plane index local was a useful miss (CURRENT 2725) but still needs a separate fix for the early gCurrentLevelModel spill/register family.`
+- Task: `Run selector; trackbg_render_flashy remains active but do not repeat single-site x2 scaled-sine left-operand spelling, which collapsed into the known bad frame-shrink family.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
