@@ -1,26 +1,31 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:41:05Z
+- Generated at: 2026-05-25 03:45:37Z
 - Branch: `master`
-- HEAD: `00dd9098`
+- HEAD: `f3eb1c22`
 - Completed task: `func_80049794`
-- Summary: Rejected update-rate guard == TRUE spelling; full verify failed and relinked diff regressed to CURRENT (5760), source restored
+- Summary: Rejected wave-scan top-bound var_v1/index var_a0 spelling; full verify failed and relinked diff regressed to CURRENT (5755), source restored
 
 ## Validation
 
-- `./diff.sh func_80049794 --compress-matching 2 --no-pager` after the
-  rejected probe relinked at `CURRENT (5760)`.
-- `gmake -j4 CROSS=tools/binutils/mips64-elf-` after source restore reached
+- Worker pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  reported stale `CURRENT (0)`.
+- Promoted wave-scan top-bound carrier probe failed full verify with calculated
+  CRCs `0x5790053C/0x1C8C0179`.
+- Relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  reported `CURRENT (5755)`.
+- Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. A forked worker also rejected the planned
-  close-save-family no-spill early-zero follow-up as already represented in
-  `ACTIVE.md`; do not micro-vary early zeroing unless the source shape also
-  attacks the wave `v1` bound / `a0` loop-index allocation.
+- No open blockers recorded. The explicit `var_v1 = gRacerWaveCount - 1`
+  top-bound carrier spelling did not recover the target wave scan: current used
+  `v1` for count, `a3` for top bound, and `v0` for the decrementing loop index,
+  with repeated pointer recomputation instead of the target `v1` bound / `a0`
+  decrement / pointer-decrement family.
 
 ## Ask The User Only If
 
@@ -30,7 +35,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 wave bound/index allocation preserving known no-spill close save-family, or distinct live candidate`
+- Task: `func_80049794 independent saved-FPR lifetime source shape, or distinct live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

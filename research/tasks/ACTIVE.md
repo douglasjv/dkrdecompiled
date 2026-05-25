@@ -23,6 +23,25 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-25 promoted wave-scan top-bound carrier spelling missed. The worker
+  changed the `NON_EQUIVALENT` guard to `#if 1`, introduced
+  `var_v1 = gRacerWaveCount - 1`, initialized `var_a0 = var_v1`, and compared
+  `if (var_a0 == var_v1)` to try to recover the target `v1` top bound with
+  `a0` as the decrementing loop index. Pre-build `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x5790053C/0x1C8C0179`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (5755)`. The source shape still dropped target `$f20/$f21` prologue
+  saves and kept early zero in `$f16` instead of `$f14`; the wave scan moved
+  to current `v1` count / `a3` top-bound / `v0` loop-index allocation with
+  repeated `sll`/`addu` pointer recomputation, not the target `v1` bound /
+  `a0` decrement / pointer-decrement family. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this explicit `var_v1` top-bound carrier spelling;
+  next `func_80049794` hypothesis needs an independent saved-FPR lifetime
+  source shape, or pivot to another live candidate.
+- Latest selector-packet note: `func_80049794` remains active after a
   2026-05-25 promoted update-rate guard `== TRUE` spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
   `if (func_8000E138())` as `if (func_8000E138() == TRUE)`. Pre-build
