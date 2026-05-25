@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:11:52Z
+- Generated at: 2026-05-25 02:15:36Z
 - Branch: `master`
-- HEAD: `cd8334c2`
-- Completed task: `func_80049794-boost-emitter-high-split-gt9`
-- Summary: Rejected promoted func_80049794 late boost-emitter high-split compare spelling: changed the NON_EQUIVALENT guard to #if 1 and rewrote only if (var_t0 >= 10) as if (var_t0 > 9). Full verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514; relinked ./diff.sh func_80049794 --compress-matching 2 --no-pager stayed at promoted baseline CURRENT (2760), retaining missing target f20/f21 prologue saves, early zero in current f16 instead of target f14, and wave scan a0-bound/v1-loop drift. Source restored.
+- HEAD: `b30c0501`
+- Completed task: `trackbg_render_flashy-cursor-two-triangle-tail-loop`
+- Summary: Rejected promoted trackbg_render_flashy cursor-based two-triangle tail loop: changed the NON_MATCHING guard to #if 1 and rewrote only the final D_800DC92C cursor loop to emit two triangles per iteration using var_v0_3[0..5], then advance var_v0_3 by 6 and tris by 2. Full verify failed with calculated CRCs 0x938938F5/0x42F392C4; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager worsened to CURRENT (1883). The body resembled the target two-triangle cursor shape, but the loop counter/register family became current a1 += 1 with limit 4 instead of target a2 += 2 with limit 8, and the early negative-cosine FPR drift remained. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_80049794 late boost-emitter high-split compare var_t0 > 9, vehicle-particle guard operand-order, magnetTimer truthy, final spA1/unk201 tail booleans, saved-FPR/wave-scan microvariants, early grounded-zero carriers, and throttle/brake literals unless paired with a distinct saved-FPR/register-pressure fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid trackbg_render_flashy cursor-based two-triangle tail loop, direct-index two-triangle unroll, final triangle postincrement/indexed-table spellings, and saturated negative-cosine/first-ring FPR carrier variants unless paired with a distinct early FPR allocation fix; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
