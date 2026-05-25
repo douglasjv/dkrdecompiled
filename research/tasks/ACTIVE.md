@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-25 promoted removed fake `var_a2` recomputation spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and removed only the
+  `// @fake` `var_a2 = texHeader->height * 16 * gCurrentLevelHeader2->unkA1;`
+  recomputation before UV-coordinate generation. Pre-build `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xC5B710C5/0x71187E4F`; relinked `./diff.sh trackbg_render_flashy
+  --compress-matching 2 --no-pager` reported `CURRENT (12107)`. The diff still
+  showed broad early FPR/position-array drift and did not recover the target
+  negative-cosine carrier. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this removed fake `var_a2` recomputation spelling;
+  next `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation
+  shape, or pivot to another live candidate.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-25 promoted plain spline-fill loop spelling missed. The source
   changed the `NON_MATCHING` guard to `#if 1` and rewrote only the five-node
