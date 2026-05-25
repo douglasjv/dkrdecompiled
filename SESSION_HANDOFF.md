@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:24:24Z
+- Generated at: 2026-05-25 03:28:58Z
 - Branch: `master`
-- HEAD: `0f613c97`
+- HEAD: `b0e5dfed`
 - Completed task: `func_80049794`
-- Summary: Rejected explicit func_8000E138 != FALSE update-rate guard; full verify failed with baseline CRCs 0x5FDDE03F/0xEF7A0514 and relinked diff stayed CURRENT (2760), then source restored.
+- Summary: Worker rejected var_v1/var_a0 declaration-order swap for saved-FPR/wave allocation; forked full verify failed with baseline CRCs 0x5FDDE03F/0xEF7A0514 and relinked diff stayed CURRENT (2760); main checkout restored/clean.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 only with a distinct saved-FPR/wave allocation hypothesis, or pivot to another routable candidate if no non-repeated shape is available.`
+- Task: `Continue func_80049794 only with an independent saved-FPR lifetime source shape, not declaration-order or cached wave-bound/index microvariants; otherwise pivot to another routable candidate.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

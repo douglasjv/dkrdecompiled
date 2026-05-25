@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest worker-packet note: `func_80049794` remains active after a
+  2026-05-25 forked-worker `var_v1`/`var_a0` declaration-order spelling
+  missed. The worker changed the `NON_EQUIVALENT` guard to `#if 1` and swapped
+  only the local declarations from `s32 var_v1; s32 var_a0;` to
+  `s32 var_a0; s32 var_v1;`, targeting saved-FPR pressure and the early wave
+  bound/index allocation. Worker full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and left the wave scan with current `a0` as bound and `v1` as
+  loop index instead of target `v1` bound and `a0` loop index. Worker source
+  was restored with no patch applied here; main checkout `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this `var_v1`/`var_a0` declaration-order spelling;
+  next `func_80049794` hypothesis needs an independent saved-FPR lifetime
+  source shape, or a pivot to another bounded routable packet.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-25 promoted explicit update-rate guard spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
