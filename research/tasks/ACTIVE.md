@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted single-site first-ring scaled-sine reuse miss. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `xPositions[1] = scaledXCos - (xSin * 1280.0f)` as
+  `xPositions[1] = scaledXCos - scaledXSin`. Pre-build `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x218F9FFA/0x18F4A6D6`; relinked `./diff.sh trackbg_render_flashy
+  --compress-matching 2 --no-pager` regressed to `CURRENT (13821)`. The frame
+  shrank from target `0x158` to `0x150`, and the diff broadened the bad
+  first-ring scaled-sine/early position-array schedule instead of recovering
+  the target `$f18` negative-cosine carrier. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat single-site first-ring scaled-sine reuse probes;
+  next `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation
+  fix or a pivot to another live candidate.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-24 promoted yOutCount high-water equality spelling missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the

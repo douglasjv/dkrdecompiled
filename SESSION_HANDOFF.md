@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:55:33Z
+- Generated at: 2026-05-25 02:57:53Z
 - Branch: `master`
-- HEAD: `89b4ab14`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected promoted yOutCount high-water equality spelling: changed yOutCount >= 20 to yOutCount == 20; full verify failed with CRCs 0xA74DDBBC/0xC4B262D4 and relinked diff regressed to CURRENT (8360); source restored.
+- HEAD: `eab0b00d`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted single-site first-ring scaled-sine reuse: changed xPositions[1] to scaledXCos - scaledXSin; full verify failed with CRCs 0x218F9FFA/0x18F4A6D6 and relinked diff regressed to CURRENT (13821); source restored.
 
 ## Validation
 
