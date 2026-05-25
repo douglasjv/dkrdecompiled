@@ -23,21 +23,21 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
-  2026-05-25 promoted removed fake `var_a2` recomputation spelling missed. The
-  source changed the `NON_MATCHING` guard to `#if 1` and removed only the
-  `// @fake` `var_a2 = texHeader->height * 16 * gCurrentLevelHeader2->unkA1;`
-  recomputation before UV-coordinate generation. Pre-build `./diff.sh
-  trackbg_render_flashy --compress-matching 2 --no-pager` misleadingly
-  reported `CURRENT (0)`, but full verify failed with calculated CRCs
-  `0xC5B710C5/0x71187E4F`; relinked `./diff.sh trackbg_render_flashy
-  --compress-matching 2 --no-pager` reported `CURRENT (12107)`. The diff still
-  showed broad early FPR/position-array drift and did not recover the target
-  negative-cosine carrier. Source was restored, `gmake -j4
+  2026-05-25 promoted commuted `zPositions[3]` scaled-carrier ordering missed.
+  The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `zPositions[3] = scaledXCos + scaledXSin;` as `zPositions[3] = scaledXSin +
+  scaledXCos;`, targeting early first-ring FPR allocation without replacing
+  carriers. Promoted baseline and the probe both failed full verify with
+  calculated CRCs `0x93D338FF/0x03D9C8FE`; relinked `./diff.sh
+  trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  `CURRENT (1808)`. The diff retained the known target `$f18` versus current
+  `$f16` negative-cosine carrier and the first/outer position-array register
+  order drift. Source was restored, `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
   remained 97.30%, and `python3 tools/check_active_surface.py` reported active
-  surface ok. Do not repeat this removed fake `var_a2` recomputation spelling;
-  next `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation
-  shape, or pivot to another live candidate.
+  surface ok. Do not repeat this commuted `zPositions[3]` scaled-carrier
+  ordering; next `trackbg_render_flashy` hypothesis needs a distinct early FPR
+  allocation shape, or pivot to another live candidate.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-25 promoted checkpoint-dot-first final-tail ordering missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and moved only
