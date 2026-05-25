@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 04:13:30Z
+- Generated at: 2026-05-25 04:18:11Z
 - Branch: `master`
-- HEAD: `368a25fc`
-- Completed task: `func_80049794`
-- Summary: Rejected register var_f20 storage-class hint; full verify failed and relinked diff stayed CURRENT (2760), source restored
+- HEAD: `18dcf0ee`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected inner face-loop != bound spelling; full verify failed and relinked diff regressed to CURRENT (3870), source restored
 
 ## Validation
 
-- Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+- Pre-build `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted `register f32 var_f20` storage-class hint failed full verify with
-  calculated CRCs `0x5FDDE03F/0xEF7A0514`.
-- Relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
-  reported `CURRENT (2760)`.
+- Promoted inner face-loop `!=` bound spelling failed full verify with
+  calculated CRCs `0x79F64ED8/0xE6364BB6`.
+- Relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
+  reported `CURRENT (3870)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,11 +21,10 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. The `register f32 var_f20` storage-class hint did
-  not recover target `$f20/$f21` prologue saves; the diff stayed in the same
-  `CURRENT (2760)` family with early zero in current `$f16` instead of target
-  `$f14` and the current `a0`-bound/`v1`-loop wave scan. Do not repeat this
-  spelling.
+- No open blockers recorded. The inner face-loop `!=` bound changed the loop
+  from target `slt`/`bnez` to `bne`, reintroduced the known unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`, and broadened segment/grid plus
+  bottom-sort register drift. Do not repeat this spelling.
 
 ## Ask The User Only If
 
@@ -35,7 +34,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 distinct saved-FPR lifetime/wave allocation source shape, or pivot to another live candidate`
+- Task: `func_8002B0F4 distinct model-load pressure shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

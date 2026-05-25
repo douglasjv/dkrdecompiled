@@ -55,22 +55,22 @@
   `func_80059208` hypothesis needs a distinct spline/FPR allocation shape, or
   pivot to another live candidate.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
-  2026-05-25 promoted hoisted integer-coordinate call spelling missed. The
-  source changed the `NON_EQUIVALENT` guard to `#if 1`, assigned
-  `XInInt = xIn; ZInInt = zIn;` before `get_inside_segment_count_xz`, passed
-  those integer locals to the call, and removed the per-segment
-  `XInInt`/`ZInInt` assignments. Pre-build `./diff.sh func_8002B0F4
-  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
-  full verify failed with calculated CRCs `0x7856718A/0x66208CAA`; relinked
-  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` stayed at
-  `CURRENT (2860)`. The diff still inserted the unwanted early
-  `gCurrentLevelModel` spill at `0x60(sp)`, rotated segment/grid registers,
-  and left bottom population/sort drift. Source was restored, `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
-  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
-  surface ok. Do not repeat this hoisted `XInInt`/`ZInInt` call spelling; next
-  `func_8002B0F4` hypothesis needs a distinct early model-load pressure shape,
-  or pivot to another live candidate.
+  2026-05-25 promoted inner face-loop `!=` bound spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `for (faceNum = currentFaceOffset; faceNum < nextFaceOffset; faceNum++)` as
+  `for (faceNum = currentFaceOffset; faceNum != nextFaceOffset; faceNum++)`.
+  Pre-build `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x79F64ED8/0xE6364BB6`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` regressed to `CURRENT (3870)`. The diff
+  changed the inner face loop from target `slt`/`bnez` to `bne`, reintroduced
+  the known unwanted early `gCurrentLevelModel` spill at `0x60(sp)`, and
+  broadened segment/grid and bottom-sort register drift. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok. Do not repeat this inner face-loop `!=` bound
+  spelling; next `func_8002B0F4` hypothesis needs a distinct model-load
+  pressure shape, or pivot to another live candidate.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-25 promoted `register f32 var_f20` storage-class hint missed. The
   source changed the `NON_EQUIVALENT` guard to `#if 1` and changed only
