@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted alternate-route explicit TRUE guard spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `if (racer->isOnAlternateRoute)` as
+  `if (racer->isOnAlternateRoute == TRUE)`. Pre-build
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xDBD341DD/0xD7A54460`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` worsened from
+  promoted baseline `CURRENT (870)` to `CURRENT (1130)`. The branch changed
+  from target `beqz t2` to `li at,1`/`bne t2,at`, and the known final
+  object-dot/checkpoint-dot plus vertical FPR drift remained. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat
+  this alternate-route `== TRUE` guard spelling; next `func_80059208`
+  hypothesis needs a distinct spline dataflow or final-tail allocation fix, or
+  pivot to another routable packet.
 - Latest worker-packet note: `func_80059208` remains active after a 2026-05-24
   worker-probed final-tail inline dot-difference expression miss. The worker
   changed the `NON_MATCHING` guard to `#if 1` and replaced the separate
