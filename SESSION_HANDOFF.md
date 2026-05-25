@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 04:07:14Z
+- Generated at: 2026-05-25 04:11:03Z
 - Branch: `master`
-- HEAD: `79ab2deb`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected removing fake var_a2 recomputation; full verify failed and relinked diff reported CURRENT (12107), source restored
+- HEAD: `ba67e1a1`
+- Completed task: `func_80049794`
+- Summary: Rejected pointer-cursor wave-scan spelling; full verify failed and relinked diff reported CURRENT (8562), source restored
 
 ## Validation
 
-- Pre-build `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+- Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted removed fake `var_a2` recomputation probe failed full verify with
-  calculated CRCs `0xC5B710C5/0x71187E4F`.
-- Relinked `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
-  reported `CURRENT (12107)`.
+- Promoted pointer-cursor wave-scan probe failed full verify with calculated
+  CRCs `0xED20BE1F/0xDF1B0F4F`.
+- Relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  reported `CURRENT (8562)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,9 +21,11 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. Removing the fake `var_a2` recomputation still
-  left broad early FPR/position-array drift and did not recover the target
-  negative-cosine carrier. Do not repeat this spelling.
+- No open blockers recorded. The pointer-cursor wave-scan probe got pointer
+  decrement in the loop and avoided the target-exit array reload, but it still
+  placed the decrement index in current `v1` instead of target `a0`, shifted the
+  frame to `0x100`, and still lacked target `$f20/$f21` prologue saves. Do not
+  repeat this spelling.
 
 ## Ask The User Only If
 
@@ -33,7 +35,7 @@
 
 ## Next Work Packet
 
-- Task: `trackbg_render_flashy distinct early FPR allocation source shape, or pivot to another live candidate`
+- Task: `func_80049794 independent saved-FPR lifetime/wave allocation source shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
