@@ -39,21 +39,21 @@
   next `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation
   shape, or pivot to another live candidate.
 - Latest alternate-packet note: `func_80059208` remains active after a
-  2026-05-25 promoted plain spline-fill loop spelling missed. The source
-  changed the `NON_MATCHING` guard to `#if 1` and rewrote only the five-node
-  spline fill loop condition from `for (i = 0; (i < 5) ^ 0; i++)` to
-  `for (i = 0; i < 5; i++)`. Pre-build `./diff.sh func_80059208
-  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
-  full verify failed with calculated CRCs `0x53905373/0x65198BEE`; relinked
-  `./diff.sh func_80059208 --compress-matching 2 --no-pager` reported
-  `CURRENT (1515)`. The loop-control schedule moved away from target around
-  the spline fill writes, and the known final-tail FPR drift around `0x5a260`
-  remained. Source was restored, `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
-  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
-  surface ok. Do not repeat this plain `i < 5` spline-fill loop spelling; next
-  `func_80059208` hypothesis needs a distinct spline/FPR allocation shape, or
-  pivot to another live candidate.
+  2026-05-25 promoted checkpoint-dot-first final-tail ordering missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and moved only
+  `pad2 = -((tempZ * diffZ) + (diffX * tempX));` before loading object `x/z`
+  locals and computing `pad`, targeting the `0x5a260` object/checkpoint dot FPR
+  carrier drift. Promoted baseline and the ordering probe both failed full
+  verify with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked `./diff.sh
+  func_80059208 --compress-matching 2 --no-pager` stayed at `CURRENT (870)`.
+  The diff still used current `$f12/$f0` and folded the dot as `sub.s`, rather
+  than target `$f16/$f6`, early checkpoint-dot `neg.s`, then `add.s`. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat
+  this checkpoint-dot-first final-tail ordering; next `func_80059208`
+  hypothesis needs a distinct spline dataflow/FPR allocation shape, or pivot
+  to another live candidate.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-25 promoted inner face-loop `!=` bound spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
