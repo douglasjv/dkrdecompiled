@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:49:52Z
+- Generated at: 2026-05-25 02:52:52Z
 - Branch: `master`
-- HEAD: `6663fa5d`
+- HEAD: `203d6cec`
 - Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted gSPPolygon final-flag macro spelling and recorded worker func_8002B0F4 declaration-order model-spill miss; trackbg stayed CURRENT (1808) with CRCs 0x93D338FF/0x03D9C8FE, worker func_8002B0F4 stayed CURRENT (2860) with CRCs 0x7856718A/0x66208CAA; sources restored.
+- Summary: Rejected promoted gSPVertexDKR final-flag macro spelling: changed final 0 to FALSE; full verify failed with CRCs 0x93D338FF/0x03D9C8FE and relinked diff stayed CURRENT (1808); source restored.
 
 ## Validation
 

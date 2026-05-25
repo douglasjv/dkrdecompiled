@@ -23,6 +23,22 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-24 promoted display-list vertex macro final-flag spelling missed.
+  The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `gSPVertexDKR(..., 9, 0)` as `gSPVertexDKR(..., 9, FALSE)`. Pre-build
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x93D338FF/0x03D9C8FE`; relinked `./diff.sh trackbg_render_flashy
+  --compress-matching 2 --no-pager` stayed at promoted baseline
+  `CURRENT (1808)`. The diff retained the known early negative-cosine FPR drift
+  and first/outer position-array register-order family with no useful movement.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat this
+  `gSPVertexDKR` final-flag macro spelling; next `trackbg_render_flashy`
+  hypothesis needs a distinct early FPR allocation fix, or pivot to another
+  routable packet.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted display-list polygon flag macro spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
   `gSPPolygon(..., 8, 1)` as `gSPPolygon(..., 8, TRUE)`. Pre-build
