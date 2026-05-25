@@ -23,6 +23,36 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-25 promoted `s8 splineIndex` spline-call boolean carrier miss. The
+  source changed the `NON_MATCHING` guard to `#if 1` and changed only
+  `s32 splineIndex` to `s8 splineIndex`, targeting spline-call argument
+  pressure without touching final-tail dot/clamp logic. Relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed at
+  `CURRENT (870)`. Full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`. The diff retained the final-tail drift around
+  `0x5a260`, with current `$f12/$f0` object loads and folded `sub.s` where
+  target uses `$f16/$f6`, early checkpoint-dot `neg.s`, and `add.s`. Source
+  was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and
+  `python3 tools/check_active_surface.py` reported active surface ok. Do not
+  repeat this `s8 splineIndex` carrier; next `func_80059208` hypothesis needs
+  a distinct spline-call argument or `diffX`/`diffZ` lifetime shape, or pivot.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-25 forked-worker update-rate lifetime pressure miss. The worker
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the opening
+  update-rate path from direct `updateRateF *= 1.09` to
+  `var_f20 = updateRateF; if (func_8000E138()) var_f20 *= 1.09; updateRateF =
+  var_f20;`, targeting `$f20/$f21` saved-FPR pressure. The object-only focused
+  diff first reported stale `CURRENT (0)`, but full verify failed with
+  calculated CRCs `0xF2024655/0xB090BDA2`; relinked focused diff regressed to
+  `CURRENT (8849)`. The probe still did not recover target `$f20/$f21`
+  prologue saves, spilled/reloaded `updateRateF` through stack, shifted saved
+  GPR slots, moved early zero into `$f18`, and broadened wave scan/register
+  drift from target `v1`/`a0` into current `a0`/`v1`. Worker source was
+  restored. Do not repeat this `updateRateF` through `var_f20` carrier; next
+  `func_80049794` work needs a distinct saved-FPR/register-pressure source
+  shape, or pivot to another live candidate.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-25 promoted `tempZ`-through-`distance` spline result carrier miss.
   The source changed the `NON_MATCHING` guard to `#if 1` and changed only the
   third spline result assignment from `tempZ = cubic_spline_interpolation(...)`
