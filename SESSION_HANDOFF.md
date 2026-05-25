@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:59:23Z
+- Generated at: 2026-05-25 04:01:57Z
 - Branch: `master`
-- HEAD: `bf5ac54b`
-- Completed task: `func_80049794`
-- Summary: Rejected early var_f14 zero carrier spelling; full verify failed and relinked diff stayed at CURRENT (2760), source restored
+- HEAD: `92f6f6f2`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected hoisted XInInt/ZInInt call spelling; full verify failed and relinked diff stayed at CURRENT (2860), source restored
 
 ## Validation
 
-- Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+- Pre-build `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted early `var_f14` zero-carrier probe failed full verify with
-  calculated CRCs `0x5FDDE03F/0xEF7A0514`.
-- Relinked `./diff.sh func_80049794 --compress-matching 2 --no-pager`
-  stayed at `CURRENT (2760)`.
+- Promoted hoisted `XInInt`/`ZInInt` call probe failed full verify with
+  calculated CRCs `0x7856718A/0x66208CAA`.
+- Relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
+  stayed at `CURRENT (2860)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,10 +21,10 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. The early `var_f14 = 0.0f` carrier shape did not
-  move the zero stores from current `$f16` to target `$f14`, did not recover
-  target `$f20/$f21` prologue saves, and left the wave scan in the current
-  `a0`-bound/`v1`-loop family. Do not repeat this spelling.
+- No open blockers recorded. The hoisted integer-coordinate call shape still
+  inserted the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`,
+  rotated the segment/grid register family, and left bottom population/sort
+  drift. Do not repeat this spelling.
 
 ## Ask The User Only If
 
@@ -34,7 +34,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 independent saved-FPR lifetime or wave allocation shape, or pivot to another live candidate`
+- Task: `func_8002B0F4 distinct early model-load pressure shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
