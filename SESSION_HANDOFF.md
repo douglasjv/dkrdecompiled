@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:23:29Z
+- Generated at: 2026-05-25 02:26:22Z
 - Branch: `master`
-- HEAD: `0fdcf145`
-- Completed task: `func_80049794-wave-scan-last-index-split`
-- Summary: Rejected promoted func_80049794 wave-scan last-index split spelling; changed the NON_EQUIVALENT guard to #if 1, assigned var_v1 = gRacerWaveCount - 1, used for (var_a0 = var_v1; ...), and compared if (var_a0 == var_v1). Promoted baseline verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514; the split-index probe failed with calculated CRCs 0x5790053C/0x1C8C0179. Relinked ./diff.sh func_80049794 --compress-matching 2 --no-pager worsened from CURRENT (2760) to CURRENT (5755), spilling spA2 to 0xA2(sp) and shifting wave-scan temporaries farther from target. Source restored.
+- HEAD: `3caa5eae`
+- Completed task: `func_80049794-var_f20-double-carrier`
+- Summary: Rejected promoted func_80049794 saved-FPR/register-pressure double-carrier spelling; changed the NON_EQUIVALENT guard to #if 1 and changed only the main var_f20 declaration from f32 to double. Full verify failed with calculated CRCs 0xABC4F62A/0x9D55B713; relinked ./diff.sh func_80049794 --compress-matching 2 --no-pager worsened to CURRENT (14812). The frame widened from target 0xF8 to current 0x108, the target f20/f21 prologue saves were still absent, and broad wave, steering, boost, and tail FPR scheduling drift expanded. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_80049794 wave-scan split-index/register-shape microvariants unless paired with a distinct saved-FPR/register-pressure fix. Also avoid the already recorded func_80049794 late boost-emitter high-split compare, vehicle-particle guard operand-order, magnetTimer truthy, final spA1/unk201 tail booleans, early grounded-zero carriers, and throttle/brake literals; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid broad func_80049794 carrier-width changes and use only a narrower saved-FPR lifetime/register-pressure question, or pivot to another bounded routable active packet. Also avoid the already recorded func_80049794 wave-scan split-index/register-shape microvariants, late boost-emitter high-split compare, vehicle-particle guard operand-order, magnetTimer truthy, final spA1/unk201 tail booleans, early grounded-zero carriers, and throttle/brake literals.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
