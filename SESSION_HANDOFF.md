@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:45:14Z
+- Generated at: 2026-05-25 02:49:52Z
 - Branch: `master`
-- HEAD: `5442d8f6`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted wrong-way inner condition-order spelling: changed wrongWayCounter-before-velocity check to velocity-before-counter; full verify failed with CRCs 0x53D141DF/0xF86FF6B8 and relinked diff worsened to CURRENT (1235); source restored.
+- HEAD: `6663fa5d`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected promoted gSPPolygon final-flag macro spelling and recorded worker func_8002B0F4 declaration-order model-spill miss; trackbg stayed CURRENT (1808) with CRCs 0x93D338FF/0x03D9C8FE, worker func_8002B0F4 stayed CURRENT (2860) with CRCs 0x7856718A/0x66208CAA; sources restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; func_80059208 needs a distinct spline dataflow or final-tail allocation fix.`
+- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; otherwise pivot to a live candidate with a non-repeated family.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
