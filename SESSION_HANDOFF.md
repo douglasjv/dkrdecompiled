@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:16:14Z
+- Generated at: 2026-05-25 03:19:02Z
 - Branch: `master`
-- HEAD: `96b7435f`
-- Completed task: `func_80049794`
-- Summary: Recorded `func_80049794` normal-flight `trickType == -2 || trickType == 2` branch-order miss; source restored. Full verify failed with calculated CRCs `0xDFDFE9E6/0xFD85A953`; relinked focused diff stayed at `CURRENT (2760)` with missing `$f20/$f21` saves, early-zero `$f16` drift, and wave bound/index drift.
+- HEAD: `f16bade7`
+- Completed task: `func_8002B0F4`
+- Summary: Recorded `func_8002B0F4` batch-skip flag-mask explicit-nonzero miss; source restored. Full verify failed with calculated CRCs `0x7856718A/0x66208CAA`; relinked focused diff stayed at `CURRENT (2860)` with the unwanted early `gCurrentLevelModel` spill and broad segment/grid/tail drift.
 
 ## Validation
 
