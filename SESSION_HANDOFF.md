@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:20:35Z
+- Generated at: 2026-05-25 02:23:29Z
 - Branch: `master`
-- HEAD: `290b3898`
-- Completed task: `func_8002B0F4-x-grid-predicate-operand-order`
-- Summary: Rejected promoted func_8002B0F4 X-grid predicate operand-order spelling; changed the NON_EQUIVALENT guard to #if 1 and rewrote only var_t0 >= XInInt && XInInt >= var_t1 as XInInt <= var_t0 && var_t1 <= XInInt. Full verify failed with calculated CRCs 0x7046F28A/0xDC00632D; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed at CURRENT (2860), retaining the unwanted early gCurrentLevelModel spill at 0x60(sp) plus broad segment/grid/tail drift. Source restored. Worker also rejected func_80059208 lap-- to lap -= 1 in a forked checkout; relinked diff reported CURRENT (870), source restored, no patch applied here.
+- HEAD: `0fdcf145`
+- Completed task: `func_80049794-wave-scan-last-index-split`
+- Summary: Rejected promoted func_80049794 wave-scan last-index split spelling; changed the NON_EQUIVALENT guard to #if 1, assigned var_v1 = gRacerWaveCount - 1, used for (var_a0 = var_v1; ...), and compared if (var_a0 == var_v1). Promoted baseline verify failed with calculated CRCs 0x5FDDE03F/0xEF7A0514; the split-index probe failed with calculated CRCs 0x5790053C/0x1C8C0179. Relinked ./diff.sh func_80049794 --compress-matching 2 --no-pager worsened from CURRENT (2760) to CURRENT (5755), spilling spA2 to 0xA2(sp) and shifting wave-scan temporaries farther from target. Source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid func_8002B0F4 X-grid predicate operand-order spelling and saturated model-spill/grid/texture/tail families unless paired with a distinct model-spill/register allocation fix. Also avoid func_80059208 upper-half lap-decrement spelling unless using a distinct final-tail allocation or spline dataflow family; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_80049794 wave-scan split-index/register-shape microvariants unless paired with a distinct saved-FPR/register-pressure fix. Also avoid the already recorded func_80049794 late boost-emitter high-split compare, vehicle-particle guard operand-order, magnetTimer truthy, final spA1/unk201 tail booleans, early grounded-zero carriers, and throttle/brake literals; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
