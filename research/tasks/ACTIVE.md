@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted yOutCount high-water equality spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only the
+  post-increment high-water exit from `if (yOutCount >= 20)` to
+  `if (yOutCount == 20)`. Pre-build `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0xA74DDBBC/0xC4B262D4`; relinked
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (8360)`. The diff inserted the known unwanted early
+  `gCurrentLevelModel` spill at `0x60(sp)`, added a `li s7,0x14` high-water
+  carrier, and broadened segment/grid/tail drift. Source was restored, `gmake
+  -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this high-water equality spelling; next
+  `func_8002B0F4` hypothesis needs a distinct model-load pressure shape or a
+  pivot to another live candidate.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted display-list vertex macro final-flag spelling missed.
   The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only

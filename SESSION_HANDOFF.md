@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:52:52Z
+- Generated at: 2026-05-25 02:55:33Z
 - Branch: `master`
-- HEAD: `203d6cec`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected promoted gSPVertexDKR final-flag macro spelling: changed final 0 to FALSE; full verify failed with CRCs 0x93D338FF/0x03D9C8FE and relinked diff stayed CURRENT (1808); source restored.
+- HEAD: `89b4ab14`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected promoted yOutCount high-water equality spelling: changed yOutCount >= 20 to yOutCount == 20; full verify failed with CRCs 0xA74DDBBC/0xC4B262D4 and relinked diff regressed to CURRENT (8360); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; otherwise pivot to a live candidate with a non-repeated family.`
+- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; otherwise pivot among func_80059208, trackbg_render_flashy, or func_8002B0F4 with a non-repeated family.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
