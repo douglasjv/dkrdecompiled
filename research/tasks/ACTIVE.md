@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-25 promoted positive checkpoint-dot/subtract final-tail spelling
+  missed. The source changed the `NON_MATCHING` guard to `#if 1` and rewrote
+  only `pad2 = -((tempZ * diffZ) + (diffX * tempX)); diffX = -((pad + pad2) /
+  divisor);` as `pad2 = (tempZ * diffZ) + (diffX * tempX); diffX = -((pad -
+  pad2) / divisor);`. Pre-build `./diff.sh func_80059208 --compress-matching
+  2 --no-pager` misleadingly reported `CURRENT (0)`, but full verify failed
+  with calculated CRCs `0x53D141DF/0xB9D4B481`; relinked `./diff.sh
+  func_80059208 --compress-matching 2 --no-pager` stayed at `CURRENT (870)`.
+  The diff remained in the known final-tail family around `0x5a260`: object
+  dot/checkpoint dot used different FPR carriers and the vertical tail still
+  used `$f10`/`$f6` where target uses `$f6`/`$f10`. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok. Do not repeat this positive checkpoint-dot /
+  subtract spelling; next `func_80059208` hypothesis needs a distinct
+  spline/vertical FPR allocation shape, or pivot to another live candidate.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-25 promoted wave-scan top-bound carrier spelling missed. The worker
   changed the `NON_EQUIVALENT` guard to `#if 1`, introduced
