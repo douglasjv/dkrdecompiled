@@ -22,6 +22,21 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest worker-packet note: `func_80059208` remains active after a 2026-05-24
+  worker-probed final-tail inline dot-difference expression miss. The worker
+  changed the `NON_MATCHING` guard to `#if 1` and replaced the separate
+  `pad`/`pad2` final lateral-offset temporaries with one inline
+  object-dot-minus-checkpoint-dot expression for `diffX`. Worker focused diff
+  first reported stale `CURRENT (0)`, but main full verify failed with
+  calculated CRCs `0x53D141DF/0xB9D4B481`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` stayed at `CURRENT (870)`. The diff kept
+  the known final object-dot/checkpoint-dot and vertical FPR drift around
+  `0x5a260`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this inline final dot-difference spelling; next
+  `func_80059208` hypothesis needs a distinct spline dataflow or final-tail
+  allocation fix, or pivot to another routable packet.
 - Latest parked-packet revisit note: `init_particle_buffers` remains parked
   after a 2026-05-24 promoted point-count lifetime alias miss. The source
   changed the `NON_MATCHING` guard to `#if 1`, added `pointParticleCount` after
