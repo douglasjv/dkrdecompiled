@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted wrong-way inner condition-order probe missed. The source
+  changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `if (racer->wrongWayCounter < 200 && racer->velocity <= -1.0)` as
+  `if (racer->velocity <= -1.0 && racer->wrongWayCounter < 200)`. Pre-build
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x53D141DF/0xF86FF6B8`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` worsened to `CURRENT (1235)`. The probe
+  moved the velocity compare before the target wrong-way counter check and
+  retained the final object-dot/checkpoint-dot plus vertical FPR drift around
+  `0x5a260`. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this wrong-way inner condition-order spelling;
+  next `func_80059208` hypothesis needs a distinct spline dataflow or
+  final-tail allocation fix, or pivot to another routable packet.
 - Latest worker-packet note: `func_80059208` remains active after a
   2026-05-24 forked-worker final-tail object-dot local probe missed. The worker
   changed the `NON_MATCHING` guard to `#if 1`, added `f32 objectDot`, and

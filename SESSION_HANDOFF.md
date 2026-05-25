@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:42:44Z
+- Generated at: 2026-05-25 02:45:14Z
 - Branch: `master`
-- HEAD: `e28d084f`
+- HEAD: `5442d8f6`
 - Completed task: `func_80059208`
-- Summary: Rejected forked-worker final-tail objectDot local spelling: added f32 objectDot for the final object-dot path; worker verify failed with CRCs 0x53D141D7/0xAA087F2A and relinked diff worsened to CURRENT (878); source restored and no patch applied.
+- Summary: Rejected promoted wrong-way inner condition-order spelling: changed wrongWayCounter-before-velocity check to velocity-before-counter; full verify failed with CRCs 0x53D141DF/0xF86FF6B8 and relinked diff worsened to CURRENT (1235); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; func_80059208 also needs a distinct spline dataflow or final-tail allocation fix.`
+- Task: `func_80049794 remains selector-recommended, but avoid saturated saved-FPR/wave/pitch families unless a distinct allocation fix is found; func_80059208 needs a distinct spline dataflow or final-tail allocation fix.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
