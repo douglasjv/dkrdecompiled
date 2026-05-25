@@ -23,6 +23,24 @@
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
 - Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-25 promoted vertical `pad3` alias final-tail spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
+  `diffY = (obj->trans.y_position - tempY) / divisor;` as `pad3 =
+  obj->trans.y_position - tempY; diffY = pad3 / divisor;`, targeting the known
+  vertical FPR carrier drift. Pre-build `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` misleadingly reported `CURRENT (0)`, but
+  full verify failed with calculated CRCs `0x5AD1197F/0xF56ACA5E`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (1840)`. The diff still retained the object-dot/checkpoint-dot FPR
+  drift around `0x5a260`, and the vertical tail worsened by adding extra
+  `0x50(sp)` store/load traffic before the clamp while still using the wrong
+  FPR carriers. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this `pad3` vertical alias spelling; next
+  `func_80059208` hypothesis needs a distinct spline/FPR allocation shape, or
+  pivot to another live candidate.
+- Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-25 promoted positive checkpoint-dot/subtract final-tail spelling
   missed. The source changed the `NON_MATCHING` guard to `#if 1` and rewrote
   only `pad2 = -((tempZ * diffZ) + (diffX * tempX)); diffX = -((pad + pad2) /

@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:48:38Z
+- Generated at: 2026-05-25 03:50:51Z
 - Branch: `master`
-- HEAD: `bcde5846`
+- HEAD: `31ea7682`
 - Completed task: `func_80059208`
-- Summary: Rejected positive checkpoint-dot/subtract final-tail spelling; full verify failed and relinked diff stayed CURRENT (870), source restored
+- Summary: Rejected vertical pad3 alias final-tail spelling; full verify failed and relinked diff regressed to CURRENT (1840), source restored
 
 ## Validation
 
 - Pre-build `./diff.sh func_80059208 --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted positive checkpoint-dot/subtract final-tail probe failed full verify
-  with calculated CRCs `0x53D141DF/0xB9D4B481`.
-- Relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager` stayed
-  at `CURRENT (870)`.
+- Promoted vertical `pad3` alias final-tail probe failed full verify with
+  calculated CRCs `0x5AD1197F/0xF56ACA5E`.
+- Relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  reported `CURRENT (1840)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,10 +21,9 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. The positive checkpoint-dot/subtract final-tail
-  spelling collapsed to the known final-tail drift family: object
-  dot/checkpoint dot and vertical tail FPR carriers remained off target around
-  `0x5a260`.
+- No open blockers recorded. The vertical `pad3` alias worsened the final tail
+  by adding extra `0x50(sp)` store/load traffic before the clamp while retaining
+  the known object-dot/checkpoint-dot and vertical FPR carrier drift.
 
 ## Ask The User Only If
 
@@ -34,7 +33,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80059208 distinct spline/vertical FPR allocation source shape, or pivot to another live candidate`
+- Task: `func_80059208 distinct spline/FPR allocation source shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
