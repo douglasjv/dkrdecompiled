@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-25 promoted local `levelModel` pointer pressure spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1`, added a local
+  `LevelModel *levelModel`, assigned it from `gCurrentLevelModel`, and used it
+  for segment, bounding-box, texture, and bottom segment accesses. Pre-build
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x8632BBD2/0x4CA9FD95`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` regressed to `CURRENT (4208)`. The frame
+  grew from target `0x128` to current `0x130`, the model pointer spilled at
+  `0x12c(sp)`, the saved-register/prologue schedule shifted broadly, and the
+  source still did not recover target fresh model loads or bottom
+  population/sort. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this local `LevelModel *levelModel` pointer
+  pressure spelling; next `func_8002B0F4` hypothesis needs a distinct early
+  model-load pressure shape, or pivot to another live candidate.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-25 promoted all-first-ring `scaledXSin` reuse spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the first

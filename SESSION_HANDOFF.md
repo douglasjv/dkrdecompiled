@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:53:20Z
+- Generated at: 2026-05-25 03:56:39Z
 - Branch: `master`
-- HEAD: `bebf1d38`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected all-first-ring scaledXSin reuse spelling; full verify failed and relinked diff regressed to CURRENT (13581), source restored
+- HEAD: `6a5f31a3`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected local levelModel pointer pressure spelling; full verify failed and relinked diff regressed to CURRENT (4208), source restored
 
 ## Validation
 
-- Pre-build `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+- Pre-build `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted all-first-ring `scaledXSin` reuse probe failed full verify with
-  calculated CRCs `0x8310DF9D/0x3EA48C03`.
-- Relinked `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
-  reported `CURRENT (13581)`.
+- Promoted local `LevelModel *levelModel` pointer pressure probe failed full
+  verify with calculated CRCs `0x8632BBD2/0x4CA9FD95`.
+- Relinked `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager`
+  reported `CURRENT (4208)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,10 +21,10 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. All-first-ring `scaledXSin` reuse expanded the
-  frame from target `0x158` to `0x168`, saved `$f20/$f21`, and shifted the
-  early position-array/FPR schedule broadly. Do not repeat first-ring
-  `scaledXSin` reuse probes.
+- No open blockers recorded. The local `LevelModel *levelModel` pointer shape
+  worsened the frame/register schedule, spilled the model pointer at
+  `0x12c(sp)`, and did not recover the target fresh model loads or bottom
+  population/sort. Do not repeat this pointer-pressure spelling.
 
 ## Ask The User Only If
 
@@ -34,7 +34,7 @@
 
 ## Next Work Packet
 
-- Task: `trackbg_render_flashy distinct early FPR allocation source shape, or pivot to another live candidate`
+- Task: `func_8002B0F4 distinct early model-load pressure shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
