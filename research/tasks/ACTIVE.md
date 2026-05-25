@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-24 promoted normal-flight pitch pre-shift spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1`, hoisted the shared
+  `x_rotation` damping subtraction before the `R_TRIG` branch, materialized
+  `var_t0 >>= 1`, and used `var_t0 * 19/30 * updateRate` in the branch terms.
+  Pre-build `./diff.sh func_80049794 --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x7CE05375/0x7BE89A6A`; relinked `./diff.sh func_80049794
+  --compress-matching 2 --no-pager` stayed at `CURRENT (2480)`, the same as the
+  known pitch factor-out family. The target frame `0xF8` still kept `$f20/$f21`
+  prologue saves absent from current, the early zero still had `$f16/$f14`
+  drift, and the wave scan still had the bound/index registers reversed.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok; do not repeat this
+  pre-shifted `var_t0` pitch-input spelling. Future `func_80049794` pitch
+  factor-out combinations need a distinct saved-FPR/wave allocation fix, or
+  pivot to another bounded routable packet.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-24 promoted upper-half courseCheckpoint constant-left guard spelling
   missed. The source changed the `NON_MATCHING` guard to `#if 1` and rewrote

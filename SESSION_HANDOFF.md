@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:34:12Z
+- Generated at: 2026-05-25 02:38:55Z
 - Branch: `master`
-- HEAD: `4b5f4a36`
-- Completed task: `func_80059208`
-- Summary: Rejected promoted courseCheckpoint constant-left guard spelling: changed racer->courseCheckpoint > -0x7D00 to -0x7D00 < racer->courseCheckpoint; full verify failed with CRCs 0x53D141DF/0xB9D4B481 and relinked diff stayed CURRENT (870); source restored.
+- HEAD: `5fa18665`
+- Completed task: `func_80049794`
+- Summary: Rejected promoted normal-flight pitch pre-shift spelling: hoisted shared x_rotation damping, materialized var_t0 >>= 1, and kept branch pitch terms on var_t0; full verify failed with CRCs 0x7CE05375/0x7BE89A6A and relinked diff stayed CURRENT (2480); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended, but avoid saved-FPR/wave microvariants unless a distinct allocation fix is found; otherwise pivot to another routable packet with a non-repeated family.`
+- Task: `func_80049794 remains selector-recommended, but future pitch factor-out combinations need a distinct saved-FPR/wave allocation fix; otherwise pivot to another routable packet with a non-repeated family.`
 - Packet class: `matching_impl`
 - Packet status: `unchanged`
 - Reasoning tier: `medium`
