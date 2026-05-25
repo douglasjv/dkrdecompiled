@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest worker-packet note: `func_80059208` remains active after a
+  2026-05-25 forked-worker direct-division spline-normalization miss. The
+  worker changed the `NON_MATCHING` guard to `#if 1` and changed only the
+  post-`sqrtf` normalization from `scale = 1.0f / distance; diffX *= scale;
+  diffZ *= scale;` to `diffX = diffX / distance; diffZ = diffZ / distance;`.
+  Full verify failed with calculated CRCs `0x78C710DC/0x4AD1E6BB`; relinked
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
+  `CURRENT (2580)`. The probe removed the target `lui 0x3f80` reciprocal
+  carrier and target `div.s`/`mul.s` normalization shape, emitted direct
+  `div.s` operations, shifted later labels by `0x10`, and broadened the known
+  final-tail FPR drift. Worker source was restored; main checkout `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat direct-division normalization; next
+  `func_80059208` hypothesis should target `splineIndex`/`splinePos`
+  argument-passing or `diffX`/`diffZ` temp lifetime across the three
+  `cubic_spline_interpolation` calls, or pivot to another live candidate.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-25 promoted `sp108 <= 0` entry-guard spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1` and changed only

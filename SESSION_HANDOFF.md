@@ -1,34 +1,32 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 04:30:41Z
+- Generated at: 2026-05-25 04:34:32Z
 - Branch: `master`
-- HEAD: `5bd38951`
-- Completed task: `func_8002B0F4`
-- Summary: Rejected sp108 <= 0 entry-guard spelling; full verify failed and relinked diff regressed to CURRENT (3060), source restored
+- HEAD: `34ba7fd1`
+- Completed task: `func_80059208`
+- Summary: Worker rejected direct-division spline normalization; full verify failed with CRCs 0x78C710DC/0x4AD1E6BB and focused diff regressed to CURRENT (2580), source restored
 
 ## Validation
 
-- Promoted baseline `func_8002B0F4` failed full verify with calculated CRCs
-  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
-  --compress-matching 2 --no-pager` reported `CURRENT (2860)`.
-- The probe changed only `if (sp108 == 0 || sp108 >= 8)` to
-  `if (sp108 <= 0 || sp108 >= 8)`.
-- The probe failed full verify with calculated CRCs
-  `0xB856718A/0x8DC42D5F`; relinked focused diff regressed to `CURRENT
-  (3060)`.
-- The probe changed the target entry `beqz v0` into current `blez v0`, retained
-  the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`, and
-  retained/broadened the segment/grid plus bottom population/sort drift.
-- Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+- Forked worker changed only the post-`sqrtf` normalization in `func_80059208`
+  from `scale = 1.0f / distance; diffX *= scale; diffZ *= scale;` to
+  `diffX = diffX / distance; diffZ = diffZ / distance;`.
+- Worker full verify failed with calculated CRCs `0x78C710DC/0x4AD1E6BB`;
+  relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+  regressed to `CURRENT (2580)`.
+- The probe removed the target `lui 0x3f80` reciprocal carrier and target
+  `div.s`/`mul.s` normalization shape, emitted direct `div.s` operations,
+  shifted later labels by `0x10`, and broadened the known final-tail FPR drift.
+- Worker source was restored in its fork; the main checkout remained clean.
+- Main checkout `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. Do not repeat this `sp108 <= 0` entry-guard
-  spelling; it moved the entry branch away from target and did not resolve the
-  early model-load spill family.
+- No open blockers recorded. Do not repeat direct-division normalization; it
+  moves away from the target reciprocal/multiply normalization shape.
 
 ## Ask The User Only If
 
@@ -38,7 +36,7 @@
 
 ## Next Work Packet
 
-- Task: `func_8002B0F4 distinct model-load pressure shape, or pivot to another live candidate`
+- Task: `func_80059208 splineIndex/splinePos argument-passing or diffX/diffZ temp-lifetime probe, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
