@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest selector-packet note: `func_80049794` remains active after a
+  2026-05-25 promoted explicit update-rate guard spelling missed. The source
+  changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `if (func_8000E138())` as `if (func_8000E138() != FALSE)`. Pre-build
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x5FDDE03F/0xEF7A0514`; relinked
+  `./diff.sh func_80049794 --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (2760)`. The diff still lacked target
+  `$f20/$f21` prologue saves, kept early zero in current `$f16` instead of
+  target `$f14`, and left the wave scan in the current bound/index family.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat this
+  explicit `func_8000E138() != FALSE` update-rate guard spelling; next
+  `func_80049794` hypothesis needs a distinct saved-FPR/wave allocation fix,
+  or pivot to another bounded routable packet.
 - Latest alternate-packet note: `func_8002B0F4` remains active after a
   2026-05-25 promoted batch-skip flag-mask explicit-nonzero spelling missed.
   The source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only

@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:19:02Z
+- Generated at: 2026-05-25 03:24:24Z
 - Branch: `master`
-- HEAD: `f16bade7`
-- Completed task: `func_8002B0F4`
-- Summary: Recorded `func_8002B0F4` batch-skip flag-mask explicit-nonzero miss; source restored. Full verify failed with calculated CRCs `0x7856718A/0x66208CAA`; relinked focused diff stayed at `CURRENT (2860)` with the unwanted early `gCurrentLevelModel` spill and broad segment/grid/tail drift.
+- HEAD: `0f613c97`
+- Completed task: `func_80049794`
+- Summary: Rejected explicit func_8000E138 != FALSE update-rate guard; full verify failed with baseline CRCs 0x5FDDE03F/0xEF7A0514 and relinked diff stayed CURRENT (2760), then source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80049794 remains selector-recommended; avoid saturated saved-FPR/wave/pitch/trick-branch families unless a distinct allocation fix is found. Otherwise pivot among live candidates with non-repeated hypotheses.`
+- Task: `Continue func_80049794 only with a distinct saved-FPR/wave allocation hypothesis, or pivot to another routable candidate if no non-repeated shape is available.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
