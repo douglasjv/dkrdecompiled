@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 02:15:36Z
+- Generated at: 2026-05-25 02:20:35Z
 - Branch: `master`
-- HEAD: `b30c0501`
-- Completed task: `trackbg_render_flashy-cursor-two-triangle-tail-loop`
-- Summary: Rejected promoted trackbg_render_flashy cursor-based two-triangle tail loop: changed the NON_MATCHING guard to #if 1 and rewrote only the final D_800DC92C cursor loop to emit two triangles per iteration using var_v0_3[0..5], then advance var_v0_3 by 6 and tris by 2. Full verify failed with calculated CRCs 0x938938F5/0x42F392C4; relinked ./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager worsened to CURRENT (1883). The body resembled the target two-triangle cursor shape, but the loop counter/register family became current a1 += 1 with limit 4 instead of target a2 += 2 with limit 8, and the early negative-cosine FPR drift remained. Source restored.
+- HEAD: `290b3898`
+- Completed task: `func_8002B0F4-x-grid-predicate-operand-order`
+- Summary: Rejected promoted func_8002B0F4 X-grid predicate operand-order spelling; changed the NON_EQUIVALENT guard to #if 1 and rewrote only var_t0 >= XInInt && XInInt >= var_t1 as XInInt <= var_t0 && var_t1 <= XInInt. Full verify failed with calculated CRCs 0x7046F28A/0xDC00632D; relinked ./diff.sh func_8002B0F4 --compress-matching 2 --no-pager stayed at CURRENT (2860), retaining the unwanted early gCurrentLevelModel spill at 0x60(sp) plus broad segment/grid/tail drift. Source restored. Worker also rejected func_80059208 lap-- to lap -= 1 in a forked checkout; relinked diff reported CURRENT (870), source restored, no patch applied here.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Run selector; avoid trackbg_render_flashy cursor-based two-triangle tail loop, direct-index two-triangle unroll, final triangle postincrement/indexed-table spellings, and saturated negative-cosine/first-ring FPR carrier variants unless paired with a distinct early FPR allocation fix; otherwise choose another bounded routable active packet.`
+- Task: `Run selector; avoid func_8002B0F4 X-grid predicate operand-order spelling and saturated model-spill/grid/texture/tail families unless paired with a distinct model-spill/register allocation fix. Also avoid func_80059208 upper-half lap-decrement spelling unless using a distinct final-tail allocation or spline dataflow family; otherwise choose another bounded routable active packet.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

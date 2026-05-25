@@ -22,6 +22,38 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_8002B0F4` remains active after a
+  2026-05-24 promoted X-grid predicate operand-order spelling missed. The
+  source changed the `NON_EQUIVALENT` guard to `#if 1` and rewrote only
+  `if (var_t0 >= XInInt && XInInt >= var_t1)` as
+  `if (XInInt <= var_t0 && var_t1 <= XInInt)`. Pre-build
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x7046F28A/0xDC00632D`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` stayed at the promoted baseline
+  `CURRENT (2860)`. The predicate spelling produced no useful movement and
+  retained the unwanted early `gCurrentLevelModel` load/spill at `0x60(sp)`
+  plus broad segment/grid/tail drift. Source was restored, `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok; do not repeat this X-grid predicate operand-order spelling.
+  Next `func_8002B0F4` hypothesis should avoid saturated model-spill/grid/
+  texture/tail families unless paired with a distinct model-spill or register
+  allocation fix, or pivot to another bounded routable packet.
+- Latest worker-packet note: `func_80059208` remains active after a
+  2026-05-24 promoted upper-half lap-decrement spelling missed in a forked
+  worker. The source changed the `NON_MATCHING` guard to `#if 1` and rewrote
+  only `racer->lap--;` as `racer->lap -= 1;` in the rewind path. Pre-build
+  `./diff.sh func_80059208 --compress-matching 2 --no-pager` misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x7046F28A/0xDC00632D`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` reported `CURRENT (870)`. The spelling
+  produced no useful movement and retained final-tail object/checkpoint
+  dot-product plus vertical FPR register allocation drift. Worker source was
+  restored and no patch was applied in this checkout; do not repeat this
+  upper-half lap-decrement spelling. Next `func_80059208` hypothesis should
+  use a distinct final-tail allocation or spline dataflow family, or pivot to
+  another bounded routable packet.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted cursor-based two-triangle tail-loop spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the final
