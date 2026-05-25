@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `func_80059208` remains active after a
+  2026-05-25 promoted `tempZ`-through-`distance` spline result carrier miss.
+  The source changed the `NON_MATCHING` guard to `#if 1` and changed only the
+  third spline result assignment from `tempZ = cubic_spline_interpolation(...)`
+  to `distance = cubic_spline_interpolation(...); tempZ = distance;`,
+  targeting `diffX`/`diffZ` temp lifetime across the three spline calls without
+  touching the final-tail dot/clamp logic. Pre-build focused diff misleadingly
+  reported `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0x53D141DF/0xB9D4B481`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` stayed at `CURRENT (870)`. The diff
+  retained the same final-tail FPR drift around `0x5a260`, including current
+  `$f12/$f0` object loads and folded `sub.s` where target uses `$f16/$f6`,
+  an early checkpoint-dot `neg.s`, and `add.s`. Source was restored, `gmake
+  -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, `./score.sh -s`
+  remained 97.30%, and `python3 tools/check_active_surface.py` reported active
+  surface ok. Do not repeat this `tempZ`-through-`distance` carrier; next
+  `func_80059208` hypothesis needs a distinct spline-call argument or
+  `diffX`/`diffZ` lifetime shape, or pivot to another live candidate.
 - Latest worker-packet note: `func_80059208` remains active after a
   2026-05-25 forked-worker direct-division spline-normalization miss. The
   worker changed the `NON_MATCHING` guard to `#if 1` and changed only the
