@@ -1,19 +1,19 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:50:51Z
+- Generated at: 2026-05-25 03:53:20Z
 - Branch: `master`
-- HEAD: `31ea7682`
-- Completed task: `func_80059208`
-- Summary: Rejected vertical pad3 alias final-tail spelling; full verify failed and relinked diff regressed to CURRENT (1840), source restored
+- HEAD: `bebf1d38`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected all-first-ring scaledXSin reuse spelling; full verify failed and relinked diff regressed to CURRENT (13581), source restored
 
 ## Validation
 
-- Pre-build `./diff.sh func_80059208 --compress-matching 2 --no-pager`
+- Pre-build `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
   reported stale `CURRENT (0)`.
-- Promoted vertical `pad3` alias final-tail probe failed full verify with
-  calculated CRCs `0x5AD1197F/0xF56ACA5E`.
-- Relinked `./diff.sh func_80059208 --compress-matching 2 --no-pager`
-  reported `CURRENT (1840)`.
+- Promoted all-first-ring `scaledXSin` reuse probe failed full verify with
+  calculated CRCs `0x8310DF9D/0x3EA48C03`.
+- Relinked `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  reported `CURRENT (13581)`.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -21,9 +21,10 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. The vertical `pad3` alias worsened the final tail
-  by adding extra `0x50(sp)` store/load traffic before the clamp while retaining
-  the known object-dot/checkpoint-dot and vertical FPR carrier drift.
+- No open blockers recorded. All-first-ring `scaledXSin` reuse expanded the
+  frame from target `0x158` to `0x168`, saved `$f20/$f21`, and shifted the
+  early position-array/FPR schedule broadly. Do not repeat first-ring
+  `scaledXSin` reuse probes.
 
 ## Ask The User Only If
 
@@ -33,7 +34,7 @@
 
 ## Next Work Packet
 
-- Task: `func_80059208 distinct spline/FPR allocation source shape, or pivot to another live candidate`
+- Task: `trackbg_render_flashy distinct early FPR allocation source shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

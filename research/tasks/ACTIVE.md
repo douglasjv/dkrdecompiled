@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-25 promoted all-first-ring `scaledXSin` reuse spelling missed. The
+  source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the first
+  ring `xSin * 1280.0f` expressions for `xPositions[0..3]` and
+  `zPositions[0..2]` to reuse `scaledXSin`, leaving the second ring unchanged.
+  Pre-build `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x8310DF9D/0x3EA48C03`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  regressed to `CURRENT (13581)`. The frame expanded from target `0x158` to
+  `0x168`, saved `$f20/$f21`, and shifted the early position-array/FPR
+  schedule broadly instead of recovering the target negative-cosine carrier.
+  Source was restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat
+  first-ring `scaledXSin` reuse probes, single-site or all-sites; next
+  `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation
+  shape, or pivot to another live candidate.
 - Latest alternate-packet note: `func_80059208` remains active after a
   2026-05-25 promoted vertical `pad3` alias final-tail spelling missed. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
