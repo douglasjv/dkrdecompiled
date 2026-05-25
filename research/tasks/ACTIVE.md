@@ -22,6 +22,22 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest worker-packet note: `func_80059208` remains active after a
+  2026-05-24 forked-worker final-tail object-dot local probe missed. The worker
+  changed the `NON_MATCHING` guard to `#if 1`, added `f32 objectDot`, and
+  rewrote the final object-dot path as `objectDot = ((splinePos * diffX) +
+  (diffZ * distance)); pad2 = -((tempZ * diffZ) + (diffX * tempX)); diffX =
+  -((objectDot + pad2) / divisor);`. Worker full verify failed with calculated
+  CRCs `0x53D141D7/0xAA087F2A`; relinked `./diff.sh func_80059208
+  --compress-matching 2 --no-pager` worsened to `CURRENT (878)` from the known
+  promoted baseline `CURRENT (870)`, retaining final object-dot/checkpoint-dot
+  and vertical FPR drift while adding an early stack-slot shift at `0x34(sp)` to
+  `0x30(sp)`. Worker source was restored with no patch applied here; main
+  checkout `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok. Do not repeat this single `objectDot` final-tail
+  local spelling; next `func_80059208` hypothesis needs a distinct spline
+  dataflow or final-tail allocation fix, or pivot to another routable packet.
 - Latest selector-packet note: `func_80049794` remains active after a
   2026-05-24 promoted normal-flight pitch pre-shift spelling missed. The source
   changed the `NON_EQUIVALENT` guard to `#if 1`, hoisted the shared
