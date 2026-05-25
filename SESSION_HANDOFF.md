@@ -1,20 +1,24 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 04:25:29Z
+- Generated at: 2026-05-25 04:30:41Z
 - Branch: `master`
-- HEAD: `8d2aff7f`
-- Completed task: `trackbg_render_flashy`
-- Summary: Rejected zPositions[3] commuted scaled carrier ordering; full verify failed with baseline CRCs and relinked diff stayed CURRENT (1808), source restored
+- HEAD: `5bd38951`
+- Completed task: `func_8002B0F4`
+- Summary: Rejected sp108 <= 0 entry-guard spelling; full verify failed and relinked diff regressed to CURRENT (3060), source restored
 
 ## Validation
 
-- Promoted baseline `trackbg_render_flashy` failed full verify with calculated
-  CRCs `0x93D338FF/0x03D9C8FE`; relinked `./diff.sh trackbg_render_flashy
-  --compress-matching 2 --no-pager` reported `CURRENT (1808)`.
-- The probe changed only `zPositions[3] = scaledXCos + scaledXSin;` to
-  `zPositions[3] = scaledXSin + scaledXCos;`.
-- The probe failed full verify with the same calculated CRCs
-  `0x93D338FF/0x03D9C8FE`; relinked focused diff stayed `CURRENT (1808)`.
+- Promoted baseline `func_8002B0F4` failed full verify with calculated CRCs
+  `0x7856718A/0x66208CAA`; relinked `./diff.sh func_8002B0F4
+  --compress-matching 2 --no-pager` reported `CURRENT (2860)`.
+- The probe changed only `if (sp108 == 0 || sp108 >= 8)` to
+  `if (sp108 <= 0 || sp108 >= 8)`.
+- The probe failed full verify with calculated CRCs
+  `0xB856718A/0x8DC42D5F`; relinked focused diff regressed to `CURRENT
+  (3060)`.
+- The probe changed the target entry `beqz v0` into current `blez v0`, retained
+  the unwanted early `gCurrentLevelModel` spill at `0x60(sp)`, and
+  retained/broadened the segment/grid plus bottom population/sort drift.
 - Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
 - `./score.sh -s` remained 97.30%.
@@ -22,9 +26,9 @@
 
 ## Blockers Or Unknowns
 
-- No open blockers recorded. Do not repeat this commuted `zPositions[3]`
-  scaled-carrier ordering; it left the known early negative-cosine and
-  first/outer position-array FPR drift unchanged.
+- No open blockers recorded. Do not repeat this `sp108 <= 0` entry-guard
+  spelling; it moved the entry branch away from target and did not resolve the
+  early model-load spill family.
 
 ## Ask The User Only If
 
@@ -34,7 +38,7 @@
 
 ## Next Work Packet
 
-- Task: `trackbg_render_flashy distinct early FPR allocation shape, or pivot to another live candidate`
+- Task: `func_8002B0F4 distinct model-load pressure shape, or pivot to another live candidate`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`
