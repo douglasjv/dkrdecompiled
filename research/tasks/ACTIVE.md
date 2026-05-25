@@ -22,6 +22,23 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest parked-packet revisit note: `init_particle_buffers` remains parked
+  after a 2026-05-24 promoted point-count lifetime alias miss. The source
+  changed the `NON_MATCHING` guard to `#if 1`, added `pointParticleCount` after
+  the default clamp, and used it only for `gMaxPointParticles`, vertex
+  allocation, and point-buffer allocation. Pre-build `./diff.sh
+  init_particle_buffers --compress-matching 2 --no-pager` misleadingly reported
+  `CURRENT (0)`, but full verify failed with calculated CRCs
+  `0xC451FA59/0xCE058514`; relinked `./diff.sh init_particle_buffers
+  --compress-matching 2 --no-pager` reported `CURRENT (2106)`. The frame
+  stayed target-sized at `0x68`, but saved-count registers remained off target
+  (`target s1/s3/s7/s4/s8`, current `s3/s1/s7/s2/s4`) and the allocator
+  colour tag remained `s0` instead of target `s2`. Source was restored,
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`,
+  `./score.sh -s` remained 97.30%, and `python3 tools/check_active_surface.py`
+  reported active surface ok. Do not repeat point-only lifetime aliases; next
+  `init_particle_buffers` hypothesis needs a distinct saved-register or colour
+  tag allocation fix, or stay parked.
 - Latest alternate-packet note: `trackbg_render_flashy` remains active after a
   2026-05-24 promoted single-site first-ring scaled-sine reuse miss. The
   source changed the `NON_MATCHING` guard to `#if 1` and rewrote only
