@@ -1,10 +1,10 @@
 # Session Handoff
 
-- Generated at: 2026-05-25 03:28:58Z
+- Generated at: 2026-05-25 03:32:00Z
 - Branch: `master`
-- HEAD: `b0e5dfed`
-- Completed task: `func_80049794`
-- Summary: Worker rejected var_v1/var_a0 declaration-order swap for saved-FPR/wave allocation; forked full verify failed with baseline CRCs 0x5FDDE03F/0xEF7A0514 and relinked diff stayed CURRENT (2760); main checkout restored/clean.
+- HEAD: `1b93455e`
+- Completed task: `trackbg_render_flashy`
+- Summary: Rejected post-display-list color branch truthy pointer spelling; promoted source changed only if (var_t2 != NULL) before gDPSetPrimColor/gDPSetEnvColor to if (var_t2). Full verify failed with CRCs 0x93D338FF/0x03D9C8FE; relinked diff stayed CURRENT (1808); source restored.
 
 ## Validation
 
@@ -22,7 +22,7 @@
 
 ## Next Work Packet
 
-- Task: `Continue func_80049794 only with an independent saved-FPR lifetime source shape, not declaration-order or cached wave-bound/index microvariants; otherwise pivot to another routable candidate.`
+- Task: `Selector still recommends func_80049794; continue only with independent saved-FPR lifetime evidence, or pivot among live candidates with non-repeated hypotheses.`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

@@ -22,6 +22,24 @@
 - Current selector surface: 4 default-routable candidates and 3 functions with
   exhausted probe notes. Recommended next packet is `func_80049794` in
   `src/racer.c`.
+- Latest alternate-packet note: `trackbg_render_flashy` remains active after a
+  2026-05-25 promoted post-display-list truthy color-branch spelling missed.
+  The source changed the `NON_MATCHING` guard to `#if 1` and rewrote only the
+  post-`gDPPipeSync` color branch from `if (var_t2 != NULL)` to
+  `if (var_t2)` before the `gDPSetPrimColor`/`gDPSetEnvColor` calls.
+  Pre-build `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  misleadingly reported `CURRENT (0)`, but full verify failed with calculated
+  CRCs `0x93D338FF/0x03D9C8FE`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` stayed at
+  promoted baseline `CURRENT (1808)`. The diff retained the known early
+  negative-cosine FPR drift and first/outer position-array register-order
+  family with no useful movement at the display-list color branch. Source was
+  restored, `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
+  `Verify: OK`, `./score.sh -s` remained 97.30%, and `python3
+  tools/check_active_surface.py` reported active surface ok. Do not repeat this
+  post-display-list truthy `var_t2` color-branch spelling; next
+  `trackbg_render_flashy` hypothesis needs a distinct early FPR allocation fix,
+  or a pivot to another bounded routable packet.
 - Latest worker-packet note: `func_80049794` remains active after a
   2026-05-25 forked-worker `var_v1`/`var_a0` declaration-order spelling
   missed. The worker changed the `NON_EQUIVALENT` guard to `#if 1` and swapped
