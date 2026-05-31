@@ -466,6 +466,47 @@ def print_revival(state: dict[str, object]) -> None:
         )
 
 
+def print_tooling(state: dict[str, object]) -> None:
+    print(f"repo: {state['repo']}")
+    discovery_items = discovery_candidates(state)
+    revival_items = revival_candidates(state)
+    ready = [item for item in discovery_items if item.get("ready_for_probe")]
+    if ready:
+        first = ready[0]
+        print(
+            "tooling_next: "
+            f"probe_ready function={first['function']} "
+            f"evidence={first['evidence']}"
+        )
+        if first.get("mechanism_packet"):
+            print(f"mechanism_packet: {first['mechanism_packet']['packet_path']}")
+        return
+    print("tooling_next: discovery_packet")
+    print(
+        "tooling_note: no live or parked candidate is probe-ready; write a "
+        "complete mechanism packet before source edits"
+    )
+    for item in discovery_items:
+        print(
+            "blocked_candidate: "
+            f"{item['function']} "
+            f"evidence={item['evidence']} "
+            f"gap={item['readiness_gap']} "
+            f"required={','.join(str(field) for field in item['required_packet_fields'])}"
+        )
+        print(f"next_useful: {item['next_useful']}")
+    for item in revival_items:
+        if not item.get("revival_cooldown"):
+            continue
+        print(
+            "blocked_parked_candidate: "
+            f"{item['function']} "
+            f"evidence={rel(EVIDENCE_PATH)} "
+            "gap=parked candidate has recent revival cooldown evidence "
+            f"required={','.join(REQUIRED_PACKET_FIELDS)}"
+        )
+
+
 def print_packet(context: dict[str, object]) -> None:
     print(f"target: {context['target']}")
     print(
@@ -493,7 +534,7 @@ def print_packet(context: dict[str, object]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival", "packet"])
+    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival", "tooling", "packet"])
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--refresh", action="store_true", help="accepted for /goal parity; source scan is always fresh")
     parser.add_argument("--json", action="store_true")
@@ -501,7 +542,7 @@ def main() -> int:
     parser.add_argument("--function", help="function name for packet context")
     args = parser.parse_args()
 
-    state = build_state(include_exhausted=args.include_exhausted or args.command in {"revival", "packet"})
+    state = build_state(include_exhausted=args.include_exhausted or args.command in {"revival", "tooling", "packet"})
     if args.command == "packet":
         if not args.function:
             parser.error("packet requires --function")
@@ -518,6 +559,12 @@ def main() -> int:
         print_revival(state)
         return 0
     if args.command == "revival":
+        state["revival_candidates"] = revival_candidates(state)
+    if args.command == "tooling" and not args.json:
+        print_tooling(state)
+        return 0
+    if args.command == "tooling":
+        state["discovery_candidates"] = discovery_candidates(state)
         state["revival_candidates"] = revival_candidates(state)
     if args.command == "discovery" and not args.json:
         print_discovery(state)
