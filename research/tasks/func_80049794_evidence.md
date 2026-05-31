@@ -9,6 +9,14 @@ Current compact read:
 - Repeated no-movement/saturated families include broad save/wave spelling variants, opening `updateRateF`/`var_f20` carrier variants, register storage-class hints, and promotion-only/object-only `CURRENT (0)` evidence.
 - Next useful work should be a distinct compiler-mechanism hypothesis or a pivot/discovery packet, not another spelling-only microvariant.
 
+## 2026-05-31 Promoted Object-Slice Audit
+
+- Promoted `build/src/racer.c.o` with `NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 NON_EQUIVALENT=1 AVOID_UB=1'`; focused `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported `CURRENT (0)`, but this remains object-only evidence, not acceptance.
+- Objdump showed partial target-like shape: frame `0xF8`, `ra` at `0x2c(sp)`, `s1` at `0x28(sp)`, and `s0` at `0x24(sp)`. It still lacked the target `$f20/$f21` prologue saves at `0x24/0x20(sp)`, used early zero in `$f16` instead of target `$f14`, and only partially matched the wave scan allocation (`gRacerWaveCount` into `v0`, high bound through `a0/v1`, pointer cursor in `v0`).
+- Full-gate attempt with the promoted racer object did not reach ROM CRC comparison: linking failed because restored `build/src/tracks.c.o` and `build/src/object_models.c.o` reference DRM helper symbols (`drm_checksum_balloon`, `drm_vehicle_traction`) that are supplied by the matching racer object but unavailable after this promoted object slice. This is a tooling/blocker result for object-slice auditing, not a source-match result.
+- Restored `build/src/racer.c.o` in matching mode and reran `gmake -j4 CROSS=tools/binutils/mips64-elf-`; the build reached `Verify: OK`.
+- Do not treat promoted-object `CURRENT (0)` as useful for `func_80049794` unless the audit method can preserve/replace the racer-provided DRM helper symbols and reach the full ROM verify gate.
+
 ## Discovery Notes
 
 - 2026-05-31 high discovery pass found no safe mechanism-ready packet. The target shape still needs frame `0xF8`, `$f20/$f21` saves at `0x24/0x20(sp)`, early zero in `$f14`, and wave scan allocation with count in `v0`, high bound in `v1`, loop index in `a0`, and pointer cursor in `v0` after `addu`. Existing rejected families already cover plain promotion, `updateRateF`/`var_f20`, `register var_f20`, carrier-width changes, branch/condition/literal spellings, wave bound/index locals, pointer-cursor wave variants, selected-wave carriers, declaration-order/register hints, early-zero carriers, first-speed carriers, and close save-family combinations. Do not reopen `func_80049794` unless a high/xhigh worker first names a new mechanism that couples the close save-family with a non-repeated wave allocation mechanism.
