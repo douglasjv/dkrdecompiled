@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `eca3e63d`
-- Completed task: `include-exhausted revival cooldown routing`
-- Summary: Updated selector tooling so include-exhausted routing does not recommend parked candidates that revival mode marks as recent cooldown.
+- HEAD: `57de5d6f`
+- Completed task: `discovery readiness routing`
+- Summary: Updated selector tooling so discovery output reports whether cooldown sidecars contain a probe-ready mechanism packet and which fields are still required.
 
 ## Validation
 
@@ -12,7 +12,10 @@
 - `python3 tools/query_goal_state.py next --compact --refresh` reports
   `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next:
-  tooling`.
+  tooling` and lists each cooldown candidate with a `gap=` reason.
+- `python3 tools/query_goal_state.py discovery --json` reports all four live
+  cooldown candidates as `tooling_first`, `ready_for_probe: false`, and lists
+  the required packet fields for delegation/source edits.
 - `python3 tools/query_goal_state.py revival` now reports `revival_next:
   tooling` because all parked candidates have recent revival cooldown evidence.
 - `python3 tools/query_goal_state.py list --json --include-exhausted` reports
@@ -26,7 +29,8 @@
 
 - No setup blockers recorded. All live sidecar candidates and parked revival
   candidates are cooldown-routed; next progress should be discovery/tooling or
-  a distinct compiler-mechanism packet, not a spelling probe.
+  a distinct compiler-mechanism packet with target, evidence checked, rejected
+  families, mechanism hypothesis, predicted asm movement, and stop condition.
 
 ## Ask The User Only If
 
@@ -40,4 +44,4 @@
 - Packet class: `discovery`
 - Packet status: `ready`
 - Reasoning tier: `medium`
-- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py revival`, and `python3 tools/query_goal_state.py list --json --include-exhausted`; select a bounded target only if it names a distinct compiler-mechanism hypothesis and full-verify stop condition. Treat focused `CURRENT (0)` on parked/guarded candidates as stale until the promoted full gate verifies.
+- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py discovery --json`, `python3 tools/query_goal_state.py revival`, and `python3 tools/query_goal_state.py list --json --include-exhausted`; select a bounded target only if a candidate is `ready_for_probe: true` or a new packet explicitly names a distinct compiler-mechanism hypothesis and full-verify stop condition. Treat focused `CURRENT (0)` on parked/guarded candidates as stale until the promoted full gate verifies.

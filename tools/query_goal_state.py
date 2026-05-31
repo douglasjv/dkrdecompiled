@@ -16,12 +16,20 @@ PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
-NEXT_USEFUL_RE = re.compile(r"^Next useful work\b.*", re.MULTILINE)
+NEXT_USEFUL_RE = re.compile(r"^\s*-?\s*Next useful work\b.*", re.MULTILINE)
 DISCOVERY_FIRST_RE = re.compile(
-    r"\b(discovery/tooling|tooling)\b|^Next useful work\s+should\s+pivot\b",
+    r"\b(discovery/tooling|pivot/discovery|tooling)\b|^\s*-?\s*Next useful work\s+should\s+pivot\b",
     re.IGNORECASE,
 )
 RECENT_REVIVAL_RE = re.compile(r"\b2026-05-31\b.*\b(?:revival worker|worker)\b", re.IGNORECASE)
+REQUIRED_PACKET_FIELDS = [
+    "target",
+    "evidence_checked",
+    "rejected_families",
+    "mechanism_hypothesis",
+    "predicted_asm_movement",
+    "stop_condition",
+]
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
@@ -30,6 +38,14 @@ def discovery_kind(note: str, has_next_useful: bool) -> str:
     if DISCOVERY_FIRST_RE.search(note):
         return "tooling_first"
     return "mechanism_hypothesis"
+
+
+def discovery_readiness_gap(kind: str) -> str:
+    if kind == "mechanism_hypothesis":
+        return ""
+    if kind == "tooling_first":
+        return "sidecar asks for discovery/tooling before another source probe"
+    return "sidecar does not expose a Next useful work mechanism packet"
 
 
 def rel(path: Path) -> str:
@@ -85,7 +101,7 @@ def discovery_note(path: str) -> tuple[str, bool]:
     text = (ROOT / path).read_text(errors="replace")
     match = NEXT_USEFUL_RE.search(text)
     if match:
-        return " ".join(match.group(0).split()), True
+        return " ".join(match.group(0).lstrip(" -").split()), True
     for line in reversed(text.splitlines()):
         stripped = line.strip()
         if stripped:
@@ -190,6 +206,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         note, has_next_useful = discovery_note(str(evidence))
         kind = discovery_kind(note, has_next_useful)
+        readiness_gap = discovery_readiness_gap(kind)
         items.append(
             {
                 "function": candidate["function"],
@@ -200,6 +217,9 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
                 "next_useful": note,
                 "has_next_useful": has_next_useful,
                 "discovery_kind": kind,
+                "ready_for_probe": kind == "mechanism_hypothesis",
+                "readiness_gap": readiness_gap,
+                "required_packet_fields": [] if not readiness_gap else REQUIRED_PACKET_FIELDS,
             }
         )
     kind_rank = {
@@ -268,7 +288,13 @@ def print_discovery(state: dict[str, object]) -> None:
         print("discovery_next: tooling")
         print("discovery_note: no cooldown sidecar currently names a mechanism-ready packet; improve discovery/tooling or write a distinct compiler-mechanism packet before probing")
         for item in items:
-            print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
+            print(
+                "cooldown_candidate: "
+                f"{item['function']} "
+                f"evidence={item['evidence']} "
+                f"kind={item['discovery_kind']} "
+                f"gap={item['readiness_gap']}"
+            )
         return
     print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
     print(f"discovery_note: {items[0]['next_useful']}")
