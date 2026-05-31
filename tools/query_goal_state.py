@@ -30,6 +30,7 @@ REQUIRED_PACKET_FIELDS = [
     "mechanism_hypothesis",
     "predicted_asm_movement",
     "stop_condition",
+    "reasoning_tier",
 ]
 PACKET_HEADING_RE = re.compile(r"^###\s+`?([A-Za-z_][A-Za-z0-9_]*)`?\s*$")
 PACKET_FIELD_RE = re.compile(

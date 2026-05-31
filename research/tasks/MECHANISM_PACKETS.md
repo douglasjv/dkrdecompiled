@@ -12,6 +12,7 @@ Required fields for a ready packet:
 - Mechanism hypothesis
 - Predicted asm movement
 - Stop condition
+- Reasoning tier
 
 ## Ready Packets
 
