@@ -159,6 +159,17 @@ when intentionally returning to them.
   with a distinct float-temp lifetime or saved-register allocation hypothesis,
   not these same dead-local, edge-plane-inline, register-hint, or loop-control
   bitmask-carrier probes.
+  A promoted object-slice audit also produced a focused false positive:
+  `gmake -B NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 NON_EQUIVALENT=1
+  AVOID_UB=1' CROSS=tools/binutils/mips64-elf- build/src/objects.c.o` followed
+  by `./diff.sh func_80017A18 --compress-matching 2 --no-pager` reported
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0xD0505FD8/0xE965F5F5`. The promoted object still used frame `0x138`
+  instead of target `0x120`, with the bitmask initialized in `ra` instead of
+  target `s6`. Matching-mode `build/src/objects.c.o` was restored and full
+  verify passed. Do not trust focused `CURRENT (0)` for this packet without
+  full ROM verify or a mechanism that predicts the target frame and bitmask
+  saved-register allocation.
 
 - `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
   candidate compiles in matching mode when promoted, but focused object diff

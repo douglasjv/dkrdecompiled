@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `87bb100b`
-- Completed task: `init_particle_buffers promoted object-slice audit`
-- Summary: Audited promoted `init_particle_buffers`; focused diff still reports `CURRENT (0)`, but full ROM verify fails and object allocation remains in the known bad saved-register family.
+- HEAD: `80e6f7b5`
+- Completed task: `func_80017A18 promoted object-slice audit`
+- Summary: Audited promoted `func_80017A18`; focused diff reports `CURRENT (0)`, but full ROM verify fails and object allocation remains in the known bad frame/bitmask family.
 
 ## Validation
 
@@ -79,6 +79,14 @@
   counts `s3/s1/s7/s2/s4` and colour tag `s0`, not target counts
   `s1/s3/s7/s4/s8` and colour tag `s2`. Matching object was restored and final
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
+- Promoted object-slice tooling for `func_80017A18` confirmed another focused
+  false positive. Promoted `build/src/objects.c.o` made
+  `./diff.sh func_80017A18 --compress-matching 2 --no-pager` report
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0xD0505FD8/0xE965F5F5`. Objdump showed the promoted object still using
+  frame `0x138` instead of target `0x120`, with the bitmask initialized in
+  `ra` instead of target `s6`. Matching object was restored and final
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet`.
 - `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`
@@ -98,7 +106,9 @@
   pointer-to-selected-track-cell packet and `func_8002B0F4`
   model-load-lifetime probe families should not be retried. For
   `init_particle_buffers`, do not trust focused `CURRENT (0)`; require a
-  distinct saved-register mechanism before any further source probe.
+  distinct saved-register mechanism before any further source probe. For
+  `func_80017A18`, require a mechanism predicting target frame `0x120` and
+  bitmask in `s6`.
 
 ## Ask The User Only If
 
@@ -112,4 +122,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted object-slice/tooling before any further source probe; for `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted object-slice/tooling before any further source probe; for `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`.
