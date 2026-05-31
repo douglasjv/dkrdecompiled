@@ -24,6 +24,9 @@
 - `python3 tools/query_goal_state.py discovery` reports `func_8002B0F4`,
   `func_80059208`, and `trackbg_render_flashy` as `kind=tooling_first`, with
   `func_80049794` as `kind=fallback_note`.
+- Updated `python3 tools/query_goal_state.py discovery` reports
+  `discovery_next: tooling` when no mechanism-ready candidate remains.
+- `python3 -m py_compile tools/query_goal_state.py` passed.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reported decomp progress 97.30%.
 

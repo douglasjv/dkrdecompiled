@@ -221,6 +221,12 @@ def print_discovery(state: dict[str, object]) -> None:
     if not items:
         print("discovery_next: none")
         return
+    if items[0]["discovery_kind"] != "mechanism_hypothesis":
+        print("discovery_next: tooling")
+        print("discovery_note: no cooldown sidecar currently names a mechanism-ready packet; improve discovery/tooling or write a distinct compiler-mechanism packet before probing")
+        for item in items:
+            print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
+        return
     print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
     print(f"discovery_note: {items[0]['next_useful']}")
     for item in items[1:]:
