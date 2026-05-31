@@ -4,7 +4,7 @@
 - Branch: `master`
 - HEAD: `b69edea2`
 - Completed task: `discovery-tooling-refresh`
-- Summary: Refreshed selector/tooling and reviewed live plus parked candidates. No mechanism-ready source packet is safe to probe yet; next work remains discovery/tooling until a complete packet predicts concrete asm movement.
+- Summary: Added `packet --template` routing support so blocked candidates can emit copy-ready `MECHANISM_PACKETS.md` skeletons from current evidence. No mechanism-ready source packet is safe to probe yet; next work remains discovery/tooling until a complete packet predicts concrete asm movement.
 
 ## Validation
 
@@ -13,6 +13,9 @@
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling` and lists the four live cooldown candidates.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
+- `python3 tools/query_goal_state.py tooling` now prints a `template_command` for each blocked live and parked candidate.
+- `python3 tools/query_goal_state.py packet --function func_8002B0F4 --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
+- `python3 -m py_compile tools/query_goal_state.py` passed after the template-mode change.
 - `python3 tools/query_goal_state.py packet --function func_8002B0F4` reports `ready_for_probe: false`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
 - `python3 tools/query_goal_state.py packet --function init_particle_buffers` reports `ready_for_probe: false`.
@@ -41,4 +44,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any source edit or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate> --template` reads to choose one bounded target. Before any source edit or delegation, fill in a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`.

@@ -603,6 +603,7 @@ def print_tooling(state: dict[str, object]) -> None:
             f"gap={item['readiness_gap']} "
             f"required={','.join(str(field) for field in item['required_packet_fields'])}"
         )
+        print(f"template_command: python3 tools/query_goal_state.py packet --function {item['function']} --template")
         print(f"next_useful: {item['next_useful']}")
         if item.get("latest_audit"):
             print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
@@ -616,6 +617,7 @@ def print_tooling(state: dict[str, object]) -> None:
             "gap=parked candidate has recent revival cooldown evidence "
             f"required={','.join(str(field) for field in item['required_packet_fields'])}"
         )
+        print(f"template_command: python3 tools/query_goal_state.py packet --function {item['function']} --template")
         if item.get("latest_audit"):
             print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
 
@@ -649,6 +651,26 @@ def print_packet(context: dict[str, object]) -> None:
                 print(f"{field}: {fields.get(field, '')}")
 
 
+def print_packet_template(context: dict[str, object]) -> None:
+    """Emit a copy-ready MECHANISM_PACKETS.md entry for discovery workers."""
+    evidence = context.get("evidence_checked") or "missing"
+    next_useful = context.get("next_useful") or context.get("parked_note") or ""
+    latest_audit = context.get("latest_audit") or ""
+    print(f"### `{context['target']}`")
+    print("")
+    print(f"- Target: `{context['target']}`")
+    print(f"- Evidence checked: `{evidence}`")
+    print("- Rejected families:")
+    if latest_audit:
+        print(f"  - Latest audit: {compact_note(latest_audit, 360)}")
+    if next_useful:
+        print(f"  - Next useful note: {compact_note(next_useful, 360)}")
+    print("- Mechanism hypothesis: ")
+    print("- Predicted asm movement: ")
+    print("- Stop condition: ")
+    print("- Reasoning tier: high")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival", "tooling", "packet"])
@@ -657,6 +679,7 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--include-exhausted", action="store_true", help="include functions with recorded exhausted probe notes")
     parser.add_argument("--function", help="function name for packet context")
+    parser.add_argument("--template", action="store_true", help="print a MECHANISM_PACKETS.md skeleton for packet context")
     args = parser.parse_args()
 
     state = build_state(include_exhausted=args.include_exhausted or args.command in {"revival", "tooling", "packet"})
@@ -669,6 +692,8 @@ def main() -> int:
             return 1
         if args.json:
             print(json.dumps(context, indent=2))
+        elif args.template:
+            print_packet_template(context)
         else:
             print_packet(context)
         return 0
