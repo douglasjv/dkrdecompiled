@@ -2,24 +2,25 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `fc996947`
-- Completed task: `discovery route selector`
-- Summary: Updated selector to emit `recommended_next: discovery` when all default candidates are cooldown-demoted.
+- HEAD: `f8342403`
+- Completed task: `discovery selector ranking`
+- Summary: Added discovery ranking from cooldown sidecar next-useful guidance.
 
 ## Validation
 
 - `python3 tools/query_goal_state.py next --compact --refresh` now reports
   `recommended_next: discovery` when all default-routable candidates have
   cooldown evidence.
-- `python3 tools/query_goal_state.py list --json --refresh` reports
-  `"discovery_route": true`, `"recommended_next": null`, and four
-  `cooldown_probe_notes`.
+- `python3 tools/query_goal_state.py discovery` recommends `func_8002B0F4`
+  and prints its sidecar next-useful mechanism note.
+- `python3 tools/query_goal_state.py discovery --json` includes ordered
+  `discovery_candidates` with `has_next_useful` flags.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 
 ## Blockers Or Unknowns
 
-- No setup blockers recorded. The active route is discovery/tooling because all
-  default-routable guarded candidates have cooldown sidecars.
+- No setup blockers recorded. The active route is a discovery-selected
+  mechanism packet, not a spelling probe.
 
 ## Ask The User Only If
 
@@ -29,7 +30,7 @@
 
 ## Next Work Packet
 
-- Task: `discovery/tooling route: all default-routable guarded candidates have cooldown sidecars; only probe a cooled-down function after naming a distinct compiler-mechanism hypothesis and predicted asm movement`
+- Task: `func_8002B0F4 distinct model-load lifetime/register-allocation mechanism predicting target-like in-loop gCurrentLevelModel loads or removal of the 0x60(sp) model spill`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

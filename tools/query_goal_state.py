@@ -16,6 +16,7 @@ PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
+NEXT_USEFUL_RE = re.compile(r"^Next useful work\b.*", re.MULTILINE)
 
 
 def rel(path: Path) -> str:
@@ -49,6 +50,18 @@ def cooldown_notes() -> dict[str, str]:
         if match:
             notes[function] = rel(path)
     return notes
+
+
+def discovery_note(path: str) -> tuple[str, bool]:
+    text = (ROOT / path).read_text(errors="replace")
+    match = NEXT_USEFUL_RE.search(text)
+    if match:
+        return " ".join(match.group(0).split()), True
+    for line in reversed(text.splitlines()):
+        stripped = line.strip()
+        if stripped:
+            return stripped, False
+    return "No sidecar guidance recorded.", False
 
 
 def scan_sources() -> list[dict[str, object]]:
@@ -128,6 +141,28 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
     }
 
 
+def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
+    items: list[dict[str, object]] = []
+    for candidate in state["candidates"]:
+        evidence = candidate.get("cooldown_evidence")
+        if not evidence:
+            continue
+        note, has_next_useful = discovery_note(str(evidence))
+        items.append(
+            {
+                "function": candidate["function"],
+                "source": candidate["source"],
+                "line": candidate["line"],
+                "asm": candidate["asm"],
+                "evidence": evidence,
+                "next_useful": note,
+                "has_next_useful": has_next_useful,
+            }
+        )
+    items.sort(key=lambda item: (not item["has_next_useful"], item["function"]))
+    return items
+
+
 def print_compact(state: dict[str, object]) -> None:
     print(f"repo: {state['repo']}")
     print(f"baseroms: {', '.join(state['baseroms']) if state['baseroms'] else 'missing'}")
@@ -161,9 +196,21 @@ def print_compact(state: dict[str, object]) -> None:
         print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']}")
 
 
+def print_discovery(state: dict[str, object]) -> None:
+    print(f"repo: {state['repo']}")
+    items = discovery_candidates(state)
+    if not items:
+        print("discovery_next: none")
+        return
+    print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']}")
+    print(f"discovery_note: {items[0]['next_useful']}")
+    for item in items[1:]:
+        print(f"cooldown_candidate: {item['function']} evidence={item['evidence']}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", nargs="?", default="next", choices=["next", "list"])
+    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery"])
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--refresh", action="store_true", help="accepted for /goal parity; source scan is always fresh")
     parser.add_argument("--json", action="store_true")
@@ -171,6 +218,11 @@ def main() -> int:
     args = parser.parse_args()
 
     state = build_state(include_exhausted=args.include_exhausted)
+    if args.command == "discovery" and not args.json:
+        print_discovery(state)
+        return 0
+    if args.command == "discovery":
+        state["discovery_candidates"] = discovery_candidates(state)
     if args.json or not args.compact:
         print(json.dumps(state, indent=2))
     else:

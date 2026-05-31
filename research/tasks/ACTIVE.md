@@ -25,6 +25,7 @@
 - Current packet evidence checked: `research/tasks/func_8002B0F4_evidence.md`.
 - Latest selector-packet note: `func_8002B0F4` remains active after a 2026-05-31 worker bbox-before-segment ordering miss. Full verify failed with CRCs `0x7856718A/0xA6A743D8`; relinked focused diff regressed to `CURRENT (3965)` and worsened the early `gCurrentLevelModel` spill at `0x60(sp)`. Do not repeat initial segment/bbox assignment-order pressure probes unless the next hypothesis predicts removal of that spill.
 - Current routing status after this note: all 4 default-routable guarded candidates now have cooldown sidecars. `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`; treat this as a discovery/tooling route unless a distinct compiler-mechanism packet is named first.
+- Discovery selector: `python3 tools/query_goal_state.py discovery` now ranks sidecar guidance and recommends `func_8002B0F4` with the packet: distinct model-load lifetime/register-allocation mechanism predicting target-like in-loop `gCurrentLevelModel` loads or removal of the `0x60(sp)` model spill.
 - Latest validation baseline: `python3 tools/check_active_surface.py` reported active surface ok on 2026-05-31 before the latest restored validation.
 
 ## Routing Rules
