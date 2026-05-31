@@ -24,7 +24,7 @@
 - Latest tooling note: `tools/query_goal_state.py` now demotes active candidates with sidecar evidence ledgers that explicitly say saturated, cooling down, pivot/discovery, or pivot to another candidate. This keeps those functions routable but routes fresh continuations to `func_8002B0F4` until a distinct hypothesis is recorded for a cooled-down candidate.
 - Current packet evidence checked: `research/tasks/func_8002B0F4_evidence.md`.
 - Latest selector-packet note: `func_8002B0F4` remains active after a 2026-05-31 worker bbox-before-segment ordering miss. Full verify failed with CRCs `0x7856718A/0xA6A743D8`; relinked focused diff regressed to `CURRENT (3965)` and worsened the early `gCurrentLevelModel` spill at `0x60(sp)`. Do not repeat initial segment/bbox assignment-order pressure probes unless the next hypothesis predicts removal of that spill.
-- Current routing status after this note: all 4 default-routable guarded candidates now have cooldown sidecars. `python3 tools/query_goal_state.py next --compact --refresh` reports `cooldown_notes=4` and recommends a cooldown-demoted `func_80049794`; treat that as a discovery/tooling route unless a distinct compiler-mechanism packet is named first.
+- Current routing status after this note: all 4 default-routable guarded candidates now have cooldown sidecars. `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`; treat this as a discovery/tooling route unless a distinct compiler-mechanism packet is named first.
 - Latest validation baseline: `python3 tools/check_active_surface.py` reported active surface ok on 2026-05-31 before the latest restored validation.
 
 ## Routing Rules

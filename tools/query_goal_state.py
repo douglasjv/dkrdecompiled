@@ -105,7 +105,8 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
     ]
     baseroms = sorted(path.name for path in (ROOT / "baseroms").glob("*.z64"))
     maps = sorted(path.name for path in (ROOT / "build").glob("*.map")) if (ROOT / "build").exists() else []
-    recommended = candidates[0] if candidates else None
+    recommended = next((item for item in candidates if "cooldown_evidence" not in item), None)
+    discovery_route = recommended is None and bool(candidates)
     return {
         "repo": str(ROOT),
         "baseroms": baseroms,
@@ -119,6 +120,7 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
         },
         "recommended_next": recommended,
+        "discovery_route": discovery_route,
         "exhausted_probe_notes": sorted(exhausted),
         "cooldown_probe_notes": dict(sorted(cooldown.items())),
         "include_exhausted": include_exhausted,
@@ -142,6 +144,10 @@ def print_compact(state: dict[str, object]) -> None:
     )
     recommended = state["recommended_next"]
     if not recommended:
+        if state.get("discovery_route"):
+            print("recommended_next: discovery")
+            print("recommended_note: all default-routable candidates have cooldown evidence; name a distinct compiler-mechanism hypothesis before probing one")
+            return
         print("recommended_next: none")
         return
     print(
