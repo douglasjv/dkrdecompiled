@@ -288,6 +288,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
 
 def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
     exhausted_details = exhausted_probe_details()
+    packets = mechanism_packets()
     items: list[dict[str, object]] = []
     for candidate in state["candidates"]:
         function = str(candidate["function"])
@@ -295,8 +296,34 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         item = dict(candidate)
         item["parked_note"] = exhausted_details[function]
+        packet = packets.get(function)
+        if packet and not packet_missing_fields(packet):
+            item["mechanism_packet"] = packet
+            item["ready_for_probe"] = True
+            item["readiness_gap"] = ""
+            item["required_packet_fields"] = []
+        else:
+            item["mechanism_packet"] = packet
+            item["ready_for_probe"] = not item.get("revival_cooldown", False)
+            item["readiness_gap"] = (
+                "parked candidate has recent revival cooldown evidence"
+                if item.get("revival_cooldown")
+                else ""
+            )
+            item["required_packet_fields"] = (
+                []
+                if not item.get("revival_cooldown")
+                else packet_missing_fields(packet) if packet else REQUIRED_PACKET_FIELDS
+            )
         items.append(item)
-    items.sort(key=lambda item: (int(item["priority"]), str(item["source"]), int(item["line"])))
+    items.sort(
+        key=lambda item: (
+            0 if item.get("ready_for_probe") else 1,
+            int(item["priority"]),
+            str(item["source"]),
+            int(item["line"]),
+        )
+    )
     return items
 
 
@@ -342,15 +369,14 @@ def packet_context(state: dict[str, object], function: str) -> dict[str, object]
                 {
                     "evidence_checked": rel(EVIDENCE_PATH),
                     "parked_note": revival["parked_note"],
-                    "ready_for_probe": not revival.get("revival_cooldown", False),
-                    "readiness_gap": "parked candidate has recent revival cooldown evidence"
-                    if revival.get("revival_cooldown")
-                    else "",
-                    "required_packet_fields": []
-                    if not revival.get("revival_cooldown")
-                    else REQUIRED_PACKET_FIELDS,
+                    "ready_for_probe": revival["ready_for_probe"],
+                    "readiness_gap": revival["readiness_gap"],
+                    "required_packet_fields": revival["required_packet_fields"],
                 }
             )
+            packet = packets.get(function)
+            if packet:
+                context["mechanism_packet"] = packet
         else:
             context.update(
                 {
@@ -430,7 +456,7 @@ def print_revival(state: dict[str, object]) -> None:
     if not items:
         print("revival_next: none")
         return
-    if items[0].get("revival_cooldown"):
+    if not items[0].get("ready_for_probe"):
         print("revival_next: tooling")
         print("revival_note: all parked candidates have recent revival cooldown evidence; improve revival ranking or name a distinct compiler-mechanism packet before probing")
         for item in items:
@@ -452,6 +478,8 @@ def print_revival(state: dict[str, object]) -> None:
         f"source={first['source']}:{first['line']} "
         f"asm={first['asm']}"
     )
+    if first.get("mechanism_packet"):
+        print(f"revival_packet: {first['mechanism_packet']['packet_path']}")
     note = str(first["parked_note"])
     if len(note) > 420:
         note = f"{note[:417]}..."
@@ -471,12 +499,23 @@ def print_tooling(state: dict[str, object]) -> None:
     discovery_items = discovery_candidates(state)
     revival_items = revival_candidates(state)
     ready = [item for item in discovery_items if item.get("ready_for_probe")]
+    ready_parked = [item for item in revival_items if item.get("ready_for_probe")]
     if ready:
         first = ready[0]
         print(
             "tooling_next: "
             f"probe_ready function={first['function']} "
             f"evidence={first['evidence']}"
+        )
+        if first.get("mechanism_packet"):
+            print(f"mechanism_packet: {first['mechanism_packet']['packet_path']}")
+        return
+    if ready_parked:
+        first = ready_parked[0]
+        print(
+            "tooling_next: "
+            f"probe_ready function={first['function']} "
+            f"evidence={rel(EVIDENCE_PATH)}"
         )
         if first.get("mechanism_packet"):
             print(f"mechanism_packet: {first['mechanism_packet']['packet_path']}")
@@ -496,14 +535,14 @@ def print_tooling(state: dict[str, object]) -> None:
         )
         print(f"next_useful: {item['next_useful']}")
     for item in revival_items:
-        if not item.get("revival_cooldown"):
+        if item.get("ready_for_probe") or not item.get("revival_cooldown"):
             continue
         print(
             "blocked_parked_candidate: "
             f"{item['function']} "
             f"evidence={rel(EVIDENCE_PATH)} "
             "gap=parked candidate has recent revival cooldown evidence "
-            f"required={','.join(REQUIRED_PACKET_FIELDS)}"
+            f"required={','.join(str(field) for field in item['required_packet_fields'])}"
         )
 
 
@@ -521,6 +560,11 @@ def print_packet(context: dict[str, object]) -> None:
         print(f"readiness_gap: {context['readiness_gap']}")
     if context.get("next_useful"):
         print(f"next_useful: {context['next_useful']}")
+    if context.get("parked_note"):
+        parked_note = " ".join(str(context["parked_note"]).split())
+        if len(parked_note) > 520:
+            parked_note = f"{parked_note[:517]}..."
+        print(f"parked_note: {parked_note}")
     if context.get("required_packet_fields"):
         print("required_packet_fields: " + ", ".join(str(field) for field in context["required_packet_fields"]))
     packet = context.get("mechanism_packet")

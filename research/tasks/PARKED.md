@@ -128,6 +128,17 @@ when intentionally returning to them.
   unselected-path stores and a shifted branch target. Source was restored and
   final full verify passed; do not repeat direct-table plus duplicated
   first-side-effect `hubName` store variants.
+  A 2026-05-31 high worker pointer-to-selected-track-cell revival probe also
+  missed: promoting `func_8008FF1C`, replacing the `s16 temp` carrier with
+  `s16 *selectedTrackCell`, assigning `&gTrackSelectIDs[trackY][trackX]`
+  before `level_name(level_world_id(...))`, then loading `selectedTrack =
+  *selectedTrackCell` before the common `cur->hubName = levelName` failed full
+  verify with calculated CRCs `0x553930E7/0x227AD4A3`. Relinked focused
+  `./diff.sh func_8008FF1C --compress-matching 2 --no-pager` reported
+  `CURRENT (935)`: the target delay-slot `sw v0,0(s0)` appeared, but the
+  selected-track load still emitted `lh v1,0(s1)` instead of target
+  `lh t2,0(s1)`. Source was restored and final full verify passed; do not
+  repeat isolated pointer-to-selected-track-cell lifetime probes.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
