@@ -2,25 +2,31 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `f8342403`
-- Completed task: `discovery selector ranking`
-- Summary: Added discovery ranking from cooldown sidecar next-useful guidance.
+- HEAD: `932127cf`
+- Completed task: `func_8002B0F4 segment-index local lifetime probe evidence`
+- Summary: Recorded a restored worker miss for the discovery-selected `func_8002B0F4` mechanism packet.
 
 ## Validation
 
-- `python3 tools/query_goal_state.py next --compact --refresh` now reports
-  `recommended_next: discovery` when all default-routable candidates have
+- Worker full build for promoted `func_8002B0F4` segment-index local lifetime
+  probe failed verify with CRCs `0x7916617A/0xEAA308C1` versus expected
+  `0x53D440E7/0x7519B011`.
+- Worker focused relinked diff reported `CURRENT (2926)`.
+- Worker restored `src/tracks.c`; restored validation reached `Verify: OK`.
+- `python3 tools/check_active_surface.py` reported active surface ok.
+- `python3 tools/query_goal_state.py next --compact --refresh` reports
+  `recommended_next: discovery` because all default-routable candidates have
   cooldown evidence.
 - `python3 tools/query_goal_state.py discovery` recommends `func_8002B0F4`
-  and prints its sidecar next-useful mechanism note.
-- `python3 tools/query_goal_state.py discovery --json` includes ordered
-  `discovery_candidates` with `has_next_useful` flags.
+  only with the updated discovery/tooling or distinct mechanism note.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
+- `./score.sh -s` reported decomp progress 97.30%.
 
 ## Blockers Or Unknowns
 
-- No setup blockers recorded. The active route is a discovery-selected
-  mechanism packet, not a spelling probe.
+- No setup blockers recorded. `func_8002B0F4` needs discovery/tooling or a
+  distinct compiler-mechanism hypothesis; simple segment/bbox setup and
+  local-index lifetime variants are saturated.
 
 ## Ask The User Only If
 
@@ -30,8 +36,8 @@
 
 ## Next Work Packet
 
-- Task: `func_8002B0F4 distinct model-load lifetime/register-allocation mechanism predicting target-like in-loop gCurrentLevelModel loads or removal of the 0x60(sp) model spill`
-- Packet class: `matching_impl`
+- Task: `discovery/tooling route after func_8002B0F4 local-index lifetime saturation`
+- Packet class: `discovery`
 - Packet status: `ready`
 - Reasoning tier: `medium`
-- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, inspect the selected source/asm pair, write ordinary C, diagnose with `./diff.sh <function>`, and accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` verifies the matching ROM.
+- Step: Run `python3 tools/query_goal_state.py next --compact --refresh` and `python3 tools/query_goal_state.py discovery`; select a bounded target only if the packet names a distinct compiler-mechanism hypothesis with predicted asm movement, otherwise improve discovery/cooldown tooling instead of another spelling probe.
