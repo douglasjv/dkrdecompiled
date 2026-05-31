@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `76da7c53`
-- Completed task: `init_particle_buffers no-safe mechanism discovery`
-- Summary: Ran high-reasoning parked discovery for `init_particle_buffers`; no safe ordinary-C mechanism packet was found for the saved-register allocation mismatch.
+- HEAD: `87bb100b`
+- Completed task: `init_particle_buffers promoted object-slice audit`
+- Summary: Audited promoted `init_particle_buffers`; focused diff still reports `CURRENT (0)`, but full ROM verify fails and object allocation remains in the known bad saved-register family.
 
 ## Validation
 
@@ -71,6 +71,14 @@
   unused-pad removal, initial-only colour-tag, or focused-`CURRENT (0)`
   acceptance families. Next useful work is promoted object-slice tooling around
   the first `mempool_alloc_safe` calls.
+- Promoted object-slice tooling for `init_particle_buffers` confirmed the
+  focused false positive. Promoted `build/src/particles.c.o` made
+  `./diff.sh init_particle_buffers --compress-matching 2 --no-pager` report
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0x45663544/0x7C66D688`. Objdump showed the promoted object still using
+  counts `s3/s1/s7/s2/s4` and colour tag `s0`, not target counts
+  `s1/s3/s7/s4/s8` and colour tag `s2`. Matching object was restored and final
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet`.
 - `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`
@@ -89,8 +97,8 @@
   condition, and reasoning tier. The rejected `func_8008FF1C`
   pointer-to-selected-track-cell packet and `func_8002B0F4`
   model-load-lifetime probe families should not be retried. For
-  `init_particle_buffers`, do object-slice tooling before any further source
-  probe.
+  `init_particle_buffers`, do not trust focused `CURRENT (0)`; require a
+  distinct saved-register mechanism before any further source probe.
 
 ## Ask The User Only If
 
@@ -104,4 +112,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4` and `init_particle_buffers`, do promoted object-slice/tooling before any further source probe.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted object-slice/tooling before any further source probe; for `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe.

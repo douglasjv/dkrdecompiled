@@ -196,3 +196,13 @@ when intentionally returning to them.
   focused-`CURRENT (0)` acceptance families. Next useful work is promoted
   object-slice tooling around the first `mempool_alloc_safe` calls, not another
   declaration/local-carrier source probe.
+  A promoted object-slice audit confirmed the false-positive focused result:
+  `gmake -B NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 AVOID_UB=1'
+  CROSS=tools/binutils/mips64-elf- build/src/particles.c.o` followed by
+  `./diff.sh init_particle_buffers --compress-matching 2 --no-pager` reported
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0x45663544/0x7C66D688`. The promoted object still assigned counts as
+  `s3/s1/s7/s2/s4` and used `s0` for the `0x80808080` allocator colour tag;
+  target assigns counts as `s1/s3/s7/s4/s8` and uses `s2` for the colour tag.
+  Matching-mode `build/src/particles.c.o` was restored and full verify passed.
+  Do not trust focused `CURRENT (0)` for this packet without full ROM verify.
