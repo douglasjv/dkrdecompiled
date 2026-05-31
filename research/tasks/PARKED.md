@@ -182,6 +182,15 @@ when intentionally returning to them.
   verify passed. Do not trust focused `CURRENT (0)` for this packet without
   full ROM verify or a mechanism that predicts the target frame and bitmask
   saved-register allocation.
+  A 2026-05-31 orchestration probe combined dead `dx/dy/dz` removal with
+  reusing `sum2` for the closest-triangle plane check instead of the
+  `A1/B1/C1/D1` edge-plane locals. The hypothesis was to reach target frame
+  `0x120` while avoiding the previously rejected fully inlined edge-plane
+  shape. Focused `./diff.sh func_80017A18 --compress-matching 2 --no-pager`
+  reported stale `CURRENT (0)`, but full ROM verify failed with calculated
+  CRCs `0x0E9F297C/0xBB221418`. Source and matching-mode
+  `build/src/objects.c.o` were restored. Do not repeat this combined
+  dead-vector plus `sum2` edge-plane accumulator lifetime probe.
 
 - `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
   candidate compiles in matching mode when promoted, but focused object diff

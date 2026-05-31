@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `569c9710`
-- Completed task: `func_8002B0F4 promoted-slice refresh`
-- Summary: Refreshed the promoted `func_8002B0F4` object slice after selector audit surfacing; focused diff still reports `CURRENT (0)`, but objdump confirms the promoted object still uses the stack-resident `gCurrentLevelModel` base instead of target in-loop global reloads.
+- HEAD: `9fe96fcd`
+- Completed task: `func_80017A18 combined lifetime probe`
+- Summary: Tested and rejected a combined `func_80017A18` dead-vector plus `sum2` edge-plane accumulator lifetime probe. Focused diff reported stale `CURRENT (0)`, but full ROM verify failed, so source was restored and the miss was recorded.
 
 ## Validation
 
@@ -33,6 +33,14 @@
   `0x2BDD4/0x2BDD8` and `0x2C020/0x2C024`.
 - Restored matching-mode `build/src/tracks.c.o` with
   `gmake -B CROSS=tools/binutils/mips64-elf- build/src/tracks.c.o`.
+- Promoted `func_80017A18` with a combined dead `dx/dy/dz` removal and `sum2`
+  edge-plane accumulator shape, then ran focused
+  `./diff.sh func_80017A18 --compress-matching 2 --no-pager`; it reported
+  stale `CURRENT (0)`.
+- Full `gmake -j4 CROSS=tools/binutils/mips64-elf-` with that probe failed
+  ROM verify with calculated CRCs `0x0E9F297C/0xBB221418`.
+- Restored `src/objects.c` and rebuilt matching-mode `build/src/objects.c.o`
+  with `gmake -B CROSS=tools/binutils/mips64-elf- build/src/objects.c.o`.
 - `python3 tools/query_goal_state.py discovery --json` reports all four live
   cooldown candidates as `tooling_first`, `ready_for_probe: false`, and lists
   `reasoning_tier` in the required packet fields.
@@ -162,7 +170,11 @@
   `python3 tools/query_goal_state.py packet --function func_8002B0F4` passed
   after the refreshed `func_8002B0F4` evidence update.
 - `python3 -m py_compile tools/query_goal_state.py` passed after extending
-  latest-audit matching to the refreshed promoted-object wording.
+  latest-audit matching to the refreshed promoted-object and stale
+  `CURRENT (0)` wording.
+- `python3 tools/check_active_surface.py`, `python3 tools/query_goal_state.py
+  next --compact --refresh`, and `python3 tools/query_goal_state.py packet
+  --function func_80017A18` passed after the rejected probe was recorded.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reported decomp progress 97.30%.
 
@@ -184,8 +196,9 @@
   `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`,
   `func_80049794`, or `func_80059208`, do not trust focused `CURRENT (0)`;
   require a distinct mechanism before any further source probe. For
-  `func_80017A18`, require a mechanism predicting target frame `0x120` and
-  bitmask in `s6`.
+  `func_80017A18`, do not repeat the combined dead-vector plus `sum2`
+  edge-plane accumulator lifetime probe; require a distinct mechanism
+  predicting target frame `0x120` and bitmask in `s6`.
 
 ## Ask The User Only If
 
@@ -199,4 +212,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance, promoted-object-slice refreshes, or unsafe `volatile`/accessor/artificial-alias/helper reshaping; require a mechanism that predicts target global reloads instead of the stack-resident model base and `0x5FE8` texture reload. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance, promoted-object-slice refreshes, or unsafe `volatile`/accessor/artificial-alias/helper reshaping; require a mechanism that predicts target global reloads instead of the stack-resident model base and `0x5FE8` texture reload. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6` without repeating dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.

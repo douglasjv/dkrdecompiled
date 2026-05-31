@@ -19,7 +19,7 @@ EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
 NEXT_USEFUL_RE = re.compile(r"^\s*-?\s*Next useful work\b.*", re.MULTILINE)
 AUDIT_NOTE_RE = re.compile(
-    r"\b(promoted[- ]object[- ]slice(?: audit)?|focused[- ](?:object[- ])?false positive|Do not trust focused `?CURRENT \(0\)`?)\b",
+    r"\b(promoted[- ]object[- ]slice(?: audit)?|focused[- ](?:object[- ])?false positive|stale `?CURRENT \(0\)`?|Do not trust focused `?CURRENT \(0\)`?)",
     re.IGNORECASE,
 )
 DISCOVERY_FIRST_RE = re.compile(
