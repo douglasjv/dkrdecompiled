@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `66b25e09`
-- Completed task: `func_8002B0F4 no-safe mechanism discovery`
-- Summary: Recorded the `func_8008FF1C` pointer-cell miss, then ran a high-reasoning `func_8002B0F4` discovery pass that found no safe ordinary-C mechanism packet for the `gCurrentLevelModel` hoist/spill drift.
+- HEAD: `76da7c53`
+- Completed task: `init_particle_buffers no-safe mechanism discovery`
+- Summary: Ran high-reasoning parked discovery for `init_particle_buffers`; no safe ordinary-C mechanism packet was found for the saved-register allocation mismatch.
 
 ## Validation
 
@@ -63,6 +63,14 @@
   carrier, pointer-arithmetic setup, condition/literal/local-width, or bottom
   store-order families. Next useful work is a promoted-object slice audit
   around the hoist/spill sites, not another source probe.
+- High discovery for `init_particle_buffers` found no safe mechanism packet.
+  The unresolved gap is freeing `s2` from the line-count role while keeping
+  five count parameters in target `s1/s3/s7/s4/s8` order and colour tag in
+  `s2`. Remaining source levers collapse into rejected register hints,
+  explicit count aliases, local triangle-buffer pointer, all-call colour-tag,
+  unused-pad removal, initial-only colour-tag, or focused-`CURRENT (0)`
+  acceptance families. Next useful work is promoted object-slice tooling around
+  the first `mempool_alloc_safe` calls.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet`.
 - `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`
@@ -80,7 +88,9 @@
   rejected families, mechanism hypothesis, predicted asm movement, stop
   condition, and reasoning tier. The rejected `func_8008FF1C`
   pointer-to-selected-track-cell packet and `func_8002B0F4`
-  model-load-lifetime probe families should not be retried.
+  model-load-lifetime probe families should not be retried. For
+  `init_particle_buffers`, do object-slice tooling before any further source
+  probe.
 
 ## Ask The User Only If
 
@@ -94,4 +104,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted-object slice/tooling around the `gCurrentLevelModel` hoist/spill sites before any further source probe.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4` and `init_particle_buffers`, do promoted object-slice/tooling before any further source probe.

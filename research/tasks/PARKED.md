@@ -187,3 +187,12 @@ when intentionally returning to them.
   packet without full ROM `Verify: OK`, and do not repeat the initial-only
   colour-tag local. Revisit with a narrower saved-register/lifetime strategy,
   not these same probes or declaration-only local removals.
+  A 2026-05-31 high read-only discovery pass found no safe mechanism-ready
+  packet: the unresolved gap is freeing `s2` from the line-count role while
+  keeping the five count parameters in the target `s1/s3/s7/s4/s8` order and
+  the allocator colour tag in `s2`. Remaining ordinary-C levers collapse into
+  rejected register-hint, explicit count-alias, local triangle-buffer pointer,
+  named all-call colour-tag, unused-pad removal, initial-only colour-tag, or
+  focused-`CURRENT (0)` acceptance families. Next useful work is promoted
+  object-slice tooling around the first `mempool_alloc_safe` calls, not another
+  declaration/local-carrier source probe.
