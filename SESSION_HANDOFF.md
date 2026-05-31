@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `b6d3ad34`
-- Completed task: `selector latest-audit surfacing`
-- Summary: Updated `tools/query_goal_state.py` so discovery/tooling/packet output surfaces the latest promoted-object or focused-false-positive audit summary for cooldown-routed live and parked candidates before any source probe.
+- HEAD: `569c9710`
+- Completed task: `func_8002B0F4 promoted-slice refresh`
+- Summary: Refreshed the promoted `func_8002B0F4` object slice after selector audit surfacing; focused diff still reports `CURRENT (0)`, but objdump confirms the promoted object still uses the stack-resident `gCurrentLevelModel` base instead of target in-loop global reloads.
 
 ## Validation
 
@@ -24,6 +24,15 @@
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports
   `ready_for_probe: false` and prints the latest promoted object-slice audit
   summary from `research/tasks/PARKED.md`.
+- Refreshed promoted-object discovery for `func_8002B0F4` with
+  `gmake -B NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 NON_EQUIVALENT=1 AVOID_UB=1' CROSS=tools/binutils/mips64-elf- build/src/tracks.c.o`.
+  Focused `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` again
+  reported `CURRENT (0)`, but objdump still showed the promoted object keeping
+  the stack-resident model base and reloading it at `0x5FE8` for texture
+  lookup instead of target `gCurrentLevelModel` reloads at
+  `0x2BDD4/0x2BDD8` and `0x2C020/0x2C024`.
+- Restored matching-mode `build/src/tracks.c.o` with
+  `gmake -B CROSS=tools/binutils/mips64-elf- build/src/tracks.c.o`.
 - `python3 tools/query_goal_state.py discovery --json` reports all four live
   cooldown candidates as `tooling_first`, `ready_for_probe: false`, and lists
   `reasoning_tier` in the required packet fields.
@@ -148,6 +157,12 @@
   because all parked candidates have recent revival cooldown evidence and
   `research/tasks/MECHANISM_PACKETS.md` has no ready packets.
 - `python3 -m py_compile tools/query_goal_state.py` passed.
+- `python3 tools/check_active_surface.py`, `python3 tools/query_goal_state.py
+  next --compact --refresh`, `python3 tools/query_goal_state.py tooling`, and
+  `python3 tools/query_goal_state.py packet --function func_8002B0F4` passed
+  after the refreshed `func_8002B0F4` evidence update.
+- `python3 -m py_compile tools/query_goal_state.py` passed after extending
+  latest-audit matching to the refreshed promoted-object wording.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reported decomp progress 97.30%.
 
@@ -161,9 +176,10 @@
   pointer-to-selected-track-cell packet and focused `CURRENT (0)` object-only
   evidence should not be retried; it needs a mechanism predicting target
   `t2` load plus delay-slot `sw v0,0(s0)`. The rejected `func_8002B0F4`
-  model-load-lifetime probe families should not be retried; `func_8002B0F4`
-  also needs a mechanism that removes the stack-resident model base before any
-  source probe. For `trackbg_render_flashy`, do not trust focused `CURRENT (0)`
+  model-load-lifetime and promoted-object-slice audit families should not be
+  retried; `func_8002B0F4` also needs a mechanism that removes the
+  stack-resident model base before any source probe. For `trackbg_render_flashy`,
+  do not trust focused `CURRENT (0)`
   or repeat first-ring negative-cos carrier probes unless a mechanism predicts
   `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`,
   `func_80049794`, or `func_80059208`, do not trust focused `CURRENT (0)`;
@@ -183,4 +199,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance or unsafe `volatile`/accessor/helper reshaping; require a mechanism that predicts target global reloads instead of the `0x60(sp)` model spill. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance, promoted-object-slice refreshes, or unsafe `volatile`/accessor/artificial-alias/helper reshaping; require a mechanism that predicts target global reloads instead of the stack-resident model base and `0x5FE8` texture reload. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
