@@ -1,21 +1,23 @@
 # Session Handoff
 
-- Generated at: 2026-05-31 18:11:00Z
+- Generated at: 2026-05-31 18:48:00Z
 - Branch: `master`
-- HEAD: `28ab9bd9`
-- Completed task: `func_80059208-discovery-cooldown`
-- Summary: Delegated high mechanism discovery for `func_80059208`; worker found no safe source-level packet beyond saturated final-tail FPR/load-order families and recommended cooldown. No source edit was made.
+- HEAD: `88736c0f`
+- Completed task: `trackbg_render_flashy-discovery-cooldown`
+- Summary: Delegated high mechanism discovery for `trackbg_render_flashy`; worker found no landable source-level packet beyond saturated early FPR/source-lifetime families and recommended cooldown. No source edit was made.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 992]` before closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 993]` before closeout edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
+- `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
 - `python3 tools/query_goal_state.py tooling` now prints a `template_command` for each blocked live and parked candidate.
-- `python3 tools/query_goal_state.py packet --function func_80059208 --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
-- High worker result for `func_80059208`: no credible source-level prediction beyond saturated families. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`.
-- `python3 tools/query_goal_state.py packet --function func_80059208` reports `ready_for_probe: false`.
+- `python3 tools/query_goal_state.py packet --function trackbg_render_flashy --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
+- High worker result for `trackbg_render_flashy`: no landable packet. Current promoted shape still uses frame `0x158`, scaled cos `$f12`, scaled sin `$f2`, `neg.s $f16,$f12`, and immediate doubled-cos `$f18`; target keeps `$f18` as the negative-cos carrier and delays doubled-cos setup until after the first-ring stack-temp stores.
+- `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported stale `CURRENT (0)` against the restored matching object and was treated as non-evidence for acceptance.
+- `python3 tools/query_goal_state.py packet --function trackbg_render_flashy` reports `ready_for_probe: false`.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
 
@@ -24,7 +26,7 @@
 - No setup blocker recorded.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, or ordinary local/order/carrier spellings. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the `0x5FE8` texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
-- For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
+- For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
 - For `func_8008FF1C`, require a mechanism that predicts target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`; do not repeat direct-table/common-store/pointer-to-selected-track-cell/temp-carrier variants.
 - For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, first allocation arithmetic using line count in `s4` and point count in `fp`, and colour tag `s2` for every semitrans-grey allocation while frame stays `0x68`; do not repeat register hints, count aliases, triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, declaration/local-carrier probes, or focused-`CURRENT (0)` acceptance.
 - For `func_80017A18`, require a mechanism predicting target frame `0x120` and bitmask in `s6`; do not repeat dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families.
