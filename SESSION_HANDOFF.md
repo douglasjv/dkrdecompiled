@@ -2,15 +2,24 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `9fe96fcd`
-- Completed task: `func_80017A18 combined lifetime probe`
-- Summary: Tested and rejected a combined `func_80017A18` dead-vector plus `sum2` edge-plane accumulator lifetime probe. Focused diff reported stale `CURRENT (0)`, but full ROM verify failed, so source was restored and the miss was recorded.
+- HEAD: `8ce7ebd9`
+- Completed task: `trackbg_render_flashy first-two-store ordering probe`
+- Summary: Tested and rejected a first-ring store-order-only `trackbg_render_flashy` probe. Focused diff reported stale `CURRENT (0)`, but full ROM verify failed, so source and the matching object were restored and the miss was recorded.
 
 ## Validation
 
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports
   `recommended_next: discovery`.
+- Promoted `trackbg_render_flashy` with only the first two first-ring stores
+  swapped (`zPositions[0]` before `xPositions[0]`) using
+  `gmake -B NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 AVOID_UB=1' CROSS=tools/binutils/mips64-elf- build/src/tracks.c.o`.
+- Focused `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager`
+  reported stale `CURRENT (0)`, but full
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` failed ROM verify with
+  calculated CRCs `0x97834756/0xD6554ABC`.
+- Restored `src/tracks.c` and matching-mode `build/src/tracks.c.o`; final
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next:
   tooling` after the rejected `trackbg_render_flashy` packet was removed from
   `research/tasks/MECHANISM_PACKETS.md`.
@@ -191,9 +200,9 @@
   model-load-lifetime and promoted-object-slice audit families should not be
   retried; `func_8002B0F4` also needs a mechanism that removes the
   stack-resident model base before any source probe. For `trackbg_render_flashy`,
-  do not trust focused `CURRENT (0)`
-  or repeat first-ring negative-cos carrier probes unless a mechanism predicts
-  `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`,
+  do not trust focused `CURRENT (0)` or repeat first-ring negative-cos
+  carrier/store-order probes unless a mechanism predicts `$f18` without broad
+  stack-slot/downstream drift. For `init_particle_buffers`,
   `func_80049794`, or `func_80059208`, do not trust focused `CURRENT (0)`;
   require a distinct mechanism before any further source probe. For
   `func_80017A18`, do not repeat the combined dead-vector plus `sum2`
@@ -212,4 +221,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance, promoted-object-slice refreshes, or unsafe `volatile`/accessor/artificial-alias/helper reshaping; require a mechanism that predicts target global reloads instead of the stack-resident model base and `0x5FE8` texture reload. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6` without repeating dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, temp-carrier families, or focused `CURRENT (0)` acceptance; require a mechanism that predicts target `t2` selected-track load while preserving delay-slot `sw v0,0(s0)`. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance, promoted-object-slice refreshes, or unsafe `volatile`/accessor/artificial-alias/helper reshaping; require a mechanism that predicts target global reloads instead of the stack-resident model base and `0x5FE8` texture reload. For `trackbg_render_flashy`, require a mechanism that predicts initial negative-cos in `$f18` without broad stack-slot/downstream drift; do not repeat the first-two-store ordering probe. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6` without repeating dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families; for `func_80049794` and `func_80059208`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
