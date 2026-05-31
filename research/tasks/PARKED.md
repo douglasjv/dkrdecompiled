@@ -117,7 +117,17 @@ when intentionally returning to them.
   regressed from parked baseline `CURRENT (10)` to `CURRENT (935)`, still did
   not recover the target `t2` halfword load family, and broadened visible-track
   register drift. Source was restored and final full verify passed; do not
-  repeat this `register s32 temp` selected-track carrier.
+  repeat this `register s32 temp` selected-track carrier. A 2026-05-31 xhigh
+  revival worker repeated the direct-table branch with `cur->hubName =
+  levelName` as the first statement in both selected/unselected arms to test
+  whether the store would schedule into the target delay slot. It failed full
+  verify with calculated CRCs `0xAED257D4/0xAE31DFED`; relinked focused diff
+  reported `CURRENT (475)`. The selected-track load stayed in the target
+  `lh t2,0(s1)` family, but the target delay-slot `sw v0,0(s0)` became `move
+  v1,v0`, with extra `sw v1,0(s0)` selected-path and `sw v0,0(s0)`
+  unselected-path stores and a shifted branch target. Source was restored and
+  final full verify passed; do not repeat direct-table plus duplicated
+  first-side-effect `hubName` store variants.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused

@@ -21,6 +21,7 @@ DISCOVERY_FIRST_RE = re.compile(
     r"\b(discovery/tooling|tooling)\b|^Next useful work\s+should\s+pivot\b",
     re.IGNORECASE,
 )
+RECENT_REVIVAL_RE = re.compile(r"\b2026-05-31\b.*\brevival worker\b", re.IGNORECASE)
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
@@ -203,6 +204,9 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         item = dict(candidate)
         item["parked_note"] = exhausted_details[function]
+        if RECENT_REVIVAL_RE.search(str(item["parked_note"])):
+            item["priority"] = int(item["priority"]) + 100
+            item["revival_cooldown"] = True
         items.append(item)
     items.sort(key=lambda item: (int(item["priority"]), str(item["source"]), int(item["line"])))
     return items
