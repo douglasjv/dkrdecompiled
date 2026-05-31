@@ -238,3 +238,16 @@ when intentionally returning to them.
   target assigns counts as `s1/s3/s7/s4/s8` and uses `s2` for the colour tag.
   Matching-mode `build/src/particles.c.o` was restored and full verify passed.
   Do not trust focused `CURRENT (0)` for this packet without full ROM verify.
+  A 2026-05-31 high mechanism-discovery worker again found no safe
+  source-level packet. Evidence checked: `ACTIVE.md`,
+  `python3 tools/query_goal_state.py packet --function init_particle_buffers`,
+  this parked note, `src/particles.c:298-445`, and
+  `asm/nonmatchings/particles/init_particle_buffers.s:4-102`. A valid future
+  packet must predict `s1<-a0`, `s3<-a1`, `s7<-a2`, `s4<-a3`, `s8/fp` from the
+  stack point-count argument, first allocation arithmetic using line count in
+  `s4` and point count in `fp`, `lui/ori` colour tag in `s2`, and every
+  semitrans-grey `mempool_alloc_safe` using `a1=s2` while frame stays `0x68`.
+  Stop immediately if a promoted object still has counts `s3/s1/s7/s2/s4`,
+  colour tag in `s0`, frame drift from `0x68`, or only focused `CURRENT (0)`
+  without full ROM `Verify: OK`. Recommendation remains cooldown until a
+  distinct mechanism predicts that movement.

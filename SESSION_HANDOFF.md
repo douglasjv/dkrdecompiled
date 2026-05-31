@@ -4,7 +4,7 @@
 - Branch: `master`
 - HEAD: `b69edea2`
 - Completed task: `discovery-tooling-refresh`
-- Summary: Added `packet --template` routing support so blocked candidates can emit copy-ready `MECHANISM_PACKETS.md` skeletons from current evidence. No mechanism-ready source packet is safe to probe yet; next work remains discovery/tooling until a complete packet predicts concrete asm movement.
+- Summary: Delegated high mechanism discovery for `init_particle_buffers`; worker found no safe source-level packet and recommended cooldown. No mechanism-ready source packet is safe to probe yet; next work remains discovery/tooling until a complete packet predicts concrete asm movement.
 
 ## Validation
 
@@ -19,7 +19,10 @@
 - `python3 tools/query_goal_state.py packet --function func_8002B0F4` reports `ready_for_probe: false`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
 - `python3 tools/query_goal_state.py packet --function init_particle_buffers` reports `ready_for_probe: false`.
+- `python3 tools/query_goal_state.py packet --function init_particle_buffers --template` emitted a packet skeleton from `research/tasks/PARKED.md`.
+- `python3 tools/query_goal_state.py packet --function init_particle_buffers --json` emitted full parked context for the worker.
 - Existing completed worker reports were checked: `func_80049794` still has no safe high/xhigh mechanism beyond the close save-family plus wave-allocation gap, and the `func_80059208` ObjectTransform pointer lifetime miss is already recorded in `research/tasks/func_80059208_evidence.md`.
+- High worker result for `init_particle_buffers`: no unrejected C lever predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, line-count arithmetic in `s4`, and allocator colour tag `s2` while keeping frame `0x68`.
 
 ## Blockers Or Unknowns
 
@@ -28,7 +31,7 @@
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, or ordinary local/order/carrier spellings. A future packet must predict target `gCurrentLevelModel` reloads instead of the stack-resident model base and `0x5FE8` texture reload.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift.
 - For `func_8008FF1C`, require a mechanism that predicts target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`; do not repeat direct-table/common-store/pointer-to-selected-track-cell/temp-carrier variants.
-- For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target counts `s1/s3/s7/s4/s8` and colour tag `s2`; do not repeat register hints, count aliases, triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, or focused-`CURRENT (0)` acceptance.
+- For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, first allocation arithmetic using line count in `s4` and point count in `fp`, and colour tag `s2` for every semitrans-grey allocation while frame stays `0x68`; do not repeat register hints, count aliases, triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, declaration/local-carrier probes, or focused-`CURRENT (0)` acceptance.
 - For `func_80017A18`, require a mechanism predicting target frame `0x120` and bitmask in `s6`; do not repeat dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families.
 - For `func_80049794` and `func_80059208`, do not trust focused `CURRENT (0)` or reopen without a distinct saved-FPR/wave-allocation or final-tail FPR/load-order mechanism.
 
