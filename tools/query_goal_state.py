@@ -66,6 +66,10 @@ def exhausted_probe_notes() -> set[str]:
     return set(exhausted_probe_details())
 
 
+def has_recent_revival_cooldown(note: str) -> bool:
+    return bool(RECENT_REVIVAL_RE.search(note))
+
+
 def cooldown_notes() -> dict[str, str]:
     notes: dict[str, str] = {}
     for path in sorted(TASKS_ROOT.glob("*_evidence.md")):
@@ -130,20 +134,31 @@ def scan_sources() -> list[dict[str, object]]:
 
 def build_state(include_exhausted: bool = False) -> dict[str, object]:
     all_candidates = scan_sources()
-    exhausted = exhausted_probe_notes()
+    exhausted_details = exhausted_probe_details()
+    exhausted = set(exhausted_details)
     cooldown = cooldown_notes()
     for item in all_candidates:
         function = str(item["function"])
         if function in cooldown:
             item["priority"] = int(item["priority"]) + 100
             item["cooldown_evidence"] = cooldown[function]
+        if function in exhausted_details and has_recent_revival_cooldown(exhausted_details[function]):
+            item["priority"] = int(item["priority"]) + 100
+            item["revival_cooldown"] = True
     all_candidates.sort(key=lambda item: (item["priority"], item["source"], item["line"]))
     candidates = [
         item for item in all_candidates if include_exhausted or item["function"] not in exhausted
     ]
     baseroms = sorted(path.name for path in (ROOT / "baseroms").glob("*.z64"))
     maps = sorted(path.name for path in (ROOT / "build").glob("*.map")) if (ROOT / "build").exists() else []
-    recommended = next((item for item in candidates if "cooldown_evidence" not in item), None)
+    recommended = next(
+        (
+            item
+            for item in candidates
+            if "cooldown_evidence" not in item and "revival_cooldown" not in item
+        ),
+        None,
+    )
     discovery_route = recommended is None and bool(candidates)
     return {
         "repo": str(ROOT),
@@ -153,6 +168,7 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
             "candidates": len(candidates),
             "exhausted_notes": sum(1 for item in all_candidates if item["function"] in exhausted),
             "cooldown_notes": sum(1 for item in all_candidates if item["function"] in cooldown),
+            "revival_cooldown_notes": sum(1 for item in all_candidates if item.get("revival_cooldown")),
             "skipped_exhausted": 0 if include_exhausted else sum(1 for item in all_candidates if item["function"] in exhausted),
             "source_global_asm": sum(1 for item in candidates if item["kind"] == "GLOBAL_ASM"),
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
@@ -204,9 +220,6 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         item = dict(candidate)
         item["parked_note"] = exhausted_details[function]
-        if RECENT_REVIVAL_RE.search(str(item["parked_note"])):
-            item["priority"] = int(item["priority"]) + 100
-            item["revival_cooldown"] = True
         items.append(item)
     items.sort(key=lambda item: (int(item["priority"]), str(item["source"]), int(item["line"])))
     return items

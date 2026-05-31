@@ -2,19 +2,12 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `119872cb`
-- Completed task: `init_particle_buffers initial-only colour-tag evidence`
-- Summary: Rejected a focused-diff-zero promoted source because full ROM verify failed.
+- HEAD: `eca3e63d`
+- Completed task: `include-exhausted revival cooldown routing`
+- Summary: Updated selector tooling so include-exhausted routing does not recommend parked candidates that revival mode marks as recent cooldown.
 
 ## Validation
 
-- Promoted `init_particle_buffers` with an `initialColourTag` local used only
-  for the initial vertex and triangle allocations produced focused
-  `./diff.sh init_particle_buffers --compress-matching 2 --no-pager`
-  `CURRENT (0)`.
-- The canonical full gate failed for that promoted source with calculated CRCs
-  `0xEF29C961/0xF604264D` versus expected `0x53D440E7/0x7519B011`.
-- Source was restored to asm-backed state.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports
   `recommended_next: discovery`.
@@ -22,14 +15,18 @@
   tooling`.
 - `python3 tools/query_goal_state.py revival` now reports `revival_next:
   tooling` because all parked candidates have recent revival cooldown evidence.
+- `python3 tools/query_goal_state.py list --json --include-exhausted` reports
+  `recommended_next: null` and marks the three parked candidates with
+  `revival_cooldown: true`.
 - `python3 -m py_compile tools/query_goal_state.py` passed.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reported decomp progress 97.30%.
 
 ## Blockers Or Unknowns
 
-- No setup blockers recorded. `init_particle_buffers` initial-only colour-tag
-  local is rejected; focused `CURRENT (0)` is insufficient without full verify.
+- No setup blockers recorded. All live sidecar candidates and parked revival
+  candidates are cooldown-routed; next progress should be discovery/tooling or
+  a distinct compiler-mechanism packet, not a spelling probe.
 
 ## Ask The User Only If
 
@@ -43,4 +40,4 @@
 - Packet class: `discovery`
 - Packet status: `ready`
 - Reasoning tier: `medium`
-- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py discovery`, and `python3 tools/query_goal_state.py revival`; select a bounded target only if it names a distinct compiler-mechanism hypothesis and full-verify stop condition. Treat focused `CURRENT (0)` on parked/guarded candidates as stale until the promoted full gate verifies.
+- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py revival`, and `python3 tools/query_goal_state.py list --json --include-exhausted`; select a bounded target only if it names a distinct compiler-mechanism hypothesis and full-verify stop condition. Treat focused `CURRENT (0)` on parked/guarded candidates as stale until the promoted full gate verifies.
