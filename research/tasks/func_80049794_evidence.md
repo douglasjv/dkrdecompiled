@@ -9,6 +9,10 @@ Current compact read:
 - Repeated no-movement/saturated families include broad save/wave spelling variants, opening `updateRateF`/`var_f20` carrier variants, register storage-class hints, and promotion-only/object-only `CURRENT (0)` evidence.
 - Next useful work should be a distinct compiler-mechanism hypothesis or a pivot/discovery packet, not another spelling-only microvariant.
 
+## Discovery Notes
+
+- 2026-05-31 high discovery pass found no safe mechanism-ready packet. The target shape still needs frame `0xF8`, `$f20/$f21` saves at `0x24/0x20(sp)`, early zero in `$f14`, and wave scan allocation with count in `v0`, high bound in `v1`, loop index in `a0`, and pointer cursor in `v0` after `addu`. Existing rejected families already cover plain promotion, `updateRateF`/`var_f20`, `register var_f20`, carrier-width changes, branch/condition/literal spellings, wave bound/index locals, pointer-cursor wave variants, selected-wave carriers, declaration-order/register hints, early-zero carriers, first-speed carriers, and close save-family combinations. Do not reopen `func_80049794` unless a high/xhigh worker first names a new mechanism that couples the close save-family with a non-repeated wave allocation mechanism.
+
 ## Extracted ACTIVE Notes
 
 - Latest selector-packet note: `func_80049794` remains active after a

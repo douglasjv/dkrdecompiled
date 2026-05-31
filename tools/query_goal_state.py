@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOTS = [ROOT / "src", ROOT / "libultra" / "src"]
 EVIDENCE_PATH = ROOT / "research" / "tasks" / "PARKED.md"
+MECHANISM_PACKETS_PATH = ROOT / "research" / "tasks" / "MECHANISM_PACKETS.md"
 TASKS_ROOT = ROOT / "research" / "tasks"
 PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
@@ -30,6 +31,11 @@ REQUIRED_PACKET_FIELDS = [
     "predicted_asm_movement",
     "stop_condition",
 ]
+PACKET_HEADING_RE = re.compile(r"^###\s+`?([A-Za-z_][A-Za-z0-9_]*)`?\s*$")
+PACKET_FIELD_RE = re.compile(
+    r"^-\s+(Target|Evidence checked|Rejected families|Mechanism hypothesis|Predicted asm movement|Stop condition|Reasoning tier):\s*(.*)$",
+    re.IGNORECASE,
+)
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
@@ -95,6 +101,43 @@ def cooldown_notes() -> dict[str, str]:
         if match:
             notes[function] = rel(path)
     return notes
+
+
+def mechanism_packets() -> dict[str, dict[str, object]]:
+    if not MECHANISM_PACKETS_PATH.exists():
+        return {}
+    packets: dict[str, dict[str, object]] = {}
+    current_function: str | None = None
+    for line in MECHANISM_PACKETS_PATH.read_text(errors="replace").splitlines():
+        heading_match = PACKET_HEADING_RE.match(line.strip())
+        if heading_match:
+            current_function = heading_match.group(1)
+            packets[current_function] = {
+                "function": current_function,
+                "packet_path": rel(MECHANISM_PACKETS_PATH),
+                "packet_fields": {},
+            }
+            continue
+        if not current_function:
+            continue
+        field_match = PACKET_FIELD_RE.match(line.strip())
+        if not field_match:
+            continue
+        key = field_match.group(1).lower().replace(" ", "_")
+        value = field_match.group(2).strip()
+        packets[current_function]["packet_fields"][key] = value
+    return packets
+
+
+def packet_missing_fields(packet: dict[str, object]) -> list[str]:
+    fields = packet.get("packet_fields", {})
+    if not isinstance(fields, dict):
+        return REQUIRED_PACKET_FIELDS
+    missing: list[str] = []
+    for field in REQUIRED_PACKET_FIELDS:
+        if not str(fields.get(field, "")).strip():
+            missing.append(field)
+    return missing
 
 
 def discovery_note(path: str) -> tuple[str, bool]:
@@ -200,13 +243,23 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
 
 def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
     items: list[dict[str, object]] = []
+    packets = mechanism_packets()
     for candidate in state["candidates"]:
         evidence = candidate.get("cooldown_evidence")
         if not evidence:
             continue
+        packet = packets.get(str(candidate["function"]))
         note, has_next_useful = discovery_note(str(evidence))
-        kind = discovery_kind(note, has_next_useful)
-        readiness_gap = discovery_readiness_gap(kind)
+        if packet and not packet_missing_fields(packet):
+            kind = "mechanism_hypothesis"
+            readiness_gap = ""
+            ready_for_probe = True
+            required_packet_fields: list[str] = []
+        else:
+            kind = discovery_kind(note, has_next_useful)
+            readiness_gap = discovery_readiness_gap(kind)
+            ready_for_probe = False
+            required_packet_fields = REQUIRED_PACKET_FIELDS
         items.append(
             {
                 "function": candidate["function"],
@@ -217,9 +270,10 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
                 "next_useful": note,
                 "has_next_useful": has_next_useful,
                 "discovery_kind": kind,
-                "ready_for_probe": kind == "mechanism_hypothesis",
+                "ready_for_probe": ready_for_probe,
                 "readiness_gap": readiness_gap,
-                "required_packet_fields": [] if not readiness_gap else REQUIRED_PACKET_FIELDS,
+                "required_packet_fields": required_packet_fields,
+                "mechanism_packet": packet,
             }
         )
     kind_rank = {
@@ -246,6 +300,7 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
 
 
 def packet_context(state: dict[str, object], function: str) -> dict[str, object] | None:
+    packets = mechanism_packets()
     discovery_by_function = {
         str(item["function"]): item for item in discovery_candidates(state)
     }
@@ -274,6 +329,12 @@ def packet_context(state: dict[str, object], function: str) -> dict[str, object]
                     "required_packet_fields": discovery["required_packet_fields"],
                 }
             )
+            packet = packets.get(function)
+            if packet:
+                context["mechanism_packet"] = packet
+                context["ready_for_probe"] = not packet_missing_fields(packet)
+                context["readiness_gap"] = ""
+                context["required_packet_fields"] = packet_missing_fields(packet)
         elif function in revival_by_function:
             revival = revival_by_function[function]
             context.update(
@@ -355,6 +416,8 @@ def print_discovery(state: dict[str, object]) -> None:
             )
         return
     print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
+    if items[0].get("mechanism_packet"):
+        print(f"discovery_packet: {items[0]['mechanism_packet']['packet_path']}")
     print(f"discovery_note: {items[0]['next_useful']}")
     for item in items[1:]:
         print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
@@ -418,6 +481,13 @@ def print_packet(context: dict[str, object]) -> None:
         print(f"next_useful: {context['next_useful']}")
     if context.get("required_packet_fields"):
         print("required_packet_fields: " + ", ".join(str(field) for field in context["required_packet_fields"]))
+    packet = context.get("mechanism_packet")
+    if isinstance(packet, dict):
+        print(f"mechanism_packet: {packet['packet_path']}")
+        fields = packet.get("packet_fields", {})
+        if isinstance(fields, dict):
+            for field in REQUIRED_PACKET_FIELDS:
+                print(f"{field}: {fields.get(field, '')}")
 
 
 def main() -> int:
