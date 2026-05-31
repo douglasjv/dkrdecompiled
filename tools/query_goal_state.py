@@ -17,7 +17,10 @@ GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
 NEXT_USEFUL_RE = re.compile(r"^Next useful work\b.*", re.MULTILINE)
-DISCOVERY_FIRST_RE = re.compile(r"\b(discovery/tooling|tooling|pivot/discovery)\b", re.IGNORECASE)
+DISCOVERY_FIRST_RE = re.compile(
+    r"\b(discovery/tooling|tooling)\b|^Next useful work\s+should\s+pivot\b",
+    re.IGNORECASE,
+)
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
