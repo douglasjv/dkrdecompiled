@@ -245,6 +245,64 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
     return items
 
 
+def packet_context(state: dict[str, object], function: str) -> dict[str, object] | None:
+    discovery_by_function = {
+        str(item["function"]): item for item in discovery_candidates(state)
+    }
+    revival_by_function = {
+        str(item["function"]): item for item in revival_candidates(state)
+    }
+    for candidate in state["candidates"]:
+        if candidate["function"] != function:
+            continue
+        context: dict[str, object] = {
+            "target": candidate["function"],
+            "source": candidate["source"],
+            "line": candidate["line"],
+            "asm": candidate["asm"],
+            "kind": candidate["kind"],
+            "packet_fields": {field: "" for field in REQUIRED_PACKET_FIELDS},
+        }
+        if function in discovery_by_function:
+            discovery = discovery_by_function[function]
+            context.update(
+                {
+                    "evidence_checked": discovery["evidence"],
+                    "next_useful": discovery["next_useful"],
+                    "ready_for_probe": discovery["ready_for_probe"],
+                    "readiness_gap": discovery["readiness_gap"],
+                    "required_packet_fields": discovery["required_packet_fields"],
+                }
+            )
+        elif function in revival_by_function:
+            revival = revival_by_function[function]
+            context.update(
+                {
+                    "evidence_checked": rel(EVIDENCE_PATH),
+                    "parked_note": revival["parked_note"],
+                    "ready_for_probe": not revival.get("revival_cooldown", False),
+                    "readiness_gap": "parked candidate has recent revival cooldown evidence"
+                    if revival.get("revival_cooldown")
+                    else "",
+                    "required_packet_fields": []
+                    if not revival.get("revival_cooldown")
+                    else REQUIRED_PACKET_FIELDS,
+                }
+            )
+        else:
+            context.update(
+                {
+                    "evidence_checked": "",
+                    "ready_for_probe": "cooldown_evidence" not in candidate
+                    and "revival_cooldown" not in candidate,
+                    "readiness_gap": "",
+                    "required_packet_fields": [],
+                }
+            )
+        return context
+    return None
+
+
 def print_compact(state: dict[str, object]) -> None:
     print(f"repo: {state['repo']}")
     print(f"baseroms: {', '.join(state['baseroms']) if state['baseroms'] else 'missing'}")
@@ -344,16 +402,47 @@ def print_revival(state: dict[str, object]) -> None:
         )
 
 
+def print_packet(context: dict[str, object]) -> None:
+    print(f"target: {context['target']}")
+    print(
+        "location: "
+        f"{context['kind']} "
+        f"{context['source']}:{context['line']} "
+        f"asm={context['asm']}"
+    )
+    print(f"evidence_checked: {context.get('evidence_checked') or 'missing'}")
+    print(f"ready_for_probe: {str(context['ready_for_probe']).lower()}")
+    if context.get("readiness_gap"):
+        print(f"readiness_gap: {context['readiness_gap']}")
+    if context.get("next_useful"):
+        print(f"next_useful: {context['next_useful']}")
+    if context.get("required_packet_fields"):
+        print("required_packet_fields: " + ", ".join(str(field) for field in context["required_packet_fields"]))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival"])
+    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival", "packet"])
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--refresh", action="store_true", help="accepted for /goal parity; source scan is always fresh")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--include-exhausted", action="store_true", help="include functions with recorded exhausted probe notes")
+    parser.add_argument("--function", help="function name for packet context")
     args = parser.parse_args()
 
-    state = build_state(include_exhausted=args.include_exhausted or args.command == "revival")
+    state = build_state(include_exhausted=args.include_exhausted or args.command in {"revival", "packet"})
+    if args.command == "packet":
+        if not args.function:
+            parser.error("packet requires --function")
+        context = packet_context(state, args.function)
+        if context is None:
+            print(f"packet_error: unknown function {args.function}")
+            return 1
+        if args.json:
+            print(json.dumps(context, indent=2))
+        else:
+            print_packet(context)
+        return 0
     if args.command == "revival" and not args.json:
         print_revival(state)
         return 0
