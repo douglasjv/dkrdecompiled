@@ -17,6 +17,15 @@ GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
 NEXT_USEFUL_RE = re.compile(r"^Next useful work\b.*", re.MULTILINE)
+DISCOVERY_FIRST_RE = re.compile(r"\b(discovery/tooling|tooling|pivot/discovery)\b", re.IGNORECASE)
+
+
+def discovery_kind(note: str, has_next_useful: bool) -> str:
+    if not has_next_useful:
+        return "fallback_note"
+    if DISCOVERY_FIRST_RE.search(note):
+        return "tooling_first"
+    return "mechanism_hypothesis"
 
 
 def rel(path: Path) -> str:
@@ -148,6 +157,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
         if not evidence:
             continue
         note, has_next_useful = discovery_note(str(evidence))
+        kind = discovery_kind(note, has_next_useful)
         items.append(
             {
                 "function": candidate["function"],
@@ -157,9 +167,15 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
                 "evidence": evidence,
                 "next_useful": note,
                 "has_next_useful": has_next_useful,
+                "discovery_kind": kind,
             }
         )
-    items.sort(key=lambda item: (not item["has_next_useful"], item["function"]))
+    kind_rank = {
+        "mechanism_hypothesis": 0,
+        "tooling_first": 1,
+        "fallback_note": 2,
+    }
+    items.sort(key=lambda item: (kind_rank[str(item["discovery_kind"])], item["function"]))
     return items
 
 
@@ -202,10 +218,10 @@ def print_discovery(state: dict[str, object]) -> None:
     if not items:
         print("discovery_next: none")
         return
-    print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']}")
+    print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
     print(f"discovery_note: {items[0]['next_useful']}")
     for item in items[1:]:
-        print(f"cooldown_candidate: {item['function']} evidence={item['evidence']}")
+        print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
 
 
 def main() -> int:
