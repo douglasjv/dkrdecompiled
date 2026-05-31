@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `cb4cd1f2`
-- Completed task: `func_8008FF1C promoted object-slice audit`
-- Summary: Audited promoted parked `func_8008FF1C`; focused diff reports `CURRENT (0)`, but full ROM verify fails and objdump still uses `v1` for the selected-track load/branch instead of target `t2`.
+- HEAD: `b6d3ad34`
+- Completed task: `selector latest-audit surfacing`
+- Summary: Updated `tools/query_goal_state.py` so discovery/tooling/packet output surfaces the latest promoted-object or focused-false-positive audit summary for cooldown-routed live and parked candidates before any source probe.
 
 ## Validation
 
@@ -16,7 +16,14 @@
   `research/tasks/MECHANISM_PACKETS.md`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet` and lists blocked live/parked candidates with evidence
-  paths, readiness gaps, next-useful notes, and required packet fields.
+  paths, readiness gaps, next-useful notes, latest audit summaries, and
+  required packet fields.
+- `python3 tools/query_goal_state.py discovery` reports `discovery_next:
+  tooling` and prints compact `latest_audit` lines for the live cooldown
+  candidates.
+- `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports
+  `ready_for_probe: false` and prints the latest promoted object-slice audit
+  summary from `research/tasks/PARKED.md`.
 - `python3 tools/query_goal_state.py discovery --json` reports all four live
   cooldown candidates as `tooling_first`, `ready_for_probe: false`, and lists
   `reasoning_tier` in the required packet fields.

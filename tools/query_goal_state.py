@@ -18,6 +18,10 @@ GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
 NEXT_USEFUL_RE = re.compile(r"^\s*-?\s*Next useful work\b.*", re.MULTILINE)
+AUDIT_NOTE_RE = re.compile(
+    r"\b(promoted object-slice audit|focused false positive|Do not trust focused `?CURRENT \(0\)`?)\b",
+    re.IGNORECASE,
+)
 DISCOVERY_FIRST_RE = re.compile(
     r"\b(discovery/tooling|pivot/discovery|tooling)\b|^\s*-?\s*Next useful work\s+should\s+pivot\b",
     re.IGNORECASE,
@@ -71,7 +75,7 @@ def exhausted_probe_details() -> dict[str, str]:
     current_lines: list[str] = []
     for line in EVIDENCE_PATH.read_text(errors="replace").splitlines():
         stripped = line.strip()
-        if stripped.startswith("-"):
+        if line.startswith("-"):
             if current_function and current_lines:
                 notes[current_function] = " ".join(" ".join(current_lines).split())
             current_lines = [stripped.removeprefix("-").strip()]
@@ -91,6 +95,61 @@ def exhausted_probe_notes() -> set[str]:
 
 def has_recent_revival_cooldown(note: str) -> bool:
     return bool(RECENT_REVIVAL_RE.search(note))
+
+
+def latest_audit_note_from_text(text: str) -> str:
+    lines = text.splitlines()
+    if len(lines) <= 1 and len(text) > 1000:
+        matches = list(AUDIT_NOTE_RE.finditer(text))
+        if matches:
+            match = matches[-1]
+            start = max(text.rfind(" A ", 0, match.start()), text.rfind(" - ", 0, match.start()))
+            start = match.start() if start == -1 else start + 1
+            end = text.find(" Do not trust focused `CURRENT (0)`", match.end())
+            if end == -1:
+                end = text.find(" Do not treat promoted-object `CURRENT (0)`", match.end())
+            if end != -1:
+                end = text.find(".", end)
+            end = len(text) if end == -1 else end + 1
+            return " ".join(text[start:end].split())
+    match_indexes = [
+        index for index, line in enumerate(lines) if AUDIT_NOTE_RE.search(line)
+    ]
+    for index in reversed(match_indexes):
+        start = index
+        if lines[start].lstrip().startswith("##"):
+            start += 1
+            while start < len(lines) and not lines[start].strip():
+                start += 1
+        collected: list[str] = []
+        for line in lines[start : start + 10]:
+            stripped = line.strip()
+            if not stripped:
+                if collected:
+                    break
+                continue
+            if collected and stripped.startswith(("#", "- ")) and not lines[start].strip().startswith(("#", "- ")):
+                break
+            collected.append(stripped)
+            if "Do not trust focused `CURRENT (0)`" in stripped or "Do not treat promoted-object `CURRENT (0)`" in stripped:
+                break
+        if collected:
+            return " ".join(" ".join(collected).split())
+    return ""
+
+
+def latest_audit_note(path: str) -> str:
+    full_path = ROOT / path
+    if not full_path.exists():
+        return ""
+    return latest_audit_note_from_text(full_path.read_text(errors="replace"))
+
+
+def compact_note(note: object, limit: int = 520) -> str:
+    text = " ".join(str(note).split())
+    if len(text) > limit:
+        return f"{text[:limit - 3]}..."
+    return text
 
 
 def cooldown_notes() -> dict[str, str]:
@@ -251,6 +310,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         packet = packets.get(str(candidate["function"]))
         note, has_next_useful = discovery_note(str(evidence))
+        audit_note = latest_audit_note(str(evidence))
         if packet and not packet_missing_fields(packet):
             kind = "mechanism_hypothesis"
             readiness_gap = ""
@@ -269,6 +329,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
                 "asm": candidate["asm"],
                 "evidence": evidence,
                 "next_useful": note,
+                "latest_audit": audit_note,
                 "has_next_useful": has_next_useful,
                 "discovery_kind": kind,
                 "ready_for_probe": ready_for_probe,
@@ -296,6 +357,7 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             continue
         item = dict(candidate)
         item["parked_note"] = exhausted_details[function]
+        item["latest_audit"] = latest_audit_note_from_text(exhausted_details[function])
         packet = packets.get(function)
         if packet and not packet_missing_fields(packet):
             item["mechanism_packet"] = packet
@@ -352,6 +414,7 @@ def packet_context(state: dict[str, object], function: str) -> dict[str, object]
                 {
                     "evidence_checked": discovery["evidence"],
                     "next_useful": discovery["next_useful"],
+                    "latest_audit": discovery["latest_audit"],
                     "ready_for_probe": discovery["ready_for_probe"],
                     "readiness_gap": discovery["readiness_gap"],
                     "required_packet_fields": discovery["required_packet_fields"],
@@ -369,6 +432,7 @@ def packet_context(state: dict[str, object], function: str) -> dict[str, object]
                 {
                     "evidence_checked": rel(EVIDENCE_PATH),
                     "parked_note": revival["parked_note"],
+                    "latest_audit": revival["latest_audit"],
                     "ready_for_probe": revival["ready_for_probe"],
                     "readiness_gap": revival["readiness_gap"],
                     "required_packet_fields": revival["required_packet_fields"],
@@ -441,11 +505,15 @@ def print_discovery(state: dict[str, object]) -> None:
                 f"kind={item['discovery_kind']} "
                 f"gap={item['readiness_gap']}"
             )
+            if item.get("latest_audit"):
+                print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
         return
     print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
     if items[0].get("mechanism_packet"):
         print(f"discovery_packet: {items[0]['mechanism_packet']['packet_path']}")
     print(f"discovery_note: {items[0]['next_useful']}")
+    if items[0].get("latest_audit"):
+        print(f"latest_audit: {compact_note(items[0]['latest_audit'], 360)}")
     for item in items[1:]:
         print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
 
@@ -469,6 +537,8 @@ def print_revival(state: dict[str, object]) -> None:
                 f"asm={item['asm']}"
                 f"{cooldown}"
             )
+            if item.get("latest_audit"):
+                print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
         return
     first = items[0]
     print(
@@ -481,9 +551,9 @@ def print_revival(state: dict[str, object]) -> None:
     if first.get("mechanism_packet"):
         print(f"revival_packet: {first['mechanism_packet']['packet_path']}")
     note = str(first["parked_note"])
-    if len(note) > 420:
-        note = f"{note[:417]}..."
-    print(f"revival_note: {note}")
+    print(f"revival_note: {compact_note(note, 420)}")
+    if first.get("latest_audit"):
+        print(f"latest_audit: {compact_note(first['latest_audit'], 360)}")
     for item in items[1:]:
         print(
             "parked_candidate: "
@@ -534,6 +604,8 @@ def print_tooling(state: dict[str, object]) -> None:
             f"required={','.join(str(field) for field in item['required_packet_fields'])}"
         )
         print(f"next_useful: {item['next_useful']}")
+        if item.get("latest_audit"):
+            print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
     for item in revival_items:
         if item.get("ready_for_probe") or not item.get("revival_cooldown"):
             continue
@@ -544,6 +616,8 @@ def print_tooling(state: dict[str, object]) -> None:
             "gap=parked candidate has recent revival cooldown evidence "
             f"required={','.join(str(field) for field in item['required_packet_fields'])}"
         )
+        if item.get("latest_audit"):
+            print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
 
 
 def print_packet(context: dict[str, object]) -> None:
@@ -561,10 +635,9 @@ def print_packet(context: dict[str, object]) -> None:
     if context.get("next_useful"):
         print(f"next_useful: {context['next_useful']}")
     if context.get("parked_note"):
-        parked_note = " ".join(str(context["parked_note"]).split())
-        if len(parked_note) > 520:
-            parked_note = f"{parked_note[:517]}..."
-        print(f"parked_note: {parked_note}")
+        print(f"parked_note: {compact_note(context['parked_note'])}")
+    if context.get("latest_audit"):
+        print(f"latest_audit: {compact_note(context['latest_audit'])}")
     if context.get("required_packet_fields"):
         print("required_packet_fields: " + ", ".join(str(field) for field in context["required_packet_fields"]))
     packet = context.get("mechanism_packet")
