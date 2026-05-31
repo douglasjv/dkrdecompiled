@@ -167,6 +167,12 @@ when intentionally returning to them.
   Removing only the unused `s32 pad` local while promoting shrank the frame to
   `0x60` instead of target `0x68`, worsened focused score to `2176`, shifted
   parameter stack slots, and kept the same saved-register allocation family.
-  Source was restored and full verify passed. Revisit with a narrower
-  saved-register/lifetime strategy, not these same probes or declaration-only
-  local removals.
+  Source was restored and full verify passed. A 2026-05-31 worker added
+  `initialColourTag` only for the initial vertex and triangle buffer
+  allocations. Focused `./diff.sh init_particle_buffers --compress-matching 2
+  --no-pager` reported `CURRENT (0)` after promotion, but the full matching
+  gate failed with calculated CRCs `0xEF29C961/0xF604264D`; source was restored
+  and final full verify passed. Do not accept focused `CURRENT (0)` for this
+  packet without full ROM `Verify: OK`, and do not repeat the initial-only
+  colour-tag local. Revisit with a narrower saved-register/lifetime strategy,
+  not these same probes or declaration-only local removals.

@@ -21,7 +21,7 @@ DISCOVERY_FIRST_RE = re.compile(
     r"\b(discovery/tooling|tooling)\b|^Next useful work\s+should\s+pivot\b",
     re.IGNORECASE,
 )
-RECENT_REVIVAL_RE = re.compile(r"\b2026-05-31\b.*\brevival worker\b", re.IGNORECASE)
+RECENT_REVIVAL_RE = re.compile(r"\b2026-05-31\b.*\b(?:revival worker|worker)\b", re.IGNORECASE)
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
@@ -268,6 +268,20 @@ def print_revival(state: dict[str, object]) -> None:
     items = revival_candidates(state)
     if not items:
         print("revival_next: none")
+        return
+    if items[0].get("revival_cooldown"):
+        print("revival_next: tooling")
+        print("revival_note: all parked candidates have recent revival cooldown evidence; improve revival ranking or name a distinct compiler-mechanism packet before probing")
+        for item in items:
+            cooldown = " cooldown=recent" if item.get("revival_cooldown") else ""
+            print(
+                "parked_candidate: "
+                f"{item['function']} "
+                f"kind={item['kind']} "
+                f"source={item['source']}:{item['line']} "
+                f"asm={item['asm']}"
+                f"{cooldown}"
+            )
         return
     first = items[0]
     print(
