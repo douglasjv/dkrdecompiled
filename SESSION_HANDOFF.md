@@ -1,25 +1,23 @@
 # Session Handoff
 
-- Generated at: 2026-05-31 20:15:00Z
+- Generated at: 2026-05-31 20:36:00Z
 - Branch: `master`
-- HEAD: `16520abb`
-- Completed task: `discovery-tooling-all-live-audit-refresh`
-- Summary: Updated `tools/query_goal_state.py` so sidecar `latest_audit` extraction also recognizes `follow-up high discovery` and `high mechanism-discovery worker` notes. This keeps all live cooldown candidates pointed at current discovery evidence instead of older stale focused-false-positive audits.
+- HEAD: `b501a06a`
+- Completed task: `func_8008FF1C-revival-cooldown`
+- Summary: Delegated high mechanism discovery for parked `func_8008FF1C`; worker found no landable source patch beyond saturated selected-track temp/common-store/direct-table families and recommended cooldown. No source edit was made.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 997]` before closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 998]` before closeout edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
 - `python3 tools/query_goal_state.py tooling` prints a `template_command` for each blocked live and parked candidate.
 - `python3 -m py_compile tools/query_goal_state.py` passed.
-- `python3 tools/query_goal_state.py discovery` now surfaces current 2026-05-31 high/follow-up mechanism discovery notes as `func_8002B0F4`, `func_80049794`, `func_80059208`, and `trackbg_render_flashy` `latest_audit` values.
-- `python3 tools/query_goal_state.py packet --function func_8002B0F4` reports `ready_for_probe: false` and surfaces the high mechanism-discovery worker note as `latest_audit`.
-- `python3 tools/query_goal_state.py packet --function func_80049794` reports `ready_for_probe: false`.
-- `python3 tools/query_goal_state.py packet --function func_80059208` reports `ready_for_probe: false` and surfaces the follow-up discovery note as `latest_audit`.
-- `python3 tools/query_goal_state.py packet --function trackbg_render_flashy` reports `ready_for_probe: false` and surfaces the follow-up discovery note as `latest_audit`.
+- `python3 tools/query_goal_state.py packet --function func_8008FF1C --template` emitted the parked packet skeleton.
+- High worker result for `func_8008FF1C`: no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`.
+- `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
 

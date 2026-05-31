@@ -151,6 +151,19 @@ when intentionally returning to them.
   reached `Verify: OK`. Do not trust focused `CURRENT (0)` for this parked
   packet; next revival needs a mechanism that predicts the target `t2` load
   while preserving the delay-slot `sw v0,0(s0)`.
+  A 2026-05-31 follow-up high mechanism discovery found no landable source
+  patch. Current guarded C still has `levelName = level_name(...)`, the odd
+  `temp = (temp = gTrackSelectIDs[...])`, a second selected-track load into
+  `selectedTrack`, then common `cur->hubName = levelName`. A forced promoted
+  object reproduced the stale focused false positive: focused diff reported
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before
+  the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot
+  `sw v0,0(s0)`. Plausible source levers still collapse into rejected
+  selected-track temp/carrier lifetime, direct table condition, common-store
+  placement, duplicated branch-local store, condition/store comma ordering, or
+  register-hint families. Keep cooldown-routed until a distinct mechanism
+  predicts both target `t2` branch allocation and the target delay-slot store.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
