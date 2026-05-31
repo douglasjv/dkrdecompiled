@@ -1,23 +1,21 @@
 # Session Handoff
 
-- Generated at: 2026-05-31 19:13:00Z
+- Generated at: 2026-05-31 19:34:00Z
 - Branch: `master`
-- HEAD: `c6d52763`
-- Completed task: `func_80049794-discovery-cooldown`
-- Summary: Delegated high mechanism discovery for `func_80049794`; worker found no mechanism-ready source patch beyond saturated saved-FPR/wave-allocation families and recommended cooldown. No source edit was made.
+- HEAD: `c62a039c`
+- Completed task: `discovery-tooling-latest-audit-refresh`
+- Summary: Updated `tools/query_goal_state.py` so sidecar `latest_audit` extraction ignores archived `## Extracted ACTIVE Notes` history. This keeps cooldown routing pointed at current follow-up discovery evidence instead of stale extracted notes.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 994]` before closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 995]` before closeout edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
-- `python3 tools/query_goal_state.py tooling` now prints a `template_command` for each blocked live and parked candidate.
-- `python3 tools/query_goal_state.py packet --function func_80049794 --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
-- High worker result for `func_80049794`: no mechanism-ready source patch. Forced guarded object still lacks `$f20/$f21` saves, uses early zero `$f16`, and keeps wave scan as `v0` count with `a0` high bound and `v1` loop index; target needs `$f21/$f20` saves at `0x20/0x24(sp)`, early zero `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`.
-- `./diff.sh func_80049794 --compress-matching 2 --no-pager` reported stale `CURRENT (0)`, but forced objdump contradicted it.
-- Nonmatching full link did not reach CRC comparison due undefined `drm_vehicle_traction` and `drm_checksum_balloon`; restored matching-mode full gate reached `Verify: OK`.
+- `python3 tools/query_goal_state.py tooling` prints a `template_command` for each blocked live and parked candidate.
+- `python3 -m py_compile tools/query_goal_state.py` passed.
+- `python3 tools/query_goal_state.py discovery` now surfaces the 2026-05-31 follow-up high mechanism discovery as `func_80049794`'s `latest_audit` instead of older archived extracted history.
 - `python3 tools/query_goal_state.py packet --function func_80049794` reports `ready_for_probe: false`.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.

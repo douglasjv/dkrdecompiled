@@ -98,6 +98,7 @@ def has_recent_revival_cooldown(note: str) -> bool:
 
 
 def latest_audit_note_from_text(text: str) -> str:
+    text = text.split("## Extracted ACTIVE Notes", 1)[0]
     lines = text.splitlines()
     if len(lines) <= 1 and len(text) > 1000:
         matches = list(AUDIT_NOTE_RE.finditer(text))
