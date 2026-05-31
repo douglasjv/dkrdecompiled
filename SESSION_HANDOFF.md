@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `c22b82fb`
-- Completed task: `func_8008FF1C pointer-cell revival miss`
-- Summary: Added a compact parked-note excerpt to `query_goal_state.py packet --function <parked>`, taught revival/tooling routes to honor complete parked mechanism packets, tested the high-reasoning `func_8008FF1C` pointer-to-selected-track-cell packet in an isolated worker, then recorded and cleared the miss.
+- HEAD: `66b25e09`
+- Completed task: `func_8002B0F4 no-safe mechanism discovery`
+- Summary: Recorded the `func_8008FF1C` pointer-cell miss, then ran a high-reasoning `func_8002B0F4` discovery pass that found no safe ordinary-C mechanism packet for the `gCurrentLevelModel` hoist/spill drift.
 
 ## Validation
 
@@ -57,6 +57,12 @@
   to `0x60(sp)` at `0x5D94`, and reloads it at `0x5DA4`/`0x5FE8`; target
   reloads the global at each use around `0x2BDD4/0x2BDD8` and
   `0x2C020/0x2C024`.
+- Follow-up high discovery for `func_8002B0F4` found no safe ordinary-C packet:
+  remaining levers collapse into rejected local segment-index, local model
+  pointer, bottom-only segment-pointer split, assignment/order, texture/flag
+  carrier, pointer-arithmetic setup, condition/literal/local-width, or bottom
+  store-order families. Next useful work is a promoted-object slice audit
+  around the hoist/spill sites, not another source probe.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet`.
 - `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`
@@ -73,7 +79,8 @@
   a new distinct compiler-mechanism packet with target, evidence checked,
   rejected families, mechanism hypothesis, predicted asm movement, stop
   condition, and reasoning tier. The rejected `func_8008FF1C`
-  pointer-to-selected-track-cell packet should not be retried.
+  pointer-to-selected-track-cell packet and `func_8002B0F4`
+  model-load-lifetime probe families should not be retried.
 
 ## Ask The User Only If
 
@@ -87,4 +94,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted-object slice/tooling around the `gCurrentLevelModel` hoist/spill sites before any further source probe.
