@@ -2,29 +2,28 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `90fa9d0f`
-- Completed task: `func_80059208`
-- Summary: Rejected two `func_80059208` final-tail lifetime probes; source restored.
+- HEAD: `b9b4058f`
+- Completed task: `trackbg_render_flashy`
+- Summary: Worker rejected plain promoted-current `trackbg_render_flashy` baseline; source restored.
 
 ## Validation
 
-- Promoted `func_80059208` guard for a final-tail stepwise accumulation split.
-  Full verify failed with CRCs `0x24253B4A/0xE9DAC447`; relinked
-  `./diff.sh func_80059208 --compress-matching 2 --no-pager` regressed to
-  `CURRENT (1125)` and still missed the target `0x5a260` early `neg.s` /
-  object-load order.
-- Promoted `func_80059208` guard for an object-X-first final-tail lifetime
-  shape. Full verify failed with CRCs `0x53D141DF/0xB9D4B481`; relinked
-  focused diff stayed `CURRENT (870)` with identical final-tail FPR/load-order
-  drift.
-- Source was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
-  `Verify: OK`.
+- Worker promoted the existing guarded `trackbg_render_flashy` C body with the
+  current `scaledXSin`/`scaledXCos` first-ring shape intact. Full verify failed
+  with CRCs `0x93D338FF/0x03D9C8FE`; relinked
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported
+  `CURRENT (1808)`.
+- Key drift remained the early first-ring FPR allocation: target emits
+  `neg.s $f18,$f12`, while promoted C carries the negative-cos value in
+  current `$f16` and drifts in the two-wide ring setup around `0x28d5c`.
+- Worker restored source and restored validation reached `Verify: OK`.
 
 ## Blockers Or Unknowns
 
-- No setup blockers recorded. Do not repeat `func_80059208` final-tail
-  stepwise accumulation split or object-X-first lifetime spelling. Evidence is
-  in `research/tasks/func_80059208_evidence.md`.
+- No setup blockers recorded. Do not repeat plain `trackbg_render_flashy`
+  guarded-C promotion/current-shape probes, commuted `zPositions[3]`, or
+  first-ring `scaledXSin` reuse. Evidence is in
+  `research/tasks/trackbg_render_flashy_evidence.md`.
 
 ## Ask The User Only If
 
@@ -34,7 +33,7 @@
 
 ## Next Work Packet
 
-- Task: `pivot to another bounded live candidate or run discovery/tooling; func_80049794 is saturated for low-signal spelling probes and func_80059208 final-tail spelling-only probes are cooling down`
+- Task: `pivot to another bounded live candidate or run discovery/tooling; func_80049794 is saturated, func_80059208 final-tail spelling-only probes are cooling down, and trackbg_render_flashy plain/current first-ring probes are cooling down`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

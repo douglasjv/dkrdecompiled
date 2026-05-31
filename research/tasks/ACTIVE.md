@@ -19,6 +19,8 @@
 - Next hypothesis: prefer a high/xhigh isolated worker only if it can name a concrete saved-FPR/register-allocation mechanism with predicted prologue, frame, saved-register, or wave-scan movement. Otherwise pivot to another bounded candidate or run discovery/tooling to improve candidate ranking/cooldown behavior.
 - Alternate evidence checked: `research/tasks/func_80059208_evidence.md`.
 - Latest alternate-packet note: `func_80059208` remains active after two promoted 2026-05-31 final-tail lifetime probes. Stepwise final-tail accumulation regressed to `CURRENT (1125)` with CRCs `0x24253B4A/0xE9DAC447`; object-X-first lifetime stayed `CURRENT (870)` with CRCs `0x53D141DF/0xB9D4B481`. Both retained the final-tail FPR/load-order family around `0x5a260`; do not repeat final-tail spelling-only probes without distinct predicted asm movement.
+- Track evidence checked: `research/tasks/trackbg_render_flashy_evidence.md`.
+- Latest discovery/worker note: `trackbg_render_flashy` plain promoted-current baseline on 2026-05-31 failed with CRCs `0x93D338FF/0x03D9C8FE`; relinked focused diff was `CURRENT (1808)`. It still allocated the early negative-cos carrier as current `$f16` instead of target `$f18`; do not repeat plain promotion/current-shape or first-ring `scaledXSin` reuse probes.
 - Latest validation baseline: `python3 tools/check_active_surface.py` reported active surface ok on 2026-05-31 before the latest restored validation.
 
 ## Routing Rules
