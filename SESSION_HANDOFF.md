@@ -3,27 +3,22 @@
 - Generated at: 2026-05-31
 - Branch: `master`
 - HEAD: `b9b4058f`
-- Completed task: `trackbg_render_flashy`
-- Summary: Worker rejected plain promoted-current `trackbg_render_flashy` baseline; source restored.
+- Completed task: `cooldown-aware selector routing`
+- Summary: Updated selector tooling to demote active cooldown/saturated evidence ledgers and route to `func_8002B0F4`.
 
 ## Validation
 
-- Worker promoted the existing guarded `trackbg_render_flashy` C body with the
-  current `scaledXSin`/`scaledXCos` first-ring shape intact. Full verify failed
-  with CRCs `0x93D338FF/0x03D9C8FE`; relinked
-  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported
-  `CURRENT (1808)`.
-- Key drift remained the early first-ring FPR allocation: target emits
-  `neg.s $f18,$f12`, while promoted C carries the negative-cos value in
-  current `$f16` and drifts in the two-wide ring setup around `0x28d5c`.
-- Worker restored source and restored validation reached `Verify: OK`.
+- `python3 tools/query_goal_state.py next --compact --refresh` now reports
+  `cooldown_notes=3` and recommends `func_8002B0F4` in `src/tracks.c:2686`.
+- Cooldown sidecars currently demote `func_80049794`, `func_80059208`, and
+  `trackbg_render_flashy` without parking them.
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 
 ## Blockers Or Unknowns
 
-- No setup blockers recorded. Do not repeat plain `trackbg_render_flashy`
-  guarded-C promotion/current-shape probes, commuted `zPositions[3]`, or
-  first-ring `scaledXSin` reuse. Evidence is in
-  `research/tasks/trackbg_render_flashy_evidence.md`.
+- No setup blockers recorded. `func_80049794`, `func_80059208`, and
+  `trackbg_render_flashy` remain active but cooldown-demoted until a distinct
+  compiler-mechanism hypothesis is available.
 
 ## Ask The User Only If
 
@@ -33,7 +28,7 @@
 
 ## Next Work Packet
 
-- Task: `pivot to another bounded live candidate or run discovery/tooling; func_80049794 is saturated, func_80059208 final-tail spelling-only probes are cooling down, and trackbg_render_flashy plain/current first-ring probes are cooling down`
+- Task: `func_8002B0F4 distinct model-load pressure or segment/grid scheduling probe; avoid prior entry-guard, loop-bound, local-levelModel, texture-index carrier, pointer-arithmetic setup, bottom-store-order, and condition-order spellings`
 - Packet class: `matching_impl`
 - Packet status: `ready`
 - Reasoning tier: `medium`

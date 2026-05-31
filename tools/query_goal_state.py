@@ -11,9 +11,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOTS = [ROOT / "src", ROOT / "libultra" / "src"]
 EVIDENCE_PATH = ROOT / "research" / "tasks" / "PARKED.md"
+TASKS_ROOT = ROOT / "research" / "tasks"
 PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
+COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
 
 
 def rel(path: Path) -> str:
@@ -36,6 +38,17 @@ def exhausted_probe_notes() -> set[str]:
         if match:
             noted.add(match.group(1))
     return noted
+
+
+def cooldown_notes() -> dict[str, str]:
+    notes: dict[str, str] = {}
+    for path in sorted(TASKS_ROOT.glob("*_evidence.md")):
+        function = path.name.removesuffix("_evidence.md")
+        text = path.read_text(errors="replace")
+        match = COOLDOWN_RE.search(text)
+        if match:
+            notes[function] = rel(path)
+    return notes
 
 
 def scan_sources() -> list[dict[str, object]]:
@@ -80,6 +93,13 @@ def scan_sources() -> list[dict[str, object]]:
 def build_state(include_exhausted: bool = False) -> dict[str, object]:
     all_candidates = scan_sources()
     exhausted = exhausted_probe_notes()
+    cooldown = cooldown_notes()
+    for item in all_candidates:
+        function = str(item["function"])
+        if function in cooldown:
+            item["priority"] = int(item["priority"]) + 100
+            item["cooldown_evidence"] = cooldown[function]
+    all_candidates.sort(key=lambda item: (item["priority"], item["source"], item["line"]))
     candidates = [
         item for item in all_candidates if include_exhausted or item["function"] not in exhausted
     ]
@@ -93,12 +113,14 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
         "counts": {
             "candidates": len(candidates),
             "exhausted_notes": sum(1 for item in all_candidates if item["function"] in exhausted),
+            "cooldown_notes": sum(1 for item in all_candidates if item["function"] in cooldown),
             "skipped_exhausted": 0 if include_exhausted else sum(1 for item in all_candidates if item["function"] in exhausted),
             "source_global_asm": sum(1 for item in candidates if item["kind"] == "GLOBAL_ASM"),
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
         },
         "recommended_next": recommended,
         "exhausted_probe_notes": sorted(exhausted),
+        "cooldown_probe_notes": dict(sorted(cooldown.items())),
         "include_exhausted": include_exhausted,
         "candidates": candidates[:25],
     }
@@ -115,6 +137,7 @@ def print_compact(state: dict[str, object]) -> None:
         f"global_asm={counts['source_global_asm']} "
         f"guarded={counts['non_matching_or_equivalent']} "
         f"exhausted_notes={counts['exhausted_notes']} "
+        f"cooldown_notes={counts['cooldown_notes']} "
         f"skipped_exhausted={counts['skipped_exhausted']}"
     )
     recommended = state["recommended_next"]
@@ -128,6 +151,8 @@ def print_compact(state: dict[str, object]) -> None:
         f"source={recommended['source']}:{recommended['line']} "
         f"asm={recommended['asm']}"
     )
+    if "cooldown_evidence" in recommended:
+        print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']}")
 
 
 def main() -> int:

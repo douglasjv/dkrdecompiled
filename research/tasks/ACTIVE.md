@@ -12,7 +12,7 @@
 ## Current Route
 
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
-- Current selector result on 2026-05-31: 4 default-routable guarded candidates, 3 skipped exhausted notes, recommended next `func_80049794` in `src/racer.c:3381`, asm `asm/nonmatchings/racer/func_80049794.s`, kind `NON_EQUIVALENT`.
+- Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 3 cooldown ledgers, recommended next `func_8002B0F4` in `src/tracks.c:2686`, asm `asm/nonmatchings/tracks/func_8002B0F4.s`, kind `NON_EQUIVALENT`.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
 - Evidence path checked: `research/tasks/func_80049794_evidence.md`.
 - Latest do-not-repeat/cooldown note: avoid promotion-only/object-only `CURRENT (0)` acceptance, broad save/wave microvariants, opening `updateRateF` through `var_f20`, `register f32 var_f20`, carrier-width changes, and other spelling/literal/condition-order variants already recorded in the ledger.
@@ -21,6 +21,7 @@
 - Latest alternate-packet note: `func_80059208` remains active after two promoted 2026-05-31 final-tail lifetime probes. Stepwise final-tail accumulation regressed to `CURRENT (1125)` with CRCs `0x24253B4A/0xE9DAC447`; object-X-first lifetime stayed `CURRENT (870)` with CRCs `0x53D141DF/0xB9D4B481`. Both retained the final-tail FPR/load-order family around `0x5a260`; do not repeat final-tail spelling-only probes without distinct predicted asm movement.
 - Track evidence checked: `research/tasks/trackbg_render_flashy_evidence.md`.
 - Latest discovery/worker note: `trackbg_render_flashy` plain promoted-current baseline on 2026-05-31 failed with CRCs `0x93D338FF/0x03D9C8FE`; relinked focused diff was `CURRENT (1808)`. It still allocated the early negative-cos carrier as current `$f16` instead of target `$f18`; do not repeat plain promotion/current-shape or first-ring `scaledXSin` reuse probes.
+- Latest tooling note: `tools/query_goal_state.py` now demotes active candidates with sidecar evidence ledgers that explicitly say saturated, cooling down, pivot/discovery, or pivot to another candidate. This keeps those functions routable but routes fresh continuations to `func_8002B0F4` until a distinct hypothesis is recorded for a cooled-down candidate.
 - Latest validation baseline: `python3 tools/check_active_surface.py` reported active surface ok on 2026-05-31 before the latest restored validation.
 
 ## Routing Rules
