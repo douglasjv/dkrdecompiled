@@ -2,9 +2,9 @@
 
 - Generated at: 2026-05-31
 - Branch: `master`
-- HEAD: `3ba2fb88`
-- Completed task: `func_80049794 promoted object-slice audit`
-- Summary: Audited promoted `func_80049794`; focused diff reports `CURRENT (0)`, but the full gate cannot reach ROM CRC comparison because promoted `racer.c.o` does not provide the DRM helper symbols needed by restored `tracks.c.o`/`object_models.c.o`, and objdump still lacks the target saved-FPR/early-zero shape.
+- HEAD: `39a9f434`
+- Completed task: `func_8002B0F4 promoted object-slice audit`
+- Summary: Audited promoted `func_8002B0F4`; focused diff reports `CURRENT (0)`, but full ROM verify fails and objdump still shows the known stack-resident `gCurrentLevelModel` hoist/spill family.
 
 ## Validation
 
@@ -97,6 +97,16 @@
   `$f20/$f21` saves and early zero in `$f14`; matching `racer.c.o` was
   restored and final `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached
   `Verify: OK`.
+- Promoted object-slice tooling for `func_8002B0F4` confirmed another focused
+  false positive. Promoted `build/src/tracks.c.o` made
+  `./diff.sh func_8002B0F4 --compress-matching 2 --no-pager` report
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0x409BE602/0x659F1EB7`. Objdump still hoisted `gCurrentLevelModel` at
+  `0x5D7C/0x5D80`, spilled it to `0x60(sp)` at `0x5D94`, and reloaded the
+  stack-resident model at `0x5DA4`/`0x5FE8`; target reloads the global at
+  each use around `0x2BDD4/0x2BDD8` and `0x2C020/0x2C024`. Matching
+  `tracks.c.o` was restored and final `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next:
   discovery_packet`.
 - `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`
@@ -114,9 +124,10 @@
   rejected families, mechanism hypothesis, predicted asm movement, stop
   condition, and reasoning tier. The rejected `func_8008FF1C`
   pointer-to-selected-track-cell packet and `func_8002B0F4`
-  model-load-lifetime probe families should not be retried. For
-  `init_particle_buffers` or `func_80049794`, do not trust focused
-  `CURRENT (0)`; require a distinct saved-register mechanism before any
+  model-load-lifetime probe families should not be retried; `func_8002B0F4`
+  also needs a mechanism that removes the stack-resident model base before any
+  source probe. For `init_particle_buffers` or `func_80049794`, do not trust
+  focused `CURRENT (0)`; require a distinct saved-register mechanism before any
   further source probe. For
   `func_80017A18`, require a mechanism predicting target frame `0x120` and
   bitmask in `s6`.
@@ -133,4 +144,4 @@
 - Packet class: `routing_tooling`
 - Packet status: `no ready source packet`
 - Reasoning tier: `high` for delegated mechanism discovery
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do promoted object-slice/tooling before any further source probe; for `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`; for `func_80049794`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
+- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate>` reads to choose one bounded target. Before any probe or delegation, produce a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Do not reopen `func_8008FF1C` with pointer-to-selected-track-cell, direct-table branch, duplicated hub-name store, or temp-carrier families. For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)` acceptance or unsafe `volatile`/accessor/helper reshaping; require a mechanism that predicts target global reloads instead of the `0x60(sp)` model spill. For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target count registers and colour tag before any source probe; for `func_80017A18`, require a mechanism that predicts target frame `0x120` and bitmask in `s6`; for `func_80049794`, do not repeat promoted-object `CURRENT (0)` acceptance unless the audit method preserves racer-provided DRM helper symbols and reaches the full ROM verify gate.
