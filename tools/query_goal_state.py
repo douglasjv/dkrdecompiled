@@ -39,18 +39,30 @@ def function_from_asm(asm_path: str) -> str:
     return Path(asm_path).stem
 
 
-def exhausted_probe_notes() -> set[str]:
+def exhausted_probe_details() -> dict[str, str]:
     if not EVIDENCE_PATH.exists():
-        return set()
-    noted: set[str] = set()
+        return {}
+    notes: dict[str, str] = {}
+    current_function: str | None = None
+    current_lines: list[str] = []
     for line in EVIDENCE_PATH.read_text(errors="replace").splitlines():
         stripped = line.strip()
-        if not stripped.startswith("-"):
+        if stripped.startswith("-"):
+            if current_function and current_lines:
+                notes[current_function] = " ".join(" ".join(current_lines).split())
+            current_lines = [stripped.removeprefix("-").strip()]
+            match = EVIDENCE_FUNC_RE.search(stripped)
+            current_function = match.group(1) if match else None
             continue
-        match = EVIDENCE_FUNC_RE.search(stripped)
-        if match:
-            noted.add(match.group(1))
-    return noted
+        if current_function and stripped:
+            current_lines.append(stripped)
+    if current_function and current_lines:
+        notes[current_function] = " ".join(" ".join(current_lines).split())
+    return notes
+
+
+def exhausted_probe_notes() -> set[str]:
+    return set(exhausted_probe_details())
 
 
 def cooldown_notes() -> dict[str, str]:
@@ -182,6 +194,20 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
     return items
 
 
+def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
+    exhausted_details = exhausted_probe_details()
+    items: list[dict[str, object]] = []
+    for candidate in state["candidates"]:
+        function = str(candidate["function"])
+        if function not in exhausted_details:
+            continue
+        item = dict(candidate)
+        item["parked_note"] = exhausted_details[function]
+        items.append(item)
+    items.sort(key=lambda item: (int(item["priority"]), str(item["source"]), int(item["line"])))
+    return items
+
+
 def print_compact(state: dict[str, object]) -> None:
     print(f"repo: {state['repo']}")
     print(f"baseroms: {', '.join(state['baseroms']) if state['baseroms'] else 'missing'}")
@@ -233,16 +259,49 @@ def print_discovery(state: dict[str, object]) -> None:
         print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
 
 
+def print_revival(state: dict[str, object]) -> None:
+    print(f"repo: {state['repo']}")
+    items = revival_candidates(state)
+    if not items:
+        print("revival_next: none")
+        return
+    first = items[0]
+    print(
+        "revival_next: "
+        f"{first['function']} "
+        f"kind={first['kind']} "
+        f"source={first['source']}:{first['line']} "
+        f"asm={first['asm']}"
+    )
+    note = str(first["parked_note"])
+    if len(note) > 420:
+        note = f"{note[:417]}..."
+    print(f"revival_note: {note}")
+    for item in items[1:]:
+        print(
+            "parked_candidate: "
+            f"{item['function']} "
+            f"kind={item['kind']} "
+            f"source={item['source']}:{item['line']} "
+            f"asm={item['asm']}"
+        )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery"])
+    parser.add_argument("command", nargs="?", default="next", choices=["next", "list", "discovery", "revival"])
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--refresh", action="store_true", help="accepted for /goal parity; source scan is always fresh")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--include-exhausted", action="store_true", help="include functions with recorded exhausted probe notes")
     args = parser.parse_args()
 
-    state = build_state(include_exhausted=args.include_exhausted)
+    state = build_state(include_exhausted=args.include_exhausted or args.command == "revival")
+    if args.command == "revival" and not args.json:
+        print_revival(state)
+        return 0
+    if args.command == "revival":
+        state["revival_candidates"] = revival_candidates(state)
     if args.command == "discovery" and not args.json:
         print_discovery(state)
         return 0
