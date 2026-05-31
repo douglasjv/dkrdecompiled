@@ -139,6 +139,18 @@ when intentionally returning to them.
   selected-track load still emitted `lh v1,0(s1)` instead of target
   `lh t2,0(s1)`. Source was restored and final full verify passed; do not
   repeat isolated pointer-to-selected-track-cell lifetime probes.
+  A 2026-05-31 promoted object-slice audit reconfirmed the focused false
+  positive for the restored guarded body. Promoted `build/src/menu.c.o` with
+  `NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 AVOID_UB=1'`; focused
+  `./diff.sh func_8008FF1C --compress-matching 2 --no-pager` reported
+  `CURRENT (0)`, but full ROM verify failed with calculated CRCs
+  `0xA63BE13D/0xB86942B3`. Objdump still loaded selected track with
+  `lh v1,0(s1)` and branched on `v1`, not target `lh t2,0(s1)`/`t2`, so this
+  remains the same selected-track register-family gap. Matching
+  `build/src/menu.c.o` was restored and `gmake -j4 CROSS=tools/binutils/mips64-elf-`
+  reached `Verify: OK`. Do not trust focused `CURRENT (0)` for this parked
+  packet; next revival needs a mechanism that predicts the target `t2` load
+  while preserving the delay-slot `sw v0,0(s0)`.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
