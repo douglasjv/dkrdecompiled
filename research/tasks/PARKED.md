@@ -137,8 +137,17 @@ when intentionally returning to them.
   bitmask in `ra` instead of target `s6` and shifted stack locals by `0x10`.
   Fully inlining the edge-plane locals can reach the target frame size, but
   worsens scheduling/register allocation to score `8600`. `register s32
-  var_s6` did not move the bitmask into `s6`. Revisit with a narrow float-temp
-  lifetime and saved-register allocation hypothesis, not these same probes.
+  var_s6` did not move the bitmask into `s6`. A 2026-05-31 revival worker
+  removed dead `dx/dy/dz` and moved the bitmask carrier into outer-loop control
+  (`for (i = 0, var_s6 = 1; i < arg1; i++, var_s6 <<= 1)`) with the trailing
+  shift removed. Full verify failed with calculated CRCs
+  `0x00C3F5F7/0x853E5357`; relinked focused diff regressed to
+  `CURRENT (8555)`. Frame stayed `0x130` vs target `0x120`, the bitmask
+  carrier stayed in `ra` instead of target `s6`, and stack locals remained
+  shifted by `+0x10`. Source was restored and final full verify passed. Revisit
+  with a distinct float-temp lifetime or saved-register allocation hypothesis,
+  not these same dead-local, edge-plane-inline, register-hint, or loop-control
+  bitmask-carrier probes.
 
 - `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
   candidate compiles in matching mode when promoted, but focused object diff
