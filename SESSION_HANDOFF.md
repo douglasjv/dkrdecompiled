@@ -1,33 +1,23 @@
 # Session Handoff
 
-- Generated at: 2026-05-31 17:44:15Z
+- Generated at: 2026-05-31 18:11:00Z
 - Branch: `master`
-- HEAD: `b69edea2`
-- Completed task: `discovery-tooling-refresh`
-- Summary: Delegated high mechanism discovery for `func_8002B0F4`; worker found no safe source-level packet and recommended cooldown. No source edit was made.
+- HEAD: `28ab9bd9`
+- Completed task: `func_80059208-discovery-cooldown`
+- Summary: Delegated high mechanism discovery for `func_80059208`; worker found no safe source-level packet beyond saturated final-tail FPR/load-order families and recommended cooldown. No source edit was made.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 987]` before closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 992]` before closeout edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
-- `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling` and lists the four live cooldown candidates.
 - `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
 - `python3 tools/query_goal_state.py tooling` now prints a `template_command` for each blocked live and parked candidate.
-- `python3 tools/query_goal_state.py packet --function func_8002B0F4 --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
-- `python3 -m py_compile tools/query_goal_state.py` passed after the template-mode change.
-- `python3 tools/query_goal_state.py packet --function func_8002B0F4` reports `ready_for_probe: false`.
-- `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
-- `python3 tools/query_goal_state.py packet --function init_particle_buffers` reports `ready_for_probe: false`.
-- `python3 tools/query_goal_state.py packet --function init_particle_buffers --template` emitted a packet skeleton from `research/tasks/PARKED.md`.
-- `python3 tools/query_goal_state.py packet --function init_particle_buffers --json` emitted full parked context for the worker.
-- Existing completed worker reports were checked: `func_80049794` still has no safe high/xhigh mechanism beyond the close save-family plus wave-allocation gap, and the `func_80059208` ObjectTransform pointer lifetime miss is already recorded in `research/tasks/func_80059208_evidence.md`.
-- High worker result for `init_particle_buffers`: no unrejected C lever predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, line-count arithmetic in `s4`, and allocator colour tag `s2` while keeping frame `0x68`.
-- High worker result for `trackbg_render_flashy` recommended probing existing `var_f16` as a long-lived negative-cos carrier through first-ring and two-wide-ring sites.
-- Promoted that `trackbg_render_flashy` shape with `gmake -B NON_MATCHING=1 MATCHDEFS='NON_MATCHING=1 AVOID_UB=1' CROSS=tools/binutils/mips64-elf- build/src/tracks.c.o`.
-- Focused `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported stale `CURRENT (0)`, but full `gmake -j4 CROSS=tools/binutils/mips64-elf-` failed ROM verify with calculated CRCs `0xD783EB77/0xFFE69FF1`.
-- Restored `src/tracks.c` and matching-mode `build/src/tracks.c.o`; final `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
-- High worker result for `func_8002B0F4`: no unrejected C lever predicts removing the promoted stack-resident model base at `0x60(sp)`, replacing the texture lookup reload from `0x5FE8` with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserving the outer setup global reload around `0x2BDD4/0x2BDD8`.
+- `python3 tools/query_goal_state.py packet --function func_80059208 --template` emits a copy-ready packet skeleton populated with evidence, latest audit, and next-useful notes.
+- High worker result for `func_80059208`: no credible source-level prediction beyond saturated families. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`.
+- `python3 tools/query_goal_state.py packet --function func_80059208` reports `ready_for_probe: false`.
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
+- `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
 
 ## Blockers Or Unknowns
 
@@ -38,7 +28,8 @@
 - For `func_8008FF1C`, require a mechanism that predicts target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`; do not repeat direct-table/common-store/pointer-to-selected-track-cell/temp-carrier variants.
 - For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, first allocation arithmetic using line count in `s4` and point count in `fp`, and colour tag `s2` for every semitrans-grey allocation while frame stays `0x68`; do not repeat register hints, count aliases, triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, declaration/local-carrier probes, or focused-`CURRENT (0)` acceptance.
 - For `func_80017A18`, require a mechanism predicting target frame `0x120` and bitmask in `s6`; do not repeat dead-local, edge-plane-inline, register-hint, loop-control bitmask, or combined dead-vector/`sum2` accumulator families.
-- For `func_80049794` and `func_80059208`, do not trust focused `CURRENT (0)` or reopen without a distinct saved-FPR/wave-allocation or final-tail FPR/load-order mechanism.
+- For `func_80059208`, do not repeat final-tail temp/order spelling, direct object-dot, object-X-first lifetime, separate negated checkpoint temp, ObjectTransform late-position lifetime, literal/condition staging, vertical alias/literal staging, or promoted-object focused `CURRENT (0)` acceptance without full ROM verify. Require a distinct mechanism predicting the target final-tail FPR/load order.
+- For `func_80049794`, do not trust focused `CURRENT (0)` or reopen without a distinct saved-FPR/wave-allocation mechanism.
 
 ## Ask The User Only If
 
