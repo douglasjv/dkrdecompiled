@@ -118,3 +118,8 @@
   `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`. Parent sent the function-local
   packet contract; next heartbeat should read the child status before any
   further child creation.
+- Latest child status: in progress. Startup identified missing ignored
+  validation inputs (`baseroms`, `build`) and then branch creation hit a
+  git-ref write permission issue because refs live under the parent checkout
+  `.git` outside the child sandbox. Child requested permission to create its
+  branch; monitor that lane before any new child creation.
