@@ -168,3 +168,8 @@
   worktree. The real active goal already requires child threads to continue
   until byte-match/commit unless true setup/toolchain/assets/behavior blocker;
   no exposed goal-rewrite tool was available in this turn.
+- Pending worktree resolved to child thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa`; parent sent the corrected
+  function-local `func_8008FF1C` prompt. This is now the one active child lane:
+  do not start another lane, and do not treat checkpoint negative evidence as
+  closeout.

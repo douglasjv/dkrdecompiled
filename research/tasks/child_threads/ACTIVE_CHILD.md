@@ -10,8 +10,8 @@ replacement lane merely because a child records negative evidence.
 
 ## Active Lane
 
-- Status: pending child thread resolution; worktree branch exists.
-- Child thread id: pending
+- Status: active child thread; corrected function-local prompt sent.
+- Child thread id: `019ebe01-34c2-7310-b8aa-4aa5cff50faa`
 - Child worktree: `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`
 - Pending worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`
 - Target: `func_8008FF1C`
@@ -66,3 +66,4 @@ replacement lane merely because a child records negative evidence.
 - 2026-06-12: Pending worktree materialized at `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` with detached `HEAD` at parent commit `c55cce84`. No child thread id is available yet because the thread-list tool was unavailable; parent has not sent the function-local prompt. Keep this lane pending and do not start another child.
 - 2026-06-12: Parent corrected the child-lane contract after user feedback: no child should be closed out for negative evidence alone. Future follow-up prompts for the `func_8008FF1C` lane must require continued work until byte-match/commit or a true setup/toolchain/assets/behavior blocker.
 - 2026-06-12: Parent created child worktree branch `codex/func-8008ff1c-mechanism-discovery` in `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`. This is still the same single pending lane; no child prompt has been sent because no child thread id is available.
+- 2026-06-12: Pending worktree resolved to child thread `019ebe01-34c2-7310-b8aa-4aa5cff50faa` at `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`. Parent sent the corrected function-local `func_8008FF1C` prompt requiring continued work until byte-match/source commit or a true setup/toolchain/assets/unresolved-behavior blocker; durable negative evidence is only a checkpoint and must not close this lane.
