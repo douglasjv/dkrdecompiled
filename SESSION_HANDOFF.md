@@ -55,6 +55,13 @@
   `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` at
   `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`; initial child status
   was detached `HEAD` with no tracked diffs.
+- Parent heartbeat confirmed child remains active with no tracked or staged
+  changes. The child copied ignored validation inputs locally, reached
+  child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with
+  `Verify: OK`, reproduced the expected asm-backed focused `CURRENT (0)`, and
+  is forcing/promoting `build/src/tracks.c.o` under `NON_MATCHING=1` to inspect
+  first-ring FPR allocation drift before deciding whether a non-repeated source
+  mechanism exists.
 
 ## Blockers Or Unknowns
 
