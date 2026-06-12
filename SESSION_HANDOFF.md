@@ -3,8 +3,8 @@
 - Generated at: 2026-06-12 21:44:00Z
 - Branch: `master`
 - HEAD: `41833d38`
-- Completed task: `trackbg_render_flashy-child-launch`
-- Summary: Imported `func_80059208` child evidence, then created exactly one active child lane for `trackbg_render_flashy`.
+- Completed task: `trackbg_render_flashy-child-evidence-import`
+- Summary: Imported `trackbg_render_flashy` child evidence after the child committed a durable negative-evidence result.
 
 ## Validation
 
@@ -62,12 +62,19 @@
   is forcing/promoting `build/src/tracks.c.o` under `NON_MATCHING=1` to inspect
   first-ring FPR allocation drift before deciding whether a non-repeated source
   mechanism exists.
+- Child `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` committed evidence-only result
+  `6207d9c5` on `codex/trackbg-render-flashy-child`; parent imported it to
+  `research/tasks/child_threads/trackbg_render_flashy_2026-06-12_child_evidence.md`.
+  No source edit was made; child-local restored validation reached `Verify: OK`.
 
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
-- Exactly one new child lane is pending for `trackbg_render_flashy`; do not
-  start another child while it is active, dirty, or unresolved.
+- No child lane is active after the `trackbg_render_flashy` evidence import.
+- All four default-routable live candidates have fresh parent-child negative
+  evidence from 2026-06-12, so the next step is discovery/tooling before
+  another source-probe child unless a packet names a genuinely distinct
+  mechanism.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, ordinary local/order/carrier spellings, or `register` on `currentSegment`/`currentBoundingBox`/`currentBatch`. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
@@ -85,12 +92,14 @@
 
 ## Next Work Packet
 
-- Task: `monitor active child lane for trackbg_render_flashy`
-- Packet class: `parent_child_monitor`
-- Packet status: `one active child running`
+- Task: `run discovery/tooling after four live child evidence-only results`
+- Packet class: `parent_discovery_tooling`
+- Packet status: `no active child lane after evidence-only result`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Monitor child thread `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` in worktree
-  `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`. The child target is
-  `trackbg_render_flashy`; parent integration accepts only source-level C after
-  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then
-  `./score.sh -s`.
+- Step: Refresh `python3 tools/query_goal_state.py next --compact --refresh`,
+  `python3 tools/query_goal_state.py discovery`, and
+  `python3 tools/query_goal_state.py tooling`. Do not start another child from
+  the four default-routable live candidates unless a complete packet names a
+  genuinely distinct mechanism beyond the 2026-06-12 evidence. Parent
+  integration accepts only source-level C after `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.

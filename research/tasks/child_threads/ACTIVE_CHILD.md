@@ -5,7 +5,7 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: active child thread running.
+- Status: no active child lane; latest child evidence imported.
 - Child thread id: `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`
 - Child worktree: `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`
 - Pending worktree id: `local:52703ce1-0286-41c7-8dff-cedfcb241432`
@@ -17,6 +17,9 @@ Policy: exactly one active child lane at a time.
 - Predicted asm movement: target-like scaled cos in `$f12`, scaled sin in `$f2`, initial negative cos as `neg.s $f18,$f12`, delayed doubled-cos setup until after first-ring stack-temp stores, and no broad frame/stack-slot/downstream scheduling drift from the target `0x158` frame pattern.
 - Stop condition: continue until `trackbg_render_flashy` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
+- Child result: durable negative evidence committed on
+  `codex/trackbg-render-flashy-child` at `6207d9c5` and imported to
+  `research/tasks/child_threads/trackbg_render_flashy_2026-06-12_child_evidence.md`.
 
 ## Parent Gate
 
@@ -42,3 +45,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent refreshed tooling, skipped the three just-resolved child lanes (`func_8002B0F4`, `func_80049794`, `func_80059208`), and created the next single child lane for `trackbg_render_flashy` with pending worktree id `local:52703ce1-0286-41c7-8dff-cedfcb241432`.
 - 2026-06-12: Pending `trackbg_render_flashy` worktree resolved to child thread `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` at `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`. Initial child status was detached `HEAD` with no tracked diffs.
 - 2026-06-12: Parent confirmed child remains active with no tracked or staged changes. Child copied ignored validation inputs locally, reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK`, reproduced the expected asm-backed focused `CURRENT (0)`, and is now forcing/promoting `build/src/tracks.c.o` under `NON_MATCHING=1` to inspect the first-ring FPR allocation drift before deciding whether a non-repeated source mechanism exists.
+- 2026-06-12: Child committed durable negative evidence on `codex/trackbg-render-flashy-child` at `6207d9c5`; no source edit was made because every named first-ring FPR/source-lifetime mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note; all four default-routable live candidates now have 2026-06-12 parent-child negative evidence.

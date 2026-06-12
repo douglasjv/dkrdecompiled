@@ -27,12 +27,14 @@
   The child made no source edit because every named mechanism-ready source shape
   collapsed into already rejected evidence; restored child validation reached
   `Verify: OK`.
-- Active parent child lane after that import: `trackbg_render_flashy` high
-  mechanism discovery, child thread `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`,
-  worktree `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`, pending
-  worktree id `local:52703ce1-0286-41c7-8dff-cedfcb241432`. Do not start
-  another child until this lane lands exact-match source, records durable
-  negative evidence, or reports a true setup/toolchain/assets/behavior blocker.
+- Parent heartbeat lane on 2026-06-12: child `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`
+  for `trackbg_render_flashy` recorded durable negative evidence on branch
+  `codex/trackbg-render-flashy-child` at `6207d9c5`. Tracker:
+  `research/tasks/child_threads/ACTIVE_CHILD.md`; child evidence:
+  `research/tasks/child_threads/trackbg_render_flashy_2026-06-12_child_evidence.md`.
+  The child made no source edit because every named mechanism-ready source shape
+  collapsed into already rejected evidence; restored child validation reached
+  `Verify: OK`.
 - Parent heartbeat lane on 2026-06-12: child `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
   for `func_80059208` recorded durable negative evidence on branch
   `codex/func-80059208-child` at `e09f5f42`. Tracker:
@@ -64,13 +66,13 @@
   literal-staging, vertical-alias, and focused-`CURRENT (0)` families.
 - Track evidence checked: `research/tasks/trackbg_render_flashy_evidence.md`.
 - Latest discovery/worker note: `trackbg_render_flashy` remains active but saturated for early FPR spelling/probe families. A 2026-05-31 follow-up high mechanism discovery found no landable source-level packet; current promoted shape still uses `neg.s $f16,$f12` and immediate doubled-cos `$f18`, while target keeps `$f18` as the negative-cos carrier and delays doubled-cos setup until after first-ring stack-temp stores. Do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes.
-- Current child packet note: parent launched a high-reasoning child for
-  `trackbg_render_flashy` on 2026-06-12 with pending worktree id
-  `local:52703ce1-0286-41c7-8dff-cedfcb241432`. The child must either find a
-  genuinely distinct first-ring FPR/source-lifetime mechanism or commit durable
-  negative evidence; it must not repeat saturated negative-cos temp,
-  primary-cos carrier, first-ring pair scratch, store-order, `var_f16`,
-  doubled-cos/literal, volatile/alias, or focused-`CURRENT (0)` families.
+- Latest child note: a 2026-06-12 high child worker for
+  `trackbg_render_flashy` found no non-repeated mechanism-ready source patch
+  after rechecking the guarded first-ring body, target asm around `0x28D00`,
+  promoted guarded object, and evidence ledger. No source edit was made;
+  child-local restored validation reached `Verify: OK`. Do not reselect this
+  target without a truly distinct mechanism predicting `$f18` negative-cos
+  lifetime and delayed doubled-cos setup without frame/stack/scheduling drift.
 - Latest tooling note: `tools/query_goal_state.py tooling` gives the compact discovery/tooling route when all candidates are cooldown-routed. It lists every blocked live and parked candidate, evidence path, readiness gap, next useful note, latest promoted-object/focused-false-positive audit summary, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
 - Current packet evidence checked: `research/tasks/func_8002B0F4_evidence.md`.
 - Latest parent-child note: a 2026-06-12 high child worker reproduced the known
