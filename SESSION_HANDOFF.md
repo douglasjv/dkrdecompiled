@@ -103,8 +103,12 @@
   tools/check_active_surface.py` on 2026-06-12. No child lane was launched:
   every live and parked candidate remains cooldown-routed, and
   `research/tasks/MECHANISM_PACKETS.md` has no complete ready packet. Next
-  packet is to write a distinct compiler-mechanism packet with target,
-  evidence checked, rejected families, mechanism hypothesis, predicted asm
-  movement, stop condition, and reasoning tier before any source edits or child
-  delegation. Parent integration accepts only source-level C after `gmake -j4
+  parent tooling repair was to make `tools/query_goal_state.py` recognize
+  macro-form `GLOBAL_ASM("...")` while counting and excluding `src/hasm/`
+  handwritten assembly as `handwritten_asm_excluded=43`; refreshed routing
+  still reports `recommended_next: discovery`. Next packet is to write a
+  distinct compiler-mechanism packet with target, evidence checked, rejected
+  families, mechanism hypothesis, predicted asm movement, stop condition, and
+  reasoning tier before any source edits or child delegation. Parent
+  integration accepts only source-level C after `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.

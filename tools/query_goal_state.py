@@ -13,7 +13,7 @@ SOURCE_ROOTS = [ROOT / "src", ROOT / "libultra" / "src"]
 EVIDENCE_PATH = ROOT / "research" / "tasks" / "PARKED.md"
 MECHANISM_PACKETS_PATH = ROOT / "research" / "tasks" / "MECHANISM_PACKETS.md"
 TASKS_ROOT = ROOT / "research" / "tasks"
-PRAGMA_RE = re.compile(r'#pragma\s+GLOBAL_ASM\("([^"]+)"\)')
+GLOBAL_ASM_RE = re.compile(r'^\s*(?:#pragma\s+)?GLOBAL_ASM\("([^"]+)"\)')
 GUARD_RE = re.compile(r"^\s*#ifdef\s+(NON_MATCHING|NON_EQUIVALENT)\b")
 EVIDENCE_FUNC_RE = re.compile(r"`([A-Za-z_][A-Za-z0-9_]*)`")
 COOLDOWN_RE = re.compile(r"\b(cooling down|saturated|pivot/discovery|pivot to another)\b", re.IGNORECASE)
@@ -41,6 +41,7 @@ PACKET_FIELD_RE = re.compile(
     r"^-\s+(Target|Evidence checked|Rejected families|Mechanism hypothesis|Predicted asm movement|Stop condition|Reasoning tier):\s*(.*)$",
     re.IGNORECASE,
 )
+HANDWRITTEN_ASM_PREFIXES = ("src/hasm/",)
 
 
 def discovery_kind(note: str, has_next_useful: bool) -> str:
@@ -65,6 +66,11 @@ def rel(path: Path) -> str:
 
 def function_from_asm(asm_path: str) -> str:
     return Path(asm_path).stem
+
+
+def is_handwritten_asm_source(path: Path) -> bool:
+    source = rel(path)
+    return any(source.startswith(prefix) for prefix in HANDWRITTEN_ASM_PREFIXES)
 
 
 def exhausted_probe_details() -> dict[str, str]:
@@ -225,15 +231,15 @@ def scan_sources() -> list[dict[str, object]]:
                 guard_match = GUARD_RE.match(line)
                 if guard_match:
                     active_guard = (guard_match.group(1), index)
-                pragma_match = PRAGMA_RE.search(line)
-                if not pragma_match:
+                global_asm_match = GLOBAL_ASM_RE.search(line)
+                if not global_asm_match:
                     continue
-                asm_path = pragma_match.group(1)
+                if is_handwritten_asm_source(path):
+                    continue
+                asm_path = global_asm_match.group(1)
                 function = function_from_asm(asm_path)
                 guard = active_guard[0] if active_guard else "GLOBAL_ASM"
                 priority = 0
-                if rel(path).startswith("src/hasm/"):
-                    priority += 50
                 if rel(path).startswith("libultra/"):
                     priority += 20
                 if "asm/nonmatchings/" in asm_path:
@@ -252,8 +258,22 @@ def scan_sources() -> list[dict[str, object]]:
     return candidates
 
 
+def count_handwritten_asm_entries() -> int:
+    count = 0
+    for source_root in SOURCE_ROOTS:
+        if not source_root.exists():
+            continue
+        for path in sorted(source_root.rglob("*.c")):
+            if not is_handwritten_asm_source(path):
+                continue
+            text = path.read_text(errors="replace")
+            count += sum(1 for line in text.splitlines() if GLOBAL_ASM_RE.search(line))
+    return count
+
+
 def build_state(include_exhausted: bool = False) -> dict[str, object]:
     all_candidates = scan_sources()
+    handwritten_asm_entries = count_handwritten_asm_entries()
     exhausted_details = exhausted_probe_details()
     exhausted = set(exhausted_details)
     cooldown = cooldown_notes()
@@ -292,6 +312,7 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
             "skipped_exhausted": 0 if include_exhausted else sum(1 for item in all_candidates if item["function"] in exhausted),
             "source_global_asm": sum(1 for item in candidates if item["kind"] == "GLOBAL_ASM"),
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
+            "handwritten_asm_excluded": handwritten_asm_entries,
         },
         "recommended_next": recommended,
         "discovery_route": discovery_route,
@@ -466,6 +487,7 @@ def print_compact(state: dict[str, object]) -> None:
         f"candidates={counts['candidates']} "
         f"global_asm={counts['source_global_asm']} "
         f"guarded={counts['non_matching_or_equivalent']} "
+        f"handwritten_asm_excluded={counts['handwritten_asm_excluded']} "
         f"exhausted_notes={counts['exhausted_notes']} "
         f"cooldown_notes={counts['cooldown_notes']} "
         f"skipped_exhausted={counts['skipped_exhausted']}"
