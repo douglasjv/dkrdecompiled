@@ -5,7 +5,9 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: pending child worktree creation.
+- Status: active child thread running.
+- Child thread id: `019ebdcb-1042-7690-a495-cd91360dfc59`
+- Child worktree: `/Users/douglas/.codex/worktrees/c3a6/dkrdecompiled`
 - Pending worktree id: `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`
 - Target: `func_80049794`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
@@ -27,3 +29,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed child is still active with no tracked diffs. Child reported baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, then reproduced the known focused `CURRENT (0)` false positive in both promoted/nonmatching and matching-mode guarded diagnostics: `gCurrentLevelModel` still hoists before the segment loop, spills at `0x60(sp)`, and texture lookup reloads from that stack value. Child is now checking legitimate struct/type lifetime mechanisms before any source edit.
 - 2026-06-12: Child committed durable negative evidence on `codex/func-8002b0f4-child-evidence` at `b16fb37c`. The only tested source probe, `register` on `currentSegment`, `currentBoundingBox`, and `currentBatch`, produced no model-base spill movement and was reverted before restored `Verify: OK`.
 - 2026-06-12: Parent imported `func_8002B0F4` child evidence, refreshed routing, skipped reselecting `func_8002B0F4`, and created the next single child lane for `func_80049794` with pending worktree id `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`.
+- 2026-06-12: Pending `func_80049794` worktree resolved to child thread `019ebdcb-1042-7690-a495-cd91360dfc59` at `/Users/douglas/.codex/worktrees/c3a6/dkrdecompiled`.
