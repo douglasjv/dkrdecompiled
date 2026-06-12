@@ -5,9 +5,9 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: pending child worktree creation.
-- Child thread id: pending
-- Child worktree: pending
+- Status: active child thread running.
+- Child thread id: `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
+- Child worktree: `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`
 - Pending worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
 - Target: `func_80059208`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
@@ -35,3 +35,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed child reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK`, populated local `tools/asm-differ` for diagnostics, and is reading target asm plus recent evidence before deciding whether a source mechanism probe is justified. Child tracked worktree remains clean; no source probe or child commit yet.
 - 2026-06-12: Child committed durable negative evidence on `codex/func-80049794-child` at `1e9cccf5`; no source edit was made because every named mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note and can select the next single child lane after refreshed routing.
 - 2026-06-12: Parent refreshed tooling, skipped the two just-resolved child lanes (`func_8002B0F4`, `func_80049794`), and created the next single child lane for `func_80059208` with pending worktree id `local:809f1788-2fb6-4212-a1ed-6d73150c0652`.
+- 2026-06-12: Pending `func_80059208` worktree resolved to child thread `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9` at `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`. Initial child status was detached `HEAD` with no tracked diffs.

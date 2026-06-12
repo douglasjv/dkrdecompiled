@@ -28,10 +28,11 @@
   collapsed into already rejected evidence; restored child validation reached
   `Verify: OK`.
 - Active parent child lane after that import: `func_80059208` high mechanism
-  discovery, pending worktree id `local:809f1788-2fb6-4212-a1ed-6d73150c0652`.
-  Do not start another child until this lane lands exact-match source, records
-  durable negative evidence, or reports a true setup/toolchain/assets/behavior
-  blocker.
+  discovery, child thread `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`, worktree
+  `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`, pending worktree id
+  `local:809f1788-2fb6-4212-a1ed-6d73150c0652`. Do not start another child
+  until this lane lands exact-match source, records durable negative evidence,
+  or reports a true setup/toolchain/assets/behavior blocker.
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
 - Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.

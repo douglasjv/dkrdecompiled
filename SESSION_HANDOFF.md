@@ -29,6 +29,10 @@
   No source edit was made; child-local restored validation reached `Verify: OK`.
 - New pending child worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`;
   target `func_80059208`.
+- Pending worktree resolved to child thread
+  `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9` at
+  `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`; initial child status
+  was detached `HEAD` with no tracked diffs.
 
 ## Blockers Or Unknowns
 
@@ -54,10 +58,10 @@
 
 - Task: `monitor active child lane for func_80059208`
 - Packet class: `parent_child_monitor`
-- Packet status: `one pending child worktree`
+- Packet status: `one active child running`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Monitor pending child `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
-  until it resolves to a thread/worktree. The child target is
+- Step: Monitor child thread `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9` in worktree
+  `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`. The child target is
   `func_80059208`; parent integration accepts only source-level C after
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then
   `./score.sh -s`.
