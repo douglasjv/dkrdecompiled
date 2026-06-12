@@ -38,6 +38,13 @@
   child has copied ignored local validation inputs, reproduced expected
   asm-backed focused `CURRENT (0)`, and is still resolving local setup inputs
   before baseline `Verify: OK`; latest setup item was `tools/dkr_assets_tool`.
+- Later heartbeat confirmed child-local baseline validation reached `Verify: OK`
+  and `./score.sh -s` reported decomp `97.30%`, docs `65.47%`. The child
+  reported no distinct non-repeated final-tail mechanism and said it was
+  applying evidence-only closeout edits, but the child worktree still had no
+  tracked/staged changes and `HEAD` remained `c2ed22a3`; parent sent a
+  follow-up asking the child to finish the evidence commit or report the exact
+  blocker.
 
 ## Blockers Or Unknowns
 
