@@ -3,8 +3,8 @@
 - Generated at: 2026-06-12 21:44:00Z
 - Branch: `master`
 - HEAD: `41833d38`
-- Completed task: `func_80049794-child-evidence-import`
-- Summary: Imported `func_80049794` child evidence after the child committed a durable negative-evidence result.
+- Completed task: `func_80059208-child-launch`
+- Summary: Imported `func_80049794` child evidence, then created exactly one active child lane for `func_80059208`.
 
 ## Validation
 
@@ -27,12 +27,14 @@
   `1e9cccf5` on `codex/func-80049794-child`; parent imported it to
   `research/tasks/child_threads/func_80049794_2026-06-12_child_evidence.md`.
   No source edit was made; child-local restored validation reached `Verify: OK`.
+- New pending child worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`;
+  target `func_80059208`.
 
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
-- No child lane is active after the `func_80049794` evidence import; create
-  exactly one next child only after refreshed routing.
+- Exactly one new child lane is pending for `func_80059208`; do not start
+  another child while it is active, dirty, or unresolved.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, ordinary local/order/carrier spellings, or `register` on `currentSegment`/`currentBoundingBox`/`currentBatch`. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
@@ -50,13 +52,12 @@
 
 ## Next Work Packet
 
-- Task: `select next single child lane after func_80049794 evidence import`
-- Packet class: `parent_child_select`
-- Packet status: `no active child lane after evidence-only result`
+- Task: `monitor active child lane for func_80059208`
+- Packet class: `parent_child_monitor`
+- Packet status: `one pending child worktree`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Refresh `python3 tools/query_goal_state.py next --compact --refresh`
-  and `python3 tools/query_goal_state.py tooling`, then create exactly one
-  child for a bounded function/family that is not `func_8002B0F4` or
-  `func_80049794` unless the packet names a genuinely distinct mechanism.
-  Parent integration accepts only source-level C after `gmake -j4
-  CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
+- Step: Monitor pending child `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
+  until it resolves to a thread/worktree. The child target is
+  `func_80059208`; parent integration accepts only source-level C after
+  `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then
+  `./score.sh -s`.

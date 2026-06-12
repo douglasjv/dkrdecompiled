@@ -5,21 +5,18 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: no active child lane; latest child evidence imported.
-- Child thread id: `019ebdcb-1042-7690-a495-cd91360dfc59`
-- Child worktree: `/Users/douglas/.codex/worktrees/c3a6/dkrdecompiled`
-- Pending worktree id: `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`
-- Target: `func_80049794`
+- Status: pending child worktree creation.
+- Child thread id: pending
+- Child worktree: pending
+- Pending worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
+- Target: `func_80059208`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
-- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_80049794 --template`; `research/tasks/func_80049794_evidence.md` as required child reading.
-- Rejected families: plain promotion, object-only/focused-`CURRENT (0)` acceptance, `updateRateF`/`var_f20` carrier variants, `register var_f20`, carrier-width changes, branch/condition/literal spellings, wave bound/index locals, pointer-cursor wave variants, selected-wave carriers, declaration-order/register hints, early-zero carriers, first-speed carriers, and close save-family combinations that do not move wave allocation.
-- Mechanism hypothesis required: find a distinct compiler mechanism that couples the missing target saved-FPR family with a non-repeated wave allocation change.
-- Predicted asm movement: recover target frame `0xF8`, `$f21/$f20` prologue saves at `0x20/0x24(sp)`, early zero in `$f14`, and wave scan allocation with `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`.
-- Stop condition: continue until `func_80049794` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
+- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_80059208 --template`; `research/tasks/func_80059208_evidence.md` as required child reading.
+- Rejected families: splineIndex carrier-size tweaks, tempZ/distance carrier spelling, direct normalization division, checkpoint-dot-first and positive checkpoint-dot/subtract orderings, vertical `pad3` alias, explicit final-tail accumulation split, object-X-first lifetime, separate negated checkpoint temp, direct object-dot spelling, `ObjectTransform` late-position lifetime aliases, literal/condition staging, vertical alias/literal staging, promoted-object focused `CURRENT (0)` without full `Verify: OK`, and generic temp/order spelling.
+- Mechanism hypothesis required: find a distinct compiler/codegen mechanism for final-tail FPR allocation/load order that is not one of the rejected spelling families.
+- Predicted asm movement: object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, final combine as add-after-negation instead of subtract/late negation, and vertical tail through target `$f6/$f10` instead of current `$f10/$f6`.
+- Stop condition: continue until `func_80059208` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
-- Child result: durable negative evidence committed on `codex/func-80049794-child`
-  at `1e9cccf5` and imported to
-  `research/tasks/child_threads/func_80049794_2026-06-12_child_evidence.md`.
 
 ## Parent Gate
 
@@ -37,3 +34,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed child remains active and tracked-clean while mirroring ignored validation inputs locally. Child has copied local `build`, `assets`, `ver/dkr.us.v77.ld`, generated helper binaries, IDO recomp bundle, `.venv`, and is correcting the `tools/asm-processor` submodule layout before rerunning the baseline gate. No source probe or child commit yet.
 - 2026-06-12: Parent confirmed child reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK`, populated local `tools/asm-differ` for diagnostics, and is reading target asm plus recent evidence before deciding whether a source mechanism probe is justified. Child tracked worktree remains clean; no source probe or child commit yet.
 - 2026-06-12: Child committed durable negative evidence on `codex/func-80049794-child` at `1e9cccf5`; no source edit was made because every named mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note and can select the next single child lane after refreshed routing.
+- 2026-06-12: Parent refreshed tooling, skipped the two just-resolved child lanes (`func_8002B0F4`, `func_80049794`), and created the next single child lane for `func_80059208` with pending worktree id `local:809f1788-2fb6-4212-a1ed-6d73150c0652`.
