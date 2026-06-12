@@ -134,6 +134,12 @@
   `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`. The child must not edit source
   until it writes a complete packet or durable negative evidence; parent must
   not start a second lane while this pending lane is unresolved.
+- Active parent child lane on 2026-06-12: pending worktree
+  `local:eba7130a-8a87-4f41-b8bb-c8929da5329e` resolved to child thread
+  `019ebdf5-05f4-7b32-ba6f-03c838420dee` at
+  `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`. Parent sent the
+  `func_80049794` mechanism-discovery contract; monitor this one active lane
+  before any further child creation.
 - Latest parked revival note: a 2026-05-31 follow-up high mechanism discovery for `func_8008FF1C` found no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`. Do not repeat selected-track temp/carrier lifetime, direct table condition, common-store placement, duplicated branch-local store, condition/store comma ordering, register-hint, or focused-`CURRENT (0)` acceptance families.
 - Latest parked object tooling note: a promoted object-slice audit for `func_80017A18` reproduced another focused false positive. `./diff.sh func_80017A18 --compress-matching 2 --no-pager` reported `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xD0505FD8/0xE965F5F5`; the promoted object still used frame `0x138` instead of target `0x120` and initialized the bitmask in `ra` instead of target `s6`. Matching object was restored and full verify passed. Do not trust focused `CURRENT (0)` or reopen without a mechanism predicting target frame and bitmask saved-register allocation.
 - Latest parked revival probe: a 2026-05-31 combined `func_80017A18` dead-vector plus `sum2` edge-plane accumulator lifetime probe also produced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0x0E9F297C/0xBB221418`. Source and matching-mode object were restored. Do not repeat this combined dead-vector/edge-plane accumulator family; any revival still needs a distinct mechanism predicting target frame `0x120` and bitmask in `s6`.

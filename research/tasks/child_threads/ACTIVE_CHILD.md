@@ -5,9 +5,9 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: pending child worktree; no child thread id yet.
-- Child thread id: pending
-- Child worktree: pending
+- Status: active child thread; mechanism discovery prompt sent.
+- Child thread id: `019ebdf5-05f4-7b32-ba6f-03c838420dee`
+- Child worktree: `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`
 - Pending worktree id: `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`
 - Target: `func_80049794`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
@@ -52,3 +52,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed the child branch now exists as `codex/func-8002b0f4-mechanism-discovery` at `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`. Child worktree has no tracked diff and only local setup symlinks visible as untracked `.venv` and `assets`; no new committed mechanism packet or durable evidence exists yet. Child thread is still active and rerunning baseline after linking `.venv`.
 - 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-8002b0f4-mechanism-discovery` at `5b0b972b`. Parent imported `research/tasks/child_threads/func_8002B0F4_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK` after local ignored setup links. The child found no complete non-repeated mechanism packet for `func_8002B0F4`; this lane is resolved and no active child remains.
 - 2026-06-12: Parent created one pending high-reasoning child worktree for `func_80049794` mechanism discovery with pending worktree id `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`. No child thread id or worktree path exists yet. Parent must not start another child lane until this pending lane resolves and either commits a complete mechanism packet/evidence or reports a true setup/toolchain/assets/behavior blocker.
+- 2026-06-12: Pending worktree resolved to child thread `019ebdf5-05f4-7b32-ba6f-03c838420dee` at `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`. Parent sent the function-local `func_80049794` mechanism-discovery contract and must now monitor that one active child lane.
