@@ -5,9 +5,9 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: pending child worktree creation.
+- Status: pending child thread resolution; worktree exists.
 - Child thread id: pending
-- Child worktree: pending
+- Child worktree: `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`
 - Pending worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`
 - Target: `func_8008FF1C`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
@@ -58,3 +58,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-80049794-mechanism-discovery` at `1aa2b9d1`. Parent imported `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, score remained decomp `97.30%` and docs `65.47%`, and parent-routed source probing is not justified without a distinct mechanism that predicts the coupled saved-FPR and wave-allocation movement.
 - 2026-06-12: Parent ran discovery/tooling with no active child lane and repaired stale sidecar audit visibility for `func_80059208` and `trackbg_render_flashy`. Refreshed selector output now shows June 12 child evidence as latest audit for all four live cooldown candidates. No child was launched because no complete mechanism packet exists.
 - 2026-06-12: Parent refreshed `next`, `discovery`, `tooling`, `revival`, and `--include-exhausted` routing. All four live candidates remain cooldown-routed with June 12 child evidence, and parked candidates remain revival-cooldown. Parent selected the first parked revival candidate, `func_8008FF1C`, for exactly one high-reasoning mechanism-discovery child lane and created pending worktree id `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. No child thread id or worktree path exists yet; do not start another lane until this pending child resolves and commits a complete mechanism packet/evidence or reports a true blocker.
+- 2026-06-12: Pending worktree materialized at `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` with detached `HEAD` at parent commit `c55cce84`. No child thread id is available yet because the thread-list tool was unavailable; parent has not sent the function-local prompt. Keep this lane pending and do not start another child.

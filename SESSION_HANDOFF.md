@@ -158,3 +158,7 @@
   mechanism packet for target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`, or
   commit durable negative evidence. Do not create another child until this
   pending lane resolves.
+- Pending worktree path resolved to
+  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`, detached at parent
+  commit `c55cce84`. Child thread id is still pending; parent has not sent the
+  function-local prompt yet because the thread-list tool was unavailable.
