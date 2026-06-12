@@ -11,6 +11,13 @@
 
 ## Current Route
 
+- Parent heartbeat lane on 2026-06-12: exactly one active child is running for
+  `func_8002B0F4` mechanism discovery. Tracker:
+  `research/tasks/child_threads/ACTIVE_CHILD.md`; child thread:
+  `019ebdc1-2430-72e0-8e5d-5d066a74a404`; child worktree:
+  `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`. Do not start another
+  child until this lane lands exact-match source, records durable negative
+  evidence, or reports a true setup/toolchain/assets/behavior blocker.
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
 - Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.

@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-05-31 20:36:00Z
+- Generated at: 2026-06-12 20:54:00Z
 - Branch: `master`
 - HEAD: `b501a06a`
-- Completed task: `func_8008FF1C-revival-cooldown`
-- Summary: Delegated high mechanism discovery for parked `func_8008FF1C`; worker found no landable source patch beyond saturated selected-track temp/common-store/direct-table families and recommended cooldown. No source edit was made.
+- Completed task: `parent-child-lane-bootstrap`
+- Summary: Parent heartbeat tracker created and exactly one active high-reasoning child lane is running for `func_8002B0F4` mechanism discovery.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 998]` before closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 999]` before parent child-lane tracker closeout edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
@@ -20,10 +20,12 @@
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
+- Parent child-lane tracker created at `research/tasks/child_threads/ACTIVE_CHILD.md`; active child thread is `019ebdc1-2430-72e0-8e5d-5d066a74a404` in worktree `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`.
 
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
+- The active child lane is still running; parent should wait or send a precise follow-up only if the child stalls on setup. This is not a blocker.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, or ordinary local/order/carrier spellings. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the `0x5FE8` texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
@@ -41,8 +43,8 @@
 
 ## Next Work Packet
 
-- Task: `discovery/tooling for next mechanism-ready packet`
-- Packet class: `routing_tooling`
-- Packet status: `no ready source packet`
+- Task: `monitor active child lane for func_8002B0F4`
+- Packet class: `parent_child_monitor`
+- Packet status: `one active child running`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Run `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py tooling`, and targeted `packet --function <candidate> --template` reads to choose one bounded target. Before any source edit or delegation, fill in a complete packet with target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Accept only after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`.
+- Step: Monitor child thread `019ebdc1-2430-72e0-8e5d-5d066a74a404` in worktree `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`; tracker is `research/tasks/child_threads/ACTIVE_CHILD.md`. Do not start a second child while this lane is active, dirty, or unresolved. Parent integration accepts only source-level C after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
