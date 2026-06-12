@@ -5,7 +5,7 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: active child thread running.
+- Status: no active child lane; latest child evidence imported.
 - Child thread id: `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
 - Child worktree: `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`
 - Pending worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
@@ -17,6 +17,9 @@ Policy: exactly one active child lane at a time.
 - Predicted asm movement: object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, final combine as add-after-negation instead of subtract/late negation, and vertical tail through target `$f6/$f10` instead of current `$f10/$f6`.
 - Stop condition: continue until `func_80059208` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
+- Child result: durable negative evidence committed on
+  `codex/func-80059208-child` at `e09f5f42` and imported to
+  `research/tasks/child_threads/func_80059208_2026-06-12_child_evidence.md`.
 
 ## Parent Gate
 
@@ -38,3 +41,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Pending `func_80059208` worktree resolved to child thread `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9` at `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`. Initial child status was detached `HEAD` with no tracked diffs.
 - 2026-06-12: Parent confirmed child remains active on branch `codex/func-80059208-child` with no tracked diffs or staged changes. Child created the branch, copied ignored local validation inputs into the child worktree, reproduced expected asm-backed focused `CURRENT (0)`, and is still resolving ignored setup dependencies before child-local baseline `Verify: OK`; latest setup item was local `tools/dkr_assets_tool`.
 - 2026-06-12: Parent confirmed child reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK` and `./score.sh -s` reported decomp `97.30%`, docs `65.47%`. Child reported no distinct non-repeated final-tail mechanism and said it was applying evidence-only closeout edits, but the child worktree still had no tracked/staged changes and `HEAD` remained `c2ed22a3`; parent sent a follow-up asking the child to finish the evidence commit or report the exact blocker.
+- 2026-06-12: Child committed durable negative evidence on `codex/func-80059208-child` at `e09f5f42`; no source edit was made because every named final-tail mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note and can select the next single child lane after refreshed routing.

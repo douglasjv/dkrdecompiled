@@ -27,12 +27,14 @@
   The child made no source edit because every named mechanism-ready source shape
   collapsed into already rejected evidence; restored child validation reached
   `Verify: OK`.
-- Active parent child lane after that import: `func_80059208` high mechanism
-  discovery, child thread `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`, worktree
-  `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`, pending worktree id
-  `local:809f1788-2fb6-4212-a1ed-6d73150c0652`. Do not start another child
-  until this lane lands exact-match source, records durable negative evidence,
-  or reports a true setup/toolchain/assets/behavior blocker.
+- Parent heartbeat lane on 2026-06-12: child `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
+  for `func_80059208` recorded durable negative evidence on branch
+  `codex/func-80059208-child` at `e09f5f42`. Tracker:
+  `research/tasks/child_threads/ACTIVE_CHILD.md`; child evidence:
+  `research/tasks/child_threads/func_80059208_2026-06-12_child_evidence.md`.
+  The child made no source edit because every named mechanism-ready source shape
+  collapsed into already rejected evidence; restored child validation reached
+  `Verify: OK`.
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
 - Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
@@ -46,12 +48,14 @@
 - Next hypothesis: keep cooldown-routed unless a high/xhigh isolated worker can name a new mechanism that couples the close save-family with non-repeated wave allocation movement. Otherwise pivot to another bounded candidate or run discovery/tooling to improve candidate ranking/cooldown behavior; do not repeat promoted-object `CURRENT (0)` acceptance for `func_80049794` unless the audit method preserves the DRM helper symbols and reaches the full ROM verify gate.
 - Alternate evidence checked: `research/tasks/func_80059208_evidence.md`.
 - Latest alternate-packet note: `func_80059208` remains active but saturated for final-tail pointer/FPR lifetime probes. A 2026-05-31 follow-up high mechanism discovery found no safe source-level packet beyond already rejected families and recommended cooldown. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`. Stop if the proposal only changes temp/order spelling, object-dot spelling, pointer lifetime, literal staging, vertical aliases, or produces focused `CURRENT (0)` without full ROM `Verify: OK`.
-- Current child packet note: parent launched a high-reasoning child for
-  `func_80059208` on 2026-06-12 with pending worktree id
-  `local:809f1788-2fb6-4212-a1ed-6d73150c0652`. The child must either find a
-  genuinely distinct final-tail FPR/load-order mechanism or commit durable
-  negative evidence; it must not repeat saturated temp/order, object-dot,
-  pointer-lifetime, literal, vertical-alias, or focused-`CURRENT (0)` families.
+- Latest child note: a 2026-06-12 high child worker for `func_80059208`
+  found no non-repeated mechanism-ready source patch after rechecking the
+  evidence ledger, selector template, current guarded C tail, and target asm
+  tail around `0x5A22C-0x5A31C`. No source edit was made; child-local restored
+  validation reached `Verify: OK`. Do not reselect `func_80059208` without a
+  truly distinct mechanism predicting the required final-tail FPR/load-order
+  movement beyond the recorded temp/order, object-dot, pointer-lifetime,
+  literal-staging, vertical-alias, and focused-`CURRENT (0)` families.
 - Track evidence checked: `research/tasks/trackbg_render_flashy_evidence.md`.
 - Latest discovery/worker note: `trackbg_render_flashy` remains active but saturated for early FPR spelling/probe families. A 2026-05-31 follow-up high mechanism discovery found no landable source-level packet; current promoted shape still uses `neg.s $f16,$f12` and immediate doubled-cos `$f18`, while target keeps `$f18` as the negative-cos carrier and delays doubled-cos setup until after first-ring stack-temp stores. Do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes.
 - Latest tooling note: `tools/query_goal_state.py tooling` gives the compact discovery/tooling route when all candidates are cooldown-routed. It lists every blocked live and parked candidate, evidence path, readiness gap, next useful note, latest promoted-object/focused-false-positive audit summary, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
