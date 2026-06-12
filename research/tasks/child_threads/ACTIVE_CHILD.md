@@ -5,7 +5,7 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: active child thread running.
+- Status: no active child lane; latest child evidence imported.
 - Child thread id: `019ebdcb-1042-7690-a495-cd91360dfc59`
 - Child worktree: `/Users/douglas/.codex/worktrees/c3a6/dkrdecompiled`
 - Pending worktree id: `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`
@@ -17,6 +17,9 @@ Policy: exactly one active child lane at a time.
 - Predicted asm movement: recover target frame `0xF8`, `$f21/$f20` prologue saves at `0x20/0x24(sp)`, early zero in `$f14`, and wave scan allocation with `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`.
 - Stop condition: continue until `func_80049794` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
+- Child result: durable negative evidence committed on `codex/func-80049794-child`
+  at `1e9cccf5` and imported to
+  `research/tasks/child_threads/func_80049794_2026-06-12_child_evidence.md`.
 
 ## Parent Gate
 
@@ -33,3 +36,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed child remains active on branch `codex/func-80049794-child` with only untracked local `build` setup visible. Parent sent a follow-up to keep generated outputs local to the child worktree, avoid symlinking `build` back to the parent checkout, keep setup inputs unstaged, and require baseline child-local `Verify: OK` before any source probe.
 - 2026-06-12: Parent confirmed child remains active and tracked-clean while mirroring ignored validation inputs locally. Child has copied local `build`, `assets`, `ver/dkr.us.v77.ld`, generated helper binaries, IDO recomp bundle, `.venv`, and is correcting the `tools/asm-processor` submodule layout before rerunning the baseline gate. No source probe or child commit yet.
 - 2026-06-12: Parent confirmed child reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK`, populated local `tools/asm-differ` for diagnostics, and is reading target asm plus recent evidence before deciding whether a source mechanism probe is justified. Child tracked worktree remains clean; no source probe or child commit yet.
+- 2026-06-12: Child committed durable negative evidence on `codex/func-80049794-child` at `1e9cccf5`; no source edit was made because every named mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note and can select the next single child lane after refreshed routing.

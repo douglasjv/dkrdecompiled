@@ -19,17 +19,24 @@
   The only new source probe, `register` on `currentSegment`,
   `currentBoundingBox`, and `currentBatch`, produced no model-base spill
   movement and was reverted before restored `Verify: OK`.
-- Active parent child lane after that import: `func_80049794` high mechanism
-  discovery, child thread `019ebdcb-1042-7690-a495-cd91360dfc59`, worktree
-  `/Users/douglas/.codex/worktrees/c3a6/dkrdecompiled`, pending worktree id
-  `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`. Do not start another child
-  until this lane lands exact-match source, records durable negative evidence,
-  or reports a true setup/toolchain/assets/behavior blocker.
+- Parent heartbeat lane on 2026-06-12: child `019ebdcb-1042-7690-a495-cd91360dfc59`
+  for `func_80049794` recorded durable negative evidence on branch
+  `codex/func-80049794-child` at `1e9cccf5`. Tracker:
+  `research/tasks/child_threads/ACTIVE_CHILD.md`; child evidence:
+  `research/tasks/child_threads/func_80049794_2026-06-12_child_evidence.md`.
+  The child made no source edit because every named mechanism-ready source shape
+  collapsed into already rejected evidence; restored child validation reached
+  `Verify: OK`.
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
 - Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
 - Evidence path checked: `research/tasks/func_80049794_evidence.md`.
 - Latest do-not-repeat/cooldown note: a 2026-05-31 follow-up high mechanism discovery for `func_80049794` found no mechanism-ready source patch. Forced guarded object still lacks `$f20/$f21` saves, uses early zero `$f16`, and keeps wave scan as `v0` count with `a0` high bound and `v1` loop index; target needs `$f21/$f20` saves at `0x20/0x24(sp)`, early zero `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`. Focused `CURRENT (0)` was contradicted by objdump and treated as stale; nonmatching full link still fails before CRC on racer-provided DRM helper symbols. Matching object was restored and full verify passed.
+- Latest parent-child note: a 2026-06-12 high child worker for `func_80049794`
+  found no non-repeated mechanism-ready source patch and committed evidence-only
+  result `1e9cccf5`. Do not reselect `func_80049794` without a truly distinct
+  mechanism predicting both target saved-FPR allocation and the wave scan
+  `v1` high bound / `a0` loop index / `v0` pointer-cursor movement.
 - Next hypothesis: keep cooldown-routed unless a high/xhigh isolated worker can name a new mechanism that couples the close save-family with non-repeated wave allocation movement. Otherwise pivot to another bounded candidate or run discovery/tooling to improve candidate ranking/cooldown behavior; do not repeat promoted-object `CURRENT (0)` acceptance for `func_80049794` unless the audit method preserves the DRM helper symbols and reaches the full ROM verify gate.
 - Alternate evidence checked: `research/tasks/func_80059208_evidence.md`.
 - Latest alternate-packet note: `func_80059208` remains active but saturated for final-tail pointer/FPR lifetime probes. A 2026-05-31 follow-up high mechanism discovery found no safe source-level packet beyond already rejected families and recommended cooldown. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`. Stop if the proposal only changes temp/order spelling, object-dot spelling, pointer lifetime, literal staging, vertical aliases, or produces focused `CURRENT (0)` without full ROM `Verify: OK`.
