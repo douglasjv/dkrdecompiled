@@ -123,3 +123,7 @@
   git-ref write permission issue because refs live under the parent checkout
   `.git` outside the child sandbox. Child requested permission to create its
   branch; monitor that lane before any new child creation.
+- Parent worktree check: child is now on branch
+  `codex/func-8002b0f4-mechanism-discovery` with no tracked diff and only
+  untracked local setup symlinks `.venv` and `assets`. No new child commit or
+  mechanism/evidence artifact has landed yet.
