@@ -5,7 +5,7 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: active child thread running.
+- Status: evidence recorded; no mechanism-ready source patch found in this child lane.
 - Child thread id: `019ebdc1-2430-72e0-8e5d-5d066a74a404`
 - Child worktree: `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`
 - Pending worktree id: `local:95869d83-251a-4954-9fbe-510fcd4d1b51`
@@ -17,6 +17,9 @@ Policy: exactly one active child lane at a time.
 - Predicted asm movement: target-like `lui/lw gCurrentLevelModel` at the texture lookup site near `0x2C020/0x2C024`, no stack-resident model-base reload from `0x60(sp)`, and no regression of the outer setup reload near `0x2BDD4/0x2BDD8`.
 - Stop condition: continue until `func_8002B0F4` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
+- Child branch: `codex/func-8002b0f4-child-evidence`
+- Child commit: `b16fb37c`
+- Child evidence: `research/tasks/child_threads/func_8002B0F4_2026-06-12_child_evidence.md`
 
 ## Parent Gate
 
@@ -27,3 +30,4 @@ Policy: exactly one active child lane at a time.
 
 - 2026-06-12: Parent confirmed child thread remains active. Child worktree had no tracked diffs, only local setup symlinks/untracked inherited tracker files; parent sent a follow-up to keep generated setup unstaged, use `--ignore-submodules=all` for status if needed, restore/avoid status-breaking setup where possible, and reach baseline `Verify: OK` before source probes.
 - 2026-06-12: Parent confirmed child is still active with no tracked diffs. Child reported baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, then reproduced the known focused `CURRENT (0)` false positive in both promoted/nonmatching and matching-mode guarded diagnostics: `gCurrentLevelModel` still hoists before the segment loop, spills at `0x60(sp)`, and texture lookup reloads from that stack value. Child is now checking legitimate struct/type lifetime mechanisms before any source edit.
+- 2026-06-12: Child committed durable negative evidence on `codex/func-8002b0f4-child-evidence` at `b16fb37c`. The only tested source probe, `register` on `currentSegment`, `currentBoundingBox`, and `currentBatch`, produced no model-base spill movement and was reverted before restored `Verify: OK`.

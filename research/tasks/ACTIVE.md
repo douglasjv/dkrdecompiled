@@ -11,13 +11,14 @@
 
 ## Current Route
 
-- Parent heartbeat lane on 2026-06-12: exactly one active child is running for
-  `func_8002B0F4` mechanism discovery. Tracker:
-  `research/tasks/child_threads/ACTIVE_CHILD.md`; child thread:
-  `019ebdc1-2430-72e0-8e5d-5d066a74a404`; child worktree:
-  `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`. Do not start another
-  child until this lane lands exact-match source, records durable negative
-  evidence, or reports a true setup/toolchain/assets/behavior blocker.
+- Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
+  for `func_8002B0F4` recorded durable negative evidence on branch
+  `codex/func-8002b0f4-child-evidence` at `b16fb37c`. Tracker:
+  `research/tasks/child_threads/ACTIVE_CHILD.md`; child evidence:
+  `research/tasks/child_threads/func_8002B0F4_2026-06-12_child_evidence.md`.
+  The only new source probe, `register` on `currentSegment`,
+  `currentBoundingBox`, and `currentBatch`, produced no model-base spill
+  movement and was reverted before restored `Verify: OK`.
 - First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
 - Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
@@ -30,6 +31,13 @@
 - Latest discovery/worker note: `trackbg_render_flashy` remains active but saturated for early FPR spelling/probe families. A 2026-05-31 follow-up high mechanism discovery found no landable source-level packet; current promoted shape still uses `neg.s $f16,$f12` and immediate doubled-cos `$f18`, while target keeps `$f18` as the negative-cos carrier and delays doubled-cos setup until after first-ring stack-temp stores. Do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes.
 - Latest tooling note: `tools/query_goal_state.py tooling` gives the compact discovery/tooling route when all candidates are cooldown-routed. It lists every blocked live and parked candidate, evidence path, readiness gap, next useful note, latest promoted-object/focused-false-positive audit summary, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
 - Current packet evidence checked: `research/tasks/func_8002B0F4_evidence.md`.
+- Latest parent-child note: a 2026-06-12 high child worker reproduced the known
+  focused `CURRENT (0)` false positive under matching-mode guarded diagnostics:
+  `gCurrentLevelModel` still hoisted before the segment loop, spilled at
+  `0x60(sp)`, and texture lookup reloaded from that stack value. A bounded
+  `register` pointer-local probe for `currentSegment`, `currentBoundingBox`,
+  and `currentBatch` produced no movement and was reverted. Restored full
+  validation reached `Verify: OK`; no mechanism-ready source patch was found.
 - Latest selector-packet note: `func_8002B0F4` remains active but saturated for model-load lifetime probes. A 2026-05-31 high mechanism-discovery worker found no safe source packet: current C already uses direct `gCurrentLevelModel` expressions, but IDO still CSE/hoists and spills the model base. A valid future packet must remove promoted stack-resident model base `0x60(sp)`, replace the texture lookup reload from `0x5FE8` with an in-loop global `lui/lw gCurrentLevelModel` like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`. Do not trust focused `CURRENT (0)`, repeat promoted-object-slice auditing, or repeat local segment-index, local model pointer, bottom-only segment-pointer split, assignment/order, texture/flag carrier, pointer-arithmetic setup, condition/literal/local-width, bottom store-order, unsafe `volatile`, accessor, artificial aliasing, or helper reshaping probes.
 - Current routing status after this note: all 4 default-routable guarded candidates have cooldown sidecars and all 3 parked candidates have recent revival cooldown. `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`; `research/tasks/MECHANISM_PACKETS.md` has no ready packets.
 - Discovery selector: `python3 tools/query_goal_state.py discovery` still reports `discovery_next: tooling` for live cooldown candidates. `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and lists blocked live/parked candidates. `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`.

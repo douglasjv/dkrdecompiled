@@ -1,14 +1,14 @@
 # Session Handoff
 
-- Generated at: 2026-06-12 20:54:00Z
+- Generated at: 2026-06-12 21:44:00Z
 - Branch: `master`
-- HEAD: `b501a06a`
-- Completed task: `parent-child-lane-bootstrap`
-- Summary: Parent heartbeat tracker created and exactly one active high-reasoning child lane is running for `func_8002B0F4` mechanism discovery.
+- HEAD: `6f0e6e05`
+- Completed task: `func_8002B0F4-child-negative-evidence`
+- Summary: Imported child evidence from `codex/func-8002b0f4-child-evidence` commit `b16fb37c`; no source-level mechanism-ready patch was found.
 
 ## Validation
 
-- `git status --short --branch` reported `## master...origin/master [ahead 999]` before parent child-lane tracker closeout edits.
+- `git status --short --branch` reported `## master...origin/master [ahead 1002]` before child evidence import edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
 - `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
@@ -20,14 +20,15 @@
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
-- Parent child-lane tracker created at `research/tasks/child_threads/ACTIVE_CHILD.md`; active child thread is `019ebdc1-2430-72e0-8e5d-5d066a74a404` in worktree `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`.
+- Parent imported child evidence from `codex/func-8002b0f4-child-evidence` commit `b16fb37c` into `research/tasks/child_threads/func_8002B0F4_2026-06-12_child_evidence.md`.
+- Child restored validation reached `Verify: OK`; the tested `register` probe on `currentSegment`, `currentBoundingBox`, and `currentBatch` produced no model-base spill movement and was reverted.
 
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
-- The active child lane is still running; parent should wait or send a precise follow-up only if the child stalls on setup. This is not a blocker.
+- No active child lane remains after the imported `func_8002B0F4` negative evidence; select exactly one next child only after refreshing routing.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
-- For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, or ordinary local/order/carrier spellings. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the `0x5FE8` texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
+- For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, ordinary local/order/carrier spellings, or `register` on `currentSegment`/`currentBoundingBox`/`currentBatch`. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
 - For `func_8008FF1C`, require a mechanism that predicts target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`; do not repeat direct-table/common-store/pointer-to-selected-track-cell/temp-carrier variants.
 - For `init_particle_buffers`, require a new saved-register allocation mechanism that predicts target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, first allocation arithmetic using line count in `s4` and point count in `fp`, and colour tag `s2` for every semitrans-grey allocation while frame stays `0x68`; do not repeat register hints, count aliases, triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, declaration/local-carrier probes, or focused-`CURRENT (0)` acceptance.
@@ -43,8 +44,8 @@
 
 ## Next Work Packet
 
-- Task: `monitor active child lane for func_8002B0F4`
-- Packet class: `parent_child_monitor`
-- Packet status: `one active child running`
+- Task: `select next single child lane`
+- Packet class: `routing_tooling`
+- Packet status: `func_8002B0F4 child resolved negative-only`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Monitor child thread `019ebdc1-2430-72e0-8e5d-5d066a74a404` in worktree `/Users/douglas/.codex/worktrees/6f37/dkrdecompiled`; tracker is `research/tasks/child_threads/ACTIVE_CHILD.md`. Do not start a second child while this lane is active, dirty, or unresolved. Parent integration accepts only source-level C after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
+- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py tooling`, and the selected candidate packet template. Create exactly one new high-reasoning child only if the packet names target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Parent integration accepts only source-level C after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
