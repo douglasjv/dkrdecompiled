@@ -5,21 +5,19 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: no active child lane; latest child evidence imported.
-- Child thread id: `019ebdec-ac64-7131-9914-2faa3abe3568`
-- Child worktree: `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`
-- Pending worktree id: `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`
-- Target: `func_8002B0F4`
+- Status: pending child worktree; no child thread id yet.
+- Child thread id: pending
+- Child worktree: pending
+- Pending worktree id: `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`
+- Target: `func_80049794`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
-- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_8002B0F4 --template`; `research/tasks/func_8002B0F4_evidence.md` as required child reading.
-- Rejected families: local segment-index lifetime variants, local model pointer, bottom-only segment-pointer lifetime split, assignment/order changes, texture/flag carriers, pointer-arithmetic setup, condition/literal/local-width spellings, bottom store-order probes, unsafe `volatile`, accessor calls, artificial aliasing side effects, helper reshaping, promoted-object slice audits, and focused `CURRENT (0)` acceptance without full ROM `Verify: OK`.
-- Mechanism hypothesis required: find a distinct model-load lifetime/register-allocation mechanism that predicts single-use `gCurrentLevelModel` global reloads at outer setup and batch-loop texture lookup.
-- Predicted asm movement: remove the promoted stack-resident model base at `0x60(sp)`, preserve target-like outer setup reload around `0x2BDD4/0x2BDD8`, and replace the texture lookup reload from promoted `0x5FE8` with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`.
+- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_80049794 --template`; `research/tasks/func_80049794_evidence.md` as required child reading.
+- Rejected families: plain promotion, object-only/focused `CURRENT (0)` acceptance, `updateRateF`/`var_f20` carrier variants, `register var_f20`, carrier-width changes, branch/condition/literal spellings, wave bound/index locals, pointer-cursor wave variants, selected-wave carriers, declaration-order/register hints, early-zero carriers, first-speed carriers, trick-input completion spellings, boost-duration literal spellings, and close save-family combinations that do not also move wave allocation.
+- Mechanism hypothesis required: find a distinct compiler mechanism that couples the missing target saved-FPR family with a non-repeated wave allocation change.
+- Predicted asm movement: recover target frame `0xF8`, `$f21/$f20` saves at `0x20/0x24(sp)`, early zero in `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`, without broad frame or scheduling regressions.
 - Stop condition: write a complete mechanism packet in `research/tasks/MECHANISM_PACKETS.md` or durable negative evidence proving no non-repeated mechanism-ready source packet exists; do not make source edits in the child until the mechanism packet is complete and parent-routed.
 - Reasoning tier: high.
-- Child result: durable negative evidence committed on
-  `codex/func-8002b0f4-mechanism-discovery` at `5b0b972b` and imported to
-  `research/tasks/child_threads/func_8002B0F4_2026-06-12_mechanism_discovery.md`.
+- Child result: pending.
 
 ## Parent Gate
 
@@ -53,3 +51,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent read child status. Child is in progress, set/checked its child goal, ran required startup far enough to identify missing ignored validation inputs (`baseroms`, `build`), then hit a setup permission issue creating its child branch because git refs live under the parent checkout `.git` outside the child sandbox. Child requested git-ref write permission; parent should keep monitoring this active lane and must not launch a second child.
 - 2026-06-12: Parent confirmed the child branch now exists as `codex/func-8002b0f4-mechanism-discovery` at `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`. Child worktree has no tracked diff and only local setup symlinks visible as untracked `.venv` and `assets`; no new committed mechanism packet or durable evidence exists yet. Child thread is still active and rerunning baseline after linking `.venv`.
 - 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-8002b0f4-mechanism-discovery` at `5b0b972b`. Parent imported `research/tasks/child_threads/func_8002B0F4_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK` after local ignored setup links. The child found no complete non-repeated mechanism packet for `func_8002B0F4`; this lane is resolved and no active child remains.
+- 2026-06-12: Parent created one pending high-reasoning child worktree for `func_80049794` mechanism discovery with pending worktree id `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`. No child thread id or worktree path exists yet. Parent must not start another child lane until this pending lane resolves and either commits a complete mechanism packet/evidence or reports a true setup/toolchain/assets/behavior blocker.

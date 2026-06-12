@@ -133,3 +133,8 @@
   No source files were edited. Child baseline reached `Verify: OK` after local
   ignored setup links, but no complete non-repeated mechanism packet was found.
   There is no active child lane after this import.
+- Active child lane: pending `func_80049794` high-reasoning mechanism discovery
+  worktree id `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`; no child thread id
+  or worktree path yet. When it resolves, send the child the function-local
+  packet contract from `research/tasks/child_threads/ACTIVE_CHILD.md`. Do not
+  launch another child lane while this pending lane is unresolved.
