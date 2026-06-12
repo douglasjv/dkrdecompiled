@@ -2,9 +2,9 @@
 
 - Generated at: 2026-06-12 21:44:00Z
 - Branch: `master`
-- HEAD: `6f0e6e05`
-- Completed task: `func_8002B0F4-child-negative-evidence`
-- Summary: Imported child evidence from `codex/func-8002b0f4-child-evidence` commit `b16fb37c`; no source-level mechanism-ready patch was found.
+- HEAD: `41833d38`
+- Completed task: `func_80049794-child-launch`
+- Summary: Imported `func_8002B0F4` child evidence, then created exactly one new pending child lane for `func_80049794`.
 
 ## Validation
 
@@ -22,11 +22,12 @@
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
 - Parent imported child evidence from `codex/func-8002b0f4-child-evidence` commit `b16fb37c` into `research/tasks/child_threads/func_8002B0F4_2026-06-12_child_evidence.md`.
 - Child restored validation reached `Verify: OK`; the tested `register` probe on `currentSegment`, `currentBoundingBox`, and `currentBatch` produced no model-base spill movement and was reverted.
+- New child pending worktree id: `local:ac8dbccc-b093-4e13-8703-28fabf1519e8`; target `func_80049794`.
 
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
-- No active child lane remains after the imported `func_8002B0F4` negative evidence; select exactly one next child only after refreshing routing.
+- Exactly one new child lane is pending for `func_80049794`; do not start another child while it is pending, active, dirty, or unresolved.
 - All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, ordinary local/order/carrier spellings, or `register` on `currentSegment`/`currentBoundingBox`/`currentBatch`. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
@@ -44,8 +45,8 @@
 
 ## Next Work Packet
 
-- Task: `select next single child lane`
-- Packet class: `routing_tooling`
-- Packet status: `func_8002B0F4 child resolved negative-only`
+- Task: `monitor pending child lane for func_80049794`
+- Packet class: `parent_child_monitor`
+- Packet status: `one pending child worktree`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Run `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py tooling`, and the selected candidate packet template. Create exactly one new high-reasoning child only if the packet names target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier. Parent integration accepts only source-level C after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
+- Step: Resolve pending worktree id `local:ac8dbccc-b093-4e13-8703-28fabf1519e8` to its child thread/worktree, then monitor that child. Parent integration accepts only source-level C after `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
