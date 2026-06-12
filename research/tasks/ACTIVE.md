@@ -8,6 +8,11 @@
 - Exhausted probe notes: `research/tasks/PARKED.md`; these notes prevent blind retries and are skipped by default, but they are not permanent removal from the project.
 - Default work: bounded `matching_impl` packets against one `GLOBAL_ASM`, `NON_MATCHING`, or `NON_EQUIVALENT` target.
 - Default validation: `gmake -j4 CROSS=tools/binutils/mips64-elf-` in matching mode, then focused `./diff.sh <function>` only for diagnosis.
+- Parent correction on 2026-06-12: child lanes must not be closed out for
+  negative evidence alone. Negative evidence is a checkpoint for routing and
+  mechanism discovery; the same child lane remains active until its assigned
+  function byte-matches and commits source-level C, unless a true
+  setup/toolchain/assets/unresolved-behavior blocker is recorded.
 
 ## Current Route
 
@@ -160,8 +165,10 @@
   `discovery`, `tooling`, `revival`, and `--include-exhausted` routing, parent
   created exactly one high-reasoning parked-revival mechanism-discovery child
   for `func_8008FF1C`, pending worktree id
-  `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. The child must not edit source
-  until it writes a complete packet or durable negative evidence. The required
+  `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. The child should continue until
+  `func_8008FF1C` byte-matches and commits source-level C, unless a true
+  setup/toolchain/assets/unresolved-behavior blocker is recorded. Negative
+  evidence is allowed only as a checkpoint, not as lane closeout. The required
   mechanism must predict target `lh t2,0(s1)` / branch-on-`t2` allocation while
   preserving the target delay-slot `sw v0,0(s0)` for `cur->hubName =
   levelName`; do not repeat selected-track temp/carrier lifetime, direct table

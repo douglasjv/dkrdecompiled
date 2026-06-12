@@ -2,10 +2,15 @@
 
 Parent thread: `019ebdc0-0955-7492-8ef4-34215cf7ce31`
 Policy: exactly one active child lane at a time.
+Correction from parent on 2026-06-12: durable negative evidence is a
+checkpoint, not a child closeout. A child lane should stay active until the
+assigned function byte-matches and commits source-level C, unless it hits a
+true setup/toolchain/assets/unresolved-behavior blocker. Do not launch a
+replacement lane merely because a child records negative evidence.
 
 ## Active Lane
 
-- Status: pending child thread resolution; worktree exists.
+- Status: pending child thread resolution; worktree branch exists.
 - Child thread id: pending
 - Child worktree: `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`
 - Pending worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`
@@ -15,7 +20,7 @@ Policy: exactly one active child lane at a time.
 - Rejected families: selected-track temp/carrier lifetime, direct table condition, common-store placement, duplicated branch-local `hubName` store, condition/store comma ordering, compare-carrier, declaration-order probes, `register` hints, pointer-to-selected-track-cell lifetime, plain current guarded-C promotion, object-only/focused `CURRENT (0)` acceptance, direct-table plus duplicated first-side-effect store variants, and any source shape that keeps `lh v1,0(s1)` or loses the target delay-slot store.
 - Mechanism hypothesis required: find a distinct compiler mechanism that predicts target `lh t2,0(s1)` / branch-on-`t2` allocation while preserving the target delay-slot `sw v0,0(s0)` for `cur->hubName = levelName`.
 - Predicted asm movement: keep the direct-table selected-track load in `t2`, preserve the delay-slot `sw v0,0(s0)` at the selected-track branch, avoid duplicate `hubName` stores or broad visible-track register drift, and pass full ROM verify rather than focused `CURRENT (0)` alone.
-- Stop condition: write a complete mechanism packet in `research/tasks/MECHANISM_PACKETS.md` or durable negative evidence proving no non-repeated mechanism-ready source packet exists; do not make source edits in the child until the mechanism packet is complete and parent-routed.
+- Stop condition: continue until `func_8008FF1C` byte-matches and commits source-level C, or until a true setup/toolchain/assets/unresolved-behavior blocker is recorded. Negative evidence may be committed as a checkpoint, but it does not close this child lane.
 - Reasoning tier: high.
 - Child result: pending.
 
@@ -57,5 +62,7 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent sent a follow-up after confirming the child still has no tracked diff and only ignored local setup links (`.venv`, `assets`). The existing `func_80049794_2026-06-12_child_evidence.md` in the child worktree is the older resolved child note from `codex/func-80049794-child` commit `1e9cccf5`, not this lane's closeout. Child was told to finish baseline `Verify: OK`, then commit either a new complete mechanism packet or a distinct new durable evidence note for this active mechanism-discovery lane.
 - 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-80049794-mechanism-discovery` at `1aa2b9d1`. Parent imported `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, score remained decomp `97.30%` and docs `65.47%`, and parent-routed source probing is not justified without a distinct mechanism that predicts the coupled saved-FPR and wave-allocation movement.
 - 2026-06-12: Parent ran discovery/tooling with no active child lane and repaired stale sidecar audit visibility for `func_80059208` and `trackbg_render_flashy`. Refreshed selector output now shows June 12 child evidence as latest audit for all four live cooldown candidates. No child was launched because no complete mechanism packet exists.
-- 2026-06-12: Parent refreshed `next`, `discovery`, `tooling`, `revival`, and `--include-exhausted` routing. All four live candidates remain cooldown-routed with June 12 child evidence, and parked candidates remain revival-cooldown. Parent selected the first parked revival candidate, `func_8008FF1C`, for exactly one high-reasoning mechanism-discovery child lane and created pending worktree id `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. No child thread id or worktree path exists yet; do not start another lane until this pending child resolves and commits a complete mechanism packet/evidence or reports a true blocker.
+- 2026-06-12: Parent refreshed `next`, `discovery`, `tooling`, `revival`, and `--include-exhausted` routing. All four live candidates remain cooldown-routed with June 12 child evidence, and parked candidates remain revival-cooldown. Parent selected the first parked revival candidate, `func_8008FF1C`, for exactly one high-reasoning mechanism-discovery child lane and created pending worktree id `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. No child thread id or worktree path exists yet; do not start another lane until this pending child resolves and either byte-matches or reports a true blocker.
 - 2026-06-12: Pending worktree materialized at `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` with detached `HEAD` at parent commit `c55cce84`. No child thread id is available yet because the thread-list tool was unavailable; parent has not sent the function-local prompt. Keep this lane pending and do not start another child.
+- 2026-06-12: Parent corrected the child-lane contract after user feedback: no child should be closed out for negative evidence alone. Future follow-up prompts for the `func_8008FF1C` lane must require continued work until byte-match/commit or a true setup/toolchain/assets/behavior blocker.
+- 2026-06-12: Parent created child worktree branch `codex/func-8008ff1c-mechanism-discovery` in `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`. This is still the same single pending lane; no child prompt has been sent because no child thread id is available.

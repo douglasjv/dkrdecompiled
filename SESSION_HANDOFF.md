@@ -154,11 +154,17 @@
   packet, so no child lane was launched.
 - New pending child worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`;
   target `func_8008FF1C`. This is a high-reasoning parked-revival
-  mechanism-discovery lane only. The child must either write a complete
-  mechanism packet for target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`, or
-  commit durable negative evidence. Do not create another child until this
-  pending lane resolves.
+  mechanism-discovery lane only. User correction on 2026-06-12: child lanes
+  must not be closed out for negative evidence alone. The child should continue
+  until `func_8008FF1C` byte-matches and commits source-level C, unless it
+  reports a true setup/toolchain/assets/unresolved-behavior blocker. Negative
+  evidence can be committed as a checkpoint but does not resolve the lane. Do
+  not create another child until this pending lane reaches that standard.
 - Pending worktree path resolved to
   `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`, detached at parent
   commit `c55cce84`. Child thread id is still pending; parent has not sent the
   function-local prompt yet because the thread-list tool was unavailable.
+- Parent created branch `codex/func-8008ff1c-mechanism-discovery` in that
+  worktree. The real active goal already requires child threads to continue
+  until byte-match/commit unless true setup/toolchain/assets/behavior blocker;
+  no exposed goal-rewrite tool was available in this turn.
