@@ -51,6 +51,10 @@
   No source edit was made; child-local restored validation reached `Verify: OK`.
 - New pending child worktree id: `local:52703ce1-0286-41c7-8dff-cedfcb241432`;
   target `trackbg_render_flashy`.
+- Pending worktree resolved to child thread
+  `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` at
+  `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`; initial child status
+  was detached `HEAD` with no tracked diffs.
 
 ## Blockers Or Unknowns
 
@@ -76,10 +80,10 @@
 
 - Task: `monitor active child lane for trackbg_render_flashy`
 - Packet class: `parent_child_monitor`
-- Packet status: `one pending child worktree`
+- Packet status: `one active child running`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Monitor pending child `local:52703ce1-0286-41c7-8dff-cedfcb241432`
-  until it resolves to a thread/worktree. The child target is
+- Step: Monitor child thread `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2` in worktree
+  `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`. The child target is
   `trackbg_render_flashy`; parent integration accepts only source-level C after
   `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then
   `./score.sh -s`.

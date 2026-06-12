@@ -28,10 +28,11 @@
   collapsed into already rejected evidence; restored child validation reached
   `Verify: OK`.
 - Active parent child lane after that import: `trackbg_render_flashy` high
-  mechanism discovery, pending worktree id
-  `local:52703ce1-0286-41c7-8dff-cedfcb241432`. Do not start another child
-  until this lane lands exact-match source, records durable negative evidence,
-  or reports a true setup/toolchain/assets/behavior blocker.
+  mechanism discovery, child thread `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`,
+  worktree `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`, pending
+  worktree id `local:52703ce1-0286-41c7-8dff-cedfcb241432`. Do not start
+  another child until this lane lands exact-match source, records durable
+  negative evidence, or reports a true setup/toolchain/assets/behavior blocker.
 - Parent heartbeat lane on 2026-06-12: child `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
   for `func_80059208` recorded durable negative evidence on branch
   `codex/func-80059208-child` at `e09f5f42`. Tracker:
