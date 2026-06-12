@@ -146,3 +146,9 @@
   ignored setup links, but no complete non-repeated mechanism packet was found.
   There is no active child lane after this import; run discovery/tooling before
   creating another child.
+- Discovery/tooling repair: parent updated `func_80059208` and
+  `trackbg_render_flashy` sidecar ledgers so their June 12 child evidence
+  commits (`e09f5f42`, `6207d9c5`) are parser-visible as latest audits.
+  Refreshed `discovery` and `tooling` now surface June 12 child evidence for
+  all four live cooldown candidates. There is still no complete mechanism
+  packet, so no child lane was launched.
