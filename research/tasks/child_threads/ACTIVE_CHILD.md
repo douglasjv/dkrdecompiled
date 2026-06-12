@@ -5,7 +5,7 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: active child thread; mechanism discovery prompt sent.
+- Status: no active child lane; latest child evidence imported.
 - Child thread id: `019ebdf5-05f4-7b32-ba6f-03c838420dee`
 - Child worktree: `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`
 - Pending worktree id: `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`
@@ -17,7 +17,9 @@ Policy: exactly one active child lane at a time.
 - Predicted asm movement: recover target frame `0xF8`, `$f21/$f20` saves at `0x20/0x24(sp)`, early zero in `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`, without broad frame or scheduling regressions.
 - Stop condition: write a complete mechanism packet in `research/tasks/MECHANISM_PACKETS.md` or durable negative evidence proving no non-repeated mechanism-ready source packet exists; do not make source edits in the child until the mechanism packet is complete and parent-routed.
 - Reasoning tier: high.
-- Child result: pending.
+- Child result: durable negative evidence committed on
+  `codex/func-80049794-mechanism-discovery` at `1aa2b9d1` and imported to
+  `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`.
 
 ## Parent Gate
 
@@ -55,3 +57,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Pending worktree resolved to child thread `019ebdf5-05f4-7b32-ba6f-03c838420dee` at `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`. Parent sent the function-local `func_80049794` mechanism-discovery contract and must now monitor that one active child lane.
 - 2026-06-12: Parent confirmed the child remains active on branch `codex/func-80049794-mechanism-discovery` at `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`. Child worktree has no tracked diff, `HEAD` is still parent import commit `d09af5d8`, and the child is reading `func_80049794` evidence/source/asm to decide whether a non-repeated mechanism packet exists. No mechanism packet, durable evidence commit, or source edit exists yet.
 - 2026-06-12: Parent sent a follow-up after confirming the child still has no tracked diff and only ignored local setup links (`.venv`, `assets`). The existing `func_80049794_2026-06-12_child_evidence.md` in the child worktree is the older resolved child note from `codex/func-80049794-child` commit `1e9cccf5`, not this lane's closeout. Child was told to finish baseline `Verify: OK`, then commit either a new complete mechanism packet or a distinct new durable evidence note for this active mechanism-discovery lane.
+- 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-80049794-mechanism-discovery` at `1aa2b9d1`. Parent imported `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, score remained decomp `97.30%` and docs `65.47%`, and parent-routed source probing is not justified without a distinct mechanism that predicts the coupled saved-FPR and wave-allocation movement.

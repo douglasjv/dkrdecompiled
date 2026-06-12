@@ -139,3 +139,10 @@
   `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`. Parent sent the function-local
   packet contract; next heartbeat should read the child status before any
   further child creation.
+- Child result imported: `func_80049794` mechanism-discovery child committed
+  evidence-only result `1aa2b9d1`; parent imported
+  `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`.
+  No source files were edited. Child baseline reached `Verify: OK` after local
+  ignored setup links, but no complete non-repeated mechanism packet was found.
+  There is no active child lane after this import; run discovery/tooling before
+  creating another child.
