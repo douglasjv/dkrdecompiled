@@ -5,9 +5,9 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: pending child worktree; no child thread id yet.
-- Child thread id: pending
-- Child worktree: pending
+- Status: active child thread; mechanism discovery prompt sent.
+- Child thread id: `019ebdec-ac64-7131-9914-2faa3abe3568`
+- Child worktree: `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`
 - Pending worktree id: `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`
 - Target: `func_8002B0F4`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
@@ -47,3 +47,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent ran the required discovery/tooling heartbeat with no active child lane. `python3 tools/query_goal_state.py next --compact --refresh` still reports `recommended_next: discovery`; `discovery` routes to `tooling`; `tooling` routes to `discovery_packet`; `revival` routes to `tooling`; and `check_active_surface` passes. No new child was launched because all live and parked candidates are cooldown-routed and no complete mechanism packet exists in `research/tasks/MECHANISM_PACKETS.md`.
 - 2026-06-12: Parent repaired the selector scanner so macro-form `GLOBAL_ASM("...")` is recognized while `src/hasm/` handwritten assembly is counted but excluded from source-C routing. Refreshed `next` reports `handwritten_asm_excluded=43` and still routes to discovery; no child was launched because no complete mechanism packet exists.
 - 2026-06-12: Parent created one pending high-reasoning child worktree for `func_8002B0F4` mechanism discovery with pending worktree id `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`. No child thread id or worktree path exists yet. Parent must not start another child lane until this pending lane resolves and either commits a complete mechanism packet/evidence or reports a true setup/toolchain/assets/behavior blocker.
+- 2026-06-12: Pending worktree resolved to child thread `019ebdec-ac64-7131-9914-2faa3abe3568` at `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`. Parent sent the function-local `func_8002B0F4` mechanism-discovery contract and must now monitor that one active child lane.
