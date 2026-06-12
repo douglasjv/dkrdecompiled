@@ -22,3 +22,7 @@ Policy: exactly one active child lane at a time.
 
 - Do not create another child while this lane is active, dirty, or unresolved.
 - Parent integration requires source-level C only and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaching `Verify: OK`, followed by `./score.sh -s`.
+
+## Heartbeat Log
+
+- 2026-06-12: Parent confirmed child thread remains active. Child worktree had no tracked diffs, only local setup symlinks/untracked inherited tracker files; parent sent a follow-up to keep generated setup unstaged, use `--ignore-submodules=all` for status if needed, restore/avoid status-breaking setup where possible, and reach baseline `Verify: OK` before source probes.
