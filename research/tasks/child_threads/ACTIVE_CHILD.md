@@ -5,21 +5,19 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: no active child lane; latest child evidence imported.
-- Child thread id: `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`
-- Child worktree: `/Users/douglas/.codex/worktrees/d949/dkrdecompiled`
-- Pending worktree id: `local:52703ce1-0286-41c7-8dff-cedfcb241432`
-- Target: `trackbg_render_flashy`
+- Status: pending child worktree; no child thread id yet.
+- Child thread id: pending
+- Child worktree: pending
+- Pending worktree id: `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`
+- Target: `func_8002B0F4`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
-- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function trackbg_render_flashy --template`; `research/tasks/trackbg_render_flashy_evidence.md` as required child reading.
-- Rejected families: commuted single-site `zPositions[3]` ordering, all-first-ring `scaledXSin` reuse, plain/current guarded-C promotion, ordinary negative-scaled-cos temp variants, inverted primary cos carrier or positive-cos scratch locals, first-ring pair-result scratch locals, promoted-object focused `CURRENT (0)`, first-two-store ordering probes, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, and first-ring scratch reuse that predicts broad stack-slot/downstream drift.
-- Mechanism hypothesis required: find a distinct early FPR-allocation/source-lifetime mechanism for the first-ring setup that is not one of the rejected spelling families.
-- Predicted asm movement: target-like scaled cos in `$f12`, scaled sin in `$f2`, initial negative cos as `neg.s $f18,$f12`, delayed doubled-cos setup until after first-ring stack-temp stores, and no broad frame/stack-slot/downstream scheduling drift from the target `0x158` frame pattern.
-- Stop condition: continue until `trackbg_render_flashy` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
+- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_8002B0F4 --template`; `research/tasks/func_8002B0F4_evidence.md` as required child reading.
+- Rejected families: local segment-index lifetime variants, local model pointer, bottom-only segment-pointer lifetime split, assignment/order changes, texture/flag carriers, pointer-arithmetic setup, condition/literal/local-width spellings, bottom store-order probes, unsafe `volatile`, accessor calls, artificial aliasing side effects, helper reshaping, promoted-object slice audits, and focused `CURRENT (0)` acceptance without full ROM `Verify: OK`.
+- Mechanism hypothesis required: find a distinct model-load lifetime/register-allocation mechanism that predicts single-use `gCurrentLevelModel` global reloads at outer setup and batch-loop texture lookup.
+- Predicted asm movement: remove the promoted stack-resident model base at `0x60(sp)`, preserve target-like outer setup reload around `0x2BDD4/0x2BDD8`, and replace the texture lookup reload from promoted `0x5FE8` with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`.
+- Stop condition: write a complete mechanism packet in `research/tasks/MECHANISM_PACKETS.md` or durable negative evidence proving no non-repeated mechanism-ready source packet exists; do not make source edits in the child until the mechanism packet is complete and parent-routed.
 - Reasoning tier: high.
-- Child result: durable negative evidence committed on
-  `codex/trackbg-render-flashy-child` at `6207d9c5` and imported to
-  `research/tasks/child_threads/trackbg_render_flashy_2026-06-12_child_evidence.md`.
+- Child result: pending.
 
 ## Parent Gate
 
@@ -48,3 +46,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Child committed durable negative evidence on `codex/trackbg-render-flashy-child` at `6207d9c5`; no source edit was made because every named first-ring FPR/source-lifetime mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note; all four default-routable live candidates now have 2026-06-12 parent-child negative evidence.
 - 2026-06-12: Parent ran the required discovery/tooling heartbeat with no active child lane. `python3 tools/query_goal_state.py next --compact --refresh` still reports `recommended_next: discovery`; `discovery` routes to `tooling`; `tooling` routes to `discovery_packet`; `revival` routes to `tooling`; and `check_active_surface` passes. No new child was launched because all live and parked candidates are cooldown-routed and no complete mechanism packet exists in `research/tasks/MECHANISM_PACKETS.md`.
 - 2026-06-12: Parent repaired the selector scanner so macro-form `GLOBAL_ASM("...")` is recognized while `src/hasm/` handwritten assembly is counted but excluded from source-C routing. Refreshed `next` reports `handwritten_asm_excluded=43` and still routes to discovery; no child was launched because no complete mechanism packet exists.
+- 2026-06-12: Parent created one pending high-reasoning child worktree for `func_8002B0F4` mechanism discovery with pending worktree id `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`. No child thread id or worktree path exists yet. Parent must not start another child lane until this pending lane resolves and either commits a complete mechanism packet/evidence or reports a true setup/toolchain/assets/behavior blocker.

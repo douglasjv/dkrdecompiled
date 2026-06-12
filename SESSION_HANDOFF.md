@@ -112,3 +112,8 @@
   reasoning tier before any source edits or child delegation. Parent
   integration accepts only source-level C after `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
+- Active child lane: pending `func_8002B0F4` high-reasoning mechanism discovery
+  worktree id `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`; no child thread id
+  or worktree path yet. When it resolves, send the child the function-local
+  packet contract from `research/tasks/child_threads/ACTIVE_CHILD.md`. Do not
+  launch another child lane while this pending lane is unresolved.
