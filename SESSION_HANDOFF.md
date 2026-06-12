@@ -127,3 +127,9 @@
   `codex/func-8002b0f4-mechanism-discovery` with no tracked diff and only
   untracked local setup symlinks `.venv` and `assets`. No new child commit or
   mechanism/evidence artifact has landed yet.
+- Child result imported: `func_8002B0F4` mechanism-discovery child committed
+  evidence-only result `5b0b972b`; parent imported
+  `research/tasks/child_threads/func_8002B0F4_2026-06-12_mechanism_discovery.md`.
+  No source files were edited. Child baseline reached `Verify: OK` after local
+  ignored setup links, but no complete non-repeated mechanism packet was found.
+  There is no active child lane after this import.
