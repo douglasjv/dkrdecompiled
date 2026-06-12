@@ -120,8 +120,13 @@
   startup, linked ignored validation inputs locally, recovered from missing
   `asm/nonmatchings/...` includes by linking the ignored `asm/` tree, and
   reached child-local `gmake -j4 CROSS=tools/binutils/mips64-elf-` with
-  `Verify: OK`. Child is inspecting guarded `src/menu.c` and target asm for a
-  non-repeated source-level mechanism.
+  `Verify: OK`. Child committed checkpoint evidence `4351e435`; parent
+  imported
+  `research/tasks/child_threads/func_8008FF1C_2026-06-12_child_checkpoint.md`.
+  The checkpoint records that close carrier-style shapes preserve the target
+  delay-slot store but branch on `v1`, while direct-table shapes recover `t2`
+  but hoist the hub-name store or fill the branch delay slot with other work.
+  This is not lane closeout.
 - Parent routing status: `python3 tools/query_goal_state.py next --compact
   --refresh` reports 7 routable guarded candidates, `skipped_exhausted=0`, and
   `recommended_next: func_8008FF1C`. Cooldown, parked, and negative-evidence

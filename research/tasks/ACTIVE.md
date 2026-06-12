@@ -50,6 +50,13 @@
   `Verify: OK`.
 - First route: run the selector and start with its `recommended_next`, while using cooldown/saturation evidence only to avoid blind repeated source shapes. A function is never removed from the work surface solely because prior probes missed.
 - Current selector result after heartbeat routing repair on 2026-06-12: 7 routable guarded candidates, 3 parked notes, 4 cooldown ledgers, `skipped_exhausted=0`, and `recommended_next: func_8008FF1C` while the active child lane works that function. Cooldown and parked notes are evidence for the next child hypothesis, not a prohibition.
+- Active `func_8008FF1C` child checkpoint: child thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa` committed checkpoint evidence
+  `4351e435` on `codex/func-8008ff1c-mechanism-discovery`; parent imported
+  `research/tasks/child_threads/func_8008FF1C_2026-06-12_child_checkpoint.md`.
+  This is durable negative evidence only, not lane closeout. Continue
+  monitoring the same child until byte-match/source commit or a true
+  setup/toolchain/assets/unresolved-behavior blocker.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
 - Evidence path checked: `research/tasks/func_80049794_evidence.md`.
 - Latest do-not-repeat/cooldown note: a 2026-05-31 follow-up high mechanism discovery for `func_80049794` found no mechanism-ready source patch. Forced guarded object still lacks `$f20/$f21` saves, uses early zero `$f16`, and keeps wave scan as `v0` count with `a0` high bound and `v1` loop index; target needs `$f21/$f20` saves at `0x20/0x24(sp)`, early zero `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`. Focused `CURRENT (0)` was contradicted by objdump and treated as stale; nonmatching full link still fails before CRC on racer-provided DRM helper symbols. Matching object was restored and full verify passed.
