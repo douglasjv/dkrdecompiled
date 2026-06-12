@@ -96,10 +96,15 @@
 - Packet class: `parent_discovery_tooling`
 - Packet status: `no active child lane after evidence-only result`
 - Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Refresh `python3 tools/query_goal_state.py next --compact --refresh`,
-  `python3 tools/query_goal_state.py discovery`, and
-  `python3 tools/query_goal_state.py tooling`. Do not start another child from
-  the four default-routable live candidates unless a complete packet names a
-  genuinely distinct mechanism beyond the 2026-06-12 evidence. Parent
-  integration accepts only source-level C after `gmake -j4
+- Step: Discovery/tooling heartbeat refreshed `python3
+  tools/query_goal_state.py next --compact --refresh`, `python3
+  tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py
+  tooling`, `python3 tools/query_goal_state.py revival`, and `python3
+  tools/check_active_surface.py` on 2026-06-12. No child lane was launched:
+  every live and parked candidate remains cooldown-routed, and
+  `research/tasks/MECHANISM_PACKETS.md` has no complete ready packet. Next
+  packet is to write a distinct compiler-mechanism packet with target,
+  evidence checked, rejected families, mechanism hypothesis, predicted asm
+  movement, stop condition, and reasoning tier before any source edits or child
+  delegation. Parent integration accepts only source-level C after `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
