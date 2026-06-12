@@ -5,21 +5,18 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: no active child lane; latest child evidence imported.
-- Child thread id: `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9`
-- Child worktree: `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`
-- Pending worktree id: `local:809f1788-2fb6-4212-a1ed-6d73150c0652`
-- Target: `func_80059208`
+- Status: pending child worktree creation.
+- Child thread id: pending
+- Child worktree: pending
+- Pending worktree id: `local:52703ce1-0286-41c7-8dff-cedfcb241432`
+- Target: `trackbg_render_flashy`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
-- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_80059208 --template`; `research/tasks/func_80059208_evidence.md` as required child reading.
-- Rejected families: splineIndex carrier-size tweaks, tempZ/distance carrier spelling, direct normalization division, checkpoint-dot-first and positive checkpoint-dot/subtract orderings, vertical `pad3` alias, explicit final-tail accumulation split, object-X-first lifetime, separate negated checkpoint temp, direct object-dot spelling, `ObjectTransform` late-position lifetime aliases, literal/condition staging, vertical alias/literal staging, promoted-object focused `CURRENT (0)` without full `Verify: OK`, and generic temp/order spelling.
-- Mechanism hypothesis required: find a distinct compiler/codegen mechanism for final-tail FPR allocation/load order that is not one of the rejected spelling families.
-- Predicted asm movement: object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, final combine as add-after-negation instead of subtract/late negation, and vertical tail through target `$f6/$f10` instead of current `$f10/$f6`.
-- Stop condition: continue until `func_80059208` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
+- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function trackbg_render_flashy --template`; `research/tasks/trackbg_render_flashy_evidence.md` as required child reading.
+- Rejected families: commuted single-site `zPositions[3]` ordering, all-first-ring `scaledXSin` reuse, plain/current guarded-C promotion, ordinary negative-scaled-cos temp variants, inverted primary cos carrier or positive-cos scratch locals, first-ring pair-result scratch locals, promoted-object focused `CURRENT (0)`, first-two-store ordering probes, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, and first-ring scratch reuse that predicts broad stack-slot/downstream drift.
+- Mechanism hypothesis required: find a distinct early FPR-allocation/source-lifetime mechanism for the first-ring setup that is not one of the rejected spelling families.
+- Predicted asm movement: target-like scaled cos in `$f12`, scaled sin in `$f2`, initial negative cos as `neg.s $f18,$f12`, delayed doubled-cos setup until after first-ring stack-temp stores, and no broad frame/stack-slot/downstream scheduling drift from the target `0x158` frame pattern.
+- Stop condition: continue until `trackbg_render_flashy` byte-matches and commits source-level C, or records a true setup/toolchain/assets/behavior blocker or durable negative evidence that no mechanism-ready source patch exists.
 - Reasoning tier: high.
-- Child result: durable negative evidence committed on
-  `codex/func-80059208-child` at `e09f5f42` and imported to
-  `research/tasks/child_threads/func_80059208_2026-06-12_child_evidence.md`.
 
 ## Parent Gate
 
@@ -42,3 +39,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent confirmed child remains active on branch `codex/func-80059208-child` with no tracked diffs or staged changes. Child created the branch, copied ignored local validation inputs into the child worktree, reproduced expected asm-backed focused `CURRENT (0)`, and is still resolving ignored setup dependencies before child-local baseline `Verify: OK`; latest setup item was local `tools/dkr_assets_tool`.
 - 2026-06-12: Parent confirmed child reached child-local baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` with `Verify: OK` and `./score.sh -s` reported decomp `97.30%`, docs `65.47%`. Child reported no distinct non-repeated final-tail mechanism and said it was applying evidence-only closeout edits, but the child worktree still had no tracked/staged changes and `HEAD` remained `c2ed22a3`; parent sent a follow-up asking the child to finish the evidence commit or report the exact blocker.
 - 2026-06-12: Child committed durable negative evidence on `codex/func-80059208-child` at `e09f5f42`; no source edit was made because every named final-tail mechanism-ready source shape collapsed into already rejected evidence. Parent imported the evidence note and can select the next single child lane after refreshed routing.
+- 2026-06-12: Parent refreshed tooling, skipped the three just-resolved child lanes (`func_8002B0F4`, `func_80049794`, `func_80059208`), and created the next single child lane for `trackbg_render_flashy` with pending worktree id `local:52703ce1-0286-41c7-8dff-cedfcb241432`.
