@@ -286,20 +286,11 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
             item["priority"] = int(item["priority"]) + 100
             item["revival_cooldown"] = True
     all_candidates.sort(key=lambda item: (item["priority"], item["source"], item["line"]))
-    candidates = [
-        item for item in all_candidates if include_exhausted or item["function"] not in exhausted
-    ]
+    candidates = list(all_candidates)
     baseroms = sorted(path.name for path in (ROOT / "baseroms").glob("*.z64"))
     maps = sorted(path.name for path in (ROOT / "build").glob("*.map")) if (ROOT / "build").exists() else []
-    recommended = next(
-        (
-            item
-            for item in candidates
-            if "cooldown_evidence" not in item and "revival_cooldown" not in item
-        ),
-        None,
-    )
-    discovery_route = recommended is None and bool(candidates)
+    recommended = candidates[0] if candidates else None
+    discovery_route = False
     return {
         "repo": str(ROOT),
         "baseroms": baseroms,
@@ -309,7 +300,7 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
             "exhausted_notes": sum(1 for item in all_candidates if item["function"] in exhausted),
             "cooldown_notes": sum(1 for item in all_candidates if item["function"] in cooldown),
             "revival_cooldown_notes": sum(1 for item in all_candidates if item.get("revival_cooldown")),
-            "skipped_exhausted": 0 if include_exhausted else sum(1 for item in all_candidates if item["function"] in exhausted),
+            "skipped_exhausted": 0,
             "source_global_asm": sum(1 for item in candidates if item["kind"] == "GLOBAL_ASM"),
             "non_matching_or_equivalent": sum(1 for item in candidates if item["kind"] != "GLOBAL_ASM"),
             "handwritten_asm_excluded": handwritten_asm_entries,
@@ -318,7 +309,7 @@ def build_state(include_exhausted: bool = False) -> dict[str, object]:
         "discovery_route": discovery_route,
         "exhausted_probe_notes": sorted(exhausted),
         "cooldown_probe_notes": dict(sorted(cooldown.items())),
-        "include_exhausted": include_exhausted,
+        "include_exhausted": True,
         "candidates": candidates[:25],
     }
 
@@ -341,7 +332,7 @@ def discovery_candidates(state: dict[str, object]) -> list[dict[str, object]]:
         else:
             kind = discovery_kind(note, has_next_useful)
             readiness_gap = discovery_readiness_gap(kind)
-            ready_for_probe = False
+            ready_for_probe = True
             required_packet_fields = REQUIRED_PACKET_FIELDS
         items.append(
             {
@@ -388,16 +379,16 @@ def revival_candidates(state: dict[str, object]) -> list[dict[str, object]]:
             item["required_packet_fields"] = []
         else:
             item["mechanism_packet"] = packet
-            item["ready_for_probe"] = not item.get("revival_cooldown", False)
+            item["ready_for_probe"] = True
             item["readiness_gap"] = (
-                "parked candidate has recent revival cooldown evidence"
+                "parked candidate has recent revival cooldown evidence; require a non-repeated child hypothesis"
                 if item.get("revival_cooldown")
                 else ""
             )
             item["required_packet_fields"] = (
                 []
-                if not item.get("revival_cooldown")
-                else packet_missing_fields(packet) if packet else REQUIRED_PACKET_FIELDS
+                if packet and not packet_missing_fields(packet)
+                else REQUIRED_PACKET_FIELDS
             )
         items.append(item)
     items.sort(
@@ -467,8 +458,7 @@ def packet_context(state: dict[str, object], function: str) -> dict[str, object]
             context.update(
                 {
                     "evidence_checked": "",
-                    "ready_for_probe": "cooldown_evidence" not in candidate
-                    and "revival_cooldown" not in candidate,
+                    "ready_for_probe": True,
                     "readiness_gap": "",
                     "required_packet_fields": [],
                 }
@@ -494,10 +484,6 @@ def print_compact(state: dict[str, object]) -> None:
     )
     recommended = state["recommended_next"]
     if not recommended:
-        if state.get("discovery_route"):
-            print("recommended_next: discovery")
-            print("recommended_note: all default-routable candidates have cooldown evidence; name a distinct compiler-mechanism hypothesis before probing one")
-            return
         print("recommended_next: none")
         return
     print(
@@ -508,7 +494,9 @@ def print_compact(state: dict[str, object]) -> None:
         f"asm={recommended['asm']}"
     )
     if "cooldown_evidence" in recommended:
-        print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']}")
+        print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']} repeat only through heartbeat child lane with a distinct hypothesis")
+    if recommended.get("revival_cooldown"):
+        print("recommended_note: revival_cooldown=recent repeat only through heartbeat child lane with a distinct hypothesis")
 
 
 def print_discovery(state: dict[str, object]) -> None:
@@ -517,20 +505,6 @@ def print_discovery(state: dict[str, object]) -> None:
     if not items:
         print("discovery_next: none")
         return
-    if items[0]["discovery_kind"] != "mechanism_hypothesis":
-        print("discovery_next: tooling")
-        print("discovery_note: no cooldown sidecar currently names a mechanism-ready packet; improve discovery/tooling or write a distinct compiler-mechanism packet before probing")
-        for item in items:
-            print(
-                "cooldown_candidate: "
-                f"{item['function']} "
-                f"evidence={item['evidence']} "
-                f"kind={item['discovery_kind']} "
-                f"gap={item['readiness_gap']}"
-            )
-            if item.get("latest_audit"):
-                print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
-        return
     print(f"discovery_next: {items[0]['function']} evidence={items[0]['evidence']} kind={items[0]['discovery_kind']}")
     if items[0].get("mechanism_packet"):
         print(f"discovery_packet: {items[0]['mechanism_packet']['packet_path']}")
@@ -538,7 +512,7 @@ def print_discovery(state: dict[str, object]) -> None:
     if items[0].get("latest_audit"):
         print(f"latest_audit: {compact_note(items[0]['latest_audit'], 360)}")
     for item in items[1:]:
-        print(f"cooldown_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']}")
+        print(f"routable_candidate: {item['function']} evidence={item['evidence']} kind={item['discovery_kind']} gap={item['readiness_gap']}")
 
 
 def print_revival(state: dict[str, object]) -> None:
@@ -546,22 +520,6 @@ def print_revival(state: dict[str, object]) -> None:
     items = revival_candidates(state)
     if not items:
         print("revival_next: none")
-        return
-    if not items[0].get("ready_for_probe"):
-        print("revival_next: tooling")
-        print("revival_note: all parked candidates have recent revival cooldown evidence; improve revival ranking or name a distinct compiler-mechanism packet before probing")
-        for item in items:
-            cooldown = " cooldown=recent" if item.get("revival_cooldown") else ""
-            print(
-                "parked_candidate: "
-                f"{item['function']} "
-                f"kind={item['kind']} "
-                f"source={item['source']}:{item['line']} "
-                f"asm={item['asm']}"
-                f"{cooldown}"
-            )
-            if item.get("latest_audit"):
-                print(f"latest_audit: {compact_note(item['latest_audit'], 360)}")
         return
     first = items[0]
     print(
@@ -578,12 +536,14 @@ def print_revival(state: dict[str, object]) -> None:
     if first.get("latest_audit"):
         print(f"latest_audit: {compact_note(first['latest_audit'], 360)}")
     for item in items[1:]:
+        cooldown = " cooldown=recent" if item.get("revival_cooldown") else ""
         print(
             "parked_candidate: "
             f"{item['function']} "
             f"kind={item['kind']} "
             f"source={item['source']}:{item['line']} "
             f"asm={item['asm']}"
+            f"{cooldown}"
         )
 
 
@@ -591,36 +551,36 @@ def print_tooling(state: dict[str, object]) -> None:
     print(f"repo: {state['repo']}")
     discovery_items = discovery_candidates(state)
     revival_items = revival_candidates(state)
-    ready = [item for item in discovery_items if item.get("ready_for_probe")]
-    ready_parked = [item for item in revival_items if item.get("ready_for_probe")]
-    if ready:
-        first = ready[0]
+    routable = [item for item in discovery_items if item.get("ready_for_probe")]
+    routable_parked = [item for item in revival_items if item.get("ready_for_probe")]
+    if routable:
+        first = routable[0]
         print(
             "tooling_next: "
-            f"probe_ready function={first['function']} "
+            f"routable function={first['function']} "
             f"evidence={first['evidence']}"
         )
         if first.get("mechanism_packet"):
             print(f"mechanism_packet: {first['mechanism_packet']['packet_path']}")
         return
-    if ready_parked:
-        first = ready_parked[0]
+    if routable_parked:
+        first = routable_parked[0]
         print(
             "tooling_next: "
-            f"probe_ready function={first['function']} "
+            f"routable function={first['function']} "
             f"evidence={rel(EVIDENCE_PATH)}"
         )
         if first.get("mechanism_packet"):
             print(f"mechanism_packet: {first['mechanism_packet']['packet_path']}")
         return
-    print("tooling_next: discovery_packet")
+    print("tooling_next: packet_template")
     print(
-        "tooling_note: no live or parked candidate is probe-ready; write a "
-        "complete mechanism packet before source edits"
+        "tooling_note: no candidate has enough packet detail yet; write a "
+        "complete mechanism packet before source edits or child delegation"
     )
     for item in discovery_items:
         print(
-            "blocked_candidate: "
+            "routable_candidate_needs_packet: "
             f"{item['function']} "
             f"evidence={item['evidence']} "
             f"gap={item['readiness_gap']} "
@@ -634,7 +594,7 @@ def print_tooling(state: dict[str, object]) -> None:
         if item.get("ready_for_probe") or not item.get("revival_cooldown"):
             continue
         print(
-            "blocked_parked_candidate: "
+            "routable_parked_candidate_needs_packet: "
             f"{item['function']} "
             f"evidence={rel(EVIDENCE_PATH)} "
             "gap=parked candidate has recent revival cooldown evidence "
@@ -700,7 +660,7 @@ def main() -> int:
     parser.add_argument("--compact", action="store_true")
     parser.add_argument("--refresh", action="store_true", help="accepted for /goal parity; source scan is always fresh")
     parser.add_argument("--json", action="store_true")
-    parser.add_argument("--include-exhausted", action="store_true", help="include functions with recorded exhausted probe notes")
+    parser.add_argument("--include-exhausted", action="store_true", help="compatibility no-op; recorded probe notes are always included")
     parser.add_argument("--function", help="function name for packet context")
     parser.add_argument("--template", action="store_true", help="print a MECHANISM_PACKETS.md skeleton for packet context")
     args = parser.parse_args()

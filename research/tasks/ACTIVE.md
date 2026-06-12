@@ -5,7 +5,7 @@
 - End goal: every original Diddy Kong Racing function has source-level C that keeps the matching ROM byte-identical.
 - Loop: `research/tasks/GOAL_LOOP.md`.
 - Selector: `python3 tools/query_goal_state.py next --compact --refresh`.
-- Exhausted probe notes: `research/tasks/PARKED.md`; these notes prevent blind retries and are skipped by default, but they are not permanent removal from the project.
+- Exhausted probe notes: `research/tasks/PARKED.md`; these notes prevent blind retries, but they are not an off-limits list and are not skipped from routing. Every remaining function must stay routable through the heartbeat parent / single child lane pattern until 100 percent byte matching is reached.
 - Default work: bounded `matching_impl` packets against one `GLOBAL_ASM`, `NON_MATCHING`, or `NON_EQUIVALENT` target.
 - Default validation: `gmake -j4 CROSS=tools/binutils/mips64-elf-` in matching mode, then focused `./diff.sh <function>` only for diagnosis.
 - Parent correction on 2026-06-12: child lanes must not be closed out for
@@ -48,8 +48,8 @@
   The child made no source edit because every named mechanism-ready source shape
   collapsed into already rejected evidence; restored child validation reached
   `Verify: OK`.
-- First route: run the selector and start with its `recommended_next` unless the latest evidence marks that packet saturated, cooling down, or pivot-only.
-- Current selector result on 2026-05-31 after cooldown-aware tooling: 4 default-routable guarded candidates, 3 skipped exhausted notes, 4 cooldown ledgers, and `recommended_next: discovery` because every default-routable candidate is cooldown-routed.
+- First route: run the selector and start with its `recommended_next`, while using cooldown/saturation evidence only to avoid blind repeated source shapes. A function is never removed from the work surface solely because prior probes missed.
+- Current selector result after heartbeat routing repair on 2026-06-12: 7 routable guarded candidates, 3 parked notes, 4 cooldown ledgers, `skipped_exhausted=0`, and `recommended_next: func_8008FF1C` while the active child lane works that function. Cooldown and parked notes are evidence for the next child hypothesis, not a prohibition.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
 - Evidence path checked: `research/tasks/func_80049794_evidence.md`.
 - Latest do-not-repeat/cooldown note: a 2026-05-31 follow-up high mechanism discovery for `func_80049794` found no mechanism-ready source patch. Forced guarded object still lacks `$f20/$f21` saves, uses early zero `$f16`, and keeps wave scan as `v0` count with `a0` high bound and `v1` loop index; target needs `$f21/$f20` saves at `0x20/0x24(sp)`, early zero `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`. Focused `CURRENT (0)` was contradicted by objdump and treated as stale; nonmatching full link still fails before CRC on racer-provided DRM helper symbols. Matching object was restored and full verify passed.
@@ -78,7 +78,7 @@
   child-local restored validation reached `Verify: OK`. Do not reselect this
   target without a truly distinct mechanism predicting `$f18` negative-cos
   lifetime and delayed doubled-cos setup without frame/stack/scheduling drift.
-- Latest tooling note: `tools/query_goal_state.py tooling` gives the compact discovery/tooling route when all candidates are cooldown-routed. It lists every blocked live and parked candidate, evidence path, readiness gap, next useful note, latest promoted-object/focused-false-positive audit summary, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
+- Latest tooling note: `tools/query_goal_state.py tooling` now reports routable candidates rather than blocked/off-limits candidates. It keeps cooldown and parked evidence visible as readiness gaps, next useful notes, latest promoted-object/focused-false-positive audit summaries, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
 - Current packet evidence checked: `research/tasks/func_8002B0F4_evidence.md`.
 - Latest parent-child note: a 2026-06-12 high child worker reproduced the known
   focused `CURRENT (0)` false positive under matching-mode guarded diagnostics:
@@ -88,8 +88,7 @@
   and `currentBatch` produced no movement and was reverted. Restored full
   validation reached `Verify: OK`; no mechanism-ready source patch was found.
 - Latest selector-packet note: `func_8002B0F4` remains active but saturated for model-load lifetime probes. A 2026-05-31 high mechanism-discovery worker found no safe source packet: current C already uses direct `gCurrentLevelModel` expressions, but IDO still CSE/hoists and spills the model base. A valid future packet must remove promoted stack-resident model base `0x60(sp)`, replace the texture lookup reload from `0x5FE8` with an in-loop global `lui/lw gCurrentLevelModel` like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`. Do not trust focused `CURRENT (0)`, repeat promoted-object-slice auditing, or repeat local segment-index, local model pointer, bottom-only segment-pointer split, assignment/order, texture/flag carrier, pointer-arithmetic setup, condition/literal/local-width, bottom store-order, unsafe `volatile`, accessor, artificial aliasing, or helper reshaping probes.
-- Current routing status after this note: all 4 default-routable guarded candidates have cooldown sidecars and all 3 parked candidates have recent revival cooldown. `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`; `research/tasks/MECHANISM_PACKETS.md` has no ready packets.
-- Discovery selector: `python3 tools/query_goal_state.py discovery` still reports `discovery_next: tooling` for live cooldown candidates. `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and lists blocked live/parked candidates. `python3 tools/query_goal_state.py revival` reports `revival_next: tooling`.
+- Current routing status after the heartbeat routing repair: all 7 guarded candidates remain routable. `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: func_8008FF1C`; `python3 tools/query_goal_state.py discovery` reports a routable live candidate; `python3 tools/query_goal_state.py tooling` reports a routable candidate; and `python3 tools/query_goal_state.py revival` reports `revival_next: func_8008FF1C`. Cooldown evidence is advisory only.
 - Parent discovery/tooling heartbeat on 2026-06-12: no child lane was launched.
   Refreshed `next`, `discovery`, `tooling`, `revival`, and
   `check_active_surface`; all 4 live candidates and all 3 parked candidates
@@ -103,10 +102,10 @@
   `GLOBAL_ASM("...")`, but excludes `src/hasm/` handwritten assembly from
   source-C routing and reports it as `handwritten_asm_excluded=43`. This keeps
   the parent selector from silently missing macro-form entries while preserving
-  the repo rule that handwritten ASM is not a byte-matching C packet. Refreshed
-  `next` still reports 4 guarded candidates, all cooldown-routed, with
-  `recommended_next: discovery`; `tooling` still requires a complete mechanism
-  packet before any child delegation.
+  the repo rule that handwritten ASM is not a byte-matching C packet. The
+  heartbeat routing repair now keeps all 7 guarded candidates routable, reports
+  `skipped_exhausted=0`, and treats cooldown evidence as anti-repeat guidance
+  instead of a hard gate.
 - Pending parent child lane on 2026-06-12: created one high-reasoning
   worktree child for `func_8002B0F4` mechanism discovery, pending worktree id
   `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`. The child must not edit source
@@ -185,7 +184,14 @@
 - Latest parked object tooling note: a promoted object-slice audit for `func_80017A18` reproduced another focused false positive. `./diff.sh func_80017A18 --compress-matching 2 --no-pager` reported `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xD0505FD8/0xE965F5F5`; the promoted object still used frame `0x138` instead of target `0x120` and initialized the bitmask in `ra` instead of target `s6`. Matching object was restored and full verify passed. Do not trust focused `CURRENT (0)` or reopen without a mechanism predicting target frame and bitmask saved-register allocation.
 - Latest parked revival probe: a 2026-05-31 combined `func_80017A18` dead-vector plus `sum2` edge-plane accumulator lifetime probe also produced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0x0E9F297C/0xBB221418`. Source and matching-mode object were restored. Do not repeat this combined dead-vector/edge-plane accumulator family; any revival still needs a distinct mechanism predicting target frame `0x120` and bitmask in `s6`.
 - Latest parked tooling note: a 2026-05-31 high mechanism-discovery worker for `init_particle_buffers` found no safe source-level packet. A valid future packet must predict target counts `s1/s3/s7/s4/s8`, point count in `s8/fp`, first allocation arithmetic using line count in `s4` and point count in `fp`, and colour tag `0x80808080` in `s2` for every semitrans-grey `mempool_alloc_safe`, with frame still `0x68`. Stop if promoted code still has counts `s3/s1/s7/s2/s4`, colour tag `s0`, frame drift, or only focused `CURRENT (0)` without full ROM `Verify: OK`. Do not repeat register hints, count aliases, local triangle-buffer pointer, all-call colour-tag, unused-pad removal, initial-only colour-tag, declaration/local-carrier source probes, or focused-`CURRENT (0)` acceptance.
-- Latest validation baseline: `python3 tools/check_active_surface.py`, `python3 tools/query_goal_state.py next --compact --refresh`, `python3 tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py packet --function func_8002B0F4 --template`, and high worker read-only discovery passed on 2026-05-31. The selector still reports `recommended_next: discovery`; no mechanism-ready source packet is recorded.
+- Latest validation baseline: `python3 tools/check_active_surface.py`,
+  `python3 tools/query_goal_state.py next --compact --refresh`, `python3
+  tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py
+  revival`, `python3 tools/query_goal_state.py tooling`, and `python3
+  tools/query_goal_state.py packet --function func_8008FF1C` pass after the
+  all-routable heartbeat repair. The selector reports 7 guarded candidates,
+  `skipped_exhausted=0`, and `recommended_next: func_8008FF1C` while the active
+  child lane works that target.
 
 ## Routing Rules
 

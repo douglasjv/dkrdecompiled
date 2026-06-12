@@ -10,14 +10,19 @@
 
 - `git status --short --branch` reported `## master...origin/master [ahead 1002]` before child evidence import edits.
 - `python3 tools/check_active_surface.py` reported active surface ok.
-- `python3 tools/query_goal_state.py next --compact --refresh` reports `recommended_next: discovery`.
-- `python3 tools/query_goal_state.py discovery` reports `discovery_next: tooling`.
-- `python3 tools/query_goal_state.py tooling` reports `tooling_next: discovery_packet` and requires complete packet fields before any probe: target, evidence checked, rejected families, mechanism hypothesis, predicted asm movement, stop condition, and reasoning tier.
-- `python3 tools/query_goal_state.py tooling` prints a `template_command` for each blocked live and parked candidate.
+- Current routing repair supersedes the older discovery-only result:
+  `python3 tools/query_goal_state.py next --compact --refresh` reports 7
+  routable guarded candidates, `skipped_exhausted=0`, and `recommended_next:
+  func_8008FF1C`.
+- `python3 tools/query_goal_state.py discovery`, `revival`, and `tooling`
+  report routable candidates while preserving cooldown/readiness evidence as
+  anti-repeat guidance.
 - `python3 -m py_compile tools/query_goal_state.py` passed.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C --template` emitted the parked packet skeleton.
 - High worker result for `func_8008FF1C`: no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`.
-- `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports `ready_for_probe: false`.
+- `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports
+  `ready_for_probe: true` with a readiness gap requiring a non-repeated child
+  hypothesis.
 - `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`.
 - `./score.sh -s` reports decomp progress `97.30%` and documentation progress `65.47%`.
 - Parent imported child evidence from `codex/func-8002b0f4-child-evidence` commit `b16fb37c` into `research/tasks/child_threads/func_8002B0F4_2026-06-12_child_evidence.md`.
@@ -70,12 +75,22 @@
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
-- No child lane is active after the `trackbg_render_flashy` evidence import.
-- All four default-routable live candidates have fresh parent-child negative
-  evidence from 2026-06-12, so the next step is discovery/tooling before
-  another source-probe child unless a packet names a genuinely distinct
-  mechanism.
-- All live sidecar candidates and parked revival candidates are cooldown-routed; saturation means discovery/tooling, not stopping.
+- Parent routing correction on 2026-06-12: no function is off limits. Cooldown,
+  saturation, parked, and negative-evidence notes are only anti-repeat evidence
+  for the next child hypothesis. The selector now keeps all remaining guarded
+  functions routable (`skipped_exhausted=0`) under the heartbeat parent /
+  exactly-one-active-child pattern until 100 percent byte-matching source is
+  reached.
+- Active child lane: `func_8008FF1C` thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa` in
+  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` on branch
+  `codex/func-8008ff1c-mechanism-discovery`. Do not create another child until
+  this lane byte-matches and commits source-level C, or records a true
+  setup/toolchain/assets/unresolved-behavior blocker.
+- Fresh parent-child negative evidence exists for several candidates, but that
+  evidence does not close those functions or block future work. Use it to avoid
+  repeating source-shape families while keeping every remaining function
+  routable.
 - For `func_8002B0F4`, do not repeat promoted-object `CURRENT (0)`, promoted-object-slice refreshes, unsafe `volatile`/accessor/artificial-alias/helper reshaping, ordinary local/order/carrier spellings, or `register` on `currentSegment`/`currentBoundingBox`/`currentBatch`. A future packet must remove the stack-resident model base at `0x60(sp)`, replace the texture lookup stack reload with an in-loop global `lui/lw gCurrentLevelModel` pair like target `0x2C020/0x2C024`, and preserve the outer setup global reload around `0x2BDD4/0x2BDD8`.
 - For `trackbg_render_flashy`, do not trust focused `CURRENT (0)` or repeat ordinary negative-cos temp, inverted primary cos carrier, positive-cos scratch-local, pair-result scratch locals, first-two-store ordering, `var_f16` negative-cos lifetime extension, scheduling/lifetime barriers, doubled-cos spelling/literal variants, volatile/alias forcing, plain promotion/current-shape, or first-ring `scaledXSin` reuse probes. A future packet must predict initial negative-cos in `$f18` without broad stack-slot/downstream drift and must pass full ROM verify.
 - For `func_8008FF1C`, require a mechanism that predicts target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`; do not repeat direct-table/common-store/pointer-to-selected-track-cell/temp-carrier variants.
@@ -92,84 +107,26 @@
 
 ## Next Work Packet
 
-- Task: `run discovery/tooling after four live child evidence-only results`
-- Packet class: `parent_discovery_tooling`
-- Packet status: `no active child lane after evidence-only result`
-- Reasoning tier: `high` for delegated mechanism discovery when agents are available
-- Step: Discovery/tooling heartbeat refreshed `python3
-  tools/query_goal_state.py next --compact --refresh`, `python3
-  tools/query_goal_state.py discovery`, `python3 tools/query_goal_state.py
-  tooling`, `python3 tools/query_goal_state.py revival`, and `python3
-  tools/check_active_surface.py` on 2026-06-12. No child lane was launched:
-  every live and parked candidate remains cooldown-routed, and
-  `research/tasks/MECHANISM_PACKETS.md` has no complete ready packet. Next
-  parent tooling repair was to make `tools/query_goal_state.py` recognize
-  macro-form `GLOBAL_ASM("...")` while counting and excluding `src/hasm/`
-  handwritten assembly as `handwritten_asm_excluded=43`; refreshed routing
-  still reports `recommended_next: discovery`. Next packet is to write a
-  distinct compiler-mechanism packet with target, evidence checked, rejected
-  families, mechanism hypothesis, predicted asm movement, stop condition, and
-  reasoning tier before any source edits or child delegation. Parent
+- Task: `monitor func_8008FF1C child lane until byte-match`
+- Packet class: `parent_child_monitor`
+- Packet status: `active child lane`
+- Reasoning tier: `high` in child; parent remains low-reasoning orchestration.
+- Active child lane: `func_8008FF1C` thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa`, worktree
+  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`, branch
+  `codex/func-8008ff1c-mechanism-discovery`, pending id
+  `local:eba34148-bbbc-47c4-88c1-0c51a9718518`.
+- Latest child status: child set the function-local goal, completed required
+  startup, linked ignored validation inputs locally, recovered from missing
+  `asm/nonmatchings/...` includes by linking the ignored `asm/` tree, and
+  reached child-local `gmake -j4 CROSS=tools/binutils/mips64-elf-` with
+  `Verify: OK`. Child is inspecting guarded `src/menu.c` and target asm for a
+  non-repeated source-level mechanism.
+- Parent routing status: `python3 tools/query_goal_state.py next --compact
+  --refresh` reports 7 routable guarded candidates, `skipped_exhausted=0`, and
+  `recommended_next: func_8008FF1C`. Cooldown, parked, and negative-evidence
+  notes are anti-repeat guidance only; no function is off limits.
+- Next parent action: read this child status before doing anything else. Do not
+  create another lane while this child is active, dirty, or unresolved. Parent
   integration accepts only source-level C after `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
-- Active child lane: `func_8002B0F4` high-reasoning mechanism discovery thread
-  `019ebdec-ac64-7131-9914-2faa3abe3568`, worktree
-  `/Users/douglas/.codex/worktrees/97e6/dkrdecompiled`, pending id
-  `local:7a717534-8df5-41a2-8dee-b0b05abdf97f`. Parent sent the function-local
-  packet contract; next heartbeat should read the child status before any
-  further child creation.
-- Latest child status: in progress. Startup identified missing ignored
-  validation inputs (`baseroms`, `build`) and then branch creation hit a
-  git-ref write permission issue because refs live under the parent checkout
-  `.git` outside the child sandbox. Child requested permission to create its
-  branch; monitor that lane before any new child creation.
-- Parent worktree check: child is now on branch
-  `codex/func-8002b0f4-mechanism-discovery` with no tracked diff and only
-  untracked local setup symlinks `.venv` and `assets`. No new child commit or
-  mechanism/evidence artifact has landed yet.
-- Child result imported: `func_8002B0F4` mechanism-discovery child committed
-  evidence-only result `5b0b972b`; parent imported
-  `research/tasks/child_threads/func_8002B0F4_2026-06-12_mechanism_discovery.md`.
-  No source files were edited. Child baseline reached `Verify: OK` after local
-  ignored setup links, but no complete non-repeated mechanism packet was found.
-  There is no active child lane after this import.
-- Active child lane: `func_80049794` high-reasoning mechanism discovery thread
-  `019ebdf5-05f4-7b32-ba6f-03c838420dee`, worktree
-  `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`, pending id
-  `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`. Parent sent the function-local
-  packet contract; next heartbeat should read the child status before any
-  further child creation.
-- Child result imported: `func_80049794` mechanism-discovery child committed
-  evidence-only result `1aa2b9d1`; parent imported
-  `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`.
-  No source files were edited. Child baseline reached `Verify: OK` after local
-  ignored setup links, but no complete non-repeated mechanism packet was found.
-  There is no active child lane after this import; run discovery/tooling before
-  creating another child.
-- Discovery/tooling repair: parent updated `func_80059208` and
-  `trackbg_render_flashy` sidecar ledgers so their June 12 child evidence
-  commits (`e09f5f42`, `6207d9c5`) are parser-visible as latest audits.
-  Refreshed `discovery` and `tooling` now surface June 12 child evidence for
-  all four live cooldown candidates. There is still no complete mechanism
-  packet, so no child lane was launched.
-- New pending child worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`;
-  target `func_8008FF1C`. This is a high-reasoning parked-revival
-  mechanism-discovery lane only. User correction on 2026-06-12: child lanes
-  must not be closed out for negative evidence alone. The child should continue
-  until `func_8008FF1C` byte-matches and commits source-level C, unless it
-  reports a true setup/toolchain/assets/unresolved-behavior blocker. Negative
-  evidence can be committed as a checkpoint but does not resolve the lane. Do
-  not create another child until this pending lane reaches that standard.
-- Pending worktree path resolved to
-  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`, detached at parent
-  commit `c55cce84`. Child thread id is still pending; parent has not sent the
-  function-local prompt yet because the thread-list tool was unavailable.
-- Parent created branch `codex/func-8008ff1c-mechanism-discovery` in that
-  worktree. The real active goal already requires child threads to continue
-  until byte-match/commit unless true setup/toolchain/assets/behavior blocker;
-  no exposed goal-rewrite tool was available in this turn.
-- Pending worktree resolved to child thread
-  `019ebe01-34c2-7310-b8aa-4aa5cff50faa`; parent sent the corrected
-  function-local `func_8008FF1C` prompt. This is now the one active child lane:
-  do not start another lane, and do not treat checkpoint negative evidence as
-  closeout.

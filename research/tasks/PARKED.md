@@ -1,9 +1,11 @@
 # Exhausted Probe Notes
 
 Use this file for bounded source-level packets that were investigated but are
-not safe to retry blindly. These notes are default-skipped by
-`tools/query_goal_state.py` for routing momentum; pass `--include-exhausted`
-when intentionally returning to them.
+not safe to retry blindly. These notes are not an off-limits list:
+`tools/query_goal_state.py` keeps every recorded function routable so the
+heartbeat parent can assign exactly one child lane at a time until the project
+reaches 100 percent byte-matching source. The notes are routing evidence for
+the next non-repeated child hypothesis.
 
 ## Recorded Notes
 

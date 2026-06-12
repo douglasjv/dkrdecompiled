@@ -8,7 +8,9 @@ Splat/IDO/asm-differ build gates.
 
 Keep landing source-level C for original Diddy Kong Racing functions while the
 matching ROM remains byte-identical. Exhausted probe evidence is evidence about
-that packet only; it is not evidence that the project is out of work.
+that packet only; it is not evidence that the project is out of work or that a
+function is off limits. The routing surface must keep all remaining functions
+routable until the decompilation reaches 100 percent byte-matching source.
 
 ## Startup Order
 
@@ -33,9 +35,13 @@ that packet only; it is not evidence that the project is out of work.
   before opening another source-shape family.
 - Record rejected source shapes, current best diff, and next probe in
   `SESSION_HANDOFF.md`.
-- Do not add close functions to the exhausted-note skip list just because a
-  probe family failed. Keep them active unless there is a concrete setup, asset,
-  or behavior blocker.
+- Do not add close functions to an off-limits or exhausted skip list just
+  because a probe family failed. Keep them active and routable unless there is
+  a concrete setup, asset, or behavior blocker.
+- Under the parent heartbeat / child decompile thread pattern, negative
+  evidence is only a checkpoint. The active child lane continues until its
+  assigned function byte-matches and commits source-level C, or hits a true
+  setup/toolchain/assets/unresolved-behavior blocker.
 
 ## Validation
 
