@@ -33,6 +33,11 @@
   `019ebdd6-3f3b-7c61-a36f-0a9928ad0eb9` at
   `/Users/douglas/.codex/worktrees/1264/dkrdecompiled`; initial child status
   was detached `HEAD` with no tracked diffs.
+- Parent heartbeat confirmed child remains active on branch
+  `codex/func-80059208-child` with no tracked diffs or staged changes. The
+  child has copied ignored local validation inputs, reproduced expected
+  asm-backed focused `CURRENT (0)`, and is still resolving local setup inputs
+  before baseline `Verify: OK`; latest setup item was `tools/dkr_assets_tool`.
 
 ## Blockers Or Unknowns
 
