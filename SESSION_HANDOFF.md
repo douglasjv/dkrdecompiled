@@ -152,3 +152,9 @@
   Refreshed `discovery` and `tooling` now surface June 12 child evidence for
   all four live cooldown candidates. There is still no complete mechanism
   packet, so no child lane was launched.
+- New pending child worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`;
+  target `func_8008FF1C`. This is a high-reasoning parked-revival
+  mechanism-discovery lane only. The child must either write a complete
+  mechanism packet for target `lh t2,0(s1)` plus delay-slot `sw v0,0(s0)`, or
+  commit durable negative evidence. Do not create another child until this
+  pending lane resolves.

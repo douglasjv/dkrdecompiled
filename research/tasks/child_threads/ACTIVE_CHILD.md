@@ -5,21 +5,19 @@ Policy: exactly one active child lane at a time.
 
 ## Active Lane
 
-- Status: no active child lane; latest child evidence imported.
-- Child thread id: `019ebdf5-05f4-7b32-ba6f-03c838420dee`
-- Child worktree: `/Users/douglas/.codex/worktrees/9c4b/dkrdecompiled`
-- Pending worktree id: `local:eba7130a-8a87-4f41-b8bb-c8929da5329e`
-- Target: `func_80049794`
+- Status: pending child worktree creation.
+- Child thread id: pending
+- Child worktree: pending
+- Pending worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`
+- Target: `func_8008FF1C`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
-- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_80049794 --template`; `research/tasks/func_80049794_evidence.md` as required child reading.
-- Rejected families: plain promotion, object-only/focused `CURRENT (0)` acceptance, `updateRateF`/`var_f20` carrier variants, `register var_f20`, carrier-width changes, branch/condition/literal spellings, wave bound/index locals, pointer-cursor wave variants, selected-wave carriers, declaration-order/register hints, early-zero carriers, first-speed carriers, trick-input completion spellings, boost-duration literal spellings, and close save-family combinations that do not also move wave allocation.
-- Mechanism hypothesis required: find a distinct compiler mechanism that couples the missing target saved-FPR family with a non-repeated wave allocation change.
-- Predicted asm movement: recover target frame `0xF8`, `$f21/$f20` saves at `0x20/0x24(sp)`, early zero in `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`, without broad frame or scheduling regressions.
+- Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py next --compact --refresh --include-exhausted`; `python3 tools/query_goal_state.py revival`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_8008FF1C --template`; `research/tasks/PARKED.md` as required child reading.
+- Rejected families: selected-track temp/carrier lifetime, direct table condition, common-store placement, duplicated branch-local `hubName` store, condition/store comma ordering, compare-carrier, declaration-order probes, `register` hints, pointer-to-selected-track-cell lifetime, plain current guarded-C promotion, object-only/focused `CURRENT (0)` acceptance, direct-table plus duplicated first-side-effect store variants, and any source shape that keeps `lh v1,0(s1)` or loses the target delay-slot store.
+- Mechanism hypothesis required: find a distinct compiler mechanism that predicts target `lh t2,0(s1)` / branch-on-`t2` allocation while preserving the target delay-slot `sw v0,0(s0)` for `cur->hubName = levelName`.
+- Predicted asm movement: keep the direct-table selected-track load in `t2`, preserve the delay-slot `sw v0,0(s0)` at the selected-track branch, avoid duplicate `hubName` stores or broad visible-track register drift, and pass full ROM verify rather than focused `CURRENT (0)` alone.
 - Stop condition: write a complete mechanism packet in `research/tasks/MECHANISM_PACKETS.md` or durable negative evidence proving no non-repeated mechanism-ready source packet exists; do not make source edits in the child until the mechanism packet is complete and parent-routed.
 - Reasoning tier: high.
-- Child result: durable negative evidence committed on
-  `codex/func-80049794-mechanism-discovery` at `1aa2b9d1` and imported to
-  `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`.
+- Child result: pending.
 
 ## Parent Gate
 
@@ -59,3 +57,4 @@ Policy: exactly one active child lane at a time.
 - 2026-06-12: Parent sent a follow-up after confirming the child still has no tracked diff and only ignored local setup links (`.venv`, `assets`). The existing `func_80049794_2026-06-12_child_evidence.md` in the child worktree is the older resolved child note from `codex/func-80049794-child` commit `1e9cccf5`, not this lane's closeout. Child was told to finish baseline `Verify: OK`, then commit either a new complete mechanism packet or a distinct new durable evidence note for this active mechanism-discovery lane.
 - 2026-06-12: Child committed durable negative mechanism-discovery evidence on `codex/func-80049794-mechanism-discovery` at `1aa2b9d1`. Parent imported `research/tasks/child_threads/func_80049794_2026-06-12_mechanism_discovery.md`. No source files were edited; child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, score remained decomp `97.30%` and docs `65.47%`, and parent-routed source probing is not justified without a distinct mechanism that predicts the coupled saved-FPR and wave-allocation movement.
 - 2026-06-12: Parent ran discovery/tooling with no active child lane and repaired stale sidecar audit visibility for `func_80059208` and `trackbg_render_flashy`. Refreshed selector output now shows June 12 child evidence as latest audit for all four live cooldown candidates. No child was launched because no complete mechanism packet exists.
+- 2026-06-12: Parent refreshed `next`, `discovery`, `tooling`, `revival`, and `--include-exhausted` routing. All four live candidates remain cooldown-routed with June 12 child evidence, and parked candidates remain revival-cooldown. Parent selected the first parked revival candidate, `func_8008FF1C`, for exactly one high-reasoning mechanism-discovery child lane and created pending worktree id `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. No child thread id or worktree path exists yet; do not start another lane until this pending child resolves and commits a complete mechanism packet/evidence or reports a true blocker.

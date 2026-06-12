@@ -156,6 +156,18 @@
   surface June 12 child evidence as the latest audit for all four live
   cooldown candidates. No child lane was launched because no sidecar or
   `MECHANISM_PACKETS.md` entry names a complete distinct mechanism packet.
+- Pending parent child lane on 2026-06-12: after refreshing `next`,
+  `discovery`, `tooling`, `revival`, and `--include-exhausted` routing, parent
+  created exactly one high-reasoning parked-revival mechanism-discovery child
+  for `func_8008FF1C`, pending worktree id
+  `local:eba34148-bbbc-47c4-88c1-0c51a9718518`. The child must not edit source
+  until it writes a complete packet or durable negative evidence. The required
+  mechanism must predict target `lh t2,0(s1)` / branch-on-`t2` allocation while
+  preserving the target delay-slot `sw v0,0(s0)` for `cur->hubName =
+  levelName`; do not repeat selected-track temp/carrier lifetime, direct table
+  condition, common-store placement, duplicated branch-local store,
+  condition/store comma ordering, register-hint, pointer-cell, object-only
+  focused `CURRENT (0)`, or duplicated first-side-effect store families.
 - Latest parked revival note: a 2026-05-31 follow-up high mechanism discovery for `func_8008FF1C` found no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`. Do not repeat selected-track temp/carrier lifetime, direct table condition, common-store placement, duplicated branch-local store, condition/store comma ordering, register-hint, or focused-`CURRENT (0)` acceptance families.
 - Latest parked object tooling note: a promoted object-slice audit for `func_80017A18` reproduced another focused false positive. `./diff.sh func_80017A18 --compress-matching 2 --no-pager` reported `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xD0505FD8/0xE965F5F5`; the promoted object still used frame `0x138` instead of target `0x120` and initialized the bitmask in `ra` instead of target `s6`. Matching object was restored and full verify passed. Do not trust focused `CURRENT (0)` or reopen without a mechanism predicting target frame and bitmask saved-register allocation.
 - Latest parked revival probe: a 2026-05-31 combined `func_80017A18` dead-vector plus `sum2` edge-plane accumulator lifetime probe also produced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0x0E9F297C/0xBB221418`. Source and matching-mode object were restored. Do not repeat this combined dead-vector/edge-plane accumulator family; any revival still needs a distinct mechanism predicting target frame `0x120` and bitmask in `s6`.
