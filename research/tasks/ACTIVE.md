@@ -199,6 +199,13 @@
   all-routable heartbeat repair. The selector reports 7 guarded candidates,
   `skipped_exhausted=0`, and `recommended_next: func_8008FF1C` while the active
   child lane works that target.
+- Tooling import on 2026-06-23: DKR now has repo-local matching helpers adapted
+  from Snowboard Kids workflow ideas: `.agents/skills/n64-ido-permuter/`,
+  `tools/permuter`, `tools/find_similar_functions.py`,
+  `tools/m2c_one_shot.py`, and `tools/data_diff.py`. These are discovery and
+  near-match diagnostics only; they do not weaken the full `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` / `Verify: OK` acceptance gate and should
+  not close or replace the active `func_8008FF1C` child lane.
 
 ## Routing Rules
 

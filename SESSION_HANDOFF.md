@@ -18,6 +18,12 @@
   report routable candidates while preserving cooldown/readiness evidence as
   anti-repeat guidance.
 - `python3 -m py_compile tools/query_goal_state.py` passed.
+- Tooling import validation on 2026-06-23 passed:
+  `python3 -m py_compile tools/permuter tools/find_similar_functions.py
+  tools/m2c_one_shot.py tools/data_diff.py`, `./tools/permuter --help`,
+  `python3 tools/find_similar_functions.py func_8008FF1C --top 5`, and
+  `python3 /Users/douglas/.codex/skills/.system/skill-creator/scripts/quick_validate.py
+  .agents/skills/n64-ido-permuter`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C --template` emitted the parked packet skeleton.
 - High worker result for `func_8008FF1C`: no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports
@@ -75,6 +81,9 @@
 ## Blockers Or Unknowns
 
 - No setup blocker recorded.
+- `tools/decomp-permuter` is now available as a submodule and wrapped by
+  `tools/permuter`; use it only for near-matching child-worktree candidates and
+  never as a replacement for full `Verify: OK`.
 - Parent routing correction on 2026-06-12: no function is off limits. Cooldown,
   saturation, parked, and negative-evidence notes are only anti-repeat evidence
   for the next child hypothesis. The selector now keeps all remaining guarded
@@ -135,3 +144,7 @@
   create another lane while this child is active, dirty, or unresolved. Parent
   integration accepts only source-level C after `gmake -j4
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
+- If the active child needs tooling rather than another spelling probe, the
+  DKR-local options are `tools/find_similar_functions.py` for shape references,
+  `tools/m2c_one_shot.py` for mips_to_c snapshots, and `tools/permuter` for
+  near-match permutations in the child worktree.

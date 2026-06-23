@@ -43,6 +43,22 @@ diagnosis and `./score.sh -s` for progress reporting after a successful build.
 A packet is not complete unless the matching build remains `Verify: OK`, or the
 blocker is recorded precisely in `SESSION_HANDOFF.md`.
 
+## Matching Tooling
+
+- `./tools/permuter --source-file <candidate.c> --seconds 300 <function>` wraps
+  decomp-permuter for near-matching candidates only. Use it in a child
+  worktree, inspect output as advisory source-shape evidence, and accept
+  nothing until the full matching build reaches `Verify: OK`.
+- `python3 tools/find_similar_functions.py <function>` ranks other function asm
+  with similar normalized opcode/operand shape. Use it to form a distinct
+  mechanism hypothesis when routing is saturated, not as proof of behavior.
+- `python3 tools/m2c_one_shot.py <function>` writes mips_to_c snapshots under
+  `research/tasks/m2c_one_shot/` without editing live source. Treat output as a
+  starting point only.
+- `python3 tools/data_diff.py --rom-offset <offset> --size <size>` compares a
+  ROM byte range between the baserom and built ROM when a data mismatch needs a
+  small, reproducible diagnostic.
+
 ## Closeout
 
 When a packet lands, records exhausted probe evidence, or changes

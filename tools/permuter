@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+"""DKR wrapper for decomp-permuter.
+
+The wrapper imports a repo-local C candidate plus target asm into
+tools/decomp-permuter, then runs the permuter with a wall-clock timeout. It does
+not fetch decomp.me scratches and does not modify accepted source files.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_PERMUTER_DIR = ROOT / "tools" / "decomp-permuter"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Import and run decomp-permuter for a DKR function."
+    )
+    parser.add_argument(
+        "target",
+        help="Function name or path to target asm, usually asm/nonmatchings/.../<func>.s",
+    )
+    parser.add_argument(
+        "-s",
+        "--source-file",
+        default="src/temp.c",
+        help="Standalone C candidate to import (default: src/temp.c)",
+    )
+    parser.add_argument(
+        "--seconds",
+        type=int,
+        default=300,
+        help="Wall-clock timeout for the permuter run (default: 300)",
+    )
+    parser.add_argument(
+        "-j",
+        "--jobs",
+        type=int,
+        default=max(1, min(4, os.cpu_count() or 1)),
+        help="Worker count for decomp-permuter (default: min(cpu, 4))",
+    )
+    parser.add_argument(
+        "--permuter-dir",
+        default=str(DEFAULT_PERMUTER_DIR),
+        help="Path to decomp-permuter checkout (default: tools/decomp-permuter)",
+    )
+    return parser.parse_args()
+
+
+def resolve_asm(target: str) -> Path:
+    candidate = Path(target)
+    if candidate.exists():
+        return candidate.resolve()
+    if not candidate.is_absolute() and (ROOT / candidate).exists():
+        return (ROOT / candidate).resolve()
+
+    name = target[:-2] if target.endswith(".s") else target
+    matches = sorted((ROOT / "asm").glob(f"**/{name}.s"))
+    if not matches:
+        raise SystemExit(f"error: no asm found for {target!r} under asm/")
+    if len(matches) > 1:
+        rels = "\n  ".join(str(path.relative_to(ROOT)) for path in matches)
+        raise SystemExit(f"error: multiple asm files match {target!r}:\n  {rels}")
+    return matches[0].resolve()
+
+
+def require_permuter(permuter_dir: Path) -> tuple[Path, Path]:
+    import_py = permuter_dir / "import.py"
+    permuter_py = permuter_dir / "permuter.py"
+    if import_py.exists() and permuter_py.exists():
+        return import_py, permuter_py
+
+    rel = permuter_dir.relative_to(ROOT) if permuter_dir.is_relative_to(ROOT) else permuter_dir
+    raise SystemExit(
+        "error: decomp-permuter is not installed at "
+        f"{rel}\n"
+        "Install it before use, for example:\n"
+        "  git submodule add https://github.com/simonlindholm/decomp-permuter.git "
+        "tools/decomp-permuter"
+    )
+
+
+def parse_import_dir(output: str, asm_path: Path) -> Path:
+    match = re.search(r"Done\. Imported into\s+(.+)", output)
+    if match:
+        path = Path(match.group(1).strip())
+        return path if path.is_absolute() else ROOT / path
+
+    fallback = ROOT / "nonmatchings" / asm_path.stem
+    if fallback.exists():
+        return fallback
+
+    raise SystemExit("error: could not determine decomp-permuter environment")
+
+
+def main() -> int:
+    args = parse_args()
+    source = Path(args.source_file)
+    if not source.is_absolute():
+        source = ROOT / source
+    if not source.exists():
+        raise SystemExit(f"error: source file not found: {source}")
+
+    asm_path = resolve_asm(args.target)
+    import_py, permuter_py = require_permuter(Path(args.permuter_dir).resolve())
+
+    print(f"target asm: {asm_path.relative_to(ROOT)}")
+    print(f"source: {source.relative_to(ROOT) if source.is_relative_to(ROOT) else source}")
+    print("importing candidate into decomp-permuter...")
+
+    import_result = subprocess.run(
+        [sys.executable, str(import_py), str(source), str(asm_path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(import_result.stdout, end="")
+    if import_result.returncode != 0:
+        return import_result.returncode
+
+    env_dir = parse_import_dir(import_result.stdout, asm_path)
+    rel_env = env_dir.relative_to(ROOT) if env_dir.is_relative_to(ROOT) else env_dir
+    print(f"permuter env: {rel_env}")
+    print(f"running for up to {args.seconds}s with {args.jobs} jobs...")
+
+    cmd = [
+        sys.executable,
+        str(permuter_py),
+        "-j",
+        str(args.jobs),
+        "--best-only",
+        "--stop-on-zero",
+        "--stack-diffs",
+        "--quiet",
+        "--algorithm",
+        "levenshtein",
+        str(env_dir),
+    ]
+    try:
+        return subprocess.run(cmd, cwd=ROOT, check=False, timeout=args.seconds).returncode
+    except subprocess.TimeoutExpired:
+        print(f"timeout after {args.seconds}s; inspect {rel_env} for best output")
+        return 124
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
