@@ -549,6 +549,8 @@ def print_revival(state: dict[str, object]) -> None:
 
 def print_tooling(state: dict[str, object]) -> None:
     print(f"repo: {state['repo']}")
+    print("tooling_helper: python3 tools/score_asm_functions.py asm/nonmatchings --by-similarity --top 10")
+    print("validation_helper: ./tools/build-and-verify.sh")
     discovery_items = discovery_candidates(state)
     revival_items = revival_candidates(state)
     routable = [item for item in discovery_items if item.get("ready_for_probe")]

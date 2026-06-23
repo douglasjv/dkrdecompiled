@@ -216,6 +216,15 @@
   near-match diagnostics only; they do not weaken the full `gmake -j4
   CROSS=tools/binutils/mips64-elf-` / `Verify: OK` acceptance gate and should
   not close or replace the active `func_8008FF1C` child lane.
+- Snowboard candidate follow-up on 2026-06-23: DKR also has
+  `tools/build-and-verify.sh` as a thin wrapper around the canonical `gmake -j4
+  CROSS=tools/binutils/mips64-elf-` gate, `tools/score_asm_functions.py` for
+  discovery ranking by rough complexity/available-asm similarity, and
+  `.agents/skills/n64-display-list-macro-matching/` for Gfx macro matching
+  packets. Snowboard data-file, ultralib-segment, and microcode guidance is
+  conditional only: use the adapted display-list skill for DKR Gfx functions,
+  and do not route generic data/ultralib packets unless the current DKR
+  selector/work surface exposes a matching source-level C target.
 
 ## Routing Rules
 

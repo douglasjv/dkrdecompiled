@@ -42,6 +42,8 @@ IDO objects at link time. Use `./diff.sh <function>` for focused assembly
 diagnosis and `./score.sh -s` for progress reporting after a successful build.
 A packet is not complete unless the matching build remains `Verify: OK`, or the
 blocker is recorded precisely in `SESSION_HANDOFF.md`.
+`./tools/build-and-verify.sh` is a convenience wrapper around the exact command
+above; it does not replace the gate or relax validation.
 
 ## Matching Tooling
 
@@ -58,6 +60,14 @@ blocker is recorded precisely in `SESSION_HANDOFF.md`.
 - `python3 tools/data_diff.py --rom-offset <offset> --size <size>` compares a
   ROM byte range between the baserom and built ROM when a data mismatch needs a
   small, reproducible diagnostic.
+- `python3 tools/score_asm_functions.py asm/nonmatchings --by-similarity`
+  ranks unresolved asm by rough complexity and similarity to available asm
+  references. Use this for discovery/tooling packets after live candidates are
+  saturated; it is advisory only.
+- `.agents/skills/n64-display-list-macro-matching/` adapts Snowboard-style
+  display-list macro matching to DKR's local `include/PR/gbi.h` and
+  `include/PR/gs2dex.h`. Use it for Gfx command construction candidates, never
+  as raw command-word acceptance.
 
 ## Closeout
 

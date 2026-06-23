@@ -24,6 +24,15 @@
   `python3 tools/find_similar_functions.py func_8008FF1C --top 5`, and
   `python3 /Users/douglas/.codex/skills/.system/skill-creator/scripts/quick_validate.py
   .agents/skills/n64-ido-permuter`.
+- Snowboard candidate follow-up validation on 2026-06-23 passed:
+  `python3 -m py_compile tools/query_goal_state.py
+  tools/score_asm_functions.py`, `./tools/build-and-verify.sh` syntax checks,
+  `python3 tools/score_asm_functions.py asm/nonmatchings --top 5`,
+  `python3 tools/score_asm_functions.py asm/nonmatchings --by-similarity --top
+  5`, and skill validation for
+  `.agents/skills/n64-display-list-macro-matching`.
+- `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`, and
+  `./score.sh -s` reported decomp `97.30%`, docs `65.47%`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C --template` emitted the parked packet skeleton.
 - High worker result for `func_8008FF1C`: no landable source patch. Forced promotion reproduced stale focused `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xA63BE13D/0xB86942B3`; objdump showed `lh v1,0(s1)`, `sw v0,0(s0)` before the branch, then `beq v1,at,...`, not target `lh t2,0(s1)` with delay-slot `sw v0,0(s0)`.
 - `python3 tools/query_goal_state.py packet --function func_8008FF1C` reports
@@ -84,6 +93,13 @@
 - `tools/decomp-permuter` is now available as a submodule and wrapped by
   `tools/permuter`; use it only for near-matching child-worktree candidates and
   never as a replacement for full `Verify: OK`.
+- Additional Snowboard-derived workflow helpers are available:
+  `tools/build-and-verify.sh` wraps the exact DKR validation command,
+  `tools/score_asm_functions.py` ranks unresolved asm for discovery packets,
+  and `.agents/skills/n64-display-list-macro-matching/` covers local Gfx macro
+  matching. Snowboard's data-file and ultralib segment skills are not default
+  DKR routes because this checkout has no splat YAML surface; use them only if
+  a future DKR target exposes an equivalent source-level data/libultra packet.
 - Parent routing correction on 2026-06-12: no function is off limits. Cooldown,
   saturation, parked, and negative-evidence notes are only anti-repeat evidence
   for the next child hypothesis. The selector now keeps all remaining guarded
@@ -156,5 +172,8 @@
   CROSS=tools/binutils/mips64-elf-` reaches `Verify: OK`, then `./score.sh -s`.
 - If the active child needs tooling rather than another spelling probe, the
   DKR-local options are `tools/find_similar_functions.py` for shape references,
-  `tools/m2c_one_shot.py` for mips_to_c snapshots, and `tools/permuter` for
-  near-match permutations in the child worktree.
+  `tools/score_asm_functions.py` for rough complexity/similarity ranking,
+  `tools/m2c_one_shot.py` for mips_to_c snapshots, `tools/permuter` for
+  near-match permutations in the child worktree, and
+  `.agents/skills/n64-display-list-macro-matching/` for Gfx command macro
+  candidates.
