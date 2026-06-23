@@ -90,10 +90,10 @@
   functions routable (`skipped_exhausted=0`) under the heartbeat parent /
   exactly-one-active-child pattern until 100 percent byte-matching source is
   reached.
-- Active child lane: `func_8008FF1C` thread
-  `019ebe01-34c2-7310-b8aa-4aa5cff50faa` in
-  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` on branch
-  `codex/func-8008ff1c-mechanism-discovery`. Do not create another child until
+- Active child lane: replacement `func_8008FF1C` thread
+  `019ef6c2-c922-76b3-90fc-0db88540c680` in
+  `/Users/douglas/.codex/worktrees/646c/dkrdecompiled` on branch
+  `codex/func-8008ff1c-replacement-20260623`. Do not create another child until
   this lane byte-matches and commits source-level C, or records a true
   setup/toolchain/assets/unresolved-behavior blocker.
 - Fresh parent-child negative evidence exists for several candidates, but that
@@ -121,10 +121,10 @@
 - Packet status: `active child lane`
 - Reasoning tier: `high` in child; parent remains low-reasoning orchestration.
 - Active child lane: `func_8008FF1C` thread
-  `019ebe01-34c2-7310-b8aa-4aa5cff50faa`, worktree
-  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`, branch
-  `codex/func-8008ff1c-mechanism-discovery`, pending id
-  `local:eba34148-bbbc-47c4-88c1-0c51a9718518`.
+  `019ef6c2-c922-76b3-90fc-0db88540c680`, worktree
+  `/Users/douglas/.codex/worktrees/646c/dkrdecompiled`, branch
+  `codex/func-8008ff1c-replacement-20260623`, pending id
+  `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`.
 - Latest child status: child set the function-local goal, completed required
   startup, linked ignored validation inputs locally, recovered from missing
   `asm/nonmatchings/...` includes by linking the ignored `asm/` tree, and
@@ -136,6 +136,16 @@
   delay-slot store but branch on `v1`, while direct-table shapes recover `t2`
   but hoist the hub-name store or fill the branch delay slot with other work.
   This is not lane closeout.
+- Latest parent replacement note: on 2026-06-23, old child thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa` was not readable through current
+  Codex thread tools. Parent inspected the old child worktree directly; it was
+  tracked-clean and evidence-only at `3e4a2156` (`Record func_8008FF1C switch
+  sentinel gate`), with no exact-match source. Parent created replacement
+  branch `codex/func-8008ff1c-replacement-20260623` at that commit, forked
+  pending worktree `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`, resolved it to
+  thread `019ef6c2-c922-76b3-90fc-0db88540c680`, attached the replacement
+  worktree to the branch, and sent the function-local goal. The replacement
+  child is now in progress; no parent source integration is available.
 - Parent routing status: `python3 tools/query_goal_state.py next --compact
   --refresh` reports 7 routable guarded candidates, `skipped_exhausted=0`, and
   `recommended_next: func_8008FF1C`. Cooldown, parked, and negative-evidence

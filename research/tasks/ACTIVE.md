@@ -57,6 +57,16 @@
   This is durable negative evidence only, not lane closeout. Continue
   monitoring the same child until byte-match/source commit or a true
   setup/toolchain/assets/unresolved-behavior blocker.
+- Active `func_8008FF1C` replacement lane on 2026-06-23: the old child thread
+  was no longer readable through current Codex thread tools, while its worktree
+  had advanced to evidence-only commit `3e4a2156` with no exact-match source.
+  Parent created replacement branch `codex/func-8008ff1c-replacement-20260623`
+  at `3e4a2156`, forked pending worktree
+  `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`, and seeded replacement child
+  thread `019ef6c2-c922-76b3-90fc-0db88540c680` in
+  `/Users/douglas/.codex/worktrees/646c/dkrdecompiled`. Continue monitoring
+  this replacement child only until `func_8008FF1C` byte-matches/source-commits
+  or records a true setup/toolchain/assets/unresolved-behavior blocker.
 - Current packet status: `func_80049794` is active but saturated for low-signal source spelling probes. Do not edit it again without a compact routing packet that names a distinct compiler-mechanism hypothesis and predicted asm movement.
 - Evidence path checked: `research/tasks/func_80049794_evidence.md`.
 - Latest do-not-repeat/cooldown note: a 2026-05-31 follow-up high mechanism discovery for `func_80049794` found no mechanism-ready source patch. Forced guarded object still lacks `$f20/$f21` saves, uses early zero `$f16`, and keeps wave scan as `v0` count with `a0` high bound and `v1` loop index; target needs `$f21/$f20` saves at `0x20/0x24(sp)`, early zero `$f14`, `v1` high bound, `a0` loop index, and `v0` pointer cursor after `addu`. Focused `CURRENT (0)` was contradicted by objdump and treated as stale; nonmatching full link still fails before CRC on racer-provided DRM helper symbols. Matching object was restored and full verify passed.

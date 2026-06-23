@@ -10,11 +10,12 @@ replacement lane merely because a child records negative evidence.
 
 ## Active Lane
 
-- Status: active child thread; corrected function-local prompt sent.
-- Child thread id: `019ebe01-34c2-7310-b8aa-4aa5cff50faa`
-- Child worktree: `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled`
-- Pending worktree id: `local:eba34148-bbbc-47c4-88c1-0c51a9718518`
+- Status: active replacement child thread; function-local prompt sent.
+- Child thread id: `019ef6c2-c922-76b3-90fc-0db88540c680`
+- Child worktree: `/Users/douglas/.codex/worktrees/646c/dkrdecompiled`
+- Pending worktree id: `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`
 - Target: `func_8008FF1C`
+- Branch: `codex/func-8008ff1c-replacement-20260623`
 - Lane type: high-reasoning mechanism discovery packet before any source edits.
 - Evidence checked: `research/tasks/ACTIVE.md`; `python3 tools/query_goal_state.py next --compact --refresh`; `python3 tools/query_goal_state.py next --compact --refresh --include-exhausted`; `python3 tools/query_goal_state.py revival`; `python3 tools/query_goal_state.py tooling`; `python3 tools/query_goal_state.py packet --function func_8008FF1C --template`; `research/tasks/PARKED.md` as required child reading.
 - Rejected families: selected-track temp/carrier lifetime, direct table condition, common-store placement, duplicated branch-local `hubName` store, condition/store comma ordering, compare-carrier, declaration-order probes, `register` hints, pointer-to-selected-track-cell lifetime, plain current guarded-C promotion, object-only/focused `CURRENT (0)` acceptance, direct-table plus duplicated first-side-effect store variants, and any source shape that keeps `lh v1,0(s1)` or loses the target delay-slot store.
@@ -76,3 +77,18 @@ replacement lane merely because a child records negative evidence.
 - 2026-06-12: User reported the child thread lost its real goal. Parent sent a follow-up to child thread `019ebe01-34c2-7310-b8aa-4aa5cff50faa` requiring it to recreate/check the real function-local goal for `func_8008FF1C`, continue from checkpoint commit `4351e435`, keep working until byte-match/source commit or true setup/toolchain/assets/unresolved-behavior blocker, and treat durable negative evidence as checkpoint-only.
 - 2026-06-13: Parent heartbeat confirmed the same child thread is still `inProgress` with the real function-local goal restored. Child branch advanced through validated checkpoint commits up to `c7f966ab` (`Record func_8008FF1C trackname allocator evidence`) and remains active; latest child status says it is testing a bounded allocator/register-pressure mechanism rather than stopping on negative evidence. Child worktree has no tracked dirty files, only local setup links `.venv` and `assets`. Parent must not create another child lane.
 - 2026-06-13: Parent heartbeat confirmed the same child thread is still `inProgress` and not setup-stalled. Child branch advanced through validated checkpoints up to `cdda8e0a` (`Record func_8008FF1C post-common CFG evidence`), with additional duplicate-call/boolean evidence being tested in the active turn. Child worktree is tracked-clean with only local setup links `.venv` and `assets`; no byte-match source commit is ready for parent integration. Continue monitoring this lane only.
+- 2026-06-23: Parent could no longer read child thread
+  `019ebe01-34c2-7310-b8aa-4aa5cff50faa` through the current Codex thread
+  tools, but the old child worktree at
+  `/Users/douglas/.codex/worktrees/00e8/dkrdecompiled` remained tracked-clean
+  on branch `codex/func-8008ff1c-mechanism-discovery` and had advanced to
+  evidence-only commit `3e4a2156` (`Record func_8008FF1C switch sentinel
+  gate`). Latest evidence explicitly says it is a checkpoint, not completion
+  or a blocker. Parent created replacement branch
+  `codex/func-8008ff1c-replacement-20260623` at `3e4a2156`, forked pending
+  worktree `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`, resolved it to child
+  thread `019ef6c2-c922-76b3-90fc-0db88540c680` at
+  `/Users/douglas/.codex/worktrees/646c/dkrdecompiled`, attached that worktree
+  to the replacement branch, and sent the corrected function-local prompt. This
+  remains the single active child lane; do not start another lane while this
+  replacement child is active.
