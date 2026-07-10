@@ -52,6 +52,17 @@ Current compact read:
   loop. A dedicated bound lifetime based on that precedent still produced
   `v1/a0/v0` and pointer recomputation. Reopen only with an external IDO
   example that combines stable-first bound copy with pointer induction.
+- 2026-07-10 external precedent search: an authoritative real-`-mips1`
+  compile reconfirmed that the natural close-family source already gives the
+  target `v0` pointer cursor; only stable bound `a0` and decrementing index
+  `v1` are swapped relative to target `v1`/`a0`. Searches across current SM64,
+  OOT, MM, MK64, Banjo-Kazooie, and Perfect Dark snapshots (235 tracked
+  assembly files) found no full `addiu v1,v0,-1; move a0,v1` plus pointer-
+  induction signature. Paper Mario, Pokemon Stadium, and GoldenEye results
+  were decrement-only partials or raw assembly, not C precedents. With bound
+  locals, register hints, pointer carriers, predecrement, while/break, do-loop,
+  and selected-index forms already rejected, no distinct source translation
+  is justified by this survey.
 
 ## Extracted ACTIVE Notes
 

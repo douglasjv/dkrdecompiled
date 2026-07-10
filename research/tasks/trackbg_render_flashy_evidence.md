@@ -38,6 +38,22 @@ Current compact read:
   shifted all later code; it was reverted. A 90-second constrained follow-up
   with statement splitting and line-format mutations disabled found no
   same-size improvement beyond `1668`.
+- 2026-07-10 three-way-color precedent pass: no matching repo function has an
+  analogous negative/doubled-cos/doubled-sin interference cycle. Reintroducing
+  the historical all-raw trig products kept frame `0x158` but grew text from
+  `0x968` to `0x9AC`, saved `f20/f21`, and moved the negative carrier to `f14`.
+  Swapping the named scaled-carrier declaration order or definition order was
+  function-assembly identical. IDO normalizes those order-only forms; removing
+  the named carriers extends CSE lifetimes and creates saved-FPR pressure.
+  Reopen only with a mechanism that changes interference-node creation while
+  preserving named lifetimes, no new stack temp, and exact size `0x968`.
+- A bounded external search likewise found the exact FPR signature only in
+  `dkrwide`'s asm-backed copy of this same function; its C remains
+  `GLOBAL_ASM`. Upstream PR #579 / commit `ab1cbdb7` is the sole historical C
+  reconstruction and uses the already-rejected all-scaled-carrier family.
+  Public fork history and expression searches exposed no independent source
+  mechanism, so the retained `CURRENT (1668)` checkpoint remains the strongest
+  source-backed frontier.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement

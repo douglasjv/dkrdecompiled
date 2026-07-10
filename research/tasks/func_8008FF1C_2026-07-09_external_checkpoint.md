@@ -42,6 +42,14 @@ and does not affect linked code.
 - The older ignored permuter environment compiles this translation unit with
   `-mips2`; its scores and branch-likely output are invalid for the real
   `-mips1` object. The bounded follow-up used the real `-mips1` compiler path.
+- A corrected 2026-07-10 isolated permuter harness used the repository's real
+  IDO `-O2 -mips1` command. After forcing a fresh menu compile, it reproduced
+  full-link CRCs `0x53D420E7/0x231B2668`, focused `CURRENT (10)`, and permuter
+  score `20` for the sole `t4`/`t3` pair. A 275-second four-worker run found no
+  lower score; its final observable 20-second sample covered 1,696 iterations
+  with 25 compile errors and produced no improved output. An initial apparent
+  zero was a stale copied asm-backed object and was discarded. Do not repeat
+  the invalid `-mips2` harness or treat stale object output as a match.
 - A third real-`-mips1` IR pass confirmed that address-of indexed-element and
   full-index-assignment shapes can prevent the unwanted two-address
   coalescing, matching nearby source precedent. In this full function they

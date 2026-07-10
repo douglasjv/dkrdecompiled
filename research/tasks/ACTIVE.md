@@ -49,6 +49,21 @@
   still fails CRC, so the body remains under `NON_EQUIVALENT`; matching mode
   reaches `Verify: OK`. Continue from
   `research/tasks/func_80017A18_2026-07-09_mw8na_checkpoint.md`.
+- Upstream refresh on 2026-07-10 merged `upstream/master` commit `0adab627`
+  (documentation/rename for the already matched `func_8002B0F4`). The canonical
+  matching build remains `Verify: OK`; the live guarded count remains 4.
+- A 2026-07-10 objects FPR-lifetime pass rejected radius-first ordering
+  (`CURRENT (8783)`, saved-GPR regression) and sequential sum grouping
+  (`CURRENT (7864)`, only 5 points better with the same missing
+  `f18/f20/f22` lifetime). The retained A2/C2 source remains authoritative.
+- A 2026-07-10 track global-color pass found no analogous matching source
+  precedent. All-raw trig products grew text by `0x44` and saved `f20/f21`;
+  declaration/definition swaps were object-identical. Continue only with an
+  interference-node mechanism that preserves named carriers and exact size.
+- A corrected real-`-mips1` menu permuter run reproduced `CURRENT (10)` and
+  found no lower score in 275 seconds (1,696 iterations in the final observable
+  sample). External racer and track precedent searches also found no new
+  source-backed mechanism. All four guards remain necessary.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

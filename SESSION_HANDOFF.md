@@ -1,8 +1,8 @@
 # Session Handoff
 
-- Generated at: 2026-07-09
+- Generated at: 2026-07-10
 - Branch: `master`
-- Integrated checkpoint: `1d7378e1`
+- Integrated checkpoint: upstream merge `59674774` plus this evidence update
 - Current task: remaining-function source checkpoints
 - Summary: Retained stronger guarded candidates for `func_8008FF1C`,
   `trackbg_render_flashy`, and `func_80017A18`. Four original functions still
@@ -71,6 +71,17 @@
   menu signed-byte indexed load with `t4/t5` plus across-call pointer reuse or
   the racer stable-first `v1 -> a0` bound copy plus pointer induction. The
   retained guarded sources and matching `Verify: OK` state were preserved.
+- Merged upstream `0adab627` (documentation/rename for already matched
+  `func_8002B0F4`); full matching validation still reaches `Verify: OK` and
+  the guarded count remains 4.
+- A new objects pass rejected radius-first ordering and found only a
+  nonmaterial `7869 -> 7864` sum-grouping movement with the same missing
+  `f18/f20/f22` lifetime. A new track pass ruled out all-raw trig and named-
+  carrier order as mechanisms. Neither source was changed.
+- The corrected menu permuter used real IDO `-O2 -mips1` for 275 seconds and
+  found no improvement over `CURRENT (10)`; its observable tail covered 1,696
+  iterations. External racer and track searches found no independent C-source
+  precedent for their remaining allocation cycles. The guards remain intact.
 
 ## Blockers Or Unknowns
 

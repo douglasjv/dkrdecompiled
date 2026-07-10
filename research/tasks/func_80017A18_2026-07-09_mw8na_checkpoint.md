@@ -51,6 +51,13 @@ comparison.
   `8202` and broke the recovered mapping (mask `ra`, origins `s6/s7/s8`).
 - Adding `register` to the retained outer `x2/y2/z2` declarations produced no
   object movement; promoted CRCs stayed `0x573A8C93/0x453F46E9`.
+- A 2026-07-10 radius-first assignment-order probe preserved frame/result but
+  regressed saved-GPR ownership and focused score to `CURRENT (8783)`.
+- Rewriting the primary and target-plane sums as sequential accumulations
+  preserved frame `0x120`, `sp+0xF8`, saved GPRs, and size `0x444`, but only
+  moved the focused score from `7869` to `7864`; origin values still spilled
+  at `A8/A4/A0` with none of target `f18/f20/f22` retry lifetime. This is not
+  material enough to retain and rules out simple sum grouping.
 
 ## Reopen Condition
 
