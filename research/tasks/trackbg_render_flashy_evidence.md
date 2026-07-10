@@ -5,7 +5,10 @@ Purpose: durable negative evidence for `trackbg_render_flashy` so `research/task
 Current compact read:
 - Guarded source: `src/tracks.c` under `#ifdef NON_MATCHING`.
 - Original asm: `asm/nonmatchings/tracks/trackbg_render_flashy.s`.
-- Recurring promoted-source baseline: full verify fails with CRCs `0x93D338FF/0x03D9C8FE`; relinked focused `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reports `CURRENT (1808)`.
+- Current promoted-source checkpoint: full verify fails with CRCs
+  `0x93BFD8FF/0x10B9EB38`; relinked focused
+  `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reports
+  `CURRENT (1668)`, improved from the historical `CURRENT (1808)` baseline.
 - Known drift is the early first-ring FPR allocation around `0x28d00`: target computes scaled cos in `$f12`, scaled sin in `$f2`, emits `neg.s $f18,$f12`, then stores first-ring x/z arrays through stack temps. Promoted C allocates the negative-cos carrier as `$f16` and drifts through the two-wide ring setup around `0x28d5c` with different `$f18/$f8/$f16` lifetimes and stack-store ordering.
 
 ## Rejected Probes
@@ -21,5 +24,25 @@ Current compact read:
 - 2026-05-31 high worker-guided `var_f16` negative-cos lifetime extension: promoted the guard, assigned existing `var_f16 = -scaledXCos` before the first-ring stores, and used it for the negative-cos first-ring and two-wide-ring sites while preserving repeated `xSin * 1280.0f` spellings and store order. Focused `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported stale `CURRENT (0)`, but full ROM verify failed with calculated CRCs `0xD783EB77/0xFFE69FF1`. Source and matching-mode `build/src/tracks.c.o` were restored, then `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`. Do not repeat `var_f16` negative-cos lifetime-extension variants; they can preserve the focused false positive without producing a matching ROM.
 - 2026-05-31 follow-up high mechanism discovery found no landable source-level packet. The worker inspected the guarded source, target asm, this ledger, `ACTIVE.md`, and `SESSION_HANDOFF.md`; built a temporary promoted object in `/private/tmp/dkr_tracks_current_nonmatching.o`; and confirmed the current promoted shape still uses frame `0x158`, scaled cos `$f12`, scaled sin `$f2`, `neg.s $f16,$f12`, and immediate doubled-cos `$f18`, while target keeps `$f18` as the negative-cos carrier and delays doubled-cos setup until after first-ring stack-temp stores. The only plausible levers found were scheduling/lifetime barriers, doubled-cos spelling/literal variants, temp introduction, store ordering, volatile/alias forcing, or first-ring scratch reuse; these overlap rejected families or predict broad stack/scheduling drift. Focused `./diff.sh trackbg_render_flashy --compress-matching 2 --no-pager` reported stale `CURRENT (0)` against the restored matching object; full `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK`. Recommendation: keep cooldown-routed.
 - 2026-06-12 high mechanism-discovery found no complete non-repeated mechanism packet. Evidence checked by child lane `019ebddf-90fd-7c91-9fab-b9a5a42b4cc2`: this ledger, `ACTIVE.md`, selector `next`/`tooling`, packet template, guarded first-ring body in `src/tracks.c`, target asm around `0x28D00`, and a promoted guarded object under `NON_MATCHING=1`. Child baseline `gmake -j4 CROSS=tools/binutils/mips64-elf-` reached `Verify: OK` after local ignored setup inputs and `./score.sh -s` stayed decomp `97.30%`, docs `65.47%`. The target still requires target-like scaled cos in `$f12`, scaled sin in `$f2`, initial negative cos as `neg.s $f18,$f12`, delayed doubled-cos setup after first-ring stack-temp stores, and no broad frame/stack-slot/downstream scheduling drift; no ordinary-C mechanism beyond rejected commuted `zPositions[3]`, all-first-ring `scaledXSin` reuse, plain/current promotion, negative-scaled-cos temps, inverted primary-cos carrier, positive-cos scratch locals, pair-result scratch locals, focused `CURRENT (0)`, first-two-store ordering, `var_f16` lifetime extension, scheduling/lifetime barriers, doubled-cos/literal spellings, volatile/alias forcing, or scratch reuse was identified. Child committed evidence `6207d9c5`, imported at `research/tasks/child_threads/trackbg_render_flashy_2026-06-12_child_evidence.md`. Keep cooldown-routed until a genuinely distinct first-ring FPR/source-lifetime mechanism is named.
+- 2026-07-09 direct bounded-permuter checkpoint: replacing later
+  `scaledXCos` references with equivalent `xCos * 1280.0f` spellings while
+  keeping `scaledXCos` for `xPositions[0]` improved the relinked real-object
+  score from `CURRENT (1808)` to `CURRENT (1668)`. The frame stayed `0x158`,
+  the function stayed the target size, and the promoted CRCs were
+  `0x93BFD8FF/0x10B9EB38`. The first mismatch remains target
+  `neg.s $f18,$f12` versus current `$f16`, but the two-wide-ring schedule moved
+  closer, so this source is retained under `NON_MATCHING`. A declaration-only
+  `register f32 var_f16` probe was compiler-identical to the old baseline. A
+  generated `xPositions[6]` two-statement array-slot scratch improved the
+  focused score to `CURRENT (1342)` but emitted one extra instruction and
+  shifted all later code; it was reverted. A 90-second constrained follow-up
+  with statement splitting and line-format mutations disabled found no
+  same-size improvement beyond `1668`.
 
-Next useful work should pivot to discovery/tooling or use a distinct early FPR-allocation/source-lifetime mechanism beyond ordinary negative-cos temp, inverted-primary-cos carrier spelling, first-ring pair-result scratch locals, first-two-store ordering, and `var_f16` negative-cos lifetime extension. A future packet must predict target-like `$f18` movement without broad stack-slot/downstream scheduling drift and must not rely on focused `CURRENT (0)` without full ROM `Verify: OK`.
+Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
+checkpoint and find a same-size mechanism for target-like `$f18` movement
+without broad stack-slot/downstream scheduling drift. Do not repeat ordinary
+negative-cos temps, inverted-primary-cos spelling, first-ring pair-result
+scratch locals, first-two-store ordering, `var_f16` lifetime extension, or the
+size-growing `xPositions[6]` scratch split. Never rely on focused `CURRENT (0)`
+without full ROM `Verify: OK`.

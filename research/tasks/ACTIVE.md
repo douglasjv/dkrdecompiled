@@ -22,6 +22,13 @@
   `97.91%`, and the refreshed selector reports 4 guarded candidates. The user
   retired the parent/child orchestration layer; continue directly in the
   primary checkout with one bounded source function at a time.
+- Direct-mode `trackbg_render_flashy` update on 2026-07-09: a bounded local IDO
+  permuter pass found a same-size raw-cosine lifetime shape that improved the
+  promoted real-object diff from `CURRENT (1808)` to `CURRENT (1668)` while
+  preserving frame `0x158`. The closer source is retained under
+  `NON_MATCHING`; matching mode remains asm-backed and must still reach
+  `Verify: OK`. A generated array-slot split reached `CURRENT (1342)` but
+  added one instruction and shifted the rest of the object, so it was rejected.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
@@ -108,6 +115,12 @@
   child-local restored validation reached `Verify: OK`. Do not reselect this
   target without a truly distinct mechanism predicting `$f18` negative-cos
   lifetime and delayed doubled-cos setup without frame/stack/scheduling drift.
+- Latest direct note: the retained raw-cosine spelling shortens the named
+  `scaledXCos` lifetime after `xPositions[0]` and improves the real promoted
+  score to `CURRENT (1668)` without size/frame drift. The remaining first
+  mismatch is still target `neg.s $f18,$f12` versus current `$f16`; continue
+  from this closer candidate and do not reintroduce the rejected size-growing
+  `xPositions[6]` scratch split.
 - Latest tooling note: `tools/query_goal_state.py tooling` now reports routable candidates rather than blocked/off-limits candidates. It keeps cooldown and parked evidence visible as readiness gaps, next useful notes, latest promoted-object/focused-false-positive audit summaries, required packet fields (`target`, `evidence_checked`, `rejected_families`, `mechanism_hypothesis`, `predicted_asm_movement`, `stop_condition`, `reasoning_tier`), and a `packet --function <candidate> --template` command before delegation or source edits. A 2026-05-31 refresh ignores archived `## Extracted ACTIVE Notes` and recognizes follow-up/high mechanism-discovery lines when selecting a sidecar `latest_audit`, so all four live cooldown candidates surface current discovery evidence instead of stale object-slice or extracted-history notes.
 - Historical `func_8002B0F4` evidence remains in
   `research/tasks/func_8002B0F4_evidence.md`, but upstream commit `0f7f99bc`

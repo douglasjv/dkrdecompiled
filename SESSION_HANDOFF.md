@@ -28,6 +28,12 @@
 - Two new `trackbg_render_flashy` probes (commuting `xPositions[2]` and swapping
   or registering the scaled-cos declaration) produced no object movement and
   were reverted before the final matching build.
+- A later bounded local IDO-permuter pass found a same-size raw-cosine lifetime
+  rewrite for `trackbg_render_flashy`. Real promoted-object validation improved
+  from `CURRENT (1808)` to `CURRENT (1668)` with frame `0x158`; that closer
+  source is retained under `NON_MATCHING`. A two-statement `xPositions[6]`
+  scratch variant reached `CURRENT (1342)` but added one instruction and was
+  reverted.
 
 ## Blockers Or Unknowns
 
@@ -35,7 +41,7 @@
 - `func_8008FF1C` remains a one-register mismatch (`v1` versus target `t2`)
   with the rest of the focused function identical.
 - `trackbg_render_flashy` remains an early FPR-allocation mismatch beginning at
-  `neg.s f18,f12`; the promoted source still chooses `f16`.
+  target `neg.s f18,f12`; the closer promoted source still chooses `f16`.
 
 ## Ask The User Only If
 
