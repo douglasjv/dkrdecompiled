@@ -2,7 +2,7 @@
 
 - Generated at: 2026-07-09
 - Branch: `master`
-- HEAD: `3ee245dd`
+- HEAD: `3b1448f3`
 - Completed task: `match-func-80059208`
 - Summary: Imported the source-level exact match from upstream PR #742. Four
   original functions remain.
@@ -17,6 +17,14 @@
 - A bounded five-minute permuter pass against the promoted `func_8008FF1C`
   candidate found only semantically invalid lower-score mutations; none were
   applied. The source was restored before the final matching build.
+- A second targeted pass tested its three best advisory shapes in the real
+  build. Empty `trackY`/`levelName` liveness probes either made no movement or
+  enlarged the function, while an empty `trackX` probe caused a broad saved-
+  register swap. A direct `cur->hubName = level_name(...)` plus direct-table
+  branch selected the target `t2`, but emitted the store before the load and
+  shrank the frame; immediate `levelName` liveness and a third nested `temp`
+  assignment were compiler-identical to the one-register baseline. All probes
+  were reverted.
 - Two new `trackbg_render_flashy` probes (commuting `xPositions[2]` and swapping
   or registering the scaled-cos declaration) produced no object movement and
   were reverted before the final matching build.

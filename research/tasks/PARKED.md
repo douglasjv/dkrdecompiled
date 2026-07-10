@@ -165,6 +165,19 @@ non-repeated direct source hypothesis.
   placement, duplicated branch-local store, condition/store comma ordering, or
   register-hint families. Keep cooldown-routed until a distinct mechanism
   predicts both target `t2` branch allocation and the target delay-slot store.
+  A 2026-07-09 direct follow-up fetched the unsquashed upstream PR #701 and
+  confirmed its final `temp = (temp = ...)` change was the deliberate
+  allocator fakematch that originally reached the one-register drift. A third
+  nesting level and an immediate behavior-neutral `levelName` liveness probe
+  produced no object movement. Targeted permuter suggestions also missed: an
+  empty `trackY` probe stayed at baseline, an empty `trackX` probe broadened to
+  `CURRENT (110)` through an `s1`/`s2` swap, and an end-of-function
+  `levelName` liveness probe enlarged the function to `CURRENT (220)`. A
+  distinct direct-call/direct-table shape did select target `lh t2,0(s1)`, but
+  shrank the frame from `0x80` to `0x78` and emitted `sw v0,0(s0)` before the
+  load rather than in the branch delay slot (`CURRENT (183)`). All source
+  probes were reverted; do not repeat these liveness, extra nesting, or direct
+  call/store variants.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused
