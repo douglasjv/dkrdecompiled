@@ -42,6 +42,13 @@ and does not affect linked code.
 - The older ignored permuter environment compiles this translation unit with
   `-mips2`; its scores and branch-likely output are invalid for the real
   `-mips1` object. The bounded follow-up used the real `-mips1` compiler path.
+- A third real-`-mips1` IR pass confirmed that address-of indexed-element and
+  full-index-assignment shapes can prevent the unwanted two-address
+  coalescing, matching nearby source precedent. In this full function they
+  recolor the block to `t8/t9` or `t8/t2` instead of target `t4/t5`; pointer-
+  to-array association and redundant-use variants also miss or spill. Do not
+  repeat these non-coalescing shapes without an independent global-coloring
+  mechanism.
 
 ## Reopen Condition
 

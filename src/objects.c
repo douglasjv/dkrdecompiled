@@ -5400,127 +5400,115 @@ u32 func_800179D0(void) {
 
 // https://decomp.me/scratch/xNAlf
 #ifdef NON_EQUIVALENT
-s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5, f32 *arg6, f32 *arg7,
-                  f32 *arg8, f32 *arg9, s8 *argA, f32 argB) {
+s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPointsX, f32 *originPointsY,
+                  f32 *originPointsZ, f32 *targetPointsX, f32 *targetPointsY, f32 *targetPointsZ,
+                  f32 *collisionRadii, s8 *surfaces, f32 scale) {
     f32 *planes;
     s32 i, j, k;
     f32 sum1, sum2;
     f32 t;
-    u32 var_a2; // u32 required here to force loading 1 instead of a3 into it
+    u32 ret;
     s32 counter;
-    s32 spF8; // f8
-    s32 var_s6;
-    f32 A2, C2;
-    f32 A; // e4
-    f32 B; // e0
-    f32 C; // dc
-    f32 D; // d8
+    s32 spF8;
     f32 A1, B1, C1, D1;
+    f32 A, B, C, D;
+    f32 A2, C2;
+    s32 var_s6;
     s32 redoLoop;
-    f32 spC0; // c0
-    f32 x1;   // bc
-    f32 y1;
-    f32 z1; // b4
     f32 x3, y3, z3;
-    f32 x2; // a4
-    f32 y2; // a0
-    f32 z2; // 9c
-    CollisionNode *node;
-    f32 dx, dy, dz;
+    f32 radius;
+    f32 x1, y1, z1;
+    f32 x2, y2, z2;
+    CollisionFacetPlanes *node;
     s32 triIndex;
-    s32 closestTri;
+    f32 *curPlanes;
+    f32 new_var;
+    f32 *curPlanes2;
 
     spF8 = 0;
     planes = arg0->collisionPlanes;
     var_s6 = 1;
 
     for (i = 0; i < arg1; i++) {
-        x1 = arg6[i];
-        y1 = arg7[i];
-        z1 = arg8[i];
-        spC0 = arg9[i] * argB;
-
+        x1 = targetPointsX[i];
+        y1 = targetPointsY[i];
+        z1 = targetPointsZ[i];
+        x2 = originPointsX[i];
+        y2 = originPointsY[i];
+        z2 = originPointsZ[i];
+        radius = collisionRadii[i] * scale;
         counter = 0;
         do {
             redoLoop = FALSE;
-            x2 = arg3[i];
-            y2 = arg4[i];
-            z2 = arg5[i];
-
             for (j = 0; j < arg0->collisionFacetCount; j++) {
-                node = (CollisionNode *) &arg0->collisionFacets[j];
-                triIndex = node->colPlaneIndex;
-
-                A = planes[4 * triIndex + 0];
-                B = planes[4 * triIndex + 1];
-                C = planes[4 * triIndex + 2];
-                D = planes[4 * triIndex + 3];
+                node = &arg0->collisionFacets[j];
+                triIndex = node->basePlaneIndex;
+                curPlanes = &planes[4 * triIndex];
+                A = curPlanes[0];
+                B = curPlanes[1];
+                C = curPlanes[2];
+                D = curPlanes[3];
 
                 A2 = A * x2;
-                sum1 = A2;
-                sum1 += B * y2;
                 C2 = C * z2;
-                sum1 += C2;
-                sum1 = D + sum1;
-                sum1 -= spC0;
-
-                sum2 = planes[4 * triIndex + 0] * x1;
-                sum2 += planes[4 * triIndex + 1] * y1;
-                sum2 += planes[4 * triIndex + 2] * z1;
-                sum2 += D;
-                sum2 -= spC0;
-                if (sum1 >= -0.1 && sum2 < -0.1) {
-                    if (sum1 != sum2) {
-                        t = sum1 / (sum1 - sum2);
-                    } else {
-                        t = 0.0f;
-                    }
-                    x3 = (x1 - x2) * t + x2;
-                    y3 = (y1 - y2) * t + y2;
-                    z3 = (z1 - z2) * t + z2;
-                    var_a2 = TRUE;
-
-                    for (k = 0; k < 3 && var_a2 == TRUE; k++) {
-                        closestTri = node->closestTri[k];
-
-                        A1 = planes[4 * closestTri + 0] * x3;
-                        B1 = planes[4 * closestTri + 1] * y3;
-                        C1 = planes[4 * closestTri + 2] * z3;
-                        D1 = planes[4 * closestTri + 3];
-
-                        if (A1 + B1 + C1 + D1 > 4.0f) {
-                            var_a2 = FALSE;
-                        }
-                    }
-
-                    if (var_a2) {
-                        redoLoop = TRUE;
-                        if (B > 0.707) {
-                            y1 = (spC0 - (A2 + C2 + D)) / B;
+                sum1 = (((A2) + (B * y2) + (C2)) + D) - radius;
+                sum2 = (((A * x1) + (B * y1) + (C * z1)) + D);
+                new_var = sum1;
+                sum2 -= radius;
+                if (sum1 >= -0.1) {
+                    if (sum2 < -0.1) {
+                        if (sum1 != sum2) {
+                            t = new_var / (sum1 - sum2);
                         } else {
-                            x1 -= sum2 * A;
-                            y1 -= sum2 * B;
-                            z1 -= sum2 * C;
+                            t = 0.0f;
                         }
-                        counter++;
-                        if (counter > 10) {
-                            redoLoop = FALSE;
-                            x1 = x2;
-                            y1 = y2;
-                            z1 = z2;
+                        x3 = x2 + (x1 - x2) * t;
+                        y3 = y2 + (y1 - y2) * t;
+                        z3 = z2 + (z1 - z2) * t;
+                        ret = TRUE;
+
+                        for (k = 0; k < 3 && ret == TRUE; k++) {
+                            triIndex = (node->edgeBisectorPlane[k] & 0xFFFFu) & 0xFFFFu;
+                            curPlanes2 = &planes[4 * triIndex];
+                            A1 = curPlanes2[0];
+                            B1 = curPlanes2[1];
+                            C1 = curPlanes2[2];
+                            D1 = curPlanes2[3];
+
+                            if ((A1 * x3) + (B1 * y3) + (C1 * z3) + D1 > 4.0f) {
+                                ret = FALSE;
+                            }
                         }
-                        argA[i] = 0;
-                        arg6[i] = x1;
-                        arg7[i] = y1;
-                        arg8[i] = z1;
-                        j = arg0->collisionFacetCount; // break
+
+                        if (ret) {
+                            redoLoop = TRUE;
+                            if (B > 0.707) {
+                                y1 = (radius - (A2 + C2 + D)) / B;
+                            } else {
+                                x1 -= sum2 * A;
+                                y1 -= sum2 * B;
+                                z1 -= sum2 * C;
+                            }
+                            counter++;
+                            if (counter > 10) {
+                                redoLoop = FALSE;
+                                x1 = x2;
+                                y1 = y2;
+                                z1 = z2;
+                            }
+                            surfaces[i] = SURFACE_DEFAULT;
+                            targetPointsX[i] = x1;
+                            targetPointsY[i] = y1;
+                            targetPointsZ[i] = z1;
+                            j = arg0->collisionFacetCount;
+                        }
                     }
                 }
             }
         } while (redoLoop);
 
         if (counter > 0) {
-            arg2[0]++;
+            numCollisions[0]++;
             spF8 |= var_s6;
         }
         var_s6 <<= 1;

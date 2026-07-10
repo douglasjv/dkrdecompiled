@@ -240,6 +240,14 @@ non-repeated direct source hypothesis.
   Do not repeat this pointer-plus-dedicated-edge-sum hybrid; the useful
   historical `eb131e6b` clue still requires a different mechanism to keep the
   real outer index in `s1` and shift the remaining saved-register family.
+  A 2026-07-09 decomp.me-family pass found newer scratch `Mw8Na` and retained a
+  distinct A2/C2 variant. It improves the authoritative promoted linked diff
+  from `CURRENT (8246)` to `CURRENT (7869)`, reaches exact frame `0x120` and
+  result slot `sp+0xF8`, and recovers outer index `s1`, target pointers
+  `s2/s3/s4`, surfaces `s5`, mask `s6`, and origin pointers `s7/s8/ra`.
+  Remaining drift is floating-point lifetime/scheduling and a function that is
+  `0x18` bytes short. Full details and reopen condition:
+  `research/tasks/func_80017A18_2026-07-09_mw8na_checkpoint.md`.
 
 - `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
   candidate compiles in matching mode when promoted, but focused object diff

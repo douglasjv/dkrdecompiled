@@ -41,6 +41,14 @@
 - Focused subagents are permitted for bounded source searches and public-source
   audits when useful, but integrate results directly in the primary checkout;
   do not recreate the retired heartbeat/child-ledger orchestration layer.
+- Direct-mode `func_80017A18` update on 2026-07-09: the newest 16-member
+  decomp.me family exposed scratch `Mw8Na` (`5971` standalone). A retained
+  Mw8Na-derived A2/C2 source recovers exact frame `0x120`, result slot
+  `sp+0xF8`, and the complete target saved-register family. The authoritative
+  promoted linked diff improves from `CURRENT (8246)` to `CURRENT (7869)` but
+  still fails CRC, so the body remains under `NON_EQUIVALENT`; matching mode
+  reaches `Verify: OK`. Continue from
+  `research/tasks/func_80017A18_2026-07-09_mw8na_checkpoint.md`.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
@@ -112,6 +120,13 @@
   colored the wave tuple as `v1/a0/v0` instead of target `v0/v1/a0`; focused
   diff was `CURRENT (7306)`. The probe was fully reverted. Do not repeat lexical
   shadow/scoped wave locals.
+- Latest direct racer mechanism note: the base close-save source reaches exact
+  frame `0xF8`, `$f21/$f20` saves, early `$f14`, and `CURRENT (4365)`. The
+  residual wave gap is specifically target stable bound `v1` plus mutable
+  index `a0` versus current stable `a0` plus mutable `v1`; existing-local,
+  declaration-order, no-op, and pad/steer carrier probes all rotated into
+  worse register families and were rejected. Reopen only with a mechanism that
+  reverses that initial copy direction while retaining `v0` pointer induction.
 - Next hypothesis: keep cooldown-routed unless a high/xhigh isolated worker can name a new mechanism that couples the close save-family with non-repeated wave allocation movement. Otherwise pivot to another bounded candidate or run discovery/tooling to improve candidate ranking/cooldown behavior; do not repeat promoted-object `CURRENT (0)` acceptance for `func_80049794` unless the audit method preserves the DRM helper symbols and reaches the full ROM verify gate.
 - Alternate evidence checked: `research/tasks/func_80059208_evidence.md`.
 - Latest alternate-packet note: `func_80059208` remains active but saturated for final-tail pointer/FPR lifetime probes. A 2026-05-31 follow-up high mechanism discovery found no safe source-level packet beyond already rejected families and recommended cooldown. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`. Stop if the proposal only changes temp/order spelling, object-dot spelling, pointer lifetime, literal staging, vertical aliases, or produces focused `CURRENT (0)` without full ROM `Verify: OK`.

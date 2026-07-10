@@ -3,9 +3,10 @@
 - Generated at: 2026-07-09
 - Branch: `master`
 - Integrated checkpoint: `1d7378e1`
-- Current task: `func_8008FF1C` external-source checkpoint
-- Summary: Retained a stronger guarded menu candidate that fixes the previous
-  selected-track allocator gap. Four original functions still remain.
+- Current task: remaining-function source checkpoints
+- Summary: Retained stronger guarded candidates for `func_8008FF1C`,
+  `trackbg_render_flashy`, and `func_80017A18`. Four original functions still
+  remain.
 
 ## Validation
 
@@ -53,6 +54,19 @@
   None changed the global target/current FPR color cycle while preserving frame
   `0x158` and exact size, so the retained real `CURRENT (1668)` checkpoint
   remains best.
+- The current 16-member decomp.me family for `func_80017A18` exposed newer
+  scratch `Mw8Na`. Its retained A2/C2 derivative improves the real linked diff
+  from `CURRENT (8246)` to `CURRENT (7869)` and recovers exact frame `0x120`,
+  result slot `sp+0xF8`, and the complete target saved-register family. It
+  remains guarded; matching mode reaches `Verify: OK`.
+- A third racer pass reproduced the close-save family at exact frame `0xF8`,
+  `$f21/$f20` saves, early `$f14`, and `CURRENT (4365)`. Distinct existing-
+  local and bound-carrier probes could not reverse the residual stable-bound
+  `a0` / mutable-index `v1` pair into target `v1` / `a0`, so no racer source
+  change was retained.
+- A third menu IR pass proved that nearby address-of/index-assignment precedent
+  can prevent the final temporary coalescing, but global coloring moves the
+  result to `t8` rather than target `t4`; no additional menu source was kept.
 
 ## Blockers Or Unknowns
 

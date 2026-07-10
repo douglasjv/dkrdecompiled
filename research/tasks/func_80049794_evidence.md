@@ -32,6 +32,19 @@ Current compact read:
   stayed in `$f16`; the wave tuple colored as count `v1`, bound `a0`, and index
   `v0`, not target count `v0`, bound `v1`, index `a0`. Source was restored. Do
   not repeat block-scoped/shadow wave locals on the close save-family.
+- 2026-07-09 third-pass close-family audit: the unscoped close-save source
+  itself reached exact frame `0xF8`, `$f21/$f20` saves, early `$f14`, and
+  target store order. Its full-build CRCs were `0xB8DD79CD/0xE47454ED` and
+  focused diff was `CURRENT (4365)`. The remaining early wave drift is now
+  isolated precisely: target uses `v0=count`, copies `v1=count-1` as a stable
+  bound, copies that to mutable `a0`, then reuses `v0` as the pointer cursor;
+  current keeps stable `a0` and mutable `v1`. Existing `var_v0`/`var_v1`
+  transfers, declaration order, post-loop no-op lifetimes, `pad5` or
+  `racerSteerAngle` bound reuse, and separate index carriers all rotated into
+  worse `v1/a3/a0/v0`, `v1/a0/v0`, or `v1/a1/v0` families. Source was not
+  retained. Reopen only with a mechanism that reverses the initial copy
+  direction to `v1=count-1; a0=v1` while preserving `v0` pointer induction;
+  do not retry scoped locals or these existing-local carrier variants.
 
 ## Extracted ACTIVE Notes
 
