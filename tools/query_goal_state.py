@@ -494,9 +494,9 @@ def print_compact(state: dict[str, object]) -> None:
         f"asm={recommended['asm']}"
     )
     if "cooldown_evidence" in recommended:
-        print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']} repeat only through heartbeat child lane with a distinct hypothesis")
+        print(f"recommended_note: cooldown_evidence={recommended['cooldown_evidence']} retry only with a distinct hypothesis")
     if recommended.get("revival_cooldown"):
-        print("recommended_note: revival_cooldown=recent repeat only through heartbeat child lane with a distinct hypothesis")
+        print("recommended_note: revival_cooldown=recent retry only with a distinct hypothesis")
 
 
 def print_discovery(state: dict[str, object]) -> None:

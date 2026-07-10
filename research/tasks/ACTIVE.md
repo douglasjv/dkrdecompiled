@@ -16,6 +16,13 @@
 
 ## Current Route
 
+- Direct-mode update on 2026-07-09: imported the exact source match for
+  `func_80059208` from upstream PR #742 as local commits `6a185583` and
+  `3ee245dd`. Full matching validation reached `Verify: OK`; decomp progress is
+  `97.91%`, and the refreshed selector reports 4 guarded candidates. The user
+  retired the parent/child orchestration layer; continue directly in the
+  primary checkout with one bounded source function at a time.
+
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
   `codex/func-8002b0f4-child-evidence` at `b16fb37c`. Tracker:

@@ -1,16 +1,18 @@
-# DKR Parent Child Lane
+# DKR Parent Child Lane (Retired)
 
 Parent thread: `019ebdc0-0955-7492-8ef4-34215cf7ce31`
-Policy: exactly one active child lane at a time.
+Policy status: retired by user request on 2026-07-09. Current work proceeds
+directly in the primary checkout.
 Correction from parent on 2026-06-12: durable negative evidence is a
 checkpoint, not a child closeout. A child lane should stay active until the
 assigned function byte-matches and commits source-level C, unless it hits a
 true setup/toolchain/assets/unresolved-behavior blocker. Do not launch a
 replacement lane merely because a child records negative evidence.
 
-## Active Lane
+## Retired Lane
 
-- Status: active replacement child thread; function-local prompt sent.
+- Status: retired; main thread sent a stop request and verified the worktree had
+  no tracked source changes at `a3326df2`.
 - Child thread id: `019ef6c2-c922-76b3-90fc-0db88540c680`
 - Child worktree: `/Users/douglas/.codex/worktrees/646c/dkrdecompiled`
 - Pending worktree id: `local:1a3103f0-c50c-4d84-9d8a-53f035eaef04`
@@ -23,11 +25,11 @@ replacement lane merely because a child records negative evidence.
 - Predicted asm movement: keep the direct-table selected-track load in `t2`, preserve the delay-slot `sw v0,0(s0)` at the selected-track branch, avoid duplicate `hubName` stores or broad visible-track register drift, and pass full ROM verify rather than focused `CURRENT (0)` alone.
 - Stop condition: continue until `func_8008FF1C` byte-matches and commits source-level C, or until a true setup/toolchain/assets/unresolved-behavior blocker is recorded. Negative evidence may be committed as a checkpoint, but it does not close this child lane.
 - Reasoning tier: high.
-- Child result: pending.
+- Child result: evidence-only history; no exact-match source commit.
 
 ## Parent Gate
 
-- Do not create another child while this lane is active, dirty, or unresolved.
+- Do not recreate this orchestration unless the user explicitly asks for it.
 - Parent integration requires source-level C only and `gmake -j4 CROSS=tools/binutils/mips64-elf-` reaching `Verify: OK`, followed by `./score.sh -s`.
 
 ## Heartbeat Log
