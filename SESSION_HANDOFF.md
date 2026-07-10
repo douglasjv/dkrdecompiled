@@ -34,6 +34,10 @@
   source is retained under `NON_MATCHING`. A two-statement `xPositions[6]`
   scratch variant reached `CURRENT (1342)` but added one instruction and was
   reverted.
+- A direct `func_80049794` close-save-family probe isolated the wave bound and
+  index in a nested lexical block. It widened the frame to `0x100`, produced
+  `CURRENT (7306)`, and moved the wave tuple to `v1/a0/v0` rather than target
+  `v0/v1/a0`; it was fully reverted.
 
 ## Blockers Or Unknowns
 

@@ -95,6 +95,11 @@
   result `1e9cccf5`. Do not reselect `func_80049794` without a truly distinct
   mechanism predicting both target saved-FPR allocation and the wave scan
   `v1` high bound / `a0` loop index / `v0` pointer-cursor movement.
+- Latest direct racer note: a 2026-07-09 fresh block-scoped `waveLast` /
+  `waveIndex` probe on the close save-family widened the frame to `0x100` and
+  colored the wave tuple as `v1/a0/v0` instead of target `v0/v1/a0`; focused
+  diff was `CURRENT (7306)`. The probe was fully reverted. Do not repeat lexical
+  shadow/scoped wave locals.
 - Next hypothesis: keep cooldown-routed unless a high/xhigh isolated worker can name a new mechanism that couples the close save-family with non-repeated wave allocation movement. Otherwise pivot to another bounded candidate or run discovery/tooling to improve candidate ranking/cooldown behavior; do not repeat promoted-object `CURRENT (0)` acceptance for `func_80049794` unless the audit method preserves the DRM helper symbols and reaches the full ROM verify gate.
 - Alternate evidence checked: `research/tasks/func_80059208_evidence.md`.
 - Latest alternate-packet note: `func_80059208` remains active but saturated for final-tail pointer/FPR lifetime probes. A 2026-05-31 follow-up high mechanism discovery found no safe source-level packet beyond already rejected families and recommended cooldown. A valid future packet must predict object X into `$f16`, `5.0f` materialized before object Z, object Z into `$f6`, early `neg.s $f0,$f0`, add-after-negation final combine, and vertical tail through `$f6/$f10`. Stop if the proposal only changes temp/order spelling, object-dot spelling, pointer lifetime, literal staging, vertical aliases, or produces focused `CURRENT (0)` without full ROM `Verify: OK`.
