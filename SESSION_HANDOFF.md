@@ -1,11 +1,11 @@
 # Session Handoff
 
 - Generated at: 2026-07-09
-- Branch: `master`
-- HEAD: `3b1448f3`
-- Completed task: `match-func-80059208`
-- Summary: Imported the source-level exact match from upstream PR #742. Four
-  original functions remain.
+- Branch: `codex/import-func-8008ff1c-match`
+- Starting HEAD: `0c5f5da4`
+- Current task: `func_8008FF1C` external-source checkpoint
+- Summary: Retained a stronger guarded menu candidate that fixes the previous
+  selected-track allocator gap. Four original functions still remain.
 
 ## Validation
 
@@ -42,12 +42,24 @@
   pointers plus a dedicated closest-edge sum. It compiled to frame `0x130`,
   kept the mask in `ra`, and regressed to `CURRENT (8457)`; it was fully
   reverted.
+- A public-source audit checked all 40 GitHub forks. JordanLongstaff commit
+  `9f420e1d` was the only claimed newer match. After adapting renamed APIs, its
+  source has exact frame `0x80` and size `0x5CC`, fixes the prior selected-track
+  `t2` gap, and leaves only target `addu t4,t3,s2; addu s1,t4,t5` versus
+  current `addu t3,t3,s2; addu s1,t3,t5` (`CURRENT (10)`). Rebuilding the
+  historical fork reproduces the same miss. The closer source is retained
+  under `NON_MATCHING`; matching mode reaches `Verify: OK`.
+- A second `trackbg_render_flashy` pass tested roughly 70 isolated variants.
+  None changed the global target/current FPR color cycle while preserving frame
+  `0x158` and exact size, so the retained real `CURRENT (1668)` checkpoint
+  remains best.
 
 ## Blockers Or Unknowns
 
 - No setup, toolchain, asset, or behavior blocker is active.
-- `func_8008FF1C` remains a one-register mismatch (`v1` versus target `t2`)
-  with the rest of the focused function identical.
+- `func_8008FF1C` now matches the prior `t2` region and remains a one-temporary
+  mismatch at `0x90CD4`: current coalesces the address result into `t3`, while
+  target allocates `t4`.
 - `trackbg_render_flashy` remains an early FPR-allocation mismatch beginning at
   target `neg.s f18,f12`; the closer promoted source still chooses `f16`.
 
@@ -61,6 +73,7 @@
 
 - Work directly in the primary checkout, one remaining function at a time.
 - Do not recreate the previous parent/child orchestration; it was retired at
-  the user's request on 2026-07-09.
+  the user's request on 2026-07-09. Focused, disposable subagents are allowed
+  when they reduce search latency.
 - Accept only ordinary source-level C followed by the full matching build
   reaching `Verify: OK` and a refreshed score.

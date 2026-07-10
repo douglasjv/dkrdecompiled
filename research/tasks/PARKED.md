@@ -178,6 +178,17 @@ non-repeated direct source hypothesis.
   load rather than in the branch delay slot (`CURRENT (183)`). All source
   probes were reverted; do not repeat these liveness, extra nesting, or direct
   call/store variants.
+  A 2026-07-09 public-source audit found JordanLongstaff commit `9f420e1d`,
+  adapted its renamed APIs, and retained that stronger source under
+  `NON_MATCHING`. It fixes the old selected-track `t2` load/branch/delay-slot
+  gap and leaves only target `addu t4,t3,s2; addu s1,t4,t5` versus current
+  `addu t3,t3,s2; addu s1,t3,t5`, with exact frame `0x80`, size `0x5CC`, and
+  focused `CURRENT (10)`. Rebuilding the historical fork reproduces the same
+  miss, so the claimed public match is not exact. A real `-mips1` isolated pass
+  rejected index casts, pointer spellings, staged locals, 32-bit `new_var`,
+  liveness probes, algebraic multiply forms, and `if (1) {}` relocation; none
+  recovered `t4` without broader drift. Full details and reopen condition:
+  `research/tasks/func_8008FF1C_2026-07-09_external_checkpoint.md`.
 
 - `func_80017A18` (`src/objects.c`, `GLOBAL_ASM` via `NON_EQUIVALENT` guard):
   existing C candidate compiles in matching mode when promoted, but focused

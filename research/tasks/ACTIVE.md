@@ -29,6 +29,18 @@
   `NON_MATCHING`; matching mode remains asm-backed and must still reach
   `Verify: OK`. A generated array-slot split reached `CURRENT (1342)` but
   added one instruction and shifted the rest of the object, so it was rejected.
+- Direct-mode `func_8008FF1C` update on 2026-07-09: audited all 40 public forks
+  and adapted JordanLongstaff commit `9f420e1d`, the only claimed newer match.
+  The source is retained under `NON_MATCHING` because it fixes the prior
+  selected-track `t2` load/branch/delay-slot gap and leaves only a two-
+  instruction `t4` versus `t3` address-temporary drift (`CURRENT (10)`) with
+  exact frame `0x80` and size `0x5CC`. Rebuilding the historical fork confirms
+  that its claimed match has the same drift. Matching mode is restored and
+  reaches `Verify: OK`; continue from
+  `research/tasks/func_8008FF1C_2026-07-09_external_checkpoint.md`.
+- Focused subagents are permitted for bounded source searches and public-source
+  audits when useful, but integrate results directly in the primary checkout;
+  do not recreate the retired heartbeat/child-ledger orchestration layer.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
