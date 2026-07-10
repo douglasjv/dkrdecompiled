@@ -218,6 +218,17 @@ non-repeated direct source hypothesis.
   CRCs `0x0E9F297C/0xBB221418`. Source and matching-mode
   `build/src/objects.c.o` were restored. Do not repeat this combined
   dead-vector plus `sum2` edge-plane accumulator lifetime probe.
+  A 2026-07-09 direct historical/current hybrid used separate `basePlane` and
+  `edgePlane` pointers, reused primary `A/B/C/D` aliases for both sums, and
+  replaced `A1/B1/C1/D1` with a dedicated `edgeSum`, while keeping current
+  retry-local `x2/y2/z2`, named `x3/y3/z3`, and correct
+  `node->closestTri[k]` indexing. Full verify failed with calculated CRCs
+  `0x06A56FA9/0xA007EBC5`; relinked focused diff regressed from baseline
+  `CURRENT (8246)` to `CURRENT (8457)`. The frame improved only to `0x130`,
+  and the bitmask remained in `ra` instead of target `s6`. Source was restored.
+  Do not repeat this pointer-plus-dedicated-edge-sum hybrid; the useful
+  historical `eb131e6b` clue still requires a different mechanism to keep the
+  real outer index in `s1` and shift the remaining saved-register family.
 
 - `init_particle_buffers` (`src/particles.c`, `NON_MATCHING`): existing C
   candidate compiles in matching mode when promoted, but focused object diff

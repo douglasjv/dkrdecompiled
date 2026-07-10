@@ -38,6 +38,10 @@
   index in a nested lexical block. It widened the frame to `0x100`, produced
   `CURRENT (7306)`, and moved the wave tuple to `v1/a0/v0` rather than target
   `v0/v1/a0`; it was fully reverted.
+- A direct `func_80017A18` historical/current hybrid used separate plane
+  pointers plus a dedicated closest-edge sum. It compiled to frame `0x130`,
+  kept the mask in `ra`, and regressed to `CURRENT (8457)`; it was fully
+  reverted.
 
 ## Blockers Or Unknowns
 
