@@ -1,8 +1,8 @@
 # Session Handoff
 
 - Generated at: 2026-07-09
-- Branch: `codex/import-func-8008ff1c-match`
-- Starting HEAD: `0c5f5da4`
+- Branch: `master`
+- Integrated checkpoint: `1d7378e1`
 - Current task: `func_8008FF1C` external-source checkpoint
 - Summary: Retained a stronger guarded menu candidate that fixes the previous
   selected-track allocator gap. Four original functions still remain.
