@@ -67,6 +67,10 @@
 - A third menu IR pass proved that nearby address-of/index-assignment precedent
   can prevent the final temporary coalescing, but global coloring moves the
   result to `t8` rather than target `t4`; no additional menu source was kept.
+- Final bounded precedent searches found no in-repo example for either the
+  menu signed-byte indexed load with `t4/t5` plus across-call pointer reuse or
+  the racer stable-first `v1 -> a0` bound copy plus pointer induction. The
+  retained guarded sources and matching `Verify: OK` state were preserved.
 
 ## Blockers Or Unknowns
 

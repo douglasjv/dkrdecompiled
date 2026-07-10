@@ -47,6 +47,10 @@ comparison.
   isolated pass.
 - The earlier base/edge-plane pointer plus dedicated-edge-sum hybrid stayed at
   frame `0x130`, kept the mask in `ra`, and remains rejected.
+- Moving `x2/y2/z2` assignments into the retry loop regressed to isolated
+  `8202` and broke the recovered mapping (mask `ra`, origins `s6/s7/s8`).
+- Adding `register` to the retained outer `x2/y2/z2` declarations produced no
+  object movement; promoted CRCs stayed `0x573A8C93/0x453F46E9`.
 
 ## Reopen Condition
 

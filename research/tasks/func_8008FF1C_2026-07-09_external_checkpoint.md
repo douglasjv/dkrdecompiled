@@ -49,6 +49,11 @@ and does not affect linked code.
   to-array association and redundant-use variants also miss or spill. Do not
   repeat these non-coalescing shapes without an independent global-coloring
   mechanism.
+- Historical control isolates the coupled allocator tradeoff: the pre-external
+  two-load selected-track source naturally emits the target `t3 -> t4 -> s1`
+  index block, while the corrected single selected-track load/`t2` branch
+  globally recolors that later block. No matching repo precedent combines the
+  signed-byte indexed load, `t4/t5`, and pointer reuse across the call.
 
 ## Reopen Condition
 

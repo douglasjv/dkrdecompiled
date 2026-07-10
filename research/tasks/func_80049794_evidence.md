@@ -45,6 +45,13 @@ Current compact read:
   retained. Reopen only with a mechanism that reverses the initial copy
   direction to `v1=count-1; a0=v1` while preserving `v0` pointer induction;
   do not retry scoped locals or these existing-local carrier variants.
+- 2026-07-09 precedent search: the exact target `addiu v1,v0,-1; move a0,v1`
+  chain appears only in this function. Closest matching source
+  `func_8001E4C4` emits the opposite mutable-first/stable-copy ownership, and
+  `ghostmenu_render` has the arithmetic prefix but no decrementing pointer
+  loop. A dedicated bound lifetime based on that precedent still produced
+  `v1/a0/v0` and pointer recomputation. Reopen only with an external IDO
+  example that combines stable-first bound copy with pointer induction.
 
 ## Extracted ACTIVE Notes
 
