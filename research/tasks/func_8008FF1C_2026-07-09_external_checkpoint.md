@@ -95,6 +95,33 @@ and does not affect linked code.
   index block, while the corrected single selected-track load/`t2` branch
   globally recolors that later block. No matching repo precedent combines the
   signed-byte indexed load, `t4/t5`, and pointer reuse across the call.
+- A follow-up address-DAG audit confirmed that target `t3` is genuinely dead
+  at the first `addu`; target `t4` is a compiler coalescing choice, not required
+  source liveness. Explicit element-pointer ownership through the otherwise
+  unused `trackName`/`hubName` locals, row pointers, pointer-add dereferences,
+  and commuted pointer arithmetic either remained the same `t3/t3` pair or
+  broadly recolored. The plausible source story that `s1` was an explicit
+  element pointer therefore does not reproduce target code under the retained
+  global web.
+- A bounded 32-variant real-IDO mechanism matrix covered pointer ownership,
+  call-result carriers, condition carriers, inverse/nested/do/switch CFGs, and
+  scoped lifetimes. Thirteen exact-size variants were instruction-identical to
+  retained score `20`; every other variant changed size or added broader drift.
+  Full results: `/private/tmp/dkr-menu-targeted-32/report.json`.
+- Coupled row/selected-track web tests separated the single masked
+  `gTrackSelectIDs` load from the row carrier and restored the older repeated
+  direct menu-ID index. The best forms preserved the exact `lh t2`, branch, and
+  delay-slot store, but recolored the desired address node to `t6/t7` or
+  `t8/t9`, scoring `815`; combining that web split with full-index and explicit
+  pointer shapes was worse. Additional fake-lifetime, carrier/type, and
+  operand-association crosses either normalized to the retained score-20
+  object or produced a nearest score-30 commuted `addu t3,s2,t3`, never target
+  `addu t4,t3,s2`. Reports are under
+  `/private/tmp/menu-pointer-owner-matrix`,
+  `/private/tmp/menu-fake-lifetime-matrix`,
+  `/private/tmp/menu-fake-cross-matrix`, `/private/tmp/menu-type-shape-cross`,
+  `/private/tmp/menu-selected-web-matrix`, and
+  `/private/tmp/menu-coupled-web-index`.
 
 ## Reopen Condition
 

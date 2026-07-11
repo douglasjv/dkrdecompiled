@@ -108,6 +108,14 @@
   advisory metric improved only `5016 -> 5006`; no candidate was promoted or
   returned as a semantic patch. This does not supersede authoritative linked
   `CURRENT (2905)`.
+- A new menu address-DAG pass found no improvement over the two-word
+  `CURRENT (10)` frontier. Explicit element-pointer ownership, 32 bounded
+  pointer/CFG/carrier mechanisms, fake-lifetime/type crosses, and the most
+  promising coupled row/selected-track web split all missed. The coupled split
+  preserves the exact `t2` branch/delay-slot region but colors the separate
+  address node as `t6/t7` or `t8/t9`, not target `t4/t5`. Retain the external
+  checkpoint unchanged and do not infer real `t3` liveness: target `t3` is
+  dead at the first `addu`; this remains an IDO coalescing preference.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

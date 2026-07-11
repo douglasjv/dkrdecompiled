@@ -120,6 +120,12 @@
   found only a ten-point advisory improvement (`5016 -> 5006`). No semantic
   candidate was promoted; authoritative linked `CURRENT (2905)` remains the
   racer checkpoint.
+- A fresh menu address-DAG search did not improve `CURRENT (10)`. A bounded
+  32-variant mechanism matrix plus pointer-owner, fake-lifetime, type/shape,
+  and coupled selected-track/index crosses preserved the exact branch region
+  in several forms but never produced target `t4/t5`. The best coupled web
+  split instead colored the separate address node `t6/t7` or `t8/t9`; no menu
+  source change was retained.
 
 ## Blockers Or Unknowns
 
