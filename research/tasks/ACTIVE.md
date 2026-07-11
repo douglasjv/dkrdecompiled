@@ -146,6 +146,15 @@
   to beat `2905`. Future racer work must couple this proven carrier topology
   with an independent source mechanism that restores `0x54` bytes; do not
   retry wave-local ownership or expression association.
+- A live public-scratch refresh found no importable improvement: menu remains
+  at score `20`, track family best is `1898` versus retained linked `1668`,
+  objects still advertises the already rejected behavior-invalid `96Vzj`, and
+  racer has no child below retained `oR9oG`. A distinct objects cross then
+  moved retained `Vec3f origin` loads directly inside `do`; it preserved frame
+  `0x120` and size `0x444` but regressed `7794 -> 8684`, kept mask `ra`, and
+  failed to form target retry phis. Target-product and co-induction crosses
+  regressed to `9396` and `9816`. Retain the current objects source and require
+  a different contained GPR/interference mechanism.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

@@ -149,6 +149,13 @@
   target `move t0,v1` but does not improve the score. Ten intermediate
   square-root trees and a wave-local representation audit produced no better
   checkpoint. Matching source remains unchanged.
+- A live refresh of all four public scratch families found no source better
+  than the retained local checkpoints. The newest distinct objects packet
+  tested retained `Vec3f origin` assignments directly inside the historical
+  `do` placement. It keeps frame `0x120` and size `0x444` but regresses linked
+  score `7794 -> 8684`, moves the mask to `ra`, and does not emit target
+  `f18/f20/f22` retry phis. Behavior-correct target products and a matched-code
+  outer co-induction cross regress to `9396` and `9816`; none is retained.
 
 ## Blockers Or Unknowns
 

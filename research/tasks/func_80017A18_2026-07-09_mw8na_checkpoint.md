@@ -118,6 +118,24 @@ comparison.
   misses frame/color constraints, so it is not retained. An exact future match
   must eventually recover this target-product ownership as well as the retry
   origin phis.
+- A 2026-07-10 aggregate retry-placement cross compiled the previously
+  untested retained `Vec3f origin` with its three member assignments directly
+  after `redoLoop = FALSE`. It preserves frame `0x120`, result `sp+0xF8`, and
+  size `0x444`, but regresses linked score `7794 -> 8684`, moves the collision
+  mask to `ra`, moves origin array bases to `s6/s7/s8`, and merely reloads the
+  three members into `f6/f8/f10` before storing them at `A0/A4/A8`. It does not
+  create the target persistent `f18/f20/f22` phis or the six retry-boundary
+  spill/reload instructions. This proves aggregate member ownership alone
+  does not change IDO's retry lifetime.
+- Crossing that placement with behavior-correct target products (`A*x1` and
+  `C*z1`) remains frame/size exact but regresses further to `CURRENT (9396)`
+  and leaves the same wrong GPR/FPR topology. A source-backed multi-induction
+  outer loop (`i` and the collision mask advanced in one `for` header), modeled
+  on adjacent matched collision code, changes only the `s1`/mask init order;
+  it does not move mask `ra` or the origin bases and reaches `CURRENT (9816)`
+  in the target-product cross. Do not repeat direct in-`do` aggregate loads,
+  their target-product cross, or outer-loop co-induction as the contained GPR
+  repair.
 
 ## Reopen Condition
 
