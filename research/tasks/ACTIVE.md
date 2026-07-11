@@ -155,6 +155,14 @@
   failed to form target retry phis. Target-product and co-induction crosses
   regressed to `9396` and `9816`. Retain the current objects source and require
   a different contained GPR/interference mechanism.
+- A distinct menu nonlocal-interference packet also missed. Short-circuit
+  placement of the real row-base assignment shrinks text to `0x5C4`/`0x5B8`
+  and loses the exact `t2` selected-load web; 12 identity-select forms either
+  normalize to retained `CURRENT (10)` or grow the function. Joining the
+  pre-call index with the later menu-ID byte preserves size and `t2`, but
+  recolors 132 instructions into a `t8/t9` family. Retain the score-10 source;
+  future menu work needs an external/compiler mechanism beyond local or
+  nonlocal semantic ownership already covered.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

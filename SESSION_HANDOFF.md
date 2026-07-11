@@ -156,6 +156,12 @@
   score `7794 -> 8684`, moves the mask to `ra`, and does not emit target
   `f18/f20/f22` retry phis. Behavior-correct target products and a matched-code
   outer co-induction cross regress to `9396` and `9816`; none is retained.
+- A fresh menu allocator packet tested short-circuit row-base placement,
+  conditional identity expressions, existing-value row/index reuse, and a
+  nonlocal index-to-menu-ID web. None preserves the exact function while
+  producing target `t4`: exact-size identities remain `CURRENT (10)`, edge
+  placement shrinks or broadens the function, and the exact-size nonlocal web
+  changes 132 instructions. The retained menu source remains unchanged.
 
 ## Blockers Or Unknowns
 

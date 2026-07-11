@@ -122,6 +122,30 @@ and does not affect linked code.
   `/private/tmp/menu-fake-cross-matrix`, `/private/tmp/menu-type-shape-cross`,
   `/private/tmp/menu-selected-web-matrix`, and
   `/private/tmp/menu-coupled-web-index`.
+- A 2026-07-10 nonlocal-interference pass tested the remaining source-backed
+  edges rather than more local spelling variants. Moving the real row-base
+  assignment onto the selected-track short-circuit fallthrough is not
+  code-free in IDO: the `long long new_var` form shrinks text to `0x5C4`,
+  spills the 64-bit row, and recolors the selected load to `t9`; reusing the
+  existing 32-bit `temp` or `pad` shrinks text to `0x5B8`, also selects `t9`,
+  and colors row/full-index as `t4/t5` rather than target `t3/t4`. The
+  short-circuit edge cannot couple the two webs while retaining the exact CFG.
+- A 12-form identity-select matrix covered conditional identities on
+  `trackX`, `trackY`, and the full index, bitwise/arithmetic identities, and
+  commuting the later consumer. Only baseline and commuted forms kept exact
+  size, and those were instruction-identical to the retained `t3/t3` pair;
+  every conditional or bitwise form grew text to `0x5D8`-`0x620`. Reusing dead
+  `pad` or `temp` as row/full-index owners instead rotates the block into the
+  already rejected `t8/t9` family and broadens the post-call block.
+- The final distinct nonlocal edge joined the pre-call full index to the
+  post-call menu-ID byte in one 32-bit web, reflecting target's later
+  `lb t4,0(s1)` versus `lw t3,4(t2)` interference. It preserves exact size and
+  the critical `lh t2` / branch / delay-slot store, but colors the earlier
+  address block `t8/t9`, the later byte `v0`, and differs in 132 instructions.
+  This proves that transmitting the later `t4`/`t3` edge backward perturbs the
+  whole allocator rather than only preventing the one coalescence. Evidence is
+  under `/private/tmp/menu_nonlocal_index_id_web.c` and the
+  `/private/tmp/dkr-menu-nonlocal` matrix. No candidate was retained.
 
 ## Reopen Condition
 
