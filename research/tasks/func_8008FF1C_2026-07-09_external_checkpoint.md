@@ -76,6 +76,12 @@ and does not affect linked code.
   Nine forms kept exact text size and differed only at the same two words; all
   others grew text to `0x5F0`, `0x600`, or `0x610`. No expression emitted
   `t4`.
+- A 217-variant explicit-cast matrix then covered signed/unsigned 8-, 16-,
+  32-, and 64-bit casts plus `int`/`long` spellings on `trackX`, `trackY`, the
+  multiplier, intermediate `new_var`, whole sum, array index, and all paired
+  operand-width combinations. Sixty-eight variants preserved exact text and
+  the same two-word miss; all others broadened the diff, changed size, or were
+  rejected by IDO. Operand/result width coercion is therefore exhausted too.
 - Historical-context restoration is also ruled out. The fork and current repo
   use identical real IDO `-O2 -mips1` flags, relevant tool revisions, typedefs,
   struct layouts, headers, and globals. Untouched `9f420e1d` has three stale

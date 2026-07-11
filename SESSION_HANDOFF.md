@@ -93,6 +93,10 @@
   staged/embedded index expressions. None improved the two-word `CURRENT (10)`
   frontier. A historical-context audit confirmed identical compiler/tool/type/
   layout inputs and reproduced the same miss even before API-name adaptation.
+- Further finite searches covered 217 menu cast placements, all 17 possible
+  independent track-store barriers, and all 27 mixed per-axis objects retry
+  carriers. None improved a retained checkpoint under its target frame/size/
+  register constraints; no guarded source body changed.
 
 ## Blockers Or Unknowns
 

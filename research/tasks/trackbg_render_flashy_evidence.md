@@ -65,6 +65,12 @@ Current compact read:
   scored `4177/4185/4598/7071` and still produced `0x96C` or `0x970` text.
   The allocation gain is coupled specifically to an additive array-slot store;
   no tested required store can replace it.
+- The required-store barrier search was subsequently completed for all 17
+  other `xPositions[]`/`zPositions[]` assignments. Every moved store produced a
+  distinct object and none improved retained `1668` or scratch `1342`; the best
+  moved-store score was `3293`. Thirteen bodies stayed `0x96C`, two grew to
+  `0x970`, and two to `0x980`; zero returned to target `0x968`. Reordering any
+  single independent array store cannot elide the additive scratch write.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement

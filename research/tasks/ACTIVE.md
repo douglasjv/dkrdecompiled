@@ -76,6 +76,11 @@
   retained the same two-word miss or grew text. Historical fork compiler,
   typedef, layout, prototype, and translation-unit context likewise reproduces
   the miss. Pure ordering/storage-class/context restoration is now exhausted.
+- A third finite pass covered 217 menu cast placements, all 17 independent
+  track array stores as scratch barriers, and all 27 direct/explicit/reused
+  per-axis objects retry-carrier combinations. Menu casts never beat the same
+  two-word miss; no track store restored target size; objects baseline remained
+  best and no mixed ownership produced `f18/f20/f22`. All guards remain active.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

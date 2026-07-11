@@ -66,6 +66,14 @@ comparison.
   assignment was object-identical. The needed mechanism is therefore a
   loop-carried origin lifetime that preserves separate intersection ownership
   without adding three locals.
+- A complete 27-way per-axis ownership matrix independently selected direct
+  origin, explicit retry local, or `x3/y3/z3` reuse for X/Y/Z. All combinations
+  compiled to unique bodies and preserved the saved-GPR family; none matched.
+  Seven retained target frame `0x120`, result `sp+0xF8`, and size ceiling, but
+  baseline direct/direct/direct remained best. Reuse/reuse/direct recovered
+  partial header colors `f18/f20` while leaving Z stack-resident; no combination
+  produced target `f18/f20/f22`. Axis-local ownership is now saturated and the
+  next mechanism must couple interference across axes.
 
 ## Reopen Condition
 
