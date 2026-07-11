@@ -102,6 +102,11 @@
   actual later fakematch assignment has no independently removable one-
   instruction RHS; manual review rejected an apparent exact-size probe that
   had accidentally changed live behavior. No source was promoted.
+- Browser family inspection found current public improvements. Exact `oR9oG`
+  racer source is retained under `NON_EQUIVALENT` and improves the authoritative
+  shared linked diff to `CURRENT (2905)` while preserving frame `0xF8` and
+  early `f14`; it remains nonexact. Objects `96Vzj` was rejected after semantic
+  validation exposed mask corruption and wrong steep-correction coordinates.
 
 ## Blockers Or Unknowns
 

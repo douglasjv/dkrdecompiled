@@ -80,6 +80,15 @@ Current compact read:
   `v0/a0/v1/v0`, while 216 produced `v0/none/v1/v0`. Both best objects kept
   frame `0xF8`, `f21/f20` saves, and early `f14`; loop-header syntax alone
   cannot reverse the stable/mutable pair.
+- Public scratch-family inspection on 2026-07-10 found newer source-backed
+  scratch `oR9oG` (standalone score `5171`). Its exact source is now retained
+  under `NON_EQUIVALENT`: authoritative shared promotion gives linked
+  `CURRENT (2905)`, improving the prior retained `4365`; frame remains `0xF8`,
+  early `f14` remains exact, and text is `0x28F8` versus target `0x290C`.
+  Promoted CRCs are `0xF7782164/0xADC09630`. It still lacks `f21/f20` saves and
+  keeps wave tuple `v0/a0/v1/v0`, so matching mode must remain asm-backed.
+  Preserve the scratch's line/statement layout: formatting it changes IDO
+  allocation and the linked diff.
 
 ## Extracted ACTIVE Notes
 

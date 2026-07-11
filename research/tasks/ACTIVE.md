@@ -87,6 +87,14 @@
   baseline. A corrected track fakematch audit found no semantic one-instruction
   compensation; a behavior-invalid apparent result was discarded before
   integration. All four guards remain necessary.
+- Public decomp.me family inspection on 2026-07-10 found two newer scratches.
+  Racer `oR9oG` is valid and retained under `NON_EQUIVALENT`, improving linked
+  `CURRENT (4365)` to authoritative shared `CURRENT (2905)` with exact frame
+  `0xF8` and early `f14`; it remains 20 bytes short, lacks `f21/f20`, and keeps
+  the swapped wave pair. Objects `96Vzj` reached raw `6280` but corrupted the
+  mask and used wrong coordinates; semantic repairs regressed, so it was not
+  retained. Track family best (`1898`) remains worse than retained `1668`, and
+  the menu family exposes no result below score `20`.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

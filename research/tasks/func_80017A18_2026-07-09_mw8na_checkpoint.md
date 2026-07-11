@@ -80,6 +80,13 @@ comparison.
   none beat the direct/direct/direct baseline or produced all
   `f18/f20/f22`. Order changes only perturb interpolation scheduling: RRD keeps
   partial X/Y, DER keeps Y/Z, and RED assigns X to the wrong `f22` role.
+- Public family lineage exposed newer scratch `96Vzj` (standalone `3934`). Raw
+  promotion is numerically closer at linked `CURRENT (6280)` and size `0x450`,
+  but it is behaviorally invalid: it overwrites the persistent collision mask
+  with edge-plane indices and uses target rather than origin coordinates in the
+  steep correction. Minimal semantic repairs scored `8999` and `9744`, with
+  wrong frames/register ownership. The raw source and repairs are rejected;
+  retained A2/C2 remains the strongest valid checkpoint.
 
 ## Reopen Condition
 
