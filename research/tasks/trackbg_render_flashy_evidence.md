@@ -71,6 +71,14 @@ Current compact read:
   moved-store score was `3293`. Thirteen bodies stayed `0x96C`, two grew to
   `0x970`, and two to `0x980`; zero returned to target `0x968`. Reordering any
   single independent array store cannot elide the additive scratch write.
+- A corrected fakematch-compensation audit tested the actual later repeated
+  `var_a2` assignment. Removing it or replacing it with self-assignment shrank
+  text to `0x91C` and regressed to `CURRENT (11307)`; changing its RHS among
+  `height * 16`, `height * unkA1`, or regrouped multiplication was compiler-
+  identical to scratch `1342/0x96C`. An initial apparent exact-size result was
+  rejected during manual permuter-output review because an unanchored probe had
+  changed the first live sizing assignment instead of the dead repeat. No
+  semantic exact-size compensation or permuter output survives this audit.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement

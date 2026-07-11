@@ -74,6 +74,12 @@ comparison.
   partial header colors `f18/f20` while leaving Z stack-resident; no combination
   produced target `f18/f20/f22`. Axis-local ownership is now saturated and the
   next mechanism must couple interference across axes.
+- The seven target-constrained ownership families were then crossed with all
+  six X/Y/Z statement orders (42 bodies, 22 unique instruction streams). Every
+  body preserved frame `0x120`, result `sp+0xF8`, saved GPRs, and size ceiling;
+  none beat the direct/direct/direct baseline or produced all
+  `f18/f20/f22`. Order changes only perturb interpolation scheduling: RRD keeps
+  partial X/Y, DER keeps Y/Z, and RED assigns X to the wrong `f22` role.
 
 ## Reopen Condition
 

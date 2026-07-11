@@ -81,6 +81,12 @@
   per-axis objects retry-carrier combinations. Menu casts never beat the same
   two-word miss; no track store restored target size; objects baseline remained
   best and no mixed ownership produced `f18/f20/f22`. All guards remain active.
+- Further finite coverage compiled 4,536 racer loop-header forms and 42 objects
+  axis-order variants. Racer produced nine objects but never target
+  `v0/v1/a0/v0`; objects statement order never completed `f18/f20/f22` or beat
+  baseline. A corrected track fakematch audit found no semantic one-instruction
+  compensation; a behavior-invalid apparent result was discarded before
+  integration. All four guards remain necessary.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

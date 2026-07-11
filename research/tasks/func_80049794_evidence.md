@@ -70,6 +70,16 @@ Current compact read:
   broadened allocation without reversing the stable/mutable pair. IDO
   normalizes identity sharing, while splitting initialization perturbs more
   than the desired `v1`/`a0` copy direction. No source was retained.
+- A deterministic follow-up exhaustively compiled 4,536 for-loop-header
+  combinations across 11 initializer nesting/comma layouts, six integer
+  comparisons, two float operand orders, six decrement forms/placements, and
+  global/local equality spellings. All compiled, preserved one count load and
+  pointer induction, and collapsed to nine distinct function objects. Target
+  tuple `v0=count, v1=stable, a0=mutable, v0=pointer` occurred zero times.
+  The best 1,296 variants matched only two roles: 1,080 retained baseline
+  `v0/a0/v1/v0`, while 216 produced `v0/none/v1/v0`. Both best objects kept
+  frame `0xF8`, `f21/f20` saves, and early `f14`; loop-header syntax alone
+  cannot reverse the stable/mutable pair.
 
 ## Extracted ACTIVE Notes
 

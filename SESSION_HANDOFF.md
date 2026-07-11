@@ -97,6 +97,11 @@
   independent track-store barriers, and all 27 mixed per-axis objects retry
   carriers. None improved a retained checkpoint under its target frame/size/
   register constraints; no guarded source body changed.
+- The next pass completed 4,536 racer loop-header variants and 42 objects
+  ownership/order bodies, with no target tuple or FPR completion. Track's
+  actual later fakematch assignment has no independently removable one-
+  instruction RHS; manual review rejected an apparent exact-size probe that
+  had accidentally changed live behavior. No source was promoted.
 
 ## Blockers Or Unknowns
 
