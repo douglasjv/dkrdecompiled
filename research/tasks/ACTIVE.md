@@ -127,6 +127,16 @@
   only promoted same-size chain was `CURRENT (3821)`. Retain the current source
   and continue from the exact-color carrier only with an independent scheduler
   mechanism.
+- A coupled `func_80017A18` pass found a real guarded-source improvement.
+  Replacing scalar `x2/y2/z2` with one `Vec3f origin` preserves frame `0x120`,
+  size `0x444`, result `sp+0xF8`, and the exact saved-GPR family while improving
+  the current promoted tree by 140 points (`7934 -> 7794`); it is retained.
+  Target's missing six instructions are now proven to be three retry-header
+  origin spills plus three latch reloads caused by historical in-`do` origin
+  assignments. Scoped retry copies move toward that topology but widen the
+  frame; cursor forms break GPR ownership. Target also caches target, not
+  origin, A/C products in the gentle-slope branch; the behavior-correct product
+  cross regresses to `8490` and is recorded as a future exact-match constraint.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

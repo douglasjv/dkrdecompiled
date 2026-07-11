@@ -87,6 +87,37 @@ comparison.
   steep correction. Minimal semantic repairs scored `8999` and `9744`, with
   wrong frames/register ownership. The raw source and repairs are rejected;
   retained A2/C2 remains the strongest valid checkpoint.
+- A coupled-origin representation pass replaced the three scalar origin locals
+  with one `Vec3f origin` and used its members in the primary sum,
+  interpolation, and timeout reset. With the authoritative shared promotion
+  flags (`ANTI_TAMPER=1 NON_EQUIVALENT=1 AVOID_UB=1`), the current-tree linked
+  score improves by 140 points, `CURRENT (7934) -> CURRENT (7794)`. The older
+  `7869` ledger baseline predates the retained racer checkpoint; compare
+  candidates within one promoted tree. The vector form keeps exact frame
+  `0x120`, size `0x444`, result `sp+0xF8`, and the complete saved-GPR family.
+  It only reverses the three permanent origin spill slots and still loads the
+  origins as `f8/f10/f4`, not target `f18/f20/f22`. This source is retained.
+- The target's `0x18` size excess is now fully explained: it loads persistent
+  origin X/Y/Z into `f18/f20/f22`, spills them to `sp+A4/A0/9C` at the retry
+  header, then reloads them in reverse order at the retry latch. Historical
+  source before commit `105913c7` assigns the three origins inside the `do`
+  loop and even annotates those exact stack slots, proving the source cause of
+  all six missing instructions. Moving those loads into `do` alone was already
+  rejected because it breaks saved-GPR ownership; future work must pair that
+  known FPR mechanism with a contained GPR-allocation mechanism.
+- Scoped scalar/`Vec3f` retry copies combined with target-product ownership get
+  closer to the correct topology (`f22/f24/f26`) but widen the frame to
+  `0x128`, move the result to `sp+0x100`, and grow text to `0x460`. Direct or
+  local origin-pointer cursors collapse the frame or saved-GPR mapping and are
+  rejected. Lexical scoping does not shorten the copy lifetimes in IDO.
+- A semantic target-dataflow audit corrected an earlier assumption: target
+  caches `A * x1` and `C * z1` for the gentle-slope correction, consistent with
+  `src/hasm/collision.c`; retained A2/C2 instead caches origin products. The
+  scalar target-product correction preserves frame/size/GPRs but regresses the
+  current-tree linked score to `CURRENT (8490)`, and its retry-copy cross still
+  misses frame/color constraints, so it is not retained. An exact future match
+  must eventually recover this target-product ownership as well as the retry
+  origin phis.
 
 ## Reopen Condition
 

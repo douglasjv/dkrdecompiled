@@ -5418,7 +5418,7 @@ s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPo
     f32 x3, y3, z3;
     f32 radius;
     f32 x1, y1, z1;
-    f32 x2, y2, z2;
+    Vec3f origin;
     CollisionFacetPlanes *node;
     s32 triIndex;
     f32 *curPlanes;
@@ -5433,9 +5433,9 @@ s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPo
         x1 = targetPointsX[i];
         y1 = targetPointsY[i];
         z1 = targetPointsZ[i];
-        x2 = originPointsX[i];
-        y2 = originPointsY[i];
-        z2 = originPointsZ[i];
+        origin.x = originPointsX[i];
+        origin.y = originPointsY[i];
+        origin.z = originPointsZ[i];
         radius = collisionRadii[i] * scale;
         counter = 0;
         do {
@@ -5449,9 +5449,9 @@ s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPo
                 C = curPlanes[2];
                 D = curPlanes[3];
 
-                A2 = A * x2;
-                C2 = C * z2;
-                sum1 = (((A2) + (B * y2) + (C2)) + D) - radius;
+                A2 = A * origin.x;
+                C2 = C * origin.z;
+                sum1 = (((A2) + (B * origin.y) + (C2)) + D) - radius;
                 sum2 = (((A * x1) + (B * y1) + (C * z1)) + D);
                 new_var = sum1;
                 sum2 -= radius;
@@ -5462,9 +5462,9 @@ s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPo
                         } else {
                             t = 0.0f;
                         }
-                        x3 = x2 + (x1 - x2) * t;
-                        y3 = y2 + (y1 - y2) * t;
-                        z3 = z2 + (z1 - z2) * t;
+                        x3 = origin.x + (x1 - origin.x) * t;
+                        y3 = origin.y + (y1 - origin.y) * t;
+                        z3 = origin.z + (z1 - origin.z) * t;
                         ret = TRUE;
 
                         for (k = 0; k < 3 && ret == TRUE; k++) {
@@ -5492,9 +5492,9 @@ s32 func_80017A18(ObjectModel *arg0, s32 arg1, s32 *numCollisions, f32 *originPo
                             counter++;
                             if (counter > 10) {
                                 redoLoop = FALSE;
-                                x1 = x2;
-                                y1 = y2;
-                                z1 = z2;
+                                x1 = origin.x;
+                                y1 = origin.y;
+                                z1 = origin.z;
                             }
                             surfaces[i] = SURFACE_DEFAULT;
                             targetPointsX[i] = x1;

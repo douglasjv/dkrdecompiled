@@ -133,6 +133,15 @@
   `3489`, best chained cross `2879`). A 32-variant chained-pair matrix and 29
   tail-order variants found no improvement over retained linked
   `CURRENT (1668)`; no track source change was retained.
+- `func_80017A18` now retains a coupled `Vec3f origin` representation. In the
+  current authoritative promoted tree it improves linked score `7934 -> 7794`
+  while preserving exact frame `0x120`, size `0x444`, result `sp+0xF8`, and
+  saved-GPR ownership. Historical source and target asm prove its remaining
+  six-instruction size gap is exactly three origin spills and three reloads at
+  the retry boundary. Scoped-copy and pointer-cursor crosses missed the frame/
+  GPR constraints. A target-dataflow audit also shows the final source must
+  cache target A/C products for gentle slopes; that correction currently
+  regresses and was not retained.
 
 ## Blockers Or Unknowns
 
