@@ -65,6 +65,25 @@ and does not affect linked code.
   the retained one-temporary baseline. This confirms that merely materializing
   the full index changes the correct interference edge but loses the required
   global coloring.
+- A deterministic finite search then exhausted declaration and storage-class
+  ordering as explanations. All 226 unique adjacent/single-move declaration
+  orders compiled to one identical full-function digest and score `20`. All
+  16,384 subsets of `register` qualifiers across the 14 active scalar/pointer
+  locals also retained exactly the same two differing words at `0x1B8/0x1BC`;
+  no subset changed even one instruction.
+- A separate 23-form index-expression sweep covered embedded, staged, nested,
+  comma, compound-assignment, commuted, shift/add, and shift/subtract forms.
+  Nine forms kept exact text size and differed only at the same two words; all
+  others grew text to `0x5F0`, `0x600`, or `0x610`. No expression emitted
+  `t4`.
+- Historical-context restoration is also ruled out. The fork and current repo
+  use identical real IDO `-O2 -mips1` flags, relevant tool revisions, typedefs,
+  struct layouts, headers, and globals. Untouched `9f420e1d` has three stale
+  implicit-int APIs, but direct compilation before and after adapting them is
+  instruction-identical apart from relocation names and still emits the
+  `t3/t3` pair. The older bQDRA-linked row/`s16` selected-track hybrid restores
+  the old `v1` load and broadly recolors the index block; retaining only its
+  separate row carrier is object-identical to the score-20 baseline.
 - Historical control isolates the coupled allocator tradeoff: the pre-external
   two-load selected-track source naturally emits the target `t3 -> t4 -> s1`
   index block, while the corrected single selected-track load/`t2` branch

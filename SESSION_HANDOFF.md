@@ -88,6 +88,11 @@
   objects retry copies add `0x10` of frame; racer expression sharing either
   normalizes away or disrupts the correct count/pointer roles. No guarded C
   body was changed.
+- A deterministic menu search covered all 226 adjacent/single-move declaration
+  orders, every one of 16,384 `register` subsets over active locals, and 23
+  staged/embedded index expressions. None improved the two-word `CURRENT (10)`
+  frontier. A historical-context audit confirmed identical compiler/tool/type/
+  layout inputs and reproduced the same miss even before API-name adaptation.
 
 ## Blockers Or Unknowns
 

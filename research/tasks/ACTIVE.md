@@ -70,6 +70,12 @@
   array scratch store; objects loop-carried origin copies add `0x10` of frame;
   racer initializer sharing displaces correct count/pointer roles. Continue
   from the updated per-function ledgers, with all four guards intact.
+- A finite menu allocator sweep on 2026-07-10 found no exact source: 226 unique
+  declaration orders produced one object, all 16,384 `register`-qualifier
+  subsets were instruction-identical, and 23 index-expression forms either
+  retained the same two-word miss or grew text. Historical fork compiler,
+  typedef, layout, prototype, and translation-unit context likewise reproduces
+  the miss. Pure ordering/storage-class/context restoration is now exhausted.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
