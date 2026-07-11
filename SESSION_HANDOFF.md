@@ -126,6 +126,13 @@
   in several forms but never produced target `t4/t5`. The best coupled web
   split instead colored the separate address node `t6/t7` or `t8/t9`; no menu
   source change was retained.
+- A track FPR-graph audit identified the exact spill cycle: target keeps
+  negative cosine `f18` and doubled sine `f16` while spilling doubled cosine;
+  current does the opposite. Reusing the existing `var_f16` for doubled sine
+  reproduces target colors and exact size but not target scheduling (advisory
+  `3489`, best chained cross `2879`). A 32-variant chained-pair matrix and 29
+  tail-order variants found no improvement over retained linked
+  `CURRENT (1668)`; no track source change was retained.
 
 ## Blockers Or Unknowns
 

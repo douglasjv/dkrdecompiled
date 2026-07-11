@@ -116,6 +116,17 @@
   address node as `t6/t7` or `t8/t9`, not target `t4/t5`. Retain the external
   checkpoint unchanged and do not infer real `t3` liveness: target `t3` is
   dead at the first `addu`; this remains an IDO coalescing preference.
+- A fresh track FPR-graph pass localized the retained drift to one three-range
+  spill cycle. Target keeps negative cosine in `f18`, doubled sine in `f16`,
+  and spills doubled cosine; current keeps negative cosine in `f16`, doubled
+  cosine in `f18`, and spills doubled sine. Reusing the existing `var_f16` as
+  a doubled-sine carrier reproduces the exact target color/spill topology at
+  exact size, but its scheduler regresses advisory score to `3489` (best chain
+  cross `2879`). Thirty-two chained first-ring forms, 29 tail orders, and
+  reverse-nested pair forms did not beat retained linked `CURRENT (1668)`; the
+  only promoted same-size chain was `CURRENT (3821)`. Retain the current source
+  and continue from the exact-color carrier only with an independent scheduler
+  mechanism.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

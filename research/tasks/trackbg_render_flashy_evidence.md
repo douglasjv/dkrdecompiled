@@ -79,10 +79,40 @@ Current compact read:
   rejected during manual permuter-output review because an unanchored probe had
   changed the first live sizing assignment instead of the dead repeat. No
   semantic exact-size compensation or permuter output survives this audit.
+- A 2026-07-10 FPR graph audit localized all retained drift to relative
+  `0xB0..0x174`; target and current reconverge at `0x178`. The three competing
+  live ranges are negative cosine C, doubled cosine 2A, and doubled sine 2B.
+  Target keeps C in `f18`, keeps 2B in `f16`, and spills 2A through `f8` and
+  `sp+0x30`; retained current keeps C in `f16`, keeps 2A in `f18`, and spills
+  2B. This is the authoritative topology for future work; a useful mechanism
+  must change which doubled carrier is spilled, not merely rename the first
+  negation.
+- Reusing the existing later `var_f16` local for `scaledXSin + scaledXSin`
+  before the first-ring expressions and using it at the four doubled-sine
+  sites proves the spill lever: isolated real IDO assigns C=`f18`, 2B=`f16`,
+  and spills 2A, exactly matching target colors while preserving exact object
+  size. Its first-ring/store schedule still regresses the advisory score to
+  `3489`; combining the sole same-size positive-sum chain reduces that to
+  `2879`, still worse than retained. These are mechanism proofs, not promoted
+  source candidates. Reports:
+  `/private/tmp/track-double-carrier-matrix` and
+  `/private/tmp/track-double-sin-chain-cross`.
+- A separate 32-variant chained-assignment matrix covered ownership and
+  direction for all four equal first-ring destination pairs. Most chains
+  shrink text to `0x930`-`0x95C`; the only same-size x2/z3 survivor regresses
+  to linked `CURRENT (3821)` with CRCs `0x93E7F89F/0xA41EB69F`. Full report:
+  `/private/tmp/dkr-track-targeted-chain-32/report.json`. A 29-body two-wide
+  tail-order permutation sweep also never changed the initial `f16` negative
+  carrier or beat its baseline object. Reverse-nested four-pair forms recover
+  `f18` but widen the frame to `0x160` and shrink/reorder text badly. Do not
+  repeat chained ownership or tail ordering alone.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement
-without broad stack-slot/downstream scheduling drift. Do not repeat ordinary
+without broad stack-slot/downstream scheduling drift. The strongest new
+starting point is the exact-color `var_f16` doubled-sine carrier, but it needs
+an independent scheduler mechanism that preserves the target first-ring temp
+store/load order. Do not repeat ordinary
 negative-cos temps, inverted-primary-cos spelling, first-ring pair-result
 scratch locals, first-two-store ordering, `var_f16` lifetime extension, or the
 size-growing `xPositions[6]` scratch split. Never rely on focused `CURRENT (0)`
