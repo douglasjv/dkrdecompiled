@@ -90,11 +90,12 @@ Current compact read:
 - Reusing the existing later `var_f16` local for `scaledXSin + scaledXSin`
   before the first-ring expressions and using it at the four doubled-sine
   sites proves the spill lever: isolated real IDO assigns C=`f18`, 2B=`f16`,
-  and spills 2A, exactly matching target colors while preserving exact object
-  size. Its first-ring/store schedule still regresses the advisory score to
-  `3489`; combining the sole same-size positive-sum chain reduces that to
-  `2879`, still worse than retained. These are mechanism proofs, not promoted
-  source candidates. Reports:
+  and spills 2A, matching the target color roles. A fresh symbol-size audit
+  corrected the earlier report: both retained proof artifacts are `0x970`,
+  eight bytes larger than target `0x968`, rather than exact-size. Their first-
+  ring/store schedules also regress the advisory score to `3489`; combining
+  the positive-sum chain reduces that to `2879`, still worse than retained.
+  These are mechanism proofs, not promoted source candidates. Reports:
   `/private/tmp/track-double-carrier-matrix` and
   `/private/tmp/track-double-sin-chain-cross`.
 - A separate 32-variant chained-assignment matrix covered ownership and
@@ -106,12 +107,23 @@ Current compact read:
   carrier or beat its baseline object. Reverse-nested four-pair forms recover
   `f18` but widen the frame to `0x160` and shrink/reorder text badly. Do not
   repeat chained ownership or tail ordering alone.
+- A 2026-07-10 carrier-placement sweep moved the doubled-sine `var_f16`
+  assignment across every boundary from `scaledXCos` through `zPositions[4]`
+  while retaining its four doubled-sine uses. All ten bodies compiled to
+  `0x970`, so none met the target-size gate. The specifically predicted seam
+  between `xPositions[3]` and `zPositions[3]` also selected C=`f16`, 2A=`f4`,
+  and 2B=`f18`, losing the target color topology. Crossing the exact-color
+  carrier with `zPositions[0]` before `xPositions[0]` likewise stayed `0x970`
+  and regressed the linked diff to `CURRENT (4404)`. Do not repeat carrier-
+  statement placement or the first-store-order cross; this scheduler family
+  cannot preserve both target size and colors.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement
 without broad stack-slot/downstream scheduling drift. The strongest new
-starting point is the exact-color `var_f16` doubled-sine carrier, but it needs
-an independent scheduler mechanism that preserves the target first-ring temp
+starting point is the target-color `var_f16` doubled-sine carrier, but its
+known forms are all eight bytes oversized and need a distinct mechanism that
+removes the extra instructions while preserving the target first-ring temp
 store/load order. Do not repeat ordinary
 negative-cos temps, inverted-primary-cos spelling, first-ring pair-result
 scratch locals, first-two-store ordering, `var_f16` lifetime extension, or the

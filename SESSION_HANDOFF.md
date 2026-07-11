@@ -129,10 +129,17 @@
 - A track FPR-graph audit identified the exact spill cycle: target keeps
   negative cosine `f18` and doubled sine `f16` while spilling doubled cosine;
   current does the opposite. Reusing the existing `var_f16` for doubled sine
-  reproduces target colors and exact size but not target scheduling (advisory
-  `3489`, best chained cross `2879`). A 32-variant chained-pair matrix and 29
+  reproduces target colors but is actually `0x970`, eight bytes over target;
+  the earlier exact-size record was corrected. Its scheduling remains advisory
+  `3489`, with best chained cross `2879`. A 32-variant chained-pair matrix and 29
   tail-order variants found no improvement over retained linked
   `CURRENT (1668)`; no track source change was retained.
+- A ten-position carrier-placement sweep confirmed every doubled-sine
+  assignment seam remains `0x970`. The predicted placement between
+  `xPositions[3]` and `zPositions[3]` loses the target register colors, while
+  crossing the exact-color carrier with `zPositions[0]`-first ordering links at
+  `CURRENT (4404)`. This scheduler family is closed; retained track source is
+  unchanged.
 - `func_80017A18` now retains a coupled `Vec3f origin` representation. In the
   current authoritative promoted tree it improves linked score `7934 -> 7794`
   while preserving exact frame `0x120`, size `0x444`, result `sp+0xF8`, and

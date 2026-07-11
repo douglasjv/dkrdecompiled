@@ -120,13 +120,20 @@
   spill cycle. Target keeps negative cosine in `f18`, doubled sine in `f16`,
   and spills doubled cosine; current keeps negative cosine in `f16`, doubled
   cosine in `f18`, and spills doubled sine. Reusing the existing `var_f16` as
-  a doubled-sine carrier reproduces the exact target color/spill topology at
-  exact size, but its scheduler regresses advisory score to `3489` (best chain
-  cross `2879`). Thirty-two chained first-ring forms, 29 tail orders, and
+  a doubled-sine carrier reproduces the target color/spill topology, but a
+  fresh audit shows its artifacts are `0x970`, eight bytes over target, and
+  its scheduler regresses advisory score to `3489` (best chain cross `2879`).
+  Thirty-two chained first-ring forms, 29 tail orders, and
   reverse-nested pair forms did not beat retained linked `CURRENT (1668)`; the
   only promoted same-size chain was `CURRENT (3821)`. Retain the current source
-  and continue from the exact-color carrier only with an independent scheduler
-  mechanism.
+  and continue from the target-color carrier only with an independent size-
+  removing scheduler mechanism.
+- A follow-up ten-position doubled-sine-carrier sweep confirmed every placement
+  from the scaled-cos definition through `zPositions[4]` is `0x970`. The
+  predicted `xPositions[3]`/`zPositions[3]` seam loses all target colors, and
+  the exact-color plus first-store-order cross is also `0x970` and linked
+  `CURRENT (4404)`. Statement placement and first-store ordering are closed;
+  the retained `CURRENT (1668)` source remains authoritative.
 - A coupled `func_80017A18` pass found a real guarded-source improvement.
   Replacing scalar `x2/y2/z2` with one `Vec3f origin` preserves frame `0x120`,
   size `0x444`, result `sp+0xF8`, and the exact saved-GPR family while improving
