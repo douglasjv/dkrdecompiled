@@ -89,6 +89,31 @@ Current compact read:
   keeps wave tuple `v0/a0/v1/v0`, so matching mode must remain asm-backed.
   Preserve the scratch's line/statement layout: formatting it changes IDO
   allocation and the linked diff.
+- A 64-way real-IDO lifetime/padding matrix crossed split versus combined
+  `sqrtf`, chained versus separate grounded-zero assignment, and every subset
+  of the four unused padding locals. It collapsed to 12 objects and never beat
+  `CURRENT (2905)`. Splitting the square-root expression consistently recovered
+  `f21/f20` saves, but shrank text to `0x2890` and regressed to `4705`-`5205`;
+  the non-split family stayed at `0x28F8` and `2905`-`3513`. Chained zero was
+  object-identical. Full results are in
+  `/private/tmp/dkr-racer-or9og-64/or9og-lifetime-64/report.json`.
+- The exact instruction-count audit shows the retained source is five
+  instructions short: the missing `f21/f20` prologue saves and epilogue
+  restores explain four, leaving one interior instruction. The clearest
+  target-only interior instruction is `move t0,v1` in the `trickType == +/-1`
+  path, preserving the old `x_rotation_vel` across the updated store. Sixteen
+  isolated real-IDO copy/lifetime spellings emitted neither that move nor the
+  saved-FPR pair. Their sizes ranged `0x28F8`-`0x290C`; the sole target-size
+  object grew through sign-extension noise, not target allocation. The plain
+  copy was byte-identical to retained `CURRENT (2905)`. Do not repeat direct
+  old-value copy, cast, `+0`, comma, shift-roundtrip, bitwise-zero, or simple
+  updated-value carrier spellings in this block.
+- A constrained four-worker real-IDO permuter run stopped at about 240 seconds.
+  Its valid advisory score moved only `5016 -> 5006`; quiet mode did not expose
+  a trustworthy iteration count. The small advisory mutation was not promoted
+  or relinked and yielded no reviewed semantic source patch. Temporary work
+  stayed under `/private/tmp/dkr-racer-or9og-perm`; the shared checkout was
+  untouched.
 
 ## Extracted ACTIVE Notes
 

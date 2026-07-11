@@ -107,6 +107,19 @@
   shared linked diff to `CURRENT (2905)` while preserving frame `0xF8` and
   early `f14`; it remains nonexact. Objects `96Vzj` was rejected after semantic
   validation exposed mask corruption and wrong steep-correction coordinates.
+- A 64-way real-IDO racer lifetime/padding matrix collapsed to 12 objects and
+  did not improve retained `CURRENT (2905)`. Split square-root expressions
+  recovered `f21/f20` saves but over-shrank the function; chained-zero and
+  unused-pad variants supplied no missing allocation mechanism.
+- A racer instruction-count audit found a five-instruction target gap: four
+  saved-FPR save/restores plus target-only `move t0,v1` in the `trickType ==
+  +/-1` update. Sixteen semantic old-value/update carrier variants failed to
+  emit the move or recover the saved-FPR pair; the plain copy was byte-identical
+  to the retained source.
+- A bounded four-worker racer permuter pass stopped at about 240 seconds and
+  found only a ten-point advisory improvement (`5016 -> 5006`). No semantic
+  candidate was promoted; authoritative linked `CURRENT (2905)` remains the
+  racer checkpoint.
 
 ## Blockers Or Unknowns
 

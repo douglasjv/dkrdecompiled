@@ -95,6 +95,19 @@
   mask and used wrong coordinates; semantic repairs regressed, so it was not
   retained. Track family best (`1898`) remains worse than retained `1668`, and
   the menu family exposes no result below score `20`.
+- A follow-up 64-way racer lifetime/padding matrix found no improvement over
+  retained `CURRENT (2905)`. Split `sqrtf` restores `f21/f20` saves but shrinks
+  the function by another `0x68`; non-split shapes remain `0x14` short. An
+  instruction-count audit attributes four of the five missing instructions to
+  those saves/restores and identifies target-only `move t0,v1` in the
+  `trickType == +/-1` path as the residual interior instruction. Sixteen
+  semantic old-value/update carrier variants failed to emit that move; the
+  only target-size variant used unrelated sign-extension noise. Keep the exact
+  `oR9oG` source as the racer checkpoint.
+- A bounded four-worker racer permuter run stopped at about 240 seconds. Its
+  advisory metric improved only `5016 -> 5006`; no candidate was promoted or
+  returned as a semantic patch. This does not supersede authoritative linked
+  `CURRENT (2905)`.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
