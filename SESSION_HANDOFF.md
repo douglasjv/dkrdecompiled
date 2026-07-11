@@ -82,6 +82,12 @@
   found no improvement over `CURRENT (10)`; its observable tail covered 1,696
   iterations. External racer and track searches found no independent C-source
   precedent for their remaining allocation cycles. The guards remain intact.
+- A follow-up tested four distinct compiler mechanisms. Menu full-index
+  materialization creates the needed interference edge but colors it
+  `t8/t9/t3`; track's `CURRENT (1342)` shape requires one extra array store;
+  objects retry copies add `0x10` of frame; racer expression sharing either
+  normalizes away or disrupts the correct count/pointer roles. No guarded C
+  body was changed.
 
 ## Blockers Or Unknowns
 

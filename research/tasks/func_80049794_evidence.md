@@ -63,6 +63,13 @@ Current compact read:
   locals, register hints, pointer carriers, predecrement, while/break, do-loop,
   and selected-index forms already rejected, no distinct source translation
   is justified by this survey.
+- 2026-07-10 loop-expression sharing pass on the close-save family: compound
+  versus explicit decrement and condition-assignment sharing were object-
+  identical. Comma/split initializers displaced the already-correct count and
+  pointer roles and regressed the focused diff; post-loop result sharing also
+  broadened allocation without reversing the stable/mutable pair. IDO
+  normalizes identity sharing, while splitting initialization perturbs more
+  than the desired `v1`/`a0` copy direction. No source was retained.
 
 ## Extracted ACTIVE Notes
 

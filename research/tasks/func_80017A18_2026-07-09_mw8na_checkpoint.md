@@ -58,6 +58,14 @@ comparison.
   moved the focused score from `7869` to `7864`; origin values still spilled
   at `A8/A4/A0` with none of target `f18/f20/f22` retry lifetime. This is not
   material enough to retain and rules out simple sum grouping.
+- A 2026-07-10 retry-lifetime pass showed that explicit loop-header copies of
+  all three origins do create loop-carried FPRs, but color them
+  `f22/f26/f24`, widen the frame to `0x130`, and grow text to `0x464` (target
+  `0x45C`). Reusing `x3/y3/z3` instead creates `f16/f18/f20` copies but
+  collapses the frame to `0x110` and text to `0x43C`. A condition self-
+  assignment was object-identical. The needed mechanism is therefore a
+  loop-carried origin lifetime that preserves separate intersection ownership
+  without adding three locals.
 
 ## Reopen Condition
 

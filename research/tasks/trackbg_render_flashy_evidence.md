@@ -54,6 +54,17 @@ Current compact read:
   Public fork history and expression searches exposed no independent source
   mechanism, so the retained `CURRENT (1668)` checkpoint remains the strongest
   source-backed frontier.
+- A 2026-07-10 promoted `-mips1` split-elision pass reproduced the best
+  two-statement `xPositions[6]` scratch at `CURRENT (1342)`, frame `0x158`, and
+  size `0x96C`; its sole size growth is the intermediate
+  `swc1 f10,0xF4(sp)`. Nested assignment restores target size `0x968` but
+  regresses to `1744`; a scalar scratch returns to retained `1668`, and the
+  comma form keeps the extra store. Moving required `xPositions[7]` or
+  `xPositions[5]` stores into the barrier scored `2281/1755`; trying
+  `xPositions[4]`, `zPositions[4]`, `xPositions[8]`, or `zPositions[5]`
+  scored `4177/4185/4598/7071` and still produced `0x96C` or `0x970` text.
+  The allocation gain is coupled specifically to an additive array-slot store;
+  no tested required store can replace it.
 
 Next useful work should continue from the retained `CURRENT (1668)` raw-cosine
 checkpoint and find a same-size mechanism for target-like `$f18` movement

@@ -64,6 +64,12 @@
   found no lower score in 275 seconds (1,696 iterations in the final observable
   sample). External racer and track precedent searches also found no new
   source-backed mechanism. All four guards remain necessary.
+- A second 2026-07-10 direct mechanism pass found no promotable source. Menu
+  full-index materialization prevents coalescing but rotates the live tuple to
+  `t8/t9/t3`; track's `1342` improvement remains inseparable from a `+4`-byte
+  array scratch store; objects loop-carried origin copies add `0x10` of frame;
+  racer initializer sharing displaces correct count/pointer roles. Continue
+  from the updated per-function ledgers, with all four guards intact.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

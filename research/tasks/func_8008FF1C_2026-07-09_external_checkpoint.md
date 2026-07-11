@@ -57,6 +57,14 @@ and does not affect linked code.
   to-array association and redundant-use variants also miss or spill. Do not
   repeat these non-coalescing shapes without an independent global-coloring
   mechanism.
+- A 2026-07-10 exact-size carrier follow-up assigned the complete index to a
+  separate 32-bit local. IDO reliably prevented the unwanted coalescing, but
+  rotated the three roles to `t8/t9/t3` instead of target `t3/t4/t5`; adding a
+  second explicit index local was compiler-identical. The corresponding
+  declaration/type-focused permuter search could only return to score `20`,
+  the retained one-temporary baseline. This confirms that merely materializing
+  the full index changes the correct interference edge but loses the required
+  global coloring.
 - Historical control isolates the coupled allocator tradeoff: the pre-external
   two-load selected-track source naturally emits the target `t3 -> t4 -> s1`
   index block, while the corrected single selected-track load/`t2` branch
