@@ -114,6 +114,31 @@ Current compact read:
   or relinked and yielded no reviewed semantic source patch. Temporary work
   stayed under `/private/tmp/dkr-racer-or9og-perm`; the shared checkout was
   untouched.
+- A 2026-07-10 intermediate square-root tree matrix covered ten combined,
+  regrouped, partial-accumulator, and `spEC`-carrier forms omitted by the prior
+  combined-versus-fully-split sweep. All kept frame `0xF8` and size `0x28F8`,
+  but none recovered `f21/f20`; linked scores ranged from retained `2905` to
+  `3410`. The original/flat/whole-`spEC` forms were object-identical, while
+  every distinct association regressed. Do not repeat intermediate
+  square-root expression trees as the saved-FPR mechanism.
+- A target-lifetime audit identified the semantic late x-velocity carrier:
+  target holds it in callee-saved `f20` from function offset `+0x21AC` across
+  `move_object` and later calls, while retained source reuses scratch
+  `var_f20` and spills `f14`. Giving that interval a dedicated `f32` owner
+  (reusing each of `pad5`, `pad7`, `pad3`, and `pad4` in turn) consistently
+  recovered the target `f21/f20` save family and frame `0xF8`, but shrank text
+  from `0x28F8` to `0x28B8` and regressed linked score to `3130`. Adding a
+  mixed old-value owner in the `trickType == +/-1` path emitted the target
+  `move t0,v1`, both alone and in the carrier cross, but left linked scores
+  unchanged (`2905` alone, `3130` crossed). These are now proven target
+  mechanisms, not promotable checkpoints: a future cross must independently
+  restore the lost `0x54` bytes without disturbing their allocation.
+- The wave-loop ownership audit is a firm local negative. Target and retained
+  source have the same two-node SSA graph; only the simultaneously live stable
+  bound and mutable index are colored `v1/a0` versus `a0/v1`. Aggregate,
+  addressable, unsigned-count, pointer-distance, or alias representations
+  necessarily change stack traffic or CFG. Continue only through nonlocal
+  interference pressure, not another loop-local representation.
 
 ## Extracted ACTIVE Notes
 

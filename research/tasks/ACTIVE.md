@@ -137,6 +137,15 @@
   frame; cursor forms break GPR ownership. Target also caches target, not
   origin, A/C products in the gentle-slope branch; the behavior-correct product
   cross regresses to `8490` and is recorded as a future exact-match constraint.
+- A new racer lifetime audit isolated two real target mechanisms without a
+  promotable cross. A dedicated late x-velocity carrier recovers the exact
+  `f21/f20` save family at frame `0xF8`, and mixed old-value ownership emits
+  the target `move t0,v1`; however, the carrier shrinks text to `0x28B8` and
+  regresses linked score to `3130`, while the copy alone leaves retained
+  `CURRENT (2905)` unchanged. Ten intermediate square-root trees also failed
+  to beat `2905`. Future racer work must couple this proven carrier topology
+  with an independent source mechanism that restores `0x54` bytes; do not
+  retry wave-local ownership or expression association.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch
