@@ -56,6 +56,15 @@
 - Focused subagents are permitted for bounded source searches and public-source
   audits when useful, but integrate results directly in the primary checkout;
   do not recreate the retired heartbeat/child-ledger orchestration layer.
+- A 2026-07-12 tooling pass added `tools/find_residual_mechanisms.py` and
+  structured signatures in `research/tasks/residual_signatures.json`. Unlike
+  the older whole-function scorer, it mines the verified ELF, preserves
+  destructive/nondestructive register equality and FPR roles across selected
+  residual windows, maps hits to C definitions, and suppresses audited
+  references. Its menu integration control rediscovers
+  `menu_trophy_race_round_init`; default suppression then reports no novel
+  exact menu DAG. Use the new `residual_helper` emitted by
+  `query_goal_state.py tooling` before another cooldown source probe.
 - Direct-mode `func_80017A18` update on 2026-07-09: the newest 16-member
   decomp.me family exposed scratch `Mw8Na` (`5971` standalone). A retained
   Mw8Na-derived A2/C2 source recovers exact frame `0x120`, result slot

@@ -1,0 +1,26 @@
+{
+  "func_8008FF1C": {
+    "offsets": ["0x1A8", "0x1AC", "0x1B4", "0x1B8", "0x1BC", "0x1C0"],
+    "max_gap": 0,
+    "known_references": ["menu_trophy_race_round_init", "menu_trophy_race_round_loop"],
+    "hard_gates": "frame 0x80, size 0x5CC, exact t2 branch/delay store, nondestructive t3-to-t4 address edge"
+  },
+  "trackbg_render_flashy": {
+    "offsets": ["0xB0", "0x10C", "0x114", "0x118"],
+    "max_gap": 32,
+    "known_references": [],
+    "hard_gates": "frame 0x158, size 0x968, C=f18, 2B=f16, 2A spilled through sp+0x30, reconverge at +0x178"
+  },
+  "func_80017A18": {
+    "offsets": ["0xCC", "0xD4", "0xD8", "0xF8", "0xFC", "0x100"],
+    "max_gap": 8,
+    "known_references": ["func_80027568"],
+    "hard_gates": "frame 0x120, size 0x45C, result sp+0xF8, saved GPR family, f18/f20/f22 retry spills and reverse reloads"
+  },
+  "func_80049794": {
+    "offsets": ["0x18", "0x1C", "0x64", "0x6C", "0x70"],
+    "max_gap": 20,
+    "known_references": [],
+    "hard_gates": "frame 0xF8, size 0x290C, f21/f20 saves, early zero f14, exact wave and trick-path register roles"
+  }
+}

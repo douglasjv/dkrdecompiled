@@ -555,6 +555,12 @@ def print_tooling(state: dict[str, object]) -> None:
     revival_items = revival_candidates(state)
     routable = [item for item in discovery_items if item.get("ready_for_probe")]
     routable_parked = [item for item in revival_items if item.get("ready_for_probe")]
+    residual_items = routable or routable_parked or discovery_items or revival_items
+    if residual_items:
+        print(
+            "residual_helper: python3 tools/find_residual_mechanisms.py "
+            f"{residual_items[0]['function']} --top 20"
+        )
     if routable:
         first = routable[0]
         print(

@@ -15,6 +15,11 @@
   functions, and 4 `GLOBAL_ASM` functions remaining.
 - `python3 tools/query_goal_state.py next --compact --refresh` reports 4
   guarded candidates and `recommended_next: func_8008FF1C`.
+- Residual discovery now uses `tools/find_residual_mechanisms.py` with four
+  structured signatures. Unit tests prove destructive and nondestructive GPR
+  edges remain distinct and FPR identities survive normalization. The verified
+  ELF integration control rediscovers the known menu trophy-race address DAG,
+  while default known-reference suppression yields no false novel menu hit.
 - A bounded five-minute permuter pass against the promoted `func_8008FF1C`
   candidate found only semantically invalid lower-score mutations; none were
   applied. The source was restored before the final matching build.
@@ -224,6 +229,10 @@
 ## Next Work Packet
 
 - Work directly in the primary checkout, one remaining function at a time.
+- Run `python3 tools/query_goal_state.py tooling --compact`, then use its
+  `residual_helper` command to mine matched C precedents before selecting a new
+  source mechanism. Add genuine precedents to the signature metadata only
+  after inspecting their source and compiled window.
 - Do not recreate the previous parent/child orchestration; it was retired at
   the user's request on 2026-07-09. Focused, disposable subagents are allowed
   when they reduce search latency.

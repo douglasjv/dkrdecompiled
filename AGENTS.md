@@ -54,6 +54,13 @@ above; it does not replace the gate or relax validation.
 - `python3 tools/find_similar_functions.py <function>` ranks other function asm
   with similar normalized opcode/operand shape. Use it to form a distinct
   mechanism hypothesis when routing is saturated, not as proof of behavior.
+- `python3 tools/find_residual_mechanisms.py <function> --top 20` searches the
+  verified built ELF for short register-role patterns recorded in
+  `research/tasks/residual_signatures.json`. It preserves destructive versus
+  nondestructive register relationships and FPR identities, maps compiled hits
+  back to C definitions, and suppresses already-audited references by default.
+  Treat hits as source-backed mechanism precedents only; source retention still
+  requires the full matching gate.
 - `python3 tools/m2c_one_shot.py <function>` writes mips_to_c snapshots under
   `research/tasks/m2c_one_shot/` without editing live source. Treat output as a
   starting point only.
