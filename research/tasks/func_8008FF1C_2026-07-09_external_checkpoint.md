@@ -146,6 +146,29 @@ and does not affect linked code.
   whole allocator rather than only preventing the one coalescence. Evidence is
   under `/private/tmp/menu_nonlocal_index_id_web.c` and the
   `/private/tmp/dkr-menu-nonlocal` matrix. No candidate was retained.
+- A resumed 2026-07-12 allocator packet tested the remaining dead-owner and
+  late-liveness seams. Replacing the existing post-`xOff` `if (1) {}` with a
+  behavior-safe `if ((pad != -1) && (s32) new_var) {}` widened the function to
+  `0x5DC` and broadly changed saved-register ownership; the diagnostic raw
+  `if ((s32) new_var) {}` form widened it further to `0x5E4`, introduced the
+  64-bit row pair/spills, and still coalesced the final sum into `t3`. The raw
+  form is also behavior-invalid on the `pad == -1` path and cannot be retained.
+- Moving the redundant selected-cell mask across `cur->hubName`, folding the
+  hub store into the condition with a comma expression, and qualifying the
+  menu-ID pointee as `volatile` were either instruction-identical to retained
+  `CURRENT (10)` or moved the hub store out of the target branch delay slot.
+  A nested `pad = (pad = gTrackSelectIDs[pad][trackX])` form stayed `0x5CC`
+  but restored the rejected `lh v1` selected-track carrier and broadly
+  recolored the later address chain to `t2/t9/t0`.
+- The strongest remaining historical-mechanism cross chained an unused
+  secondary owner to the already-correct single selected-cell load:
+  `pad2 = (pad = gTrackSelectIDs[pad][trackX] & 0xFFFFFFFFFFFFFFFF)` and the
+  equivalent existing-`temp` form. Both compile to the exact retained object
+  SHA-256 `d44841ae001830aff6e22bbf122fb322543326adcc96561897cc739257a98abf`,
+  including `lh t2` and the same `t3/t3` address pair. IDO eliminates the dead
+  owner before web construction. Do not repeat dead chained selected-load
+  owners, late empty-if row liveness, hub/mask ordering, or volatile pointee
+  qualifiers.
 
 ## Reopen Condition
 

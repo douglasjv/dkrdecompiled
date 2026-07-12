@@ -162,6 +162,16 @@
   failed to form target retry phis. Target-product and co-induction crosses
   regressed to `9396` and `9816`. Retain the current objects source and require
   a different contained GPR/interference mechanism.
+- A resumed objects retry packet closed the remaining contained GPR shapes.
+  Duplicate outer-plus-inner origin assignments are direct-C `0x444` and let
+  IDO delete the outer copies, leaving mask `ra` and origins `s6/s7/s8`;
+  `register` on the mask is byte-identical. Empty mask/origin fake uses shrink
+  to `0x440`/`0x43C`. Coupling mask, origin, and hit in one struct also remains
+  `0x444` with the same wrong webs. Copying retained `Vec3f origin` into a
+  retry `Vec3f` preserves saved-GPR ownership but widens frame to `0x130`,
+  moves the result to `sp+0x108`, and grows text to `0x464`. The copied
+  `build/src/objects.c.o` target-size artifact is asm-backed and must not be
+  mistaken for promoted C. Retain linked `CURRENT (7794)` unchanged.
 - A distinct menu nonlocal-interference packet also missed. Short-circuit
   placement of the real row-base assignment shrinks text to `0x5C4`/`0x5B8`
   and loses the exact `t2` selected-load web; 12 identity-select forms either
@@ -170,6 +180,15 @@
   recolors 132 instructions into a `t8/t9` family. Retain the score-10 source;
   future menu work needs an external/compiler mechanism beyond local or
   nonlocal semantic ownership already covered.
+- A resumed menu allocator packet closed the last dead-owner hypothesis.
+  Chaining either unused `pad2` or existing `temp` to the correct single
+  selected-cell load produces the exact retained object hash and leaves the
+  `t3/t3` pair unchanged; IDO removes the secondary definition before web
+  construction. Late `new_var` empty-if liveness grows the function to
+  `0x5DC`/`0x5E4`, nested `pad` self-assignment restores the wrong `v1`
+  carrier, and hub/mask ordering plus volatile-pointee forms are identical or
+  disturb the exact delay slot. Retain `CURRENT (10)` and rotate functions
+  unless a new nonlocal allocator mechanism is named.
 
 - Parent heartbeat lane on 2026-06-12: child `019ebdc1-2430-72e0-8e5d-5d066a74a404`
   for `func_8002B0F4` recorded durable negative evidence on branch

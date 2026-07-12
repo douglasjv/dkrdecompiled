@@ -163,12 +163,25 @@
   score `7794 -> 8684`, moves the mask to `ra`, and does not emit target
   `f18/f20/f22` retry phis. Behavior-correct target products and a matched-code
   outer co-induction cross regress to `9396` and `9816`; none is retained.
+- A resumed objects retry packet found no promotable contained GPR repair.
+  Duplicate outer/inner origin loads, mask `register`, empty liveness, and a
+  mask+origin+hit aggregate all remain `0x444` or shrink while selecting mask
+  `ra` and origin bases `s6/s7/s8`. A retained-Vec-to-retry-Vec copy preserves
+  saved GPRs but widens the frame to `0x130`, moves the result to `sp+0x108`,
+  and grows text to `0x464`. A tempting `0x45C` copied object was confirmed
+  asm-backed by its `func_80017A18.NON_MATCHING` symbol, not C output.
 - A fresh menu allocator packet tested short-circuit row-base placement,
   conditional identity expressions, existing-value row/index reuse, and a
   nonlocal index-to-menu-ID web. None preserves the exact function while
   producing target `t4`: exact-size identities remain `CURRENT (10)`, edge
   placement shrinks or broadens the function, and the exact-size nonlocal web
   changes 132 instructions. The retained menu source remains unchanged.
+- The final dead-owner menu cross was also exhausted. Chaining unused `pad2`
+  or `temp` to the correct selected-cell load yields the exact retained object
+  hash and same `t3/t3` address pair. Late row-base liveness widens text to
+  `0x5DC`/`0x5E4`; nested selected-cell self-assignment loses target `t2`;
+  statement-order and volatile-pointee variants are identical or disturb the
+  target delay slot. No menu source change was retained.
 
 ## Blockers Or Unknowns
 

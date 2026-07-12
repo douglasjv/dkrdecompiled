@@ -136,6 +136,39 @@ comparison.
   in the target-product cross. Do not repeat direct in-`do` aggregate loads,
   their target-product cross, or outer-loop co-induction as the contained GPR
   repair.
+- A resumed 2026-07-12 contained-GPR packet kept the retained outer `Vec3f`
+  member assignments and duplicated the same three array loads immediately
+  after `redoLoop = FALSE`. IDO deletes the outer copies, leaving direct-C text
+  at `0x444`; mask ownership still rotates to `ra`, origin bases become
+  `s6/s7/s8`, and the values are ordinary `f6/f8/f10` stack traffic rather
+  than persistent `f18/f20/f22` retry phis. Adding `register` specifically to
+  the mask is byte-identical to this failed object.
+- Empty fake-liveness crosses do not repair that rotation. `if (var_s6) {}` at
+  the outer-origin seam shrinks text to `0x440` and broadly rotates the saved
+  GPRs; `if (origin.x) {}` shrinks to `0x43C` and spills the mask instead.
+  Neither produces the six target boundary instructions.
+- A single coupled retry-state struct containing mask, origin `Vec3f`, and hit
+  `Vec3f` was also tested with origin assignments inside `do`. It remains
+  frame `0x120` and text `0x444`, but IDO treats the fields as independent
+  webs: mask stays `ra`, origin bases stay `s6/s7/s8`, and no retry-boundary
+  `f18/f20/f22` spill/reload family appears. Aggregate field ownership and
+  mask `register` hints are therefore closed as contained GPR repairs.
+- The retained outer `Vec3f origin` was also crossed with a distinct
+  `Vec3f retryOrigin` copied member-by-member at the `do` header and used for
+  retained A2/C2 products, interpolation, and timeout reset. This preserves
+  the desired saved-GPR mapping and creates loop-carried origin colors
+  `f22/f26/f24`, but widens the frame to `0x130`, moves the result to
+  `sp+0x108`, and grows text to `0x464`. It fails the hard frame/result gate
+  before scoring; crossing target products cannot repair the added storage.
+  Retained-Vec-to-retry-Vec copying is therefore covered alongside the older
+  scalar retry-copy family.
+- Artifact provenance is a hard gate for this packet. A copied
+  `build/src/objects.c.o` can appear perfect at `0x45C` with the exact target
+  spill/reload sequence, but its symbol table contains
+  `func_80017A18.NON_MATCHING`; it is the asm-backed matching object, not C
+  output. The direct promoted artifacts above contain only the ordinary
+  `func_80017A18` symbol and remain `0x444` or smaller. Never promote a result
+  from the copied build object without this symbol-table check.
 
 ## Reopen Condition
 
