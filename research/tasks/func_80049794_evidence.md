@@ -4632,3 +4632,34 @@ Current compact read:
   not repeat its recorded rejected final-block source shapes as a fallback.
   Keep the function active; do not park it just because these
   allocation/scheduling probes missed.
+
+## 2026-07-12 Function-Local Carrier Correction And Split-Sqrt Cross
+
+- The exact target span is `0x290C`; retained public scratch `oR9oG` compiles
+  to `0x28F8`, frame `0xF8`, and linked `CURRENT (2905)`. It remains the
+  authoritative source checkpoint.
+- Corrected two earlier object-wide false positives. Function-local inspection
+  of the `0x28B8` late x-velocity-owner artifact shows no `f21/f20` saves or
+  restores; those instructions came from another function in `racer.c.o`.
+  The mixed old-value artifact also has no `move t0,v1` in the `trickType ==
+  +/-1` path; the prior search found the unrelated existing move in the
+  `+/-2` block.
+- A late argument-only `moveX` live-range split stayed `0x28F8` and emitted no
+  saved FPRs. Exact target-shaped asymmetric ownership and branch-local copies
+  both stayed `0x28F8` and coalesced to `v1`, so neither emitted the required
+  path-local move.
+- A behavior-safe whole-function x-velocity lifetime (`xVelocity =
+  obj->x_velocity` before the early approach-target branch, with a final empty
+  use after storing `var_f20`) grew the retained tree to `0x2904`, but still
+  emitted no `f21/f20` saves and its relinked focused score remained
+  `CURRENT (2905)`. It is rejected.
+- Splitting the three-component magnitude before `sqrtf` genuinely emits the
+  target `f21/f20` save/restore family. With only pressure pads 5 and 7 it keeps
+  frame `0xF8` but shrinks to `0x2890`. Making `var_f14` register-qualified or
+  moving its declaration beside `var_f20` does not grow the function; retaining
+  pads 3 and 4 instead widens the frame to `0x100` without improving text.
+- The final bounded interaction, split `sqrtf` plus the behavior-safe
+  x-velocity lifetime, keeps frame `0xF8` and real `f21/f20` saves but reaches
+  only `0x28A0`, still `0x6C` short of target. It fails the size gate and was
+  not linked. No source change is retained; require a distinct body/dataflow
+  mechanism before reopening these carrier or copy families.

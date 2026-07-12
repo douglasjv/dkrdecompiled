@@ -144,15 +144,18 @@
   frame; cursor forms break GPR ownership. Target also caches target, not
   origin, A/C products in the gentle-slope branch; the behavior-correct product
   cross regresses to `8490` and is recorded as a future exact-match constraint.
-- A new racer lifetime audit isolated two real target mechanisms without a
-  promotable cross. A dedicated late x-velocity carrier recovers the exact
-  `f21/f20` save family at frame `0xF8`, and mixed old-value ownership emits
-  the target `move t0,v1`; however, the carrier shrinks text to `0x28B8` and
-  regresses linked score to `3130`, while the copy alone leaves retained
-  `CURRENT (2905)` unchanged. Ten intermediate square-root trees also failed
-  to beat `2905`. Future racer work must couple this proven carrier topology
-  with an independent source mechanism that restores `0x54` bytes; do not
-  retry wave-local ownership or expression association.
+- A corrected function-local racer audit invalidated two earlier artifact-wide
+  positives. The late x-velocity-owner object is `0x28B8` but does not save
+  `f21/f20` inside `func_80049794`; the apparent saves belonged elsewhere in
+  `racer.c.o`. The mixed old-value artifact likewise lacks the target-path
+  `move t0,v1`; the earlier search found an unrelated move in the `+/-2`
+  trick block. Exact asymmetric and branch-local owner copies still coalesce.
+  A split square-root tree genuinely recovers `f21/f20` at frame `0xF8`, but
+  shrinks text to `0x2890`; register/declaration placement does not restore
+  size, and crossing it with the behavior-safe x-velocity lifetime reaches
+  only `0x28A0`. The retained `0x28F8`, `CURRENT (2905)` source remains
+  authoritative. Do not retry these carrier/copy crosses without a distinct
+  mechanism that predicts the missing body instructions.
 - A live public-scratch refresh found no importable improvement: menu remains
   at score `20`, track family best is `1898` versus retained linked `1668`,
   objects still advertises the already rejected behavior-invalid `96Vzj`, and

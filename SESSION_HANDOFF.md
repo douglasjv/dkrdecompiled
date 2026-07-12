@@ -149,13 +149,15 @@
   GPR constraints. A target-dataflow audit also shows the final source must
   cache target A/C products for gentle slopes; that correction currently
   regresses and was not retained.
-- A bounded racer pass found a source-backed explanation for the missing saved
-  FPRs: a dedicated late x-velocity carrier recovers target `f21/f20` at frame
-  `0xF8`. It is not retained because it shrinks text `0x28F8 -> 0x28B8` and
-  regresses linked score `2905 -> 3130`. Mixed old-value ownership emits the
-  target `move t0,v1` but does not improve the score. Ten intermediate
-  square-root trees and a wave-local representation audit produced no better
-  checkpoint. Matching source remains unchanged.
+- A corrected function-local racer audit showed that the earlier x-velocity
+  and mixed-old-value positives were object-wide false hits: the `0x28B8`
+  x-velocity-owner function has no `f21/f20` saves, and the mixed-owner
+  `+/-1` path has no `move t0,v1`. Exact asymmetric and branch-local copies
+  coalesce. Split square-root source does genuinely recover `f21/f20` at frame
+  `0xF8`, but shrinks text to `0x2890`; register/declaration variants do not
+  grow it, and the behavior-safe x-velocity cross reaches only `0x28A0` versus
+  target `0x290C`. Retained `0x28F8`, linked `CURRENT (2905)` source remains
+  unchanged.
 - A live refresh of all four public scratch families found no source better
   than the retained local checkpoints. The newest distinct objects packet
   tested retained `Vec3f origin` assignments directly inside the historical
