@@ -263,3 +263,19 @@
 - Next work must begin with a genuinely distinct mechanism or new reference;
   do not route repetitions of those two newly saturated families. The full ROM
   `Verify: OK` gate remains authoritative.
+
+## 2026-07-12 Post-m2c Independent Discovery
+
+- Three independent read-only lanes rechecked menu, objects, and the combined
+  track/racer reference surface against target asm, verified ELF, source,
+  history, and the fresh snapshots. All returned reinforced negatives; exact
+  residual mining reports `no_novel_reference` for every guarded signature.
+- Racer's two partial mechanisms remain independently understood: split sqrt
+  obtains the target `f21/f20` saves but reaches only `0x2890`, or `0x28A0`
+  with the safe x-velocity lifetime, while explicit old-value ownership still
+  coalesces away the required `or t0,v1,zero`. A future mechanism must combine
+  both at frame `0xF8` and restore exactly `0x6C` semantic bytes.
+- Track must restore `0x34`/`0x38` semantic bytes beyond the m2c scratch probes
+  while retaining `C=f18`, `2B=f16`, the `2A` spill at `sp+0x30`, and target
+  reconvergence. Menu and objects reopen gates are recorded in their dated
+  checkpoints. Upstream remains at `851b15dd`; no newer source is available.

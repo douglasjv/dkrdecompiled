@@ -193,3 +193,12 @@ instruction, frame `0x80`, and size `0x5CC`, while preventing coalescing of the
 `t3 + s2` result so the temporary is allocated to `t4`. Do not treat the
 external commit or a focused score alone as acceptance; the full ROM must
 reach `Verify: OK` with the C body promoted.
+## 2026-07-12 Fresh m2c/reference audit
+
+- The apparent comma-condition topology in fresh m2c output only reconstructs
+  scheduling already emitted by the retained pre-condition assignment and
+  covered by the condition-carrier/CFG matrix.
+- No verified-C residual precedent predicts changing only the destructive
+  `t3` address edge to target `t4` while retaining frame `0x80`, size `0x5CC`,
+  and the exact `lh t2` branch plus store delay slot. Reinforced cooldown; no
+  source probe was warranted.

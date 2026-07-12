@@ -197,3 +197,11 @@ values in the target `f18/f20/f22` retry-loop lifetime and reproduces the
 target end-of-facet reload sequence while retaining the exact frame, result
 slot, and saved-register family. Do not regress to current-baseline plane
 indexing or the rejected pointer/edge-sum hybrid.
+## 2026-07-12 Fresh m2c/reference audit
+
+- Fresh m2c reconstructs the already-audited historical in-`do` scalar
+  topology; its zeroed retry condition is a behavior-invalid delay-slot
+  artifact. Git history and verified-ELF searches expose no new mechanism.
+- Reopen only for a source-backed topology predicting frame `0x120`, result at
+  `sp+0xF8`, mask in `s6`, origin bases in `s7/fp/ra`, values in
+  `f18/f20/f22`, header spills at `A4/A0/9C`, and reverse latch reloads.
