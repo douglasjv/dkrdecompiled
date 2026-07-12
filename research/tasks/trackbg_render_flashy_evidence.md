@@ -151,3 +151,17 @@ without full ROM `Verify: OK`.
   to `0x9CC`, spills broadly, and is behavior-invalid because the original
   `xSin` value is consumed later by the UV calculation. It is rejected without
   linked scoring. No source change is retained.
+
+## 2026-07-12 m2c Cross-Phase Scratch Audit
+
+- A fresh one-shot m2c rendering exposed three apparent cross-phase scratch
+  identities. Reusing one scratch first for `-A+B` and later for `2A` recovered
+  the target initial `neg.s f18,f12`, but over-coalesced the body to `0x930`
+  versus target `0x968`.
+- Reproducing all three identities (`-A+B`/`A+B`, `-A-B`/`2A`, and
+  `A-B`/`-2A`) compiled to `0x934`; the initial negative-cosine carrier moved
+  back to `f16` and broad frame-array offsets drifted.
+- Both source shapes are behavior-safe diagnostics but fail the exact-size gate.
+  No production source is retained. Do not repeat cross-phase ownership alone
+  without an additional mechanism that predicts restoration of the missing
+  `0x34` bytes while preserving target carrier coloring.

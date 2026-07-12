@@ -405,7 +405,11 @@ def write_single_type(types, name, addedTypes, nameStack):
             structTypes = types[name]['types']
             for memType in structTypes:
                 if memType in types and memType not in nameStack:
-                    if memType != "Object" and memType != "Particle": # This is a hack, due to circular referencing making things difficult. :/
+                    pointerCycle = (
+                        (name == "Particle" and memType == "ParticleEmitter")
+                        or (name == "ParticleEmitter" and memType == "PointParticle")
+                    )
+                    if memType != "Object" and not pointerCycle:
                         out += write_single_type(types, memType, addedTypes, nameStack)
             out += types[name]['value'] + "\n"
         elif kind == "enum":
@@ -418,7 +422,8 @@ def write_single_type(types, name, addedTypes, nameStack):
 # Writes all the typedef/struct/union/enum to the output file
 def write_output_types(types):
     out = ''
-    out += 'struct Object;\n' # This is a hack, due to circular referencing making things difficult. :/
+    out += 'struct Object;\ntypedef struct Object Object;\n'
+    out += 'struct ALSoundState;\ntypedef struct ALSoundState *SoundHandle;\n'
     addedTypes = {}
     for name in types.keys():
         nameStack = []

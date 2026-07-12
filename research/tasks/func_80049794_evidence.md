@@ -4663,3 +4663,15 @@ Current compact read:
   only `0x28A0`, still `0x6C` short of target. It fails the size gate and was
   not linked. No source change is retained; require a distinct body/dataflow
   mechanism before reopening these carrier or copy families.
+
+## 2026-07-12 m2c Native-Width Trick Cache
+
+- The one-shot m2c output suggested caching `trickType` as `s8 trick` and the
+  old rotation as `s16 oldXRot` across the `+/-1` trick block. This distinct
+  native-width spelling compiled to `0x2904`, but widened the frame from target
+  `0xF8` to `0x100`.
+- The generated path adds sign-extension/owner instructions around `trick`, yet
+  still does not emit the target `move t0,v1` after loading the old rotation.
+  It also does not recover the required `f21/f20` save/restore family.
+- The candidate fails its predicted movement and frame gates. No production
+  source is retained; native-width trick/rotation caches are now saturated.

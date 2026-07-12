@@ -8,10 +8,17 @@ else
 fi
 
 #Forcefully fix issues in the ctx.c file in the hackiest way for now. These defines mess things up.
-sed -i "/TT_COURSES$/d" ctx.c
-sed -i "/SAVE_COURSES$/d" ctx.c
+sed_in_place() {
+    if sed --version >/dev/null 2>&1; then
+        sed -i "$@"
+    else
+        sed -i '' "$@"
+    fi
+}
 
-sed -i 's/ u32 courseTime\[COURSE_RECORD_TOTAL\];/ u32 courseTime[47];/' ctx.c
-sed -i 's/ HudElement entry\[HUD_ELEMENT_COUNT\];/ HudElement entry[59];/' ctx.c
-sed -i 's/ void \*entry\[HUD_ELEMENT_COUNT\];/ void \*entry\[59\];/' ctx.c
- 
+sed_in_place "/TT_COURSES$/d" ctx.c
+sed_in_place "/SAVE_COURSES$/d" ctx.c
+
+sed_in_place 's/ u32 courseTime\[COURSE_RECORD_TOTAL\];/ u32 courseTime[47];/' ctx.c
+sed_in_place 's/ HudElement entry\[HUD_ELEMENT_COUNT\];/ HudElement entry[59];/' ctx.c
+sed_in_place 's/ void \*entry\[HUD_ELEMENT_COUNT\];/ void \*entry\[59\];/' ctx.c

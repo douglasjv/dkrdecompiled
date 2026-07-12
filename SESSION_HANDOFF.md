@@ -248,3 +248,18 @@
   when they reduce search latency.
 - Accept only ordinary source-level C followed by the full matching build
   reaching `Verify: OK` and a refreshed score.
+# 2026-07-12 m2c Context And Guarded-Function Audit
+
+- Repaired the repo-local context path: portable in-place `sed`, corrected the
+  final IDO MUL macro continuations, and resolved Particle/Object and
+  SoundHandle declaration ordering in `m2ctx.py`.
+- Generated durable one-shot m2c snapshots for `func_8008FF1C`,
+  `trackbg_render_flashy`, `func_80017A18`, and `func_80049794`.
+- Menu and objects exposed no new behavior-valid topology beyond their recorded
+  exhausted families. Track's three cross-phase scratch topology missed size
+  (`0x930`/`0x934` versus `0x968`). Racer's native-width trick cache reached
+  `0x2904` but widened the frame to `0x100` and omitted the predicted target
+  move. No production source change was retained.
+- Next work must begin with a genuinely distinct mechanism or new reference;
+  do not route repetitions of those two newly saturated families. The full ROM
+  `Verify: OK` gate remains authoritative.

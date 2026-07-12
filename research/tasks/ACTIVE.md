@@ -506,6 +506,15 @@
 
 ## Routing Rules
 
+- 2026-07-12 m2c context refresh: `generate_ctx.sh` was repaired for portable
+  BSD/GNU `sed`, the IDO asm macro tail no longer swallows the following
+  define, and `m2ctx.py` now orders the Particle/Object and SoundHandle forward
+  declarations correctly. Fresh one-shot snapshots exist for all four guarded
+  functions. Their source audit produced clear negatives for menu and objects,
+  and bounded failed probes for track cross-phase scratch identities and racer
+  native-width trick caches; see the per-function ledgers. No production
+  function source is retained.
+
 - Before any source probe or worker delegation, produce a compact routing packet: target, evidence checked, rejected families, exact hypothesis, predicted asm movement, stop condition, and worker reasoning level if delegated.
 - Do not run or delegate spelling/literal/condition-order microvariants after two same-family no-movement misses unless predicted asm movement is concrete and distinct.
 - Treat pre-build `CURRENT (0)` on guarded promotions as stale unless rebuilt for that exact source state.
