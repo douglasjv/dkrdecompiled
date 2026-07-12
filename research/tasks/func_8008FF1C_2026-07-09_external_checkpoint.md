@@ -169,6 +169,22 @@ and does not affect linked code.
   owner before web construction. Do not repeat dead chained selected-load
   owners, late empty-if row liveness, hub/mask ordering, or volatile pointee
   qualifiers.
+- A 2026-07-12 typed-owner pass tested the remaining distinct IR
+  representations. A two-field `{ row, full }` aggregate, its reversed field
+  order, and a union overlay all preserve exact frame `0x80` and size `0x5CC`,
+  but recolor the address sequence to product `t8`, full index `t9`, base
+  `t3`. An enum-typed row owner prevents destructive coalescing but emits
+  `t3/t8/t9`; an enum-typed separate full index follows the aggregate family.
+  Reusing otherwise-unused parameter `updateRate` as the row owner also emits
+  `t3/t8/t9`. None preserves the exact `t2` branch web plus target
+  `t3/t4/t5`, so none was linked or retained.
+- Two nearby matching precedents, `menu_trophy_race_round_init` and
+  `menu_trophy_race_round_loop`, compile direct multiply-by-six indices into
+  non-destructive three-register address DAGs even though the product register
+  is dead. This confirms the target is an optional IDO coalescing/coloring
+  decision, not evidence of hidden semantic liveness. The corresponding direct
+  index form has already been tested in this full function and globally
+  recolors the exact earlier selected-cell web.
 
 ## Reopen Condition
 

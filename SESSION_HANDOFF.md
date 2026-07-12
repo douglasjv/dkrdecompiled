@@ -184,13 +184,20 @@
   `0x5DC`/`0x5E4`; nested selected-cell self-assignment loses target `t2`;
   statement-order and volatile-pointee variants are identical or disturb the
   target delay slot. No menu source change was retained.
+- The last distinct typed-owner menu mechanisms also missed. Two-field
+  aggregates (both field orders) and a union overlay preserve exact size
+  `0x5CC` but recolor the address chain to `t8/t9/t3`; enum owners and reusing
+  unused parameter `updateRate` produce the rejected `t3/t8/t9` family. Nearby
+  matching trophy-menu functions prove direct indexing can emit a
+  non-destructive three-register chain, but that already-tested shape does not
+  coexist with this function's exact earlier `t2` web. No source was retained.
 
 ## Blockers Or Unknowns
 
 - No setup, toolchain, asset, or behavior blocker is active.
-- `func_8008FF1C` now matches the prior `t2` region and remains a one-temporary
-  mismatch at `0x90CD4`: current coalesces the address result into `t3`, while
-  target allocates `t4`.
+- `func_8008FF1C` matches the prior `t2` region and remains a one-temporary
+  coalescer mismatch at `0x90CD4`; scalar, pointer, aggregate, union, enum, and
+  parameter-owner mechanisms are now all represented in its evidence ledger.
 - `trackbg_render_flashy` remains an early FPR-allocation mismatch beginning at
   target `neg.s f18,f12`; the closer promoted source still chooses `f16`.
 

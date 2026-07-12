@@ -38,6 +38,13 @@
   that its claimed match has the same drift. Matching mode is restored and
   reaches `Verify: OK`; continue from
   `research/tasks/func_8008FF1C_2026-07-09_external_checkpoint.md`.
+- A 2026-07-12 function-local allocation follow-up exhausted the remaining
+  distinct typed-owner mechanisms. Two-field aggregate owners in both field
+  orders and a union overlay keep size `0x5CC` but rotate the desired
+  `t3/t4/t5` address chain to `t8/t9/t3`. Enum-typed row/full-index owners and
+  reuse of the otherwise-unused `updateRate` parameter also prevent destructive
+  coalescing, but select the same rejected `t3/t8/t9` family. No source change
+  is retained; require a mechanism that predicts the exact global coloring.
 - Focused subagents are permitted for bounded source searches and public-source
   audits when useful, but integrate results directly in the primary checkout;
   do not recreate the retired heartbeat/child-ledger orchestration layer.
