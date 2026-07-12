@@ -64,6 +64,14 @@
   still fails CRC, so the body remains under `NON_EQUIVALENT`; matching mode
   reaches `Verify: OK`. Continue from
   `research/tasks/func_80017A18_2026-07-09_mw8na_checkpoint.md`.
+- A 2026-07-12 retry-phi/GPR follow-up closed the remaining aggregate and CFG
+  provenance seams. `register Vec3f origin` is compiler-identical to retained
+  `0x444`. Embedding a comma-read of the mask in the first in-`do` origin load
+  is eliminated before allocation in both aggregate and scalar forms, leaving
+  mask `ra` and origin bases `s6/s7/s8`. An explicit labeled retry backedge
+  preserves the exact saved-GPR family and frame `0x120`, but grows only to
+  `0x450` and still lacks target `f18/f20/f22` boundary phis. No source change
+  is retained.
 - Upstream refresh on 2026-07-10 merged `upstream/master` commit `0adab627`
   (documentation/rename for the already matched `func_8002B0F4`). The canonical
   matching build remains `Verify: OK`; the live guarded count remains 4.

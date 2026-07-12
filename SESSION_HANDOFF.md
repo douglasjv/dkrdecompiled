@@ -198,6 +198,13 @@
   while moving the later UV lifetime to `pad_sp100` still emits `0x970`, so
   the extra two instructions are not caused by same-symbol coupling. No source
   was retained; destructive `xSin` reuse was rejected as behavior-invalid.
+- The remaining objects aggregate/CFG provenance probes missed. Marking the
+  retained `Vec3f origin` as `register` is object-identical. A behavior-neutral
+  mask comma-read on the first in-`do` origin load is removed before register
+  allocation and cannot rotate mask/origin GPRs, in either aggregate or scalar
+  form. Replacing the retry `do/while` with an explicit label/backedge keeps
+  frame `0x120` and the exact saved-GPR family but emits `0x450` text without
+  target `f18/f20/f22` retry spills/reloads. No source was retained.
 
 ## Blockers Or Unknowns
 

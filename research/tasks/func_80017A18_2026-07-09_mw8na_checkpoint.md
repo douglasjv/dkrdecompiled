@@ -170,6 +170,26 @@ comparison.
   `func_80017A18` symbol and remain `0x444` or smaller. Never promote a result
   from the copied build object without this symbol-table check.
 
+## 2026-07-12 Aggregate Register And Retry-CFG Follow-Up
+
+- `register Vec3f origin` on the retained outer aggregate compiles byte-for-byte
+  identically to the retained direct-C function: frame `0x120`, text `0x444`,
+  and no target retry-boundary origin phis. IDO does not scalarize the members
+  differently from the storage-class hint.
+- On the known direct in-`do` aggregate form, changing the first load to
+  `origin.x = (var_s6, originPointsX[i])` is eliminated before web ordering.
+  Text remains `0x444`, mask remains `ra`, and origin bases remain `s6/s7/s8`.
+  Applying the same comma provenance to the historical scalar `x2/y2/z2`
+  in-`do` form produces the same GPR mapping and no target boundary phis.
+- Replacing the retained `do/while` with an explicit `retry:` label and
+  `if (redoLoop) goto retry` preserves frame `0x120`, result `sp+0xF8`, and
+  the exact target saved-GPR ownership. It grows text from `0x444` to `0x450`,
+  but the added control-flow instructions do not create `f18/f20/f22` origin
+  live-ins or the six target header/latch spill-reloads. It fails the FPR and
+  exact-size gates and was not linked.
+- No source change is retained. Aggregate storage-class, embedded no-op
+  provenance, and explicit-backedge CFG mechanisms are now covered.
+
 ## Reopen Condition
 
 Continue from the retained A2/C2 source with a mechanism that keeps origin
