@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from find_residual_mechanisms import Instruction, role_pattern  # noqa: E402
+from find_residual_mechanisms import Instruction, role_pattern, similarity  # noqa: E402
 
 
 class RolePatternTests(unittest.TestCase):
@@ -44,6 +44,11 @@ class RolePatternTests(unittest.TestCase):
                 "add.s $f3,$f4,$f4",
             ),
         )
+
+    def test_partial_role_match_is_not_exact(self):
+        target = ("lwc1 $f0,IMM($g0)", "swc1 $f0,IMM($g1)")
+        false_positive = ("lwc1 $f0,IMM($g0)", "swc1 $f1,IMM($g1)")
+        self.assertLess(similarity(target, false_positive), 1.0)
 
 
 if __name__ == "__main__":

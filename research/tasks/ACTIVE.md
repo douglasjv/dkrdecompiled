@@ -65,6 +65,14 @@
   `menu_trophy_race_round_init`; default suppression then reports no novel
   exact menu DAG. Use the new `residual_helper` emitted by
   `query_goal_state.py tooling` before another cooldown source probe.
+- Exact-role presets currently report `no_novel_reference` for all four
+  guarded functions. A relaxed audit showed the strongest objects hit was an
+  unrolled global accumulator, the strongest track hit was unrelated triangle
+  interpolation, and racer clamp/store hits did not save `f20/f21`; these are
+  now suppressed by the miner's exact-role default. The racer preset was
+  tightened to its complete eight-instruction saved-FPR prologue. Do not route
+  a source probe from a partial-score hit without manually confirming the
+  compiled window and source mechanism.
 - Direct-mode `func_80017A18` update on 2026-07-09: the newest 16-member
   decomp.me family exposed scratch `Mw8Na` (`5971` standalone). A retained
   Mw8Na-derived A2/C2 source recovers exact frame `0x120`, result slot
@@ -84,6 +92,18 @@
 - Upstream refresh on 2026-07-10 merged `upstream/master` commit `0adab627`
   (documentation/rename for the already matched `func_8002B0F4`). The canonical
   matching build remains `Verify: OK`; the live guarded count remains 4.
+- Upstream refresh on 2026-07-12 imported `851b15dd` (`Matchfunc 80059208
+  (#742)`) as local commit `40fbcca5`. This fork already had a direct,
+  ROM-verifying C body for `func_80059208`, so the canonical score remains
+  97.91% / 1848 functions; the import supplies upstream's cleaned exact source
+  and README accounting. Full matching build remains `Verify: OK` and the four
+  guarded candidates are unchanged.
+- The same 2026-07-12 external lineage refresh re-enumerated all 40 public
+  forks. No post-July source for `func_8008FF1C`, `trackbg_render_flashy`,
+  `func_80017A18`, or `func_80049794` was found; recently active forks are at
+  or behind upstream and older divergent branches add no distinct target
+  shape. Live decomp.me family enumeration was blocked by Cloudflare, so retain
+  the documented July scratch checkpoints as the newest observable evidence.
 - A 2026-07-10 objects FPR-lifetime pass rejected radius-first ordering
   (`CURRENT (8783)`, saved-GPR regression) and sequential sum grouping
   (`CURRENT (7864)`, only 5 points better with the same missing

@@ -20,6 +20,16 @@
   edges remain distinct and FPR identities survive normalization. The verified
   ELF integration control rediscovers the known menu trophy-race address DAG,
   while default known-reference suppression yields no false novel menu hit.
+- All four exact-role presets now return `no_novel_reference`. Relaxed hits
+  were manually audited and rejected as unrelated accumulator, interpolation,
+  or clamp/store sequences. The miner defaults to exact role equality and the
+  racer signature uses the full eight-instruction prologue, preventing those
+  partial similarities from being routed as source mechanisms.
+- Upstream commit `851b15dd` was imported as `40fbcca5`, cleaning and
+  documenting the exact `func_80059208` C source. The fork already built that
+  function from direct verifying C, so live progress remains 97.91% / 1848 and
+  four guarded functions. A fresh 40-fork audit found no newer source for those
+  four; decomp.me live-family enumeration was blocked by Cloudflare.
 - A bounded five-minute permuter pass against the promoted `func_8008FF1C`
   candidate found only semantically invalid lower-score mutations; none were
   applied. The source was restored before the final matching build.

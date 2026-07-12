@@ -208,6 +208,12 @@ def main() -> int:
     parser.add_argument("--window", type=int, default=6, help="Instruction count in the residual window")
     parser.add_argument("--top", type=int, default=20)
     parser.add_argument(
+        "--min-score",
+        type=float,
+        default=1.0,
+        help="Minimum register-role equality score (default: exact only)",
+    )
+    parser.add_argument(
         "--max-gap",
         type=int,
         default=0,
@@ -273,6 +279,8 @@ def main() -> int:
         for window in candidate_windows(function.instructions, target_opcodes, args.max_gap):
             pattern = role_pattern(window)
             score = similarity(target_pattern, pattern)
+            if score < args.min_score:
+                continue
             hits.append(
                 {
                     "score": score,
@@ -317,6 +325,8 @@ def main() -> int:
             print(
                 f"{hit['score']:.3f} {hit['function']}+0x{hit['function_offset']:X} {sources}"
             )
+        if not hits:
+            print("no_novel_reference")
     return 0
 
 
