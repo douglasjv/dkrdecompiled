@@ -191,6 +191,13 @@
   matching trophy-menu functions prove direct indexing can emit a
   non-destructive three-register chain, but that already-tested shape does not
   coexist with this function's exact earlier `t2` web. No source was retained.
+- The remaining track doubled-sine identity crosses also missed. A scalar
+  assignment embedded at first use keeps exact `0x968` size but leaves the
+  retained FPR cycle unchanged. A fresh block-local carrier is `0x970` and
+  loses target colors. Keeping the proven early `var_f16` target-color carrier
+  while moving the later UV lifetime to `pad_sp100` still emits `0x970`, so
+  the extra two instructions are not caused by same-symbol coupling. No source
+  was retained; destructive `xSin` reuse was rejected as behavior-invalid.
 
 ## Blockers Or Unknowns
 

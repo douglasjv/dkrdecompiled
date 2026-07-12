@@ -29,6 +29,14 @@
   `NON_MATCHING`; matching mode remains asm-backed and must still reach
   `Verify: OK`. A generated array-slot split reached `CURRENT (1342)` but
   added one instruction and shifted the rest of the object, so it was rejected.
+- A 2026-07-12 target-color follow-up closed the remaining carrier-identity
+  seams. Embedding the doubled-sine assignment at `xPositions[6]` preserves
+  exact size `0x968` but leaves the retained `C=f16/2A=f18/2B=spill` coloring.
+  A fresh block-local carrier and a split later-UV owner both stay `0x970`;
+  the former loses target colors, while the latter keeps target
+  `C=f18/2B=f16/2A=spill` but cannot remove the two extra instructions.
+  Destructive `xSin` reuse is behavior-invalid because the original sine is
+  consumed later and also grows text to `0x9CC`. No track source is retained.
 - Direct-mode `func_8008FF1C` update on 2026-07-09: audited all 40 public forks
   and adapted JordanLongstaff commit `9f420e1d`, the only claimed newer match.
   The source is retained under `NON_MATCHING` because it fixes the prior

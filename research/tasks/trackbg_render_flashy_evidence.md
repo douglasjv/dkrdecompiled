@@ -129,3 +129,25 @@ negative-cos temps, inverted-primary-cos spelling, first-ring pair-result
 scratch locals, first-two-store ordering, `var_f16` lifetime extension, or the
 size-growing `xPositions[6]` scratch split. Never rely on focused `CURRENT (0)`
 without full ROM `Verify: OK`.
+
+## 2026-07-12 Carrier-Identity And First-Use Crosses
+
+- Embedding the doubled-sine assignment at its first semantic use,
+  `xPositions[6] = rawCos - (var_f16 = scaledXSin + scaledXSin)`, then reusing
+  `var_f16` for the other three doubled-sine x sites preserves target size
+  `0x968`. It does not change the retained coloring: negative cosine remains
+  `f16`, doubled cosine remains `f18`, and doubled sine is still spilled.
+- A fresh lexical-block `f32 doubledSin` scoped only across the tail ring keeps
+  frame `0x158` but grows to `0x970` and colors negative cosine `f16`, doubled
+  sine `f18`. Lexical scope alone therefore does not reproduce the proven
+  target-color carrier identity.
+- The only known target-color source identity was crossed with a separated UV
+  lifetime: retain early `var_f16 = scaledXSin + scaledXSin`, but move the
+  later `var_a2 * xSin` definition and all UV uses to otherwise-unused
+  `pad_sp100`. This keeps negative cosine `f18`, doubled sine `f16`, and spills
+  doubled cosine, but remains `0x970`. The two extra instructions are not
+  caused by coupling the early and later `var_f16` definitions.
+- Destructive reuse of `xSin` as the early doubled-sine owner grows the function
+  to `0x9CC`, spills broadly, and is behavior-invalid because the original
+  `xSin` value is consumed later by the UV calculation. It is rejected without
+  linked scoring. No source change is retained.
